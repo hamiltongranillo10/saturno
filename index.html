@@ -3,61 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compras Inteligentes | Recomendaciones Amazon</title>
+  <title>Compras Inteligentes | Recomendaciones Pro</title>
 
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      color: #333;
+      background: #f4f4f4;
     }
 
     header {
-      background-color: #111;
+      background: #111;
       color: white;
       padding: 20px;
       text-align: center;
     }
 
-    header h1 {
-      margin: 0;
-    }
-
     .hero {
-      background: linear-gradient(to right, #ff9900, #ff6600);
+      background: linear-gradient(90deg, #ff9900, #ff5e00);
       color: white;
-      padding: 60px 20px;
       text-align: center;
+      padding: 60px 20px;
     }
 
-    .hero h2 {
-      font-size: 32px;
+    .hero h1 {
       margin-bottom: 10px;
     }
 
-    .btn {
+    .btn-main {
       background: black;
       color: white;
-      padding: 12px 20px;
+      padding: 12px 18px;
       text-decoration: none;
-      border-radius: 5px;
+      border-radius: 6px;
       display: inline-block;
       margin-top: 15px;
     }
 
-    .productos {
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px;
+    }
+
+    .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
-      padding: 40px;
     }
 
     .card {
       background: white;
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       text-align: center;
     }
 
@@ -66,14 +65,20 @@
       border-radius: 10px;
     }
 
-    .card a {
-      display: inline-block;
-      margin-top: 10px;
+    .price {
+      color: green;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .btn-buy {
       background: #ff9900;
       color: white;
       padding: 10px;
+      display: inline-block;
       border-radius: 5px;
       text-decoration: none;
+      margin-top: 10px;
     }
 
     footer {
@@ -89,43 +94,51 @@
 <body>
 
 <header>
-  <h1>Compras Inteligentes</h1>
-  <p>Recomendaciones de productos de Amazon para tu día a día</p>
+  <h2>Compras Inteligentes</h2>
+  <p>Productos recomendados para comprar mejor en internet</p>
 </header>
 
 <section class="hero">
-  <h2>Compra mejor, ahorra más</h2>
-  <p>Encuentra productos inteligentes y ofertas recomendadas</p>
-  <a href="#productos" class="btn">Ver productos</a>
+  <h1>Compra inteligente, vive mejor</h1>
+  <p>Descubre productos virales y ofertas de alto valor</p>
+  <a href="#productos" class="btn-main">Ver productos</a>
 </section>
 
-<section id="productos" class="productos">
+<div class="container">
 
-  <div class="card">
-    <img src="https://via.placeholder.com/300" alt="Producto 1">
-    <h3>Audífonos inalámbricos</h3>
-    <p>Alta calidad de sonido y batería duradera.</p>
-    <a href="https://amazon.com" target="_blank">Ver en Amazon</a>
+  <h2>🔥 Productos recomendados</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <img src="IMAGE_1" alt="Producto 1">
+      <h3>Audífonos Pro</h3>
+      <p>Sonido premium y batería larga duración</p>
+      <p class="price">Recomendado</p>
+      <a class="btn-buy" href="AFFILIATE_LINK_1" target="_blank">Ver en Amazon</a>
+    </div>
+
+    <div class="card">
+      <img src="IMAGE_2" alt="Producto 2">
+      <h3>Reloj Smart</h3>
+      <p>Controla salud, pasos y notificaciones</p>
+      <p class="price">Top ventas</p>
+      <a class="btn-buy" href="AFFILIATE_LINK_2" target="_blank">Ver en Amazon</a>
+    </div>
+
+    <div class="card">
+      <img src="IMAGE_3" alt="Producto 3">
+      <h3>Organizador Hogar</h3>
+      <p>Orden y estética en tu cocina o cuarto</p>
+      <p class="price">Oferta</p>
+      <a class="btn-buy" href="AFFILIATE_LINK_3" target="_blank">Ver en Amazon</a>
+    </div>
+
   </div>
-
-  <div class="card">
-    <img src="https://via.placeholder.com/300" alt="Producto 2">
-    <h3>Reloj inteligente</h3>
-    <p>Controla tu salud y actividad diaria.</p>
-    <a href="https://amazon.com" target="_blank">Ver en Amazon</a>
-  </div>
-
-  <div class="card">
-    <img src="https://via.placeholder.com/300" alt="Producto 3">
-    <h3>Organizador de cocina</h3>
-    <p>Mejora el orden en tu hogar fácilmente.</p>
-    <a href="https://amazon.com" target="_blank">Ver en Amazon</a>
-  </div>
-
-</section>
+</div>
 
 <footer>
-  <p>© 2026 Compras Inteligentes - Todos los derechos reservados</p>
+  <p>© 2026 Compras Inteligentes | Afiliados Amazon</p>
 </footer>
 
 </body>
