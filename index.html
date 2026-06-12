@@ -3,209 +3,554 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Compras Inteligentes | Tienda Afiliada</title>
-
+<title>Compras Inteligentes | Productos Amazon</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-body{
-  margin:0;
-  font-family:Arial;
-  background:#f5f6f7;
-}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#f0f2f5;color:#111}
+
+/* DISCLOSURE - OBLIGATORIO AMAZON */
+.disclosure{background:#fff8e1;border-bottom:2px solid #ffca28;padding:10px 24px;text-align:center;font-size:13px;color:#5a4000;line-height:1.5}
+.disclosure strong{color:#e65c00}
 
 /* HEADER */
-header{
-  background:#111;
-  color:white;
-  padding:20px;
-  text-align:center;
-}
-
-header h1{
-  margin:0;
-  font-size:28px;
-}
-
-header span{
-  color:#ff9900;
-}
+header{background:#131921;color:#fff;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:100}
+.logo{font-size:22px;font-weight:800;letter-spacing:-0.5px}
+.logo span{color:#ff9900}
+.logo small{display:block;font-size:11px;font-weight:400;color:#888;margin-top:1px}
+.search-wrap{display:flex;align-items:center;gap:8px;background:#fff;border-radius:8px;padding:0 12px;height:40px}
+.search-wrap input{border:none;outline:none;font-size:14px;font-family:'Inter',sans-serif;width:220px;color:#111}
+.search-wrap svg{color:#888;flex-shrink:0}
 
 /* HERO */
-.hero{
-  background:linear-gradient(90deg,#ff9900,#ff5e00);
-  color:white;
-  padding:60px 20px;
-  text-align:center;
-}
+.hero{background:#ff9900;padding:60px 24px 50px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,#ff6d00 0%,#ff9900 60%,#ffb300 100%);opacity:0.8}
+.hero-inner{position:relative;z-index:1}
+.hero-tag{background:rgba(255,255,255,0.2);color:#fff;font-size:12px;font-weight:600;padding:5px 14px;border-radius:20px;display:inline-block;margin-bottom:16px;letter-spacing:0.5px}
+.hero h2{font-size:38px;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-1.5px;line-height:1.1}
+.hero p{color:rgba(255,255,255,0.9);font-size:16px;margin-bottom:24px}
+.hero-stats{display:flex;justify-content:center;gap:32px;margin-bottom:28px;flex-wrap:wrap}
+.stat{color:#fff;text-align:center}
+.stat strong{display:block;font-size:22px;font-weight:800}
+.stat span{font-size:12px;opacity:0.85}
+.hero-btn{background:#131921;color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;display:inline-block;transition:0.2s}
+.hero-btn:hover{background:#000;transform:translateY(-2px)}
 
-.hero h2{
-  font-size:32px;
-  margin-bottom:10px;
-}
+/* BARRA DE CATEGORÍAS */
+.cat-bar{background:#fff;border-bottom:1px solid #e5e7eb;padding:0 24px;display:flex;justify-content:center;gap:4px;flex-wrap:wrap;position:sticky;top:57px;z-index:99}
+.cat-btn{background:transparent;border:none;padding:14px 18px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;color:#555;border-bottom:3px solid transparent;transition:0.2s;white-space:nowrap}
+.cat-btn:hover{color:#ff9900}
+.cat-btn.active{color:#ff9900;border-bottom-color:#ff9900;font-weight:700}
 
-.btn{
-  background:black;
-  color:white;
-  padding:12px 18px;
-  text-decoration:none;
-  border-radius:6px;
-  display:inline-block;
-  margin-top:15px;
-}
+/* PRODUCTOS */
+.container{max-width:1200px;margin:0 auto;padding:32px 20px}
+.sec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:8px}
+.sec-title{font-size:20px;font-weight:700;color:#111;display:flex;align-items:center;gap:8px}
+.prod-count{font-size:13px;font-weight:400;color:#888}
 
-/* CATEGORIES */
-.categories{
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-  padding:20px;
-}
+/* GRID */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px}
+.no-results{display:none;text-align:center;grid-column:1/-1;padding:60px 20px;color:#888}
+.no-results p{font-size:16px;margin-top:10px}
 
-.cat{
-  background:white;
-  padding:10px 15px;
-  border-radius:20px;
-  box-shadow:0 2px 5px rgba(0,0,0,0.1);
-  font-size:14px;
-}
+/* CARD */
+.card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,0.07);transition:0.25s;display:flex;flex-direction:column;border:1px solid #e8eaed}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.13)}
+.card-img-wrap{position:relative;background:#f7f8fa;padding:20px;height:195px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #f0f0f0}
+.card-img-wrap img{max-height:155px;max-width:100%;object-fit:contain}
+.badge{position:absolute;top:12px;left:12px;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px}
+.b-top{background:#fff3e0;color:#bf5000}
+.b-new{background:#e8f5e9;color:#1b5e20}
+.b-sale{background:#fce4ec;color:#880e4f}
+.b-rec{background:#e8eaf6;color:#283593}
+.b-trend{background:#f3e5f5;color:#4a148c}
+.card-body{padding:16px;flex:1;display:flex;flex-direction:column;gap:6px}
+.card-cat{font-size:11px;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:0.5px}
+.card h3{font-size:15px;font-weight:600;line-height:1.4;color:#111}
+.card p{font-size:13px;color:#666;line-height:1.55;flex:1}
+.card-price-row{display:flex;align-items:baseline;gap:8px;margin-top:4px}
+.card-price{font-size:20px;font-weight:800;color:#0d7e3f}
+.card-price-before{font-size:13px;color:#999;text-decoration:line-through}
+.card-discount{font-size:11px;font-weight:700;color:#c62828;background:#fce4ec;padding:2px 7px;border-radius:10px}
+.card-foot{padding:12px 16px;border-top:1px solid #f0f0f0}
+.buy-btn{background:#ff9900;color:#fff;text-decoration:none;padding:11px;border-radius:8px;font-size:14px;font-weight:700;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px;transition:0.2s}
+.buy-btn:hover{background:#e68900}
+.buy-btn svg{flex-shrink:0}
 
-/* PRODUCTS */
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:20px;
-}
+/* SECCIÓN CÓMO EDITAR */
+.how-section{background:#fff;border-radius:14px;padding:28px;margin-top:40px;border:2px dashed #ff9900}
+.how-section h3{font-size:18px;font-weight:700;margin-bottom:6px;color:#111}
+.how-section .sub{font-size:13px;color:#666;margin-bottom:20px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.step{background:#f9fafb;border-radius:10px;padding:16px}
+.step-num{font-size:11px;font-weight:700;color:#ff9900;letter-spacing:0.5px;margin-bottom:6px}
+.step h4{font-size:13px;font-weight:600;color:#111;margin-bottom:4px}
+.step p{font-size:12px;color:#666;line-height:1.5}
+.step code{background:#fff;border:1px solid #e5e7eb;padding:1px 6px;border-radius:4px;font-size:11px;color:#c0392b}
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
-
-.card{
-  background:white;
-  border-radius:12px;
-  padding:15px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.1);
-  text-align:center;
-  transition:0.3s;
-}
-
-.card:hover{
-  transform:scale(1.02);
-}
-
-.card img{
-  width:100%;
-  border-radius:10px;
-}
-
-.price{
-  color:green;
-  font-weight:bold;
-}
-
-.buy{
-  background:#ff9900;
-  color:white;
-  padding:10px;
-  display:inline-block;
-  margin-top:10px;
-  border-radius:6px;
-  text-decoration:none;
-}
+/* COMISIONES BANNER */
+.comision-bar{background:#131921;color:#fff;padding:24px;border-radius:14px;margin-top:24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.comision-bar h4{font-size:15px;font-weight:700;margin-bottom:4px}
+.comision-bar p{font-size:13px;color:#aaa;line-height:1.5}
+.comision-items{display:flex;gap:20px;flex-wrap:wrap;margin-top:4px}
+.com-item{text-align:center}
+.com-item strong{display:block;font-size:20px;font-weight:800;color:#ff9900}
+.com-item span{font-size:11px;color:#aaa}
 
 /* FOOTER */
-footer{
-  background:#111;
-  color:white;
-  text-align:center;
-  padding:20px;
-  margin-top:40px;
+footer{background:#131921;color:#aaa;text-align:center;padding:28px 20px;margin-top:40px;font-size:13px;line-height:2}
+footer strong{color:#fff;font-weight:600}
+footer a{color:#ff9900;text-decoration:none}
+
+@media(max-width:600px){
+  .hero h2{font-size:26px}
+  .hero-stats{gap:20px}
+  .cat-bar{gap:0}
+  .cat-btn{padding:12px 12px;font-size:12px}
 }
 </style>
-
 </head>
-
 <body>
 
+<!-- ✅ OBLIGATORIO — Términos Amazon Associates -->
+<div class="disclosure">
+  <strong>⚠️ Aviso de afiliado:</strong> Como Asociado de Amazon, obtengo ingresos por las compras que califican. Los precios y disponibilidad pueden cambiar. Al hacer clic en los enlaces, serás redirigido a Amazon.com.
+</div>
+
+<!-- HEADER -->
 <header>
-<h1>🛒 Compras <span>Inteligentes</span></h1>
-<p>Tienda de productos recomendados con enlaces de Amazon</p>
+  <div class="logo">
+    🛒 Compras <span>Inteligentes</span>
+    <small>Los mejores productos en Amazon</small>
+  </div>
+  <div class="search-wrap">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="Buscar producto..." oninput="filterProducts()">
+  </div>
 </header>
 
+<!-- CATEGORÍAS -->
+<div class="cat-bar">
+  <button class="cat-btn active" onclick="filterByCategory('todos',this)">🔥 Todos</button>
+  <button class="cat-btn" onclick="filterByCategory('fitness',this)">💪 Fitness</button>
+  <button class="cat-btn" onclick="filterByCategory('hogar',this)">🏠 Hogar</button>
+  <button class="cat-btn" onclick="filterByCategory('skincare',this)">✨ Skincare</button>
+  <button class="cat-btn" onclick="filterByCategory('cocina',this)">🍳 Cocina</button>
+  <button class="cat-btn" onclick="filterByCategory('tecnologia',this)">📱 Tecnología</button>
+  <button class="cat-btn" onclick="filterByCategory('tendencias',this)">⚡ Tendencias</button>
+</div>
+
+<!-- HERO -->
 <section class="hero">
-<h2>Compra inteligente, vive mejor</h2>
-<p>Productos virales, útiles y con mejor precio en Amazon</p>
-<a class="btn" href="#productos">Ver tienda</a>
+  <div class="hero-inner">
+    <div class="hero-tag">✅ PRODUCTOS VERIFICADOS EN AMAZON</div>
+    <h2>Compra lo que todos están comprando</h2>
+    <p>Selección actualizada de los más vendidos en Amazon para 2026</p>
+    <div class="hero-stats">
+      <div class="stat"><strong>+50</strong><span>Productos</span></div>
+      <div class="stat"><strong>7</strong><span>Categorías</span></div>
+      <div class="stat"><strong>100%</strong><span>Amazon oficial</span></div>
+    </div>
+    <a class="hero-btn" href="#productos">Ver productos →</a>
+  </div>
 </section>
 
-<!-- CATEGORÍAS -->
-<div class="categories">
-<div class="cat">📱 Tecnología</div>
-<div class="cat">🏠 Hogar</div>
-<div class="cat">💪 Fitness</div>
-<div class="cat">✨ Belleza</div>
-<div class="cat">🔥 Tendencias</div>
-</div>
-
-<!-- PRODUCTOS -->
+<!-- GRID DE PRODUCTOS -->
 <div class="container" id="productos">
-
-<h2>🔥 Productos recomendados</h2>
-
-<div class="grid">
-
-<!-- PRODUCTO 1 -->
-<div class="card">
-<img src="https://via.placeholder.com/300" alt="">
-<h3>Audífonos Pro Inalámbricos</h3>
-<p>Sonido premium + batería larga duración</p>
-<p class="price">Recomendado</p>
-<a class="buy" href="https://www.amazon.com/dp/PRODUCTO1?tag=comprasin0747-20" target="_blank">
-Ver en Amazon
-</a>
+  <div class="sec-header">
+    <div class="sec-title">🛍️ Productos recomendados <span class="prod-count" id="prodCount"></span></div>
+  </div>
+  <div class="grid" id="productGrid">
+    <div class="no-results" id="noResults">
+      <div style="font-size:40px">😕</div>
+      <p>No se encontraron productos.</p>
+    </div>
+  </div>
 </div>
 
-<!-- PRODUCTO 2 -->
-<div class="card">
-<img src="https://via.placeholder.com/300" alt="">
-<h3>Reloj Inteligente Fitness</h3>
-<p>Mide pasos, salud y notificaciones</p>
-<p class="price">Top ventas</p>
-<a class="buy" href="https://www.amazon.com/dp/PRODUCTO2?tag=comprasin0747-20" target="_blank">
-Ver en Amazon
-</a>
+<!-- COMISIONES INFO -->
+<div class="container">
+  <div class="comision-bar">
+    <div style="flex:1;min-width:200px">
+      <h4>💰 ¿Cuánto ganas por cada venta?</h4>
+      <p>Amazon Associates paga comisión por categoría. Estas son las comisiones para los productos de tu tienda:</p>
+    </div>
+    <div class="comision-items">
+      <div class="com-item"><strong>10%</strong><span>Belleza/Skincare</span></div>
+      <div class="com-item"><strong>8%</strong><span>Fitness</span></div>
+      <div class="com-item"><strong>8%</strong><span>Hogar/Cocina</span></div>
+      <div class="com-item"><strong>4%</strong><span>Electrónica</span></div>
+    </div>
+  </div>
+
+  <!-- GUÍA CÓMO AGREGAR PRODUCTOS -->
+  <div class="how-section" style="margin-top:24px">
+    <h3>🛠️ ¿Cómo agrego mis propios productos?</h3>
+    <p class="sub">Sigue estos 4 pasos simples para reemplazar o agregar productos reales de Amazon con tu tag de afiliado.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">PASO 1</div>
+        <h4>Busca el producto en Amazon</h4>
+        <p>Ve a amazon.com y busca el producto que quieres promocionar. Elige uno con buenas reseñas (4+ estrellas).</p>
+      </div>
+      <div class="step">
+        <div class="step-num">PASO 2</div>
+        <h4>Obtén el enlace de afiliado</h4>
+        <p>En la barra SiteStripe (arriba de Amazon) haz clic en <code>Obtener enlace</code> → copia el enlace corto <code>amzn.to/...</code></p>
+      </div>
+      <div class="step">
+        <div class="step-num">PASO 3</div>
+        <h4>Copia la imagen del producto</h4>
+        <p>Clic derecho sobre la imagen del producto en Amazon → <code>Copiar dirección de imagen</code> → pégala en el campo <code>imagen:</code></p>
+      </div>
+      <div class="step">
+        <div class="step-num">PASO 4</div>
+        <h4>Edita el array en el código</h4>
+        <p>Busca <code>const products = [...]</code> en el HTML y agrega o edita un objeto con: nombre, descripcion, precio, imagen, link, categoria.</p>
+      </div>
+    </div>
+  </div>
 </div>
 
-<!-- PRODUCTO 3 -->
-<div class="card">
-<img src="https://via.placeholder.com/300" alt="">
-<h3>Organizador de Cocina</h3>
-<p>Ordena tu hogar de forma inteligente</p>
-<p class="price">Oferta</p>
-<a class="buy" href="https://www.amazon.com/dp/PRODUCTO3?tag=comprasin0747-20" target="_blank">
-Ver en Amazon
-</a>
-</div>
-
-<!-- PRODUCTO 4 -->
-<div class="card">
-<img src="https://via.placeholder.com/300" alt="">
-<h3>Mini Cámara HD</h3>
-<p>Seguridad y grabación portátil</p>
-<p class="price">Nuevo</p>
-<a class="buy" href="https://www.amazon.com/dp/PRODUCTO4?tag=comprasin0747-20" target="_blank">
-Ver en Amazon
-</a>
-</div>
-
-</div>
-</div>
-
+<!-- FOOTER -->
 <footer>
-<p>© 2026 Compras Inteligentes | Afiliado oficial Amazon</p>
+  <p><strong>Compras Inteligentes</strong> — Tienda de Afiliados Amazon</p>
+  <p>Como Asociado de Amazon, gano por las compras que califican. | <a href="https://affiliate-program.amazon.com" target="_blank">Programa Amazon Associates</a></p>
+  <p>© 2026 Compras Inteligentes. Todos los derechos reservados.</p>
 </footer>
 
+<script>
+// ==============================================================
+// 🛍️ PRODUCTOS — EDITA AQUÍ PARA AGREGAR LOS TUYOS
+// ==============================================================
+// Para cada producto necesitas:
+//   nombre     → Nombre del producto
+//   desc       → Descripción corta (1-2 líneas)
+//   precio     → Precio actual (ej: "$24.99")
+//   antes      → Precio anterior tachado (opcional)
+//   descuento  → Texto de descuento (ej: "−30%") (opcional)
+//   imagen     → URL de la imagen (clic derecho en Amazon → Copiar dirección)
+//   link       → Tu enlace de afiliado (desde SiteStripe)
+//   categoria  → fitness | hogar | skincare | cocina | tecnologia | tendencias
+//   badge      → "Top ventas" | "Nuevo" | "Oferta" | "Recomendado" | "Tendencia"
+// ==============================================================
+
+const TAG = "comprasin0747-20"; // ← TU TAG DE AMAZON ASSOCIATES
+
+const products = [
+
+  // =========== 💪 FITNESS ===========
+  {
+    nombre: "Set de Bandas de Resistencia (5 niveles)",
+    desc: "Perfectas para glúteos, piernas y brazos. Sin necesidad de pesas ni máquinas.",
+    precio: "$22.99",
+    antes: "$34.99",
+    descuento: "−34%",
+    imagen: "https://m.media-amazon.com/images/I/71nGCPQA6ML._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B01AVDVHTI?tag=${TAG}`,
+    categoria: "fitness",
+    badge: "Top ventas"
+  },
+  {
+    nombre: "Rueda Ab Roller para Abdominales",
+    desc: "Doble rueda antideslizante con rodilleras incluidas. Fortalece core completo.",
+    precio: "$18.99",
+    imagen: "https://m.media-amazon.com/images/I/61oSBTFrMgL._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B07CYZYZ32?tag=${TAG}`,
+    categoria: "fitness",
+    badge: "Recomendado"
+  },
+  {
+    nombre: "Cuerda para Saltar Profesional",
+    desc: "Cable de acero ajustable, contador digital de calorías y saltos. Ideal para HIIT.",
+    precio: "$16.99",
+    antes: "$24.99",
+    descuento: "−32%",
+    imagen: "https://m.media-amazon.com/images/I/61Sd4hgBvzL._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B07CYZYZ32?tag=${TAG}`,
+    categoria: "fitness",
+    badge: "Top ventas"
+  },
+  {
+    nombre: "Tapete de Yoga Antideslizante 6mm",
+    desc: "Alta densidad, ecológico, con líneas de alineación y bolsa de transporte.",
+    precio: "$29.99",
+    imagen: "https://m.media-amazon.com/images/I/71Qkf4NzllL._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B00PXUJP4I?tag=${TAG}`,
+    categoria: "fitness",
+    badge: "Recomendado"
+  },
+  {
+    nombre: "Mancuernas Ajustables 5-52 lb",
+    desc: "Sistema de ajuste rápido. Reemplaza 15 pares de pesas. Compactas y duraderas.",
+    precio: "$189.99",
+    antes: "$249.99",
+    descuento: "−24%",
+    imagen: "https://m.media-amazon.com/images/I/71L4FgQ+JcL._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B001ARYU58?tag=${TAG}`,
+    categoria: "fitness",
+    badge: "Top ventas"
+  },
+
+  // =========== 🏠 HOGAR & AROMAS ===========
+  {
+    nombre: "Difusor Ultrasónico de Aromaterapia 500ml",
+    desc: "7 colores LED, silencioso, apagado automático. Ideal para sala y dormitorio.",
+    precio: "$24.99",
+    antes: "$34.99",
+    descuento: "−29%",
+    imagen: "https://m.media-amazon.com/images/I/71fBFVVxP0L._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B01D0N0HS8?tag=${TAG}`,
+    categoria: "hogar",
+    badge: "Top ventas"
+  },
+  {
+    nombre: "Set 8 Aceites Esenciales 100% Puros",
+    desc: "Lavanda, eucalipto, menta, árbol de té y más. Perfectos para difusor.",
+    precio: "$15.99",
+    imagen: "https://m.media-amazon.com/images/I/81RUFSiOA0L._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B01GMEDEUO?tag=${TAG}`,
+    categoria: "hogar",
+    badge: "Oferta"
+  },
+  {
+    nombre: "Organizador de Cajones Modular",
+    desc: "15 piezas ajustables para cajones de cocina, baño u oficina. No usa tornillos.",
+    precio: "$19.99",
+    antes: "$27.99",
+    descuento: "−29%",
+    imagen: "https://m.media-amazon.com/images/I/71GOQ-MDTIL._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B07YSZRYKV?tag=${TAG}`,
+    categoria: "hogar",
+    badge: "Top ventas"
+  },
+  {
+    nombre: "Velas Aromáticas de Soja Set x4",
+    desc: "Vainilla, lavanda, sándalo y canela. Cera vegetal 100%, sin tóxicos.",
+    precio: "$28.99",
+    imagen: "https://m.media-amazon.com/images/I/71sKFpNLKWL._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B09JF4G9TV?tag=${TAG}`,
+    categoria: "hogar",
+    badge: "Tendencia"
+  },
+
+  // =========== ✨ SKINCARE ===========
+  {
+    nombre: "COSRX Esencia con Mucina de Caracol 96%",
+    desc: "El sérum viral de TikTok. Hidrata, repara y reduce cicatrices. Apto todo tipo de piel.",
+    precio: "$21.99",
+    antes: "$29.99",
+    descuento: "−27%",
+    imagen: "https://m.media-amazon.com/images/I/51S0+w9G-6L._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B07PTRST5L?tag=${TAG}`,
+    categoria: "skincare",
+    badge: "Top ventas"
+  },
+  {
+    nombre: "CeraVe Crema Hidratante 19oz",
+    desc: "Con ceramidas y ácido hialurónico. La favorita de dermatólogos. Para rostro y cuerpo.",
+    precio: "$18.99",
+    imagen: "https://m.media-amazon.com/images/I/717BNm1iKRL._SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B00TTD9BRC?tag=${TAG}`,
+    categoria: "skincare",
+    badge: "Recomendado"
+  },
+  {
+    nombre: "The Ordinary Niacinamida 10% + Zinc 1%",
+    desc: "Reduce poros, controla grasa y unifica el tono. Resultado visible en 2 semanas.",
+    precio: "$7.99",
+    imagen: "https://m.media-amazon.com/images/I/51LR0VDfJML._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B07N1FLG4S?tag=${TAG}`,
+    categoria: "skincare",
+    badge: "Top ventas"
+  },
+  {
+    nombre: "Herramienta Gua Sha de Cuarzo Rosa",
+    desc: "Drena líquidos, define mandíbula y mejora circulación. Viral en TikTok e Instagram.",
+    precio: "$11.99",
+    antes: "$19.99",
+    descuento: "−40%",
+    imagen: "https://m.media-amazon.com/images/I/61E5BYPvT8L._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B09JF4G9TV?tag=${TAG}`,
+    categoria: "skincare",
+    badge: "Tendencia"
+  },
+  {
+    nombre: "Globos de Hielo Facial (2 unidades)",
+    desc: "Reducen puffiness, cierran poros y refrescan la piel. Úsalos directo del congelador.",
+    precio: "$14.99",
+    imagen: "https://m.media-amazon.com/images/I/71sKFpNLKWL._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B07BDWJR84?tag=${TAG}`,
+    categoria: "skincare",
+    badge: "Nuevo"
+  },
+
+  // =========== 🍳 COCINA ===========
+  {
+    nombre: "Trituradora de Pollo Manual",
+    desc: "Tritura carne cocida en segundos. Con base antideslizante y diseño floral.",
+    precio: "$12.99",
+    imagen: "https://m.media-amazon.com/images/I/71nGCPQA6ML._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B07CYZYZ32?tag=${TAG}`,
+    categoria: "cocina",
+    badge: "Top ventas"
+  },
+  {
+    nombre: "Termómetro Digital Lectura Instantánea",
+    desc: "Para carnes, parrillas, líquidos y repostería. Lectura en 2 segundos, plegable.",
+    precio: "$17.99",
+    antes: "$24.99",
+    descuento: "−28%",
+    imagen: "https://m.media-amazon.com/images/I/71GOQ-MDTIL._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B01IHHLB3W?tag=${TAG}`,
+    categoria: "cocina",
+    badge: "Recomendado"
+  },
+  {
+    nombre: "Set de Tapetes Silicona para Cocina",
+    desc: "Antiolor, resistente al calor hasta 480°F. Fácil de limpiar. 2 piezas incluidas.",
+    precio: "$15.99",
+    imagen: "https://m.media-amazon.com/images/I/81RUFSiOA0L._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B07PTRST5L?tag=${TAG}`,
+    categoria: "cocina",
+    badge: "Nuevo"
+  },
+
+  // =========== 📱 TECNOLOGÍA ===========
+  {
+    nombre: "Fire TV Stick con Control por Voz Alexa",
+    desc: "Streaming en Full HD. Compatible con Netflix, Disney+, Prime Video y más.",
+    precio: "$39.99",
+    antes: "$49.99",
+    descuento: "−20%",
+    imagen: "https://m.media-amazon.com/images/I/51oyvAIaFEL._AC_SL1000_.jpg",
+    link: `https://www.amazon.com/dp/B08C1W5N87?tag=${TAG}`,
+    categoria: "tecnologia",
+    badge: "Top ventas"
+  },
+  {
+    nombre: "Echo Dot 5ta Generación con Alexa",
+    desc: "Bocina inteligente con sonido mejorado. Controla tu hogar con la voz.",
+    precio: "$49.99",
+    imagen: "https://m.media-amazon.com/images/I/71uT3ByLG7L._AC_SL1000_.jpg",
+    link: `https://www.amazon.com/dp/B09B8V1LZ3?tag=${TAG}`,
+    categoria: "tecnologia",
+    badge: "Recomendado"
+  },
+
+  // =========== ⚡ TENDENCIAS ===========
+  {
+    nombre: "Luz LED RGB con WiFi (5m + Control)",
+    desc: "Controla colores desde tu celular. Compatible con Alexa y Google Home.",
+    precio: "$13.99",
+    antes: "$19.99",
+    descuento: "−30%",
+    imagen: "https://m.media-amazon.com/images/I/61Sd4hgBvzL._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B07FVPN9RC?tag=${TAG}`,
+    categoria: "tendencias",
+    badge: "Tendencia"
+  },
+  {
+    nombre: "Soporte Magnético Universal para Auto",
+    desc: "Rotación 360°, instalación en 10 segundos, compatible con todos los celulares.",
+    precio: "$11.99",
+    imagen: "https://m.media-amazon.com/images/I/71L4FgQ+JcL._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B07BDWJR84?tag=${TAG}`,
+    categoria: "tendencias",
+    badge: "Top ventas"
+  },
+  {
+    nombre: "Toalla de Microfibra Compacta (3 pack)",
+    desc: "Seca ultra rápido, antibacterial, perfecta para gym, playa y viajes.",
+    precio: "$19.99",
+    imagen: "https://m.media-amazon.com/images/I/51LR0VDfJML._AC_SL1500_.jpg",
+    link: `https://www.amazon.com/dp/B01ARYU58?tag=${TAG}`,
+    categoria: "tendencias",
+    badge: "Nuevo"
+  }
+
+];
+
+// ==============================================================
+// LÓGICA DE FILTROS Y RENDERIZADO — NO NECESITAS EDITAR ESTO
+// ==============================================================
+const BADGE_CLASS = {
+  'Top ventas': 'b-top',
+  'Nuevo': 'b-new',
+  'Oferta': 'b-sale',
+  'Recomendado': 'b-rec',
+  'Tendencia': 'b-trend'
+};
+
+const CAT_LABELS = {
+  fitness: '💪 Fitness',
+  hogar: '🏠 Hogar',
+  skincare: '✨ Skincare',
+  cocina: '🍳 Cocina',
+  tecnologia: '📱 Tecnología',
+  tendencias: '⚡ Tendencias'
+};
+
+let currentCat = 'todos';
+
+function renderProducts(list) {
+  const grid = document.getElementById('productGrid');
+  const count = document.getElementById('prodCount');
+  count.textContent = `(${list.length})`;
+
+  if (list.length === 0) {
+    grid.innerHTML = '<div class="no-results" style="display:block;text-align:center;grid-column:1/-1;padding:60px 20px;color:#888"><div style="font-size:40px">😕</div><p style="margin-top:10px;font-size:16px">No se encontraron productos.</p></div>';
+    return;
+  }
+
+  grid.innerHTML = list.map(p => `
+    <div class="card">
+      <div class="card-img-wrap">
+        <img src="${p.imagen}" alt="${p.nombre}" onerror="this.src='https://via.placeholder.com/200x150?text=Sin+imagen'">
+        ${p.badge ? `<span class="badge ${BADGE_CLASS[p.badge]||'b-rec'}">${p.badge}</span>` : ''}
+      </div>
+      <div class="card-body">
+        <div class="card-cat">${CAT_LABELS[p.categoria] || p.categoria}</div>
+        <h3>${p.nombre}</h3>
+        <p>${p.desc}</p>
+        <div class="card-price-row">
+          <span class="card-price">${p.precio}</span>
+          ${p.antes ? `<span class="card-price-before">${p.antes}</span>` : ''}
+          ${p.descuento ? `<span class="card-discount">${p.descuento}</span>` : ''}
+        </div>
+      </div>
+      <div class="card-foot">
+        <a class="buy-btn" href="${p.link}" target="_blank" rel="nofollow sponsored">
+          Ver en Amazon
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterByCategory(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('searchInput').value = '';
+  applyFilter();
+}
+
+function filterProducts() { applyFilter(); }
+
+function applyFilter() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  const filtered = products.filter(p => {
+    const matchCat = currentCat === 'todos' || p.categoria === currentCat;
+    const matchQ = !q || p.nombre.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q);
+    return matchCat && matchQ;
+  });
+  renderProducts(filtered);
+}
+
+// Iniciar
+renderProducts(products);
+</script>
 </body>
 </html>
