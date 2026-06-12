@@ -1,862 +1,132 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Únete a OMNILIFE | Cambia tu vida hoy</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --purple: #6B21C8;
-    --purple-light: #9B5DE5;
-    --purple-dark: #4A148C;
-    --gold: #F5A623;
-    --gold-light: #FFD166;
-    --cream: #FDF8F0;
-    --white: #FFFFFF;
-    --dark: #1A0A2E;
-    --gray: #6B7280;
-    --light-gray: #F3F0FA;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--dark);
-    overflow-x: hidden;
-  }
-
-  /* NAV */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 18px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: rgba(253, 248, 240, 0.92);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(107, 33, 200, 0.1);
-  }
-
-  .nav-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    font-weight: 900;
-    color: var(--purple);
-    letter-spacing: -0.5px;
-  }
-
-  .nav-logo span { color: var(--gold); }
-
-  .nav-cta {
-    background: var(--purple);
-    color: var(--white);
-    padding: 10px 24px;
-    border-radius: 50px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.3s;
-  }
-
-  .nav-cta:hover {
-    background: var(--purple-dark);
-    transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(107,33,200,0.35);
-  }
-
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 100px 0 60px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    right: -100px; top: -100px;
-    width: 700px; height: 700px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(107,33,200,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    left: -50px; bottom: -100px;
-    width: 400px; height: 400px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(245,166,35,0.12) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-content {
-    padding: 0 60px 0 80px;
-    z-index: 2;
-    animation: fadeUp 0.9s ease both;
-  }
-
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(107,33,200,0.1);
-    color: var(--purple);
-    padding: 8px 18px;
-    border-radius: 50px;
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin-bottom: 24px;
-  }
-
-  .badge::before {
-    content: '';
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--gold);
-    animation: pulse 2s infinite;
-  }
-
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.4rem, 4vw, 3.4rem);
-    font-weight: 900;
-    line-height: 1.1;
-    color: var(--dark);
-    margin-bottom: 20px;
-  }
-
-  h1 .highlight {
-    color: var(--purple);
-    position: relative;
-  }
-
-  h1 .highlight::after {
-    content: '';
-    position: absolute;
-    bottom: 2px; left: 0; right: 0;
-    height: 4px;
-    background: var(--gold);
-    border-radius: 2px;
-    transform: skewX(-3deg);
-  }
-
-  .hero-subtitle {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: var(--gray);
-    margin-bottom: 36px;
-    max-width: 480px;
-  }
-
-  .hero-cta {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    max-width: 360px;
-  }
-
-  .btn-primary {
-    background: var(--purple);
-    color: var(--white);
-    padding: 18px 32px;
-    border-radius: 16px;
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    text-align: center;
-    transition: all 0.3s;
-    box-shadow: 0 4px 20px rgba(107,33,200,0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 32px rgba(107,33,200,0.45);
-    background: var(--purple-dark);
-  }
-
-  .btn-secondary {
-    border: 2px solid rgba(107,33,200,0.3);
-    color: var(--purple);
-    padding: 16px 32px;
-    border-radius: 16px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-decoration: none;
-    text-align: center;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-
-  .btn-secondary:hover {
-    background: rgba(107,33,200,0.07);
-    border-color: var(--purple);
-  }
-
-  .cta-note {
-    font-size: 0.8rem;
-    color: var(--gray);
-    text-align: center;
-  }
-
-  .hero-visual {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 0 60px 0 20px;
-    z-index: 2;
-    animation: fadeUp 0.9s 0.2s ease both;
-  }
-
-  .stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  .stat-card {
-    background: var(--white);
-    border-radius: 20px;
-    padding: 24px;
-    border: 1px solid rgba(107,33,200,0.1);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-    transition: transform 0.3s;
-  }
-
-  .stat-card:hover { transform: translateY(-4px); }
-
-  .stat-card.featured {
-    background: var(--purple);
-    color: var(--white);
-    grid-column: span 2;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .stat-icon {
-    width: 48px; height: 48px;
-    border-radius: 12px;
-    background: rgba(107,33,200,0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    margin-bottom: 12px;
-  }
-
-  .stat-card.featured .stat-icon {
-    background: rgba(255,255,255,0.2);
-    margin-bottom: 0;
-    flex-shrink: 0;
-  }
-
-  .stat-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    font-weight: 900;
-    color: var(--purple);
-    line-height: 1;
-  }
-
-  .stat-card.featured .stat-number { color: var(--gold-light); }
-
-  .stat-label {
-    font-size: 0.82rem;
-    color: var(--gray);
-    margin-top: 4px;
-  }
-
-  .stat-card.featured .stat-label { color: rgba(255,255,255,0.8); }
-
-  /* BENEFITS */
-  .section {
-    padding: 90px 80px;
-  }
-
-  .section-label {
-    font-size: 0.8rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 12px;
-  }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 3vw, 2.6rem);
-    font-weight: 900;
-    line-height: 1.15;
-    color: var(--dark);
-    margin-bottom: 16px;
-  }
-
-  .section-subtitle {
-    font-size: 1rem;
-    color: var(--gray);
-    max-width: 520px;
-    line-height: 1.7;
-    margin-bottom: 60px;
-  }
-
-  .benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-
-  .benefit-card {
-    background: var(--white);
-    border-radius: 24px;
-    padding: 36px 28px;
-    border: 1px solid rgba(107,33,200,0.08);
-    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
-    transition: all 0.35s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .benefit-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--purple), var(--gold));
-    transform: scaleX(0);
-    transition: transform 0.3s;
-    transform-origin: left;
-  }
-
-  .benefit-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(107,33,200,0.12); }
-  .benefit-card:hover::before { transform: scaleX(1); }
-
-  .benefit-emoji {
-    font-size: 2.2rem;
-    margin-bottom: 16px;
-    display: block;
-  }
-
-  .benefit-title {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--dark);
-    margin-bottom: 10px;
-  }
-
-  .benefit-text {
-    font-size: 0.9rem;
-    color: var(--gray);
-    line-height: 1.65;
-  }
-
-  /* HOW IT WORKS */
-  .how-section {
-    background: var(--dark);
-    color: var(--white);
-    padding: 90px 80px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .how-section::before {
-    content: '';
-    position: absolute;
-    top: -200px; right: -200px;
-    width: 600px; height: 600px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(107,33,200,0.3) 0%, transparent 70%);
-  }
-
-  .how-section .section-title { color: var(--white); }
-  .how-section .section-label { color: var(--gold); }
-
-  .steps-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
-    margin-top: 60px;
-    position: relative;
-  }
-
-  .steps-grid::before {
-    content: '';
-    position: absolute;
-    top: 28px; left: 10%; right: 10%;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), rgba(107,33,200,0.5), rgba(255,255,255,0.2), transparent);
-  }
-
-  .step {
-    text-align: center;
-    position: relative;
-    z-index: 2;
-  }
-
-  .step-number {
-    width: 56px; height: 56px;
-    border-radius: 50%;
-    background: var(--purple);
-    color: var(--white);
-    font-family: 'Playfair Display', serif;
-    font-size: 1.3rem;
-    font-weight: 900;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 20px;
-    box-shadow: 0 0 0 8px rgba(107,33,200,0.2);
-  }
-
-  .step-title {
-    font-weight: 700;
-    font-size: 1rem;
-    margin-bottom: 10px;
-    color: var(--white);
-  }
-
-  .step-text {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.6;
-  }
-
-  /* TESTIMONIALS */
-  .testimonials-section {
-    padding: 90px 80px;
-    background: var(--light-gray);
-  }
-
-  .testimonials-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-  }
-
-  .testimonial-card {
-    background: var(--white);
-    border-radius: 20px;
-    padding: 32px;
-    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
-    border: 1px solid rgba(107,33,200,0.07);
-    transition: transform 0.3s;
-  }
-
-  .testimonial-card:hover { transform: translateY(-4px); }
-
-  .stars { color: var(--gold); font-size: 1rem; margin-bottom: 16px; letter-spacing: 2px; }
-
-  .testimonial-text {
-    font-size: 0.95rem;
-    color: var(--dark);
-    line-height: 1.7;
-    font-style: italic;
-    margin-bottom: 24px;
-  }
-
-  .testimonial-author {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .author-avatar {
-    width: 44px; height: 44px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--purple), var(--purple-light));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 700;
-    font-size: 1rem;
-    flex-shrink: 0;
-  }
-
-  .author-name { font-weight: 700; font-size: 0.9rem; color: var(--dark); }
-  .author-city { font-size: 0.78rem; color: var(--gray); margin-top: 2px; }
-
-  /* CTA FINAL */
-  .final-cta {
-    padding: 100px 80px;
-    text-align: center;
-    background: var(--white);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .final-cta::before {
-    content: '';
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 800px; height: 800px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(107,33,200,0.06) 0%, transparent 70%);
-  }
-
-  .final-cta .section-title {
-    font-size: clamp(2rem, 4vw, 3rem);
-    max-width: 600px;
-    margin: 0 auto 16px;
-  }
-
-  .final-cta .section-subtitle {
-    max-width: 480px;
-    margin: 0 auto 40px;
-    font-size: 1.05rem;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .cta-buttons .btn-primary {
-    padding: 20px 48px;
-    font-size: 1.05rem;
-    border-radius: 18px;
-    max-width: 340px;
-    width: 100%;
-  }
-
-  /* FOOTER */
-  footer {
-    background: var(--dark);
-    color: rgba(255,255,255,0.5);
-    text-align: center;
-    padding: 32px 40px;
-    font-size: 0.82rem;
-    line-height: 1.7;
-  }
-
-  footer strong { color: rgba(255,255,255,0.8); }
-
-  /* FLOATING WA */
-  .wa-button {
-    position: fixed;
-    bottom: 28px; right: 28px;
-    z-index: 200;
-    width: 58px; height: 58px;
-    border-radius: 50%;
-    background: #25D366;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.6rem;
-    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-    text-decoration: none;
-    transition: all 0.3s;
-    animation: waPulse 2.5s infinite;
-  }
-
-  .wa-button:hover { transform: scale(1.1); box-shadow: 0 8px 28px rgba(37,211,102,0.55); }
-
-  /* ANIMATIONS */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
-  }
-
-  @keyframes waPulse {
-    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
-    50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7), 0 0 0 10px rgba(37,211,102,0.1); }
-  }
-
-  /* SCROLL ANIMATIONS */
-  .reveal {
-    opacity: 0;
-    transform: translateY(28px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-
-  /* RESPONSIVE */
-  @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; padding: 100px 32px 60px; }
-    .hero-content { padding: 0; margin-bottom: 40px; }
-    .hero-visual { padding: 0; }
-    .section, .how-section, .testimonials-section, .final-cta { padding: 60px 32px; }
-    .benefits-grid, .testimonials-grid { grid-template-columns: 1fr; }
-    .steps-grid { grid-template-columns: repeat(2, 1fr); }
-    .steps-grid::before { display: none; }
-    nav { padding: 14px 24px; }
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compras Inteligentes | Recomendaciones Amazon</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background-color: #111;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+    }
+
+    .hero {
+      background: linear-gradient(to right, #ff9900, #ff6600);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      background: black;
+      color: white;
+      padding: 12px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 15px;
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .card a {
+      display: inline-block;
+      margin-top: 10px;
+      background: #ff9900;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    footer {
+      background: #111;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">OMNI<span>LIFE</span> <span style="font-size:0.7rem;font-family:'DM Sans';font-weight:400;color:var(--gray);letter-spacing:0;">| Tu Distribuidor</span></div>
-  <a href="#unete" class="nav-cta">Quiero Unirme →</a>
-</nav>
+<header>
+  <h1>Compras Inteligentes</h1>
+  <p>Recomendaciones de productos de Amazon para tu día a día</p>
+</header>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="badge">🌟 Oportunidad de Negocio</div>
-    <h1>
-      Construye tu libertad<br>
-      con <span class="highlight">OMNILIFE</span>
-    </h1>
-    <p class="hero-subtitle">
-      Conviértete en distribuidor y genera ingresos reales haciendo lo que amas: ayudar a las personas a vivir mejor. Yo te guío paso a paso hasta que lo logres.
-    </p>
-    <div class="hero-cta">
-      <a href="#unete" class="btn-primary">
-        🚀 Quiero ser distribuidor
-      </a>
-      <a href="#como-funciona" class="btn-secondary">
-        ¿Cómo funciona? Ver más
-      </a>
-      <p class="cta-note">Sin costo de membresía inicial · Te contacto en menos de 24h</p>
-    </div>
-  </div>
-  <div class="hero-visual">
-    <div class="stat-card featured">
-      <div class="stat-icon">🌍</div>
-      <div>
-        <div class="stat-number">+35 años</div>
-        <div class="stat-label">de OMNILIFE transformando vidas en todo el mundo</div>
-      </div>
-    </div>
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-icon">💰</div>
-        <div class="stat-number">$$$</div>
-        <div class="stat-label">Ingresos adicionales desde el primer mes</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">📦</div>
-        <div class="stat-number">200+</div>
-        <div class="stat-label">Productos de salud y belleza para vender</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">🏆</div>
-        <div class="stat-number">Viajes</div>
-        <div class="stat-label">Incentivos y bonificaciones para distribuidores</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon">📱</div>
-        <div class="stat-number">100%</div>
-        <div class="stat-label">Mentoría personalizada de mi parte</div>
-      </div>
-    </div>
-  </div>
+  <h2>Compra mejor, ahorra más</h2>
+  <p>Encuentra productos inteligentes y ofertas recomendadas</p>
+  <a href="#productos" class="btn">Ver productos</a>
 </section>
 
-<!-- BENEFITS -->
-<section class="section">
-  <div class="section-label">¿Por qué unirte?</div>
-  <h2 class="section-title">Todo lo que ganas<br>al ser parte de mi equipo</h2>
-  <p class="section-subtitle">No estás solo. Yo te acompaño en cada paso con herramientas, entrenamiento y una red de apoyo real.</p>
-  <div class="benefits-grid">
-    <div class="benefit-card reveal">
-      <span class="benefit-emoji">💼</span>
-      <div class="benefit-title">Tu propio negocio</div>
-      <p class="benefit-text">Trabaja a tu ritmo, desde donde quieras. Tú decides cuánto tiempo invertir y cuánto quieres ganar. Flexibilidad total.</p>
-    </div>
-    <div class="benefit-card reveal reveal-delay-1">
-      <span class="benefit-emoji">📈</span>
-      <div class="benefit-title">Ingresos sin techo</div>
-      <p class="benefit-text">El plan de compensación de OMNILIFE te permite crecer sin límites: ganas por ventas y por el equipo que construyes.</p>
-    </div>
-    <div class="benefit-card reveal reveal-delay-2">
-      <span class="benefit-emoji">🎯</span>
-      <div class="benefit-title">Mentoría 1 a 1</div>
-      <p class="benefit-text">Te acompaño personalmente. Desde el primer día tienes acceso directo a mí: resuelvo tus dudas y te enseño a vender.</p>
-    </div>
-    <div class="benefit-card reveal">
-      <span class="benefit-emoji">🧬</span>
-      <div class="benefit-title">Productos que se venden solos</div>
-      <p class="benefit-text">OMNILIFE tiene más de 200 productos de nutrición y belleza de calidad comprobada que la gente ya busca y necesita.</p>
-    </div>
-    <div class="benefit-card reveal reveal-delay-1">
-      <span class="benefit-emoji">✈️</span>
-      <div class="benefit-title">Viajes e incentivos</div>
-      <p class="benefit-text">OMNILIFE premia tu esfuerzo con viajes internacionales, bonos, reconocimientos y mucho más. El éxito tiene recompensas reales.</p>
-    </div>
-    <div class="benefit-card reveal reveal-delay-2">
-      <span class="benefit-emoji">🤝</span>
-      <div class="benefit-title">Comunidad que te impulsa</div>
-      <p class="benefit-text">Entras a una red de personas comprometidas, eventos de entrenamiento y una cultura que celebra cada logro tuyo.</p>
-    </div>
+<section id="productos" class="productos">
+
+  <div class="card">
+    <img src="https://via.placeholder.com/300" alt="Producto 1">
+    <h3>Audífonos inalámbricos</h3>
+    <p>Alta calidad de sonido y batería duradera.</p>
+    <a href="https://amazon.com" target="_blank">Ver en Amazon</a>
   </div>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/300" alt="Producto 2">
+    <h3>Reloj inteligente</h3>
+    <p>Controla tu salud y actividad diaria.</p>
+    <a href="https://amazon.com" target="_blank">Ver en Amazon</a>
+  </div>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/300" alt="Producto 3">
+    <h3>Organizador de cocina</h3>
+    <p>Mejora el orden en tu hogar fácilmente.</p>
+    <a href="https://amazon.com" target="_blank">Ver en Amazon</a>
+  </div>
+
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="how-section" id="como-funciona">
-  <div class="section-label">El proceso</div>
-  <h2 class="section-title">4 pasos para empezar<br>tu negocio hoy</h2>
-  <div class="steps-grid">
-    <div class="step reveal">
-      <div class="step-number">1</div>
-      <div class="step-title">Déjame tus datos</div>
-      <p class="step-text">Completa el formulario de interés en esta página con tu nombre y WhatsApp.</p>
-    </div>
-    <div class="step reveal reveal-delay-1">
-      <div class="step-number">2</div>
-      <div class="step-title">Hablamos 1 a 1</div>
-      <p class="step-text">Me pongo en contacto contigo para conocerte, responder tus preguntas y explicarte todo.</p>
-    </div>
-    <div class="step reveal reveal-delay-2">
-      <div class="step-number">3</div>
-      <div class="step-title">Te registro y activamos</div>
-      <p class="step-text">Hago tu afiliación de forma sencilla y rápida. En cuestión de horas ya eres distribuidor oficial.</p>
-    </div>
-    <div class="step reveal reveal-delay-3">
-      <div class="step-number">4</div>
-      <div class="step-title">Empiezas a ganar</div>
-      <p class="step-text">Con mi guía das tus primeros pasos, consigues tus primeros clientes y generates ingresos reales.</p>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials-section">
-  <div class="section-label">Historias reales</div>
-  <h2 class="section-title">Gente como tú<br>ya lo está logrando</h2>
-  <p class="section-subtitle">No te pido que confíes solo en mis palabras. Escucha a quienes ya dieron el paso.</p>
-  <div class="testimonials-grid">
-    <div class="testimonial-card reveal">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"Jamás imaginé que podría generar ingresos extra trabajando desde mi casa. Hoy tengo mi propio equipo y viajé a México gracias a OMNILIFE."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">MR</div>
-        <div>
-          <div class="author-name">María R.</div>
-          <div class="author-city">🇪🇨 Guayaquil, Ecuador</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card reveal reveal-delay-1">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"Lo que más me gustó fue el acompañamiento. No me dejaron solo ni un día. Hoy tengo más tiempo con mi familia y mejores ingresos."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">JV</div>
-        <div>
-          <div class="author-name">Jorge V.</div>
-          <div class="author-city">🇪🇨 Quito, Ecuador</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card reveal reveal-delay-2">
-      <div class="stars">★★★★★</div>
-      <p class="testimonial-text">"Los productos son increíbles y se venden solos. Empecé en mis ratos libres y en 6 meses ya superé mi sueldo de empleada."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">AP</div>
-        <div>
-          <div class="author-name">Andrea P.</div>
-          <div class="author-city">🇪🇨 Cuenca, Ecuador</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
-<section class="final-cta" id="unete">
-  <div style="position:relative;z-index:2;">
-    <div class="section-label">¿Listo para comenzar?</div>
-    <h2 class="section-title">El mejor momento<br>para empezar es <em>hoy</em></h2>
-    <p class="section-subtitle">Déjame tu contacto y en menos de 24 horas hablamos personalmente para resolver todas tus dudas sin compromiso.</p>
-
-    <!-- FORM -->
-    <div style="max-width:420px;margin:0 auto 32px;background:var(--light-gray);border-radius:24px;padding:36px;border:1px solid rgba(107,33,200,0.12);text-align:left;">
-      <div style="margin-bottom:16px;">
-        <label style="font-size:0.82rem;font-weight:600;color:var(--dark);display:block;margin-bottom:6px;">Nombre completo</label>
-        <input id="nombre" type="text" placeholder="Tu nombre" style="width:100%;padding:14px 16px;border-radius:12px;border:1.5px solid rgba(107,33,200,0.2);font-family:'DM Sans';font-size:0.95rem;outline:none;transition:border 0.2s;background:white;" onfocus="this.style.borderColor='var(--purple)'" onblur="this.style.borderColor='rgba(107,33,200,0.2)'">
-      </div>
-      <div style="margin-bottom:16px;">
-        <label style="font-size:0.82rem;font-weight:600;color:var(--dark);display:block;margin-bottom:6px;">WhatsApp</label>
-        <input id="whatsapp" type="tel" placeholder="+593 99 999 9999" style="width:100%;padding:14px 16px;border-radius:12px;border:1.5px solid rgba(107,33,200,0.2);font-family:'DM Sans';font-size:0.95rem;outline:none;transition:border 0.2s;background:white;" onfocus="this.style.borderColor='var(--purple)'" onblur="this.style.borderColor='rgba(107,33,200,0.2)'">
-      </div>
-      <div style="margin-bottom:24px;">
-        <label style="font-size:0.82rem;font-weight:600;color:var(--dark);display:block;margin-bottom:6px;">Ciudad</label>
-        <input id="ciudad" type="text" placeholder="Tu ciudad" style="width:100%;padding:14px 16px;border-radius:12px;border:1.5px solid rgba(107,33,200,0.2);font-family:'DM Sans';font-size:0.95rem;outline:none;transition:border 0.2s;background:white;" onfocus="this.style.borderColor='var(--purple)'" onblur="this.style.borderColor='rgba(107,33,200,0.2)'">
-      </div>
-      <button onclick="enviarWA()" style="width:100%;background:var(--purple);color:white;padding:18px;border:none;border-radius:14px;font-family:'DM Sans';font-size:1rem;font-weight:700;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:8px;" onmouseover="this.style.background='var(--purple-dark)';this.style.transform='translateY(-2px)'" onmouseout="this.style.background='var(--purple)';this.style.transform='translateY(0)'">
-        📲 Enviar por WhatsApp
-      </button>
-      <p style="text-align:center;font-size:0.78rem;color:var(--gray);margin-top:14px;">✅ Sin compromiso · Te respondo en menos de 24h</p>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer>
-  <p><strong>Distribuidor Independiente OMNILIFE</strong></p>
-  <p style="margin-top:8px;">Esta página es una iniciativa personal de un distribuidor independiente.<br>No representa a OMNILIFE corporativo. © 2026 Todos los derechos reservados.</p>
+  <p>© 2026 Compras Inteligentes - Todos los derechos reservados</p>
 </footer>
 
-<!-- WhatsApp Float -->
-<a href="https://wa.me/593000000000" target="_blank" class="wa-button" title="Escríbeme por WhatsApp">
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</a>
-
-<script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.15 });
-  reveals.forEach(r => observer.observe(r));
-
-  // WhatsApp form submit
-  function enviarWA() {
-    const nombre = document.getElementById('nombre').value.trim();
-    const wa = document.getElementById('whatsapp').value.trim();
-    const ciudad = document.getElementById('ciudad').value.trim();
-    if (!nombre || !wa) {
-      alert('Por favor ingresa tu nombre y WhatsApp para continuar.');
-      return;
-    }
-    const msg = encodeURIComponent(
-      `Hola! Me interesa unirme a OMNILIFE como distribuidor.\n\n` +
-      `👤 Nombre: ${nombre}\n📱 WhatsApp: ${wa}\n📍 Ciudad: ${ciudad || 'No indicada'}\n\n` +
-      `Quiero más información sobre la oportunidad de negocio.`
-    );
-    // Reemplaza el número con el tuyo
-    window.open(`https://wa.me/593000000000?text=${msg}`, '_blank');
-  }
-</script>
 </body>
 </html>
