@@ -31,10 +31,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(10,0,5,0.92)
 .nav-cta:hover{background:#aa0000}
 
 /* ── HERO ── */
-.hero{min-height:100vh;display:flex;align-items:center;padding:100px 5% 80px;position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0005 0%,#1a0008 40%,#2a0010 70%,#0a0005 100%)}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 70% 50%,rgba(180,0,0,0.18) 0%,transparent 65%);pointer-events:none}
-.hero::after{content:'🚩';position:absolute;right:5%;top:50%;transform:translateY(-50%);font-size:min(40vw,420px);opacity:.04;pointer-events:none}
-.hero-content{max-width:680px;position:relative;z-index:1}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:100px 5% 0;position:relative;overflow:hidden;background:linear-gradient(120deg,#0a0005 0%,#1a0008 50%,#2a0005 100%)}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 90% at 65% 60%,rgba(160,0,0,0.22) 0%,transparent 65%);pointer-events:none}
+.hero-content{position:relative;z-index:2;padding-bottom:80px}
+.hero-img{position:relative;z-index:1;align-self:flex-end;display:flex;align-items:flex-end;justify-content:center;min-height:60vh}
+.hero-img img{width:100%;max-width:520px;object-fit:cover;object-position:top center;display:block;filter:brightness(.95) contrast(1.05);mask-image:linear-gradient(to bottom,black 60%,transparent 100%);-webkit-mask-image:linear-gradient(to bottom,black 60%,transparent 100%)}
+.hero-img::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,rgba(204,0,0,0.18) 0%,transparent 60%);z-index:0}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding-bottom:0}.hero-img{min-height:40vh;max-height:50vh;overflow:hidden}.hero-img img{width:80%;max-width:320px}}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(204,0,0,0.15);border:1px solid rgba(204,0,0,0.4);border-radius:999px;padding:5px 16px;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rojo);margin-bottom:28px}
 .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,9vw,7rem);line-height:1;margin-bottom:24px;letter-spacing:2px}
 .hero h1 em{font-style:normal;color:var(--rojo)}
@@ -124,7 +127,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:999;background:rgba(10,0,5,0.92)
 /* ── TESTIMONIALS ── */
 .testi{background:var(--negro2);padding:80px 5%}
 .testi-inner{max-width:1100px;margin:0 auto}
-.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:48px}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:0}
 .testi-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:28px}
 .testi-stars{color:var(--rojo);font-size:.9rem;letter-spacing:3px;margin-bottom:14px}
 .testi-quote{font-size:.95rem;color:#ccc;line-height:1.7;font-style:italic;margin-bottom:18px}
@@ -166,21 +169,24 @@ footer a{color:#555;text-decoration:none}
     <div class="nav-flag"></div>
     BANDERAS <span>ROJAS</span>
   </div>
-  <a class="nav-cta" href="https://go.hotmart.com/V106289648D?ap=dea5" target="_blank" rel="noopener">Acceder por $25 →</a>
+  <a class="nav-cta" href="TU_LINK_HOTMART_AQUI" target="_blank" rel="noopener">Acceder por $25 →</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
+  <div class="scanline-wrap"></div>
+
+  <!-- LEFT: TEXT -->
   <div class="hero-content">
     <div class="hero-badge">🚩 Andres Vernazza · Emprendedor Moderno</div>
     <h1>¿Siempre terminas<br/>en relaciones<br/><em>que duelen?</em></h1>
     <p class="hero-sub">Las relaciones tóxicas no empiezan con dolor.<br/><strong>Empiezan con intensidad.</strong><br/>Por eso no ves las señales — hasta que ya es tarde.</p>
     <div class="hero-stats">
-      <div class="stat"><div class="stat-num">7</div><div class="stat-label">Módulos</div></div>
-      <div class="stat"><div class="stat-num">+10</div><div class="stat-label">Señales de alerta</div></div>
-      <div class="stat"><div class="stat-num">97%</div><div class="stat-label">Satisfacción</div></div>
+      <div class="stat"><div class="stat-num" data-count="7" data-suffix="">7</div><div class="stat-label">Módulos</div></div>
+      <div class="stat"><div class="stat-num" data-count="10" data-suffix="+">+10</div><div class="stat-label">Señales de alerta</div></div>
+      <div class="stat"><div class="stat-num" data-count="9" data-suffix="">9</div><div class="stat-label">Reseñas 5★</div></div>
     </div>
-    <a class="btn-primary" href="https://go.hotmart.com/V106289648D?ap=dea5" target="_blank" rel="noopener">
+    <a class="btn-primary btn-cta-pulse" href="TU_LINK_HOTMART_AQUI" target="_blank" rel="noopener">
       Comienza ahora <span class="arrow">→</span>
     </a>
     <div class="hero-price">
@@ -190,6 +196,16 @@ footer a{color:#555;text-decoration:none}
     </div>
     <p class="hero-note">✓ Pago seguro vía Hotmart &nbsp;·&nbsp; ✓ Acceso de por vida &nbsp;·&nbsp; ✓ Garantía incluida</p>
   </div>
+
+  <!-- RIGHT: AUTHOR IMAGE -->
+  <div class="hero-img">
+    <img
+      src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=1182,fit=crop/FCjcBPikiJOPwM4k/sin-tatulo-700-x-2000-px-1rZFxABFLf8ipu36.png"
+      alt="Andres Vernazza - Banderas Rojas"
+      loading="eager"
+    />
+  </div>
+
 </section>
 
 <div class="divider"></div>
@@ -197,18 +213,18 @@ footer a{color:#555;text-decoration:none}
 <!-- PAIN -->
 <section class="section">
   <div class="section-inner">
-    <p class="eyebrow">¿Por qué pasa?</p>
+    <p class="eyebrow reveal">¿Por qué pasa?</p>
     <h2 class="section-title">Si no entiendes el ciclo,<br/><em>lo repites.</em></h2>
-    <p class="pain-text">Cambia la persona, pero el final vuelve a ser el mismo. No es mala suerte — es un patrón. Y los patrones se aprenden, <strong>y también se rompen.</strong></p>
+    <p class="pain-text reveal">Cambia la persona, pero el final vuelve a ser el mismo. No es mala suerte — es un patrón. Y los patrones se aprenden, <strong>y también se rompen.</strong></p>
   </div>
 </section>
 
 <!-- ANTES / DURANTE / DESPUÉS -->
 <section class="timeline">
   <div class="timeline-inner">
-    <p class="eyebrow">El ciclo tóxico</p>
+    <p class="eyebrow reveal">El ciclo tóxico</p>
     <h2 class="section-title">Lo que vives en<br/><em>cada etapa</em></h2>
-    <div class="timeline-grid">
+    <div class="timeline-grid stagger">
       <div class="tl-card">
         <div class="tl-num">01</div>
         <div class="tl-label"><span>Antes</span></div>
@@ -244,14 +260,14 @@ footer a{color:#555;text-decoration:none}
   <div class="section-inner">
     <div class="modules-inner">
       <div class="modules-left">
-        <p class="eyebrow">El curso</p>
+        <p class="eyebrow reveal">El curso</p>
         <h2 class="section-title">Contenido del<br/><em>curso</em></h2>
         <p>Este curso no se centra solo en identificar banderas rojas en otros — sino en desarrollar <strong style="color:#fff">conciencia vincular</strong>, asumir responsabilidad sin culpa y construir vínculos más sanos a futuro.</p>
         <p>7 módulos completos con ejercicios prácticos y herramientas reales.</p>
         <br/>
-        <a class="btn-primary" href="https://go.hotmart.com/V106289648D?ap=dea5" target="_blank" rel="noopener">Quiero acceder →</a>
+        <a class="btn-primary btn-cta-pulse" href="TU_LINK_HOTMART_AQUI" target="_blank" rel="noopener">Quiero acceder →</a>
       </div>
-      <div class="modules-list">
+      <div class="modules-list stagger">
         <div class="mod-item"><div class="mod-flag">🚩</div><div class="mod-content"><h4>Módulo 1 — Bases del problema</h4><p>Comprender por qué caemos y repetimos los mismos patrones.</p></div></div>
         <div class="mod-item"><div class="mod-flag">🚩</div><div class="mod-content"><h4>Módulo 2 — El antes: cómo comienza la trampa</h4><p>Identificar la toxicidad en las primeras etapas de la relación.</p></div></div>
         <div class="mod-item"><div class="mod-flag">🚩</div><div class="mod-content"><h4>Módulo 3 — Tu parte en el vínculo</h4><p>Reconocer qué toleras y por qué — sin culparte.</p></div></div>
@@ -269,11 +285,11 @@ footer a{color:#555;text-decoration:none}
 <!-- HOW TO BUY -->
 <section class="how-buy">
   <div class="how-buy-inner">
-    <p class="eyebrow">Es muy simple</p>
+    <p class="eyebrow reveal">Es muy simple</p>
     <h2 class="section-title">¿Cómo hago la<br/><em>compra?</em></h2>
     <p style="color:#aaa;font-size:1rem;margin-top:8px">El pago es 100% seguro a través de Hotmart, la plataforma líder en cursos digitales en Latinoamérica.</p>
 
-    <div class="steps-grid">
+    <div class="steps-grid stagger">
       <div class="step">
         <div class="step-num">01</div>
         <h3>Haz clic en el botón</h3>
@@ -296,7 +312,7 @@ footer a{color:#555;text-decoration:none}
       </div>
     </div>
 
-    <div class="payment-methods">
+    <div class="payment-methods reveal">
       <div class="pay-badge">💳 Débito / Crédito</div>
       <div class="pay-badge">🅿️ PayPal</div>
       <div class="pay-badge">💳💳 Dos tarjetas</div>
@@ -314,12 +330,12 @@ footer a{color:#555;text-decoration:none}
       <div style="position:relative">
         <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(204,0,0,0.2) 0%,transparent 70%);border-radius:12px;z-index:0"></div>
         <img src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=1248,fit=crop/FCjcBPikiJOPwM4k/chatgpt-image-2-feb-2026-04_27_17-a.m.-DTXlEb0bHTLfnqz9.png"
-          alt="Andres Vernazza"
+          alt="Andres Vernazza" class="author-img"
           style="width:100%;border-radius:12px;display:block;position:relative;z-index:1;border:1px solid rgba(204,0,0,0.2);filter:brightness(0.95) contrast(1.05)"/>
         <div style="position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top,var(--negro2),transparent);border-radius:0 0 12px 12px;z-index:2"></div>
       </div>
       <div>
-        <p class="eyebrow">El autor</p>
+        <p class="eyebrow reveal">El autor</p>
         <h2 class="section-title">Andres<br/><em>Vernazza</em></h2>
         <p style="color:#aaa;line-height:1.8;margin-bottom:16px;font-weight:300">Emprendedor Moderno. Experto en relaciones conscientes y desarrollo personal, con miles de alumnos en toda Latinoamérica.</p>
         <p style="color:#aaa;line-height:1.8;margin-bottom:28px;font-weight:300">Su método no se centra en culpar a nadie — se centra en <strong style="color:#fff">entender los patrones</strong> que te llevaron ahí y en darte las herramientas reales para romperlos.</p>
@@ -341,11 +357,11 @@ footer a{color:#555;text-decoration:none}
     <p class="eyebrow" style="text-align:center">Inversión</p>
     <h2 class="section-title" style="text-align:center">Tu acceso<br/><em>completo</em></h2>
     <br/>
-    <div class="price-card">
+    <div class="price-card reveal">
       <div class="price-card-title">Banderas Rojas</div>
       <div class="price-card-sub">Curso completo · Andres Vernazza</div>
       <div class="price-display">
-        <div class="old">Valor real del curso $97.00</div>
+        <div class="old">Antes $97.00</div>
         <div class="now"><span class="currency">$</span>25<span style="font-size:2rem">.00</span></div>
       </div>
       <div class="price-note">USD · Pago único · Acceso de por vida</div>
@@ -357,7 +373,7 @@ footer a{color:#555;text-decoration:none}
         <div class="include-item"><span class="check">✓</span> Acceso de por vida desde cualquier dispositivo</div>
         <div class="include-item"><span class="check">✓</span> Actualizaciones incluidas</div>
       </div>
-      <a class="btn-primary" href="https://go.hotmart.com/V106289648D?ap=dea5" target="_blank" rel="noopener" style="width:100%;justify-content:center;font-size:1.1rem;padding:20px">
+      <a class="btn-primary btn-cta-pulse" href="TU_LINK_HOTMART_AQUI" target="_blank" rel="noopener" style="width:100%;justify-content:center;font-size:1.1rem;padding:20px">
         Comienza ahora por $25 →
       </a>
       <div class="guarantee">🔒 Pago 100% seguro · Garantía de satisfacción · Hotmart</div>
@@ -370,21 +386,52 @@ footer a{color:#555;text-decoration:none}
   <div class="testi-inner">
     <p class="eyebrow">Testimonios</p>
     <h2 class="section-title">Lo que dicen<br/><em>quienes ya lo vieron</em></h2>
-    <div class="testi-grid">
+    <!-- Rating summary -->
+    <div class="reveal" style="display:flex;align-items:center;justify-content:center;gap:32px;margin-bottom:48px;flex-wrap:wrap">
+      <div style="text-align:center">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:5rem;line-height:1;color:#fff">5.0</div>
+        <div style="color:#CC0000;font-size:1.2rem;letter-spacing:4px">★★★★★</div>
+        <div style="font-size:.8rem;color:#666;margin-top:4px;letter-spacing:1px">9 EVALUACIONES</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:6px;min-width:200px">
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:.75rem;color:#666;width:70px">5 estrellas</span><div style="flex:1;height:6px;background:#222;border-radius:3px"><div style="width:100%;height:100%;background:#CC0000;border-radius:3px"></div></div></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:.75rem;color:#666;width:70px">4 estrellas</span><div style="flex:1;height:6px;background:#222;border-radius:3px"><div style="width:4%;height:100%;background:#555;border-radius:3px"></div></div></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:.75rem;color:#666;width:70px">3 estrellas</span><div style="flex:1;height:6px;background:#222;border-radius:3px"><div style="width:0%;height:100%;background:#555;border-radius:3px"></div></div></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:.75rem;color:#666;width:70px">2 estrellas</span><div style="flex:1;height:6px;background:#222;border-radius:3px"><div style="width:0%;height:100%;background:#555;border-radius:3px"></div></div></div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:.75rem;color:#666;width:70px">1 estrella</span><div style="flex:1;height:6px;background:#222;border-radius:3px"><div style="width:0%;height:100%;background:#555;border-radius:3px"></div></div></div>
+      </div>
+    </div>
+
+    <div class="testi-grid stagger">
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"No sabía que lo que vivía tenía nombre. Esta guía me abrió los ojos y me dio el valor de tomar decisiones que llevaba meses postergando."</p>
-        <p class="testi-author">— Andrea M.</p>
+        <p class="testi-quote">"Comencé este curso porque recién terminé una relación y me sentía perdida. Poco a poco fui entendiendo muchas cosas que desconocía. Me siento más capacitada para identificar banderas rojas y patrones tóxicos — y sobre todo a no brincarme mis límites."</p>
+        <p class="testi-author">— Evaluación verificada · Hotmart</p>
       </div>
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Pensaba que era yo el problema. Entender el gaslighting y los ciclos tóxicos cambió completamente cómo veo mis relaciones."</p>
-        <p class="testi-author">— Carlos R.</p>
+        <p class="testi-quote">"Quién elegimos como compañero de vida es la decisión más importante. Este curso nos educa y empodera para identificar y examinar nuestras decisiones. Si lo aplicas, te ahorrará años y dinero en terapia."</p>
+        <p class="testi-author">— Loveda · 13 de Mar de 2026</p>
       </div>
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"Lo recomiendo a cualquiera que sienta que algo no está bien en su relación pero no sabe qué es exactamente. Vale cada centavo."</p>
-        <p class="testi-author">— Valeria P.</p>
+        <p class="testi-quote">"Este curso fue mucho más de lo que esperaba. Me ayudó a identificar patrones en mi comportamiento que antes no veía. Tener claridad y herramientas hace toda la diferencia. ¡Gracias por crear un curso tan necesario y transformador!"</p>
+        <p class="testi-author">— Amanda · 12 de Mar de 2026</p>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Me parece muy valioso porque no solo enseña a detectar al otro, sino a entender por qué uno se siente atraído a determinados arquetipos para romper el ciclo. He aprendido a establecer límites claros."</p>
+        <p class="testi-author">— Evaluación verificada · Hotmart</p>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Ha sido una experiencia significativa. He aprendido mucho para sentirme mejor, cuidarme y aprender sobre alguien que se nota sabe y ha estudiado mucho de estos temas."</p>
+        <p class="testi-author">— Adrian · 10 de Mar de 2026</p>
+      </div>
+      <div class="testi-card">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">"Excelente contenido. Nos ayuda a construir relaciones más conscientes y equilibradas."</p>
+        <p class="testi-author">— Diana · 13 de Mar de 2026</p>
       </div>
     </div>
   </div>
@@ -394,7 +441,7 @@ footer a{color:#555;text-decoration:none}
 <section class="final">
   <h2>Rompe el patrón.<br/><em>Empieza hoy.</em></h2>
   <p>Si algo no se siente bien, confía en tu instinto. Esta guía te da las herramientas para entender qué está pasando — y cómo salir.</p>
-  <a class="btn-primary" href="https://go.hotmart.com/V106289648D?ap=dea5" target="_blank" rel="noopener" style="font-size:1.1rem;padding:20px 44px">
+  <a class="btn-primary btn-cta-pulse" href="TU_LINK_HOTMART_AQUI" target="_blank" rel="noopener" style="font-size:1.1rem;padding:20px 44px">
     Acceder a Banderas Rojas por $25 →
   </a>
   <p style="margin-top:16px;font-size:12px;color:#444">✓ Acceso inmediato &nbsp;·&nbsp; ✓ Pago seguro &nbsp;·&nbsp; ✓ Garantía incluida</p>
@@ -408,14 +455,125 @@ footer a{color:#555;text-decoration:none}
 <!-- STICKY BAR -->
 <div class="sticky" id="stickyBar">
   <span class="sticky-text"><strong>Banderas Rojas</strong> — Acceso completo por solo $25</span>
-  <a href="https://go.hotmart.com/V106289648D?ap=dea5" target="_blank" rel="noopener">Acceder ahora →</a>
+  <a href="TU_LINK_HOTMART_AQUI" target="_blank" rel="noopener">Acceder ahora →</a>
 </div>
 
 <script>
+// Sticky bar
 const bar = document.getElementById('stickyBar');
-window.addEventListener('scroll',()=>{
-  bar.classList.toggle('show', window.scrollY > 600);
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.12});
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .stagger').forEach(el => observer.observe(el));
+
+// Sticky + nav scroll
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  bar.classList.toggle('show', y > 600);
+  document.querySelector('nav').classList.toggle('scrolled', y > 80);
 });
+
+// Floating flag particles in hero
+const hero = document.querySelector('.hero-content');
+for(let i = 0; i < 6; i++){
+  const p = document.createElement('span');
+  p.className = 'flag-particle';
+  p.textContent = '🚩';
+  p.style.cssText = `left:${Math.random()*90+5}%;bottom:-40px;animation-duration:${8+Math.random()*10}s;animation-delay:${Math.random()*8}s`;
+  hero.appendChild(p);
+}
+
+// Animated counters
+function animateCount(el, target, suffix=''){
+  let start = 0;
+  const dur = 1800;
+  const step = timestamp => {
+    if(!start) start = timestamp;
+    const progress = Math.min((timestamp - start)/dur, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(ease * target) + suffix;
+    if(progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+const countObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if(e.isIntersecting){
+      const el = e.target;
+      const val = el.dataset.count;
+      const suf = el.dataset.suffix || '';
+      animateCount(el, parseInt(val), suf);
+      countObserver.unobserve(el);
+    }
+  });
+}, {threshold: 0.5});
+
+document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
 </script>
 </body>
 </html>
+<!-- ANIMATIONS PATCH -->
+<style>
+@keyframes fadeUp{from{opacity:0;transform:translateY(36px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(204,0,0,0.5)}60%{box-shadow:0 0 0 14px rgba(204,0,0,0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes glitch{0%,93%,100%{transform:none;clip-path:none}94%{clip-path:inset(20% 0 60% 0);transform:skewX(-8deg) translateX(-6px)}96%{clip-path:inset(60% 0 10% 0);transform:skewX(5deg) translateX(4px)}98%{clip-path:none;transform:none}}
+@keyframes scanline{0%{top:-4px}100%{top:100%}}
+@keyframes borderGlow{0%,100%{border-color:rgba(204,0,0,0.25)}50%{border-color:rgba(204,0,0,0.6);box-shadow:0 0 30px rgba(204,0,0,0.15)}}
+@keyframes flagRise{0%{opacity:0;transform:translateY(60px) rotate(-10deg)}10%{opacity:.12}85%{opacity:.08}100%{opacity:0;transform:translateY(-90vh) rotate(15deg)}}
+
+.hero-badge{animation:fadeUp .6s ease both}
+.hero h1{animation:fadeUp .7s .1s ease both}
+.hero-sub{animation:fadeUp .7s .2s ease both}
+.hero-stats{animation:fadeUp .7s .3s ease both}
+.hero .btn-primary{animation:fadeUp .7s .4s ease both}
+.hero-price,.hero-note{animation:fadeUp .7s .5s ease both}
+
+.hero h1{animation:fadeUp .7s .1s ease both, glitch 9s 3s infinite}
+
+.btn-cta-pulse{animation:pulse 2.4s 1.5s infinite!important}
+.btn-cta-pulse:hover{animation:none!important;transform:translateY(-2px)!important;box-shadow:0 12px 40px rgba(204,0,0,0.4)!important}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal-right.visible{opacity:1;transform:none}
+
+.stagger>*{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
+.stagger.visible>*:nth-child(1){opacity:1;transform:none;transition-delay:.05s}
+.stagger.visible>*:nth-child(2){opacity:1;transform:none;transition-delay:.15s}
+.stagger.visible>*:nth-child(3){opacity:1;transform:none;transition-delay:.25s}
+.stagger.visible>*:nth-child(4){opacity:1;transform:none;transition-delay:.35s}
+.stagger.visible>*:nth-child(5){opacity:1;transform:none;transition-delay:.45s}
+.stagger.visible>*:nth-child(6){opacity:1;transform:none;transition-delay:.55s}
+.stagger.visible>*:nth-child(7){opacity:1;transform:none;transition-delay:.65s}
+
+.tl-card{transition:transform .25s,background .25s,border-color .25s}
+.tl-card:hover{transform:translateY(-7px);background:rgba(204,0,0,0.1);border-color:rgba(204,0,0,0.45)}
+.mod-item{transition:transform .2s,background .2s}
+.mod-item:hover{transform:translateX(7px)}
+.step{transition:transform .2s,border-color .2s,background .2s}
+.step:hover{transform:translateY(-5px);border-color:rgba(204,0,0,0.4);background:rgba(204,0,0,0.05)}
+.price-card{animation:borderGlow 3.5s ease infinite}
+.author-img-wrap img{animation:float 5s ease-in-out infinite}
+
+.flag-particle{position:absolute;pointer-events:none;font-size:1.5rem;opacity:0;animation:flagRise linear infinite}
+
+nav.scrolled{background:rgba(10,0,5,.99)!important;border-bottom-color:rgba(204,0,0,.4)!important}
+
+.scanline-wrap{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.scanline-wrap::after{content:'';position:absolute;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent,rgba(204,0,0,.07),transparent);animation:scanline 7s linear infinite}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.reveal-left,.reveal-right,.stagger>*{opacity:1!important;transform:none!important}}
+</style>
