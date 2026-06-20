@@ -125,19 +125,18 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     margin-bottom:34px;
   }
 
-  /* MEJORA DEL VIDEO: Maximizado a 1000px en pantallas grandes y responsivo en móviles */
   .hero-video{
     position:relative;
-    max-width:1000px; /* Expandido para mejor visualización en PC */
+    max-width:1000px;
     width:100%;
-    margin:0 auto 38px auto; /* Centrado automático */
+    margin:0 auto 38px auto;
     border-radius:10px;
     overflow:hidden;
     border:1px solid var(--line-light);
     box-shadow:0 30px 60px -20px rgba(0,0,0,0.5);
   }
   .hero-video::before{
-    content:"";display:block;padding-top:56.25%; /* Mantiene proporción 16:9 exacta */
+    content:"";display:block;padding-top:56.25%;
   }
   .hero-video iframe{
     position:absolute;top:0;left:0;width:100%;height:100%;border:0;
@@ -220,13 +219,11 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     font-size:16px;
   }
 
-  /* ---------- Menu (signature element) ---------- */
+  /* ---------- Menu ---------- */
   .menu-section{
     background:var(--cream-soft);
     color:var(--charcoal);
   }
-  .menu-section .section-head .eyebrow{color:var(--oxblood);}
-  .menu-section .section-head p{color:rgba(28,27,25,0.6);}
   .menu-card{
     background:#fff;
     border:1px solid var(--line);
@@ -321,31 +318,62 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .guarantee h3{font-size:20px;margin-bottom:6px;color:var(--charcoal);}
   .guarantee p{font-size:14px;color:rgba(28,27,25,0.65);}
 
-  /* ---------- Testimonials ---------- */
-  .testi-grid-images{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:16px;
+  /* ---------- MEJORA: SECCIÓN TESTIMONIOS (image_683849.jpg) ---------- */
+  .testi-container-scroll {
+    width: 100%;
+    overflow-x: auto;
+    padding: 20px 0;
+    scrollbar-width: thin;
   }
-  @media (max-width:760px){.testi-grid-images{grid-template-columns:repeat(2,1fr);}}
+  .testi-grid-images{
+    display: flex;
+    gap: 24px;
+    min-width: 1200px; /* Forzamos tamaño grande en PC para que se lea perfectamente */
+    justify-content: space-between;
+  }
+  @media (max-width:1250px){
+    /* En pantallas medianas o pequeñas permite scroll horizontal suave para mantener legibilidad */
+    .testi-container-scroll {
+      scroll-snap-type: x mandatory;
+    }
+    .testi-grid-images {
+      padding-right: 24px;
+    }
+    .testi-img {
+      scroll-snap-align: start;
+      width: 320px !important; /* Tamaño fijo óptimo de lectura */
+      flex-shrink: 0;
+    }
+  }
   .testi-img{
-    width:100%;
+    width: 24%; /* Distribución óptima en pantallas grandes */
     border-radius:10px;
     border:1px solid var(--line);
-    transition:transform 0.3s cubic-bezier(.21,.6,.27,1), box-shadow 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+    transition:transform 0.3s cubic-bezier(.21,.6,.27,1);
   }
   .testi-img:hover{transform:translateY(-5px);box-shadow:0 16px 28px -14px rgba(28,27,25,0.2);}
 
+  /* ---------- MEJORA: SECCIÓN GOOGLE REVIEWS (image_68390a.jpg) ---------- */
   .google-grid{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+    max-width: 1150px;
+    margin: 0 auto;
   }
-  @media (max-width:760px){.google-grid{grid-template-columns:1fr;}}
+  @media (max-width:900px){
+    .google-grid{
+      grid-template-columns: 1fr; /* Una debajo de otra en móvil para que mantengan su ancho nativo y se lean */
+      max-width: 480px;
+    }
+  }
   .google-grid img{
     width:100%;
+    height: auto;
     border-radius:10px;
     border:1px solid var(--line);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
     transition:transform 0.3s ease, box-shadow 0.3s ease;
   }
   .google-grid img:hover{transform:translateY(-5px);box-shadow:0 16px 28px -14px rgba(28,27,25,0.18);}
@@ -383,18 +411,20 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
   @keyframes barShimmer{0%{background-position:0% 0;}100%{background-position:200% 0;}}
 
-  /* ---------- Product mockup section ---------- */
+  /* ---------- MEJORA: MOCKUP PRINCIPAL (image_683584.png) ---------- */
   .mockup-section{
     background:#fff;
     text-align:center;
-    padding-top:48px;
+    padding:60px 0;
   }
   .mockup-image{
-    max-width:760px;
+    max-width:950px; /* Aumentado de 760px a 950px para máxima legibilidad de los textos internos en PC */
+    width: 100%;
     margin:0 auto 36px;
   }
   .mockup-image img{
     width:100%;
+    height: auto;
     filter:drop-shadow(0 24px 40px rgba(28,27,25,0.16));
     transition:transform 0.4s cubic-bezier(.21,.6,.27,1);
   }
@@ -428,15 +458,24 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .trust-banner-link:hover{transform:translateY(-3px);box-shadow:0 10px 20px -8px rgba(28,27,25,0.22);}
   .trust-banner-link img{display:block;max-width:468px;width:100%;height:auto;}
 
-  /* ---------- Certification block ---------- */
+  /* ---------- MEJORA: CERTIFICACIÓN (image_68388a.png) ---------- */
   .cert-block{
     display:grid;
-    grid-template-columns:1fr 1fr;
+    grid-template-columns: 1.2fr 1fr; /* Más espacio a la imagen del certificado en PC */
     gap:48px;
     align-items:center;
+    max-width: 1100px;
+    margin: 0 auto;
   }
-  @media (max-width:760px){.cert-block{grid-template-columns:1fr;gap:28px;}}
+  @media (max-width:850px){
+    .cert-block{
+      grid-template-columns:1fr;
+      gap:32px;
+    }
+  }
   .cert-image img{
+    width: 100%;
+    height: auto;
     border-radius:14px;
     border:1px solid var(--line);
     box-shadow:0 20px 40px -16px rgba(28,27,25,0.18);
@@ -516,7 +555,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   }
   @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
 
-  /* ---------- Animated background ---------- */
   .hero{overflow:hidden;}
   .hero-glow{
     position:absolute;
@@ -536,7 +574,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   }
   .hero > .wrap{position:relative;z-index:1;}
 
-  /* ---------- Button animations ---------- */
   .btn-cta{position:relative;overflow:hidden;isolation:isolate;animation:ctaPulse 3.2s ease-in-out infinite;}
   .btn-cta::before{
     content:"";
@@ -578,7 +615,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     <h1 class="fade-up">Aprende a cocinar como <em>profesional</em>, desde tu propia cocina.</h1>
     <p class="lead fade-up">7 cursos completos — cocina internacional, panadería artesanal, repostería, coctelería, sushi y más. A tu ritmo, con certificación incluida.</p>
 
-    <!-- VIDEO OPTIMIZADO -->
+    <!-- VIDEO -->
     <div class="hero-video fade-up">
       <iframe src="https://www.youtube.com/embed/2XdOloUNraU" title="Gastronomía Online" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
@@ -596,7 +633,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 </header>
 
-<!-- PRODUCT MOCKUP -->
+<!-- PRODUCT MOCKUP (image_683584.png) -->
 <section class="section mockup-section">
   <div class="wrap">
     <div class="mockup-image">
@@ -700,7 +737,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
         <p>Al completar cada curso, recibes tu certificado digital descargable — útil para tu portafolio o emprendimiento.</p>
       </div>
       <div class="benefit-card">
-        <div class="icon"></div>
+        <div class="icon">♾️</div>
         <h3>Acceso ilimitado</h3>
         <p>Pagas una sola vez y el contenido es tuyo de por vida. Vuelve a cualquier lección cuando lo necesites.</p>
       </div>
@@ -738,7 +775,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- CERTIFICATION -->
+<!-- CERTIFICATION (image_68388a.png) -->
 <section class="section" style="background:#fff;">
   <div class="wrap">
     <div class="cert-block">
@@ -757,23 +794,25 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- TESTIMONIALS -->
+<!-- TESTIMONIALS (image_683849.jpg) -->
 <section class="section">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Resultados reales</span>
       <h2>Lo que dicen quienes ya cocinan distinto</h2>
     </div>
-    <div class="testi-grid testi-grid-images">
-      <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1.jpg" alt="Opinión de alumno — Gastronomía Online">
-      <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-1.jpg" alt="Opinión de alumno — Gastronomía Online">
-      <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-2.jpg" alt="Opinión de alumno — Gastronomía Online">
-      <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t2-4.jpg" alt="Opinión de alumno — Gastronomía Online">
+    <div class="testi-container-scroll">
+      <div class="testi-grid testi-grid-images">
+        <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1.jpg" alt="Opinión de alumno — Gastronomía Online">
+        <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-1.jpg" alt="Opinión de alumno — Gastronomía Online">
+        <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-2.jpg" alt="Opinión de alumno — Gastronomía Online">
+        <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t2-4.jpg" alt="Opinión de alumno — Gastronomía Online">
+      </div>
     </div>
   </div>
 </section>
 
-<!-- GOOGLE REVIEWS -->
+<!-- GOOGLE REVIEWS (image_68390a.jpg) -->
 <section class="section" style="background:var(--cream-soft);">
   <div class="wrap">
     <div class="section-head">
