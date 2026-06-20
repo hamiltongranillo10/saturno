@@ -27,8 +27,8 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
 <style>
   :root{
-    --charcoal: #1C1B19;
-    --charcoal-soft: #2A2722;
+    --charcoal: #0A0A0A;
+    --charcoal-soft: #161616;
     --cream: #FFFFFF;
     --cream-soft: #FAFAFA;
     --mustard: #FFC107;
@@ -36,7 +36,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     --oxblood: #E2231A;
     --sage: #2E7D32;
     --line: rgba(28,27,25,0.10);
-    --line-light: rgba(28,27,25,0.10);
+    --line-light: rgba(255,255,255,0.10);
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -62,8 +62,9 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   /* ---------- Urgency bar ---------- */
   .urgency-bar{
     position:sticky;top:0;z-index:100;
-    background:var(--oxblood);
-    color:var(--cream);
+    background:linear-gradient(90deg, #FF2D1F, #D8000A, #FF2D1F);
+    background-size:200% 100%;
+    color:#fff;
     text-align:center;
     padding:10px 12px;
     font-size:13px;
@@ -71,13 +72,21 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     letter-spacing:0.04em;
     display:flex;align-items:center;justify-content:center;gap:14px;
     flex-wrap:wrap;
+    animation:barShimmer 5s linear infinite, urgentPulse 1.8s ease-in-out infinite;
   }
   .urgency-bar .timer{
     font-family:'Space Mono',monospace;
-    background:rgba(0,0,0,0.22);
-    padding:3px 8px;
+    background:#000;
+    color:#FF5A4D;
+    padding:4px 10px;
     border-radius:4px;
-    font-size:13px;
+    font-size:14px;
+    font-weight:700;
+    box-shadow:0 0 0 1px rgba(255,255,255,0.15) inset;
+  }
+  @keyframes urgentPulse{
+    0%,100%{box-shadow:0 0 0 0 rgba(216,0,10,0);}
+    50%{box-shadow:0 0 18px 2px rgba(255,45,31,0.55);}
   }
 
   /* ---------- Hero ---------- */
@@ -300,20 +309,12 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     flex-wrap:wrap;
     box-shadow:0 4px 24px -8px rgba(28,27,25,0.06);
   }
-  .guarantee .badge{
-    font-family:'Space Mono',monospace;
-    font-size:13px;
-    background:rgba(46,125,50,0.1);
-    border:2px solid var(--sage);
-    color:var(--sage);
-    border-radius:50%;
+  .guarantee .badge-img{
     width:96px;height:96px;
-    display:flex;align-items:center;justify-content:center;
-    text-align:center;
     flex-shrink:0;
-    line-height:1.2;
-    font-weight:700;
+    display:flex;align-items:center;justify-content:center;
   }
+  .guarantee .badge-img img{width:100%;height:100%;object-fit:contain;}
   .guarantee h3{font-size:20px;margin-bottom:6px;color:var(--charcoal);}
   .guarantee p{font-size:14px;color:rgba(28,27,25,0.65);}
 
@@ -554,12 +555,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     letter-spacing:0.04em;
   }
 
-  /* ---------- Urgency bar shimmer ---------- */
-  .urgency-bar{
-    background:linear-gradient(90deg, var(--oxblood), #C24735, var(--oxblood));
-    background-size:200% 100%;
-    animation:barShimmer 6s linear infinite;
-  }
+  /* ---------- Urgency bar shimmer keyframe (used above) ---------- */
   @keyframes barShimmer{0%{background-position:0% 0;}100%{background-position:200% 0;}}
 
   /* ---------- Product mockup section ---------- */
@@ -810,7 +806,9 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 <section class="section" style="padding-top:0;">
   <div class="wrap">
     <div class="guarantee reveal-scale">
-      <div class="badge">7 DÍAS<br>GARANTÍA</div>
+      <div class="badge-img">
+        <img src="https://cursosdecocina.tv/wp-content/uploads/elementor/thumbs/garantia-7-dias-1-1-q5i4nhvvdzlfdzc18722l8hm1q4ah64ff5knyzc0r4.png" alt="Garantía de 7 días">
+      </div>
       <div>
         <h3>Pruébalo sin riesgo</h3>
         <p>Si dentro de los primeros 7 días sientes que no es para ti, te devolvemos el 100% de tu inversión. Sin preguntas complicadas.</p>
