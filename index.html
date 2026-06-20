@@ -29,14 +29,14 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   :root{
     --charcoal: #1C1B19;
     --charcoal-soft: #2A2722;
-    --cream: #F6EFE4;
-    --cream-soft: #FBF7EF;
-    --mustard: #D98E3B;
-    --mustard-deep: #B8721F;
-    --oxblood: #A23B2E;
-    --sage: #5C6B4F;
-    --line: rgba(28,27,25,0.12);
-    --line-light: rgba(246,239,228,0.18);
+    --cream: #FFFFFF;
+    --cream-soft: #FAFAFA;
+    --mustard: #FFC107;
+    --mustard-deep: #E0A800;
+    --oxblood: #E2231A;
+    --sage: #2E7D32;
+    --line: rgba(28,27,25,0.10);
+    --line-light: rgba(28,27,25,0.10);
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
@@ -210,27 +210,28 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
   /* ---------- Menu (signature element) ---------- */
   .menu-section{
-    background:var(--charcoal);
-    color:var(--cream);
+    background:var(--cream-soft);
+    color:var(--charcoal);
   }
-  .menu-section .section-head .eyebrow{color:var(--mustard);}
-  .menu-section .section-head p{color:rgba(246,239,228,0.6);}
+  .menu-section .section-head .eyebrow{color:var(--oxblood);}
+  .menu-section .section-head p{color:rgba(28,27,25,0.6);}
   .menu-card{
-    background:var(--charcoal-soft);
-    border:1px solid var(--line-light);
+    background:#fff;
+    border:1px solid var(--line);
     border-radius:14px;
     padding:8px;
+    box-shadow:0 4px 24px -8px rgba(28,27,25,0.06);
   }
   .menu-course{
     display:flex;align-items:baseline;gap:14px;
     padding:18px 22px;
-    border-bottom:1px dashed rgba(246,239,228,0.16);
+    border-bottom:1px dashed rgba(28,27,25,0.14);
   }
   .menu-course:last-child{border-bottom:none;}
   .menu-course .num{
     font-family:'Space Mono',monospace;
     font-size:13px;
-    color:var(--mustard);
+    color:var(--oxblood);
     flex-shrink:0;
     width:26px;
   }
@@ -239,18 +240,19 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     font-size:19px;
     font-weight:500;
     flex-shrink:0;
+    color:var(--charcoal);
   }
   .menu-course .leader{
     flex:1;
-    border-bottom:1px dotted rgba(246,239,228,0.28);
+    border-bottom:1px dotted rgba(28,27,25,0.22);
     margin:0 4px;
     transform:translateY(-6px);
   }
   .menu-course .status{
     font-family:'Space Mono',monospace;
     font-size:12px;
-    color:var(--sage);
-    background:rgba(92,107,79,0.18);
+    color:#8a6d00;
+    background:rgba(255,193,7,0.22);
     padding:4px 10px;
     border-radius:20px;
     flex-shrink:0;
@@ -260,7 +262,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     text-align:center;
     margin-top:24px;
     font-size:14px;
-    color:rgba(246,239,228,0.55);
+    color:rgba(28,27,25,0.5);
   }
 
   /* ---------- Benefits grid ---------- */
@@ -289,18 +291,21 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
   /* ---------- Guarantee strip ---------- */
   .guarantee{
-    background:var(--sage);
-    color:var(--cream);
+    background:#fff;
+    border:1px solid var(--line);
+    color:var(--charcoal);
     border-radius:16px;
     padding:36px 40px;
     display:flex;align-items:center;gap:28px;
     flex-wrap:wrap;
+    box-shadow:0 4px 24px -8px rgba(28,27,25,0.06);
   }
   .guarantee .badge{
     font-family:'Space Mono',monospace;
     font-size:13px;
-    background:rgba(246,239,228,0.14);
-    border:1px solid rgba(246,239,228,0.3);
+    background:rgba(46,125,50,0.1);
+    border:2px solid var(--sage);
+    color:var(--sage);
     border-radius:50%;
     width:96px;height:96px;
     display:flex;align-items:center;justify-content:center;
@@ -309,8 +314,8 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     line-height:1.2;
     font-weight:700;
   }
-  .guarantee h3{font-size:20px;margin-bottom:6px;color:var(--cream);}
-  .guarantee p{font-size:14px;color:rgba(246,239,228,0.85);}
+  .guarantee h3{font-size:20px;margin-bottom:6px;color:var(--charcoal);}
+  .guarantee p{font-size:14px;color:rgba(28,27,25,0.65);}
 
   /* ---------- Testimonials (placeholder) ---------- */
   .testi-note{
@@ -399,6 +404,173 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     animation:fadeUp 0.7s ease forwards;
   }
   @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
+
+  /* ---------- Animated hero background ---------- */
+  .hero{overflow:hidden;}
+  .hero-glow{
+    position:absolute;
+    inset:-20% -10% auto -10%;
+    height:140%;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(217,142,59,0.18), transparent 55%),
+      radial-gradient(circle at 80% 10%, rgba(162,59,46,0.16), transparent 50%),
+      radial-gradient(circle at 60% 80%, rgba(92,107,79,0.14), transparent 50%);
+    animation:driftGlow 18s ease-in-out infinite alternate;
+    pointer-events:none;
+    z-index:0;
+  }
+  @keyframes driftGlow{
+    0%{transform:translate(0,0) scale(1);}
+    50%{transform:translate(3%,-4%) scale(1.08);}
+    100%{transform:translate(-2%,3%) scale(1.04);}
+  }
+  .hero > .wrap{position:relative;z-index:1;}
+
+  /* ---------- Scroll reveal system ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity 0.7s cubic-bezier(.21,.6,.27,1), transform 0.7s cubic-bezier(.21,.6,.27,1);
+    transition-delay:var(--delay, 0s);
+  }
+  .reveal.in-view{opacity:1;transform:translateY(0);}
+  .reveal-scale{
+    opacity:0;transform:scale(0.94);
+    transition:opacity 0.6s ease, transform 0.6s cubic-bezier(.21,.6,.27,1);
+    transition-delay:var(--delay,0s);
+  }
+  .reveal-scale.in-view{opacity:1;transform:scale(1);}
+  .reveal-left{
+    opacity:0;transform:translateX(-22px);
+    transition:opacity 0.55s ease, transform 0.55s cubic-bezier(.21,.6,.27,1);
+    transition-delay:var(--delay,0s);
+  }
+  .reveal-left.in-view{opacity:1;transform:translateX(0);}
+
+  /* ---------- CTA button polish ---------- */
+  .btn-cta{position:relative;overflow:hidden;isolation:isolate;}
+  .btn-cta::before{
+    content:"";
+    position:absolute;top:0;left:-60%;width:40%;height:100%;
+    background:linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+    transform:skewX(-20deg);
+    transition:left 0.6s ease;
+    z-index:1;
+  }
+  .btn-cta:hover::before{left:120%;}
+  .btn-cta{
+    animation:ctaPulse 3.2s ease-in-out infinite;
+  }
+  @keyframes ctaPulse{
+    0%,100%{box-shadow:0 10px 24px -8px rgba(217,142,59,0.5);}
+    50%{box-shadow:0 14px 32px -8px rgba(217,142,59,0.75);}
+  }
+
+  /* ---------- Menu card hover + reveal stagger ---------- */
+  .menu-course{
+    transition:background 0.25s ease, padding-left 0.25s ease;
+    cursor:default;
+  }
+  .menu-course:hover{
+    background:rgba(217,142,59,0.08);
+    padding-left:30px;
+  }
+  .menu-course:hover .status{
+    background:var(--mustard);
+    color:var(--charcoal);
+  }
+  .menu-course .status{transition:background 0.25s ease, color 0.25s ease;}
+
+  /* ---------- Benefit card hover ---------- */
+  .benefit-card{transition:transform 0.3s cubic-bezier(.21,.6,.27,1), box-shadow 0.3s ease, border-color 0.3s ease;}
+  .benefit-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 32px -16px rgba(28,27,25,0.18);
+    border-color:var(--mustard);
+  }
+  .benefit-card .icon{transition:transform 0.3s cubic-bezier(.34,1.56,.64,1);}
+  .benefit-card:hover .icon{transform:rotate(-8deg) scale(1.1);}
+
+  /* ---------- Testimonial card hover ---------- */
+  .testi-card{transition:transform 0.3s ease, box-shadow 0.3s ease;}
+  .testi-card:hover{transform:translateY(-4px);box-shadow:0 18px 30px -16px rgba(28,27,25,0.16);}
+
+  /* ---------- Stats strip ---------- */
+  .stats-strip{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--line-light);
+    border-radius:14px;
+    overflow:hidden;
+    margin-top:44px;
+  }
+  @media (max-width:760px){.stats-strip{grid-template-columns:repeat(2,1fr);}}
+  .stat-cell{
+    background:var(--oxblood);
+    padding:26px 16px;
+    text-align:center;
+  }
+  .stat-cell .num{
+    font-family:'Space Mono',monospace;
+    font-size:clamp(1.6rem,3vw,2.2rem);
+    font-weight:700;
+    color:var(--mustard);
+    display:block;
+  }
+  .stat-cell .label{
+    font-size:12px;
+    color:rgba(255,255,255,0.85);
+    margin-top:4px;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+
+  /* ---------- Urgency bar shimmer ---------- */
+  .urgency-bar{
+    background:linear-gradient(90deg, var(--oxblood), #C24735, var(--oxblood));
+    background-size:200% 100%;
+    animation:barShimmer 6s linear infinite;
+  }
+  @keyframes barShimmer{0%{background-position:0% 0;}100%{background-position:200% 0;}}
+
+  /* ---------- Certification block ---------- */
+  .cert-block{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:center;
+  }
+  @media (max-width:760px){.cert-block{grid-template-columns:1fr;gap:28px;}}
+  .cert-image img{
+    border-radius:14px;
+    border:1px solid var(--line);
+    box-shadow:0 20px 40px -16px rgba(28,27,25,0.18);
+    transition:transform 0.4s cubic-bezier(.21,.6,.27,1);
+  }
+  .cert-image img:hover{transform:scale(1.02) rotate(-0.5deg);}
+  .cert-text .section-head-eyebrow-inline{
+    font-family:'Space Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--oxblood);
+    display:block;
+    margin-bottom:10px;
+  }
+  .cert-text h2{font-size:clamp(1.7rem,3.5vw,2.2rem);margin-bottom:14px;}
+  .cert-text p{font-size:15px;color:rgba(28,27,25,0.62);margin-bottom:26px;max-width:460px;}
+  .cert-text .btn-cta{padding:14px 26px;font-size:15px;}
+
+  /* ---------- FAQ smoother chevron ---------- */
+  .faq-q{transition:color 0.2s ease;}
+  .faq-q:hover{color:var(--oxblood);}
+
+  @media (prefers-reduced-motion: reduce){
+    .hero-glow{animation:none;}
+    .btn-cta{animation:none;}
+    .reveal, .reveal-scale, .reveal-left{opacity:1 !important; transform:none !important;}
+  }
 </style>
 </head>
 <body>
@@ -411,6 +583,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
 <!-- HERO -->
 <header class="hero">
+  <div class="hero-glow"></div>
   <div class="wrap">
     <div class="hero-eyebrow">Escuela de Gastronomía Online</div>
     <h1 class="fade-up">Aprende a cocinar como <em>profesional</em>, desde tu propia cocina.</h1>
@@ -436,13 +609,13 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 <!-- MENU SECTION -->
 <section class="section menu-section">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">La carta del curso</span>
       <h2>7 cursos, servidos completos</h2>
       <p>Nada de migajas de información. Cada curso es un programa entero, con lecciones, recetas y recursos descargables.</p>
     </div>
 
-    <div class="menu-card">
+    <div class="menu-card reveal-scale">
       <div class="menu-course">
         <span class="num">01</span>
         <span class="name">Cocina Internacional</span>
@@ -487,44 +660,51 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       </div>
     </div>
     <p class="menu-note">Certificado digital al finalizar cada curso · Acceso desde cualquier dispositivo</p>
+
+    <div class="stats-strip reveal">
+      <div class="stat-cell"><span class="num" data-count="5000">0</span><span class="label">Alumnos</span></div>
+      <div class="stat-cell"><span class="num" data-count="300">0</span><span class="label">Lecciones</span></div>
+      <div class="stat-cell"><span class="num" data-count="7">0</span><span class="label">Cursos</span></div>
+      <div class="stat-cell"><span class="num" data-count="99" data-suffix="%">0</span><span class="label">Satisfacción</span></div>
+    </div>
   </div>
 </section>
 
 <!-- BENEFITS -->
 <section class="section">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">Por qué este curso</span>
       <h2>Pensado para gente con vida real</h2>
       <p>Sin horarios fijos, sin mensualidades, sin trasladarte a ningún lado.</p>
     </div>
     <div class="benefits-grid">
-      <div class="benefit-card">
+      <div class="benefit-card reveal" style="--delay:0s">
         <div class="icon">⏱</div>
         <h3>A tu propio ritmo</h3>
         <p>Avanza, pausa y repite las lecciones cuando quieras. Sin clases en vivo que te amarren a un horario.</p>
       </div>
-      <div class="benefit-card">
+      <div class="benefit-card reveal" style="--delay:0.08s">
         <div class="icon">🎓</div>
         <h3>Certificación incluida</h3>
         <p>Al completar cada curso, recibes tu certificado digital descargable — útil para tu portafolio o emprendimiento.</p>
       </div>
-      <div class="benefit-card">
+      <div class="benefit-card reveal" style="--delay:0.16s">
         <div class="icon">♾</div>
         <h3>Acceso ilimitado</h3>
         <p>Pagas una sola vez y el contenido es tuyo de por vida. Vuelve a cualquier lección cuando lo necesites.</p>
       </div>
-      <div class="benefit-card">
+      <div class="benefit-card reveal" style="--delay:0.24s">
         <div class="icon">📱</div>
         <h3>Desde cualquier dispositivo</h3>
         <p>Celular, tablet o computadora — el curso se adapta a lo que tengas a mano en tu cocina.</p>
       </div>
-      <div class="benefit-card">
+      <div class="benefit-card reveal" style="--delay:0.32s">
         <div class="icon">👨‍🍳</div>
         <h3>De principiante a sólido</h3>
         <p>No necesitas experiencia previa. El programa está diseñado para construir tu técnica desde cero.</p>
       </div>
-      <div class="benefit-card">
+      <div class="benefit-card reveal" style="--delay:0.4s">
         <div class="icon">💰</div>
         <h3>Pago único</h3>
         <p>Una sola inversión, sin mensualidades ni matrículas escondidas. Todo el contenido, un solo precio.</p>
@@ -536,7 +716,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 <!-- GUARANTEE -->
 <section class="section" style="padding-top:0;">
   <div class="wrap">
-    <div class="guarantee">
+    <div class="guarantee reveal-scale">
       <div class="badge">7 DÍAS<br>GARANTÍA</div>
       <div>
         <h3>Pruébalo sin riesgo</h3>
@@ -546,10 +726,29 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 </section>
 
+<!-- CERTIFICATION -->
+<section class="section" style="background:#fff;">
+  <div class="wrap">
+    <div class="cert-block reveal">
+      <div class="cert-image">
+        <img src="https://cursosdecocina.tv/wp-content/uploads/2023/05/certificados-web-gastronomia.jpg-768x630.webp" alt="Certificado Gastronomía Online">
+      </div>
+      <div class="cert-text">
+        <span class="section-head-eyebrow-inline">Certificación incluida</span>
+        <h2>Tu esfuerzo, con respaldo en papel</h2>
+        <p>Al finalizar el programa recibes un certificado digital descargable, listo para compartir o sumar a tu portafolio — perfecto si planeas emprender o simplemente quieres demostrar lo que aprendiste.</p>
+        <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="btn-cta" onclick="fbq('track','InitiateCheckout');">
+          Quiero mi certificación <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- TESTIMONIALS -->
 <section class="section">
   <div class="wrap">
-    <div class="section-head">
+    <div class="section-head reveal">
       <span class="eyebrow">Resultados reales</span>
       <h2>Lo que dicen quienes ya cocinan distinto</h2>
     </div>
@@ -557,17 +756,17 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       📝 Espacio reservado para testimonios — sustituye estas tarjetas con capturas reales de tus propios compradores o reseñas verificadas en cuanto las tengas.
     </div>
     <div class="testi-grid">
-      <div class="testi-card">
+      <div class="testi-card reveal" style="--delay:0s">
         <div class="stars">★★★★★</div>
         <p>"[Aquí va una reseña real de un alumno — captura de WhatsApp, Google o Hotmart]"</p>
         <div class="who">Nombre Apellido <span>· Curso Panadería</span></div>
       </div>
-      <div class="testi-card">
+      <div class="testi-card reveal" style="--delay:0.1s">
         <div class="stars">★★★★★</div>
         <p>"[Aquí va una reseña real de un alumno — captura de WhatsApp, Google o Hotmart]"</p>
         <div class="who">Nombre Apellido <span>· Curso Repostería</span></div>
       </div>
-      <div class="testi-card">
+      <div class="testi-card reveal" style="--delay:0.2s">
         <div class="stars">★★★★★</div>
         <p>"[Aquí va una reseña real de un alumno — captura de WhatsApp, Google o Hotmart]"</p>
         <div class="who">Nombre Apellido <span>· Curso Cocina Internacional</span></div>
@@ -656,6 +855,41 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       }
     });
   });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal, .reveal-scale, .reveal-left');
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>revealObserver.observe(el));
+
+  // Animated stat counters
+  const statEls = document.querySelectorAll('.stat-cell .num');
+  const statObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const el = entry.target;
+        const target = parseInt(el.dataset.count, 10);
+        const suffix = el.dataset.suffix || '+';
+        const duration = 1200;
+        const start = performance.now();
+        function step(now){
+          const progress = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(eased * target) + (progress >= 1 ? suffix : '');
+          if(progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+        statObserver.unobserve(el);
+      }
+    });
+  }, {threshold:0.4});
+  statEls.forEach(el=>statObserver.observe(el));
 
   // Track Lead event on any CTA click via scroll depth (optional simple engagement signal)
   let leadFired = false;
