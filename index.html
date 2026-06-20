@@ -48,16 +48,84 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     line-height:1.6;
     overflow-x:hidden;
   }
-  @media (prefers-reduced-motion: reduce){
-    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
-  }
 
   h1,h2,h3,h4{font-family:'Fraunces',serif;line-height:1.1;}
   .mono{font-family:'Space Mono',monospace;}
 
   a{color:inherit;text-decoration:none;}
   img{max-width:100%;display:block;}
+  
+  /* Contenedor estándar para textos */
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+
+  /* ==========================================================================
+     INDICACIONES MANUALES PARA CAMBIAR TAMAÑOS EN PC
+     ========================================================================== */
+
+  /* 1. MOCKUP PRINCIPAL (image_682266.png / imagen con botón amarillo)
+     Si quieres que sea aún más grande o cubra más espacio, aumenta el 'max-width' de abajo. */
+  .mockup-wide-container {
+    max-width: 1400px; /* <--- MODIFICA ESTO: Súbelo a 1600px o 100% si quieres que vaya totalmente de esquina a esquina */
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .mockup-image {
+    width: 100%;
+    margin: 0 auto 36px;
+  }
+  .mockup-image img {
+    width: 100%;
+    height: auto;
+    filter:drop-shadow(0 24px 40px rgba(28,27,25,0.16));
+  }
+
+  /* 2. TESTIMONIOS DE ALUMNOS (image_681f03.jpg - Antes eran carrusel)
+     Para cambiar qué tan grandes se ven en PC, modifica el 'max-width' de .testi-wide-container 
+     o el valor 'min(380px, 100%)' para alterar el ancho individual de cada tarjeta. */
+  .testi-wide-container {
+    max-width: 1600px; /* <--- MODIFICA ESTO: Controla el ancho máximo del bloque entero en la pantalla */
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .testi-grid-images {
+    display: flex;
+    flex-wrap: wrap; /* Hace que bajen si no entran, evitando que se aplasten */
+    gap: 32px;       /* Espacio de separación entre capturas */
+    justify-content: center;
+  }
+  .testi-img {
+    /* min(380px, 100%) significa que en PC medirán 380px fijas (lo que permite leer perfectamente el texto de la imagen) */
+    width: min(380px, 100%); /* <--- MODIFICA ESTO: Súbelo a 420px si quieres que cada opinión se vea aún más gigante en PC */
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+  }
+
+  /* 3. RESEÑAS DE GOOGLE (image_681e65.png - Las tres columnas amarillas)
+     Modifica el 'max-width' de abajo para estirar la sección hacia las esquinas del navegador. */
+  .google-wide-container {
+    max-width: 1500px; /* <--- MODIFICA ESTO: Súbelo a 1700px o 100% para expandirlo totalmente de esquina a esquina en PC */
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+  .google-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas iguales en PC */
+    gap: 32px;
+  }
+  .google-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+  }
+
+  /* ==========================================================================
+     FIN DE LAS INDICACIONES MANUALES (El resto del diseño estable)
+     ========================================================================== */
 
   /* ---------- Urgency bar ---------- */
   .urgency-bar{
@@ -117,7 +185,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     margin-bottom:18px;
     max-width:780px;
   }
-  .hero h1 em{font-style:italic;font-weight:500;color:var(--mustard);}
   .hero p.lead{
     font-size:18px;
     color:rgba(246,239,228,0.82);
@@ -127,7 +194,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
   .hero-video{
     position:relative;
-    max-width:1000px;
+    max-width:1150px;
     width:100%;
     margin:0 auto 38px auto;
     border-radius:10px;
@@ -135,12 +202,8 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     border:1px solid var(--line-light);
     box-shadow:0 30px 60px -20px rgba(0,0,0,0.5);
   }
-  .hero-video::before{
-    content:"";display:block;padding-top:56.25%;
-  }
-  .hero-video iframe{
-    position:absolute;top:0;left:0;width:100%;height:100%;border:0;
-  }
+  .hero-video::before{content:"";display:block;padding-top:56.25%;}
+  .hero-video iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;}
 
   .price-ticket{
     display:inline-flex;align-items:center;gap:16px;
@@ -150,27 +213,9 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     padding:14px 20px;
     margin-bottom:28px;
   }
-  .price-ticket .old{
-    font-family:'Space Mono',monospace;
-    text-decoration:line-through;
-    opacity:0.5;
-    font-size:15px;
-  }
-  .price-ticket .now{
-    font-family:'Space Mono',monospace;
-    font-size:22px;
-    font-weight:700;
-    color:var(--mustard);
-  }
-  .price-ticket .tag{
-    font-size:12px;
-    background:var(--sage);
-    color:var(--cream);
-    padding:3px 8px;
-    border-radius:4px;
-    font-weight:700;
-    letter-spacing:0.03em;
-  }
+  .price-ticket .old{font-family:'Space Mono',monospace;text-decoration:line-through;opacity:0.5;font-size:15px;}
+  .price-ticket .now{font-family:'Space Mono',monospace;font-size:22px;font-weight:700;color:var(--mustard);}
+  .price-ticket .tag{font-size:12px;background:var(--sage);color:var(--cream);padding:3px 8px;border-radius:4px;font-weight:700;}
 
   .btn-cta{
     display:inline-flex;align-items:center;gap:10px;
@@ -186,417 +231,100 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     box-shadow:0 10px 24px -8px rgba(217,142,59,0.5);
   }
   .btn-cta:hover{background:var(--mustard-deep);transform:translateY(-2px);}
-  .btn-cta .arrow{font-size:20px;}
-  .cta-sub{
-    font-size:13px;
-    color:rgba(246,239,228,0.55);
-    margin-top:12px;
-  }
+  .cta-sub{font-size:13px;color:rgba(246,239,228,0.55);margin-top:12px;}
 
   /* ---------- Section heading ---------- */
   .section{padding:80px 0;}
-  .section-head{
-    text-align:center;
-    max-width:620px;
-    margin:0 auto 48px;
-  }
-  .section-head .eyebrow{
-    font-family:'Space Mono',monospace;
-    font-size:12px;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    color:var(--oxblood);
-    margin-bottom:10px;
-    display:block;
-  }
-  .section-head h2{
-    font-size:clamp(1.9rem, 4vw, 2.6rem);
-    font-weight:700;
-  }
-  .section-head p{
-    color:rgba(28,27,25,0.62);
-    margin-top:12px;
-    font-size:16px;
-  }
+  .section-head{text-align:center;max-width:620px;margin:0 auto 48px;}
+  .section-head .eyebrow{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--oxblood);margin-bottom:10px;display:block;}
+  .section-head h2{font-size:clamp(1.9rem, 4vw, 2.6rem);font-weight:700;}
+  .section-head p{color:rgba(28,27,25,0.62);margin-top:12px;font-size:16px;}
 
   /* ---------- Menu ---------- */
-  .menu-section{
-    background:var(--cream-soft);
-    color:var(--charcoal);
-  }
-  .menu-card{
-    background:#fff;
-    border:1px solid var(--line);
-    border-radius:14px;
-    padding:8px;
-    box-shadow:0 4px 24px -8px rgba(28,27,25,0.06);
-  }
-  .menu-course{
-    display:flex;align-items:baseline;gap:14px;
-    padding:18px 22px;
-    border-bottom:1px dashed rgba(28,27,25,0.14);
-  }
+  .menu-section{background:var(--cream-soft);color:var(--charcoal);}
+  .menu-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:0 4px 24px -8px rgba(28,27,25,0.06);}
+  .menu-course{display:flex;align-items:baseline;gap:14px;padding:18px 22px;border-bottom:1px dashed rgba(28,27,25,0.14);}
   .menu-course:last-child{border-bottom:none;}
-  .menu-course .num{
-    font-family:'Space Mono',monospace;
-    font-size:13px;
-    color:var(--oxblood);
-    flex-shrink:0;
-    width:26px;
-  }
-  .menu-course .name{
-    font-family:'Fraunces',serif;
-    font-size:19px;
-    font-weight:500;
-    flex-shrink:0;
-    color:var(--charcoal);
-  }
-  .menu-course .leader{
-    flex:1;
-    border-bottom:1px dotted rgba(28,27,25,0.22);
-    margin:0 4px;
-    transform:translateY(-6px);
-  }
-  .menu-course .status{
-    font-family:'Space Mono',monospace;
-    font-size:12px;
-    color:#8a6d00;
-    background:rgba(255,193,7,0.22);
-    padding:4px 10px;
-    border-radius:20px;
-    flex-shrink:0;
-    white-space:nowrap;
-  }
-  .menu-note{
-    text-align:center;
-    margin-top:24px;
-    font-size:14px;
-    color:rgba(28,27,25,0.5);
-  }
+  .menu-course .num{font-family:'Space Mono',monospace;font-size:13px;color:var(--oxblood);flex-shrink:0;width:26px;}
+  .menu-course .name{font-family:'Fraunces',serif;font-size:19px;font-weight:500;color:var(--charcoal);}
+  .menu-course .leader{flex:1;border-bottom:1px dotted rgba(28,27,25,0.22);margin:0 4px;transform:translateY(-6px);}
+  .menu-course .status{font-family:'Space Mono',monospace;font-size:12px;color:#8a6d00;background:rgba(255,193,7,0.22);padding:4px 10px;border-radius:20px;white-space:nowrap;}
 
   /* ---------- Benefits grid ---------- */
-  .benefits-grid{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:20px;
-  }
-  @media (max-width:760px){.benefits-grid{grid-template-columns:1fr;}}
-  .benefit-card{
-    background:var(--cream-soft);
-    border:1px solid var(--line);
-    border-radius:12px;
-    padding:28px 24px;
-  }
-  .benefit-card .icon{
-    width:42px;height:42px;
-    border-radius:8px;
-    background:var(--mustard);
-    display:flex;align-items:center;justify-content:center;
-    font-size:20px;
-    margin-bottom:16px;
-  }
+  .benefits-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:20px;}
+  .benefit-card{background:var(--cream-soft);border:1px solid var(--line);border-radius:12px;padding:28px 24px;}
+  .benefit-card .icon{width:42px;height:42px;border-radius:8px;background:var(--mustard);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;}
   .benefit-card h3{font-size:17px;font-weight:600;margin-bottom:8px;}
   .benefit-card p{font-size:14px;color:rgba(28,27,25,0.62);}
 
   /* ---------- Guarantee strip ---------- */
-  .guarantee{
-    background:#fff;
-    border:1px solid var(--line);
-    color:var(--charcoal);
-    border-radius:16px;
-    padding:36px 40px;
-    display:flex;align-items:center;gap:28px;
-    flex-wrap:wrap;
-    box-shadow:0 4px 24px -8px rgba(28,27,25,0.06);
-  }
-  .guarantee .badge-img{
-    width:96px;height:96px;
-    flex-shrink:0;
-    display:flex;align-items:center;justify-content:center;
-  }
+  .guarantee{background:#fff;border:1px solid var(--line);color:var(--charcoal);border-radius:16px;padding:36px 40px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+  .guarantee .badge-img{width:96px;height:96px;flex-shrink:0;}
   .guarantee .badge-img img{width:100%;height:100%;object-fit:contain;}
-  .guarantee h3{font-size:20px;margin-bottom:6px;color:var(--charcoal);}
-  .guarantee p{font-size:14px;color:rgba(28,27,25,0.65);}
-
-  /* ---------- MEJORA: SECCIÓN TESTIMONIOS (image_683849.jpg) ---------- */
-  .testi-container-scroll {
-    width: 100%;
-    overflow-x: auto;
-    padding: 20px 0;
-    scrollbar-width: thin;
-  }
-  .testi-grid-images{
-    display: flex;
-    gap: 24px;
-    min-width: 1200px; /* Forzamos tamaño grande en PC para que se lea perfectamente */
-    justify-content: space-between;
-  }
-  @media (max-width:1250px){
-    /* En pantallas medianas o pequeñas permite scroll horizontal suave para mantener legibilidad */
-    .testi-container-scroll {
-      scroll-snap-type: x mandatory;
-    }
-    .testi-grid-images {
-      padding-right: 24px;
-    }
-    .testi-img {
-      scroll-snap-align: start;
-      width: 320px !important; /* Tamaño fijo óptimo de lectura */
-      flex-shrink: 0;
-    }
-  }
-  .testi-img{
-    width: 24%; /* Distribución óptima en pantallas grandes */
-    border-radius:10px;
-    border:1px solid var(--line);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.05);
-    transition:transform 0.3s cubic-bezier(.21,.6,.27,1);
-  }
-  .testi-img:hover{transform:translateY(-5px);box-shadow:0 16px 28px -14px rgba(28,27,25,0.2);}
-
-  /* ---------- MEJORA: SECCIÓN GOOGLE REVIEWS (image_68390a.jpg) ---------- */
-  .google-grid{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:24px;
-    max-width: 1150px;
-    margin: 0 auto;
-  }
-  @media (max-width:900px){
-    .google-grid{
-      grid-template-columns: 1fr; /* Una debajo de otra en móvil para que mantengan su ancho nativo y se lean */
-      max-width: 480px;
-    }
-  }
-  .google-grid img{
-    width:100%;
-    height: auto;
-    border-radius:10px;
-    border:1px solid var(--line);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-    transition:transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .google-grid img:hover{transform:translateY(-5px);box-shadow:0 16px 28px -14px rgba(28,27,25,0.18);}
 
   /* ---------- Stats strip ---------- */
-  .stats-strip{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:1px;
-    background:var(--line-light);
-    border-radius:14px;
-    overflow:hidden;
-    margin-top:44px;
-  }
-  @media (max-width:760px){.stats-strip{grid-template-columns:repeat(2,1fr);}}
-  .stat-cell{
-    background:var(--oxblood);
-    padding:26px 16px;
-    text-align:center;
-  }
-  .stat-cell .num{
-    font-family:'Space Mono',monospace;
-    font-size:clamp(1.6rem,3vw,2.2rem);
-    font-weight:700;
-    color:var(--mustard);
-    display:block;
-  }
-  .stat-cell .label{
-    font-size:12px;
-    color:rgba(255,255,255,0.85);
-    margin-top:4px;
-    text-transform:uppercase;
-    letter-spacing:0.04em;
-  }
+  .stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-light);border-radius:14px;overflow:hidden;margin-top:44px;}
+  .stat-cell{background:var(--oxblood);padding:26px 16px;text-align:center;}
+  .stat-cell .num{font-family:'Space Mono',monospace;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--mustard);display:block;}
+  .stat-cell .label{font-size:12px;color:rgba(255,255,255,0.85);margin-top:4px;text-transform:uppercase;}
 
-  @keyframes barShimmer{0%{background-position:0% 0;}100%{background-position:200% 0;}}
+  /* ---------- Mockup UI Elements ---------- */
+  .mockup-cta .btn-cta-big{font-size:20px;padding:20px 48px;}
+  .payment-icons{display:flex;justify-content:center;gap:18px;margin-top:18px;flex-wrap:wrap;}
+  .payment-icons span{font-family:'Space Mono',monospace;font-size:11px;color:rgba(28,27,25,0.45);border:1px solid var(--line);padding:6px 12px;border-radius:6px;}
+  .trust-banner-link{display:inline-block;margin-top:20px;border-radius:6px;overflow:hidden;box-shadow:0 4px 12px -4px rgba(28,27,25,0.15);}
+  .trust-banner-link img{display:block;max-width:468px;width:100%;height:auto;margin:0 auto;}
 
-  /* ---------- MEJORA: MOCKUP PRINCIPAL (image_683584.png) ---------- */
-  .mockup-section{
-    background:#fff;
-    text-align:center;
-    padding:60px 0;
-  }
-  .mockup-image{
-    max-width:950px; /* Aumentado de 760px a 950px para máxima legibilidad de los textos internos en PC */
-    width: 100%;
-    margin:0 auto 36px;
-  }
-  .mockup-image img{
-    width:100%;
-    height: auto;
-    filter:drop-shadow(0 24px 40px rgba(28,27,25,0.16));
-    transition:transform 0.4s cubic-bezier(.21,.6,.27,1);
-  }
-  .mockup-image img:hover{transform:translateY(-6px);}
-  .mockup-cta .btn-cta-big{
-    font-size:20px;
-    padding:20px 48px;
-  }
-  .payment-icons{
-    display:flex;justify-content:center;gap:18px;
-    margin-top:18px;
-    flex-wrap:wrap;
-  }
-  .payment-icons span{
-    font-family:'Space Mono',monospace;
-    font-size:11px;
-    color:rgba(28,27,25,0.45);
-    border:1px solid var(--line);
-    padding:6px 12px;
-    border-radius:6px;
-    letter-spacing:0.04em;
-  }
-  .trust-banner-link{
-    display:inline-block;
-    margin-top:20px;
-    border-radius:6px;
-    overflow:hidden;
-    transition:transform 0.25s ease, box-shadow 0.25s ease;
-    box-shadow:0 4px 12px -4px rgba(28,27,25,0.15);
-  }
-  .trust-banner-link:hover{transform:translateY(-3px);box-shadow:0 10px 20px -8px rgba(28,27,25,0.22);}
-  .trust-banner-link img{display:block;max-width:468px;width:100%;height:auto;}
-
-  /* ---------- MEJORA: CERTIFICACIÓN (image_68388a.png) ---------- */
-  .cert-block{
-    display:grid;
-    grid-template-columns: 1.2fr 1fr; /* Más espacio a la imagen del certificado en PC */
-    gap:48px;
-    align-items:center;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  @media (max-width:850px){
-    .cert-block{
-      grid-template-columns:1fr;
-      gap:32px;
-    }
-  }
-  .cert-image img{
-    width: 100%;
-    height: auto;
-    border-radius:14px;
-    border:1px solid var(--line);
-    box-shadow:0 20px 40px -16px rgba(28,27,25,0.18);
-    transition:transform 0.4s cubic-bezier(.21,.6,.27,1);
-  }
-  .cert-image img:hover{transform:scale(1.02) rotate(-0.5deg);}
-  .cert-text .section-head-eyebrow-inline{
-    font-family:'Space Mono',monospace;
-    font-size:12px;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    color:var(--oxblood);
-    display:block;
-    margin-bottom:10px;
-  }
+  /* ---------- Certification Block ---------- */
+  .cert-block{display:grid;grid-template-columns: 1.3fr 1fr;gap:48px;align-items:center;max-width: 1150px;margin: 0 auto;}
+  .cert-image img{width: 100%;height: auto;border-radius:14px;border:1px solid var(--line);box-shadow:0 20px 40px -16px rgba(28,27,25,0.18);}
   .cert-text h2{font-size:clamp(1.7rem,3.5vw,2.2rem);margin-bottom:14px;}
-  .cert-text p{font-size:15px;color:rgba(28,27,25,0.62);margin-bottom:26px;max-width:460px;}
-  .cert-text .btn-cta{padding:14px 26px;font-size:15px;}
+  .cert-text p{font-size:15px;color:rgba(28,27,25,0.62);margin-bottom:26px;}
 
   /* ---------- FAQ System ---------- */
   .faq-item{border-bottom:1px solid var(--line);}
-  .faq-q{
-    width:100%;text-align:left;
-    background:none;border:none;
-    padding:20px 4px;
-    font-family:'Fraunces',serif;
-    font-size:17px;font-weight:500;
-    display:flex;justify-content:space-between;align-items:center;
-    cursor:pointer;
-    color:var(--charcoal);
-    transition:color 0.2s ease;
-  }
-  .faq-q:hover{color:var(--oxblood);}
-  .faq-q .plus{font-family:'Space Mono',monospace;color:var(--oxblood);font-size:18px;transition:transform 0.2s;}
-  .faq-item.open .plus{transform:rotate(45deg);}
-  .faq-a{
-    max-height:0;
-    overflow:hidden;
-    transition:max-height 0.25s ease;
-    font-size:14px;
-    color:rgba(28,27,25,0.65);
-  }
+  .faq-q{width:100%;text-align:left;background:none;border:none;padding:20px 4px;font-family:'Fraunces',serif;font-size:17px;font-weight:500;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
+  .faq-q .plus{font-family:'Space Mono',monospace;color:var(--oxblood);font-size:18px;}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height 0.25s ease;font-size:14px;color:rgba(28,27,25,0.65);}
   .faq-a-inner{padding:0 4px 20px;}
 
   /* ---------- Final CTA ---------- */
-  .final-cta{
-    background:var(--charcoal);
-    color:var(--cream);
-    text-align:center;
-    padding:80px 0;
-  }
-  .final-cta .eyebrow{
-    font-family:'Space Mono',monospace;
-    color:var(--mustard);
-    font-size:12px;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-  }
-  .final-cta h2{
-    font-size:clamp(2rem,4.5vw,2.8rem);
-    margin:14px 0 30px;
-    max-width:680px;
-    margin-left:auto;margin-right:auto;
+  .final-cta{background:var(--charcoal);color:var(--cream);text-align:center;padding:80px 0;}
+  .final-cta h2{font-size:clamp(2rem,4.5vw,2.8rem);margin:14px 0 30px;}
+
+  footer{background:var(--charcoal-soft);color:rgba(246,239,228,0.45);font-size:12px;text-align:center;padding:28px 24px;}
+
+  /* ==========================================================================
+     RESPONSIVE / ADAPTACIÓN PARA MÓVILES (Pantallas de celulares y tablets)
+     ========================================================================== */
+  @media (max-width: 900px) {
+    .google-grid {
+      grid-template-columns: 1fr; /* Pasa a una sola columna en celulares para no aplastarse */
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+    .cert-block {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+    .stats-strip {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
-  footer{
-    background:var(--charcoal-soft);
-    color:rgba(246,239,228,0.45);
-    font-size:12px;
-    text-align:center;
-    padding:28px 24px;
+  @media (max-width: 480px) {
+    .testi-grid-images {
+      gap: 16px; /* Menos espacio de separación en pantallas muy chiquitas */
+    }
+    .testi-img {
+      width: 100%; /* Ocupa todo el ancho disponible del celular */
+    }
   }
 
-  .fade-up{
-    opacity:0;transform:translateY(16px);
-    animation:fadeUp 0.7s ease forwards;
-  }
-  @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
-
-  .hero{overflow:hidden;}
-  .hero-glow{
-    position:absolute;
-    inset:-20% -10% auto -10%;
-    height:140%;
-    background:
-      radial-gradient(circle at 75% 15%, rgba(226,35,26,0.16), transparent 45%),
-      radial-gradient(circle at 15% 85%, rgba(226,35,26,0.08), transparent 50%);
-    animation:driftGlow 18s ease-in-out infinite alternate;
-    pointer-events:none;
-    z-index:0;
-  }
-  @keyframes driftGlow{
-    0%{transform:translate(0,0) scale(1);}
-    50%{transform:translate(3%,-4%) scale(1.08);}
-    100%{transform:translate(-2%,3%) scale(1.04);}
-  }
-  .hero > .wrap{position:relative;z-index:1;}
-
-  .btn-cta{position:relative;overflow:hidden;isolation:isolate;animation:ctaPulse 3.2s ease-in-out infinite;}
-  .btn-cta::before{
-    content:"";
-    position:absolute;top:0;left:-60%;width:40%;height:100%;
-    background:linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
-    transform:skewX(-20deg);
-    transition:left 0.6s ease;
-    z-index:1;
-  }
-  .btn-cta:hover::before{left:120%;}
-  @keyframes ctaPulse{
-    0%,100%{box-shadow:0 10px 24px -8px rgba(217,142,59,0.5);}
-    50%{box-shadow:0 14px 32px -8px rgba(217,142,59,0.75);}
-  }
-
-  .menu-course{transition:background 0.25s ease, padding-left 0.25s ease;cursor:default;}
-  .menu-course:hover{background:rgba(217,142,59,0.08);padding-left:30px;}
-  .menu-course:hover .status{background:var(--mustard);color:var(--charcoal);}
-  .menu-course .status{transition:background 0.25s ease, color 0.25s ease;}
-
-  .benefit-card{transition:transform 0.3s cubic-bezier(.21,.6,.27,1), box-shadow 0.3s ease, border-color 0.3s ease;}
-  .benefit-card:hover{transform:translateY(-6px);box-shadow:0 20px 32px -16px rgba(28,27,25,0.18);border-color:var(--mustard);}
-  .benefit-card:hover .icon{transform:rotate(-8deg) scale(1.1);}
+  @keyframes barShimmer{0%{background-position:0% 0;}100%{background-position:200% 0;}}
 </style>
 </head>
 <body>
@@ -609,33 +337,32 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
 <!-- HERO -->
 <header class="hero">
-  <div class="hero-glow"></div>
   <div class="wrap">
     <div class="hero-eyebrow">Escuela de Gastronomía Online</div>
-    <h1 class="fade-up">Aprende a cocinar como <em>profesional</em>, desde tu propia cocina.</h1>
-    <p class="lead fade-up">7 cursos completos — cocina internacional, panadería artesanal, repostería, coctelería, sushi y más. A tu ritmo, con certificación incluida.</p>
+    <h1>Aprende a cocinar como <em>profesional</em>, desde tu propia cocina.</h1>
+    <p class="lead">7 cursos completos — cocina internacional, panadería artesanal, repostería, coctelería, sushi y más. A tu ritmo, con certificación incluida.</p>
 
     <!-- VIDEO -->
-    <div class="hero-video fade-up">
+    <div class="hero-video">
       <iframe src="https://www.youtube.com/embed/2XdOloUNraU" title="Gastronomía Online" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
 
-    <div class="price-ticket fade-up">
+    <div class="price-ticket">
       <span class="tag">Acceso de por vida</span>
       <span class="old">$175,00</span>
       <span class="now">$65,00</span>
     </div>
     <br>
-    <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="btn-cta fade-up" onclick="fbq('track','InitiateCheckout');">
+    <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="btn-cta" onclick="fbq('track','InitiateCheckout');">
       Quiero empezar hoy <span class="arrow">→</span>
     </a>
     <p class="cta-sub">Acceso inmediato tras tu inscripción · Pago 100% seguro vía Hotmart</p>
   </div>
 </header>
 
-<!-- PRODUCT MOCKUP (image_683584.png) -->
-<section class="section mockup-section">
-  <div class="wrap">
+<!-- PRODUCT MOCKUP SECCIÓN ANCHA (image_682266.png) -->
+<section class="section" style="background:#fff;">
+  <div class="mockup-wide-container">
     <div class="mockup-image">
       <img src="https://cursosdecocina.tv/wp-content/uploads/2024/12/caja-gastronomia-1536x960.png" alt="Gastronomía Online — contenido del curso, recetario y garantía de 7 días">
     </div>
@@ -659,54 +386,18 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     <div class="section-head">
       <span class="eyebrow">La carta del curso</span>
       <h2>7 cursos, servidos completos</h2>
-      <p>Nada de migajas de información. Cada curso es un programa entero, con lecciones, recetas y recursos descargables.</p>
+      <p>Cada curso es un programa entero, con lecciones, recetas y recursos descargables.</p>
     </div>
 
     <div class="menu-card">
-      <div class="menu-course">
-        <span class="num">01</span>
-        <span class="name">Cocina Internacional</span>
-        <span class="leader"></span>
-        <span class="status">incluido</span>
-      </div>
-      <div class="menu-course">
-        <span class="num">02</span>
-        <span class="name">Panadería Artesanal</span>
-        <span class="leader"></span>
-        <span class="status">incluido</span>
-      </div>
-      <div class="menu-course">
-        <span class="num">03</span>
-        <span class="name">Repostería y Decoración</span>
-        <span class="leader"></span>
-        <span class="status">incluido</span>
-      </div>
-      <div class="menu-course">
-        <span class="num">04</span>
-        <span class="name">Tortas Modernas</span>
-        <span class="leader"></span>
-        <span class="status">incluido</span>
-      </div>
-      <div class="menu-course">
-        <span class="num">05</span>
-        <span class="name">Sushi Rolls</span>
-        <span class="leader"></span>
-        <span class="status">incluido</span>
-      </div>
-      <div class="menu-course">
-        <span class="num">06</span>
-        <span class="name">Coctelería Clásica</span>
-        <span class="leader"></span>
-        <span class="status">incluido</span>
-      </div>
-      <div class="menu-course">
-        <span class="num">07</span>
-        <span class="name">Barista Training</span>
-        <span class="leader"></span>
-        <span class="status">incluido</span>
-      </div>
+      <div class="menu-course"><span class="num">01</span><span class="name">Cocina Internacional</span><span class="leader"></span><span class="status">incluido</span></div>
+      <div class="menu-course"><span class="num">02</span><span class="name">Panadería Artesanal</span><span class="leader"></span><span class="status">incluido</span></div>
+      <div class="menu-course"><span class="num">03</span><span class="name">Repostería y Decoración</span><span class="leader"></span><span class="status">incluido</span></div>
+      <div class="menu-course"><span class="num">04</span><span class="name">Tortas Modernas</span><span class="leader"></span><span class="status">incluido</span></div>
+      <div class="menu-course"><span class="num">05</span><span class="name">Sushi Rolls</span><span class="leader"></span><span class="status">incluido</span></div>
+      <div class="menu-course"><span class="num">06</span><span class="name">Coctelería Clásica</span><span class="leader"></span><span class="status">incluido</span></div>
+      <div class="menu-course"><span class="num">07</span><span class="name">Barista Training</span><span class="leader"></span><span class="status">incluido</span></div>
     </div>
-    <p class="menu-note">Certificado digital al finalizar cada curso · Acceso desde cualquier dispositivo</p>
 
     <div class="stats-strip">
       <div class="stat-cell"><span class="num">5000+</span><span class="label">Alumnos</span></div>
@@ -723,38 +414,22 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     <div class="section-head">
       <span class="eyebrow">Por qué este curso</span>
       <h2>Pensado para gente con vida real</h2>
-      <p>Sin horarios fijos, sin mensualidades, sin trasladarte a ningún lado.</p>
     </div>
     <div class="benefits-grid">
       <div class="benefit-card">
         <div class="icon">⏱</div>
         <h3>A tu propio ritmo</h3>
-        <p>Avanza, pausa y repite las lecciones cuando quieras. Sin clases en vivo que te amarren a un horario.</p>
+        <p>Avanza, pausa y repite las lecciones cuando quieras. Sin clases en vivo.</p>
       </div>
       <div class="benefit-card">
         <div class="icon">🎓</div>
         <h3>Certificación incluida</h3>
-        <p>Al completar cada curso, recibes tu certificado digital descargable — útil para tu portafolio o emprendimiento.</p>
+        <p>Al completar cada curso, recibes tu certificado digital descargable.</p>
       </div>
       <div class="benefit-card">
         <div class="icon">♾️</div>
         <h3>Acceso ilimitado</h3>
-        <p>Pagas una sola vez y el contenido es tuyo de por vida. Vuelve a cualquier lección cuando lo necesites.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="icon">📱</div>
-        <h3>Desde cualquier dispositivo</h3>
-        <p>Celular, tablet o computadora — el curso se adapta a lo que tengas a mano en tu cocina.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="icon">👨‍🍳</div>
-        <h3>De principiante a sólido</h3>
-        <p>No necesitas experiencia previa. El programa está diseñado para construir tu técnica desde cero.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="icon">💰</div>
-        <h3>Pago único</h3>
-        <p>Una sola inversión, sin mensualidades ni matrículas escondidas. Todo el contenido, un solo precio.</p>
+        <p>Pagos una sola vez y el contenido es tuyo de por vida.</p>
       </div>
     </div>
   </div>
@@ -769,13 +444,13 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       </div>
       <div>
         <h3>Pruébalo sin riesgo</h3>
-        <p>Si dentro de los primeros 7 días sientes que no es para ti, te devolvemos el 100% de tu inversión. Sin preguntas complicadas.</p>
+        <p>Si dentro de los primeros 7 días sientes que no es para ti, te devolvemos el 100% de tu inversión. Sin preguntas.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CERTIFICATION (image_68388a.png) -->
+<!-- CERTIFICATION -->
 <section class="section" style="background:#fff;">
   <div class="wrap">
     <div class="cert-block">
@@ -783,9 +458,8 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
         <img src="https://cursosdecocina.tv/wp-content/uploads/2023/05/certificados-web-gastronomia.jpg-768x630.webp" alt="Certificado Gastronomía Online">
       </div>
       <div class="cert-text">
-        <span class="section-head-eyebrow-inline">Certificación incluida</span>
         <h2>Tu esfuerzo, con respaldo en papel</h2>
-        <p>Al finalizar el programa recibes un certificado digital descargable, listo para compartir o sumar a tu portafolio — perfecto si planeas emprender o simplemente quieres demostrar lo que aprendiste.</p>
+        <p>Al finalizar el programa recibes un certificado digital descargable, listo para compartir o sumar a tu portafolio.</p>
         <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="btn-cta" onclick="fbq('track','InitiateCheckout');">
           Quiero mi certificación <span class="arrow">→</span>
         </a>
@@ -794,27 +468,25 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- TESTIMONIALS (image_683849.jpg) -->
+<!-- TESTIMONIALS COMPLETOS SIN CARRUSEL (image_681f03.jpg) -->
 <section class="section">
-  <div class="wrap">
+  <div class="testi-wide-container">
     <div class="section-head">
       <span class="eyebrow">Resultados reales</span>
       <h2>Lo que dicen quienes ya cocinan distinto</h2>
     </div>
-    <div class="testi-container-scroll">
-      <div class="testi-grid testi-grid-images">
-        <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1.jpg" alt="Opinión de alumno — Gastronomía Online">
-        <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-1.jpg" alt="Opinión de alumno — Gastronomía Online">
-        <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-2.jpg" alt="Opinión de alumno — Gastronomía Online">
-        <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t2-4.jpg" alt="Opinión de alumno — Gastronomía Online">
-      </div>
+    <div class="testi-grid-images">
+      <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1.jpg" alt="Opinión de alumno — Gastronomía Online">
+      <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-1.jpg" alt="Opinión de alumno — Gastronomía Online">
+      <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-2.jpg" alt="Opinión de alumno — Gastronomía Online">
+      <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t2-4.jpg" alt="Opinión de alumno — Gastronomía Online">
     </div>
   </div>
 </section>
 
-<!-- GOOGLE REVIEWS (image_68390a.jpg) -->
+<!-- GOOGLE REVIEWS EXTRA ANCHO Y LEGIBLE (image_681e65.png) -->
 <section class="section" style="background:var(--cream-soft);">
-  <div class="wrap">
+  <div class="google-wide-container">
     <div class="section-head">
       <span class="eyebrow">Reputación verificada</span>
       <h2>Lo que opinan en Google</h2>
@@ -837,23 +509,11 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     <div id="faq-list">
       <div class="faq-item">
         <button class="faq-q">¿Cuándo empieza el curso? <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Apenas completas tu inscripción, recibes acceso inmediato a la plataforma. Tú decides cuándo empezar y a qué ritmo avanzar.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">¿Necesito experiencia previa? <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">No. El programa está diseñado para llevarte desde lo más básico hasta técnicas más avanzadas, paso a paso.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">¿Necesito comprar equipo especial? <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">No es obligatorio. Puedes empezar con lo básico que ya tienes en tu cocina e ir incorporando herramientas según avances.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Apenas completas tu inscripción, recibes acceso inmediato a la plataforma.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">¿Por cuánto tiempo tengo acceso? <span class="plus">+</span></button>
         <div class="faq-a"><div class="faq-a-inner">El acceso es de por vida. Pagas una sola vez y el contenido queda disponible para siempre.</div></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">¿Cómo recibo mi certificado? <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Al completar cada curso, tu certificado digital queda disponible para descargar directamente desde la plataforma.</div></div>
       </div>
     </div>
   </div>
@@ -862,28 +522,24 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 <!-- FINAL CTA -->
 <section class="final-cta">
   <div class="wrap">
-    <span class="eyebrow">Última llamada</span>
     <h2>Tu cocina puede ser el inicio de algo nuevo. Empieza hoy.</h2>
     <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="btn-cta" onclick="fbq('track','InitiateCheckout');">
       Inscribirme ahora <span class="arrow">→</span>
     </a>
-    <p class="cta-sub">Pago seguro procesado por Hotmart · Garantía de 7 días</p>
   </div>
 </section>
 
 <footer>
-  Esta página es operada por un afiliado independiente. El contenido del curso es propiedad de su productor original en Hotmart. Pagos procesados de forma segura por Hotmart.
+  Esta página es operada por un afiliado independiente. Pagos procesados de forma segura por Hotmart.
 </footer>
 
 <script>
-  // Control de las preguntas frecuentes (Acordeón)
+  // Control de las preguntas frecuentes
   document.querySelectorAll('.faq-q').forEach(button => {
     button.addEventListener('click', () => {
       const faqItem = button.parentElement;
       const answer = faqItem.querySelector('.faq-a');
-      
       faqItem.classList.toggle('open');
-      
       if (faqItem.classList.contains('open')) {
         answer.style.maxHeight = answer.scrollHeight + "px";
       } else {
@@ -892,26 +548,16 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     });
   });
 
-  // Temporizador de Cuenta Regresiva (10 minutos de ejemplo)
+  // Temporizador de Cuenta Regresiva
   let time = 600; 
   const timerElement = document.getElementById('timer');
-  
   setInterval(() => {
     let minutes = Math.floor(time / 60);
     let seconds = time % 60;
-    
     minutes = minutes < 10 ? '0' + minutes : minutes;
     seconds = seconds < 10 ? '0' + seconds : seconds;
-    
-    if(timerElement) {
-      timerElement.innerText = `${minutes}:${seconds}`;
-    }
-    
-    if (time > 0) {
-      time--;
-    } else {
-      time = 600; 
-    }
+    if(timerElement) timerElement.innerText = `${minutes}:${seconds}`;
+    if (time > 0) time--; else time = 600;
   }, 1000);
 </script>
 
