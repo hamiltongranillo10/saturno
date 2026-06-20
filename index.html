@@ -124,11 +124,11 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     max-width:560px;
     margin-bottom:34px;
   }
-  
-  /* OPTIMIZACIÓN DEL VIDEO: Más grande en PC, responsivo en móvil */
+
+  /* MEJORA DEL VIDEO: Maximizado a 1000px en pantallas grandes y responsivo en móviles */
   .hero-video{
     position:relative;
-    max-width:1000px; /* Aumentado de 760px a 1000px para máxima visualización en PC */
+    max-width:1000px; /* Expandido para mejor visualización en PC */
     width:100%;
     margin:0 auto 38px auto; /* Centrado automático */
     border-radius:10px;
@@ -137,7 +137,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     box-shadow:0 30px 60px -20px rgba(0,0,0,0.5);
   }
   .hero-video::before{
-    content:"";display:block;padding-top:56.25%; /* Relación de aspecto 16:9 perfecta */
+    content:"";display:block;padding-top:56.25%; /* Mantiene proporción 16:9 exacta */
   }
   .hero-video iframe{
     position:absolute;top:0;left:0;width:100%;height:100%;border:0;
@@ -456,7 +456,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .cert-text p{font-size:15px;color:rgba(28,27,25,0.62);margin-bottom:26px;max-width:460px;}
   .cert-text .btn-cta{padding:14px 26px;font-size:15px;}
 
-  /* ---------- FAQ smoother ---------- */
+  /* ---------- FAQ System ---------- */
   .faq-item{border-bottom:1px solid var(--line);}
   .faq-q{
     width:100%;text-align:left;
@@ -516,7 +516,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   }
   @keyframes fadeUp{to{opacity:1;transform:translateY(0);}}
 
-  /* ---------- Animated hero background ---------- */
+  /* ---------- Animated background ---------- */
   .hero{overflow:hidden;}
   .hero-glow{
     position:absolute;
@@ -536,7 +536,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   }
   .hero > .wrap{position:relative;z-index:1;}
 
-  /* ---------- Button polish ---------- */
+  /* ---------- Button animations ---------- */
   .btn-cta{position:relative;overflow:hidden;isolation:isolate;animation:ctaPulse 3.2s ease-in-out infinite;}
   .btn-cta::before{
     content:"";
@@ -567,7 +567,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 <!-- Urgency Bar -->
 <div class="urgency-bar">
   <span>⏳ Promoción especial termina en</span>
-  <span class="timer" id="timer">10:00</span>
+  <span class="timer" id="timer">00:10:00</span>
 </div>
 
 <!-- HERO -->
@@ -578,7 +578,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     <h1 class="fade-up">Aprende a cocinar como <em>profesional</em>, desde tu propia cocina.</h1>
     <p class="lead fade-up">7 cursos completos — cocina internacional, panadería artesanal, repostería, coctelería, sushi y más. A tu ritmo, con certificación incluida.</p>
 
-    <!-- Video Adaptado -->
+    <!-- VIDEO OPTIMIZADO -->
     <div class="hero-video fade-up">
       <iframe src="https://www.youtube.com/embed/2XdOloUNraU" title="Gastronomía Online" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
@@ -600,7 +600,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 <section class="section mockup-section">
   <div class="wrap">
     <div class="mockup-image">
-      <img src="https://cursosdecocina.tv/wp-content/uploads/2024/12/caja-gastronomia-1536x960.png" alt="Gastronomía Online">
+      <img src="https://cursosdecocina.tv/wp-content/uploads/2024/12/caja-gastronomia-1536x960.png" alt="Gastronomía Online — contenido del curso, recetario y garantía de 7 días">
     </div>
     <div class="mockup-cta">
       <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="btn-cta btn-cta-big" onclick="fbq('track','InitiateCheckout');">
@@ -610,7 +610,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
         <span>VISA</span><span>Mastercard</span><span>PayPal</span><span>Amex</span>
       </div>
       <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="trust-banner-link" onclick="fbq('track','InitiateCheckout');">
-        <img src="https://cdn.shopify.com/s/files/1/0078/9620/3362/files/468x60.jpg" alt="Compra segura">
+        <img src="https://cdn.shopify.com/s/files/1/0078/9620/3362/files/468x60.jpg" alt="Compra segura garantizada">
       </a>
     </div>
   </div>
@@ -622,22 +622,58 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     <div class="section-head">
       <span class="eyebrow">La carta del curso</span>
       <h2>7 cursos, servidos completos</h2>
-      <p>Cada curso es un programa entero, con lecciones, recetas y recursos descargables.</p>
+      <p>Nada de migajas de información. Cada curso es un programa entero, con lecciones, recetas y recursos descargables.</p>
     </div>
 
     <div class="menu-card">
-      <div class="menu-course"><span class="num">01</span><span class="name">Cocina Internacional</span><span class="leader"></span><span class="status">incluido</span></div>
-      <div class="menu-course"><span class="num">02</span><span class="name">Panadería Artesanal</span><span class="leader"></span><span class="status">incluido</span></div>
-      <div class="menu-course"><span class="num">03</span><span class="name">Repostería y Decoración</span><span class="leader"></span><span class="status">incluido</span></div>
-      <div class="menu-course"><span class="num">04</span><span class="name">Tortas Modernas</span><span class="leader"></span><span class="status">incluido</span></div>
-      <div class="menu-course"><span class="num">05</span><span class="name">Sushi Rolls</span><span class="leader"></span><span class="status">incluido</span></div>
-      <div class="menu-course"><span class="num">06</span><span class="name">Coctelería Clásica</span><span class="leader"></span><span class="status">incluido</span></div>
-      <div class="menu-course"><span class="num">07</span><span class="name">Barista Training</span><span class="leader"></span><span class="status">incluido</span></div>
+      <div class="menu-course">
+        <span class="num">01</span>
+        <span class="name">Cocina Internacional</span>
+        <span class="leader"></span>
+        <span class="status">incluido</span>
+      </div>
+      <div class="menu-course">
+        <span class="num">02</span>
+        <span class="name">Panadería Artesanal</span>
+        <span class="leader"></span>
+        <span class="status">incluido</span>
+      </div>
+      <div class="menu-course">
+        <span class="num">03</span>
+        <span class="name">Repostería y Decoración</span>
+        <span class="leader"></span>
+        <span class="status">incluido</span>
+      </div>
+      <div class="menu-course">
+        <span class="num">04</span>
+        <span class="name">Tortas Modernas</span>
+        <span class="leader"></span>
+        <span class="status">incluido</span>
+      </div>
+      <div class="menu-course">
+        <span class="num">05</span>
+        <span class="name">Sushi Rolls</span>
+        <span class="leader"></span>
+        <span class="status">incluido</span>
+      </div>
+      <div class="menu-course">
+        <span class="num">06</span>
+        <span class="name">Coctelería Clásica</span>
+        <span class="leader"></span>
+        <span class="status">incluido</span>
+      </div>
+      <div class="menu-course">
+        <span class="num">07</span>
+        <span class="name">Barista Training</span>
+        <span class="leader"></span>
+        <span class="status">incluido</span>
+      </div>
     </div>
-    
+    <p class="menu-note">Certificado digital al finalizar cada curso · Acceso desde cualquier dispositivo</p>
+
     <div class="stats-strip">
-      <div class="stat-cell"><span class="num">+5000</span><span class="label">Alumnos</span></div>
-      <div class="stat-cell"><span class="num">+300</span><span class="label">Lecciones</span></div>
+      <div class="stat-cell"><span class="num">5000+</span><span class="label">Alumnos</span></div>
+      <div class="stat-cell"><span class="num">300+</span><span class="label">Lecciones</span></div>
       <div class="stat-cell"><span class="num">7</span><span class="label">Cursos</span></div>
       <div class="stat-cell"><span class="num">99%</span><span class="label">Satisfacción</span></div>
     </div>
@@ -647,22 +683,107 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 <!-- BENEFITS -->
 <section class="section">
   <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Por qué este curso</span>
+      <h2>Pensado para gente con vida real</h2>
+      <p>Sin horarios fijos, sin mensualidades, sin trasladarte a ningún lado.</p>
+    </div>
     <div class="benefits-grid">
       <div class="benefit-card">
         <div class="icon">⏱</div>
         <h3>A tu propio ritmo</h3>
-        <p>Avanza, pausa y repite las lecciones cuando quieras. Sin clases en vivo.</p>
+        <p>Avanza, pausa y repite las lecciones cuando quieras. Sin clases en vivo que te amarren a un horario.</p>
       </div>
       <div class="benefit-card">
         <div class="icon">🎓</div>
         <h3>Certificación incluida</h3>
-        <p>Al completar cada curso, recibes tu certificado digital descargable.</p>
+        <p>Al completar cada curso, recibes tu certificado digital descargable — útil para tu portafolio o emprendimiento.</p>
       </div>
       <div class="benefit-card">
         <div class="icon"></div>
         <h3>Acceso ilimitado</h3>
-        <p>Pagas una sola vez y el contenido es tuyo de por vida.</p>
+        <p>Pagas una sola vez y el contenido es tuyo de por vida. Vuelve a cualquier lección cuando lo necesites.</p>
       </div>
+      <div class="benefit-card">
+        <div class="icon">📱</div>
+        <h3>Desde cualquier dispositivo</h3>
+        <p>Celular, tablet o computadora — el curso se adapta a lo que tengas a mano en tu cocina.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="icon">👨‍🍳</div>
+        <h3>De principiante a sólido</h3>
+        <p>No necesitas experiencia previa. El programa está diseñado para construir tu técnica desde cero.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="icon">💰</div>
+        <h3>Pago único</h3>
+        <p>Una sola inversión, sin mensualidades ni matrículas escondidas. Todo el contenido, un solo precio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="guarantee">
+      <div class="badge-img">
+        <img src="https://cursosdecocina.tv/wp-content/uploads/elementor/thumbs/garantia-7-dias-1-1-q5i4nhvvdzlfdzc18722l8hm1q4ah64ff5knyzc0r4.png" alt="Garantía de 7 días">
+      </div>
+      <div>
+        <h3>Pruébalo sin riesgo</h3>
+        <p>Si dentro de los primeros 7 días sientes que no es para ti, te devolvemos el 100% de tu inversión. Sin preguntas complicadas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATION -->
+<section class="section" style="background:#fff;">
+  <div class="wrap">
+    <div class="cert-block">
+      <div class="cert-image">
+        <img src="https://cursosdecocina.tv/wp-content/uploads/2023/05/certificados-web-gastronomia.jpg-768x630.webp" alt="Certificado Gastronomía Online">
+      </div>
+      <div class="cert-text">
+        <span class="section-head-eyebrow-inline">Certificación incluida</span>
+        <h2>Tu esfuerzo, con respaldo en papel</h2>
+        <p>Al finalizar el programa recibes un certificado digital descargable, listo para compartir o sumar a tu portafolio — perfecto si planeas emprender o simplemente quieres demostrar lo que aprendiste.</p>
+        <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="btn-cta" onclick="fbq('track','InitiateCheckout');">
+          Quiero mi certificación <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Resultados reales</span>
+      <h2>Lo que dicen quienes ya cocinan distinto</h2>
+    </div>
+    <div class="testi-grid testi-grid-images">
+      <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1.jpg" alt="Opinión de alumno — Gastronomía Online">
+      <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-1.jpg" alt="Opinión de alumno — Gastronomía Online">
+      <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-2.jpg" alt="Opinión de alumno — Gastronomía Online">
+      <img class="testi-img" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t2-4.jpg" alt="Opinión de alumno — Gastronomía Online">
+    </div>
+  </div>
+</section>
+
+<!-- GOOGLE REVIEWS -->
+<section class="section" style="background:var(--cream-soft);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Reputación verificada</span>
+      <h2>Lo que opinan en Google</h2>
+    </div>
+    <div class="google-grid">
+      <img src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle1_1_760x.png.webp" alt="Reseñas de Google — Gastronomía Online">
+      <img src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle2-1-768x728.png" alt="Reseñas de Google — Gastronomía Online">
+      <img src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle3_1_760x.png.webp" alt="Reseñas de Google — Gastronomía Online">
     </div>
   </div>
 </section>
@@ -671,16 +792,29 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 <section class="section" style="background:var(--cream-soft);">
   <div class="wrap" style="max-width:720px;">
     <div class="section-head">
+      <span class="eyebrow">Antes de empezar</span>
       <h2>Preguntas frecuentes</h2>
     </div>
     <div id="faq-list">
       <div class="faq-item">
         <button class="faq-q">¿Cuándo empieza el curso? <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">Apenas completas tu inscripción, recibes acceso inmediato a la plataforma.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">Apenas completas tu inscripción, recibes acceso inmediato a la plataforma. Tú decides cuándo empezar y a qué ritmo avanzar.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Necesito experiencia previa? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">No. El programa está diseñado para llevarte desde lo más básico hasta técnicas más avanzadas, paso a paso.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Necesito comprar equipo especial? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">No es obligatorio. Puedes empezar con lo básico que ya tienes en tu cocina e ir incorporando herramientas según avances.</div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">¿Por cuánto tiempo tengo acceso? <span class="plus">+</span></button>
-        <div class="faq-a"><div class="faq-a-inner">El acceso es de por vida. Pagas una sola vez y queda disponible para siempre.</div></div>
+        <div class="faq-a"><div class="faq-a-inner">El acceso es de por vida. Pagas una sola vez y el contenido queda disponible para siempre.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Cómo recibo mi certificado? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Al completar cada curso, tu certificado digital queda disponible para descargar directamente desde la plataforma.</div></div>
       </div>
     </div>
   </div>
@@ -689,19 +823,21 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 <!-- FINAL CTA -->
 <section class="final-cta">
   <div class="wrap">
+    <span class="eyebrow">Última llamada</span>
     <h2>Tu cocina puede ser el inicio de algo nuevo. Empieza hoy.</h2>
     <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="btn-cta" onclick="fbq('track','InitiateCheckout');">
       Inscribirme ahora <span class="arrow">→</span>
     </a>
+    <p class="cta-sub">Pago seguro procesado por Hotmart · Garantía de 7 días</p>
   </div>
 </section>
 
 <footer>
-  Esta página es operada por un afiliado independiente. Pagos procesados de forma segura por Hotmart.
+  Esta página es operada por un afiliado independiente. El contenido del curso es propiedad de su productor original en Hotmart. Pagos procesados de forma segura por Hotmart.
 </footer>
 
 <script>
-  // Script para el funcionamiento de las FAQs (Acordeón)
+  // Control de las preguntas frecuentes (Acordeón)
   document.querySelectorAll('.faq-q').forEach(button => {
     button.addEventListener('click', () => {
       const faqItem = button.parentElement;
@@ -717,7 +853,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     });
   });
 
-  // Script para el temporizador de cuenta regresiva (10 Minutos)
+  // Temporizador de Cuenta Regresiva (10 minutos de ejemplo)
   let time = 600; 
   const timerElement = document.getElementById('timer');
   
@@ -735,7 +871,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     if (time > 0) {
       time--;
     } else {
-      time = 600; // Reinicia el contador cuando llega a cero
+      time = 600; 
     }
   }, 1000);
 </script>
