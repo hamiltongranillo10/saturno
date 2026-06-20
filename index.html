@@ -495,6 +495,34 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .testi-card{transition:transform 0.3s ease, box-shadow 0.3s ease;}
   .testi-card:hover{transform:translateY(-4px);box-shadow:0 18px 30px -16px rgba(28,27,25,0.16);}
 
+  .testi-grid-images{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+  }
+  @media (max-width:760px){.testi-grid-images{grid-template-columns:repeat(2,1fr);}}
+  .testi-img{
+    width:100%;
+    border-radius:10px;
+    border:1px solid var(--line);
+    transition:transform 0.3s cubic-bezier(.21,.6,.27,1), box-shadow 0.3s ease;
+  }
+  .testi-img:hover{transform:translateY(-5px);box-shadow:0 16px 28px -14px rgba(28,27,25,0.2);}
+
+  .google-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+  }
+  @media (max-width:760px){.google-grid{grid-template-columns:1fr;}}
+  .google-grid img{
+    width:100%;
+    border-radius:10px;
+    border:1px solid var(--line);
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .google-grid img:hover{transform:translateY(-5px);box-shadow:0 16px 28px -14px rgba(28,27,25,0.18);}
+
   /* ---------- Stats strip ---------- */
   .stats-strip{
     display:grid;
@@ -533,6 +561,51 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     animation:barShimmer 6s linear infinite;
   }
   @keyframes barShimmer{0%{background-position:0% 0;}100%{background-position:200% 0;}}
+
+  /* ---------- Product mockup section ---------- */
+  .mockup-section{
+    background:#fff;
+    text-align:center;
+    padding-top:48px;
+  }
+  .mockup-image{
+    max-width:760px;
+    margin:0 auto 36px;
+  }
+  .mockup-image img{
+    width:100%;
+    filter:drop-shadow(0 24px 40px rgba(28,27,25,0.16));
+    transition:transform 0.4s cubic-bezier(.21,.6,.27,1);
+  }
+  .mockup-image img:hover{transform:translateY(-6px);}
+  .mockup-cta .btn-cta-big{
+    font-size:20px;
+    padding:20px 48px;
+  }
+  .payment-icons{
+    display:flex;justify-content:center;gap:18px;
+    margin-top:18px;
+    flex-wrap:wrap;
+  }
+  .payment-icons span{
+    font-family:'Space Mono',monospace;
+    font-size:11px;
+    color:rgba(28,27,25,0.45);
+    border:1px solid var(--line);
+    padding:6px 12px;
+    border-radius:6px;
+    letter-spacing:0.04em;
+  }
+  .trust-banner-link{
+    display:inline-block;
+    margin-top:20px;
+    border-radius:6px;
+    overflow:hidden;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+    box-shadow:0 4px 12px -4px rgba(28,27,25,0.15);
+  }
+  .trust-banner-link:hover{transform:translateY(-3px);box-shadow:0 10px 20px -8px rgba(28,27,25,0.22);}
+  .trust-banner-link img{display:block;max-width:468px;width:100%;height:auto;}
 
   /* ---------- Certification block ---------- */
   .cert-block{
@@ -605,6 +678,26 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     <p class="cta-sub">Acceso inmediato tras tu inscripción · Pago 100% seguro vía Hotmart</p>
   </div>
 </header>
+
+<!-- PRODUCT MOCKUP -->
+<section class="section mockup-section">
+  <div class="wrap">
+    <div class="mockup-image reveal-scale">
+      <img src="https://cursosdecocina.tv/wp-content/uploads/2024/12/caja-gastronomia-1536x960.png" alt="Gastronomía Online — contenido del curso, recetario y garantía de 7 días">
+    </div>
+    <div class="mockup-cta reveal">
+      <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="btn-cta btn-cta-big" onclick="fbq('track','InitiateCheckout');">
+        Comprar ahora <span class="arrow">→</span>
+      </a>
+      <div class="payment-icons">
+        <span>VISA</span><span>Mastercard</span><span>PayPal</span><span>Amex</span>
+      </div>
+      <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="trust-banner-link" onclick="fbq('track','InitiateCheckout');">
+        <img src="https://cdn.shopify.com/s/files/1/0078/9620/3362/files/468x60.jpg" alt="Compra segura garantizada">
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- MENU SECTION -->
 <section class="section menu-section">
@@ -752,25 +845,26 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       <span class="eyebrow">Resultados reales</span>
       <h2>Lo que dicen quienes ya cocinan distinto</h2>
     </div>
-    <div class="testi-note">
-      📝 Espacio reservado para testimonios — sustituye estas tarjetas con capturas reales de tus propios compradores o reseñas verificadas en cuanto las tengas.
+    <div class="testi-grid testi-grid-images">
+      <img class="testi-img reveal" style="--delay:0s" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1.jpg" alt="Opinión de alumno — Gastronomía Online">
+      <img class="testi-img reveal" style="--delay:0.08s" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-1.jpg" alt="Opinión de alumno — Gastronomía Online">
+      <img class="testi-img reveal" style="--delay:0.16s" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t1-2.jpg" alt="Opinión de alumno — Gastronomía Online">
+      <img class="testi-img reveal" style="--delay:0.24s" src="https://cursosdecocina.tv/wp-content/uploads/2023/04/t2-4.jpg" alt="Opinión de alumno — Gastronomía Online">
     </div>
-    <div class="testi-grid">
-      <div class="testi-card reveal" style="--delay:0s">
-        <div class="stars">★★★★★</div>
-        <p>"[Aquí va una reseña real de un alumno — captura de WhatsApp, Google o Hotmart]"</p>
-        <div class="who">Nombre Apellido <span>· Curso Panadería</span></div>
-      </div>
-      <div class="testi-card reveal" style="--delay:0.1s">
-        <div class="stars">★★★★★</div>
-        <p>"[Aquí va una reseña real de un alumno — captura de WhatsApp, Google o Hotmart]"</p>
-        <div class="who">Nombre Apellido <span>· Curso Repostería</span></div>
-      </div>
-      <div class="testi-card reveal" style="--delay:0.2s">
-        <div class="stars">★★★★★</div>
-        <p>"[Aquí va una reseña real de un alumno — captura de WhatsApp, Google o Hotmart]"</p>
-        <div class="who">Nombre Apellido <span>· Curso Cocina Internacional</span></div>
-      </div>
+  </div>
+</section>
+
+<!-- GOOGLE REVIEWS -->
+<section class="section" style="background:var(--cream-soft);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Reputación verificada</span>
+      <h2>Lo que opinan en Google</h2>
+    </div>
+    <div class="google-grid">
+      <img class="reveal" style="--delay:0s" src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle1_1_760x.png.webp" alt="Reseñas de Google — Gastronomía Online">
+      <img class="reveal" style="--delay:0.1s" src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle2-1-768x728.png" alt="Reseñas de Google — Gastronomía Online">
+      <img class="reveal" style="--delay:0.2s" src="https://cursosdecocina.tv/wp-content/uploads/2023/05/opinionesgoogle3_1_760x.png.webp" alt="Reseñas de Google — Gastronomía Online">
     </div>
   </div>
 </section>
