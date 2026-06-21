@@ -6,7 +6,6 @@
 <title>Gastronomía Online — 7 Cursos | Aprende a Cocinar desde Casa</title>
 <meta name="description" content="Domina cocina internacional, panadería, repostería y más con 7 cursos completos. Certificación incluida. Acceso inmediato.">
 
-<!-- Facebook Pixel -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -19,8 +18,6 @@ fbq('track', 'PageView');
 <noscript><img height="1" width="1" style="display:none"
 src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 /></noscript>
-<!-- End Facebook Pixel -->
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -73,11 +70,10 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
      INDICACIONES MANUALES PARA CAMBIAR TAMAÑOS EN PC
      ========================================================================= */
 
-  /* NUEVO - CONTROL DEL VÍDEO PRINCIPAL
-     Sube este valor si quieres que el reproductor de vídeo abarque más pantalla en PC de lado a lado. */
+  /* NUEVO - CONTROL DEL VÍDEO PRINCIPAL */
   .hero-video {
     position: relative;
-    max-width: 1700px; /* <--- MODIFICA ESTO: Súbelo a 1400px o 100% para hacerlo gigante de esquina a esquina */
+    max-width: 1700px;
     width: 100%;
     margin: 0 auto 38px auto;
     border-radius: 10px;
@@ -86,15 +82,14 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     box-shadow: 0 30px 60px -20px rgba(0,0,0,0.5);
   }
 
-  /* NUEVO - TIRA DEBAJO DEL BOTÓN COMPRAR (image_600e5b.png)
-     Aquí controlas el tamaño de la imagen alargada "Gastronomía Online" */
+  /* NUEVO - TIRA DEBAJO DEL BOTÓN COMPRAR (image_600e5b.png) */
   .trust-banner-link {
     display: inline-block;
     margin-top: 20px;
     border-radius: 6px;
     overflow: hidden;
     width: 100%; 
-    max-width: 1600px; /* <--- MODIFICA ESTO: Cámbialo por 100% o aumente los pixeles (ej. 1200px) para que estire de esquina a esquina */
+    max-width: 1600px;
     box-shadow: 0 4px 12px -4px rgba(28,27,25,0.15);
   }
   .trust-banner-link img {
@@ -106,7 +101,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
   /* MOCKUP PRINCIPAL (Caja del producto con botón amarillo) */
   .mockup-wide-container {
-    max-width: 1400px; /* <--- MODIFICA ESTO: Controla el ancho del contenedor en PC */
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 24px;
     text-align: center;
@@ -123,7 +118,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
   /* TESTIMONIOS DE ALUMNOS (image_681f03.jpg - Sin carrusel) */
   .testi-wide-container {
-    max-width: 1700px; /* <--- MODIFICA ESTO: Controla el ancho máximo del bloque entero en la pantalla */
+    max-width: 1700px;
     margin: 0 auto;
     padding: 0 32px;
   }
@@ -134,7 +129,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     justify-content: center;
   }
   .testi-img {
-    width: min(440px, 100%); /* <--- MODIFICA ESTO: Súbelo a 420px si quieres que cada opinión se vea aún más gigante en PC */
+    width: min(440px, 100%);
     height: auto;
     border-radius: 10px;
     border: 1px solid var(--line);
@@ -143,7 +138,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
   /* RESEÑAS DE GOOGLE (image_681e65.png - Columnas amarillas fijas) */
   .google-wide-container {
-    max-width: 1600px; /* <--- MODIFICA ESTO: Súbelo para expandirlo totalmente hacia los bordes en PC */
+    max-width: 1600px;
     margin: 0 auto;
     padding: 0 32px;
   }
@@ -277,7 +272,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .menu-course .leader{flex:1;border-bottom:1px dotted rgba(28,27,25,0.22);margin:0 4px;transform:translateY(-6px);}
   .menu-course .status{font-family:'Space Mono',monospace;font-size:12px;color:#8a6d00;background:rgba(255,193,7,0.22);padding:4px 10px;border-radius:20px;white-space:nowrap;}
 
-  /* Benefits grid */
+  /* Benefits grid (Modificado a 3 columnas estables en PC, adaptable a móviles) */
   .benefits-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:20px;}
   .benefit-card{background:var(--cream-soft);border:1px solid var(--line);border-radius:12px;padding:28px 24px;}
   .benefit-card .icon{width:42px;height:42px;border-radius:8px;background:var(--mustard);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;}
@@ -357,20 +352,17 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 </head>
 <body>
 
-<!-- Urgency Bar -->
 <div class="urgency-bar">
   <span>⏳ Promoción especial termina en</span>
   <span class="timer" id="timer">00:10:00</span>
 </div>
 
-<!-- HERO -->
 <header class="hero">
   <div class="wrap">
     <div class="hero-eyebrow">Escuela de Gastronomía Online</div>
     <h1>Aprende a cocinar como <em>profesional</em>, desde tu propia cocina.</h1>
     <p class="lead">7 cursos completos — cocina internacional, panadería artesanal, repostería, coctelería, sushi y más. A tu ritmo, con certificación incluida.</p>
 
-    <!-- VIDEO -->
     <div class="hero-video">
       <iframe src="https://www.youtube.com/embed/2XdOloUNraU" title="Gastronomía Online" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
@@ -388,7 +380,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 </header>
 
-<!-- PRODUCT MOCKUP SECCIÓN ANCHA (image_682266.png) -->
 <section class="section reveal" style="background:#fff;">
   <div class="mockup-wide-container">
     <div class="mockup-image">
@@ -401,7 +392,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       <div class="payment-icons">
         <span>VISA</span><span>Mastercard</span><span>PayPal</span><span>Amex</span>
       </div>
-      <!-- Tira debajo del botón de comprar (image_600e5b.png) -->
       <a href="https://go.hotmart.com/H106417293X?ap=1f20" class="trust-banner-link" onclick="fbq('track','InitiateCheckout');">
         <img src="https://cdn.shopify.com/s/files/1/0078/9620/3362/files/468x60.jpg" alt="Compra segura garantizada">
       </a>
@@ -409,7 +399,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- MENU SECTION -->
 <section class="section menu-section reveal">
   <div class="wrap">
     <div class="section-head">
@@ -437,34 +426,47 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- BENEFITS -->
 <section class="section reveal">
   <div class="wrap">
     <div class="section-head">
       <span class="eyebrow">Por qué este curso</span>
-      <h2>Pensado para gente con vida real</h2>
+      <h2>6 Beneficios Exclusivos al comprar el curso</h2>
     </div>
     <div class="benefits-grid">
       <div class="benefit-card">
-        <div class="icon">⏱</div>
-        <h3>A tu propio ritmo</h3>
-        <p>Avanza, pausa y repite las lecciones cuando quieras. Sin clases en vivo.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="icon">🎓</div>
-        <h3>Certificación incluida</h3>
-        <p>Al completar cada curso, recibes tu certificado digital descargable.</p>
+        <div class="icon">💻</div>
+        <h3>Estudia a tu propio ritmo desde cualquier dispositivo</h3>
+        <p>Avanza, pausa y repite las lecciones cuando quieras. Sin horarios fijos ni presiones, adaptado por completo a tu vida real.</p>
       </div>
       <div class="benefit-card">
         <div class="icon">♾️</div>
-        <h3>Acceso ilimitado</h3>
-        <p>Pagos una sola vez y el contenido es tuyo de por vida.</p>
+        <h3>Un único pago para un acceso de por vida</h3>
+        <p>Olvídate de las mensualidades. Pagas una sola vez y el contenido completo del programa es tuyo para siempre, incluyendo futuras actualizaciones.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="icon">🎓</div>
+        <h3>Certificación digital incluida al finalizar</h3>
+        <p>Al completar cada uno de los cursos del programa, recibirás un certificado digital descargable que respalda tus nuevos conocimientos culinarios.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="icon">📖</div>
+        <h3>E-books descargables y recetarios exclusivos</h3>
+        <p>Accede a guías detalladas en formato PDF con el paso a paso de cada preparación, listas de ingredientes precisas y secretos técnicos listos para imprimir.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="icon">👥</div>
+        <h3>Resolución de dudas directo con profesores</h3>
+        <p>Nunca estarás solo en el proceso. Cuentas con un área privada debajo de cada video-lección para dejar tus preguntas y recibir soporte directo.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="icon">🛡️</div>
+        <h3>Garantía de satisfacción total por 7 días</h3>
+        <p>Prueba el programa completo sin ningún riesgo. Si en tu primera semana sientes que la gastronomía no es para ti, te reembolsamos el 100% de tu dinero.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- GUARANTEE -->
 <section class="section reveal" style="padding-top:0;">
   <div class="wrap">
     <div class="guarantee">
@@ -479,7 +481,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- CERTIFICATION -->
 <section class="section reveal" style="background:#fff;">
   <div class="wrap">
     <div class="cert-block">
@@ -497,7 +498,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- TESTIMONIALS COMPLETOS SIN CARRUSEL (image_681f03.jpg) -->
 <section class="section reveal">
   <div class="testi-wide-container">
     <div class="section-head">
@@ -513,7 +513,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- GOOGLE REVIEWS EXTRA ANCHO Y LEGIBLE (image_681e65.png) -->
 <section class="section reveal" style="background:var(--cream-soft);">
   <div class="google-wide-container">
     <div class="section-head">
@@ -528,7 +527,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- FAQ COMPLETA CON TODAS LAS PREGUNTAS -->
 <section class="section reveal" style="background:var(--cream-soft);">
   <div class="wrap" style="max-width:720px;">
     <div class="section-head">
@@ -560,7 +558,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- FINAL CTA -->
 <section class="final-cta reveal">
   <div class="wrap">
     <h2>Tu cocina puede ser el inicio de algo nuevo. Empieza hoy.</h2>
@@ -581,16 +578,16 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   function revealSections() {
     const reveals = document.querySelectorAll('.reveal');
     const windowHeight = window.innerHeight;
-    reveals.forEach(reveal => {
+    reveves.forEach(reveal => {
       const revealTop = reveal.getBoundingClientRect().top;
-      const revealPoint = 80; // Ajusta cuándo empieza la animación antes de aparecer en pantalla
+      const revealPoint = 80; 
       if (revealTop < windowHeight - revealPoint) {
         reveal.classList.add('active');
       }
     });
   }
   window.addEventListener('scroll', revealSections);
-  window.addEventListener('load', revealSections); // Ejecuta al cargar por si hay elementos ya visibles
+  window.addEventListener('load', revealSections);
 
   // Control de las preguntas frecuentes (Apertura y cierre)
   document.querySelectorAll('.faq-q').forEach(button => {
