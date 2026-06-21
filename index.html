@@ -59,10 +59,10 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
 
   /* ==========================================================================
-     INDICACIONES MANUALES PARA CAMBIAR TAMAÑOS EN PC
+     INDICACIONES MANUALES PARA CAMBIAR TAMAÑOS EN PC (image_682266.png)
      ========================================================================== */
 
-  /* 1. MOCKUP PRINCIPAL (image_682266.png / imagen con botón amarillo)
+  /* 1. MOCKUP PRINCIPAL (imagen con botón amarillo)
      Si quieres que sea aún más grande o cubra más espacio, aumenta el 'max-width' de abajo. */
   .mockup-wide-container {
     max-width: 1400px; /* <--- MODIFICA ESTO: Súbelo a 1600px o 100% si quieres que vaya totalmente de esquina a esquina */
@@ -80,7 +80,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     filter:drop-shadow(0 24px 40px rgba(28,27,25,0.16));
   }
 
-  /* 2. TESTIMONIOS DE ALUMNOS (image_681f03.jpg - Antes eran carrusel)
+  /* 2. TESTIMONIOS DE ALUMNOS (image_681f03.jpg - Sin carrusel)
      Para cambiar qué tan grandes se ven en PC, modifica el 'max-width' de .testi-wide-container 
      o el valor 'min(380px, 100%)' para alterar el ancho individual de cada tarjeta. */
   .testi-wide-container {
@@ -95,7 +95,6 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     justify-content: center;
   }
   .testi-img {
-    /* min(380px, 100%) significa que en PC medirán 380px fijas (lo que permite leer perfectamente el texto de la imagen) */
     width: min(380px, 100%); /* <--- MODIFICA ESTO: Súbelo a 420px si quieres que cada opinión se vea aún más gigante en PC */
     height: auto;
     border-radius: 10px;
@@ -103,7 +102,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     box-shadow: 0 8px 16px rgba(0,0,0,0.05);
   }
 
-  /* 3. RESEÑAS DE GOOGLE (image_681e65.png - Las tres columnas amarillas)
+  /* 3. RESEÑAS DE GOOGLE (image_681e65.png - Columnas amarillas)
      Modifica el 'max-width' de abajo para estirar la sección hacia las esquinas del navegador. */
   .google-wide-container {
     max-width: 1500px; /* <--- MODIFICA ESTO: Súbelo a 1700px o 100% para expandirlo totalmente de esquina a esquina en PC */
@@ -124,10 +123,10 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   }
 
   /* ==========================================================================
-     FIN DE LAS INDICACIONES MANUALES (El resto del diseño estable)
+     FIN DE LAS INDICACIONES MANUALES (Estilos Generales)
      ========================================================================== */
 
-  /* ---------- Urgency bar ---------- */
+  /* Urgency bar */
   .urgency-bar{
     position:sticky;top:0;z-index:100;
     background:linear-gradient(90deg, #FF2D1F, #D8000A, #FF2D1F);
@@ -157,7 +156,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     50%{box-shadow:0 0 18px 2px rgba(255,45,31,0.55);}
   }
 
-  /* ---------- Hero ---------- */
+  /* Hero */
   .hero{
     background:linear-gradient(180deg, var(--charcoal) 0%, var(--charcoal-soft) 100%);
     color:var(--cream);
@@ -233,14 +232,14 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .btn-cta:hover{background:var(--mustard-deep);transform:translateY(-2px);}
   .cta-sub{font-size:13px;color:rgba(246,239,228,0.55);margin-top:12px;}
 
-  /* ---------- Section heading ---------- */
+  /* Section heading */
   .section{padding:80px 0;}
   .section-head{text-align:center;max-width:620px;margin:0 auto 48px;}
   .section-head .eyebrow{font-family:'Space Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:var(--oxblood);margin-bottom:10px;display:block;}
   .section-head h2{font-size:clamp(1.9rem, 4vw, 2.6rem);font-weight:700;}
   .section-head p{color:rgba(28,27,25,0.62);margin-top:12px;font-size:16px;}
 
-  /* ---------- Menu ---------- */
+  /* Menu */
   .menu-section{background:var(--cream-soft);color:var(--charcoal);}
   .menu-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:0 4px 24px -8px rgba(28,27,25,0.06);}
   .menu-course{display:flex;align-items:baseline;gap:14px;padding:18px 22px;border-bottom:1px dashed rgba(28,27,25,0.14);}
@@ -250,56 +249,56 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .menu-course .leader{flex:1;border-bottom:1px dotted rgba(28,27,25,0.22);margin:0 4px;transform:translateY(-6px);}
   .menu-course .status{font-family:'Space Mono',monospace;font-size:12px;color:#8a6d00;background:rgba(255,193,7,0.22);padding:4px 10px;border-radius:20px;white-space:nowrap;}
 
-  /* ---------- Benefits grid ---------- */
+  /* Benefits grid */
   .benefits-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:20px;}
   .benefit-card{background:var(--cream-soft);border:1px solid var(--line);border-radius:12px;padding:28px 24px;}
   .benefit-card .icon{width:42px;height:42px;border-radius:8px;background:var(--mustard);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;}
   .benefit-card h3{font-size:17px;font-weight:600;margin-bottom:8px;}
   .benefit-card p{font-size:14px;color:rgba(28,27,25,0.62);}
 
-  /* ---------- Guarantee strip ---------- */
+  /* Guarantee strip */
   .guarantee{background:#fff;border:1px solid var(--line);color:var(--charcoal);border-radius:16px;padding:36px 40px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
   .guarantee .badge-img{width:96px;height:96px;flex-shrink:0;}
   .guarantee .badge-img img{width:100%;height:100%;object-fit:contain;}
 
-  /* ---------- Stats strip ---------- */
+  /* Stats strip */
   .stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line-light);border-radius:14px;overflow:hidden;margin-top:44px;}
   .stat-cell{background:var(--oxblood);padding:26px 16px;text-align:center;}
   .stat-cell .num{font-family:'Space Mono',monospace;font-size:clamp(1.6rem,3vw,2.2rem);font-weight:700;color:var(--mustard);display:block;}
   .stat-cell .label{font-size:12px;color:rgba(255,255,255,0.85);margin-top:4px;text-transform:uppercase;}
 
-  /* ---------- Mockup UI Elements ---------- */
+  /* Mockup UI Elements */
   .mockup-cta .btn-cta-big{font-size:20px;padding:20px 48px;}
   .payment-icons{display:flex;justify-content:center;gap:18px;margin-top:18px;flex-wrap:wrap;}
   .payment-icons span{font-family:'Space Mono',monospace;font-size:11px;color:rgba(28,27,25,0.45);border:1px solid var(--line);padding:6px 12px;border-radius:6px;}
   .trust-banner-link{display:inline-block;margin-top:20px;border-radius:6px;overflow:hidden;box-shadow:0 4px 12px -4px rgba(28,27,25,0.15);}
   .trust-banner-link img{display:block;max-width:468px;width:100%;height:auto;margin:0 auto;}
 
-  /* ---------- Certification Block ---------- */
+  /* Certification Block */
   .cert-block{display:grid;grid-template-columns: 1.3fr 1fr;gap:48px;align-items:center;max-width: 1150px;margin: 0 auto;}
   .cert-image img{width: 100%;height: auto;border-radius:14px;border:1px solid var(--line);box-shadow:0 20px 40px -16px rgba(28,27,25,0.18);}
   .cert-text h2{font-size:clamp(1.7rem,3.5vw,2.2rem);margin-bottom:14px;}
   .cert-text p{font-size:15px;color:rgba(28,27,25,0.62);margin-bottom:26px;}
 
-  /* ---------- FAQ System ---------- */
+  /* FAQ System */
   .faq-item{border-bottom:1px solid var(--line);}
   .faq-q{width:100%;text-align:left;background:none;border:none;padding:20px 4px;font-family:'Fraunces',serif;font-size:17px;font-weight:500;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
   .faq-q .plus{font-family:'Space Mono',monospace;color:var(--oxblood);font-size:18px;}
   .faq-a{max-height:0;overflow:hidden;transition:max-height 0.25s ease;font-size:14px;color:rgba(28,27,25,0.65);}
   .faq-a-inner{padding:0 4px 20px;}
 
-  /* ---------- Final CTA ---------- */
+  /* Final CTA */
   .final-cta{background:var(--charcoal);color:var(--cream);text-align:center;padding:80px 0;}
   .final-cta h2{font-size:clamp(2rem,4.5vw,2.8rem);margin:14px 0 30px;}
 
   footer{background:var(--charcoal-soft);color:rgba(246,239,228,0.45);font-size:12px;text-align:center;padding:28px 24px;}
 
   /* ==========================================================================
-     RESPONSIVE / ADAPTACIÓN PARA MÓVILES (Pantallas de celulares y tablets)
+     RESPONSIVE / ADAPTACIÓN PARA MÓVILES
      ========================================================================== */
   @media (max-width: 900px) {
     .google-grid {
-      grid-template-columns: 1fr; /* Pasa a una sola columna en celulares para no aplastarse */
+      grid-template-columns: 1fr;
       max-width: 500px;
       margin: 0 auto;
     }
@@ -317,10 +316,10 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 
   @media (max-width: 480px) {
     .testi-grid-images {
-      gap: 16px; /* Menos espacio de separación en pantallas muy chiquitas */
+      gap: 16px;
     }
     .testi-img {
-      width: 100%; /* Ocupa todo el ancho disponible del celular */
+      width: 100%;
     }
   }
 
@@ -499,7 +498,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 </section>
 
-<!-- FAQ -->
+<!-- FAQ COMPLETA CON TODAS LAS PREGUNTAS -->
 <section class="section" style="background:var(--cream-soft);">
   <div class="wrap" style="max-width:720px;">
     <div class="section-head">
@@ -514,6 +513,18 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
       <div class="faq-item">
         <button class="faq-q">¿Por cuánto tiempo tengo acceso? <span class="plus">+</span></button>
         <div class="faq-a"><div class="faq-a-inner">El acceso es de por vida. Pagas una sola vez y el contenido queda disponible para siempre.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Cómo se reciben los certificados? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Al completar cada uno de los 7 módulos del programa, la plataforma generará automáticamente tu certificado digital descargable en formato PDF de alta resolución.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Los ingredientes son difíciles de conseguir? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">No. Todas las recetas están diseñadas con ingredientes estándar que puedes encontrar en cualquier supermercado o mercado local de tu país.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">¿Hay soporte si tengo dudas con una receta? <span class="plus">+</span></button>
+        <div class="faq-a"><div class="faq-a-inner">Sí, cuentas con un área privada de alumnos debajo de cada video-lección donde puedes dejar tus preguntas y el equipo de profesores te responderá directamente.</div></div>
       </div>
     </div>
   </div>
@@ -534,7 +545,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
 </footer>
 
 <script>
-  // Control de las preguntas frecuentes
+  // Control de las preguntas frecuentes (Apertura y cierre)
   document.querySelectorAll('.faq-q').forEach(button => {
     button.addEventListener('click', () => {
       const faqItem = button.parentElement;
@@ -548,7 +559,7 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     });
   });
 
-  // Temporizador de Cuenta Regresiva
+  // Temporizador de Cuenta Regresiva (10 minutos repetitivos)
   let time = 600; 
   const timerElement = document.getElementById('timer');
   setInterval(() => {
