@@ -249,6 +249,10 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   .btn-cta:hover{background:var(--mustard-deep);transform:translateY(-2px);}
   .cta-sub{font-size:13px;color:rgba(246,239,228,0.55);margin-top:12px;}
 
+  /* Media strip */
+  .media-strip{background:#fff;padding:28px 0;border-bottom:1px solid var(--line);}
+  .media-strip img{max-width:560px;width:100%;margin:0 auto;opacity:0.85;}
+
   /* Section heading */
   .section{padding:80px 0;}
   .section-head{text-align:center;max-width:620px;margin:0 auto 48px;}
@@ -269,7 +273,8 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   /* Benefits grid */
   .benefits-grid{display:grid;grid-template-columns:repeat(3, 1fr);gap:20px;}
   .benefit-card{background:var(--cream-soft);border:1px solid var(--line);border-radius:12px;padding:28px 24px;}
-  .benefit-card .icon{width:42px;height:42px;border-radius:8px;background:var(--mustard);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;}
+  .benefit-card .icon{width:46px;height:46px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+  .benefit-card .icon svg{width:100%;height:100%;stroke:var(--mustard-deep);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
   .benefit-card h3{font-size:17px;font-weight:600;margin-bottom:8px;}
   .benefit-card p{font-size:14px;color:rgba(28,27,25,0.62);}
 
@@ -374,6 +379,12 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
   </div>
 </header>
 
+<section class="media-strip">
+  <div class="wrap">
+    <img src="https://cursosdecocina.tv/wp-content/uploads/2023/04/logos-tv-1-1.png" alt="Medios donde nos hemos visto">
+  </div>
+</section>
+
 <section class="section reveal" style="background:#fff;">
   <div class="mockup-wide-container">
     <div class="mockup-image">
@@ -428,32 +439,32 @@ src="https://www.facebook.com/tr?id=1274753604821165&ev=PageView&noscript=1"
     </div>
     <div class="benefits-grid">
       <div class="benefit-card">
-        <div class="icon">💻</div>
+        <div class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="13" rx="1.5"/><path d="M8 21h8M12 17v4"/></svg></div>
         <h3>Estudia a tu propio ritmo desde cualquier dispositivo</h3>
         <p>Avanza, pausa y repite las lecciones cuando quieras. Sin horarios fijos ni presiones, adaptado por completo a tu vida real.</p>
       </div>
       <div class="benefit-card">
-        <div class="icon">♾️</div>
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M7 9a3 3 0 1 0 0 6 3 3 0 0 0 2.4-1.2L12 12l2.6 1.8A3 3 0 1 0 17 9a3 3 0 0 0-2.4 1.2L12 12 9.4 10.2A3 3 0 0 0 7 9Z"/></svg></div>
         <h3>Un único pago para un acceso de por vida</h3>
         <p>Olvídate de las mensualidades. Pagas una sola vez y el contenido completo del programa es tuyo para siempre, incluyendo futuras actualizaciones.</p>
       </div>
       <div class="benefit-card">
-        <div class="icon">🎓</div>
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="M6 9.8V15c0 1.4 2.7 3 6 3s6-1.6 6-3V9.8"/><path d="M21 7.5v6"/></svg></div>
         <h3>Certificación digital incluida al finalizar</h3>
         <p>Al completar cada uno de los cursos del programa, recibirás un certificado digital descargable que respalda tus nuevos conocimientos culinarios.</p>
       </div>
       <div class="benefit-card">
-        <div class="icon">📖</div>
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 5.5C4 4.7 4.7 4 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5v-13Z"/><path d="M20 5.5c0-.8-.7-1.5-1.5-1.5H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5v-13Z"/></svg></div>
         <h3>E-books descargables y recetarios exclusivos</h3>
         <p>Accede a guías detalladas en formato PDF con el paso a paso de cada preparación, listas de ingredientes precisas y secretos técnicos listos para imprimir.</p>
       </div>
       <div class="benefit-card">
-        <div class="icon">👥</div>
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16.5 7a3 3 0 0 1 0 6"/><path d="M19 20c0-2.6-1.8-4.8-4.2-5.6"/></svg></div>
         <h3>Resolución de dudas directo con profesores</h3>
         <p>Nunca estarás solo en el proceso. Cuentas con un área privada debajo de cada video-lección para dejar tus preguntas y recibir soporte directo.</p>
       </div>
       <div class="benefit-card">
-        <div class="icon">🛡️</div>
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 3.5 7.8 8 9 4.5-1.2 8-4 8-9V6l-8-3Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg></div>
         <h3>Garantía de satisfacción total por 7 días</h3>
         <p>Prueba el programa completo sin ningún riesgo. Si en tu primera semana sientes que la gastronomía no es para ti, te reembolsamos el 100% de tu dinero.</p>
       </div>
