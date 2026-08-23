@@ -185,6 +185,51 @@ nav {
 .video-badges span { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); padding: 4px 10px; border-radius: 4px; font-size: 0.72rem; color: var(--muted); font-weight: 500; }
 .video-foot-note { font-size: 0.75rem; color: var(--muted); line-height: 1.4; padding: 12px 6px 4px; text-align: center; }
 
+/* SECCIÓN GLOBO — ALCANCE GLOBAL */
+.globe-section { padding: 20px 48px 100px; max-width: 1200px; margin: 0 auto; }
+.globe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.globe-text .sub { font-family:'Space Mono',monospace; font-size: .72rem; color: var(--gold); font-weight: 700; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1.5px; }
+.globe-text h2 { font-size: 2rem; font-weight: 600; color: var(--ink); margin-bottom: 16px; line-height: 1.25; }
+.globe-text p.lead { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 46ch; }
+.globe-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; margin-top: 36px; }
+.globe-stat .num { font-family: 'Fraunces', serif; font-size: 2.1rem; font-weight: 600; color: var(--gold); display: block; line-height: 1; margin-bottom: 6px; }
+.globe-stat .label { font-size: .82rem; color: var(--muted); }
+
+.globe-visual { display: flex; justify-content: center; perspective: 900px; }
+.globe-sphere {
+  position: relative; width: 320px; height: 320px;
+  transform-style: preserve-3d;
+  animation: globeSpin 16s linear infinite;
+}
+@keyframes globeSpin { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
+.globe-core {
+  position: absolute; inset: 0; border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, rgba(45,106,79,0.55), #06080D 72%);
+  box-shadow: inset -30px -30px 70px rgba(0,0,0,0.6), inset 12px 12px 40px rgba(45,106,79,0.18), 0 0 90px rgba(45,106,79,0.28);
+  border: 1px solid rgba(45,106,79,0.4);
+}
+.globe-meridian {
+  position: absolute; inset: 0; border: 1px solid rgba(201,166,72,0.22); border-radius: 50%;
+  transform-style: preserve-3d;
+}
+.globe-marker {
+  position: absolute; top: 50%; left: 50%; width: 10px; height: 10px; margin: -5px;
+  transform-style: preserve-3d; backface-visibility: hidden;
+}
+.globe-marker .dot { position: absolute; inset: 0; background: var(--gold); border-radius: 50%; box-shadow: 0 0 10px rgba(201,166,72,0.85); }
+.globe-marker .pulse { position: absolute; inset: -6px; border-radius: 50%; border: 1px solid var(--gold); animation: markerPulse 2.4s ease-out infinite; }
+.globe-marker .flag-chip {
+  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+  display: flex; align-items: center; gap: 5px; white-space: nowrap;
+  background: rgba(6,8,13,0.85); border: 1px solid rgba(201,166,72,0.35);
+  padding: 3px 9px 3px 6px; border-radius: 20px;
+  font-family: 'Space Mono', monospace; font-size: .68rem; color: var(--ink);
+  backdrop-filter: blur(4px);
+}
+.globe-marker .flag-chip .em { font-size: .9rem; line-height: 1; }
+@keyframes markerPulse { 0% { transform: scale(0.6); opacity: 0.85; } 100% { transform: scale(2.4); opacity: 0; } }
+@media(max-width:960px){ .globe-grid { grid-template-columns: 1fr; gap: 40px; } .globe-visual { order: -1; } }
+
 .value-strip { max-width: 1200px; margin: 0 auto; padding: 0 48px 90px; }
 .value-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); border-radius: 14px; overflow:hidden; border:1px solid var(--line); }
 .value-item { background: var(--bg-soft); padding: 28px 24px; transition: background-color 0.3s ease, transform 0.3s cubic-bezier(0.25,1,0.5,1); }
@@ -463,6 +508,40 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   </div>
 </section>
 
+<section class="globe-section reveal">
+  <div class="globe-grid">
+    <div class="globe-text">
+      <div class="sub">// Alcance global</div>
+      <h2>Una red que no conoce fronteras</h2>
+      <p class="lead">Omnilife respalda cada producto que recomiendo con presencia real en toda Latinoamérica. No estás comprando a un desconocido: estás entrando a una red con trayectoria.</p>
+      <div class="globe-stats">
+        <div class="globe-stat"><span class="num">30+</span><span class="label">Años de trayectoria</span></div>
+        <div class="globe-stat"><span class="num">18</span><span class="label">Países con presencia</span></div>
+        <div class="globe-stat"><span class="num">1M+</span><span class="label">Familias beneficiadas</span></div>
+        <div class="globe-stat"><span class="num">100%</span><span class="label">Respaldo oficial</span></div>
+      </div>
+    </div>
+    <div class="globe-visual">
+      <div class="globe-sphere">
+        <div class="globe-core"></div>
+        <div class="globe-meridian" style="transform: rotateY(0deg);"></div>
+        <div class="globe-meridian" style="transform: rotateY(45deg);"></div>
+        <div class="globe-meridian" style="transform: rotateY(90deg);"></div>
+        <div class="globe-meridian" style="transform: rotateY(135deg);"></div>
+        <div class="globe-meridian" style="transform: rotateX(90deg);"></div>
+        <div class="globe-marker" style="transform: rotateY(10deg) rotateX(8deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇪🇨</span>Ecuador</span></div>
+        <div class="globe-marker" style="transform: rotateY(70deg) rotateX(-14deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇲🇽</span>México</span></div>
+        <div class="globe-marker" style="transform: rotateY(140deg) rotateX(4deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇨🇴</span>Colombia</span></div>
+        <div class="globe-marker" style="transform: rotateY(210deg) rotateX(-8deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇵🇪</span>Perú</span></div>
+        <div class="globe-marker" style="transform: rotateY(290deg) rotateX(12deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇦🇷</span>Argentina</span></div>
+        <div class="globe-marker" style="transform: rotateY(45deg) rotateX(28deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇪🇸</span>España</span></div>
+        <div class="globe-marker" style="transform: rotateY(175deg) rotateX(22deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇮🇹</span>Italia</span></div>
+        <div class="globe-marker" style="transform: rotateY(255deg) rotateX(30deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇩🇪</span>Alemania</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="how-strip reveal">
   <div class="how-strip-inner">
     <div class="how-strip-head">
@@ -537,56 +616,56 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div class="cat-grid">
     <div class="cat-card">
       <div class="cat-card-img">
-        <img src="omniplus.png" alt="Omniplus" onerror="this.classList.add('img-missing')">
+        <img src="productos/omniplus.jpg" alt="Omniplus" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">O</span>Foto de producto pendiente</div>
       </div>
       <div class="cat-card-body"><h4>Omniplus</h4><p>Complemento base para fortalecer tu nutrición diaria.</p></div>
     </div>
     <div class="cat-card">
       <div class="cat-card-img">
-        <img src="magnus.png" alt="Magnus (Biocros)" onerror="this.classList.add('img-missing')">
+        <img src="productos/magnus.jpg" alt="Magnus (Biocros)" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">M</span>Foto de producto pendiente</div>
       </div>
       <div class="cat-card-body"><h4>Magnus (Biocros)</h4><p>Formulado para acompañar tu día con más energía y bienestar general.</p></div>
     </div>
     <div class="cat-card">
       <div class="cat-card-img">
-        <img src="power-maker.png" alt="Power Maker" onerror="this.classList.add('img-missing')">
+        <img src="productos/power-maker.jpg" alt="Power Maker" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">P</span>Foto de producto pendiente</div>
       </div>
       <div class="cat-card-body"><h4>Power Maker</h4><p>Ideal si buscas rendimiento extra para tus jornadas más exigentes.</p></div>
     </div>
     <div class="cat-card">
       <div class="cat-card-img">
-        <img src="aloe-beta.png" alt="Aloe Beta" onerror="this.classList.add('img-missing')">
+        <img src="productos/aloe-beta.jpg" alt="Aloe Beta" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">A</span>Foto de producto pendiente</div>
       </div>
       <div class="cat-card-body"><h4>Aloe Beta</h4><p>A base de sábila, pensado para apoyar tu bienestar digestivo.</p></div>
     </div>
     <div class="cat-card">
       <div class="cat-card-img">
-        <img src="cafezzino.png" alt="Cafezzino" onerror="this.classList.add('img-missing')">
+        <img src="productos/cafezzino.jpg" alt="Cafezzino" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">C</span>Foto de producto pendiente</div>
       </div>
       <div class="cat-card-body"><h4>Cafezzino</h4><p>Tu café de siempre, con un extra pensado para tu bienestar.</p></div>
     </div>
     <div class="cat-card">
       <div class="cat-card-img">
-        <img src="teatino.png" alt="Teatino" onerror="this.classList.add('img-missing')">
+        <img src="productos/teatino.jpg" alt="Teatino" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">T</span>Foto de producto pendiente</div>
       </div>
       <div class="cat-card-body"><h4>Teatino</h4><p>Una opción ligera para acompañar tu día a cualquier hora.</p></div>
     </div>
     <div class="cat-card">
       <div class="cat-card-img">
-        <img src="optimus.png" alt="Optimus" onerror="this.classList.add('img-missing')">
+        <img src="productos/optimus.jpg" alt="Optimus" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">O</span>Foto de producto pendiente</div>
       </div>
       <div class="cat-card-body"><h4>Optimus</h4><p>Pensado para acompañar tu rendimiento físico y mental.</p></div>
     </div>
     <div class="cat-card">
       <div class="cat-card-img">
-        <img src="super-mix.png" alt="Super Mix" onerror="this.classList.add('img-missing')">
+        <img src="productos/super-mix.jpg" alt="Super Mix" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">S</span>Foto de producto pendiente</div>
       </div>
       <div class="cat-card-body"><h4>Super Mix</h4><p>Mezcla de frutos secos y semillas para un snack nutritivo en cualquier momento.</p></div>
@@ -619,7 +698,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <div class="step-card reveal-step reveal-step-2">
       <div class="step-number">2</div>
       <h4>Verifica tu presentador</h4>
-      <p>Para asegurar que cuentas con mi asesoría personalizada en WhatsApp y el respaldo directo de nuestro equipo, valida que en el formulario web aparezca el nombre de <strong>Hamilton Granillo Ramirez</strong> como tu patrocinador.</p>
+      <p>Para asegurar que cuentas con mi asesoría personalizada en WhatsApp y el respaldo directo de nuestro equipo, valida que en el formulario web aparezca el nombre de <strong>Hamilton R.</strong> como tu patrocinador.</p>
     </div>
 
     <div class="step-card reveal-step reveal-step-3">
