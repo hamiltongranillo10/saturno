@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hamilton Networker. | Equipo de Emprendimiento Omnilife</title>
+<title>Hamilton R. | Equipo de Emprendimiento Omnilife</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght=9..144,300..900&family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -415,9 +415,49 @@ nav {
 
 footer { background: #030408; border-top: 1px solid var(--line); text-align: center; padding: 40px; font-size: .85rem; color: var(--muted); }
 
-.wa-float { position: fixed; bottom: 26px; right: 26px; z-index: 300; width: 58px; height: 58px; border-radius: 50%; background: var(--wa); display:flex; align-items:center; justify-content:center; color:#fff; box-shadow: 0 10px 25px rgba(0,0,0,0.45); animation: pulseRing 2.6s infinite; transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-.wa-float:hover { transform: scale(1.1); }
-.wa-float svg { width: 28px; height: 28px; }
+/* WIDGET DE CHAT (pastilla flotante + panel) */
+.chat-pill {
+  position: fixed; bottom: 26px; right: 26px; z-index: 300;
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--wa);
+  color: #fff; border: none; padding: 13px 20px 13px 14px; border-radius: 30px;
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: .88rem; cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.45); animation: pulseRing 2.6s infinite;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.chat-pill:hover { transform: scale(1.05); }
+.chat-pill .chat-pill-ic { width: 26px; height: 26px; border-radius: 50%; background: rgba(255,255,255,0.18); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.chat-pill .chat-pill-ic svg { width: 15px; height: 15px; }
+
+.chat-panel {
+  position: fixed; bottom: 96px; right: 26px; z-index: 320;
+  width: 340px; max-width: calc(100vw - 40px);
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 18px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.55); overflow: hidden;
+  opacity: 0; transform: translateY(16px) scale(0.97); pointer-events: none;
+  transition: opacity 0.28s cubic-bezier(0.16,1,0.3,1), transform 0.28s cubic-bezier(0.16,1,0.3,1);
+}
+.chat-panel.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+.chat-panel-head {
+  background: var(--wa);
+  padding: 16px 18px; display: flex; align-items: center; justify-content: space-between;
+}
+.chat-panel-head h4 { font-family: 'Inter', sans-serif; font-size: .95rem; font-weight: 700; color: #fff; }
+.chat-panel-head button { background: rgba(255,255,255,0.15); border: none; width: 26px; height: 26px; border-radius: 50%; color: #fff; cursor: pointer; font-size: 1rem; line-height: 1; display: flex; align-items: center; justify-content: center; }
+.chat-panel-body { padding: 18px; }
+.chat-bubble { background: #060811; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: .85rem; color: var(--muted); margin-bottom: 16px; line-height: 1.5; }
+.chat-setup-card { background: rgba(255,255,255,0.03); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+.chat-setup-card .csc-head { display: flex; align-items: center; gap: 8px; font-size: .85rem; font-weight: 700; color: var(--ink); margin-bottom: 14px; }
+.chat-setup-card .csc-head .dot-ic { width: 20px; height: 20px; border-radius: 50%; background: rgba(45,106,79,0.25); display: flex; align-items: center; justify-content: center; font-size: .7rem; }
+.chat-field { margin-bottom: 12px; }
+.chat-field label { font-size: .74rem; color: var(--muted); font-weight: 600; display: block; margin-bottom: 5px; }
+.chat-field input { width: 100%; padding: 10px 12px; border-radius: 7px; border: 1px solid var(--line); background: #060811; color: var(--ink); font-size: .88rem; outline: none; font-family: 'Inter', sans-serif; }
+.chat-field input:focus { border-color: var(--blue); }
+.chat-field textarea { width: 100%; min-height: 64px; padding: 10px 12px; border-radius: 7px; border: 1px solid var(--line); background: #060811; color: var(--ink); font-size: .88rem; outline: none; font-family: 'Inter', sans-serif; resize: vertical; }
+.chat-field textarea:focus { border-color: var(--blue); }
+.chat-start-btn { width: 100%; background: var(--cta-grad); color: #fff; border: none; padding: 12px; border-radius: 8px; font-size: .88rem; font-weight: 700; cursor: pointer; margin-top: 4px; transition: all 0.3s ease; }
+.chat-start-btn:hover { background: var(--cta-grad-hover); color: var(--blue-ink); }
+@media(max-width:480px){ .chat-panel { right: 16px; bottom: 88px; } .chat-pill { right: 16px; bottom: 18px; } }
 
 @media(max-width:960px){
   nav { padding: 14px 20px; }
@@ -623,56 +663,56 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div class="cat-grid">
     <div class="cat-card">
       <div class="cat-card-img">
-        <img src="omniplus.png" alt="Omniplus" onerror="this.classList.add('img-missing')">
+        <img src="productos/omniplus.jpg" alt="Omniplus" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">O</span>Foto de producto pendiente</div>
       </div>
       <div class="cat-card-body"><h4>Omniplus</h4><p>Complemento base para fortalecer tu nutrición diaria.</p></div>
     </div>
     <div class="cat-card">
       <div class="cat-card-img">
-        <img src="magnus.png" alt="Magnus (Biocros)" onerror="this.classList.add('img-missing')">
+        <img src="productos/magnus.jpg" alt="Magnus (Biocros)" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">M</span>Foto de producto pendiente</div>
       </div>
       <div class="cat-card-body"><h4>Magnus (Biocros)</h4><p>Formulado para acompañar tu día con más energía y bienestar general.</p></div>
     </div>
     <div class="cat-card">
       <div class="cat-card-img">
-        <img src="power-maker.png" alt="Power Maker" onerror="this.classList.add('img-missing')">
+        <img src="productos/power-maker.jpg" alt="Power Maker" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">P</span>Foto de producto pendiente</div>
       </div>
       <div class="cat-card-body"><h4>Power Maker</h4><p>Ideal si buscas rendimiento extra para tus jornadas más exigentes.</p></div>
     </div>
     <div class="cat-card">
       <div class="cat-card-img">
-        <img src="aloe-beta.png" alt="Aloe Beta" onerror="this.classList.add('img-missing')">
+        <img src="productos/aloe-beta.jpg" alt="Aloe Beta" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">A</span>Foto de producto pendiente</div>
       </div>
       <div class="cat-card-body"><h4>Aloe Beta</h4><p>A base de sábila, pensado para apoyar tu bienestar digestivo.</p></div>
     </div>
     <div class="cat-card">
       <div class="cat-card-img">
-        <img src="cafezzino.png" alt="Cafezzino" onerror="this.classList.add('img-missing')">
+        <img src="productos/cafezzino.jpg" alt="Cafezzino" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">C</span>Foto de producto pendiente</div>
       </div>
       <div class="cat-card-body"><h4>Cafezzino</h4><p>Tu café de siempre, con un extra pensado para tu bienestar.</p></div>
     </div>
     <div class="cat-card">
       <div class="cat-card-img">
-        <img src="teatino.png" alt="Teatino" onerror="this.classList.add('img-missing')">
+        <img src="productos/teatino.jpg" alt="Teatino" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">T</span>Foto de producto pendiente</div>
       </div>
       <div class="cat-card-body"><h4>Teatino</h4><p>Una opción ligera para acompañar tu día a cualquier hora.</p></div>
     </div>
     <div class="cat-card">
       <div class="cat-card-img">
-        <img src="optimus.png" alt="Optimus" onerror="this.classList.add('img-missing')">
+        <img src="productos/optimus.jpg" alt="Optimus" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">O</span>Foto de producto pendiente</div>
       </div>
       <div class="cat-card-body"><h4>Optimus</h4><p>Pensado para acompañar tu rendimiento físico y mental.</p></div>
     </div>
     <div class="cat-card">
       <div class="cat-card-img">
-        <img src="super-mix.png" alt="Super Mix" onerror="this.classList.add('img-missing')">
+        <img src="productos/super-mix.jpg" alt="Super Mix" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">S</span>Foto de producto pendiente</div>
       </div>
       <div class="cat-card-body"><h4>Super Mix</h4><p>Mezcla de frutos secos y semillas para un snack nutritivo en cualquier momento.</p></div>
@@ -768,8 +808,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
         <input id="lead-ciudad" type="text" class="form-input" placeholder="Ej. Guayaquil, Ecuador" required>
       </div>
       <div class="form-group">
-        <label class="form-label">Mensaje personalizado (Dudas o productos de interés)</label>
-        <textarea id="lead-mensaje" class="form-textarea" placeholder="Cuéntame brevemente qué productos te llaman la atención o qué dudas tienes para poder ayudarte mejor..." required></textarea>
+        <label class="form-label" id="mensaje-label">¿En qué te ayudo? (Procedimiento, dudas o productos)</label>
+        <textarea id="lead-mensaje" class="form-textarea" placeholder="Ej. Quiero saber cómo registrarme como Cliente Admirable y qué productos me recomiendas..." required></textarea>
       </div>
       <button type="submit" class="action-btn" id="submit-btn">Solicitar información de Cliente Admirable</button>
       <p class="form-microcopy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Sin costo por la asesoría, sin compra mínima obligatoria</p>
@@ -782,18 +822,60 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <span style="font-size: 0.75rem; opacity: 0.6;">Este sitio corresponde a un Emprendedor Independiente y no es la página institucional de Omnilife.</span></p>
 </footer>
 
-<a href="#" id="wa-float-link" class="wa-float" target="_blank">
-  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.66.986 3.284 1.447 4.74 1.448 5.516 0 10.003-4.478 10.006-9.986.002-2.67-1.019-5.18-2.87-7.03C16.61 1.724 14.12 .701 11.45.701 5.937.701 1.45 5.18 1.447 10.693c-.001 1.51.442 2.986 1.279 4.3l-.971 3.548 3.65-.958zm13.016-4.93c-.31-.156-1.84-.907-2.127-1.01-.288-.102-.497-.155-.706.156-.21.312-.81.1.01-1.022 1.11-.21.103-.418.05-.728-.053-.31-.157-1.84-.906-2.126-1.01-.28-.124-.43-.052-.518.02-.1.08-.22.256-.22.524 0 .268.194.526.222.564.027.037.382 1.83 1.233 2.197.85.367 1.13.294 1.34.248.21-.046.68-.276.774-.544.095-.268.095-.497.066-.544-.028-.046-.104-.077-.415-.233z"/></svg>
-</a>
+<button id="chat-pill-btn" class="chat-pill" type="button">
+  <span class="chat-pill-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.66.986 3.284 1.447 4.74 1.448 5.516 0 10.003-4.478 10.006-9.986.002-2.67-1.019-5.18-2.87-7.03C16.61 1.724 14.12 .701 11.45.701 5.937.701 1.45 5.18 1.447 10.693c-.001 1.51.442 2.986 1.279 4.3l-.971 3.548 3.65-.958zm13.016-4.93c-.31-.156-1.84-.907-2.127-1.01-.288-.102-.497-.155-.706.156-.21.312-.81.1.01-1.022 1.11-.21.103-.418.05-.728-.053-.31-.157-1.84-.906-2.126-1.01-.28-.124-.43-.052-.518.02-.1.08-.22.256-.22.524 0 .268.194.526.222.564.027.037.382 1.83 1.233 2.197.85.367 1.13.294 1.34.248.21-.046.68-.276.774-.544.095-.268.095-.497.066-.544-.028-.046-.104-.077-.415-.233z"/></svg></span>
+  Escríbeme por WhatsApp
+</button>
+
+<div id="chat-panel" class="chat-panel">
+  <div class="chat-panel-head">
+    <h4>Escríbeme por WhatsApp</h4>
+    <button id="chat-panel-close" type="button" aria-label="Cerrar">✕</button>
+  </div>
+  <div class="chat-panel-body">
+    <div class="chat-bubble">¡Hola! 👋 Cuéntame tu nombre y tu duda, y se abrirá tu WhatsApp con el mensaje ya listo para enviarme. Para registrarte, mejor usa el formulario completo más abajo en la página.</div>
+    <div class="chat-setup-card">
+      <div class="csc-head"><span class="dot-ic">💬</span>Escríbeme tu duda</div>
+      <div class="chat-field">
+        <label for="chat-nombre">Nombre</label>
+        <input id="chat-nombre" type="text" placeholder="Tu nombre">
+      </div>
+      <div class="chat-field">
+        <label for="chat-duda">Tu duda</label>
+        <textarea id="chat-duda" placeholder="Escribe aquí tu pregunta..."></textarea>
+      </div>
+      <button id="chat-start-btn" type="button" class="chat-start-btn">Enviar duda por WhatsApp</button>
+    </div>
+  </div>
+</div>
 
 <script>
+
 const WHATSAPP_PHONE = "593994104635";
 const REFERRAL_LINK   = "https://empresario.omnilife.com/ec/el-oro/arenillas/593672828grh/hamilton-granillo-ramirez/omnilife";
 
-document.getElementById('wa-float-link').href = `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent('Hola Hamilton 🙌, me puedes dar más información, tengo una duda.')}`;
-document.getElementById('wa-float-link').addEventListener('click', function () {
-  if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+const chatPillBtn = document.getElementById('chat-pill-btn');
+const chatPanel = document.getElementById('chat-panel');
+const chatPanelClose = document.getElementById('chat-panel-close');
+const chatStartBtn = document.getElementById('chat-start-btn');
+
+chatPillBtn.addEventListener('click', () => {
+  chatPanel.classList.toggle('open');
 });
+chatPanelClose.addEventListener('click', () => {
+  chatPanel.classList.remove('open');
+});
+
+chatStartBtn.addEventListener('click', () => {
+  const nombre = document.getElementById('chat-nombre').value.trim();
+  const duda = document.getElementById('chat-duda').value.trim();
+  let texto = nombre ? `Hola Hamilton, soy ${nombre}.` : 'Hola Hamilton 🙌';
+  texto += duda ? ` ${duda}` : ' Tengo una duda, ¿me puedes ayudar?';
+  if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+  window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
+  chatPanel.classList.remove('open');
+});
+
 document.querySelector('.portal-link-btn').href = REFERRAL_LINK;
 document.querySelector('.portal-link-btn').addEventListener('click', function () {
   if (typeof fbq !== 'undefined') fbq('track', 'Lead');
@@ -806,12 +888,15 @@ function setMode(mode) {
   const btnCons = document.getElementById('btn-cons');
   const btnDist = document.getElementById('btn-dist');
   const submitBtn = document.getElementById('submit-btn');
+  const mensajeField = document.getElementById('lead-mensaje');
   if (mode === 'consumo') {
     btnCons.classList.add('active'); btnDist.classList.remove('active');
     submitBtn.innerText = 'Solicitar información de Cliente Admirable';
+    mensajeField.placeholder = 'Ej. Quiero saber cómo registrarme como Cliente Admirable y qué productos me recomiendas...';
   } else {
     btnDist.classList.add('active'); btnCons.classList.remove('active');
     submitBtn.innerText = 'Solicitar asesoría para Afiliación (Descuentos)';
+    mensajeField.placeholder = 'Ej. Quiero saber cómo funciona la Afiliación, el costo del kit y cómo subir de nivel de descuento...';
   }
 }
 
