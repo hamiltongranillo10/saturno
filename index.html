@@ -166,6 +166,7 @@ nav {
   background: #000;
 }
 .video-container video { width: 100%; height: 100%; object-fit: cover; }
+.video-poster { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .video-overlay {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(5, 7, 12, 0.15);
@@ -538,13 +539,10 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       🎥 VIDEO GUÍA
     </div>
     
-    <div class="video-container">
-      <video id="hamiltonVideo" poster="hamilton-video-poster.jpg" playsinline loop>
-        <source src="video-guia-afiliacion.mp4" type="video/mp4">
-        Tu navegador no soporta videos.
-      </video>
+    <div class="video-container" id="videoContainer">
+      <img src="hamilton-video-poster.jpg" alt="Video guía de Hamilton" class="video-poster">
       
-      <div class="video-overlay" onclick="togglePlay()">
+      <div class="video-overlay" onclick="loadYouTubeVideo()">
         <div class="play-button-center" id="playBtnCenter">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
         </div>
@@ -752,7 +750,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <div class="step-card reveal-step reveal-step-2">
       <div class="step-number">2</div>
       <h4>Verifica tu presentador</h4>
-      <p>Para asegurar que cuentas con mi asesoría personalizada en WhatsApp y el respaldo directo de nuestro equipo, valida que en el formulario web aparezca el nombre de <strong>Hamilton R.</strong> como tu patrocinador.</p>
+      <p>Para asegurar que cuentas con mi asesoría personalizada en WhatsApp y el respaldo directo de nuestro equipo, valida que en el formulario web aparezca el nombre de <strong>Granillo Ramirez Hamilton Leonel.</strong> como tu patrocinador.</p>
     </div>
 
     <div class="step-card reveal-step reveal-step-3">
@@ -907,14 +905,11 @@ function setMode(mode) {
   }
 }
 
-function togglePlay() {
-  const video = document.getElementById('hamiltonVideo');
-  const playBtn = document.getElementById('playBtnCenter');
-  if (video.paused) {
-    video.play(); playBtn.style.opacity = '0';
-  } else {
-    video.pause(); playBtn.style.opacity = '1';
-  }
+const YOUTUBE_VIDEO_ID = 'VeJtMiPl7_I';
+
+function loadYouTubeVideo() {
+  const container = document.getElementById('videoContainer');
+  container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1" title="Video guía de Hamilton" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
 }
 
 function sendToWhatsApp(event) {
