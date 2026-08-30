@@ -291,6 +291,31 @@ nav {
 .cat-card:hover h4 { color: var(--gold); }
 .cat-card p { font-size: .87rem; color: var(--muted); line-height: 1.6; }
 
+.why-section { padding: 90px 48px 40px; max-width: 1000px; margin: 0 auto; }
+.why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+.why-card { background: var(--glass); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; transition: all 0.4s cubic-bezier(0.25,1,0.5,1); }
+.why-card:hover { transform: translateY(-6px); border-color: rgba(45,106,79,0.5); background: rgba(255,255,255,0.05); box-shadow: 0 15px 30px rgba(0,0,0,0.35); }
+.why-card-img { width: 100%; aspect-ratio: 16 / 10; background: var(--bg-soft); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.why-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.why-card-img img.img-missing { display: none; }
+.why-card-img .img-fallback { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--muted); font-size: .74rem; text-align: center; padding: 0 16px; }
+.why-card-img .img-fallback .fb-letter { width: 46px; height: 46px; border-radius: 50%; background: rgba(45,106,79,0.18); border: 1px solid rgba(45,106,79,0.4); color: var(--gold); font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.why-card-img:has(img.img-missing) .img-fallback { display: flex; }
+.why-card-body { padding: 24px 24px 28px; }
+.why-tag { display: inline-block; font-family: 'Space Mono', monospace; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--leaf); background: rgba(37,211,102,0.12); border: 1px solid rgba(37,211,102,0.3); padding: 4px 10px; border-radius: 20px; margin-bottom: 12px; }
+.why-tag.gold { color: var(--gold); background: rgba(201,166,72,0.14); border-color: rgba(201,166,72,0.35); }
+.why-card h4 { font-size: 1.2rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; font-family: 'Inter', sans-serif; }
+.why-card p { font-size: .88rem; color: var(--muted); line-height: 1.65; }
+.why-accordion { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 4px; }
+.why-accordion summary { list-style: none; cursor: pointer; padding: 12px 2px; font-weight: 600; color: var(--gold); font-size: .86rem; display: flex; justify-content: space-between; align-items: center; }
+.why-accordion summary::-webkit-details-marker { display: none; }
+.why-accordion summary .plus { font-family: 'Space Mono', monospace; font-size: 1.1rem; transition: transform 0.3s ease; }
+.why-accordion[open] summary .plus { transform: rotate(45deg); }
+.why-accordion-body p { font-size: .85rem; color: var(--muted); line-height: 1.65; padding: 0 2px 14px; }
+.why-accordion-body p:first-child { padding-top: 2px; }
+
+.video-section { padding: 10px 48px 90px; max-width: 1200px; margin: 0 auto; }
+
 .omni-portal-section { padding: 10px 48px 90px; max-width: 1200px; margin: 0 auto; }
 .portal-box { 
   background: linear-gradient(135deg, rgba(45,106,79,0.08), rgba(11,15,26,0.9)); 
@@ -476,7 +501,8 @@ footer { background: #030408; border-top: 1px solid var(--line); text-align: cen
   .grid-steps, .about-grid { grid-template-columns: 1fr; gap: 24px; }
   .tutorial-section { padding: 80px 22px; }
   .step-card { padding: 32px 24px; }
-  .form-section, .omni-portal-section, .cat-section, .faq-section, .about-section { padding-left: 22px; padding-right: 22px; }
+  .form-section, .omni-portal-section, .faq-section, .about-section, .why-section, .video-section { padding-left: 22px; padding-right: 22px; }
+  .why-grid { grid-template-columns: 1fr; }
   .how-strip { padding: 8px 22px 50px; }
   .how-strip-inner { padding: 26px 22px; }
   .how-row { grid-template-columns: 1fr; gap: 22px; }
@@ -512,17 +538,16 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 <nav class="animated-fade">
   <div class="logo">Hamilton <em>R.</em><span>Distribuidor Independiente</span></div>
   <div class="nav-links">
-    <a href="#categorias" class="nav-btn secondary">Productos</a>
     <a href="#tutorial" class="nav-btn secondary">¿Cómo afiliarse?</a>
     <a href="#registro" class="nav-btn primary">Registro guiado</a>
   </div>
 </nav>
 
-<section class="hero">
+<section class="hero" style="grid-template-columns: 1fr; max-width: 820px; text-align: left;">
   <div>
     <div class="hero-tag animated-hero-text d1"><span class="dot"></span>Guía clara para empezar hoy</div>
     <h1 class="animated-hero-text d2">Únete a Omnilife de forma segura con <span class="accent">asesoría directa</span>.</h1>
-    <p class="hero-p animated-hero-text d3">Te doy la bienvenida a mi equipo. Aquí te facilito todo el proceso de registro oficial: como Cliente Admirable para comprar a precio normal, o mediante tu Afiliación para activar descuentos del 25% al 40% para consumo personal o distribución.</p>
+    <p class="hero-p animated-hero-text d3">Te doy la bienvenida a mi equipo. Aquí te facilito todo el proceso de registro oficial de Omnilife, paso a paso y con asesoría directa mía.</p>
     <div class="hero-buttons animated-hero-text d4">
       <a href="#registro" class="nav-btn primary" style="padding: 16px 28px;">Quiero registrarme</a>
       <a href="#tutorial" class="nav-btn secondary" style="padding: 16px 28px;">Ver cómo funciona</a>
@@ -533,8 +558,49 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Asesoría personal por WhatsApp</span>
     </div>
   </div>
+</section>
 
-  <div class="video-profile-card animated-hero-card">
+<section id="por-que" class="why-section reveal">
+  <div class="section-header">
+    <div class="sub">// Antes de registrarte</div>
+    <h2>¿Por qué registrarte primero?</h2>
+    <p class="lead">Así funciona Omnilife: toda compra pasa primero por un registro oficial. Elige la modalidad que se ajusta a lo que buscas.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-card-img">
+        <img src="cliente-admirable.png" alt="Cliente Admirable" onerror="this.classList.add('img-missing')">
+        <div class="img-fallback"><span class="fb-letter">C</span>Foto pendiente</div>
+      </div>
+      <div class="why-card-body">
+        <span class="why-tag">Sin costo</span>
+        <h4>Cliente Admirable</h4>
+        <p>Te registras gratis y compras directo a precio público con tu propio código. Ideal si solo quieres probar los productos, sin ningún compromiso.</p>
+      </div>
+    </div>
+    <div class="why-card">
+      <div class="why-card-img">
+        <img src="afiliacion.png" alt="Afiliación" onerror="this.classList.add('img-missing')">
+        <div class="img-fallback"><span class="fb-letter">A</span>Foto pendiente</div>
+      </div>
+      <div class="why-card-body">
+        <span class="why-tag gold">25% – 40% dto.</span>
+        <h4>Afiliación</h4>
+        <p>Con tu kit de bienvenida activas un descuento desde el primer pedido en todos tus productos. Tu nivel de descuento sube de forma progresiva —del 25% hasta el 40%— según los puntos que acumulas con tus propias compras. Es la forma más simple de empezar: consumís lo que ya te gusta, pero pagando menos cada vez.</p>
+        <details class="why-accordion">
+          <summary>¿Te interesa además generar ingresos? <span class="plus">+</span></summary>
+          <div class="why-accordion-body">
+            <p>Comprar para consumo propio es la vía más simple para subir de nivel, pero también la más lenta. Si además te interesa generar ingresos, como afiliado podés avanzar mucho más rápido: vendiendo producto, sumándote a nuestra comunidad de apoyo en grupos de WhatsApp, y con el respaldo de un liderazgo que ya recorrió este camino.</p>
+            <p>La empresa además reconoce ese crecimiento con bonos, cheques, viajes y otros incentivos según tu desempeño. Contame si esto te interesa y te explico con calma cómo funciona.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="video-section reveal">
+  <div class="video-profile-card" style="max-width: 560px; margin: 0 auto;">
     <div class="video-avatar-tag" style="background: var(--gold); color: var(--blue-ink); font-size: 0.72rem; padding: 5px 12px; border-radius: 4px; right: 16px; top: -14px;">
       🎥 VIDEO GUÍA
     </div>
@@ -557,6 +623,63 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
     </div>
     <p class="video-foot-note">▶ Haz clic en el video para ver cómo registrarte, sin importar si buscas solo comprar o afiliarte con descuentos.</p>
+  </div>
+</section>
+
+<section class="how-strip reveal">
+  <div class="how-strip-inner">
+    <div class="how-strip-head">
+      <div>
+        <div class="sub">// Antes de empezar</div>
+        <h3>Así de simple es registrarte conmigo</h3>
+      </div>
+      <a href="#tutorial">Ver el detalle completo →</a>
+    </div>
+    <div class="how-row">
+      <div class="how-node">
+        <div class="how-ic">1</div>
+        <h5>Eliges tu modalidad</h5>
+        <p>Ya viste las opciones arriba — elegís la que se ajuste a lo que buscás.</p>
+      </div>
+      <div class="how-node">
+        <div class="how-ic">2</div>
+        <h5>Te registras con mi enlace</h5>
+        <p>Así quedo como tu presentador y recibes asesoría personalizada desde el primer minuto.</p>
+      </div>
+      <div class="how-node">
+        <div class="how-ic">3</div>
+        <h5>Recibes tu código</h5>
+        <p>Listo para comprar en la web oficial o en tienda física, cuando tú quieras.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tutorial" class="tutorial-section reveal">
+  <div class="section-header" style="margin-bottom: 64px;">
+    <div class="sub">// Proceso transparente</div>
+    <h2>Pasos esenciales de registro</h2>
+    <p class="lead">Completa tu alta oficial en la plataforma en menos de 5 minutos siguiendo este orden de verificación.</p>
+  </div>
+  
+  <div class="grid-steps">
+    <div class="step-card reveal-step reveal-step-1">
+      <div class="step-number">1</div>
+      <h4>Selecciona tu modalidad</h4>
+      <p>Con la opción que ya elegiste arriba —<strong>Cliente Admirable</strong> o <strong>Afiliación</strong>— avanzás al registro en la plataforma oficial.</p>
+    </div>
+
+    <div class="step-card reveal-step reveal-step-2">
+      <div class="step-number">2</div>
+      <h4>Verifica tu presentador</h4>
+      <p>Para asegurar que cuentas con mi asesoría personalizada en WhatsApp y el respaldo directo de nuestro equipo, valida que en el formulario web aparezca el nombre de <strong>Granillo Ramirez Hamilton Leonel.</strong> como tu patrocinador.</p>
+    </div>
+
+    <div class="step-card reveal-step reveal-step-3">
+      <div class="step-number">3</div>
+      <h4>Recibe tu código de acceso</h4>
+      <p>Al terminar tu registro, la plataforma te entrega tu <strong>Código de Empresario</strong> personal. Si te registraste como <strong>Cliente Admirable</strong>, ese código te sirve para comprar siempre a precio público; si hiciste tu <strong>Afiliación</strong>, el mismo código activa tu descuento desde el primer pedido.</p>
+    </div>
   </div>
 </section>
 
@@ -589,35 +712,6 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
         <div class="globe-marker" style="transform: rotateY(45deg) rotateX(28deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇪🇸</span>España</span></div>
         <div class="globe-marker" style="transform: rotateY(175deg) rotateX(22deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇮🇹</span>Italia</span></div>
         <div class="globe-marker" style="transform: rotateY(255deg) rotateX(30deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇩🇪</span>Alemania</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="how-strip reveal">
-  <div class="how-strip-inner">
-    <div class="how-strip-head">
-      <div>
-        <div class="sub">// Antes de empezar</div>
-        <h3>Así de simple es registrarte conmigo</h3>
-      </div>
-      <a href="#tutorial">Ver el detalle completo →</a>
-    </div>
-    <div class="how-row">
-      <div class="how-node">
-        <div class="how-ic">1</div>
-        <h5>Eliges tu modalidad</h5>
-        <p>Cliente Admirable (gratis) o Afiliación con descuentos del 25% al 40%.</p>
-      </div>
-      <div class="how-node">
-        <div class="how-ic">2</div>
-        <h5>Te registras con mi enlace</h5>
-        <p>Así quedo como tu presentador y recibes asesoría personalizada desde el primer minuto.</p>
-      </div>
-      <div class="how-node">
-        <div class="how-ic">3</div>
-        <h5>Recibes tu código</h5>
-        <p>Listo para comprar en la web oficial o en tienda física, cuando tú quieras.</p>
       </div>
     </div>
   </div>
@@ -659,105 +753,11 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   </div>
 </section>
 
-<section id="categorias" class="cat-section reveal">
-  <div class="section-header">
-    <div class="sub">// Nuestros productos</div>
-    <h2>Conoce lo que puede cambiar tu día a día</h2>
-    <p class="lead">Estos son algunos de los productos más pedidos por quienes ya forman parte de mi equipo. Si tienes dudas sobre cuál se ajusta a ti, escríbeme y te oriento sin compromiso.</p>
-  </div>
-  <div class="cat-grid">
-    <div class="cat-card">
-      <div class="cat-card-img">
-        <img src="omniplus.png" alt="Omniplus" onerror="this.classList.add('img-missing')">
-        <div class="img-fallback"><span class="fb-letter">O</span>Foto de producto pendiente</div>
-      </div>
-      <div class="cat-card-body"><h4>Omniplus</h4><p>Complemento base para fortalecer tu nutrición diaria.</p></div>
-    </div>
-    <div class="cat-card">
-      <div class="cat-card-img">
-        <img src="magnus.png" alt="Magnus (Biocros)" onerror="this.classList.add('img-missing')">
-        <div class="img-fallback"><span class="fb-letter">M</span>Foto de producto pendiente</div>
-      </div>
-      <div class="cat-card-body"><h4>Magnus (Biocros)</h4><p>Formulado para acompañar tu día con más energía y bienestar general.</p></div>
-    </div>
-    <div class="cat-card">
-      <div class="cat-card-img">
-        <img src="power-maker.png" alt="Power Maker" onerror="this.classList.add('img-missing')">
-        <div class="img-fallback"><span class="fb-letter">P</span>Foto de producto pendiente</div>
-      </div>
-      <div class="cat-card-body"><h4>Power Maker</h4><p>Ideal si buscas rendimiento extra para tus jornadas más exigentes.</p></div>
-    </div>
-    <div class="cat-card">
-      <div class="cat-card-img">
-        <img src="aloe-beta.png" alt="Aloe Beta" onerror="this.classList.add('img-missing')">
-        <div class="img-fallback"><span class="fb-letter">A</span>Foto de producto pendiente</div>
-      </div>
-      <div class="cat-card-body"><h4>Aloe Beta</h4><p>A base de sábila, pensado para apoyar tu bienestar digestivo.</p></div>
-    </div>
-    <div class="cat-card">
-      <div class="cat-card-img">
-        <img src="cafezzino.png" alt="Cafezzino" onerror="this.classList.add('img-missing')">
-        <div class="img-fallback"><span class="fb-letter">C</span>Foto de producto pendiente</div>
-      </div>
-      <div class="cat-card-body"><h4>Cafezzino</h4><p>Tu café de siempre, con un extra pensado para tu bienestar.</p></div>
-    </div>
-    <div class="cat-card">
-      <div class="cat-card-img">
-        <img src="teatino.png" alt="Teatino" onerror="this.classList.add('img-missing')">
-        <div class="img-fallback"><span class="fb-letter">T</span>Foto de producto pendiente</div>
-      </div>
-      <div class="cat-card-body"><h4>Teatino</h4><p>Una opción ligera para acompañar tu día a cualquier hora.</p></div>
-    </div>
-    <div class="cat-card">
-      <div class="cat-card-img">
-        <img src="optimus.png" alt="Optimus" onerror="this.classList.add('img-missing')">
-        <div class="img-fallback"><span class="fb-letter">O</span>Foto de producto pendiente</div>
-      </div>
-      <div class="cat-card-body"><h4>Optimus</h4><p>Pensado para acompañar tu rendimiento físico y mental.</p></div>
-    </div>
-    <div class="cat-card">
-      <div class="cat-card-img">
-        <img src="super-mix.png" alt="Super Mix" onerror="this.classList.add('img-missing')">
-        <div class="img-fallback"><span class="fb-letter">S</span>Foto de producto pendiente</div>
-      </div>
-      <div class="cat-card-body"><h4>Super Mix</h4><p>Mezcla de frutos secos y semillas para un snack nutritivo en cualquier momento.</p></div>
-    </div>
-  </div>
-</section>
-
 <section class="omni-portal-section reveal">
   <div class="portal-box">
     <h2>Enlace de inscripción directa</h2>
     <p>Si ya conoces el formato que quieres elegir y deseas avanzar de inmediato en la plataforma oficial de Omnilife, puedes usar mi enlace directo de distribuidor institucional.</p>
     <a href="#" class="portal-link-btn">Ir al Portal Oficial de Inscripciones ↗</a>
-  </div>
-</section>
-
-<section id="tutorial" class="tutorial-section reveal">
-  <div class="section-header" style="margin-bottom: 64px;">
-    <div class="sub">// Proceso transparente</div>
-    <h2>Pasos esenciales de registro</h2>
-    <p class="lead">Completa tu alta oficial en la plataforma en menos de 5 minutos siguiendo este orden de verificación.</p>
-  </div>
-  
-  <div class="grid-steps">
-    <div class="step-card reveal-step reveal-step-1">
-      <div class="step-number">1</div>
-      <h4>Selecciona tu modalidad</h4>
-      <p>Elige <strong>Cliente Admirable</strong> (gratis, para compras a precio de lista oficial) o realiza tu <strong>Afiliación</strong> (con costo de kit, para activar de inmediato tus descuentos crecientes del 25% al 40%).</p>
-    </div>
-
-    <div class="step-card reveal-step reveal-step-2">
-      <div class="step-number">2</div>
-      <h4>Verifica tu presentador</h4>
-      <p>Para asegurar que cuentas con mi asesoría personalizada en WhatsApp y el respaldo directo de nuestro equipo, valida que en el formulario web aparezca el nombre de <strong>Granillo Ramirez Hamilton Leonel.</strong> como tu patrocinador.</p>
-    </div>
-
-    <div class="step-card reveal-step reveal-step-3">
-      <div class="step-number">3</div>
-      <h4>Recibe tu código de acceso</h4>
-      <p>Al terminar tu registro, la plataforma te entrega tu <strong>Código de Empresario</strong> personal. Si te registraste como <strong>Cliente Admirable</strong>, ese código te sirve para comprar siempre a precio público; si hiciste tu <strong>Afiliación</strong>, el mismo código activa tu descuento desde el primer pedido.</p>
-    </div>
   </div>
 </section>
 
