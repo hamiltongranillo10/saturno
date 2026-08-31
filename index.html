@@ -360,6 +360,31 @@ nav {
 .kit-card-link:hover { background: var(--cta-grad-hover); color: var(--blue-ink); border-color: transparent; transform: translateY(-2px); }
 @media(max-width:640px){ .kits-grid { grid-template-columns: 1fr; } }
 
+.country-modal-overlay {
+  display: none; position: fixed; inset: 0; z-index: 400;
+  background: rgba(3,4,8,0.78); backdrop-filter: blur(6px);
+  align-items: center; justify-content: center; padding: 24px;
+}
+.country-modal-overlay.open { display: flex; }
+.country-modal {
+  background: var(--bg-soft); border: 1px solid var(--line); border-radius: 18px;
+  padding: 30px; max-width: 640px; width: 100%; max-height: 82vh; overflow-y: auto;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+}
+.country-modal-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+.country-modal-head h4 { font-family: 'Fraunces', serif; font-size: 1.3rem; color: var(--ink); font-weight: 600; }
+.country-modal-head button { background: rgba(255,255,255,0.08); border: none; width: 30px; height: 30px; border-radius: 50%; color: var(--ink); cursor: pointer; font-size: 1rem; flex-shrink: 0; }
+.country-modal-sub { font-size: .85rem; color: var(--muted); margin-bottom: 22px; }
+.country-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.country-flag-btn {
+  display: flex; align-items: center; gap: 9px; padding: 10px 16px;
+  background: var(--glass); border: 1px solid var(--line); border-radius: 30px;
+  color: var(--ink); text-decoration: none; font-size: .85rem; font-weight: 600;
+  transition: all 0.25s ease;
+}
+.country-flag-btn .em { font-size: 1.15rem; line-height: 1; }
+.country-flag-btn:hover { background: var(--cta-grad); border-color: transparent; color: #fff; transform: translateY(-2px); }
+
 .omni-portal-section { padding: 10px 48px 90px; max-width: 1200px; margin: 0 auto; }
 .portal-box { 
   background: linear-gradient(135deg, rgba(45,106,79,0.08), rgba(11,15,26,0.9)); 
@@ -593,8 +618,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <h1 class="animated-hero-text d2">La decisión que cambió la vida de miles, <span class="accent">ahora está a un registro de la tuya</span>.</h1>
     <p class="hero-p animated-hero-text d3">Ya sea que quieras probar los productos o generar un ingreso extra, el primer paso es el mismo: un registro simple, guiado por mí de principio a fin.</p>
     <div class="hero-buttons animated-hero-text d4">
-      <a href="https://portal.omnilife.com/registro?distributor_code=593672828GRH" target="_blank" rel="noopener" class="nav-btn primary" style="padding: 16px 28px;" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');">Registrarme para descuento</a>
-      <a href="https://portal.omnilife.com/registro-cliente?distributor_code=593672828GRH" target="_blank" rel="noopener" class="nav-btn secondary" style="padding: 16px 28px;" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');">Registrarme como Cliente Admirable</a>
+      <a href="#" class="nav-btn primary" style="padding: 16px 28px;" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme para descuento</a>
+      <a href="#" class="nav-btn secondary" style="padding: 16px 28px;" onclick="event.preventDefault(); openCountryModal('cliente');">Registrarme como Cliente Admirable</a>
     </div>
   </div>
 </section>
@@ -611,7 +636,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
         <img src="cliente-admirablle.png" alt="Cliente Admirable" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">C</span>Foto pendiente</div>
       </div>
-      <a href="https://portal.omnilife.com/registro-cliente?distributor_code=593672828GRH" target="_blank" rel="noopener" class="why-card-link" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');">Registrarme como Cliente Admirable ↗</a>
+      <a href="#" class="why-card-link" onclick="event.preventDefault(); openCountryModal('cliente');">Registrarme como Cliente Admirable ↗</a>
       <div class="why-card-body">
         <span class="why-tag">Sin costo</span>
         <h4>Cliente Admirable</h4>
@@ -623,7 +648,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
         <img src="afiliacion.png" alt="Afiliación" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">A</span>Foto pendiente</div>
       </div>
-      <a href="https://portal.omnilife.com/registro?distributor_code=593672828GRH" target="_blank" rel="noopener" class="why-card-link gold" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');">Registrarme con Afiliación ↗</a>
+      <a href="#" class="why-card-link gold" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme con Afiliación ↗</a>
       <div class="why-card-body">
         <span class="why-tag gold">25% – 40% dto.</span>
         <h4>Afiliación</h4>
@@ -726,7 +751,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
           <p><strong>Regalos por tus compras en los primeros 90 días:</strong> día 1-30 acumulás 100 ptos. y recibís 1 Teatino (o Suero Contorno de Ojos, o Espuma Limpiadora Facial); día 31-60, 150 ptos. y 1 Fiber'N Plus (o Suero Facial + Desmaquillante); día 61-90, 200 ptos. y 1 Omniplus (o Omniplus Gel Premium + Protector Solar Facial).</p>
         </div>
       </details>
-      <a href="https://portal.omnilife.com/registro?distributor_code=593672828GRH" target="_blank" rel="noopener" class="kit-card-link" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');">Registrarme como Afiliado ↗</a>
+      <a href="#" class="kit-card-link" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme como Afiliado ↗</a>
     </div>
 
     <div class="kit-card">
@@ -745,7 +770,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
           <p><strong>Regalos por tus compras en los primeros 90 días:</strong> mismo esquema que el kit anterior — día 1-30, 31-60 y 61-90 con productos de regalo según los puntos que acumules.</p>
         </div>
       </details>
-      <a href="https://portal.omnilife.com/registro?distributor_code=593672828GRH" target="_blank" rel="noopener" class="kit-card-link" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');">Registrarme como Afiliado ↗</a>
+      <a href="#" class="kit-card-link" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme como Afiliado ↗</a>
     </div>
 
     <div class="kit-card">
@@ -764,7 +789,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
           <p><strong>Regalo extra:</strong> si en tus primeros 30 días acumulás 500 puntos adicionales a tu kit, recibís 1 Sportmixer Omnilife y la App Mi Omninegocio gratis por 3 meses.</p>
         </div>
       </details>
-      <a href="https://portal.omnilife.com/registro?distributor_code=593672828GRH" target="_blank" rel="noopener" class="kit-card-link" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');">Registrarme como Afiliado ↗</a>
+      <a href="#" class="kit-card-link" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme como Afiliado ↗</a>
     </div>
 
     <div class="kit-card">
@@ -783,7 +808,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
           <p><strong>Regalo extra:</strong> igual que el kit anterior, acumulando 500 puntos adicionales en tus primeros 30 días recibís 1 Sportmixer Omnilife y la App Mi Omninegocio gratis por 3 meses.</p>
         </div>
       </details>
-      <a href="https://portal.omnilife.com/registro?distributor_code=593672828GRH" target="_blank" rel="noopener" class="kit-card-link" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');">Registrarme como Afiliado ↗</a>
+      <a href="#" class="kit-card-link" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme como Afiliado ↗</a>
     </div>
 
   </div>
@@ -894,7 +919,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 <section class="omni-portal-section reveal">
   <div class="portal-box">
     <h2>Enlace de inscripción directa</h2>
-    <a href="#" class="portal-link-btn">Ir al Portal Oficial de Inscripciones ↗</a>
+    <a href="#" class="portal-link-btn" onclick="event.preventDefault(); openCountryModal('portal');">Ir al Portal Oficial de Inscripciones ↗</a>
   </div>
 </section>
 
@@ -964,6 +989,43 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <span style="font-size: 0.75rem; opacity: 0.6;">Este sitio corresponde a un Emprendedor Independiente y no es la página institucional de Omnilife.</span></p>
 </footer>
 
+<div id="modal-cliente" class="country-modal-overlay" onclick="if(event.target===this) closeCountryModal('cliente')">
+  <div class="country-modal">
+    <div class="country-modal-head">
+      <h4>Elegí tu país — Cliente Admirable</h4>
+      <button type="button" onclick="closeCountryModal('cliente')" aria-label="Cerrar">✕</button>
+    </div>
+    <p class="country-modal-sub">Te va a llevar directo al registro oficial de tu país.</p>
+    <div class="country-grid" id="countryGridCliente"></div>
+  </div>
+</div>
+
+<div id="modal-afiliado" class="country-modal-overlay" onclick="if(event.target===this) closeCountryModal('afiliado')">
+  <div class="country-modal">
+    <div class="country-modal-head">
+      <h4>Elegí tu país — Afiliación</h4>
+      <button type="button" onclick="closeCountryModal('afiliado')" aria-label="Cerrar">✕</button>
+    </div>
+    <p class="country-modal-sub">Te va a llevar directo al registro oficial de tu país.</p>
+    <div class="country-grid" id="countryGridAfiliado"></div>
+  </div>
+</div>
+
+<div id="modal-portal" class="country-modal-overlay" onclick="if(event.target===this) closeCountryModal('portal')">
+  <div class="country-modal">
+    <div class="country-modal-head">
+      <h4>Portal Oficial de Inscripciones</h4>
+      <button type="button" onclick="closeCountryModal('portal')" aria-label="Cerrar">✕</button>
+    </div>
+    <p class="country-modal-sub">Elegí tu modalidad y después tu país.</p>
+    <div class="toggle-container" style="margin-bottom: 20px;">
+      <button type="button" class="toggle-btn active" id="portal-tab-cliente" onclick="setPortalTab('cliente')">Cliente Admirable</button>
+      <button type="button" class="toggle-btn" id="portal-tab-afiliado" onclick="setPortalTab('afiliado')">Afiliación</button>
+    </div>
+    <div class="country-grid" id="countryGridPortal"></div>
+  </div>
+</div>
+
 <button id="chat-pill-btn" class="chat-pill" type="button">
   <span class="chat-pill-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.66.986 3.284 1.447 4.74 1.448 5.516 0 10.003-4.478 10.006-9.986.002-2.67-1.019-5.18-2.87-7.03C16.61 1.724 14.12 .701 11.45.701 5.937.701 1.45 5.18 1.447 10.693c-.001 1.51.442 2.986 1.279 4.3l-.971 3.548 3.65-.958zm13.016-4.93c-.31-.156-1.84-.907-2.127-1.01-.288-.102-.497-.155-.706.156-.21.312-.81.1.01-1.022 1.11-.21.103-.418.05-.728-.053-.31-.157-1.84-.906-2.126-1.01-.28-.124-.43-.052-.518.02-.1.08-.22.256-.22.524 0 .268.194.526.222.564.027.037.382 1.83 1.233 2.197.85.367 1.13.294 1.34.248.21-.046.68-.276.774-.544.095-.268.095-.497.066-.544-.028-.046-.104-.077-.415-.233z"/></svg></span>
   Escríbeme por WhatsApp
@@ -994,7 +1056,80 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 <script>
 
 const WHATSAPP_PHONE = "593994104635";
-const REFERRAL_LINK   = "https://portal.omnilife.com/registrarse";
+
+const DIST_CODE = "593672828GRH";
+const COUNTRIES = [
+  { name: "Argentina", flag: "🇦🇷", code: "ARG" },
+  { name: "Bolivia", flag: "🇧🇴", code: "BOL" },
+  { name: "Brasil", flag: "🇧🇷", code: "BRA", brand: "portugues" },
+  { name: "Chile", flag: "🇨🇱", code: "CHI" },
+  { name: "Colombia", flag: "🇨🇴", code: "COL" },
+  { name: "Costa Rica", flag: "🇨🇷", code: "CR" },
+  { name: "Ecuador", flag: "🇪🇨", code: "ECU" },
+  { name: "El Salvador", flag: "🇸🇻", code: "SAL" },
+  { name: "España", flag: "🇪🇸", code: "ESP" },
+  { name: "Guatemala", flag: "🇬🇹", code: "GUA" },
+  { name: "México", flag: "🇲🇽", code: "MEX" },
+  { name: "Nicaragua", flag: "🇳🇮", code: "NIC" },
+  { name: "Panamá", flag: "🇵🇦", code: "PAN" },
+  { name: "Paraguay", flag: "🇵🇾", code: "PAR" },
+  { name: "Perú", flag: "🇵🇪", code: "PER" },
+  { name: "República Dominicana", flag: "🇩🇴", code: "DOM" },
+  { name: "Estados Unidos", flag: "🇺🇸", code: "USA", brand: "usa" },
+  { name: "Uruguay", flag: "🇺🇾", code: "URU" },
+  { name: "Rusia", flag: "🇷🇺", code: "RUS", brand: "rusia" },
+  { name: "Honduras", flag: "🇭🇳", code: "HND" },
+];
+
+function countryLink(country, type) {
+  const base = "https://portal.omnilife.com/";
+  let path;
+  if (country.brand === "portugues") {
+    path = type === "cliente" ? "cadastro-cliente" : "cadastro";
+  } else if (country.brand === "usa") {
+    path = type === "cliente" ? "client-register" : "register";
+  } else if (country.brand === "rusia") {
+    path = type === "cliente" ? "registraciya-clienta" : "registaciya";
+  } else {
+    path = type === "cliente" ? "registro-cliente" : "registro";
+  }
+  return `${base}${path}?distributor_code=${DIST_CODE}&country_code=${country.code}&lang=es`;
+}
+
+function buildCountryGrid(type) {
+  const container = document.getElementById(type === "cliente" ? "countryGridCliente" : "countryGridAfiliado");
+  if (!container) return;
+  container.innerHTML = COUNTRIES.map((c) => {
+    const url = countryLink(c, type);
+    return `<a href="${url}" target="_blank" rel="noopener" class="country-flag-btn" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');"><span class="em">${c.flag}</span>${c.name}</a>`;
+  }).join("");
+}
+buildCountryGrid("cliente");
+buildCountryGrid("afiliado");
+
+function buildPortalGrid(type) {
+  const container = document.getElementById("countryGridPortal");
+  container.innerHTML = COUNTRIES.map((c) => {
+    const url = countryLink(c, type);
+    return `<a href="${url}" target="_blank" rel="noopener" class="country-flag-btn" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');"><span class="em">${c.flag}</span>${c.name}</a>`;
+  }).join("");
+}
+function setPortalTab(type) {
+  document.getElementById("portal-tab-cliente").classList.toggle("active", type === "cliente");
+  document.getElementById("portal-tab-afiliado").classList.toggle("active", type === "afiliado");
+  buildPortalGrid(type);
+}
+setPortalTab("cliente");
+
+function openCountryModal(type) {
+  document.getElementById(`modal-${type}`).classList.add("open");
+}
+function closeCountryModal(type) {
+  document.getElementById(`modal-${type}`).classList.remove("open");
+}
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") { closeCountryModal("cliente"); closeCountryModal("afiliado"); closeCountryModal("portal"); }
+});
 
 const chatPillBtn = document.getElementById('chat-pill-btn');
 const chatPanel = document.getElementById('chat-panel');
@@ -1016,11 +1151,6 @@ chatStartBtn.addEventListener('click', () => {
   if (typeof fbq !== 'undefined') fbq('track', 'Lead');
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
   chatPanel.classList.remove('open');
-});
-
-document.querySelector('.portal-link-btn').href = REFERRAL_LINK;
-document.querySelector('.portal-link-btn').addEventListener('click', function () {
-  if (typeof fbq !== 'undefined') fbq('track', 'Lead');
 });
 
 let currentMode = 'consumo';
