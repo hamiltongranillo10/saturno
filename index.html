@@ -301,7 +301,11 @@ nav {
 .why-card-img .img-fallback { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--muted); font-size: .74rem; text-align: center; padding: 0 16px; }
 .why-card-img .img-fallback .fb-letter { width: 46px; height: 46px; border-radius: 50%; background: rgba(45,106,79,0.18); border: 1px solid rgba(45,106,79,0.4); color: var(--gold); font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 600; display: flex; align-items: center; justify-content: center; }
 .why-card-img:has(img.img-missing) .img-fallback { display: flex; }
-.why-card-body { padding: 24px 24px 28px; }
+.why-card-link { display: block; text-align: center; padding: 12px; margin: 14px 14px 0; background: rgba(45,106,79,0.14); border: 1px solid rgba(45,106,79,0.4); border-radius: 8px; color: var(--ink); text-decoration: none; font-size: .85rem; font-weight: 700; transition: all 0.3s ease; }
+.why-card-link:hover { background: var(--cta-grad); border-color: transparent; transform: translateY(-2px); }
+.why-card-link.gold { background: rgba(201,166,72,0.14); border-color: rgba(201,166,72,0.4); }
+.why-card-link.gold:hover { background: var(--cta-grad-hover); color: var(--blue-ink); }
+.why-card-body { padding: 18px 24px 28px; }
 .why-tag { display: inline-block; font-family: 'Space Mono', monospace; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--leaf); background: rgba(37,211,102,0.12); border: 1px solid rgba(37,211,102,0.3); padding: 4px 10px; border-radius: 20px; margin-bottom: 12px; }
 .why-tag.gold { color: var(--gold); background: rgba(201,166,72,0.14); border-color: rgba(201,166,72,0.35); }
 .why-card h4 { font-size: 1.2rem; font-weight: 700; color: var(--ink); margin-bottom: 10px; font-family: 'Inter', sans-serif; }
@@ -315,6 +319,31 @@ nav {
 .why-accordion-body p:first-child { padding-top: 2px; }
 
 .video-section { padding: 10px 48px 90px; max-width: 1200px; margin: 0 auto; }
+
+.kits-section { padding: 90px 48px; max-width: 1240px; margin: 0 auto; }
+.kits-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.kit-card { background: var(--glass); border: 1px solid var(--line); border-radius: 14px; padding: 0 0 24px; display: flex; flex-direction: column; overflow: hidden; transition: all 0.4s cubic-bezier(0.25,1,0.5,1); }
+.kit-card:hover { transform: translateY(-6px); border-color: rgba(45,106,79,0.5); background: rgba(255,255,255,0.05); box-shadow: 0 15px 30px rgba(0,0,0,0.35); }
+.kit-card-img { width: 100%; aspect-ratio: 1 / 1; background: var(--bg-soft); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+.kit-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.kit-card-img img.img-missing { display: none; }
+.kit-card-img .img-fallback { display: none; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: var(--muted); font-size: .74rem; text-align: center; padding: 0 16px; }
+.kit-card-img .img-fallback .fb-letter { width: 46px; height: 46px; border-radius: 50%; background: rgba(45,106,79,0.18); border: 1px solid rgba(45,106,79,0.4); color: var(--gold); font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+.kit-card-img:has(img.img-missing) .img-fallback { display: flex; }
+.kit-card > .kit-badge, .kit-card > h4, .kit-card > .kit-price, .kit-card > .kit-desc, .kit-card > .why-accordion, .kit-card > .kit-card-link { margin-left: 20px; margin-right: 20px; }
+.kit-card > .kit-badge { margin-top: 4px; }
+.kit-card-wide .kit-card-img { aspect-ratio: 21 / 9; }
+.kit-card-wide { grid-column: span 2; }
+.kit-badge { display: inline-block; align-self: flex-start; font-family: 'Space Mono', monospace; font-size: .64rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--leaf); background: rgba(37,211,102,0.12); border: 1px solid rgba(37,211,102,0.3); padding: 3px 9px; border-radius: 20px; margin-bottom: 12px; }
+.kit-badge.gold { color: var(--gold); background: rgba(201,166,72,0.14); border-color: rgba(201,166,72,0.35); }
+.kit-badge.emprendedor { color: var(--ink); background: var(--cta-grad); border-color: transparent; }
+.kit-card h4 { font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 6px; font-family: 'Inter', sans-serif; line-height: 1.3; }
+.kit-price { font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 600; color: var(--gold); display: block; margin-bottom: 10px; }
+.kit-desc { font-size: .82rem; color: var(--muted); line-height: 1.55; margin-bottom: 6px; flex-grow: 1; }
+.kit-card-link { display: block; text-align: center; padding: 10px; margin-top: 14px; background: rgba(201,166,72,0.14); border: 1px solid rgba(201,166,72,0.35); border-radius: 7px; color: var(--ink); text-decoration: none; font-size: .78rem; font-weight: 700; transition: all 0.3s ease; }
+.kit-card-link:hover { background: var(--cta-grad-hover); color: var(--blue-ink); border-color: transparent; transform: translateY(-2px); }
+@media(max-width:960px){ .kits-grid { grid-template-columns: 1fr 1fr; } .kit-card-wide { grid-column: span 2; } }
+@media(max-width:640px){ .kits-grid { grid-template-columns: 1fr; } .kit-card-wide { grid-column: span 1; } }
 
 .omni-portal-section { padding: 10px 48px 90px; max-width: 1200px; margin: 0 auto; }
 .portal-box { 
@@ -501,7 +530,7 @@ footer { background: #030408; border-top: 1px solid var(--line); text-align: cen
   .grid-steps, .about-grid { grid-template-columns: 1fr; gap: 24px; }
   .tutorial-section { padding: 80px 22px; }
   .step-card { padding: 32px 24px; }
-  .form-section, .omni-portal-section, .faq-section, .about-section, .why-section, .video-section { padding-left: 22px; padding-right: 22px; }
+  .form-section, .omni-portal-section, .faq-section, .about-section, .why-section, .video-section, .kits-section { padding-left: 22px; padding-right: 22px; }
   .why-grid { grid-template-columns: 1fr; }
   .how-strip { padding: 8px 22px 50px; }
   .how-strip-inner { padding: 26px 22px; }
@@ -549,13 +578,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <h1 class="animated-hero-text d2">Únete a Omnilife de forma segura con <span class="accent">asesoría directa</span>.</h1>
     <p class="hero-p animated-hero-text d3">Te doy la bienvenida a mi equipo. Aquí te facilito todo el proceso de registro oficial de Omnilife, paso a paso y con asesoría directa mía.</p>
     <div class="hero-buttons animated-hero-text d4">
-      <a href="#registro" class="nav-btn primary" style="padding: 16px 28px;">Quiero registrarme</a>
-      <a href="#tutorial" class="nav-btn secondary" style="padding: 16px 28px;">Ver cómo funciona</a>
-    </div>
-    <div class="trust-bar animated-hero-text d4">
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Registro 100% oficial</span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Sin compra mínima</span>
-      <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Asesoría personal por WhatsApp</span>
+      <a href="https://portal.omnilife.com/registro?distributor_code=593672828GRH" target="_blank" rel="noopener" class="nav-btn primary" style="padding: 16px 28px;" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');">Registrarme para descuento</a>
+      <a href="https://portal.omnilife.com/registro-cliente?distributor_code=593672828GRH" target="_blank" rel="noopener" class="nav-btn secondary" style="padding: 16px 28px;" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');">Registrarme como Cliente Admirable</a>
     </div>
   </div>
 </section>
@@ -569,9 +593,10 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div class="why-grid">
     <div class="why-card">
       <div class="why-card-img">
-        <img src="cliente-admirablle.png" alt="Cliente Admirable" onerror="this.classList.add('img-missing')">
+        <img src="cliente-admirable.png" alt="Cliente Admirable" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">C</span>Foto pendiente</div>
       </div>
+      <a href="https://portal.omnilife.com/registro-cliente?distributor_code=593672828GRH" target="_blank" rel="noopener" class="why-card-link" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');">Registrarme como Cliente Admirable ↗</a>
       <div class="why-card-body">
         <span class="why-tag">Sin costo</span>
         <h4>Cliente Admirable</h4>
@@ -583,6 +608,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
         <img src="afiliacion.png" alt="Afiliación" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">A</span>Foto pendiente</div>
       </div>
+      <a href="https://portal.omnilife.com/registro?distributor_code=593672828GRH" target="_blank" rel="noopener" class="why-card-link gold" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');">Registrarme con Afiliación ↗</a>
       <div class="why-card-body">
         <span class="why-tag gold">25% – 40% dto.</span>
         <h4>Afiliación</h4>
@@ -599,8 +625,116 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   </div>
 </section>
 
+<section id="kits" class="kits-section reveal">
+  <div class="section-header">
+    <div class="sub">// Al momento de afiliarte</div>
+    <h2>Elige el kit con el que empiezas</h2>
+    <p class="lead">Todos activan tu afiliación y descuento. La diferencia está en el enfoque y el contenido — te ayudo a elegir el que más te conviene.</p>
+  </div>
+  <div class="kits-grid">
+
+    <div class="kit-card">
+      <div class="kit-card-img">
+        <img src="kit-omnilife-seytu.png" alt="Kit OMNILIFE-SEYTÚ" onerror="this.classList.add('img-missing')">
+        <div class="img-fallback"><span class="fb-letter">O</span></div>
+      </div>
+      <span class="kit-badge">Kit inicial</span>
+      <h4>Kit OMNILIFE-SEYTÚ</h4>
+      <span class="kit-price">$51.10</span>
+      <p class="kit-desc">Combina nutrición y belleza. Ideal si querés un poco de las dos líneas para empezar.</p>
+      <details class="why-accordion">
+        <summary>Ver qué incluye <span class="plus">+</span></summary>
+        <div class="why-accordion-body">
+          <p>Mochila Bimarca, Guía OMNILIFE-SEYTÚ, Biocros Supreme, Espuma Limpiadora Facial y Dossier de bienvenida.</p>
+          <p><strong>Regalos por tus compras en los primeros 90 días:</strong> día 1-30 acumulás 100 ptos. y recibís 1 Teatino (o Suero Contorno de Ojos, o Espuma Limpiadora Facial); día 31-60, 150 ptos. y 1 Fiber'N Plus (o Suero Facial + Desmaquillante); día 61-90, 200 ptos. y 1 Omniplus (o Omniplus Gel Premium + Protector Solar Facial).</p>
+        </div>
+      </details>
+      <a href="https://portal.omnilife.com/registro?distributor_code=593672828GRH" target="_blank" rel="noopener" class="kit-card-link" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');">Registrarme como Afiliado ↗</a>
+    </div>
+
+    <div class="kit-card">
+      <div class="kit-card-img">
+        <img src="kit-seytu.png" alt="Kit SEYTÚ" onerror="this.classList.add('img-missing')">
+        <div class="img-fallback"><span class="fb-letter">S</span></div>
+      </div>
+      <span class="kit-badge">Kit inicial</span>
+      <h4>Kit SEYTÚ</h4>
+      <span class="kit-price">$51.10</span>
+      <p class="kit-desc">100% enfocado en belleza y cuidado facial. Ideal si tu interés principal es esa línea.</p>
+      <details class="why-accordion">
+        <summary>Ver qué incluye <span class="plus">+</span></summary>
+        <div class="why-accordion-body">
+          <p>Bolsa tornasol, Guía OMNILIFE-SEYTÚ, Máscara de pestañas, Espuma limpiadora facial, Desmaquillante de ojos y Brillo labial.</p>
+          <p><strong>Regalos por tus compras en los primeros 90 días:</strong> mismo esquema que el kit anterior — día 1-30, 31-60 y 61-90 con productos de regalo según los puntos que acumules.</p>
+        </div>
+      </details>
+      <a href="https://portal.omnilife.com/registro?distributor_code=593672828GRH" target="_blank" rel="noopener" class="kit-card-link" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');">Registrarme como Afiliado ↗</a>
+    </div>
+
+    <div class="kit-card">
+      <div class="kit-card-img">
+        <img src="kit-500-nutricion.png" alt="Kit 500 Puntos Nutrición" onerror="this.classList.add('img-missing')">
+        <div class="img-fallback"><span class="fb-letter">N</span></div>
+      </div>
+      <span class="kit-badge gold">500 puntos</span>
+      <h4>Kit 500 Puntos Nutrición</h4>
+      <span class="kit-price">$308.00</span>
+      <p class="kit-desc">Para quien quiere arrancar fuerte con la línea de nutrición y ya llevarse variedad de productos.</p>
+      <details class="why-accordion">
+        <summary>Ver qué incluye <span class="plus">+</span></summary>
+        <div class="why-accordion-body">
+          <p>Biocros Supreme, Ego Life, Power Maker, Teatino Limón, Omniplus Frutas, Fiber'n Plus, Optimus, Cafezzino, Guía OMNILIFE-SEYTÚ, Bolsa Reutilizable y 3 productos de regalo adicionales.</p>
+          <p><strong>Regalo extra:</strong> si en tus primeros 30 días acumulás 500 puntos adicionales a tu kit, recibís 1 Sportmixer Omnilife y la App Mi Omninegocio gratis por 3 meses.</p>
+        </div>
+      </details>
+      <a href="https://portal.omnilife.com/registro?distributor_code=593672828GRH" target="_blank" rel="noopener" class="kit-card-link" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');">Registrarme como Afiliado ↗</a>
+    </div>
+
+    <div class="kit-card">
+      <div class="kit-card-img">
+        <img src="kit-500-experiencia-seytu.png" alt="Kit 500 Puntos Experiencia SEYTÚ" onerror="this.classList.add('img-missing')">
+        <div class="img-fallback"><span class="fb-letter">E</span></div>
+      </div>
+      <span class="kit-badge gold">500 puntos</span>
+      <h4>Kit 500 Puntos Experiencia SEYTÚ</h4>
+      <span class="kit-price">$308.00</span>
+      <p class="kit-desc">La versión completa de belleza — una rutina facial entera, no solo lo básico.</p>
+      <details class="why-accordion">
+        <summary>Ver qué incluye <span class="plus">+</span></summary>
+        <div class="why-accordion-body">
+          <p>Espuma Limpiadora Facial, Tónico Hidratante, Micro-Exfoliante Facial, Desmaquillante para Ojos, Crema de Día FPS 30, Suero Facial de Hidratación Profunda Aloe, Crema Contorno de Ojos (System), Suplemento System T-Specialist, Mascarilla Facial, Suero de Noche (System), Bolsa Tornasol y 6 productos de regalo adicionales.</p>
+          <p><strong>Regalo extra:</strong> igual que el kit anterior, acumulando 500 puntos adicionales en tus primeros 30 días recibís 1 Sportmixer Omnilife y la App Mi Omninegocio gratis por 3 meses.</p>
+        </div>
+      </details>
+      <a href="https://portal.omnilife.com/registro?distributor_code=593672828GRH" target="_blank" rel="noopener" class="kit-card-link" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');">Registrarme como Afiliado ↗</a>
+    </div>
+
+    <div class="kit-card kit-card-wide">
+      <div class="kit-card-img">
+        <img src="kit-emprendedor-1000.png" alt="Kit Emprendedor 1000 puntos" onerror="this.classList.add('img-missing')">
+        <div class="img-fallback"><span class="fb-letter">K</span></div>
+      </div>
+      <span class="kit-badge emprendedor">Kit Emprendedor</span>
+      <h4>Kit Emprendedor 1000 puntos</h4>
+      <span class="kit-price">Desde 1000 ptos.</span>
+      <p class="kit-desc">Para quien ya quiere invertir en volumen desde el día uno — solo disponible en tienda física o comprando por teléfono. Elegís libremente 1000+ puntos entre nutrición y belleza.*</p>
+      <details class="why-accordion">
+        <summary>Ver qué incluye <span class="plus">+</span></summary>
+        <div class="why-accordion-body">
+          <p>Afiliación gratis, 30% de descuento, hasta 3 productos de regalo, 1 Sportmixer gratis y App Mi Omninegocio gratis por 3 meses.</p>
+          <p><strong>Regalo extra:</strong> acumulando 1000 puntos adicionales a tu kit en los primeros 30 días, recibís de regalo 1 cosmetiquera SEYTÚ y un Shaker SEYTÚ.</p>
+          <p style="font-style: italic; font-size: .78rem;">*Aplican restricciones. Consultame por WhatsApp para armar tu selección de productos.</p>
+        </div>
+      </details>
+      <a href="https://portal.omnilife.com/registro?distributor_code=593672828GRH" target="_blank" rel="noopener" class="kit-card-link" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');">Registrarme como Afiliado ↗</a>
+    </div>
+
+  </div>
+  <p style="text-align:center; color: var(--muted); font-size: .85rem; margin-top: 28px;">¿No estás seguro cuál elegir? Contame qué buscás y te recomiendo el que mejor se ajusta a vos.</p>
+</section>
+
 <section class="video-section reveal">
-  <div class="video-profile-card" style="max-width: 560px; margin: 0 auto;">
+  <div class="video-profile-card" style="max-width: 880px; margin: 0 auto;">
     <div class="video-avatar-tag" style="background: var(--gold); color: var(--blue-ink); font-size: 0.72rem; padding: 5px 12px; border-radius: 4px; right: 16px; top: -14px;">
       🎥 VIDEO GUÍA
     </div>
@@ -626,33 +760,6 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   </div>
 </section>
 
-<section class="how-strip reveal">
-  <div class="how-strip-inner">
-    <div class="how-strip-head">
-      <div>
-        <div class="sub">// Antes de empezar</div>
-        <h3>Así de simple es registrarte conmigo</h3>
-      </div>
-      <a href="#tutorial">Ver el detalle completo →</a>
-    </div>
-    <div class="how-row">
-      <div class="how-node">
-        <div class="how-ic">1</div>
-        <h5>Eliges tu modalidad</h5>
-        <p>Ya viste las opciones arriba — elegís la que se ajuste a lo que buscás.</p>
-      </div>
-      <div class="how-node">
-        <div class="how-ic">2</div>
-        <h5>Te registras con mi enlace</h5>
-        <p>Así quedo como tu presentador y recibes asesoría personalizada desde el primer minuto.</p>
-      </div>
-      <div class="how-node">
-        <div class="how-ic">3</div>
-        <h5>Recibes tu código</h5>
-        <p>Listo para comprar en la web oficial o en tienda física, cuando tú quieras.</p>
-      </div>
-    </div>
-  </div>
 </section>
 
 <section id="tutorial" class="tutorial-section reveal">
@@ -688,9 +795,9 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <div class="globe-text">
       <div class="sub">// Alcance global</div>
       <h2>Una red que no conoce fronteras</h2>
-      <p class="lead">Omnilife respalda cada producto que recomiendo con presencia real en Latinoamérica y Europa. No estás comprando a un desconocido: estás entrando a una red con trayectoria.</p>
+      <p class="lead">Presencia real en Latinoamérica y Europa. No estás comprando a un desconocido: es una red con trayectoria.</p>
       <div class="globe-stats">
-        <div class="globe-stat"><span class="num">30+</span><span class="label">Años de trayectoria</span></div>
+        <div class="globe-stat"><span class="num">35+</span><span class="label">Años de trayectoria</span></div>
         <div class="globe-stat"><span class="num">18</span><span class="label">Países con presencia</span></div>
         <div class="globe-stat"><span class="num">1M+</span><span class="label">Familias beneficiadas</span></div>
         <div class="globe-stat"><span class="num">100%</span><span class="label">Respaldo oficial</span></div>
@@ -713,26 +820,6 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
         <div class="globe-marker" style="transform: rotateY(175deg) rotateX(22deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇮🇹</span>Italia</span></div>
         <div class="globe-marker" style="transform: rotateY(255deg) rotateX(30deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇩🇪</span>Alemania</span></div>
       </div>
-    </div>
-  </div>
-</section>
-
-<section class="value-strip reveal">
-  <div class="value-grid">
-    <div class="value-item">
-      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v6m0 0c-4 0-7 3-7 7v5h14v-5c0-4-3-7-7-7z"/></svg>
-      <h4>Línea de Apoyo Activa</h4>
-      <p>Formamos parte de una red sólida guiada por un liderazgo con trayectoria comprobada.</p>
-    </div>
-    <div class="value-item">
-      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>
-      <h4>Transparencia total</h4>
-      <p>Tus compras, pagos y envíos se realizan de forma oficial dentro de Omnilife.</p>
-    </div>
-    <div class="value-item">
-      <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="13" rx="2"/></svg>
-      <h4>Cero complicaciones</h4>
-      <p>Te evito enredos en la plataforma y resolvemos tus dudas rápido por chat.</p>
     </div>
   </div>
 </section>
@@ -857,7 +944,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 <script>
 
 const WHATSAPP_PHONE = "593994104635";
-const REFERRAL_LINK   = "https://empresario.omnilife.com/ec/el-oro/arenillas/593672828grh/hamilton-granillo-ramirez/omnilife";
+const REFERRAL_LINK   = "https://portal.omnilife.com/registrarse";
 
 const chatPillBtn = document.getElementById('chat-pill-btn');
 const chatPanel = document.getElementById('chat-panel');
