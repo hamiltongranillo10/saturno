@@ -1064,16 +1064,40 @@ function loadResultsVideo() {
 }
 
 function loadStoryVideo(overlayEl) {
+  pauseAllStoryVideos();
   const container = overlayEl.closest('.story-video-container');
   const videoId = container.getAttribute('data-video-id');
-  container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1" title="Historia Omnilife" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1" title="Historia Omnilife" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+}
+
+function pauseAllStoryVideos() {
+  document.querySelectorAll('#storiesCarousel iframe').forEach((iframe) => {
+    iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*');
+  });
 }
 
 function scrollStories(direction) {
+  pauseAllStoryVideos();
   const carousel = document.getElementById('storiesCarousel');
   const cardWidth = carousel.querySelector('.story-card').offsetWidth + 22;
   carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
 }
+
+/* Si el usuario desliza el carrusel arrastrando/con el dedo (no con las flechas),
+   pausamos igual apenas empieza el scroll para que no se escuchen dos videos a la vez. */
+(function () {
+  const carousel = document.getElementById('storiesCarousel');
+  if (!carousel) return;
+  let pausedForThisGesture = false;
+  carousel.addEventListener('scroll', () => {
+    if (!pausedForThisGesture) {
+      pauseAllStoryVideos();
+      pausedForThisGesture = true;
+      clearTimeout(carousel._scrollEndTimer);
+      carousel._scrollEndTimer = setTimeout(() => { pausedForThisGesture = false; }, 400);
+    }
+  }, { passive: true });
+})();
 
 function sendToWhatsApp(event) {
   event.preventDefault();
