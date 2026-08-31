@@ -742,7 +742,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <span class="kit-badge">Kit inicial</span>
       <h4>Kit OMNILIFE-SEYTÚ</h4>
-      <span class="kit-price">$51.10</span>
+      <span class="kit-price">$51.10 USD</span>
       <p class="kit-desc">Combina nutrición y belleza. Ideal si querés un poco de las dos líneas para empezar.</p>
       <details class="why-accordion">
         <summary>Ver qué incluye <span class="plus">+</span></summary>
@@ -761,7 +761,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <span class="kit-badge">Kit inicial</span>
       <h4>Kit SEYTÚ</h4>
-      <span class="kit-price">$51.10</span>
+      <span class="kit-price">$51.10 USD</span>
       <p class="kit-desc">100% enfocado en belleza y cuidado facial. Ideal si tu interés principal es esa línea.</p>
       <details class="why-accordion">
         <summary>Ver qué incluye <span class="plus">+</span></summary>
@@ -780,7 +780,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <span class="kit-badge gold">500 puntos</span>
       <h4>Kit 500 Puntos Nutrición</h4>
-      <span class="kit-price">$308.00</span>
+      <span class="kit-price">$308.00 USD</span>
       <p class="kit-desc">Para quien quiere arrancar fuerte con la línea de nutrición y ya llevarse variedad de productos.</p>
       <details class="why-accordion">
         <summary>Ver qué incluye <span class="plus">+</span></summary>
@@ -799,7 +799,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <span class="kit-badge gold">500 puntos</span>
       <h4>Kit 500 Puntos Experiencia SEYTÚ</h4>
-      <span class="kit-price">$308.00</span>
+      <span class="kit-price">$308.00 USD</span>
       <p class="kit-desc">La versión completa de belleza — una rutina facial entera, no solo lo básico.</p>
       <details class="why-accordion">
         <summary>Ver qué incluye <span class="plus">+</span></summary>
@@ -1176,15 +1176,43 @@ const YOUTUBE_VIDEO_ID = 'VeJtMiPl7_I';
 
 function loadYouTubeVideo() {
   const container = document.getElementById('videoContainer');
-  container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1" title="Video guía de Hamilton" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1" title="Video guía de Hamilton" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
 }
+
+function pauseGuideVideo() {
+  const iframe = document.querySelector('#videoContainer iframe');
+  if (iframe) iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*');
+}
+
+/* Pausa el video guía apenas sale de la vista al hacer scroll de la página. */
+const guideVideoObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) pauseGuideVideo();
+  });
+}, { threshold: 0.15 });
+const guideVideoEl = document.getElementById('videoContainer');
+if (guideVideoEl) guideVideoObserver.observe(guideVideoEl);
 
 const RESULTS_VIDEO_ID = 'bl1jFjnwoXE';
 
 function loadResultsVideo() {
   const container = document.getElementById('resultsVideoContainer');
-  container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${RESULTS_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1" title="Resultados Omnilife Día Morado" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${RESULTS_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1" title="Resultados Omnilife Día Morado" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
 }
+
+function pauseResultsVideo() {
+  const iframe = document.querySelector('#resultsVideoContainer iframe');
+  if (iframe) iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*');
+}
+
+/* Pausa el video de Día Morado apenas sale de la vista al hacer scroll de la página. */
+const resultsVideoObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) pauseResultsVideo();
+  });
+}, { threshold: 0.15 });
+const resultsVideoEl = document.getElementById('resultsVideoContainer');
+if (resultsVideoEl) resultsVideoObserver.observe(resultsVideoEl);
 
 function loadStoryVideo(overlayEl) {
   pauseAllStoryVideos();
@@ -1198,6 +1226,15 @@ function pauseAllStoryVideos() {
     iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*');
   });
 }
+
+/* Pausa cualquier historia sonando apenas el carrusel sale de la vista al hacer scroll de la página. */
+const storiesObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) pauseAllStoryVideos();
+  });
+}, { threshold: 0.1 });
+const storiesCarouselEl = document.getElementById('storiesCarousel');
+if (storiesCarouselEl) storiesObserver.observe(storiesCarouselEl);
 
 /* FAQ: al abrir una pregunta, se cierran las demás. */
 document.querySelectorAll('.faq-section .faq-item').forEach((item) => {
