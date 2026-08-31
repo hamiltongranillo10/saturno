@@ -717,7 +717,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <span class="kit-badge">Kit inicial</span>
       <h4>Kit OMNILIFE-SEYTÚ</h4>
-      <span class="kit-price">$51.10 USD</span>
+      <span class="kit-price">$51.10</span>
       <p class="kit-desc">Combina nutrición y belleza. Ideal si querés un poco de las dos líneas para empezar.</p>
       <details class="why-accordion">
         <summary>Ver qué incluye <span class="plus">+</span></summary>
@@ -736,7 +736,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <span class="kit-badge">Kit inicial</span>
       <h4>Kit SEYTÚ</h4>
-      <span class="kit-price">$51.10 USD</span>
+      <span class="kit-price">$51.10</span>
       <p class="kit-desc">100% enfocado en belleza y cuidado facial. Ideal si tu interés principal es esa línea.</p>
       <details class="why-accordion">
         <summary>Ver qué incluye <span class="plus">+</span></summary>
@@ -755,7 +755,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <span class="kit-badge gold">500 puntos</span>
       <h4>Kit 500 Puntos Nutrición</h4>
-      <span class="kit-price">$308.00 USD</span>
+      <span class="kit-price">$308.00</span>
       <p class="kit-desc">Para quien quiere arrancar fuerte con la línea de nutrición y ya llevarse variedad de productos.</p>
       <details class="why-accordion">
         <summary>Ver qué incluye <span class="plus">+</span></summary>
@@ -774,7 +774,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <span class="kit-badge gold">500 puntos</span>
       <h4>Kit 500 Puntos Experiencia SEYTÚ</h4>
-      <span class="kit-price">$308.00 USD</span>
+      <span class="kit-price">$308.00</span>
       <p class="kit-desc">La versión completa de belleza — una rutina facial entera, no solo lo básico.</p>
       <details class="why-accordion">
         <summary>Ver qué incluye <span class="plus">+</span></summary>
@@ -806,7 +806,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="video-caption-box">
-      <h3 style="font-size: 1.35rem; margin-top: 2px;">Cómo registrarte paso a paso, como Cliente Admirable o Afiliado</h3>
+      <h3 style="font-size: 1.35rem; margin-top: 2px;">Sirve tanto para registrarte como Cliente Admirable o como Afiliado</h3>
     </div>
   </div>
 </section>
@@ -1069,6 +1069,17 @@ function pauseAllStoryVideos() {
     iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func: 'pauseVideo', args: [] }), '*');
   });
 }
+
+/* FAQ: al abrir una pregunta, se cierran las demás. */
+document.querySelectorAll('.faq-section .faq-item').forEach((item) => {
+  item.addEventListener('toggle', () => {
+    if (item.open) {
+      document.querySelectorAll('.faq-section .faq-item').forEach((other) => {
+        if (other !== item) other.open = false;
+      });
+    }
+  });
+});
 
 function scrollStories(direction) {
   pauseAllStoryVideos();
