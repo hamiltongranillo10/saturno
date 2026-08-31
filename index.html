@@ -385,6 +385,20 @@ nav {
 .country-flag-btn .em { font-size: 1.15rem; line-height: 1; }
 .country-flag-btn:hover { background: var(--cta-grad); border-color: transparent; color: #fff; transform: translateY(-2px); }
 
+.post-registro-section { padding: 10px 48px 90px; max-width: 1100px; margin: 0 auto; }
+.post-registro-box { display: grid; grid-template-columns: 300px 1fr; gap: 44px; align-items: center; background: var(--glass); border: 1px solid var(--line); border-radius: 18px; padding: 34px; }
+.post-registro-img { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--bg-soft); aspect-ratio: 3/4; }
+.post-registro-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.post-registro-img img.img-missing { display: none; }
+.post-registro-img .img-fallback { display: none; }
+.post-registro-img:has(img.img-missing) .img-fallback { display: flex; position: absolute; inset: 0; align-items: center; justify-content: center; }
+.post-registro-img .img-fallback .fb-letter { width: 56px; height: 56px; border-radius: 50%; background: rgba(37,211,102,0.15); border: 1px solid rgba(37,211,102,0.4); color: var(--leaf); font-family: 'Fraunces', serif; font-size: 1.6rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.post-registro-text .sub { font-family:'Space Mono',monospace; font-size: .72rem; color: var(--gold); font-weight: 700; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1.2px; }
+.post-registro-text h2 { font-size: 1.7rem; font-weight: 600; color: var(--ink); margin-bottom: 14px; }
+.post-registro-text p { color: var(--muted); font-size: .95rem; line-height: 1.65; margin-bottom: 12px; }
+.post-registro-text button { margin-top: 8px; }
+@media(max-width:800px){ .post-registro-box { grid-template-columns: 1fr; } .post-registro-img { max-width: 220px; margin: 0 auto; } }
+
 .omni-portal-section { padding: 10px 48px 90px; max-width: 1200px; margin: 0 auto; }
 .portal-box { 
   background: linear-gradient(135deg, rgba(45,106,79,0.08), rgba(11,15,26,0.9)); 
@@ -570,7 +584,7 @@ footer { background: #030408; border-top: 1px solid var(--line); text-align: cen
   .grid-steps, .about-grid { grid-template-columns: 1fr; gap: 24px; }
   .tutorial-section { padding: 80px 22px; }
   .step-card { padding: 32px 24px; }
-  .form-section, .omni-portal-section, .faq-section, .about-section, .why-section, .video-section, .kits-section, .results-section, .stories-section { padding-left: 22px; padding-right: 22px; }
+  .form-section, .omni-portal-section, .faq-section, .about-section, .why-section, .video-section, .kits-section, .results-section, .stories-section, .post-registro-section { padding-left: 22px; padding-right: 22px; }
   .why-grid { grid-template-columns: 1fr; }
   .how-strip { padding: 8px 22px 50px; }
   .how-strip-inner { padding: 26px 22px; }
@@ -633,7 +647,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div class="why-grid">
     <div class="why-card">
       <div class="why-card-img">
-        <img src="cliente-admirablle.png" alt="Cliente Admirable" onerror="this.classList.add('img-missing')">
+        <img src="cliente-admirable.png" alt="Cliente Admirable" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">C</span>Foto pendiente</div>
       </div>
       <a href="#" class="why-card-link" onclick="event.preventDefault(); openCountryModal('cliente');">Registrarme como Cliente Admirable ↗</a>
@@ -742,7 +756,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <span class="kit-badge">Kit inicial</span>
       <h4>Kit OMNILIFE-SEYTÚ</h4>
-      <span class="kit-price">$51.10 USD</span>
+      <span class="kit-price">$51.10</span>
       <p class="kit-desc">Combina nutrición y belleza. Ideal si querés un poco de las dos líneas para empezar.</p>
       <details class="why-accordion">
         <summary>Ver qué incluye <span class="plus">+</span></summary>
@@ -761,7 +775,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <span class="kit-badge">Kit inicial</span>
       <h4>Kit SEYTÚ</h4>
-      <span class="kit-price">$51.10 USD</span>
+      <span class="kit-price">$51.10</span>
       <p class="kit-desc">100% enfocado en belleza y cuidado facial. Ideal si tu interés principal es esa línea.</p>
       <details class="why-accordion">
         <summary>Ver qué incluye <span class="plus">+</span></summary>
@@ -780,7 +794,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <span class="kit-badge gold">500 puntos</span>
       <h4>Kit 500 Puntos Nutrición</h4>
-      <span class="kit-price">$308.00 USD</span>
+      <span class="kit-price">$308.00</span>
       <p class="kit-desc">Para quien quiere arrancar fuerte con la línea de nutrición y ya llevarse variedad de productos.</p>
       <details class="why-accordion">
         <summary>Ver qué incluye <span class="plus">+</span></summary>
@@ -799,7 +813,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <span class="kit-badge gold">500 puntos</span>
       <h4>Kit 500 Puntos Experiencia SEYTÚ</h4>
-      <span class="kit-price">$308.00 USD</span>
+      <span class="kit-price">$308.00</span>
       <p class="kit-desc">La versión completa de belleza — una rutina facial entera, no solo lo básico.</p>
       <details class="why-accordion">
         <summary>Ver qué incluye <span class="plus">+</span></summary>
@@ -866,6 +880,22 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   </div>
 </section>
 
+<section class="post-registro-section reveal">
+  <div class="post-registro-box">
+    <div class="post-registro-img">
+      <img src="registro-exitoso-poster.png" alt="Pantalla de registro exitoso en Omnilife" onerror="this.classList.add('img-missing')">
+      <div class="img-fallback"><span class="fb-letter">✓</span></div>
+    </div>
+    <div class="post-registro-text">
+      <div class="sub">// Cuando termines tu registro</div>
+      <h2>¿Te apareció esta pantalla?</h2>
+      <p>Así se ve cuando tu registro fue exitoso — te va a mostrar tu código de cliente y una contraseña.</p>
+      <p><strong>Por tu seguridad, no me envíes captura de esa pantalla</strong> (ahí sale tu contraseña). Solo escribime por WhatsApp contándome que ya completaste el registro y en qué país estás, y yo te explico cómo iniciar sesión para comprar en la web, o te paso la dirección de la CEDI más cercana a vos.</p>
+      <button type="button" class="nav-btn primary" style="padding: 14px 26px;" onclick="openRegisteredChat()">Ya completé mi registro</button>
+    </div>
+  </div>
+</section>
+
 <section class="globe-section reveal">
   <div class="globe-grid">
     <div class="globe-text">
@@ -874,7 +904,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <p class="lead">Presencia real en Latinoamérica y Europa. No estás comprando a un desconocido: es una red con trayectoria.</p>
       <div class="globe-stats">
         <div class="globe-stat"><span class="num">35+</span><span class="label">Años de trayectoria</span></div>
-        <div class="globe-stat"><span class="num">20</span><span class="label">Países con presencia</span></div>
+        <div class="globe-stat"><span class="num">18</span><span class="label">Países con presencia</span></div>
         <div class="globe-stat"><span class="num">1M+</span><span class="label">Familias beneficiadas</span></div>
         <div class="globe-stat"><span class="num">100%</span><span class="label">Respaldo oficial</span></div>
       </div>
@@ -1037,18 +1067,41 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <button id="chat-panel-close" type="button" aria-label="Cerrar">✕</button>
   </div>
   <div class="chat-panel-body">
-    <div class="chat-bubble">¡Hola! 👋 Cuéntame tu nombre y tu duda, y se abrirá tu WhatsApp con el mensaje ya listo para enviarme. Para registrarte, mejor usa el formulario completo más abajo en la página.</div>
-    <div class="chat-setup-card">
-      <div class="csc-head"><span class="dot-ic">💬</span>Escríbeme tu duda</div>
-      <div class="chat-field">
-        <label for="chat-nombre">Nombre</label>
-        <input id="chat-nombre" type="text" placeholder="Tu nombre">
+    <div class="toggle-container" style="margin-bottom: 14px;">
+      <button type="button" class="toggle-btn active" id="chat-tab-duda" onclick="setChatTab('duda')" style="padding: 10px; font-size: .78rem;">Tengo una duda</button>
+      <button type="button" class="toggle-btn" id="chat-tab-registrado" onclick="setChatTab('registrado')" style="padding: 10px; font-size: .78rem;">Ya me registré</button>
+    </div>
+
+    <div id="chat-mode-duda">
+      <div class="chat-bubble">¡Hola! 👋 Cuéntame tu nombre y tu duda, y se abrirá tu WhatsApp con el mensaje ya listo para enviarme. Para registrarte, mejor usa el formulario completo más abajo en la página.</div>
+      <div class="chat-setup-card">
+        <div class="csc-head"><span class="dot-ic">💬</span>Escríbeme tu duda</div>
+        <div class="chat-field">
+          <label for="chat-nombre">Nombre</label>
+          <input id="chat-nombre" type="text" placeholder="Tu nombre">
+        </div>
+        <div class="chat-field">
+          <label for="chat-duda">Tu duda</label>
+          <textarea id="chat-duda" placeholder="Escribe aquí tu pregunta..."></textarea>
+        </div>
+        <button id="chat-start-btn" type="button" class="chat-start-btn">Enviar duda por WhatsApp</button>
       </div>
-      <div class="chat-field">
-        <label for="chat-duda">Tu duda</label>
-        <textarea id="chat-duda" placeholder="Escribe aquí tu pregunta..."></textarea>
+    </div>
+
+    <div id="chat-mode-registrado" style="display:none;">
+      <div class="chat-bubble">¡Felicidades por dar el paso! 🎉 No hace falta que me envíes ninguna captura de tu registro (ahí sale tu contraseña, mejor no compartirla por ningún medio). Solo contame tu nombre y tu país, y te explico cómo iniciar sesión para comprar en la web o cuál es tu CEDI más cercana.</div>
+      <div class="chat-setup-card">
+        <div class="csc-head"><span class="dot-ic">✅</span>Ya completé mi registro</div>
+        <div class="chat-field">
+          <label for="chat-nombre-reg">Nombre</label>
+          <input id="chat-nombre-reg" type="text" placeholder="Tu nombre">
+        </div>
+        <div class="chat-field">
+          <label for="chat-pais-reg">Tu país</label>
+          <input id="chat-pais-reg" type="text" placeholder="Ej. Ecuador">
+        </div>
+        <button id="chat-start-btn-reg" type="button" class="chat-start-btn">Avisar que ya me registré</button>
       </div>
-      <button id="chat-start-btn" type="button" class="chat-start-btn">Enviar duda por WhatsApp</button>
     </div>
   </div>
 </div>
@@ -1148,6 +1201,31 @@ chatStartBtn.addEventListener('click', () => {
   const duda = document.getElementById('chat-duda').value.trim();
   let texto = nombre ? `Hola Hamilton, soy ${nombre}.` : 'Hola Hamilton 🙌';
   texto += duda ? ` ${duda}` : ' Tengo una duda, ¿me puedes ayudar?';
+  if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+  window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
+  chatPanel.classList.remove('open');
+});
+
+function setChatTab(tab) {
+  document.getElementById('chat-tab-duda').classList.toggle('active', tab === 'duda');
+  document.getElementById('chat-tab-registrado').classList.toggle('active', tab === 'registrado');
+  document.getElementById('chat-mode-duda').style.display = tab === 'duda' ? 'block' : 'none';
+  document.getElementById('chat-mode-registrado').style.display = tab === 'registrado' ? 'block' : 'none';
+}
+
+function openRegisteredChat() {
+  chatPanel.classList.add('open');
+  setChatTab('registrado');
+}
+
+const chatStartBtnReg = document.getElementById('chat-start-btn-reg');
+chatStartBtnReg.addEventListener('click', () => {
+  const nombre = document.getElementById('chat-nombre-reg').value.trim();
+  const pais = document.getElementById('chat-pais-reg').value.trim();
+  let texto = nombre ? `Hola Hamilton, soy ${nombre}.` : 'Hola Hamilton 🙌';
+  texto += ' Ya completé mi registro en Omnilife y me salió la pantalla de confirmación.';
+  texto += pais ? ` Estoy en ${pais}.` : '';
+  texto += ' Quiero saber cómo iniciar sesión para comprar en la página web, o cuál es la CEDI más cercana a mí.';
   if (typeof fbq !== 'undefined') fbq('track', 'Lead');
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
   chatPanel.classList.remove('open');
