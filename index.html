@@ -890,7 +890,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <div class="sub">// Cuando termines tu registro</div>
       <h2>¿Te apareció esta pantalla?</h2>
       <p>Así se ve cuando tu registro fue exitoso — te va a mostrar tu código de cliente y una contraseña.</p>
-      <p><strong>Por tu seguridad, no me envíes captura de esa pantalla</strong> (ahí sale tu contraseña). Solo escribime por WhatsApp contándome que ya completaste el registro y en qué país estás, y yo te explico cómo iniciar sesión para comprar en la web, o te paso la dirección de la CEDI más cercana a vos.</p>
+      <p>Pasame tu <strong>código de cliente</strong> por WhatsApp (ese que empieza con tu número de país) y con eso confirmo tu registro. Te explico cómo iniciar sesión para comprar en la web, o te paso la dirección de la CEDI más cercana a vos.</p>
       <button type="button" class="nav-btn primary" style="padding: 14px 26px;" onclick="openRegisteredChat()">Ya completé mi registro</button>
     </div>
   </div>
@@ -904,7 +904,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <p class="lead">Presencia real en Latinoamérica y Europa. No estás comprando a un desconocido: es una red con trayectoria.</p>
       <div class="globe-stats">
         <div class="globe-stat"><span class="num">35+</span><span class="label">Años de trayectoria</span></div>
-        <div class="globe-stat"><span class="num">18</span><span class="label">Países con presencia</span></div>
+        <div class="globe-stat"><span class="num">20</span><span class="label">Países con presencia</span></div>
         <div class="globe-stat"><span class="num">1M+</span><span class="label">Familias beneficiadas</span></div>
         <div class="globe-stat"><span class="num">100%</span><span class="label">Respaldo oficial</span></div>
       </div>
@@ -1089,7 +1089,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     </div>
 
     <div id="chat-mode-registrado" style="display:none;">
-      <div class="chat-bubble">¡Felicidades por dar el paso! 🎉 No hace falta que me envíes ninguna captura de tu registro (ahí sale tu contraseña, mejor no compartirla por ningún medio). Solo contame tu nombre y tu país, y te explico cómo iniciar sesión para comprar en la web o cuál es tu CEDI más cercana.</div>
+      <div class="chat-bubble">¡Felicidades por dar el paso! 🎉 Contame tu nombre y tu código de cliente, y te explico cómo iniciar sesión para comprar en la web o cuál es tu CEDI más cercana.</div>
       <div class="chat-setup-card">
         <div class="csc-head"><span class="dot-ic">✅</span>Ya completé mi registro</div>
         <div class="chat-field">
@@ -1097,8 +1097,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
           <input id="chat-nombre-reg" type="text" placeholder="Tu nombre">
         </div>
         <div class="chat-field">
-          <label for="chat-pais-reg">Tu país</label>
-          <input id="chat-pais-reg" type="text" placeholder="Ej. Ecuador">
+          <label for="chat-codigo-reg">Tu código de cliente</label>
+          <input id="chat-codigo-reg" type="text" placeholder="Ej. 593xxxxxxxx">
         </div>
         <button id="chat-start-btn-reg" type="button" class="chat-start-btn">Avisar que ya me registré</button>
       </div>
@@ -1221,10 +1221,10 @@ function openRegisteredChat() {
 const chatStartBtnReg = document.getElementById('chat-start-btn-reg');
 chatStartBtnReg.addEventListener('click', () => {
   const nombre = document.getElementById('chat-nombre-reg').value.trim();
-  const pais = document.getElementById('chat-pais-reg').value.trim();
+  const codigo = document.getElementById('chat-codigo-reg').value.trim();
   let texto = nombre ? `Hola Hamilton, soy ${nombre}.` : 'Hola Hamilton 🙌';
   texto += ' Ya completé mi registro en Omnilife y me salió la pantalla de confirmación.';
-  texto += pais ? ` Estoy en ${pais}.` : '';
+  texto += codigo ? ` Mi código de cliente es ${codigo}.` : '';
   texto += ' Quiero saber cómo iniciar sesión para comprar en la página web, o cuál es la CEDI más cercana a mí.';
   if (typeof fbq !== 'undefined') fbq('track', 'Lead');
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
