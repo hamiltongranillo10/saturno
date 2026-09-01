@@ -359,6 +359,31 @@ nav {
 .kit-card-link { display: block; text-align: center; padding: 10px; margin-top: 14px; background: rgba(201,166,72,0.14); border: 1px solid rgba(201,166,72,0.35); border-radius: 7px; color: var(--ink); text-decoration: none; font-size: .78rem; font-weight: 700; transition: all 0.3s ease; }
 .kit-card-link:hover { background: var(--cta-grad-hover); color: var(--blue-ink); border-color: transparent; transform: translateY(-2px); }
 @media(max-width:640px){ .kits-grid { grid-template-columns: 1fr; } }
+.kit-card-wide { grid-column: span 2; }
+.kit-card-wide .kit-card-img { aspect-ratio: 21 / 9; }
+.kit-badge.emprendedor { color: var(--ink); background: var(--cta-grad); border-color: transparent; }
+.kit-advisor-box { margin: 14px 20px 0; padding: 16px; background: rgba(201,166,72,0.08); border: 1px solid rgba(201,166,72,0.3); border-radius: 10px; }
+.kit-advisor-box p { font-size: .84rem; color: var(--muted); line-height: 1.6; margin-bottom: 10px; }
+.kit-advisor-code { font-family: 'Space Mono', monospace; color: var(--ink) !important; }
+.kit-advisor-code span { color: var(--gold); font-weight: 700; letter-spacing: .03em; }
+@media(max-width:960px){ .kit-card-wide { grid-column: span 2; } }
+@media(max-width:640px){ .kit-card-wide { grid-column: span 1; } }
+
+.printable-section { padding: 10px 48px 90px; max-width: 900px; margin: 0 auto; text-align: center; }
+.printable-wrap { display: flex; flex-direction: column; align-items: center; }
+.printable-card-frame {
+  width: 100%; max-width: 460px; aspect-ratio: 1.6 / 1; border-radius: 18px;
+  overflow: hidden; border: 1px solid var(--line); background: var(--bg-soft);
+  box-shadow: 0 25px 55px rgba(0,0,0,0.5); position: relative;
+}
+.printable-card-real { width: 100%; height: 100%; object-fit: cover; display: block; }
+.printable-card-fallback {
+  display: none; position: absolute; inset: 0; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px; padding: 24px; text-align: center; color: var(--muted); font-size: .82rem; line-height: 1.5;
+}
+.printable-card-fallback .fb-letter { font-size: 2.2rem; }
+.printable-card-fallback code { color: var(--gold); font-family: 'Space Mono', monospace; }
+@media(max-width:480px){ .printable-card-frame { max-width: 100%; } }
 
 .country-modal-overlay {
   display: none; position: fixed; inset: 0; z-index: 400;
@@ -584,7 +609,7 @@ footer { background: #030408; border-top: 1px solid var(--line); text-align: cen
   .grid-steps, .about-grid { grid-template-columns: 1fr; gap: 24px; }
   .tutorial-section { padding: 80px 22px; }
   .step-card { padding: 32px 24px; }
-  .form-section, .omni-portal-section, .faq-section, .about-section, .why-section, .video-section, .kits-section, .results-section, .stories-section, .post-registro-section { padding-left: 22px; padding-right: 22px; }
+  .form-section, .omni-portal-section, .faq-section, .about-section, .why-section, .video-section, .kits-section, .results-section, .stories-section, .post-registro-section, .printable-section { padding-left: 22px; padding-right: 22px; }
   .why-grid { grid-template-columns: 1fr; }
   .how-strip { padding: 8px 22px 50px; }
   .how-strip-inner { padding: 26px 22px; }
@@ -825,8 +850,50 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <a href="#" class="kit-card-link" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme como Afiliado ↗</a>
     </div>
 
+    <div class="kit-card kit-card-wide">
+      <div class="kit-card-img">
+        <img src="kit-emprendedor-1000.png" alt="Kit Emprendedor 1000 puntos" onerror="this.classList.add('img-missing')">
+        <div class="img-fallback"><span class="fb-letter">K</span></div>
+      </div>
+      <span class="kit-badge emprendedor">Kit Emprendedor</span>
+      <h4>Kit Emprendedor 1000 puntos</h4>
+      <span class="kit-price">Desde 1000 ptos.</span>
+      <p class="kit-desc">Para quien ya quiere invertir en volumen desde el día uno. Elegís libremente 1000+ puntos entre nutrición y belleza.*</p>
+      <details class="why-accordion">
+        <summary>Ver qué incluye <span class="plus">+</span></summary>
+        <div class="why-accordion-body">
+          <p>Afiliación gratis, 30% de descuento, hasta 3 productos de regalo, 1 Sportmixer gratis y App Mi Omninegocio gratis por 3 meses.</p>
+          <p><strong>Regalo extra:</strong> acumulando 1000 puntos adicionales a tu kit en los primeros 30 días, recibís de regalo 1 cosmetiquera SEYTÚ y un Shaker SEYTÚ.</p>
+          <p style="font-style: italic; font-size: .78rem;">*Aplican restricciones. Solo se adquiere en tienda física (CEDI) o por teléfono.</p>
+        </div>
+      </details>
+      <div class="kit-advisor-box">
+        <p>Este kit no se compra en línea — se adquiere en una CEDI o por teléfono. Para adquirirlo, escribime y te doy la dirección de la CEDI más cercana a tu ciudad.</p>
+        <p class="kit-advisor-code">Código de asesor: <span>593672828GRH</span></p>
+        <button type="button" class="kit-card-link" style="width: 100%; border: 1px solid rgba(201,166,72,0.35);" onclick="openEmprendedorChat()">Escribirme por WhatsApp</button>
+      </div>
+    </div>
+
   </div>
   <p style="text-align:center; color: var(--muted); font-size: .85rem; margin-top: 28px;">¿No estás seguro cuál elegir? Contame qué buscás y te recomiendo el que mejor se ajusta a vos.</p>
+</section>
+
+<section class="printable-section reveal">
+  <div class="section-header">
+    <div class="sub">// Para el Kit Emprendedor</div>
+    <h2>Descargá tu tarjeta con mi código</h2>
+    <p class="lead">Imprimila o guardala en tu celular y llevala a tu CEDI más cercana para adquirir el Kit Emprendedor 1000 puntos.</p>
+  </div>
+  <div class="printable-wrap">
+    <div class="printable-card-frame">
+      <img id="tarjetaImg" src="tarjeta-hamilton.png" alt="Tarjeta de asesor Hamilton Omnilife" class="printable-card-real" onerror="this.style.display='none'; document.getElementById('tarjetaFallback').style.display='flex';">
+      <div id="tarjetaFallback" class="printable-card-fallback">
+        <span class="fb-letter">🪪</span>
+        <p>Subí tu imagen como <code>tarjeta-hamilton.png</code> junto al resto de tus archivos para que aparezca acá.</p>
+      </div>
+    </div>
+    <a href="tarjeta-hamilton.png" download="tarjeta-hamilton-omnilife.png" class="nav-btn primary" style="padding: 14px 26px; margin-top: 24px; text-decoration: none;">Descargar tarjeta ↓</a>
+  </div>
 </section>
 
 <section class="video-section reveal">
@@ -904,7 +971,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <p class="lead">Presencia real en Latinoamérica y Europa. No estás comprando a un desconocido: es una red con trayectoria.</p>
       <div class="globe-stats">
         <div class="globe-stat"><span class="num">35+</span><span class="label">Años de trayectoria</span></div>
-        <div class="globe-stat"><span class="num">18</span><span class="label">Países con presencia</span></div>
+        <div class="globe-stat"><span class="num">20</span><span class="label">Países con presencia</span></div>
         <div class="globe-stat"><span class="num">1M+</span><span class="label">Familias beneficiadas</span></div>
         <div class="globe-stat"><span class="num">100%</span><span class="label">Respaldo oficial</span></div>
       </div>
@@ -1219,6 +1286,12 @@ function setChatTab(tab) {
 function openRegisteredChat() {
   chatPanel.classList.add('open');
   setChatTab('registrado');
+}
+
+function openEmprendedorChat() {
+  const texto = 'Hola Hamilton 🙌 Me interesa el Kit Emprendedor 1000 puntos. ¿Me pasas la dirección de la CEDI más cercana a mi ciudad?';
+  if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+  window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
 }
 
 const chatStartBtnReg = document.getElementById('chat-start-btn-reg');
