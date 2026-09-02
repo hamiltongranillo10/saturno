@@ -372,14 +372,14 @@ nav {
 .printable-section { padding: 10px 48px 90px; max-width: 900px; margin: 0 auto; text-align: center; }
 .printable-wrap { display: flex; flex-direction: column; align-items: center; }
 .printable-card-frame {
-  width: 100%; max-width: 460px; aspect-ratio: 1.6 / 1; border-radius: 18px;
+  width: 100%; max-width: 460px; min-height: 100px; border-radius: 18px;
   overflow: hidden; border: 1px solid var(--line); background: var(--bg-soft);
   box-shadow: 0 25px 55px rgba(0,0,0,0.5); position: relative;
 }
-.printable-card-real { width: 100%; height: 100%; object-fit: cover; display: block; }
+.printable-card-real { width: 100%; height: auto; display: block; }
 .printable-card-fallback {
-  display: none; position: absolute; inset: 0; flex-direction: column; align-items: center; justify-content: center;
-  gap: 14px; padding: 24px; text-align: center; color: var(--muted); font-size: .82rem; line-height: 1.5;
+  display: none; position: relative; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px; padding: 40px 24px; text-align: center; color: var(--muted); font-size: .82rem; line-height: 1.5;
 }
 .printable-card-fallback .fb-letter { font-size: 2.2rem; }
 .printable-card-fallback code { color: var(--gold); font-family: 'Space Mono', monospace; }
@@ -869,7 +869,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </details>
       <div class="kit-advisor-box">
         <p>Este kit no se compra en línea — se adquiere en una CEDI o por teléfono. Para adquirirlo, escribime y te doy la dirección de la CEDI más cercana a tu ciudad.</p>
-        <p class="kit-advisor-code">Código de asesor: <span>593672828GRH</span></p>
+        <p class="kit-advisor-code">Código de presentador: <span>593672828GRH</span></p>
+        <p style="font-size: .76rem; font-style: italic;">Este código no hace que el kit sea gratis ni da descuento por sí solo — identifica que yo soy tu presentador, para que puedas contar con mi asesoría en el proceso. El kit lo pagás vos mismo/a en la CEDI.</p>
         <button type="button" class="kit-card-link" style="width: 100%; border: 1px solid rgba(201,166,72,0.35);" onclick="openEmprendedorChat()">Escribirme por WhatsApp</button>
       </div>
     </div>
@@ -882,7 +883,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div class="section-header">
     <div class="sub">// Para el Kit Emprendedor</div>
     <h2>Descargá tu tarjeta con mi código</h2>
-    <p class="lead">Imprimila o guardala en tu celular y llevala a tu CEDI más cercana para adquirir el Kit Emprendedor 1000 puntos.</p>
+    <p class="lead">Guardala en tu celular y llevala a tu CEDI más cercana para adquirir el Kit Emprendedor 1000 puntos. El código identifica que yo soy tu presentador — el kit lo pagás vos en la CEDI, no es gratis ni tiene descuento por usar el código.</p>
   </div>
   <div class="printable-wrap">
     <div class="printable-card-frame">
@@ -971,7 +972,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <p class="lead">Presencia real en Latinoamérica y Europa. No estás comprando a un desconocido: es una red con trayectoria.</p>
       <div class="globe-stats">
         <div class="globe-stat"><span class="num">35+</span><span class="label">Años de trayectoria</span></div>
-        <div class="globe-stat"><span class="num">20</span><span class="label">Países con presencia</span></div>
+        <div class="globe-stat"><span class="num">18</span><span class="label">Países con presencia</span></div>
         <div class="globe-stat"><span class="num">1M+</span><span class="label">Familias beneficiadas</span></div>
         <div class="globe-stat"><span class="num">100%</span><span class="label">Respaldo oficial</span></div>
       </div>
