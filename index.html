@@ -160,7 +160,7 @@ nav {
 .video-container {
   position: relative;
   width: 100%;
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 16 / 9;
   border-radius: 12px;
   overflow: hidden;
   background: #000;
@@ -901,13 +901,13 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 </section>
 
 <section class="video-section reveal">
-  <div class="video-profile-card" style="max-width: 880px; margin: 0 auto;">
+  <div class="video-profile-card" style="max-width: 1000px; margin: 0 auto;">
     <div class="video-avatar-tag" style="background: var(--gold); color: var(--blue-ink); font-size: 0.72rem; padding: 5px 12px; border-radius: 4px; right: 16px; top: -14px;">
-      🎥 VIDEO GUÍA
+      🎥 TESTIMONIO REAL
     </div>
     
     <div class="video-container" id="videoContainer">
-      <img src="hamilton-video-poster.png" alt="Video guía de Hamilton" class="video-poster">
+      <img src="hamilton-video-poster.png" alt="Testimonio de registro paso a paso" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/MY3azjHyX2U/hqdefault.jpg';">
       
       <div class="video-overlay" onclick="loadYouTubeVideo()">
         <div class="play-button-center" id="playBtnCenter">
@@ -916,7 +916,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
     </div>
     <div class="video-caption-box">
-      <h3 style="font-size: 1.35rem; margin-top: 2px;">Sirve tanto para registrarte como Cliente Admirable o como Afiliado</h3>
+      <h3 style="font-size: 1.35rem; margin-top: 2px;">Así de fácil es registrarse — mirá a alguien haciéndolo por primera vez</h3>
+      <p style="color: var(--muted); font-size: .88rem; margin-top: 8px; line-height: 1.55;">En este video una persona que tampoco sabía cómo registrarse graba su propio procedimiento como Cliente Admirable. Para Afiliación es exactamente el mismo proceso.</p>
     </div>
   </div>
 </section>
@@ -959,7 +960,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <p class="lead">Presencia real en Latinoamérica y Europa. No estás comprando a un desconocido: es una red con trayectoria.</p>
       <div class="globe-stats">
         <div class="globe-stat"><span class="num">35+</span><span class="label">Años de trayectoria</span></div>
-        <div class="globe-stat"><span class="num">20</span><span class="label">Países con presencia</span></div>
+        <div class="globe-stat"><span class="num">18</span><span class="label">Países con presencia</span></div>
         <div class="globe-stat"><span class="num">1M+</span><span class="label">Familias beneficiadas</span></div>
         <div class="globe-stat"><span class="num">100%</span><span class="label">Respaldo oficial</span></div>
       </div>
@@ -1350,11 +1351,11 @@ function setMode(mode) {
   }
 }
 
-const YOUTUBE_VIDEO_ID = 'VeJtMiPl7_I';
+const YOUTUBE_VIDEO_ID = 'MY3azjHyX2U';
 
 function loadYouTubeVideo() {
   const container = document.getElementById('videoContainer');
-  container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1" title="Video guía de Hamilton" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1" title="Testimonio de registro paso a paso" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
 }
 
 function pauseGuideVideo() {
