@@ -145,10 +145,9 @@ nav {
   position: relative;
   box-shadow: 0 30px 60px rgba(0,0,0,0.55);
   width: 100%;
-  transition: transform 0.4s cubic-bezier(0.25,1,0.5,1), box-shadow 0.4s cubic-bezier(0.25,1,0.5,1);
+  transition: box-shadow 0.4s cubic-bezier(0.25,1,0.5,1);
 }
 .video-profile-card:hover {
-  transform: translateY(-5px) rotate(0.5deg);
   box-shadow: 0 40px 80px rgba(45,106,79,0.18);
 }
 .video-avatar-tag {
@@ -706,6 +705,28 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   </div>
 </section>
 
+<section class="video-section reveal">
+  <div class="video-profile-card" style="max-width: 1140px; margin: 0 auto;">
+    <div class="video-avatar-tag" style="background: var(--gold); color: var(--blue-ink); font-size: 0.72rem; padding: 5px 12px; border-radius: 4px; right: 16px; top: -14px;">
+      🎥 TESTIMONIO REAL
+    </div>
+    
+    <div class="video-container" id="videoContainer">
+      <img src="hamilton-video-poster.png" alt="Testimonio de registro paso a paso" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/MY3azjHyX2U/hqdefault.jpg';">
+      
+      <div class="video-overlay" onclick="loadYouTubeVideo()">
+        <div class="play-button-center" id="playBtnCenter">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="video-caption-box">
+      <h3 style="font-size: 1.35rem; margin-top: 2px;">Así de fácil es registrarse — mirá a alguien haciéndolo por primera vez</h3>
+      <p style="color: var(--muted); font-size: .88rem; margin-top: 8px; line-height: 1.55;">En este video una persona que tampoco sabía cómo registrarse graba su propio procedimiento como Cliente Admirable. Para Afiliación es exactamente el mismo proceso.</p>
+    </div>
+  </div>
+</section>
+
 <section class="results-section reveal">
   <div class="section-header">
     <div class="sub">// Resultados reales</div>
@@ -898,30 +919,6 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <button type="button" class="nav-btn primary" style="padding: 14px 26px; margin-top: 24px;" onclick="descargarTarjetaImg()">Descargar tarjeta ↓</button>
     <p class="printable-hint">¿Estás dentro de TikTok, Instagram o Facebook y no descarga? Esas apps a veces bloquean las descargas. Mantené presionada la imagen de arriba y elegí <strong>"Guardar imagen"</strong>, o abrí este enlace en Chrome/Safari (tres puntitos ⋮ arriba a la derecha → "Abrir en el navegador").</p>
   </div>
-</section>
-
-<section class="video-section reveal">
-  <div class="video-profile-card" style="max-width: 1000px; margin: 0 auto;">
-    <div class="video-avatar-tag" style="background: var(--gold); color: var(--blue-ink); font-size: 0.72rem; padding: 5px 12px; border-radius: 4px; right: 16px; top: -14px;">
-      🎥 TESTIMONIO REAL
-    </div>
-    
-    <div class="video-container" id="videoContainer">
-      <img src="hamilton-video-poster.png" alt="Testimonio de registro paso a paso" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/MY3azjHyX2U/hqdefault.jpg';">
-      
-      <div class="video-overlay" onclick="loadYouTubeVideo()">
-        <div class="play-button-center" id="playBtnCenter">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-      </div>
-    </div>
-    <div class="video-caption-box">
-      <h3 style="font-size: 1.35rem; margin-top: 2px;">Así de fácil es registrarse — mirá a alguien haciéndolo por primera vez</h3>
-      <p style="color: var(--muted); font-size: .88rem; margin-top: 8px; line-height: 1.55;">En este video una persona que tampoco sabía cómo registrarse graba su propio procedimiento como Cliente Admirable. Para Afiliación es exactamente el mismo proceso.</p>
-    </div>
-  </div>
-</section>
-
 </section>
 
 <section id="tutorial" class="tutorial-section reveal">
