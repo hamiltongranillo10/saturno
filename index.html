@@ -251,6 +251,12 @@ nav {
   .globe-marker .pulse { animation-duration: 3s; }
 }
 
+.hero-photo-wrap { display: flex; flex-direction: column; }
+.hero-photo-caption { padding: 18px 4px 4px; }
+.hero-photo-caption h3 { font-family: 'Fraunces', serif; font-size: 1.4rem; color: var(--ink); margin-bottom: 4px; }
+.hero-photo-caption .role { font-size: 0.85rem; color: var(--gold); font-weight: 500; margin-bottom: 10px; }
+.hero-photo-caption p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+
 .value-strip { max-width: 1200px; margin: 0 auto; padding: 0 48px 90px; }
 .value-grid { display:grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--line); border-radius: 14px; overflow:hidden; border:1px solid var(--line); }
 .value-item { background: var(--bg-soft); padding: 28px 24px; transition: background-color 0.3s ease, transform 0.3s cubic-bezier(0.25,1,0.5,1); }
@@ -658,7 +664,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   </div>
 </nav>
 
-<section class="hero" style="grid-template-columns: 1fr; max-width: 820px; text-align: left;">
+<section class="hero">
   <div>
     <div class="hero-tag animated-hero-text d1"><span class="dot"></span>Guía clara para empezar hoy</div>
     <h1 class="animated-hero-text d2">La decisión que cambió la vida de miles, <span class="accent">ahora está a un registro de la tuya</span>.</h1>
@@ -666,6 +672,17 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <div class="hero-buttons animated-hero-text d4">
       <a href="#" class="nav-btn primary" style="padding: 16px 28px;" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme para descuento</a>
       <a href="#" class="nav-btn secondary" style="padding: 16px 28px;" onclick="event.preventDefault(); openCountryModal('cliente');">Registrarme como Cliente Admirable</a>
+    </div>
+  </div>
+  <div class="hero-photo-wrap animated-hero-card">
+    <div class="about-photo-frame">
+      <div class="about-ribbon">Empresario</div>
+      <img src="Hamilton.jpg" alt="Hamilton Granillo - Distribuidor Independiente Omnilife">
+    </div>
+    <div class="hero-photo-caption">
+      <h3>Hamilton Granillo</h3>
+      <p class="role">Distribuidor Independiente Omnilife</p>
+      <p>Te acompaño personalmente desde tu registro hasta tu primera compra, sin enredos ni letra pequeña.</p>
     </div>
   </div>
 </section>
