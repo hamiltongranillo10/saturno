@@ -1228,9 +1228,10 @@ function countryLink(country, type) {
 function buildCountryGrid(type) {
   const container = document.getElementById(type === "cliente" ? "countryGridCliente" : "countryGridAfiliado");
   if (!container) return;
+  const label = type === "cliente" ? "Cliente Admirable" : "Afiliación";
   container.innerHTML = COUNTRIES.map((c) => {
     const url = countryLink(c, type);
-    return `<a href="${url}" target="_blank" rel="noopener" class="country-flag-btn" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');"><span class="em">${c.flag}</span>${c.name}</a>`;
+    return `<a href="${url}" target="_blank" rel="noopener" class="country-flag-btn" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead', {content_name: '${label}', content_category: 'Registro país'});"><span class="em">${c.flag}</span>${c.name}</a>`;
   }).join("");
 }
 buildCountryGrid("cliente");
@@ -1238,9 +1239,10 @@ buildCountryGrid("afiliado");
 
 function buildPortalGrid(type) {
   const container = document.getElementById("countryGridPortal");
+  const label = type === "cliente" ? "Cliente Admirable" : "Afiliación";
   container.innerHTML = COUNTRIES.map((c) => {
     const url = countryLink(c, type);
-    return `<a href="${url}" target="_blank" rel="noopener" class="country-flag-btn" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead');"><span class="em">${c.flag}</span>${c.name}</a>`;
+    return `<a href="${url}" target="_blank" rel="noopener" class="country-flag-btn" onclick="if (typeof fbq !== 'undefined') fbq('track', 'Lead', {content_name: '${label}', content_category: 'Portal oficial'});"><span class="em">${c.flag}</span>${c.name}</a>`;
   }).join("");
 }
 function setPortalTab(type) {
@@ -1277,7 +1279,7 @@ chatStartBtn.addEventListener('click', () => {
   const duda = document.getElementById('chat-duda').value.trim();
   let texto = nombre ? `Hola Hamilton, soy ${nombre}.` : 'Hola Hamilton 🙌';
   texto += duda ? ` ${duda}` : ' Tengo una duda, ¿me puedes ayudar?';
-  if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+  if (typeof fbq !== 'undefined') fbq('track', 'Lead', {content_name: 'Duda por WhatsApp', content_category: 'Chat widget'});
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
   chatPanel.classList.remove('open');
 });
@@ -1296,7 +1298,7 @@ function openRegisteredChat() {
 
 function openEmprendedorChat() {
   const texto = 'Hola Hamilton 🙌 Me interesa el Kit Emprendedor 1000 puntos. ¿Me pasas la dirección de la CEDI más cercana a mi ciudad?';
-  if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+  if (typeof fbq !== 'undefined') fbq('track', 'Lead', {content_name: 'Kit Emprendedor', content_category: 'CEDI'});
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
 }
 
@@ -1328,7 +1330,7 @@ chatStartBtnReg.addEventListener('click', () => {
   texto += ' Ya completé mi registro en Omnilife y me salió la pantalla de confirmación.';
   texto += codigo ? ` Mi código de cliente es ${codigo}.` : '';
   texto += ' Quiero saber cómo iniciar sesión para comprar en la página web, o cuál es la CEDI más cercana a mí.';
-  if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+  if (typeof fbq !== 'undefined') fbq('track', 'CompleteRegistration', {content_name: 'Confirmación de registro', status: true});
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
   chatPanel.classList.remove('open');
 });
@@ -1427,6 +1429,20 @@ document.querySelectorAll('.faq-section .faq-item').forEach((item) => {
   });
 });
 
+/* Pixel: cuando alguien abre "Ver qué incluye" en un kit, es interés real
+   aunque no llegue a escribir — lo marcamos como ViewContent (una sola vez
+   por kit, para no repetir el evento si lo abren y cierran varias veces). */
+document.querySelectorAll('.kit-card .why-accordion').forEach((acc) => {
+  acc.addEventListener('toggle', () => {
+    if (acc.open && !acc.dataset.tracked) {
+      acc.dataset.tracked = '1';
+      const card = acc.closest('.kit-card');
+      const name = card ? card.querySelector('h4')?.textContent.trim() : 'Kit';
+      if (typeof fbq !== 'undefined') fbq('track', 'ViewContent', {content_name: name, content_category: 'Kit'});
+    }
+  });
+});
+
 function scrollStories(direction) {
   pauseAllStoryVideos();
   const carousel = document.getElementById('storiesCarousel');
@@ -1457,7 +1473,7 @@ function sendToWhatsApp(event) {
   const mensaje = document.getElementById('lead-mensaje').value.trim();
   const tipo = currentMode === 'consumo' ? "Cliente Admirable" : "Afiliación de Distribuidor";
   let texto = `Hola Hamilton, estuve en tu página y me interesa registrarme.\n\n• *Nombre:* ${nombre}\n• *Ubicación:* ${ciudad}\n• *Tipo:* ${tipo}\n• *Mensaje:* ${mensaje}`;
-  if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+  if (typeof fbq !== 'undefined') fbq('track', 'Lead', {content_name: tipo, content_category: 'Formulario principal'});
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
 }
 
