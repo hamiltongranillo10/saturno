@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hamilton R. | Equipo de Emprendimiento Omnilife</title>
+<meta name="description" content="Regístrate en Omnilife con la asesoría personalizada de Hamilton Granillo — gratis como Cliente Admirable, o con Afiliación y descuentos del 25% al 40%. Proceso guiado paso a paso.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hamilton R. | Equipo de Emprendimiento Omnilife">
+<meta property="og:description" content="Regístrate en Omnilife con asesoría personalizada — Cliente Admirable gratis o Afiliación con descuentos del 25% al 40%.">
+<meta property="og:image" content="Hamilton.jpg">
+<meta property="og:url" content="https://hamiltonnetworker.com">
+<meta property="og:locale" content="es_EC">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hamilton R. | Equipo de Emprendimiento Omnilife">
+<meta name="twitter:description" content="Regístrate en Omnilife con asesoría personalizada — Cliente Admirable gratis o Afiliación con descuentos del 25% al 40%.">
+<meta name="twitter:image" content="Hamilton.jpg">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -103,6 +114,19 @@ nav {
   padding: 18px 48px; background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(18px); border-bottom: 1px solid var(--line);
 }
+
+.sticky-cta {
+  position: fixed; left: 0; right: 0; z-index: 190;
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  flex-wrap: wrap; padding: 12px 20px;
+  background: rgba(255,255,255,0.94); backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line); box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  transform: translateY(-120%); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+}
+.sticky-cta.visible { transform: translateY(0); }
+.sticky-cta span { font-size: .88rem; font-weight: 600; color: var(--ink); text-align: center; }
+.sticky-cta .nav-btn { padding: 10px 20px; font-size: .82rem; }
+@media(max-width:640px){ .sticky-cta span { display: none; } }
 .logo { display:flex; align-items:center; font-size: 1.15rem; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; }
 .logo em { color: var(--blue); font-style: normal; font-family:'Fraunces',serif; }
 .logo span { font-family:'Space Mono',monospace; font-size: .62rem; color: var(--bg); background: var(--leaf); padding: 4px 8px; border-radius: 3px; margin-left: 12px; font-weight: 700; text-transform:uppercase; }
@@ -698,6 +722,11 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   </div>
 </nav>
 
+<div id="stickyCta" class="sticky-cta">
+  <span>¿Ya decidiste? Te ayudo a registrarte ahora mismo.</span>
+  <a href="#registro" class="nav-btn primary">Registrarme</a>
+</div>
+
 <section class="hero">
   <div>
     <div class="hero-tag animated-hero-text d1"><span class="dot"></span>Guía clara para empezar hoy</div>
@@ -1105,8 +1134,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
         <input id="lead-ciudad" type="text" class="form-input" placeholder="Ej. Guayaquil, Ecuador" required>
       </div>
       <div class="form-group">
-        <label class="form-label" id="mensaje-label">¿En qué te ayudo? (Procedimiento, dudas o productos)</label>
-        <textarea id="lead-mensaje" class="form-textarea" placeholder="Ej. Quiero saber cómo registrarme como Cliente Admirable y qué productos me recomiendas..." required></textarea>
+        <label class="form-label" id="mensaje-label">¿En qué te ayudo? <span style="font-weight: 400; opacity: .7;">(opcional)</span></label>
+        <textarea id="lead-mensaje" class="form-textarea" placeholder="Ej. Quiero saber cómo registrarme como Cliente Admirable y qué productos me recomiendas..."></textarea>
       </div>
       <button type="submit" class="action-btn" id="submit-btn">Solicitar información de Cliente Admirable</button>
       <p class="form-microcopy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Sin costo por la asesoría, sin compra mínima obligatoria</p>
@@ -1538,7 +1567,8 @@ function sendToWhatsApp(event) {
   const ciudad = document.getElementById('lead-ciudad').value.trim();
   const mensaje = document.getElementById('lead-mensaje').value.trim();
   const tipo = currentMode === 'consumo' ? "Cliente Admirable" : "Afiliación de Distribuidor";
-  let texto = `Hola Hamilton, estuve en tu página y me interesa registrarme.\n\n• *Nombre:* ${nombre}\n• *Ubicación:* ${ciudad}\n• *Tipo:* ${tipo}\n• *Mensaje:* ${mensaje}`;
+  let texto = `Hola Hamilton, estuve en tu página y me interesa registrarme.\n\n• *Nombre:* ${nombre}\n• *Ubicación:* ${ciudad}\n• *Tipo:* ${tipo}`;
+  texto += mensaje ? `\n• *Mensaje:* ${mensaje}` : '';
   if (typeof fbq !== 'undefined') fbq('track', 'Lead', {content_name: tipo, content_category: 'Formulario principal'});
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
 }
@@ -1554,6 +1584,41 @@ if (globeSphere) {
   }, { threshold: 0.01 });
   globeObserver.observe(globeSphere);
 }
+
+/* Barra fija de "Registrarme" — aparece apenas se sale del hero y se
+   esconde de nuevo al llegar al formulario real, para que el registro
+   esté siempre a un clic sin importar cuánto se haya bajado en la página.
+   Usa dos IntersectionObserver en vez de escuchar el scroll, así que
+   no le cuesta nada al rendimiento. */
+(function () {
+  const stickyCta = document.getElementById('stickyCta');
+  const navEl = document.querySelector('nav');
+  const heroEl = document.querySelector('.hero');
+  const formEl = document.getElementById('registro');
+  if (!stickyCta || !navEl || !heroEl || !formEl) return;
+
+  function positionStickyCta() {
+    stickyCta.style.top = navEl.offsetHeight + 'px';
+  }
+  positionStickyCta();
+  window.addEventListener('resize', positionStickyCta);
+
+  let heroVisible = true;
+  let formVisible = false;
+  function updateStickyCta() {
+    stickyCta.classList.toggle('visible', !heroVisible && !formVisible);
+  }
+
+  new IntersectionObserver((entries) => {
+    heroVisible = entries[0].isIntersecting;
+    updateStickyCta();
+  }, { threshold: 0 }).observe(heroEl);
+
+  new IntersectionObserver((entries) => {
+    formVisible = entries[0].isIntersecting;
+    updateStickyCta();
+  }, { threshold: 0.15 }).observe(formEl);
+})();
 
 const revealElements = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
