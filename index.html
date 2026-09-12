@@ -454,7 +454,7 @@ nav {
 
 .omni-portal-section { padding: 10px 48px 90px; max-width: 1200px; margin: 0 auto; }
 .portal-box { 
-  background: linear-gradient(135deg, rgba(45,106,79,0.08), rgba(11,15,26,0.9)); 
+  background: linear-gradient(135deg, rgba(26,67,49,0.06), rgba(26,67,49,0.02)); 
   border: 1px solid rgba(45,106,79,0.25); 
   border-radius: 18px; padding: 54px 44px; text-align: center; 
   position: relative; overflow: hidden;
@@ -1019,6 +1019,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   </div>
 </section>
 
+</div>
+
 <section class="about-section reveal">
   <div class="about-grid">
     <div class="about-photo-frame">
@@ -1107,7 +1109,6 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <p>&copy; 2026 Hamilton Granillo. Todos los derechos reservados.<br>
   <span style="font-size: 0.75rem; opacity: 0.6;">Este sitio corresponde a un Emprendedor Independiente y no es la página institucional de Omnilife.</span></p>
 </footer>
-</div>
 
 <div id="modal-cliente" class="country-modal-overlay" onclick="if(event.target===this) closeCountryModal('cliente')">
   <div class="country-modal">
@@ -1426,10 +1427,16 @@ function pauseAllStoryVideos() {
   });
 }
 
-/* Pausa cualquier historia sonando apenas el carrusel sale de la vista al hacer scroll de la página. */
+/* Pausa cualquier historia sonando apenas el carrusel sale de la vista al hacer scroll de la página,
+   y ahí mismo controlamos el deslizamiento automático (solo corre mientras el carrusel está en pantalla). */
 const storiesObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    if (!entry.isIntersecting) pauseAllStoryVideos();
+    if (!entry.isIntersecting) {
+      pauseAllStoryVideos();
+      stopStoriesAutoSlide();
+    } else {
+      startStoriesAutoSlide();
+    }
   });
 }, { threshold: 0.1 });
 const storiesCarouselEl = document.getElementById('storiesCarousel');
@@ -1465,6 +1472,39 @@ function scrollStories(direction) {
   const carousel = document.getElementById('storiesCarousel');
   const cardWidth = carousel.querySelector('.story-card').offsetWidth + 22;
   carousel.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
+}
+
+/* Deslizamiento automático del carrusel de historias.
+   Usa scrollTo/scrollBy nativos (el navegador se encarga de la animación,
+   acelerada por GPU) en vez de un loop propio en JS, así que no le cuesta
+   nada al rendimiento de la página. Solo corre mientras el carrusel está
+   visible en pantalla (lo controla el observer de arriba), se detiene si
+   hay un video reproduciéndose, y se pausa apenas el usuario toca o pasa
+   el mouse por encima para no pelearse con su gesto. */
+let storiesAutoTimer = null;
+function stopStoriesAutoSlide() {
+  if (storiesAutoTimer) { clearInterval(storiesAutoTimer); storiesAutoTimer = null; }
+}
+function startStoriesAutoSlide() {
+  if (storiesAutoTimer) return;
+  storiesAutoTimer = setInterval(() => {
+    if (document.querySelector('#storiesCarousel iframe')) return;
+    const carousel = document.getElementById('storiesCarousel');
+    if (!carousel) return;
+    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+    if (carousel.scrollLeft >= maxScroll - 10) {
+      carousel.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      scrollStories(1);
+    }
+  }, 4500);
+}
+const storiesWrapEl = document.querySelector('.stories-carousel-wrap');
+if (storiesWrapEl) {
+  storiesWrapEl.addEventListener('mouseenter', stopStoriesAutoSlide);
+  storiesWrapEl.addEventListener('mouseleave', startStoriesAutoSlide);
+  storiesWrapEl.addEventListener('touchstart', stopStoriesAutoSlide, { passive: true });
+  storiesWrapEl.addEventListener('touchend', () => { clearTimeout(storiesWrapEl._resumeTimer); storiesWrapEl._resumeTimer = setTimeout(startStoriesAutoSlide, 3500); }, { passive: true });
 }
 
 /* Si el usuario desliza el carrusel arrastrando/con el dedo (no con las flechas),
