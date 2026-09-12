@@ -636,8 +636,10 @@ footer { background: var(--bg); border-top: 1px solid var(--line); text-align: c
 @media(max-width:480px){ .chat-panel { right: 16px; bottom: 88px; } .chat-pill { right: 16px; bottom: 18px; } }
 
 @media(max-width:960px){
-  nav { padding: 14px 20px; }
-  .nav-links { display: none; }
+  nav { padding: 12px 14px; flex-wrap: wrap; gap: 8px; row-gap: 8px; }
+  .logo span { display: none; }
+  .nav-links { display: flex; gap: 8px; margin-left: auto; }
+  nav .nav-btn { padding: 9px 14px; font-size: .76rem; }
   .hero { grid-template-columns: 1fr; padding: 110px 22px 40px; gap: 40px; }
   .cat-grid { grid-template-columns: 1fr 1fr; }
   .grid-steps, .about-grid { grid-template-columns: 1fr; gap: 24px; }
@@ -650,6 +652,10 @@ footer { background: var(--bg); border-top: 1px solid var(--line); text-align: c
   .how-row { grid-template-columns: 1fr; gap: 22px; }
   .how-node { padding: 0 !important; }
   .how-node:not(:last-child)::after { display: none; }
+}
+@media(max-width:400px){
+  nav .nav-btn { padding: 8px 10px; font-size: .68rem; }
+  .logo { font-size: 1rem; }
 }
 @media(max-width:560px){ .value-grid, .cat-grid { grid-template-columns: 1fr; } }
 </style>
@@ -1462,6 +1468,18 @@ document.querySelectorAll('.kit-card .why-accordion').forEach((acc) => {
     }
   });
 });
+
+/* "Ver qué incluye" de cada kit se abre solo al llegar con el scroll,
+   y se cierra solo al seguir deslizando y salir de la vista. */
+const kitAccordionsEls = document.querySelectorAll('.kit-card .why-accordion');
+if (kitAccordionsEls.length) {
+  const kitAccordionObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      entry.target.open = entry.isIntersecting;
+    });
+  }, { threshold: 0.4 });
+  kitAccordionsEls.forEach((acc) => kitAccordionObserver.observe(acc));
+}
 
 function scrollStories(direction) {
   pauseAllStoryVideos();
