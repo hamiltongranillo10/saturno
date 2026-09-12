@@ -234,60 +234,8 @@ nav {
 }
 .presentador-alert strong { color: var(--gold); }
 
-/* SECCIÓN GLOBO — ALCANCE GLOBAL */
-.globe-section { padding: 20px 48px 100px; max-width: 1200px; margin: 0 auto; }
-.globe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-.globe-text .sub { font-family:'Space Mono',monospace; font-size: .72rem; color: var(--gold); font-weight: 700; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1.5px; }
-.globe-text h2 { font-size: 2rem; font-weight: 600; color: var(--ink); margin-bottom: 16px; line-height: 1.25; }
-.globe-text p.lead { color: var(--muted); font-size: 1rem; line-height: 1.7; max-width: 46ch; }
-.globe-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; margin-top: 36px; }
-.globe-stat .num { font-family: 'Fraunces', serif; font-size: 2.1rem; font-weight: 600; color: var(--gold); display: block; line-height: 1; margin-bottom: 6px; }
-.globe-stat .label { font-size: .82rem; color: var(--muted); }
-
-.globe-visual { display: flex; justify-content: center; perspective: 900px; }
-.globe-sphere {
-  position: relative; width: 320px; height: 320px;
-  transform-style: preserve-3d;
-  animation: globeSpin 16s linear infinite;
-}
-@keyframes globeSpin { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
-.globe-core {
-  position: absolute; inset: 0; border-radius: 50%;
-  background: radial-gradient(circle at 32% 28%, rgba(45,106,79,0.55), #06080D 72%);
-  box-shadow: inset -30px -30px 70px rgba(0,0,0,0.6), inset 12px 12px 40px rgba(45,106,79,0.18), 0 0 90px rgba(45,106,79,0.28);
-  border: 1px solid rgba(45,106,79,0.4);
-}
-.globe-meridian {
-  position: absolute; inset: 0; border: 1px solid rgba(201,166,72,0.22); border-radius: 50%;
-  transform-style: preserve-3d;
-}
-.globe-marker {
-  position: absolute; top: 50%; left: 50%; width: 10px; height: 10px; margin: -5px;
-  transform-style: preserve-3d; backface-visibility: hidden;
-}
-.globe-marker .dot { position: absolute; inset: 0; background: var(--gold); border-radius: 50%; box-shadow: 0 0 10px rgba(201,166,72,0.85); }
-.globe-marker .pulse { position: absolute; inset: -6px; border-radius: 50%; border: 1px solid var(--gold); animation: markerPulse 2.4s ease-out infinite; }
-.globe-marker .flag-chip {
-  position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
-  display: flex; align-items: center; gap: 5px; white-space: nowrap;
-  background: rgba(6,8,13,0.85); border: 1px solid rgba(201,166,72,0.35);
-  padding: 3px 9px 3px 6px; border-radius: 20px;
-  font-family: 'Space Mono', monospace; font-size: .68rem; color: var(--ink);
-  backdrop-filter: blur(4px);
-}
-.globe-marker .flag-chip .em { font-size: .9rem; line-height: 1; }
-@keyframes markerPulse { 0% { transform: scale(0.6); opacity: 0.85; } 100% { transform: scale(2.4); opacity: 0; } }
 @media(min-width:1400px){
   .hero { max-width: 1440px; grid-template-columns: 1fr 580px; }
-}
-
-@media(max-width:960px){ .globe-grid { grid-template-columns: 1fr; gap: 40px; } .globe-visual { order: -1; } }
-@media(max-width:640px){
-  .globe-sphere { width: 240px; height: 240px; animation-duration: 22s; }
-  .globe-marker { transform-origin: center; }
-  .globe-marker .flag-chip { backdrop-filter: none; background: rgba(6,8,13,0.95); font-size: .62rem; padding: 2px 7px 2px 5px; }
-  .globe-core { box-shadow: inset -18px -18px 40px rgba(0,0,0,0.6), 0 0 40px rgba(45,106,79,0.22); }
-  .globe-marker .pulse { animation-duration: 3s; }
 }
 
 .hero-photo-wrap { display: flex; flex-direction: column; }
@@ -398,6 +346,16 @@ nav {
 .stories-arrow:hover { background: var(--cta-grad); border-color: transparent; color: #fff; }
 @media(max-width:640px){ .stories-arrow { display: none; } }
 .kits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.kits-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+.kit-row { background: var(--glass); border: 1px solid var(--line); border-radius: 14px; padding: 16px 20px; transition: all 0.3s cubic-bezier(0.25,1,0.5,1); }
+.kit-row:hover { border-color: rgba(45,106,79,0.5); background: rgba(255,255,255,0.05); }
+.kit-row-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+.kit-row-info { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.kit-row-info h4 { font-size: 1rem; font-weight: 700; color: var(--ink); font-family: 'Inter', sans-serif; }
+.kit-row .kit-price { font-size: 1.05rem; margin-bottom: 0; white-space: nowrap; }
+.kit-row .why-accordion { margin-top: 8px; padding-top: 0; border-top: none; }
+.kit-row .why-accordion summary { padding: 8px 2px; font-size: .82rem; }
+@media(max-width:560px){ .kit-row-head { align-items: flex-start; } }
 .kit-card { background: var(--glass); border: 1px solid var(--line); border-radius: 14px; padding: 0 0 24px; display: flex; flex-direction: column; overflow: hidden; transition: all 0.4s cubic-bezier(0.25,1,0.5,1); }
 .kit-card:hover { transform: translateY(-6px); border-color: rgba(45,106,79,0.5); background: rgba(255,255,255,0.05); box-shadow: 0 15px 30px rgba(0,0,0,0.35); }
 .kit-card-img { width: 100%; aspect-ratio: 1 / 1; background: var(--bg-soft); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
@@ -897,84 +855,87 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <h2>Elige el kit con el que empiezas</h2>
     <p class="lead">Todos activan tu afiliación y descuento. La diferencia está en el enfoque y el contenido — te ayudo a elegir el que más te conviene.</p>
   </div>
-  <div class="kits-grid">
+  <div class="kits-list">
 
-    <div class="kit-card">
-      <div class="kit-card-img">
-        <img src="kit-omnilife-seytu.png" alt="Kit OMNILIFE-SEYTÚ" onerror="this.classList.add('img-missing')">
-        <div class="img-fallback"><span class="fb-letter">O</span></div>
+    <div class="kit-row">
+      <div class="kit-row-head">
+        <div class="kit-row-info">
+          <span class="kit-badge">Kit inicial</span>
+          <h4>Kit OMNILIFE-SEYTÚ</h4>
+        </div>
+        <span class="kit-price">$51.10 USD</span>
       </div>
-      <span class="kit-badge">Kit inicial</span>
-      <h4>Kit OMNILIFE-SEYTÚ</h4>
-      <span class="kit-price">$51.10 USD</span>
-      <p class="kit-desc">Combina nutrición y belleza. Ideal si querés un poco de las dos líneas para empezar.</p>
       <details class="why-accordion">
-        <summary>Ver qué incluye <span class="accordion-hint-wrap"><span class="accordion-hint">👉</span><span class="plus">+</span></span></summary>
+        <summary>Ver detalle <span class="accordion-hint-wrap"><span class="accordion-hint">👉</span><span class="plus">+</span></span></summary>
         <div class="why-accordion-body">
+          <p>Combina nutrición y belleza. Ideal si querés un poco de las dos líneas para empezar.</p>
           <p>Mochila Bimarca, Guía OMNILIFE-SEYTÚ, Biocros Supreme, Espuma Limpiadora Facial y Dossier de bienvenida.</p>
           <p><strong>Regalos por tus compras en los primeros 90 días:</strong> día 1-30 acumulás 100 ptos. y recibís 1 Teatino (o Suero Contorno de Ojos, o Espuma Limpiadora Facial); día 31-60, 150 ptos. y 1 Fiber'N Plus (o Suero Facial + Desmaquillante); día 61-90, 200 ptos. y 1 Omniplus (o Omniplus Gel Premium + Protector Solar Facial).</p>
+          <a href="#" class="kit-card-link" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme como Afiliado ↗</a>
         </div>
       </details>
-      <a href="#" class="kit-card-link" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme como Afiliado ↗</a>
     </div>
 
-    <div class="kit-card">
-      <div class="kit-card-img">
-        <img src="kit-seytu.png" alt="Kit SEYTÚ" onerror="this.classList.add('img-missing')">
-        <div class="img-fallback"><span class="fb-letter">S</span></div>
+    <div class="kit-row">
+      <div class="kit-row-head">
+        <div class="kit-row-info">
+          <span class="kit-badge">Kit inicial</span>
+          <h4>Kit SEYTÚ</h4>
+        </div>
+        <span class="kit-price">$51.10 USD</span>
       </div>
-      <span class="kit-badge">Kit inicial</span>
-      <h4>Kit SEYTÚ</h4>
-      <span class="kit-price">$51.10 USD</span>
-      <p class="kit-desc">100% enfocado en belleza y cuidado facial. Ideal si tu interés principal es esa línea.</p>
       <details class="why-accordion">
-        <summary>Ver qué incluye <span class="accordion-hint-wrap"><span class="accordion-hint">👉</span><span class="plus">+</span></span></summary>
+        <summary>Ver detalle <span class="accordion-hint-wrap"><span class="accordion-hint">👉</span><span class="plus">+</span></span></summary>
         <div class="why-accordion-body">
+          <p>100% enfocado en belleza y cuidado facial. Ideal si tu interés principal es esa línea.</p>
           <p>Bolsa tornasol, Guía OMNILIFE-SEYTÚ, Máscara de pestañas, Espuma limpiadora facial, Desmaquillante de ojos y Brillo labial.</p>
           <p><strong>Regalos por tus compras en los primeros 90 días:</strong> mismo esquema que el kit anterior — día 1-30, 31-60 y 61-90 con productos de regalo según los puntos que acumules.</p>
+          <a href="#" class="kit-card-link" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme como Afiliado ↗</a>
         </div>
       </details>
-      <a href="#" class="kit-card-link" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme como Afiliado ↗</a>
     </div>
 
-    <div class="kit-card">
-      <div class="kit-card-img">
-        <img src="kit-500-nutricion.png" alt="Kit 500 Puntos Nutrición" onerror="this.classList.add('img-missing')">
-        <div class="img-fallback"><span class="fb-letter">N</span></div>
+    <div class="kit-row">
+      <div class="kit-row-head">
+        <div class="kit-row-info">
+          <span class="kit-badge gold">500 puntos</span>
+          <h4>Kit 500 Puntos Nutrición</h4>
+        </div>
+        <span class="kit-price">$308.00 USD</span>
       </div>
-      <span class="kit-badge gold">500 puntos</span>
-      <h4>Kit 500 Puntos Nutrición</h4>
-      <span class="kit-price">$308.00 USD</span>
-      <p class="kit-desc">Para quien quiere arrancar fuerte con la línea de nutrición y ya llevarse variedad de productos.</p>
       <details class="why-accordion">
-        <summary>Ver qué incluye <span class="accordion-hint-wrap"><span class="accordion-hint">👉</span><span class="plus">+</span></span></summary>
+        <summary>Ver detalle <span class="accordion-hint-wrap"><span class="accordion-hint">👉</span><span class="plus">+</span></span></summary>
         <div class="why-accordion-body">
+          <p>Para quien quiere arrancar fuerte con la línea de nutrición y ya llevarse variedad de productos.</p>
           <p>Biocros Supreme, Ego Life, Power Maker, Teatino Limón, Omniplus Frutas, Fiber'n Plus, Optimus, Cafezzino, Guía OMNILIFE-SEYTÚ, Bolsa Reutilizable y 3 productos de regalo adicionales.</p>
           <p><strong>Regalo extra:</strong> si en tus primeros 30 días acumulás 500 puntos adicionales a tu kit, recibís 1 Sportmixer Omnilife y la App Mi Omninegocio gratis por 3 meses.</p>
+          <a href="#" class="kit-card-link" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme como Afiliado ↗</a>
         </div>
       </details>
-      <a href="#" class="kit-card-link" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme como Afiliado ↗</a>
     </div>
 
-    <div class="kit-card">
-      <div class="kit-card-img">
-        <img src="kit-500-experiencia-seytu.png" alt="Kit 500 Puntos Experiencia SEYTÚ" onerror="this.classList.add('img-missing')">
-        <div class="img-fallback"><span class="fb-letter">E</span></div>
+    <div class="kit-row">
+      <div class="kit-row-head">
+        <div class="kit-row-info">
+          <span class="kit-badge gold">500 puntos</span>
+          <h4>Kit 500 Puntos Experiencia SEYTÚ</h4>
+        </div>
+        <span class="kit-price">$308.00 USD</span>
       </div>
-      <span class="kit-badge gold">500 puntos</span>
-      <h4>Kit 500 Puntos Experiencia SEYTÚ</h4>
-      <span class="kit-price">$308.00 USD</span>
-      <p class="kit-desc">La versión completa de belleza — una rutina facial entera, no solo lo básico.</p>
       <details class="why-accordion">
-        <summary>Ver qué incluye <span class="accordion-hint-wrap"><span class="accordion-hint">👉</span><span class="plus">+</span></span></summary>
+        <summary>Ver detalle <span class="accordion-hint-wrap"><span class="accordion-hint">👉</span><span class="plus">+</span></span></summary>
         <div class="why-accordion-body">
+          <p>La versión completa de belleza — una rutina facial entera, no solo lo básico.</p>
           <p>Espuma Limpiadora Facial, Tónico Hidratante, Micro-Exfoliante Facial, Desmaquillante para Ojos, Crema de Día FPS 30, Suero Facial de Hidratación Profunda Aloe, Crema Contorno de Ojos (System), Suplemento System T-Specialist, Mascarilla Facial, Suero de Noche (System), Bolsa Tornasol y 6 productos de regalo adicionales.</p>
           <p><strong>Regalo extra:</strong> igual que el kit anterior, acumulando 500 puntos adicionales en tus primeros 30 días recibís 1 Sportmixer Omnilife y la App Mi Omninegocio gratis por 3 meses.</p>
+          <a href="#" class="kit-card-link" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme como Afiliado ↗</a>
         </div>
       </details>
-      <a href="#" class="kit-card-link" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme como Afiliado ↗</a>
     </div>
 
+  </div>
+
+  <div class="kits-grid">
     <div class="kit-card kit-card-wide">
       <div class="kit-card-img">
         <img src="kit-emprendedor-1000.png" alt="Kit Emprendedor 1000 puntos" onerror="this.classList.add('img-missing')">
@@ -999,7 +960,6 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
         <button type="button" class="kit-card-link" style="width: 100%; border: 1px solid rgba(201,166,72,0.35);" onclick="openEmprendedorChat()">Escribirme por WhatsApp</button>
       </div>
     </div>
-
   </div>
   <p style="text-align:center; color: var(--muted); font-size: .85rem; margin-top: 28px;">¿No estás seguro cuál elegir? Contame qué buscás y te recomiendo el que mejor se ajusta a vos.</p>
 </section>
@@ -1020,40 +980,6 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     </div>
     <button type="button" class="nav-btn primary" style="padding: 14px 26px; margin-top: 24px;" onclick="descargarTarjetaImg()">Descargar tarjeta ↓</button>
     <p class="printable-hint">¿Estás dentro de TikTok, Instagram o Facebook y no descarga? Esas apps a veces bloquean las descargas. Mantené presionada la imagen de arriba y elegí <strong>"Guardar imagen"</strong>, o abrí este enlace en Chrome/Safari (tres puntitos ⋮ arriba a la derecha → "Abrir en el navegador").</p>
-  </div>
-</section>
-
-<section class="globe-section reveal">
-  <div class="globe-grid">
-    <div class="globe-text">
-      <div class="sub">// Alcance global</div>
-      <h2>Una red que no conoce fronteras</h2>
-      <p class="lead">Presencia real en Latinoamérica y Europa. No estás comprando a un desconocido: es una red con trayectoria.</p>
-      <div class="globe-stats">
-        <div class="globe-stat"><span class="num">35+</span><span class="label">Años de trayectoria</span></div>
-        <div class="globe-stat"><span class="num">20</span><span class="label">Países con presencia</span></div>
-        <div class="globe-stat"><span class="num">1M+</span><span class="label">Familias beneficiadas</span></div>
-        <div class="globe-stat"><span class="num">100%</span><span class="label">Respaldo oficial</span></div>
-      </div>
-    </div>
-    <div class="globe-visual">
-      <div class="globe-sphere">
-        <div class="globe-core"></div>
-        <div class="globe-meridian" style="transform: rotateY(0deg);"></div>
-        <div class="globe-meridian" style="transform: rotateY(45deg);"></div>
-        <div class="globe-meridian" style="transform: rotateY(90deg);"></div>
-        <div class="globe-meridian" style="transform: rotateY(135deg);"></div>
-        <div class="globe-meridian" style="transform: rotateX(90deg);"></div>
-        <div class="globe-marker" style="transform: rotateY(10deg) rotateX(8deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇪🇨</span>Ecuador</span></div>
-        <div class="globe-marker" style="transform: rotateY(70deg) rotateX(-14deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇲🇽</span>México</span></div>
-        <div class="globe-marker" style="transform: rotateY(140deg) rotateX(4deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇨🇴</span>Colombia</span></div>
-        <div class="globe-marker" style="transform: rotateY(210deg) rotateX(-8deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇵🇪</span>Perú</span></div>
-        <div class="globe-marker" style="transform: rotateY(290deg) rotateX(12deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇦🇷</span>Argentina</span></div>
-        <div class="globe-marker" style="transform: rotateY(45deg) rotateX(28deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇪🇸</span>España</span></div>
-        <div class="globe-marker" style="transform: rotateY(175deg) rotateX(22deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇮🇹</span>Italia</span></div>
-        <div class="globe-marker" style="transform: rotateY(255deg) rotateX(30deg) translateZ(160px);"><span class="pulse"></span><span class="dot"></span><span class="flag-chip"><span class="em">🇩🇪</span>Alemania</span></div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -1571,18 +1497,6 @@ function sendToWhatsApp(event) {
   texto += mensaje ? `\n• *Mensaje:* ${mensaje}` : '';
   if (typeof fbq !== 'undefined') fbq('track', 'Lead', {content_name: tipo, content_category: 'Formulario principal'});
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
-}
-
-/* Pausa la animación del globo cuando no está visible en pantalla,
-   para aligerar el scroll (importante en celulares de gama media/baja). */
-const globeSphere = document.querySelector('.globe-sphere');
-if (globeSphere) {
-  const globeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      globeSphere.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
-    });
-  }, { threshold: 0.01 });
-  globeObserver.observe(globeSphere);
 }
 
 /* Barra fija de "Registrarme" — aparece apenas se sale del hero y se
