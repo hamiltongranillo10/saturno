@@ -9,6 +9,7 @@
 <meta property="og:title" content="Hamilton R. | Equipo de Emprendimiento Omnilife">
 <meta property="og:description" content="Regístrate en Omnilife con asesoría personalizada — Cliente Admirable gratis o Afiliación con descuentos del 25% al 40%.">
 <meta property="og:image" content="Hamilton.jpg">
+<link rel="preload" as="image" href="Hamilton.jpg" fetchpriority="high">
 <meta property="og:url" content="https://hamiltonnetworker.com">
 <meta property="og:locale" content="es_EC">
 <meta name="twitter:card" content="summary_large_image">
@@ -20,7 +21,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="favicon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght=9..144,300..900&family=Inter:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..700&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #FFFFFF;
@@ -63,7 +64,8 @@ body {
   overflow-x: hidden;
 }
 
-/* GRADIENTE DE FONDO CON MOVIMIENTO SUAVE */
+/* GRADIENTE DE FONDO — estático (sin animación continua) para no forzar
+   repintados constantes en navegadores internos de TikTok/Facebook */
 body::before {
   content: ''; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
   background:
@@ -71,7 +73,6 @@ body::before {
     radial-gradient(circle at 92% 75%, rgba(45, 106, 79, 0.06) 0%, transparent 55%),
     radial-gradient(circle at 50% 100%, rgba(217, 165, 68, 0.04) 0%, transparent 60%);
   z-index: -1;
-  animation: backgroundPulse 12s ease-in-out infinite alternate;
 }
 
 h1, h2, h3, h4 { font-family: 'Fraunces', serif; }
@@ -83,13 +84,18 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; }
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes pulseRing { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.6); } 70% { box-shadow: 0 0 0 16px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
 @keyframes pulseRingAccent { 0% { box-shadow: 0 0 0 0 rgba(45,106,79,0.5); } 70% { box-shadow: 0 0 0 12px rgba(45,106,79,0); } 100% { box-shadow: 0 0 0 0 rgba(45,106,79,0); } }
-@keyframes backgroundPulse {
-  0% { transform: scale(1); opacity: 0.9; }
-  100% { transform: scale(1.05); opacity: 1; }
-}
 @keyframes shimmerEffect {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .animated-fade { animation: fadeIn 1.2s ease forwards; }
@@ -112,14 +118,14 @@ nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
   display: flex; align-items: center; justify-content: space-between;
   padding: 18px 48px; background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(18px); border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line);
 }
 
 .sticky-cta {
   position: fixed; left: 0; right: 0; z-index: 190;
   display: flex; align-items: center; justify-content: center; gap: 16px;
   flex-wrap: wrap; padding: 12px 20px;
-  background: rgba(255,255,255,0.94); backdrop-filter: blur(14px);
+  background: rgba(255,255,255,0.94); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--line); box-shadow: 0 8px 20px rgba(0,0,0,0.06);
   transform: translateY(-120%); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
 }
@@ -331,9 +337,9 @@ nav {
 .results-video-container .video-overlay { background: rgba(5,7,12,0.35); }
 .results-video-container:hover .video-overlay { background: rgba(5,7,12,0.5); }
 
-.kits-section { padding: 90px 48px; max-width: 1240px; margin: 0 auto; }
+.kits-section { padding: 90px 48px; max-width: 1240px; margin: 0 auto; content-visibility: auto; contain-intrinsic-size: 1px 1400px; }
 
-.stories-section { padding: 10px 48px 90px; max-width: 1240px; margin: 0 auto; }
+.stories-section { padding: 10px 48px 90px; max-width: 1240px; margin: 0 auto; content-visibility: auto; contain-intrinsic-size: 1px 700px; }
 .stories-carousel-wrap { position: relative; display: flex; align-items: center; gap: 12px; }
 .stories-carousel { display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 4px 2px 12px; -webkit-overflow-scrolling: touch; }
 .stories-carousel::-webkit-scrollbar { height: 6px; }
@@ -411,7 +417,7 @@ nav {
 
 .country-modal-overlay {
   display: none; position: fixed; inset: 0; z-index: 400;
-  background: rgba(3,4,8,0.78); backdrop-filter: blur(6px);
+  background: rgba(3,4,8,0.78); backdrop-filter: blur(5px);
   align-items: center; justify-content: center; padding: 24px;
 }
 .country-modal-overlay.open { display: flex; }
@@ -554,7 +560,7 @@ nav {
 .reveal.is-visible .reveal-step-2 { opacity: 1; transform: translateY(0); filter: blur(0); transition-delay: 0.25s; }
 .reveal.is-visible .reveal-step-3 { opacity: 1; transform: translateY(0); filter: blur(0); transition-delay: 0.4s; }
 
-.faq-section { padding: 100px 48px; max-width: 820px; margin: 0 auto; }
+.faq-section { padding: 100px 48px; max-width: 820px; margin: 0 auto; content-visibility: auto; contain-intrinsic-size: 1px 1100px; }
 .faq-item { border-bottom: 1px solid var(--line); padding: 6px 0; }
 .faq-item summary { list-style:none; cursor:pointer; padding: 20px 4px; font-weight: 600; color: var(--ink); font-size: 1rem; display:flex; justify-content:space-between; align-items:center; }
 .faq-item summary .plus { font-family:'Space Mono',monospace; color: var(--blue); font-size:1.2rem; transition: transform 0.3s ease; }
@@ -705,7 +711,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div class="hero-photo-wrap animated-hero-card">
     <div class="about-photo-frame">
       <div class="about-ribbon">Empresario</div>
-      <img src="Hamilton.jpg" alt="Hamilton Granillo - Distribuidor Independiente Omnilife">
+      <img src="Hamilton.jpg" alt="Hamilton Granillo - Distribuidor Independiente Omnilife" fetchpriority="high" decoding="async">
     </div>
     <div class="hero-photo-caption">
       <h3>Hamilton Granillo</h3>
@@ -724,7 +730,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div class="why-grid">
     <div class="why-card">
       <div class="why-card-img">
-        <img src="cliente-admirablle.png" alt="Cliente Admirable" onerror="this.classList.add('img-missing')">
+        <img loading="lazy" decoding="async" src="cliente-admirablle.png" alt="Cliente Admirable" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">C</span>Foto pendiente</div>
       </div>
       <a href="#" class="why-card-link" onclick="event.preventDefault(); openCountryModal('cliente');">Registrarme como Cliente Admirable ↗</a>
@@ -736,7 +742,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     </div>
     <div class="why-card">
       <div class="why-card-img">
-        <img src="afiliacion.png" alt="Afiliación" onerror="this.classList.add('img-missing')">
+        <img loading="lazy" decoding="async" src="afiliacion.png" alt="Afiliación" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">A</span>Foto pendiente</div>
       </div>
       <a href="#" class="why-card-link gold" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme con Afiliación ↗</a>
@@ -763,7 +769,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     </div>
     
     <div class="video-container" id="videoContainer">
-      <img src="hamilton-video-poster.png" alt="Testimonio de registro paso a paso" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/MY3azjHyX2U/hqdefault.jpg';">
+      <img loading="lazy" decoding="async" src="hamilton-video-poster.png" alt="Testimonio de registro paso a paso" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/MY3azjHyX2U/hqdefault.jpg';">
       
       <div class="video-overlay" onclick="loadYouTubeVideo()">
         <div class="play-button-center" id="playBtnCenter">
@@ -780,7 +786,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 <section class="post-registro-section reveal">
   <div class="post-registro-box">
     <div class="post-registro-img">
-      <img src="registro-exitoso-poster.png" alt="Pantalla de registro exitoso en Omnilife" onerror="this.classList.add('img-missing')">
+      <img loading="lazy" decoding="async" src="registro-exitoso-poster.png" alt="Pantalla de registro exitoso en Omnilife" onerror="this.classList.add('img-missing')">
       <div class="img-fallback"><span class="fb-letter">✓</span></div>
     </div>
     <div class="post-registro-text">
@@ -801,7 +807,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   </div>
   <div class="results-video-wrap">
     <div class="results-video-container" id="resultsVideoContainer">
-      <img src="resultados-dia-morado-poster.png" alt="Resultados Omnilife Día Morado" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/bl1jFjnwoXE/hqdefault.jpg';">
+      <img loading="lazy" decoding="async" src="resultados-dia-morado-poster.png" alt="Resultados Omnilife Día Morado" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/bl1jFjnwoXE/hqdefault.jpg';">
       <div class="video-overlay" onclick="loadResultsVideo()">
         <div class="play-button-center">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -822,7 +828,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <div class="stories-carousel" id="storiesCarousel">
       <div class="story-card">
         <div class="story-video-container" data-video-id="7T2bLFWOPjg">
-          <img src="historia-1-poster.png" alt="Historia Omnilife" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/7T2bLFWOPjg/hqdefault.jpg';">
+          <img loading="lazy" decoding="async" src="historia-1-poster.png" alt="Historia Omnilife" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/7T2bLFWOPjg/hqdefault.jpg';">
           <div class="video-overlay" onclick="loadStoryVideo(this)">
             <div class="play-button-center">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -832,7 +838,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <div class="story-card">
         <div class="story-video-container" data-video-id="Ggfs5dR7GwU">
-          <img src="historia-2-poster.png" alt="Historia Omnilife" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/Ggfs5dR7GwU/hqdefault.jpg';">
+          <img loading="lazy" decoding="async" src="historia-2-poster.png" alt="Historia Omnilife" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/Ggfs5dR7GwU/hqdefault.jpg';">
           <div class="video-overlay" onclick="loadStoryVideo(this)">
             <div class="play-button-center">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -842,7 +848,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <div class="story-card">
         <div class="story-video-container" data-video-id="6qw3WaeKy-g">
-          <img src="historia-3-poster.png" alt="Historia Omnilife" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/6qw3WaeKy-g/hqdefault.jpg';">
+          <img loading="lazy" decoding="async" src="historia-3-poster.png" alt="Historia Omnilife" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/6qw3WaeKy-g/hqdefault.jpg';">
           <div class="video-overlay" onclick="loadStoryVideo(this)">
             <div class="play-button-center">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -868,7 +874,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <div class="kit-row-head">
         <div class="kit-row-info">
           <div class="kit-row-thumb">
-            <img src="kit-omnilife-seytu.png" alt="Kit OMNILIFE-SEYTÚ" onerror="this.classList.add('img-missing')">
+            <img loading="lazy" decoding="async" src="kit-omnilife-seytu.png" alt="Kit OMNILIFE-SEYTÚ" onerror="this.classList.add('img-missing')">
             <div class="img-fallback"><span class="fb-letter">O</span></div>
           </div>
           <div class="kit-row-text">
@@ -893,7 +899,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <div class="kit-row-head">
         <div class="kit-row-info">
           <div class="kit-row-thumb">
-            <img src="kit-seytu.png" alt="Kit SEYTÚ" onerror="this.classList.add('img-missing')">
+            <img loading="lazy" decoding="async" src="kit-seytu.png" alt="Kit SEYTÚ" onerror="this.classList.add('img-missing')">
             <div class="img-fallback"><span class="fb-letter">S</span></div>
           </div>
           <div class="kit-row-text">
@@ -918,7 +924,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <div class="kit-row-head">
         <div class="kit-row-info">
           <div class="kit-row-thumb">
-            <img src="kit-500-nutricion.png" alt="Kit 500 Puntos Nutrición" onerror="this.classList.add('img-missing')">
+            <img loading="lazy" decoding="async" src="kit-500-nutricion.png" alt="Kit 500 Puntos Nutrición" onerror="this.classList.add('img-missing')">
             <div class="img-fallback"><span class="fb-letter">N</span></div>
           </div>
           <div class="kit-row-text">
@@ -943,7 +949,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <div class="kit-row-head">
         <div class="kit-row-info">
           <div class="kit-row-thumb">
-            <img src="kit-500-experiencia-seytu.png" alt="Kit 500 Puntos Experiencia SEYTÚ" onerror="this.classList.add('img-missing')">
+            <img loading="lazy" decoding="async" src="kit-500-experiencia-seytu.png" alt="Kit 500 Puntos Experiencia SEYTÚ" onerror="this.classList.add('img-missing')">
             <div class="img-fallback"><span class="fb-letter">E</span></div>
           </div>
           <div class="kit-row-text">
@@ -969,7 +975,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div class="kits-grid">
     <div class="kit-card kit-card-wide">
       <div class="kit-card-img">
-        <img src="kit-emprendedor-1000.png" alt="Kit Emprendedor 1000 puntos" onerror="this.classList.add('img-missing')">
+        <img loading="lazy" decoding="async" src="kit-emprendedor-1000.png" alt="Kit Emprendedor 1000 puntos" onerror="this.classList.add('img-missing')">
         <div class="img-fallback"><span class="fb-letter">K</span></div>
       </div>
       <span class="kit-badge emprendedor">Kit Emprendedor</span>
@@ -1003,7 +1009,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   </div>
   <div class="printable-wrap">
     <div class="printable-card-frame">
-      <img id="tarjetaImg" src="tarjeta-hamilton.png" alt="Tarjeta de asesor Hamilton Omnilife" class="printable-card-real" onerror="this.style.display='none'; document.getElementById('tarjetaFallback').style.display='flex';">
+      <img loading="lazy" decoding="async" id="tarjetaImg" src="tarjeta-hamilton.png" alt="Tarjeta de asesor Hamilton Omnilife" class="printable-card-real" onerror="this.style.display='none'; document.getElementById('tarjetaFallback').style.display='flex';">
       <div id="tarjetaFallback" class="printable-card-fallback">
         <span class="fb-letter">🪪</span>
         <p>Subí tu imagen como <code>tarjeta-hamilton.png</code> junto al resto de tus archivos para que aparezca acá.</p>
@@ -1020,7 +1026,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div class="about-grid">
     <div class="about-photo-frame">
       <div class="about-ribbon">Empresario</div>
-      <img src="Hamilton.jpg" alt="Hamilton Granillo - Distribuidor Independiente Omnilife">
+      <img loading="lazy" decoding="async" src="Hamilton.jpg" alt="Hamilton Granillo - Distribuidor Independiente Omnilife">
     </div>
     <div class="about-text">
       <div class="sub">// Quién te acompaña</div>
