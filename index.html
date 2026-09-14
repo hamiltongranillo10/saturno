@@ -353,6 +353,11 @@ nav {
 @media(max-width:640px){ .stories-arrow { display: none; } }
 .kits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 .kits-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+.kits-grid.kits-grid-desktop { display: none; }
+@media(min-width:961px){
+  .kits-list-mobile { display: none; }
+  .kits-grid.kits-grid-desktop { display: grid; }
+}
 .kit-row { background: var(--glass); border: 1px solid var(--line); border-radius: 14px; padding: 16px 20px; transition: all 0.3s cubic-bezier(0.25,1,0.5,1); }
 .kit-row:hover { border-color: rgba(45,106,79,0.5); background: rgba(255,255,255,0.05); }
 .kit-row-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
@@ -399,6 +404,7 @@ nav {
 
 .printable-section { padding: 10px 48px 90px; max-width: 900px; margin: 0 auto; text-align: center; }
 .printable-wrap { display: flex; flex-direction: column; align-items: center; }
+.printable-email-form { display: flex; flex-direction: column; align-items: center; width: 100%; }
 .printable-card-frame {
   width: 100%; max-width: 460px; min-height: 100px; border-radius: 18px;
   overflow: hidden; border: 1px solid var(--line); background: var(--bg-soft);
@@ -868,7 +874,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <h2>Elige el kit con el que empiezas</h2>
     <p class="lead">Todos activan tu afiliación y descuento. La diferencia está en el enfoque y el contenido — te ayudo a elegir el que más te conviene.</p>
   </div>
-  <div class="kits-list">
+  <div class="kits-list kits-list-mobile">
 
     <div class="kit-row">
       <div class="kit-row-head">
@@ -972,6 +978,86 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 
   </div>
 
+  <div class="kits-grid kits-grid-desktop">
+
+    <div class="kit-card">
+      <div class="kit-card-img">
+        <img loading="lazy" decoding="async" src="kit-omnilife-seytu.png" alt="Kit OMNILIFE-SEYTÚ" onerror="this.classList.add('img-missing')">
+        <div class="img-fallback"><span class="fb-letter">O</span></div>
+      </div>
+      <span class="kit-badge">Kit inicial</span>
+      <h4>Kit OMNILIFE-SEYTÚ</h4>
+      <span class="kit-price">$51.10 USD</span>
+      <p class="kit-desc">Combina nutrición y belleza. Ideal si querés un poco de las dos líneas para empezar.</p>
+      <details class="why-accordion">
+        <summary>Ver qué incluye <span class="accordion-hint-wrap"><span class="accordion-hint">👉</span><span class="plus">+</span></span></summary>
+        <div class="why-accordion-body">
+          <p>Mochila Bimarca, Guía OMNILIFE-SEYTÚ, Biocros Supreme, Espuma Limpiadora Facial y Dossier de bienvenida.</p>
+          <p><strong>Regalos por tus compras en los primeros 90 días:</strong> día 1-30 acumulás 100 ptos. y recibís 1 Teatino (o Suero Contorno de Ojos, o Espuma Limpiadora Facial); día 31-60, 150 ptos. y 1 Fiber'N Plus (o Suero Facial + Desmaquillante); día 61-90, 200 ptos. y 1 Omniplus (o Omniplus Gel Premium + Protector Solar Facial).</p>
+        </div>
+      </details>
+      <a href="#" class="kit-card-link" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme como Afiliado ↗</a>
+    </div>
+
+    <div class="kit-card">
+      <div class="kit-card-img">
+        <img loading="lazy" decoding="async" src="kit-seytu.png" alt="Kit SEYTÚ" onerror="this.classList.add('img-missing')">
+        <div class="img-fallback"><span class="fb-letter">S</span></div>
+      </div>
+      <span class="kit-badge">Kit inicial</span>
+      <h4>Kit SEYTÚ</h4>
+      <span class="kit-price">$51.10 USD</span>
+      <p class="kit-desc">100% enfocado en belleza y cuidado facial. Ideal si tu interés principal es esa línea.</p>
+      <details class="why-accordion">
+        <summary>Ver qué incluye <span class="accordion-hint-wrap"><span class="accordion-hint">👉</span><span class="plus">+</span></span></summary>
+        <div class="why-accordion-body">
+          <p>Bolsa tornasol, Guía OMNILIFE-SEYTÚ, Máscara de pestañas, Espuma limpiadora facial, Desmaquillante de ojos y Brillo labial.</p>
+          <p><strong>Regalos por tus compras en los primeros 90 días:</strong> mismo esquema que el kit anterior — día 1-30, 31-60 y 61-90 con productos de regalo según los puntos que acumules.</p>
+        </div>
+      </details>
+      <a href="#" class="kit-card-link" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme como Afiliado ↗</a>
+    </div>
+
+    <div class="kit-card">
+      <div class="kit-card-img">
+        <img loading="lazy" decoding="async" src="kit-500-nutricion.png" alt="Kit 500 Puntos Nutrición" onerror="this.classList.add('img-missing')">
+        <div class="img-fallback"><span class="fb-letter">N</span></div>
+      </div>
+      <span class="kit-badge gold">500 puntos</span>
+      <h4>Kit 500 Puntos Nutrición</h4>
+      <span class="kit-price">$308.00 USD</span>
+      <p class="kit-desc">Para quien quiere arrancar fuerte con la línea de nutrición y ya llevarse variedad de productos.</p>
+      <details class="why-accordion">
+        <summary>Ver qué incluye <span class="accordion-hint-wrap"><span class="accordion-hint">👉</span><span class="plus">+</span></span></summary>
+        <div class="why-accordion-body">
+          <p>Biocros Supreme, Ego Life, Power Maker, Teatino Limón, Omniplus Frutas, Fiber'n Plus, Optimus, Cafezzino, Guía OMNILIFE-SEYTÚ, Bolsa Reutilizable y 3 productos de regalo adicionales.</p>
+          <p><strong>Regalo extra:</strong> si en tus primeros 30 días acumulás 500 puntos adicionales a tu kit, recibís 1 Sportmixer Omnilife y la App Mi Omninegocio gratis por 3 meses.</p>
+        </div>
+      </details>
+      <a href="#" class="kit-card-link" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme como Afiliado ↗</a>
+    </div>
+
+    <div class="kit-card">
+      <div class="kit-card-img">
+        <img loading="lazy" decoding="async" src="kit-500-experiencia-seytu.png" alt="Kit 500 Puntos Experiencia SEYTÚ" onerror="this.classList.add('img-missing')">
+        <div class="img-fallback"><span class="fb-letter">E</span></div>
+      </div>
+      <span class="kit-badge gold">500 puntos</span>
+      <h4>Kit 500 Puntos Experiencia SEYTÚ</h4>
+      <span class="kit-price">$308.00 USD</span>
+      <p class="kit-desc">La versión completa de belleza — una rutina facial entera, no solo lo básico.</p>
+      <details class="why-accordion">
+        <summary>Ver qué incluye <span class="accordion-hint-wrap"><span class="accordion-hint">👉</span><span class="plus">+</span></span></summary>
+        <div class="why-accordion-body">
+          <p>Espuma Limpiadora Facial, Tónico Hidratante, Micro-Exfoliante Facial, Desmaquillante para Ojos, Crema de Día FPS 30, Suero Facial de Hidratación Profunda Aloe, Crema Contorno de Ojos (System), Suplemento System T-Specialist, Mascarilla Facial, Suero de Noche (System), Bolsa Tornasol y 6 productos de regalo adicionales.</p>
+          <p><strong>Regalo extra:</strong> igual que el kit anterior, acumulando 500 puntos adicionales en tus primeros 30 días recibís 1 Sportmixer Omnilife y la App Mi Omninegocio gratis por 3 meses.</p>
+        </div>
+      </details>
+      <a href="#" class="kit-card-link" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme como Afiliado ↗</a>
+    </div>
+
+  </div>
+
   <div class="kits-grid">
     <div class="kit-card kit-card-wide">
       <div class="kit-card-img">
@@ -1004,8 +1090,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 <section class="printable-section reveal">
   <div class="section-header">
     <div class="sub">// Para el Kit Emprendedor</div>
-    <h2>Descargá tu tarjeta con mi código</h2>
-    <p class="lead">Guardala en tu celular y llevala a tu CEDI más cercana para adquirir el Kit Emprendedor 1000 puntos. El código identifica que yo soy tu presentador — el kit lo pagás vos en la CEDI, no es gratis ni tiene descuento por usar el código.</p>
+    <h2>Recibe tu tarjeta con mi código por correo</h2>
+    <p class="lead">Déjame tu correo y te la envío directo desde <strong>hamiltonnetworker@gmail.com</strong>. Llévala a tu CEDI más cercana para adquirir el Kit Emprendedor 1000 puntos — el código identifica que yo soy tu presentador, el kit lo pagás vos en la CEDI, no es gratis ni tiene descuento por usar el código.</p>
   </div>
   <div class="printable-wrap">
     <div class="printable-card-frame">
@@ -1015,8 +1101,12 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
         <p>Subí tu imagen como <code>tarjeta-hamilton.png</code> junto al resto de tus archivos para que aparezca acá.</p>
       </div>
     </div>
-    <button type="button" class="nav-btn primary" style="padding: 14px 26px; margin-top: 24px;" onclick="descargarTarjetaImg()">Descargar tarjeta ↓</button>
-    <p class="printable-hint">¿Estás dentro de TikTok, Instagram o Facebook y no descarga? Esas apps a veces bloquean las descargas. Mantené presionada la imagen de arriba y elegí <strong>"Guardar imagen"</strong>, o abrí este enlace en Chrome/Safari (tres puntitos ⋮ arriba a la derecha → "Abrir en el navegador").</p>
+    <form class="printable-email-form" onsubmit="sendCardByEmail(event)">
+      <label class="form-label" for="tarjeta-email" style="text-align:left; width:100%; max-width:360px; margin-top:20px;">Tu correo electrónico</label>
+      <input id="tarjeta-email" type="email" class="form-input" style="max-width:360px;" placeholder="tucorreo@ejemplo.com" required>
+      <button type="submit" class="nav-btn primary" style="padding: 14px 26px; margin-top: 14px;">Enviarme la tarjeta por correo</button>
+    </form>
+    <p class="printable-hint">Te llega automáticamente desde <strong>hamiltonnetworker@gmail.com</strong> en unos minutos — si no la ves, revisa también tu carpeta de spam o promociones.</p>
   </div>
 </section>
 
@@ -1321,24 +1411,33 @@ function openEmprendedorChat() {
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
 }
 
-async function descargarTarjetaImg() {
-  const src = document.getElementById('tarjetaImg').src;
-  try {
-    const response = await fetch(src);
-    const blob = await response.blob();
-    const blobUrl = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = blobUrl;
-    link.download = 'tarjeta-hamilton-omnilife.png';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    setTimeout(() => URL.revokeObjectURL(blobUrl), 4000);
-  } catch (err) {
-    // Si el navegador interno bloquea la descarga (común en TikTok/Instagram/Facebook),
-    // abrimos la imagen en una pestaña nueva para que puedan guardarla manualmente.
-    window.open(src, '_blank');
-  }
+const CARD_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyUjv1c6zS9NNpopAjdCXo77w9XXPSfwz_b-HRu6efNqsGUn9WrE_MXDOIIIv4gcbiLHQ/exec';
+
+function sendCardByEmail(event) {
+  event.preventDefault();
+  const emailInput = document.getElementById('tarjeta-email');
+  const email = emailInput.value.trim();
+  if (!email) return;
+
+  const submitBtn = event.target.querySelector('button[type="submit"]');
+  const originalText = submitBtn.textContent;
+  submitBtn.textContent = 'Enviando...';
+  submitBtn.disabled = true;
+
+  fetch(CARD_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ email }),
+  }).finally(() => {
+    if (typeof fbq !== 'undefined') fbq('track', 'Lead', {content_name: 'Tarjeta por correo', content_category: 'Kit Emprendedor'});
+    emailInput.value = '';
+    submitBtn.textContent = '¡Listo! Revisa tu correo 📩';
+    setTimeout(() => {
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+    }, 5000);
+  });
 }
 
 const chatStartBtnReg = document.getElementById('chat-start-btn-reg');
@@ -1454,14 +1553,15 @@ document.querySelectorAll('.faq-section .faq-item').forEach((item) => {
   });
 });
 
-/* Pixel: cuando alguien abre "Ver qué incluye" en un kit, es interés real
-   aunque no llegue a escribir — lo marcamos como ViewContent (una sola vez
-   por kit, para no repetir el evento si lo abren y cierran varias veces). */
-document.querySelectorAll('.kit-card .why-accordion').forEach((acc) => {
+/* Pixel: cuando alguien abre el detalle de un kit (fila compacta en
+   móvil o tarjeta grande en escritorio), es interés real aunque no
+   llegue a escribir — lo marcamos como ViewContent (una sola vez por
+   kit, para no repetir el evento si lo abren y cierran varias veces). */
+document.querySelectorAll('.kits-section .why-accordion').forEach((acc) => {
   acc.addEventListener('toggle', () => {
     if (acc.open && !acc.dataset.tracked) {
       acc.dataset.tracked = '1';
-      const card = acc.closest('.kit-card');
+      const card = acc.closest('.kit-card, .kit-row')
       const name = card ? card.querySelector('h4')?.textContent.trim() : 'Kit';
       if (typeof fbq !== 'undefined') fbq('track', 'ViewContent', {content_name: name, content_category: 'Kit'});
     }
