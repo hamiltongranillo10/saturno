@@ -446,6 +446,17 @@ nav {
 .country-flag-btn .em { font-size: 1.15rem; line-height: 1; }
 .country-flag-btn:hover { background: var(--cta-grad); border-color: transparent; color: #fff; transform: translateY(-2px); }
 
+.lightbox-overlay {
+  display: none; position: fixed; inset: 0; z-index: 500;
+  background: rgba(3,4,8,0.92); backdrop-filter: blur(4px);
+  align-items: center; justify-content: center; padding: 24px;
+  cursor: zoom-out;
+}
+.lightbox-overlay.open { display: flex; }
+.lightbox-overlay img { max-width: 100%; max-height: 90vh; border-radius: 10px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); cursor: default; }
+.lightbox-close { position: fixed; top: 20px; right: 20px; width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.12); border: none; color: #fff; font-size: 1.1rem; cursor: pointer; z-index: 501; }
+.lightbox-close:hover { background: rgba(255,255,255,0.22); }
+
 .points-cta-btn {
   display: inline-flex; align-items: center; gap: 8px;
   background: rgba(201,166,72,0.14); border: 1px solid rgba(201,166,72,0.4);
@@ -808,7 +819,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 <section class="post-registro-section reveal">
   <div class="post-registro-box">
     <div class="post-registro-img">
-      <img loading="lazy" decoding="async" src="registro-exitoso-poster.png" alt="Pantalla de registro exitoso en Omnilife" onerror="this.classList.add('img-missing')">
+      <img loading="lazy" decoding="async" src="registro-exitoso-poster.png" alt="Pantalla de registro exitoso en Omnilife" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
       <div class="img-fallback"><span class="fb-letter">✓</span></div>
     </div>
     <div class="post-registro-text">
@@ -896,7 +907,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <div class="kit-row-head">
         <div class="kit-row-info">
           <div class="kit-row-thumb">
-            <img loading="lazy" decoding="async" src="kit-omnilife-seytu.png" alt="Kit OMNILIFE-SEYTÚ" onerror="this.classList.add('img-missing')">
+            <img loading="lazy" decoding="async" src="kit-omnilife-seytu.png" alt="Kit OMNILIFE-SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
             <div class="img-fallback"><span class="fb-letter">O</span></div>
           </div>
           <div class="kit-row-text">
@@ -921,7 +932,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <div class="kit-row-head">
         <div class="kit-row-info">
           <div class="kit-row-thumb">
-            <img loading="lazy" decoding="async" src="kit-seytu.png" alt="Kit SEYTÚ" onerror="this.classList.add('img-missing')">
+            <img loading="lazy" decoding="async" src="kit-seytu.png" alt="Kit SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
             <div class="img-fallback"><span class="fb-letter">S</span></div>
           </div>
           <div class="kit-row-text">
@@ -946,7 +957,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <div class="kit-row-head">
         <div class="kit-row-info">
           <div class="kit-row-thumb">
-            <img loading="lazy" decoding="async" src="kit-500-nutricion.png" alt="Kit 500 Puntos Nutrición" onerror="this.classList.add('img-missing')">
+            <img loading="lazy" decoding="async" src="kit-500-nutricion.png" alt="Kit 500 Puntos Nutrición" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
             <div class="img-fallback"><span class="fb-letter">N</span></div>
           </div>
           <div class="kit-row-text">
@@ -971,7 +982,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <div class="kit-row-head">
         <div class="kit-row-info">
           <div class="kit-row-thumb">
-            <img loading="lazy" decoding="async" src="kit-500-experiencia-seytu.png" alt="Kit 500 Puntos Experiencia SEYTÚ" onerror="this.classList.add('img-missing')">
+            <img loading="lazy" decoding="async" src="kit-500-experiencia-seytu.png" alt="Kit 500 Puntos Experiencia SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
             <div class="img-fallback"><span class="fb-letter">E</span></div>
           </div>
           <div class="kit-row-text">
@@ -998,7 +1009,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 
     <div class="kit-card">
       <div class="kit-card-img">
-        <img loading="lazy" decoding="async" src="kit-omnilife-seytu.png" alt="Kit OMNILIFE-SEYTÚ" onerror="this.classList.add('img-missing')">
+        <img loading="lazy" decoding="async" src="kit-omnilife-seytu.png" alt="Kit OMNILIFE-SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
         <div class="img-fallback"><span class="fb-letter">O</span></div>
       </div>
       <span class="kit-badge">Kit inicial</span>
@@ -1017,7 +1028,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 
     <div class="kit-card">
       <div class="kit-card-img">
-        <img loading="lazy" decoding="async" src="kit-seytu.png" alt="Kit SEYTÚ" onerror="this.classList.add('img-missing')">
+        <img loading="lazy" decoding="async" src="kit-seytu.png" alt="Kit SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
         <div class="img-fallback"><span class="fb-letter">S</span></div>
       </div>
       <span class="kit-badge">Kit inicial</span>
@@ -1036,7 +1047,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 
     <div class="kit-card">
       <div class="kit-card-img">
-        <img loading="lazy" decoding="async" src="kit-500-nutricion.png" alt="Kit 500 Puntos Nutrición" onerror="this.classList.add('img-missing')">
+        <img loading="lazy" decoding="async" src="kit-500-nutricion.png" alt="Kit 500 Puntos Nutrición" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
         <div class="img-fallback"><span class="fb-letter">N</span></div>
       </div>
       <span class="kit-badge gold">500 puntos</span>
@@ -1055,7 +1066,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 
     <div class="kit-card">
       <div class="kit-card-img">
-        <img loading="lazy" decoding="async" src="kit-500-experiencia-seytu.png" alt="Kit 500 Puntos Experiencia SEYTÚ" onerror="this.classList.add('img-missing')">
+        <img loading="lazy" decoding="async" src="kit-500-experiencia-seytu.png" alt="Kit 500 Puntos Experiencia SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
         <div class="img-fallback"><span class="fb-letter">E</span></div>
       </div>
       <span class="kit-badge gold">500 puntos</span>
@@ -1077,7 +1088,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div class="kits-grid">
     <div class="kit-card kit-card-wide">
       <div class="kit-card-img">
-        <img loading="lazy" decoding="async" src="kit-emprendedor-1000.png" alt="Kit Emprendedor 1000 puntos" onerror="this.classList.add('img-missing')">
+        <img loading="lazy" decoding="async" src="kit-emprendedor-1000.png" alt="Kit Emprendedor 1000 puntos" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
         <div class="img-fallback"><span class="fb-letter">K</span></div>
       </div>
       <span class="kit-badge emprendedor">Kit Emprendedor</span>
@@ -1278,6 +1289,11 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <p id="pointsNoResults" style="display:none; text-align:center; color: var(--muted); font-size: .85rem; padding: 20px 0;">No encontramos productos con ese nombre.</p>
     <p style="font-size: .78rem; color: var(--muted); margin-top: 14px; font-style: italic;">Varios productos de maquillaje vienen en distintos tonos con los mismos puntos/precio — se agrupan en una sola fila. Precios de referencia Ecuador, vigencia junio 2026 — pueden cambiar sin previo aviso. Escríbeme por WhatsApp si quieres armar la combinación exacta para tus 1000+ puntos.</p>
   </div>
+</div>
+
+<div id="lightbox-overlay" class="lightbox-overlay" onclick="closeLightbox()">
+  <button type="button" class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar">✕</button>
+  <img id="lightbox-img" src="" alt="">
 </div>
 
 <button id="chat-pill-btn" class="chat-pill" type="button">
@@ -1561,6 +1577,18 @@ function renderPointsTable() {
   noResults.style.display = totalShown === 0 ? 'block' : 'none';
 }
 
+/* Visor de imágenes (lightbox): abre cualquier foto en grande al hacerle clic. */
+function openLightbox(src, alt) {
+  const overlay = document.getElementById('lightbox-overlay');
+  const img = document.getElementById('lightbox-img');
+  img.src = src;
+  img.alt = alt || '';
+  overlay.classList.add('open');
+}
+function closeLightbox() {
+  document.getElementById('lightbox-overlay').classList.remove('open');
+}
+
 function openCountryModal(type) {
   document.getElementById(`modal-${type}`).classList.add("open");
   if (type === 'puntos') renderPointsTable();
@@ -1569,7 +1597,7 @@ function closeCountryModal(type) {
   document.getElementById(`modal-${type}`).classList.remove("open");
 }
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") { closeCountryModal("cliente"); closeCountryModal("afiliado"); closeCountryModal("portal"); closeCountryModal("puntos"); }
+  if (e.key === "Escape") { closeCountryModal("cliente"); closeCountryModal("afiliado"); closeCountryModal("portal"); closeCountryModal("puntos"); closeLightbox(); }
 });
 
 const chatPillBtn = document.getElementById('chat-pill-btn');
