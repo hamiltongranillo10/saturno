@@ -446,6 +446,15 @@ nav {
 .country-flag-btn .em { font-size: 1.15rem; line-height: 1; }
 .country-flag-btn:hover { background: var(--cta-grad); border-color: transparent; color: #fff; transform: translateY(-2px); }
 
+.points-modal { max-width: 780px; }
+.points-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; max-height: 55vh; overflow-y: auto; }
+.points-table { width: 100%; border-collapse: collapse; font-size: .82rem; min-width: 420px; }
+.points-table th { text-align: left; padding: 10px 12px; color: var(--gold); font-family: 'Space Mono', monospace; font-size: .68rem; text-transform: uppercase; letter-spacing: .03em; border-bottom: 1px solid var(--line); white-space: nowrap; position: sticky; top: 0; background: var(--bg-soft); }
+.points-table td { padding: 9px 12px; border-bottom: 1px solid var(--line); color: var(--ink); vertical-align: top; }
+.points-table td:nth-child(2), .points-table td:nth-child(3) { white-space: nowrap; font-weight: 600; }
+.points-table tbody tr:hover { background: rgba(255,255,255,0.04); }
+.points-table .points-section-row td { background: rgba(201,166,72,0.1); color: var(--gold); font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: .03em; padding: 8px 12px; }
+
 .post-registro-section { padding: 10px 48px 90px; max-width: 1100px; margin: 0 auto; }
 .post-registro-box { display: grid; grid-template-columns: 300px 1fr; gap: 44px; align-items: center; background: var(--glass); border: 1px solid var(--line); border-radius: 18px; padding: 34px; }
 .post-registro-img { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--bg-soft); aspect-ratio: 3/4; }
@@ -771,7 +780,6 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 <section id="tutorial" class="video-section reveal">
   <div class="video-profile-card" style="max-width: 1140px; margin: 0 auto;">
     <div class="video-avatar-tag" style="background: var(--gold); color: var(--blue-ink); font-size: 0.72rem; padding: 5px 12px; border-radius: 4px; right: 16px; top: -14px;">
-      🎥 TESTIMONIO REAL
     </div>
     
     <div class="video-container" id="videoContainer">
@@ -798,7 +806,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <div class="post-registro-text">
       <div class="sub">// Cuando termines tu registro</div>
       <h2>¿Te apareció esta pantalla?</h2>
-      <p>Así se ve cuando tu registro fue exitoso — te va a mostrar tu código de cliente y una contraseña.</p>
+      <p>Así se ve cuando tu registro fue exitoso te va a mostrar tu código de cliente y una contraseña.</p>
       <p>Pasame tu <strong>código de cliente</strong> por WhatsApp (ese que empieza con tu número de país) y con eso confirmo tu registro. Te explico cómo iniciar sesión para comprar en la web, o te paso la dirección de la CEDI más cercana a vos.</p>
       <button type="button" class="nav-btn primary" style="padding: 14px 26px;" onclick="openRegisteredChat()">Ya completé mi registro</button>
     </div>
@@ -807,7 +815,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 
 <section class="results-section reveal">
   <div class="section-header">
-    <div class="sub">// Resultados reales</div>
+    <div class="sub">// Resultados con Omnilife</div>
     <h2>Así se vive un Día Morado en Omnilife</h2>
     <p class="lead">Historias reales de personas que ya dieron el paso. No es solo un producto, es una comunidad.</p>
   </div>
@@ -872,7 +880,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div class="section-header">
     <div class="sub">// Al momento de afiliarte</div>
     <h2>Elige el kit con el que empiezas</h2>
-    <p class="lead">Todos activan tu afiliación y descuento. La diferencia está en el enfoque y el contenido — te ayudo a elegir el que más te conviene.</p>
+    <p class="lead">Todos activan tu afiliación y descuento. La diferencia está en el enfoque y el contenido  te ayudo a elegir el que más te conviene.</p>
   </div>
   <div class="kits-list kits-list-mobile">
 
@@ -1066,32 +1074,37 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <span class="kit-badge emprendedor">Kit Emprendedor</span>
       <h4>Kit Emprendedor 1000 puntos</h4>
-      <span class="kit-price">Desde 1000 ptos.</span>
-      <p class="kit-desc">Para quien ya quiere invertir en volumen desde el día uno. Elegís libremente 1000+ puntos entre nutrición y belleza.*</p>
+      <span class="kit-price">Desde 1000 ptos. (~$550 USD)</span>
+      <p class="kit-desc">Para quien ya quiere invertir en volumen desde el día uno. Ese total (~$550 USD) corresponde al valor de los productos con puntos que elijas libremente entre nutrición y belleza — no es un cobro fijo aparte.*</p>
       <details class="why-accordion">
         <summary>Ver qué incluye <span class="accordion-hint-wrap"><span class="accordion-hint">👉</span><span class="plus">+</span></span></summary>
         <div class="why-accordion-body">
           <p>Afiliación gratis, 30% de descuento, hasta 3 productos de regalo, 1 Sportmixer gratis y App Mi Omninegocio gratis por 3 meses.</p>
           <p><strong>Regalo extra:</strong> acumulando 1000 puntos adicionales a tu kit en los primeros 30 días, recibís de regalo 1 cosmetiquera SEYTÚ y un Shaker SEYTÚ.</p>
-          <p style="font-style: italic; font-size: .78rem;">*Aplican restricciones. Solo se adquiere en tienda física (CEDI) o por teléfono.</p>
+          <p style="font-style: italic; font-size: .78rem;">*El monto (~$550 USD) es una referencia y puede variar según los productos que elijas y tu país. Aplican restricciones. Solo se adquiere en tienda física (CEDI) o por teléfono.</p>
         </div>
       </details>
       <div class="kit-advisor-box">
         <p>Este kit no se compra en línea — se adquiere en una CEDI o por teléfono. Para adquirirlo, escribime y te doy la dirección de la CEDI más cercana a tu ciudad.</p>
         <p class="kit-advisor-code">Código de presentador: <span>593672828GRH</span></p>
-        <p style="font-size: .76rem; font-style: italic;">Este código no hace que el kit sea gratis ni da descuento por sí solo — identifica que yo soy tu presentador, para que puedas contar con mi asesoría en el proceso. El kit lo pagás vos mismo/a en la CEDI.</p>
+        <p style="font-size: .76rem; font-style: italic;">Este código no hace que el kit sea gratis ni da descuento por sí solo — identifica que yo soy tu presentador, para que puedas contar con mi asesoría en el proceso. El kit lo pagás en la CEDI.</p>
         <button type="button" class="kit-card-link" style="width: 100%; border: 1px solid rgba(201,166,72,0.35);" onclick="openEmprendedorChat()">Escribirme por WhatsApp</button>
       </div>
     </div>
   </div>
-  <p style="text-align:center; color: var(--muted); font-size: .85rem; margin-top: 28px;">¿No estás seguro cuál elegir? Contame qué buscás y te recomiendo el que mejor se ajusta a vos.</p>
+  <p style="text-align:center; margin-top: 24px;">
+    <a href="#" onclick="event.preventDefault(); openCountryModal('puntos');" style="color: var(--gold); font-weight: 700; font-size: .88rem; text-decoration: none;">
+      📊 Ver puntos por producto — para armar tu Kit Emprendedor
+    </a>
+  </p>
+  <p style="text-align:center; color: var(--muted); font-size: .85rem; margin-top: 28px;">¿No estás seguro cuál elegir? Cuentame qué buscás y te recomiendo el que mejor se ajuste a ti.</p>
 </section>
 
 <section class="printable-section reveal">
   <div class="section-header">
     <div class="sub">// Para el Kit Emprendedor</div>
     <h2>Recibe tu tarjeta con mi código por correo</h2>
-    <p class="lead">Déjame tu correo y te la envío directo desde <strong>hamiltonnetworker@gmail.com</strong>. Llévala a tu CEDI más cercana para adquirir el Kit Emprendedor 1000 puntos — el código identifica que yo soy tu presentador, el kit lo pagás vos en la CEDI, no es gratis ni tiene descuento por usar el código.</p>
+    <p class="lead">Déjame tu correo y te la envío directo desde <strong>hamiltonnetworker@gmail.com</strong>. Llévala a tu CEDI más cercana para adquirir el Kit Emprendedor 1000 puntos — el código identifica que yo soy tu presentador, el kit lo pagás en la CEDI, no es gratis ni tiene descuento por usar el código.</p>
   </div>
   <div class="printable-wrap">
     <div class="printable-card-frame">
@@ -1238,6 +1251,27 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   </div>
 </div>
 
+<div id="modal-puntos" class="country-modal-overlay" onclick="if(event.target===this) closeCountryModal('puntos')">
+  <div class="country-modal points-modal">
+    <div class="country-modal-head">
+      <h4>Puntos por producto</h4>
+      <button type="button" onclick="closeCountryModal('puntos')" aria-label="Cerrar">✕</button>
+    </div>
+    <p class="country-modal-sub">Catálogo oficial de Ecuador (nutrición y belleza) — combina los productos que más te sirvan hasta llegar a tus 1000+ puntos para el Kit Emprendedor. A mayor puntaje acumulado, mayor tu descuento: 25%, 30%, 35% y hasta 40%.</p>
+    <input id="pointsSearch" type="text" class="form-input" placeholder="Buscar producto... ej. biocros, labial, shampoo" style="margin-bottom: 14px;" oninput="renderPointsTable()">
+    <div class="points-table-wrap">
+      <table class="points-table">
+        <thead>
+          <tr><th>Producto</th><th>Puntos</th><th>PVP</th></tr>
+        </thead>
+        <tbody id="pointsTableBody"></tbody>
+      </table>
+    </div>
+    <p id="pointsNoResults" style="display:none; text-align:center; color: var(--muted); font-size: .85rem; padding: 20px 0;">No encontramos productos con ese nombre.</p>
+    <p style="font-size: .78rem; color: var(--muted); margin-top: 14px; font-style: italic;">Varios productos de maquillaje vienen en distintos tonos con los mismos puntos/precio — se agrupan en una sola fila. Precios de referencia Ecuador, vigencia junio 2026 — pueden cambiar sin previo aviso. Escríbeme por WhatsApp si quieres armar la combinación exacta para tus 1000+ puntos.</p>
+  </div>
+</div>
+
 <button id="chat-pill-btn" class="chat-pill" type="button">
   <span class="chat-pill-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.66.986 3.284 1.447 4.74 1.448 5.516 0 10.003-4.478 10.006-9.986.002-2.67-1.019-5.18-2.87-7.03C16.61 1.724 14.12 .701 11.45.701 5.937.701 1.45 5.18 1.447 10.693c-.001 1.51.442 2.986 1.279 4.3l-.971 3.548 3.65-.958zm13.016-4.93c-.31-.156-1.84-.907-2.127-1.01-.288-.102-.497-.155-.706.156-.21.312-.81.1.01-1.022 1.11-.21.103-.418.05-.728-.053-.31-.157-1.84-.906-2.126-1.01-.28-.124-.43-.052-.518.02-.1.08-.22.256-.22.524 0 .268.194.526.222.564.027.037.382 1.83 1.233 2.197.85.367 1.13.294 1.34.248.21-.046.68-.276.774-.544.095-.268.095-.497.066-.544-.028-.046-.104-.077-.415-.233z"/></svg></span>
   Escríbeme por WhatsApp
@@ -1361,14 +1395,173 @@ function setPortalTab(type) {
 }
 setPortalTab("cliente");
 
+/* Catálogo oficial de puntos por producto — Ecuador, vigencia junio 2026.
+   Variantes de color/tono con los mismos puntos y precio se agrupan en una
+   sola fila (se indica la cantidad de tonos). Para editar o actualizar
+   precios, modifica este arreglo — cada fila es [nombre, puntos, precio]. */
+const POINTS_CATALOG = [
+  { section: 'Nutrición — Los más vendidos', items: [
+    ['Power Maker', 110, '$69.00'],
+    ['Ego Frutas del Bosque Evolución Lata 355ml', 27, '$4.25 c/lata'],
+    ['Biocros Supreme Caja 30 sobres 240g', 54, '$38.00'],
+    ['Aloe Beta Piña Evolución 960ml', 26, '$18.50'],
+    ['One C Mix Evolución Caja 150g', 46, '$36.50'],
+    ['Fem Evolución Caja', 56, '$39.00'],
+    ['Optimus Evolución Caja', 64, '$44.50'],
+    ['Omniplus Naranja Evolución Caja 30 sobres', 87, '$61.50'],
+  ]},
+  { section: 'Nutrición — Catálogo general', items: [
+    ['Agua Blu Supreme 600ml', 1, '$1.60'],
+    ['Aloe Beta Piña Evolución Botella 200ml', 5, '$4.10'],
+    ['Aqtua Evolución Caja 30 sachets', 118, '$75.00'],
+    ['TMGN Coffee Caja Evolución', 39, '$37.00'],
+    ['Cafezzino Evolución', 52, '$46.00'],
+    ['Cafezzino sin Endulzar Bote', 58, '$49.50'],
+    ['Dolce Vita Evolución Caja 30 sobres', 70, '$54.50'],
+    ['Ego 10 Evolución Botella 200ml', 5, '$4.10'],
+    ['Ego Life Evolución Caja 30 sobres', 38, '$35.50'],
+    ['Ego Plant Evolución Botella 200ml', 5, '$4.10'],
+    ['Estop Plus Caja 30 sachets 450g', 102, '$74.50'],
+    ["Fiber'n Plus Evolución Caja 30 sobres 450g", 70, '$57.50'],
+    ['Flu-Y Bote 60 cápsulas', 44, '$26.00'],
+    ['Homo Plus Caja 30 sachets 180g', 55, '$38.00'],
+    ['OML IQU Lata 12oz', 42, '$37.50'],
+    ['OML IQU Lata Individual 12oz', 7, '$6.30'],
+    ['Kolina Evolución Botella 200ml', 5, '$4.10'],
+    ['Omnilife Probiotic Evolución Caja 30 sobres', 66, '$50.50'],
+    ['Omnilife VKids Doypack 400g', 71, '$53.50'],
+    ['Omniost Caja 30 sobres 450g', 57, '$49.00'],
+    ['Omniplus Frutas Evolución Caja 30 sobres', 87, '$61.50'],
+    ['Starbien Evolución Caja 30 sobres', 53, '$39.00'],
+    ['Super Mix Supreme Vainilla Caja 30 sobres', 76, '$57.00'],
+    ['Teatino Limón Evolución Caja 30 sobres', 63, '$39.00'],
+    ['Teatino Maracuyá Evolución 30 sobres', 95, '$68.50'],
+    ['Undú Evolución', 107, '$66.00'],
+    ['Uzo Supreme Caja 30 sachets', 166, '$122.00'],
+  ]},
+  { section: 'Belleza — Limpieza facial', items: [
+    ['Espuma Limpiadora Facial', 34, '$29.00'],
+    ['Tónico Hidratante', 51, '$44.00'],
+    ['Crema Limpiadora Facial', 36, '$29.00'],
+    ['Desmaquillante para Ojos', 26, '$25.00'],
+    ['Mascarilla Facial', 38, '$30.00'],
+    ['Micro-Exfoliante Facial', 32, '$24.00'],
+  ]},
+  { section: 'Belleza — Control de brotes y brillo', items: [
+    ['System Spot-Specialist Dermolimpiador Facial', 31, '$23.40'],
+    ['System Spot-Specialist Gel Localizado', 24, '$22.40'],
+    ['System Spot-Specialist Suero Perfeccionador', 31, '$29.40'],
+    ['System S-Specialist (set)', 59, '$54.40'],
+  ]},
+  { section: 'Belleza — Anti-manchas', items: [
+    ['System Luminous-Specialist Gel Anti-Manchas', 53, '$43.50'],
+    ['System Luminous-Specialist Crema Manos Cuello y Escote', 45, '$39.00'],
+    ['System Luminous-Specialist Espuma de Limpieza Facial', 37, '$29.50'],
+  ]},
+  { section: 'Belleza — Anti-edad', items: [
+    ['System Time-Specialist Crema Contorno de Ojos', 47, '$29.50'],
+    ['System Time-Specialist Crema de Día FPS30', 73, '$45.70'],
+    ['System Time-Specialist Suero de Noche', 73, '$50.50'],
+    ['System T-Specialist (set)', 71, '$57.00'],
+  ]},
+  { section: 'Belleza — Hidratación', items: [
+    ['Crema Hidratante de Día FPS20', 42, '$41.00'],
+    ['Crema Hidratante de Noche', 42, '$41.00'],
+    ['Suero Facial Hidratación Profunda Aloe', 40, '$29.50'],
+    ['Suero Contorno de Ojos Hidratación Profunda Aloe', 21, '$16.50'],
+  ]},
+  { section: 'Belleza — Tratamiento y solar', items: [
+    ['Gel-Crema para Estrías', 50, '$37.50'],
+    ['Crema Corporal Piel de Naranja', 59, '$47.00'],
+    ['Protector Solar Facial FPS50+', 34, '$24.00'],
+    ['Protector Solar Corporal FPS50+', 48, '$33.50'],
+  ]},
+  { section: 'Belleza — Cuidado personal y líneas', items: [
+    ['Crema de Manos Antibacterial (3 aromas)', 6, '$5.55'],
+    ['Omniplus Gel Premium', 28, '$26.00'],
+    ['Bálsamo Labial Omniplus FPS15', 30, '$20.50'],
+    ['Loción Corporal Coco Vainilla', 27, '$19.00'],
+    ['Crema Manos Coco Vainilla', 8, '$7.70'],
+    ['Jabón Corporal Frutos Rojos', 23, '$15.50'],
+    ['Loción Corporal Frutos Rojos', 27, '$19.00'],
+    ['Crema Manos Frutos Rojos', 8, '$7.70'],
+  ]},
+  { section: 'Maquillaje', items: [
+    ['Maquillaje Líquido UP+ FPS15 40g (8 tonos)', 51, '$44.50'],
+    ['Maquillaje Compacto 2en1 (7 tonos)', 42, '$38.00'],
+    ['Primer Facial', 40, '$28.50'],
+    ['Corrector Líquido (4 tonos)', 25, '$21.50'],
+    ['Polvo Traslúcido', 35, '$25.00'],
+    ['Polvo Iluminador (3 tonos)', 21, '$13.50'],
+    ['Rubor Compacto (3 tonos)', 25, '$19.50'],
+    ['Paleta de Sombras (2 variantes)', 73, '$45.50'],
+    ['Lápiz Delineador de Ojos (café/negro)', 26, '$19.50'],
+    ['Delineador Ojos Penliner', 24, '$18.00'],
+    ['Delineador Líquido Ojos Negro Mate', 26, '$21.00'],
+    ['Máscara para Pestañas', 32, '$28.00'],
+    ['Set Delineador Compacto de Cejas', 45, '$38.50'],
+    ['Lápiz para Cejas (universal/brown)', 19, '$10.50'],
+    ['Labial Hidratante FPS15 (10 tonos)', 24, '$19.50'],
+    ['Labial Líquido Mate (8 tonos)', 36, '$26.00'],
+    ['Brillo Labial (7 tonos)', 31, '$27.00'],
+    ['Lápiz Delineador para Labios (2 tonos)', 19, '$16.00'],
+  ]},
+  { section: 'Cuidado capilar', items: [
+    ['Shampoo Extractos Herbales', 22, '$18.50'],
+    ['Acondicionador Reparador Extractos Herbales', 22, '$18.50'],
+    ['Shampoo Cabello Débil', 29, '$23.50'],
+    ['Shampoo Color Protect', 29, '$23.50'],
+    ['Gel Fijador para el Cabello', 14, '$13.50'],
+    ['System Hair-Specialist Loción Capilar Fortificante', 64, '$49.00'],
+    ['System Hair-Specialist Shampoo Fortificante', 51, '$33.50'],
+    ['System H-Specialist (set)', 99, '$76.50'],
+    ['Complejo Multivitamínico Capilar', 51, '$46.00'],
+    ['Mascarilla Reparadora Capilar', 29, '$26.00'],
+    ['Tinte Permanente (7 tonos)', 29, '$26.50'],
+  ]},
+  { section: 'Complementos y accesorios', items: [
+    ['Set de Brochas Profesional (9 pzas)', 88, '$76.00'],
+    ['Esponja para Maquillaje', 16, '$11.00'],
+    ['Brocha Maquillaje Líquido', 17, '$12.50'],
+    ['Set de Brochas para Rostro', 43, '$34.50'],
+    ['Set de Brochas para Ojos y Labios', 41, '$33.50'],
+    ['Sacapuntas Seytú', 6, '$5.10'],
+    ['Kit 500 Puntos', 500, '$308.00'],
+  ]},
+];
+
+function renderPointsTable() {
+  const query = (document.getElementById('pointsSearch')?.value || '').toLowerCase().trim();
+  const tbody = document.getElementById('pointsTableBody');
+  const noResults = document.getElementById('pointsNoResults');
+  if (!tbody) return;
+
+  let html = '';
+  let totalShown = 0;
+
+  POINTS_CATALOG.forEach((group) => {
+    const matches = group.items.filter(([name]) => name.toLowerCase().includes(query));
+    if (matches.length === 0) return;
+    html += `<tr class="points-section-row"><td colspan="3">${group.section}</td></tr>`;
+    matches.forEach(([name, points, price]) => {
+      html += `<tr><td>${name}</td><td>${points}</td><td>${price}</td></tr>`;
+    });
+    totalShown += matches.length;
+  });
+
+  tbody.innerHTML = html;
+  noResults.style.display = totalShown === 0 ? 'block' : 'none';
+}
+
 function openCountryModal(type) {
   document.getElementById(`modal-${type}`).classList.add("open");
+  if (type === 'puntos') renderPointsTable();
 }
 function closeCountryModal(type) {
   document.getElementById(`modal-${type}`).classList.remove("open");
 }
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") { closeCountryModal("cliente"); closeCountryModal("afiliado"); closeCountryModal("portal"); }
+  if (e.key === "Escape") { closeCountryModal("cliente"); closeCountryModal("afiliado"); closeCountryModal("portal"); closeCountryModal("puntos"); }
 });
 
 const chatPillBtn = document.getElementById('chat-pill-btn');
