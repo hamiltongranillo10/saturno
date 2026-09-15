@@ -1639,7 +1639,7 @@ function openEmprendedorChat() {
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
 }
 
-const CARD_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx2D2OL_XXHfktGkhMWlrvGtolE15J9PtQFt33PwDa9saGrFJKz0l2BHyVyOBnjPpv1_Q/exec';
+const CARD_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbygu3tjemNxdQfIqhpnqbRjDyYV1rUUkjiux9eKkevBPqeFlWXUmwoVi6SsDei67l4vSg/exec';
 
 function sendCardByEmail(event) {
   event.preventDefault();
@@ -1673,7 +1673,16 @@ chatStartBtnReg.addEventListener('click', () => {
   const nombre = document.getElementById('chat-nombre-reg').value.trim();
   const codigo = document.getElementById('chat-codigo-reg').value.trim();
   const texto = `Hola Hamilton 👋\n\n*Tipo:* Ya me registré\n*Nombre:* ${nombre || 'No especificado'}\n*Código:* ${codigo || 'No especificado'}\n*Detalle:* Ya completé mi registro en Omnilife y me salió la pantalla de confirmación. Quiero saber cómo iniciar sesión para comprar en la web, o cuál es la CEDI más cercana a mí.`;
-  if (typeof fbq !== 'undefined') fbq('track', 'CompleteRegistration', {content_name: 'Confirmación de registro', status: true});
+  // Ya no se dispara CompleteRegistration aquí. Solo se guarda como
+  // "Registro pendiente" — el evento real a Meta se envía server-side
+  // desde el panel de administrador, cuando Hamilton verifica el código
+  // manualmente en Omnilife y lo confirma.
+  fetch(CARD_SCRIPT_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ action: 'registro_pendiente', nombre: nombre || 'No especificado', codigo: codigo || 'No especificado' }),
+  });
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
   chatPanel.classList.remove('open');
 });
