@@ -404,7 +404,6 @@ nav {
 
 .printable-section { padding: 10px 48px 90px; max-width: 900px; margin: 0 auto; text-align: center; }
 .printable-wrap { display: flex; flex-direction: column; align-items: center; }
-.printable-email-form { display: flex; flex-direction: column; align-items: center; width: 100%; }
 .printable-card-frame {
   width: 100%; max-width: 460px; min-height: 100px; border-radius: 18px;
   overflow: hidden; border: 1px solid var(--line); background: var(--bg-soft);
@@ -1122,23 +1121,18 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 <section class="printable-section reveal">
   <div class="section-header">
     <div class="sub">// Para el Kit Emprendedor</div>
-    <h2>Recibe tu tarjeta con mi código por correo</h2>
-    <p class="lead">Déjame tu correo y te la envío directo desde <strong>hamiltonnetworker@gmail.com</strong>. Llévala a tu CEDI más cercana para adquirir el Kit Emprendedor 1000 puntos — el código identifica que yo soy tu presentador, el kit lo pagás vos en la CEDI, no es gratis ni tiene descuento por usar el código.</p>
+    <h2>Pídeme tu tarjeta con mi código</h2>
+    <p class="lead">Escríbeme por WhatsApp y te la mando directo. Llévala a tu CEDI más cercana para adquirir el Kit Emprendedor 1000 puntos — el código identifica que yo soy tu presentador, el kit lo pagás vos en la CEDI, no es gratis ni tiene descuento por usar el código.</p>
   </div>
   <div class="printable-wrap">
     <div class="printable-card-frame">
-      <img loading="lazy" decoding="async" id="tarjetaImg" src="tarjeta-hamilton.png" alt="Tarjeta de asesor Hamilton Omnilife" class="printable-card-real" onerror="this.style.display='none'; document.getElementById('tarjetaFallback').style.display='flex';">
+      <img loading="lazy" decoding="async" id="tarjetaImg" src="tarjeta-hamilton.png" alt="Tarjeta de asesor Hamilton Omnilife" class="printable-card-real" onerror="this.style.display='none'; document.getElementById('tarjetaFallback').style.display='flex';" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
       <div id="tarjetaFallback" class="printable-card-fallback">
         <span class="fb-letter">🪪</span>
         <p>Subí tu imagen como <code>tarjeta-hamilton.png</code> junto al resto de tus archivos para que aparezca acá.</p>
       </div>
     </div>
-    <form class="printable-email-form" onsubmit="sendCardByEmail(event)">
-      <label class="form-label" for="tarjeta-email" style="text-align:left; width:100%; max-width:360px; margin-top:20px;">Tu correo electrónico</label>
-      <input id="tarjeta-email" type="email" class="form-input" style="max-width:360px;" placeholder="tucorreo@ejemplo.com" required>
-      <button type="submit" class="nav-btn primary" style="padding: 14px 26px; margin-top: 14px;">Enviarme la tarjeta por correo</button>
-    </form>
-    <p class="printable-hint">Te llega automáticamente desde <strong>hamiltonnetworker@gmail.com</strong> en unos minutos — si no la ves, revisa también tu carpeta de spam o promociones.</p>
+    <button type="button" class="nav-btn primary" style="padding: 14px 26px; margin-top: 24px;" onclick="pedirTarjetaWhatsApp()">Pedirla por WhatsApp</button>
   </div>
 </section>
 
@@ -1649,31 +1643,10 @@ function openEmprendedorChat() {
 
 const CARD_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbygu3tjemNxdQfIqhpnqbRjDyYV1rUUkjiux9eKkevBPqeFlWXUmwoVi6SsDei67l4vSg/exec';
 
-function sendCardByEmail(event) {
-  event.preventDefault();
-  const emailInput = document.getElementById('tarjeta-email');
-  const email = emailInput.value.trim();
-  if (!email) return;
-
-  const submitBtn = event.target.querySelector('button[type="submit"]');
-  const originalText = submitBtn.textContent;
-  submitBtn.textContent = 'Enviando...';
-  submitBtn.disabled = true;
-
-  fetch(CARD_SCRIPT_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify({ email }),
-  }).finally(() => {
-    if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', {content_name: 'Tarjeta Kit Emprendedor', content_category: 'Kit Emprendedor', value: 550, currency: 'USD'});
-    emailInput.value = '';
-    submitBtn.textContent = '¡Listo! Revisa tu correo 📩';
-    setTimeout(() => {
-      submitBtn.textContent = originalText;
-      submitBtn.disabled = false;
-    }, 5000);
-  });
+function pedirTarjetaWhatsApp() {
+  const texto = `Hola Hamilton 👋\n\n*Tipo:* Kit Emprendedor\n*Nombre:* No especificado\n*Detalle:* Quiero que me pases tu tarjeta con tu código de presentador para el Kit Emprendedor 1000 puntos.`;
+  if (typeof fbq !== 'undefined') fbq('track', 'InitiateCheckout', {content_name: 'Tarjeta Kit Emprendedor', content_category: 'Kit Emprendedor', value: 550, currency: 'USD'});
+  window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
 }
 
 const chatStartBtnReg = document.getElementById('chat-start-btn-reg');
