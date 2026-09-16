@@ -1329,7 +1329,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     </div>
 
     <div id="chat-mode-registrado" style="display:none;">
-      <div class="chat-bubble">¡Felicidades por dar el paso! 🎉 Contame tu nombre y tu código de cliente, y te explico cómo iniciar sesión para comprar en la web o cuál es tu CEDI más cercana.</div>
+      <div class="chat-bubble">¡Felicidades por dar el paso! 🎉 Contame tu nombre, tu código de cliente y un correo o teléfono de contacto, y te explico cómo iniciar sesión para comprar en la web o cuál es tu CEDI más cercana.</div>
       <div class="chat-setup-card">
         <div class="csc-head"><span class="dot-ic">✅</span>Ya completé mi registro</div>
         <div class="chat-field">
@@ -1339,6 +1339,14 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
         <div class="chat-field">
           <label for="chat-codigo-reg">Tu código de cliente</label>
           <input id="chat-codigo-reg" type="text" placeholder="Ej. 593xxxxxxxx">
+        </div>
+        <div class="chat-field">
+          <label for="chat-email-reg">Tu correo electrónico</label>
+          <input id="chat-email-reg" type="email" placeholder="tucorreo@ejemplo.com">
+        </div>
+        <div class="chat-field">
+          <label for="chat-telefono-reg">Tu teléfono</label>
+          <input id="chat-telefono-reg" type="tel" placeholder="Ej. 0991234567">
         </div>
         <button id="chat-start-btn-reg" type="button" class="chat-start-btn">Avisar que ya me registré</button>
       </div>
@@ -1672,16 +1680,26 @@ const chatStartBtnReg = document.getElementById('chat-start-btn-reg');
 chatStartBtnReg.addEventListener('click', () => {
   const nombre = document.getElementById('chat-nombre-reg').value.trim();
   const codigo = document.getElementById('chat-codigo-reg').value.trim();
-  const texto = `Hola Hamilton 👋\n\n*Tipo:* Ya me registré\n*Nombre:* ${nombre || 'No especificado'}\n*Código:* ${codigo || 'No especificado'}\n*Detalle:* Ya completé mi registro en Omnilife y me salió la pantalla de confirmación. Quiero saber cómo iniciar sesión para comprar en la web, o cuál es la CEDI más cercana a mí.`;
+  const email = document.getElementById('chat-email-reg').value.trim();
+  const telefono = document.getElementById('chat-telefono-reg').value.trim();
+  const texto = `Hola Hamilton 👋\n\n*Tipo:* Ya me registré\n*Nombre:* ${nombre || 'No especificado'}\n*Código:* ${codigo || 'No especificado'}\n*Correo:* ${email || 'No especificado'}\n*Teléfono:* ${telefono || 'No especificado'}\n*Detalle:* Ya completé mi registro en Omnilife y me salió la pantalla de confirmación. Quiero saber cómo iniciar sesión para comprar en la web, o cuál es la CEDI más cercana a mí.`;
   // Ya no se dispara CompleteRegistration aquí. Solo se guarda como
   // "Registro pendiente" — el evento real a Meta se envía server-side
   // desde el panel de administrador, cuando Hamilton verifica el código
-  // manualmente en Omnilife y lo confirma.
+  // manualmente en Omnilife y lo confirma. El correo/teléfono viajan
+  // también, para que ese evento lleve datos con los que Meta pueda
+  // emparejar mejor a la persona.
   fetch(CARD_SCRIPT_URL, {
     method: 'POST',
     mode: 'no-cors',
     headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-    body: JSON.stringify({ action: 'registro_pendiente', nombre: nombre || 'No especificado', codigo: codigo || 'No especificado' }),
+    body: JSON.stringify({
+      action: 'registro_pendiente',
+      nombre: nombre || 'No especificado',
+      codigo: codigo || 'No especificado',
+      email: email || '',
+      telefono: telefono || '',
+    }),
   });
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
   chatPanel.classList.remove('open');
