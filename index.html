@@ -347,7 +347,7 @@ nav {
 
 .stories-section { padding: 10px 48px 90px; max-width: 1240px; margin: 0 auto; content-visibility: auto; contain-intrinsic-size: 1px 700px; }
 .stories-carousel-wrap { position: relative; display: flex; align-items: center; gap: 12px; }
-.stories-carousel { display: flex; gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 4px 2px 12px; -webkit-overflow-scrolling: touch; }
+.stories-carousel { flex: 1 1 auto; min-width: 0; display: flex; gap: 22px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 4px 2px 12px; -webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain; scrollbar-width: thin; }
 .stories-carousel::-webkit-scrollbar { height: 6px; }
 .stories-carousel::-webkit-scrollbar-thumb { background: rgba(45,106,79,0.4); border-radius: 10px; }
 .story-card { flex: 0 0 auto; width: min(480px, 88vw); scroll-snap-align: start; }
@@ -889,7 +889,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <p class="lead">Desliza para ver cada historia completa. Los resultados y experiencias pueden variar según la actividad de cada persona.</p>
   </div>
   <div class="stories-carousel-wrap">
-    <button class="stories-arrow left" onclick="scrollStories(-1)" aria-label="Anterior">‹</button>
+    <button type="button" class="stories-arrow left" onclick="scrollStories(-1)" aria-label="Anterior">‹</button>
     <div class="stories-carousel" id="storiesCarousel">
       <div class="story-card">
         <div class="story-video-container" data-video-id="7T2bLFWOPjg">
@@ -904,25 +904,25 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <div class="story-card">
         <div class="story-video-container" data-video-id="Ggfs5dR7GwU">
           <img loading="lazy" decoding="async" src="historia-2-poster.png" alt="Historia Omnilife" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/Ggfs5dR7GwU/hqdefault.jpg';" width="1280" height="720">
-          <div class="video-overlay" onclick="loadStoryVideo(this)">
+          <button type="button" class="video-overlay" aria-label="Reproducir historia de Omnilife" onclick="loadStoryVideo(this)">
             <div class="play-button-center">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </div>
-          </div>
+          </button>
         </div>
       </div>
       <div class="story-card">
         <div class="story-video-container" data-video-id="6qw3WaeKy-g">
           <img loading="lazy" decoding="async" src="historia-3-poster.png" alt="Historia Omnilife" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/6qw3WaeKy-g/hqdefault.jpg';" width="1280" height="720">
-          <div class="video-overlay" onclick="loadStoryVideo(this)">
+          <button type="button" class="video-overlay" aria-label="Reproducir historia de Omnilife" onclick="loadStoryVideo(this)">
             <div class="play-button-center">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </div>
-          </div>
+          </button>
         </div>
       </div>
     </div>
-    <button class="stories-arrow right" onclick="scrollStories(1)" aria-label="Siguiente">›</button>
+    <button type="button" class="stories-arrow right" onclick="scrollStories(1)" aria-label="Siguiente">›</button>
   </div>
 </section>
 
