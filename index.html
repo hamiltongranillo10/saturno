@@ -769,8 +769,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <h1 class="animated-hero-text d2">Regístrate en Omnilife con acompañamiento personal y <span class="accent">elige la opción que más te conviene</span>.</h1>
     <p class="hero-p animated-hero-text d3">Compra con precio oficial o conoce la Afiliación con descuentos. Te ayudo a completar el registro oficial y a saber qué hacer después.</p>
     <div class="hero-buttons animated-hero-text d4">
-      <a href="#" class="nav-btn primary" style="padding: 16px 28px;" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme para descuento</a>
-      <a href="#" class="nav-btn secondary" style="padding: 16px 28px;" onclick="event.preventDefault(); openCountryModal('cliente');">Registrarme como Cliente Admirable</a>
+      <button type="button" class="nav-btn primary" style="padding: 16px 28px;" onclick="openCountryModal('afiliado');">Registrarme para descuento</button>
+      <button type="button" class="nav-btn secondary" style="padding: 16px 28px;" onclick="openCountryModal('cliente');">Registrarme como Cliente Admirable</button>
     </div>
   </div>
   <div class="hero-photo-wrap animated-hero-card">
@@ -796,7 +796,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <div class="why-card">
       <div class="why-card-img">
         <img loading="lazy" decoding="async" src="cliente-admirablle.png" alt="Cliente Admirable" onerror="this.classList.add('img-missing')" width="800" height="800">
-        <div class="img-fallback"><span class="fb-letter">C</span>Foto pendiente</div>
+        <div class="img-fallback" aria-hidden="true"><span class="fb-letter">C</span>Foto pendiente</div>
       </div>
       <a href="#" class="why-card-link" onclick="event.preventDefault(); openCountryModal('cliente');">Registrarme como Cliente Admirable ↗</a>
       <div class="why-card-body">
@@ -808,7 +808,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <div class="why-card">
       <div class="why-card-img">
         <img loading="lazy" decoding="async" src="afiliacion.png" alt="Afiliación" onerror="this.classList.add('img-missing')" width="800" height="800">
-        <div class="img-fallback"><span class="fb-letter">A</span>Foto pendiente</div>
+        <div class="img-fallback" aria-hidden="true"><span class="fb-letter">A</span>Foto pendiente</div>
       </div>
       <a href="#" class="why-card-link gold" onclick="event.preventDefault(); openCountryModal('afiliado');">Registrarme con Afiliación ↗</a>
       <div class="why-card-body">
@@ -834,7 +834,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     </div>
     
     <div class="video-container" id="videoContainer">
-      <img loading="lazy" decoding="async" src="hamilton-video-poster.png" alt="Testimonio de registro paso a paso" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/MY3azjHyX2U/hqdefault.jpg';">
+      <img loading="lazy" decoding="async" src="hamilton-video-poster.png" alt="Testimonio de registro paso a paso" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/MY3azjHyX2U/hqdefault.jpg';" width="1280" height="720">
       
       <button type="button" class="video-overlay" aria-label="Reproducir testimonio de registro" onclick="loadYouTubeVideo()">
         <div class="play-button-center" id="playBtnCenter">
@@ -851,8 +851,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 <section class="post-registro-section reveal">
   <div class="post-registro-box">
     <div class="post-registro-img">
-      <img loading="lazy" decoding="async" src="registro-exitoso-poster.png" alt="Pantalla de registro exitoso en Omnilife" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
-      <div class="img-fallback"><span class="fb-letter">✓</span></div>
+      <img loading="lazy" decoding="async" src="registro-exitoso-poster.png" alt="Pantalla de registro exitoso en Omnilife" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;" width="1280" height="720">
+      <div class="img-fallback" aria-hidden="true"><span class="fb-letter">✓</span></div>
     </div>
     <div class="post-registro-text">
       <div class="sub">// Cuando termines tu registro</div>
@@ -872,7 +872,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   </div>
   <div class="results-video-wrap">
     <div class="results-video-container" id="resultsVideoContainer">
-      <img loading="lazy" decoding="async" src="resultados-dia-morado-poster.png" alt="Resultados Omnilife Día Morado" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/bl1jFjnwoXE/hqdefault.jpg';">
+      <img loading="lazy" decoding="async" src="resultados-dia-morado-poster.png" alt="Resultados Omnilife Día Morado" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/bl1jFjnwoXE/hqdefault.jpg';" width="1280" height="720">
       <button type="button" class="video-overlay" aria-label="Reproducir resultados de Omnilife" onclick="loadResultsVideo()">
         <div class="play-button-center">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -893,7 +893,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     <div class="stories-carousel" id="storiesCarousel">
       <div class="story-card">
         <div class="story-video-container" data-video-id="7T2bLFWOPjg">
-          <img loading="lazy" decoding="async" src="historia-1-poster.png" alt="Historia Omnilife" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/7T2bLFWOPjg/hqdefault.jpg';">
+          <img loading="lazy" decoding="async" src="historia-1-poster.png" alt="Historia Omnilife" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/7T2bLFWOPjg/hqdefault.jpg';" width="1280" height="720">
           <button type="button" class="video-overlay" aria-label="Reproducir historia de Omnilife" onclick="loadStoryVideo(this)">
             <div class="play-button-center">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -903,7 +903,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <div class="story-card">
         <div class="story-video-container" data-video-id="Ggfs5dR7GwU">
-          <img loading="lazy" decoding="async" src="historia-2-poster.png" alt="Historia Omnilife" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/Ggfs5dR7GwU/hqdefault.jpg';">
+          <img loading="lazy" decoding="async" src="historia-2-poster.png" alt="Historia Omnilife" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/Ggfs5dR7GwU/hqdefault.jpg';" width="1280" height="720">
           <div class="video-overlay" onclick="loadStoryVideo(this)">
             <div class="play-button-center">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -913,7 +913,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <div class="story-card">
         <div class="story-video-container" data-video-id="6qw3WaeKy-g">
-          <img loading="lazy" decoding="async" src="historia-3-poster.png" alt="Historia Omnilife" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/6qw3WaeKy-g/hqdefault.jpg';">
+          <img loading="lazy" decoding="async" src="historia-3-poster.png" alt="Historia Omnilife" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/6qw3WaeKy-g/hqdefault.jpg';" width="1280" height="720">
           <div class="video-overlay" onclick="loadStoryVideo(this)">
             <div class="play-button-center">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
@@ -939,8 +939,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <div class="kit-row-head">
         <div class="kit-row-info">
           <div class="kit-row-thumb">
-            <img loading="lazy" decoding="async" src="kit-omnilife-seytu.png" alt="Kit OMNILIFE-SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
-            <div class="img-fallback"><span class="fb-letter">O</span></div>
+            <img loading="lazy" decoding="async" src="kit-omnilife-seytu.png" alt="Kit OMNILIFE-SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;" width="800" height="800">
+            <div class="img-fallback" aria-hidden="true"><span class="fb-letter">O</span></div>
           </div>
           <div class="kit-row-text">
             <span class="kit-badge">Kit inicial</span>
@@ -964,8 +964,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <div class="kit-row-head">
         <div class="kit-row-info">
           <div class="kit-row-thumb">
-            <img loading="lazy" decoding="async" src="kit-seytu.png" alt="Kit SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
-            <div class="img-fallback"><span class="fb-letter">S</span></div>
+            <img loading="lazy" decoding="async" src="kit-seytu.png" alt="Kit SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;" width="800" height="800">
+            <div class="img-fallback" aria-hidden="true"><span class="fb-letter">S</span></div>
           </div>
           <div class="kit-row-text">
             <span class="kit-badge">Kit inicial</span>
@@ -989,8 +989,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <div class="kit-row-head">
         <div class="kit-row-info">
           <div class="kit-row-thumb">
-            <img loading="lazy" decoding="async" src="kit-500-nutricion.png" alt="Kit 500 Puntos Nutrición" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
-            <div class="img-fallback"><span class="fb-letter">N</span></div>
+            <img loading="lazy" decoding="async" src="kit-500-nutricion.png" alt="Kit 500 Puntos Nutrición" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;" width="800" height="800">
+            <div class="img-fallback" aria-hidden="true"><span class="fb-letter">N</span></div>
           </div>
           <div class="kit-row-text">
             <span class="kit-badge gold">500 puntos</span>
@@ -1014,8 +1014,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <div class="kit-row-head">
         <div class="kit-row-info">
           <div class="kit-row-thumb">
-            <img loading="lazy" decoding="async" src="kit-500-experiencia-seytu.png" alt="Kit 500 Puntos Experiencia SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
-            <div class="img-fallback"><span class="fb-letter">E</span></div>
+            <img loading="lazy" decoding="async" src="kit-500-experiencia-seytu.png" alt="Kit 500 Puntos Experiencia SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;" width="800" height="800">
+            <div class="img-fallback" aria-hidden="true"><span class="fb-letter">E</span></div>
           </div>
           <div class="kit-row-text">
             <span class="kit-badge gold">500 puntos</span>
@@ -1041,8 +1041,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 
     <div class="kit-card">
       <div class="kit-card-img">
-        <img loading="lazy" decoding="async" src="kit-omnilife-seytu.png" alt="Kit OMNILIFE-SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
-        <div class="img-fallback"><span class="fb-letter">O</span></div>
+        <img loading="lazy" decoding="async" src="kit-omnilife-seytu.png" alt="Kit OMNILIFE-SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;" width="800" height="800">
+        <div class="img-fallback" aria-hidden="true"><span class="fb-letter">O</span></div>
       </div>
       <span class="kit-badge">Kit inicial</span>
       <h4>Kit OMNILIFE-SEYTÚ</h4>
@@ -1060,8 +1060,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 
     <div class="kit-card">
       <div class="kit-card-img">
-        <img loading="lazy" decoding="async" src="kit-seytu.png" alt="Kit SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
-        <div class="img-fallback"><span class="fb-letter">S</span></div>
+        <img loading="lazy" decoding="async" src="kit-seytu.png" alt="Kit SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;" width="800" height="800">
+        <div class="img-fallback" aria-hidden="true"><span class="fb-letter">S</span></div>
       </div>
       <span class="kit-badge">Kit inicial</span>
       <h4>Kit SEYTÚ</h4>
@@ -1079,8 +1079,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 
     <div class="kit-card">
       <div class="kit-card-img">
-        <img loading="lazy" decoding="async" src="kit-500-nutricion.png" alt="Kit 500 Puntos Nutrición" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
-        <div class="img-fallback"><span class="fb-letter">N</span></div>
+        <img loading="lazy" decoding="async" src="kit-500-nutricion.png" alt="Kit 500 Puntos Nutrición" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;" width="800" height="800">
+        <div class="img-fallback" aria-hidden="true"><span class="fb-letter">N</span></div>
       </div>
       <span class="kit-badge gold">500 puntos</span>
       <h4>Kit 500 Puntos Nutrición</h4>
@@ -1098,8 +1098,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 
     <div class="kit-card">
       <div class="kit-card-img">
-        <img loading="lazy" decoding="async" src="kit-500-experiencia-seytu.png" alt="Kit 500 Puntos Experiencia SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
-        <div class="img-fallback"><span class="fb-letter">E</span></div>
+        <img loading="lazy" decoding="async" src="kit-500-experiencia-seytu.png" alt="Kit 500 Puntos Experiencia SEYTÚ" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;" width="800" height="800">
+        <div class="img-fallback" aria-hidden="true"><span class="fb-letter">E</span></div>
       </div>
       <span class="kit-badge gold">500 puntos</span>
       <h4>Kit 500 Puntos Experiencia SEYTÚ</h4>
@@ -1120,8 +1120,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div class="kits-grid">
     <div class="kit-card kit-card-wide">
       <div class="kit-card-img">
-        <img loading="lazy" decoding="async" src="kit-emprendedor-1000.png" alt="Kit Emprendedor 1000 puntos" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
-        <div class="img-fallback"><span class="fb-letter">K</span></div>
+        <img loading="lazy" decoding="async" src="kit-emprendedor-1000.png" alt="Kit Emprendedor 1000 puntos" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;" width="1000" height="800">
+        <div class="img-fallback" aria-hidden="true"><span class="fb-letter">K</span></div>
       </div>
       <span class="kit-badge emprendedor">Kit Emprendedor</span>
       <h4>Kit Emprendedor 1000 puntos</h4>
@@ -1159,7 +1159,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   </div>
   <div class="printable-wrap">
     <div class="printable-card-frame">
-      <img loading="lazy" decoding="async" id="tarjetaImg" src="tarjeta-hamilton.png" alt="Tarjeta de asesor Hamilton Omnilife" class="printable-card-real" onerror="this.style.display='none'; document.getElementById('tarjetaFallback').style.display='flex';" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;">
+      <img loading="lazy" decoding="async" id="tarjetaImg" src="tarjeta-hamilton.png" alt="Tarjeta de asesor Hamilton Omnilife" class="printable-card-real" onerror="this.style.display='none'; document.getElementById('tarjetaFallback').style.display='flex';" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;" width="1200" height="675">
       <div id="tarjetaFallback" class="printable-card-fallback">
         <span class="fb-letter">🪪</span>
         <p>Sube tu imagen como <code>tarjeta-hamilton.png</code> junto al resto de tus archivos para que aparezca acá.</p>
@@ -1175,7 +1175,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div class="about-grid">
     <div class="about-photo-frame">
       <div class="about-ribbon">Empresario</div>
-      <img loading="lazy" decoding="async" src="Hamilton.jpg" alt="Hamilton Granillo - Distribuidor Independiente Omnilife">
+      <img loading="lazy" decoding="async" src="Hamilton.jpg" alt="Hamilton Granillo - Distribuidor Independiente Omnilife" width="2000" height="2000">
     </div>
     <div class="about-text">
       <div class="sub">// Quién te acompaña</div>
@@ -1251,7 +1251,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       </div>
       <button type="submit" class="action-btn" id="submit-btn">Solicitar información de Cliente Admirable</button>
       <p class="form-microcopy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Sin costo por la asesoría, sin compra mínima obligatoria</p>
-      <p class="privacy-microcopy">Tus datos se usan para dar seguimiento a tu registro y confirmar tu solicitud en nuestro panel.</p>
+      <p class="privacy-microcopy">Tus datos se usan para dar seguimiento a tu registro y confirmar tu solicitud en nuestro panel de seguimiento.</p>
     </form>
   </div>
 </section>
@@ -1267,7 +1267,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <h4 id="modal-cliente-title">Elige tu país — Cliente Admirable</h4>
       <button type="button" onclick="closeCountryModal('cliente')" aria-label="Cerrar">✕</button>
     </div>
-    <p class="country-modal-sub">Te va a llevar directo al registro oficial de tu país.</p>
+    <p class="country-modal-sub">Te va a llevar directo al registro oficial. Para Italia, Alemania y otros países europeos, entra por esta ruta y cambia tu ubicación dentro del portal.</p>
     <div class="country-grid" id="countryGridCliente"></div>
   </div>
 </div>
@@ -1278,7 +1278,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <h4 id="modal-afiliado-title">Elige tu país — Afiliación</h4>
       <button type="button" onclick="closeCountryModal('afiliado')" aria-label="Cerrar">✕</button>
     </div>
-    <p class="country-modal-sub">Te va a llevar directo al registro oficial de tu país.</p>
+    <p class="country-modal-sub">Te va a llevar directo al registro oficial. Para Italia, Alemania y otros países europeos, entra por esta ruta y cambia tu ubicación dentro del portal.</p>
     <div class="country-grid" id="countryGridAfiliado"></div>
   </div>
 </div>
@@ -1319,17 +1319,17 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   </div>
 </div>
 
-<div id="lightbox-overlay" class="lightbox-overlay" onclick="closeLightbox()">
+<div id="lightbox-overlay" role="dialog" aria-modal="true" aria-label="Vista ampliada de imagen" aria-hidden="true" class="lightbox-overlay" onclick="closeLightbox()">
   <button type="button" class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar">✕</button>
   <img id="lightbox-img" src="" alt="">
 </div>
 
-<button id="chat-pill-btn" class="chat-pill" type="button">
+<button id="chat-pill-btn" class="chat-pill" type="button" aria-expanded="false" aria-controls="chat-panel">
   <span class="chat-pill-ic"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.66.986 3.284 1.447 4.74 1.448 5.516 0 10.003-4.478 10.006-9.986.002-2.67-1.019-5.18-2.87-7.03C16.61 1.724 14.12 .701 11.45.701 5.937.701 1.45 5.18 1.447 10.693c-.001 1.51.442 2.986 1.279 4.3l-.971 3.548 3.65-.958zm13.016-4.93c-.31-.156-1.84-.907-2.127-1.01-.288-.102-.497-.155-.706.156-.21.312-.81.1.01-1.022 1.11-.21.103-.418.05-.728-.053-.31-.157-1.84-.906-2.126-1.01-.28-.124-.43-.052-.518.02-.1.08-.22.256-.22.524 0 .268.194.526.222.564.027.037.382 1.83 1.233 2.197.85.367 1.13.294 1.34.248.21-.046.68-.276.774-.544.095-.268.095-.497.066-.544-.028-.046-.104-.077-.415-.233z"/></svg></span>
   Escríbeme por WhatsApp
 </button>
 
-<div id="chat-panel" class="chat-panel">
+<div id="chat-panel" class="chat-panel" aria-hidden="true">
   <div class="chat-panel-head">
     <h4>Escríbeme por WhatsApp</h4>
     <button id="chat-panel-close" type="button" aria-label="Cerrar">✕</button>
@@ -1429,10 +1429,9 @@ const COUNTRIES = [
   { name: "Ecuador", flag: "🇪🇨", code: "ECU" },
   { name: "El Salvador", flag: "🇸🇻", code: "SAL" },
   { name: "España", flag: "🇪🇸", code: "ESP" },
-  { name: "Francia", flag: "🇫🇷", code: "FRA" },
-  { name: "Italia", flag: "🇮🇹", code: "ITA" },
-  { name: "Alemania", flag: "🇩🇪", code: "DEU" },
-  { name: "Guatemala", flag: "🇬🇹", code: "GUA" },
+  { name: "Italia", flag: "🇮🇹", code: "ESP" },
+  { name: "Alemania", flag: "🇩🇪", code: "ESP" },
+        { name: "Guatemala", flag: "🇬🇹", code: "GUA" },
   { name: "México", flag: "🇲🇽", code: "MEX" },
   { name: "Nicaragua", flag: "🇳🇮", code: "NIC" },
   { name: "Panamá", flag: "🇵🇦", code: "PAN" },
@@ -1652,9 +1651,14 @@ function openLightbox(src, alt) {
   img.src = src;
   img.alt = alt || '';
   overlay.classList.add('open');
+  overlay.setAttribute('aria-hidden', 'false');
+  overlay._previousFocus = document.activeElement;
 }
 function closeLightbox() {
   document.getElementById('lightbox-overlay').classList.remove('open');
+  const lightbox = document.getElementById('lightbox-overlay');
+  lightbox.setAttribute('aria-hidden', 'true');
+  if (lightbox._previousFocus && typeof lightbox._previousFocus.focus === 'function') lightbox._previousFocus.focus();
 }
 
 function openCountryModal(type) {
@@ -1693,10 +1697,14 @@ const chatPanelClose = document.getElementById('chat-panel-close');
 const chatStartBtn = document.getElementById('chat-start-btn');
 
 chatPillBtn.addEventListener('click', () => {
-  chatPanel.classList.toggle('open');
+  const isOpen = chatPanel.classList.toggle('open');
+  chatPillBtn.setAttribute('aria-expanded', String(isOpen));
+  chatPanel.setAttribute('aria-hidden', String(!isOpen));
 });
 chatPanelClose.addEventListener('click', () => {
   chatPanel.classList.remove('open');
+  chatPillBtn.setAttribute('aria-expanded', 'false');
+  chatPanel.setAttribute('aria-hidden', 'true');
 });
 
 chatStartBtn.addEventListener('click', () => {
@@ -1706,6 +1714,8 @@ chatStartBtn.addEventListener('click', () => {
   if (typeof fbq !== 'undefined') fbq('track', 'Lead', {content_name: 'Duda por WhatsApp', content_category: 'Chat widget'});
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
   chatPanel.classList.remove('open');
+  chatPillBtn.setAttribute('aria-expanded', 'false');
+  chatPanel.setAttribute('aria-hidden', 'true');
 });
 
 function openEmprendedorChat() {
