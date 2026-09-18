@@ -1805,9 +1805,10 @@ let currentMode = 'consumo';
 
 function scrollToRegistration() {
   const registration = document.getElementById('registro');
-  if (!registration) return;
+  const form = document.getElementById('lead-form');
+  if (!registration || !form) return;
   const navOffset = 78;
-  const targetTop = registration.getBoundingClientRect().top + window.scrollY - navOffset;
+  const targetTop = form.getBoundingClientRect().top + window.scrollY - navOffset;
   window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
   window.setTimeout(() => document.getElementById('lead-nombre')?.focus({ preventScroll: true }), 650);
 }
