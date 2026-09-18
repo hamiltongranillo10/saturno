@@ -769,6 +769,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div class="nav-links">
     <a href="#tutorial" class="nav-btn secondary">¿Cómo afiliarse?</a>
     <a href="#registro" class="nav-btn primary">Registro guiado</a>
+    <a href="#registro" class="nav-btn primary" onclick="setMode('emprendedor')">Kit 1.000 puntos</a>
   </div>
 </nav>
 
@@ -840,7 +841,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
     </div>
   </div>
   <div class="kit-spotlight">
-    <div><div class="sub">// Dos formas de comenzar tu afiliación</div><h3>Afiliación normal o Kit Emprendedor · 1.000 puntos</h3><p>Ambas rutas pueden llevarte a emprender y comparten capacitación, reuniones por Zoom y acompañamiento personal. Con la afiliación normal puedes afiliarte solo para <strong>consumir con descuento</strong> o aprender a emprender mientras comienzas con <strong>25% y escalas poco a poco</strong>. Con el Kit Emprendedor empiezas con mayor volumen y <strong>30% de descuento desde el inicio</strong>. Tú eliges la velocidad y la ruta que mejor se adapta a ti.</p></div><button type="button" class="spotlight-cta" onclick="openCountryModal('afiliado')">Comparar rutas →</button>
+    <div><div class="sub">// Dos formas de comenzar tu afiliación</div><h3>Afiliación normal o Kit Emprendedor · 1.000 puntos</h3><p>Ambas rutas pueden llevarte a emprender y comparten capacitación, reuniones por Zoom y acompañamiento personal. Con la afiliación normal puedes afiliarte solo para <strong>consumir con descuento</strong> o aprender a emprender mientras comienzas con <strong>25% y escalas poco a poco</strong>. Con el Kit Emprendedor empiezas con mayor volumen y <strong>30% de descuento desde el inicio</strong>. Tú eliges la velocidad y la ruta que mejor se adapta a ti.</p></div>
   </div>
 </section>
 
@@ -1259,6 +1260,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div class="toggle-container">
     <button class="toggle-btn active" id="btn-cons" onclick="setMode('consumo')">Cliente (Precio Oficial)</button>
     <button class="toggle-btn" id="btn-dist" onclick="setMode('membresia')">Afiliación (Con Descuentos)</button>
+    <button class="toggle-btn" id="btn-emprendedor" onclick="setMode('emprendedor')">Kit 1.000 puntos</button>
   </div>
   <div class="main-form-box">
     <form id="lead-form" onsubmit="sendToWhatsApp(event)">
@@ -1805,16 +1807,24 @@ function setMode(mode) {
   currentMode = mode;
   const btnCons = document.getElementById('btn-cons');
   const btnDist = document.getElementById('btn-dist');
+  const btnEmprendedor = document.getElementById('btn-emprendedor');
   const submitBtn = document.getElementById('submit-btn');
   const mensajeField = document.getElementById('lead-mensaje');
+  btnCons.classList.remove('active');
+  btnDist.classList.remove('active');
+  btnEmprendedor.classList.remove('active');
   if (mode === 'consumo') {
     btnCons.classList.add('active'); btnDist.classList.remove('active');
     submitBtn.innerText = 'Quiero ayuda para registrarme como Cliente Admirable';
     mensajeField.placeholder = 'Ej. Quiero saber cómo registrarme como Cliente Admirable y qué productos me recomiendas...';
-  } else {
+  } else if (mode === 'membresia') {
     btnDist.classList.add('active'); btnCons.classList.remove('active');
     submitBtn.innerText = 'Quiero ayuda para afiliarme con descuento';
     mensajeField.placeholder = 'Ej. Quiero saber cómo funciona la Afiliación, el costo del kit y cómo subir de nivel de descuento...';
+  } else {
+    btnEmprendedor.classList.add('active');
+    submitBtn.innerText = 'Quiero información del Kit 1.000 puntos';
+    mensajeField.placeholder = 'Ej. Quiero saber qué incluye el Kit 1.000 puntos y cómo iniciar con 30% de descuento...';
   }
 }
 
@@ -1987,8 +1997,11 @@ function sendToWhatsApp(event) {
   const nombre = document.getElementById('lead-nombre').value.trim();
   const ciudad = document.getElementById('lead-ciudad').value.trim();
   const mensaje = document.getElementById('lead-mensaje').value.trim();
-  const modalidad = currentMode === 'consumo' ? "Cliente Admirable" : "Afiliación de Distribuidor";
-  const texto = `Hola Hamilton 👋\n\n*Tipo:* Quiero hacer mi registro acompañado por Zoom\n*Nombre:* ${nombre}\n*Ubicación:* ${ciudad}\n*Modalidad:* ${modalidad}\n*Detalle:* ${mensaje || 'Quiero coordinar una sesión por Zoom para hacer mi registro paso a paso.'}`;
+  const modalidad = currentMode === 'consumo' ? "Cliente Admirable" : currentMode === 'membresia' ? "Afiliación de Distribuidor" : "Kit Emprendedor de 1.000 puntos";
+  const detallePredeterminado = currentMode === 'emprendedor'
+    ? 'Quiero información y acompañamiento para iniciar con el Kit Emprendedor de 1.000 puntos y 30% de descuento.'
+    : 'Quiero coordinar una sesión por Zoom para hacer mi registro paso a paso.';
+  const texto = `Hola Hamilton 👋\n\n*Tipo:* Solicitud de acompañamiento\n*Nombre:* ${nombre}\n*Ubicación:* ${ciudad}\n*Modalidad:* ${modalidad}\n*Detalle:* ${mensaje || detallePredeterminado}`;
   if (typeof fbq !== 'undefined') fbq('track', 'Lead', {content_name: modalidad, content_category: 'Formulario principal'});
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
 }
