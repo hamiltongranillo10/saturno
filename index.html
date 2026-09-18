@@ -315,6 +315,17 @@ nav {
 .why-card-link:hover { background: var(--cta-grad); border-color: transparent; color: #fff; transform: translateY(-2px); }
 .why-card-link.gold { background: rgba(201,166,72,0.14); border-color: rgba(201,166,72,0.4); }
 .why-card-link.gold:hover { background: var(--cta-grad-hover); color: #fff; }
+
+/* Ruta destacada para quienes quieren arrancar con todo */
+.kit-spotlight { margin: 26px auto 0; max-width: 1120px; padding: 26px 28px; border: 1px solid rgba(201,166,72,.55); border-radius: 18px; background: linear-gradient(120deg, rgba(201,166,72,.16), rgba(26,67,49,.08)); box-shadow: 0 14px 32px rgba(26,67,49,.08); display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; }
+.kit-spotlight .sub { color: var(--gold); font-family: 'Space Mono',monospace; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; }
+.kit-spotlight h3 { margin: 7px 0 6px; font-size: 1.35rem; color: var(--ink); }
+.kit-spotlight p { color: var(--muted); line-height: 1.6; font-size: .92rem; margin: 0; max-width: 760px; }
+.kit-spotlight strong { color: var(--ink); }
+.kit-spotlight .spotlight-cta { display: inline-flex; align-items: center; justify-content: center; white-space: nowrap; padding: 13px 18px; border-radius: 9px; background: var(--gold); color: var(--blue-ink); text-decoration: none; font-weight: 800; border: 0; cursor: pointer; }
+.kit-card.featured-kit { border: 2px solid var(--gold); box-shadow: 0 20px 45px rgba(185,138,62,.2); position: relative; }
+.kit-card.featured-kit::before { content: 'Ruta recomendada para emprender'; position: absolute; z-index: 2; top: 14px; left: 14px; padding: 6px 10px; border-radius: 999px; background: var(--gold); color: var(--blue-ink); font-size: .68rem; font-weight: 800; letter-spacing: .02em; }
+@media(max-width:640px){ .kit-spotlight { grid-template-columns: 1fr; padding: 21px; } .kit-spotlight .spotlight-cta { width: 100%; } }
 .why-card-body { padding: 18px 24px 28px; }
 .why-tag { display: inline-block; font-family: 'Space Mono', monospace; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; color: var(--leaf); background: rgba(37,211,102,0.12); border: 1px solid rgba(37,211,102,0.3); padding: 4px 10px; border-radius: 20px; margin-bottom: 12px; }
 .why-tag.gold { color: var(--gold); background: rgba(201,166,72,0.14); border-color: rgba(201,166,72,0.35); }
@@ -334,6 +345,9 @@ nav {
 }
 .why-accordion-body p { font-size: .85rem; color: var(--muted); line-height: 1.65; padding: 0 2px 14px; }
 .why-accordion-body p:first-child { padding-top: 2px; }
+.kit-includes-list { margin: 4px 0 14px 18px; padding: 0; color: var(--muted); font-size: .85rem; line-height: 1.65; }
+.kit-includes-list li { padding: 3px 0; }
+.kit-includes-list li::marker { color: var(--gold); }
 
 .video-section { padding: 10px 48px 90px; max-width: 1200px; margin: 0 auto; }
 
@@ -767,9 +781,9 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div>
     <div class="hero-tag animated-hero-text d1"><span class="dot"></span>Guía clara para empezar hoy</div>
     <h1 class="animated-hero-text d2">Regístrate en Omnilife con acompañamiento personal y <span class="accent">elige la opción que más te conviene</span>.</h1>
-    <p class="hero-p animated-hero-text d3">Compra con precio oficial o conoce la Afiliación con descuentos. Te ayudo a completar el registro oficial y a saber qué hacer después.</p>
+    <p class="hero-p animated-hero-text d3">Puedes registrarte como Cliente Admirable para comprar a precio oficial, o afiliarte para comprar con descuento. La afiliación normal puede ser solo para consumir con descuento o también una ruta para emprender: si quieres crecer, recibes capacitación, reuniones por Zoom y acompañamiento personal. La diferencia es cómo comienzas: 25% y crecimiento gradual, o 30% con el Kit Emprendedor de 1.000 puntos.</p>
     <div class="hero-buttons animated-hero-text d4">
-      <button type="button" class="nav-btn primary" style="padding: 16px 28px;" onclick="openCountryModal('afiliado');">Registrarme para descuento</button>
+      <button type="button" class="nav-btn primary" style="padding: 16px 28px;" onclick="openCountryModal('afiliado');">Quiero afiliarme con descuento</button>
       <button type="button" class="nav-btn secondary" style="padding: 16px 28px;" onclick="openCountryModal('cliente');">Registrarme como Cliente Admirable</button>
     </div>
   </div>
@@ -790,7 +804,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div class="section-header">
     <div class="sub">// Antes de registrarte</div>
     <h2>¿Por qué registrarte primero?</h2>
-    <p class="lead">Así funciona Omnilife: toda compra pasa primero por un registro oficial. Elige la modalidad que se ajusta a lo que buscas.</p>
+    <p class="lead">Te acompaño en cualquiera de las dos rutas: Cliente Admirable para comprar a precio oficial, o Afiliación para acceder a descuentos y, si lo decides, desarrollar el negocio.</p>
   </div>
   <div class="why-grid">
     <div class="why-card">
@@ -814,7 +828,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <div class="why-card-body">
         <span class="why-tag gold">25% – 40% dto.</span>
         <h4>Afiliación</h4>
-        <p>Con tu kit de bienvenida activas un descuento desde el primer pedido en todos tus productos. Tu nivel de descuento sube de forma progresiva —del 25% hasta el 40%— según los puntos que acumulas con tus propias compras. Es la forma más simple de empezar: consumes lo que ya te gusta, pero pagando menos cada vez.</p>
+        <p>Con la afiliación normal comienzas con un kit de menor precio y <strong>25% de descuento</strong> desde el inicio. Puedes afiliarte únicamente para consumir con descuento, o decidir después que quieres emprender. Si eliges crecer, recibes la misma capacitación, reuniones por Zoom y acompañamiento personal; vas escalando poco a poco según el plan vigente.</p>
         <details class="why-accordion">
           <summary>¿Te interesa además generar ingresos? <span class="accordion-hint-wrap"><span class="accordion-hint">👉</span><span class="plus">+</span></span></summary>
           <div class="why-accordion-body">
@@ -824,6 +838,9 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
         </details>
       </div>
     </div>
+  </div>
+  <div class="kit-spotlight">
+    <div><div class="sub">// Dos formas de comenzar tu afiliación</div><h3>Afiliación normal o Kit Emprendedor · 1.000 puntos</h3><p>Ambas rutas pueden llevarte a emprender y comparten capacitación, reuniones por Zoom y acompañamiento personal. Con la afiliación normal puedes afiliarte solo para <strong>consumir con descuento</strong> o aprender a emprender mientras comienzas con <strong>25% y escalas poco a poco</strong>. Con el Kit Emprendedor empiezas con mayor volumen y <strong>30% de descuento desde el inicio</strong>. Tú eliges la velocidad y la ruta que mejor se adapta a ti.</p></div><button type="button" class="spotlight-cta" onclick="openCountryModal('afiliado')">Comparar rutas →</button>
   </div>
 </section>
 
@@ -858,7 +875,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <div class="sub">// Cuando termines tu registro</div>
       <h2>¿Te apareció esta pantalla?</h2>
       <p>Así se ve cuando tu registro fue exitoso — te va a mostrar tu código de cliente y una contraseña.</p>
-      <p>Pásame tu <strong>código de cliente o de afiliación</strong> por WhatsApp (ese que empieza con tu número de país) y con eso confirmo tu registro. Te explico cómo iniciar sesión para comprar en la web, o te paso la dirección de la CEDI más cercana a ti.</p>
+      <p>Cuando termines, conserva tu <strong>código de cliente o de afiliación</strong> (ese que empieza con tu número de país) y pulsa el botón de abajo. Así podré confirmar tu registro y explicarte cómo iniciar sesión para comprar en la web, o ayudarte a encontrar la CEDI más cercana a ti.</p>
       <button type="button" class="nav-btn primary" style="padding: 14px 26px;" onclick="openCountryModal('registro')">Ya completé mi registro</button>
     </div>
   </div>
@@ -1118,7 +1135,7 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   </div>
 
   <div class="kits-grid">
-    <div class="kit-card kit-card-wide">
+    <div class="kit-card kit-card-wide featured-kit">
       <div class="kit-card-img">
         <img loading="lazy" decoding="async" src="kit-emprendedor-1000.png" alt="Kit Emprendedor 1000 puntos" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;" width="1000" height="800">
         <div class="img-fallback" aria-hidden="true"><span class="fb-letter">K</span></div>
@@ -1126,11 +1143,19 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
       <span class="kit-badge emprendedor">Kit Emprendedor</span>
       <h4>Kit Emprendedor 1000 puntos</h4>
       <span class="kit-price">Desde 1000 ptos. (~$550 USD)</span>
-      <p class="kit-desc">Para quien ya quiere invertir en volumen desde el día uno. Ese total (~$550 USD) corresponde al valor de los productos con puntos que elijas libremente entre nutrición y belleza — no es un cobro fijo aparte.*</p>
+      <p class="kit-desc"><strong>Para quien quiere emprender arrancando con mayor volumen desde el primer día.</strong> El Kit Emprendedor es una modalidad de afiliación: comienzas con <strong>30% de descuento</strong> y productos con puntos que eliges entre nutrición y belleza. El total (~$550 USD) corresponde al valor de esos productos — no es un cobro fijo aparte.*</p>
       <details class="why-accordion">
         <summary>Ver qué incluye <span class="accordion-hint-wrap"><span class="accordion-hint">👉</span><span class="plus">+</span></span></summary>
         <div class="why-accordion-body">
-          <p>Afiliación gratis, 30% de descuento, hasta 3 productos de regalo, 1 Sportmixer gratis y App Mi Omninegocio gratis por 3 meses.</p>
+          <p><strong>¿Qué recibes con el Kit Emprendedor de 1.000 puntos?</strong></p>
+          <ul class="kit-includes-list">
+            <li>Afiliación activa y <strong>30% de descuento desde el inicio</strong>.</li>
+            <li>Productos de nutrición y belleza que eliges libremente hasta completar los 1.000 puntos.</li>
+            <li>Hasta 3 productos de regalo, según las condiciones vigentes.</li>
+            <li>Un Sportmixer de regalo, según las condiciones aplicables.</li>
+            <li>App Mi Omninegocio gratis por 3 meses, según disponibilidad y condiciones vigentes.</li>
+            <li>Capacitación, reuniones por Zoom y acompañamiento personal para aprender la estructura, las ventas y los incentivos.</li>
+          </ul>
           <p><strong>Regalo extra:</strong> acumulando 1000 puntos adicionales a tu kit en los primeros 30 días, recibes de regalo 1 cosmetiquera SEYTÚ y un Shaker SEYTÚ.</p>
           <p style="font-style: italic; font-size: .78rem;">*El monto (~$550 USD) es una referencia y puede variar según los productos que elijas y tu país. Aplican restricciones. Solo se adquiere en tienda física (CEDI) o por teléfono.</p>
         </div>
@@ -1202,11 +1227,11 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   </details>
   <details class="faq-item">
     <summary>¿Cómo obtengo los descuentos en mis productos? <span class="plus">+</span></summary>
-    <p>Para comprar con descuento necesitas realizar tu Afiliación. Esto te otorga tu kit de bienvenida y un código que activa automáticamente el 25% de descuento inicial, sin compras obligatorias mensuales.</p>
+    <p>Para comprar con descuento necesitas realizar tu Afiliación. Puedes comenzar con la afiliación normal, de menor precio y con <strong>25% de descuento</strong>, o elegir el <strong>Kit Emprendedor de 1.000 puntos</strong> para arrancar con mayor volumen y <strong>30% de descuento</strong>. Ambas rutas tienen capacitación, reuniones y acompañamiento; no hay compras mensuales forzosas.</p>
   </details>
   <details class="faq-item">
     <summary>¿Cómo escalo hasta el 40% de descuento? <span class="plus">+</span></summary>
-    <p>Al estar afiliado, cada producto que adquieres te otorga una cantidad de puntos. Conforme acumulas esos puntos por tus consumos o reventas, tu nivel de descuento va subiendo de forma progresiva hasta alcanzar el 40% máximo.</p>
+    <p>Al estar afiliado, cada producto que adquieres puede otorgarte puntos según el plan vigente. Con la afiliación normal comienzas con 25% y puedes ir escalando; con el Kit Emprendedor de 1.000 puntos comienzas con 30% por el mayor volumen inicial. En ambas rutas puedes aprender ventas, estructura e incentivos con el mismo acompañamiento. Los resultados dependen de la actividad individual y no están garantizados.</p>
   </details>
   <details class="faq-item">
     <summary>¿Existe un consumo mínimo mensual obligatorio? <span class="plus">+</span></summary>
