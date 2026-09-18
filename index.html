@@ -369,7 +369,7 @@ nav {
 
 .stories-section { padding: 10px 48px 90px; max-width: 1240px; margin: 0 auto; content-visibility: auto; contain-intrinsic-size: 1px 700px; }
 .stories-carousel-wrap { position: relative; display: flex; align-items: center; gap: 12px; }
-.stories-carousel { flex: 1 1 auto; min-width: 0; display: flex; gap: 22px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 4px 2px 12px; -webkit-overflow-scrolling: touch; touch-action: pan-x; overscroll-behavior-x: contain; scrollbar-width: thin; }
+.stories-carousel { flex: 1 1 auto; min-width: 0; display: flex; gap: 22px; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 4px 2px 12px; -webkit-overflow-scrolling: touch; touch-action: pan-x pan-y; overscroll-behavior-x: contain; scrollbar-width: thin; }
 .stories-carousel::-webkit-scrollbar { height: 6px; }
 .stories-carousel::-webkit-scrollbar-thumb { background: rgba(45,106,79,0.4); border-radius: 10px; }
 .story-card { flex: 0 0 auto; width: min(480px, 88vw); scroll-snap-align: start; }
@@ -882,7 +882,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="post-registro-section reveal">
   <div class="post-registro-box">
     <div class="post-registro-img">
-      <img loading="lazy" decoding="async" src="registro.completado.jpg" alt="Ejemplo de registro exitoso de Cliente Admirable en Omnilife" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" width="1080" height="1350">
+      <img loading="lazy" decoding="async" src="registro-cliente-admirable.jpg" alt="Ejemplo de registro exitoso de Cliente Admirable en Omnilife" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" width="1080" height="1350">
       <img loading="lazy" decoding="async" src="afiliacion.exitosa.jpg" alt="Ejemplo de afiliación exitosa en Omnilife con bienvenida al equipo" onerror="this.classList.add('img-missing')" onclick="openLightbox(this.src, this.alt)" width="1080" height="1350">
       <div class="img-fallback" aria-hidden="true"><span class="fb-letter">✓</span></div>
     </div>
