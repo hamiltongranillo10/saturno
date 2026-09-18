@@ -768,14 +768,14 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
   <div class="logo">Hamilton <em>R.</em><span>Distribuidor Independiente</span></div>
   <div class="nav-links">
     <a href="#tutorial" class="nav-btn secondary">¿Cómo afiliarse?</a>
-    <a href="#registro" class="nav-btn primary">Registro guiado</a>
-    <a href="#registro" class="nav-btn primary" onclick="setMode('emprendedor')">Kit 1.000 puntos</a>
+    <a href="#registro" class="nav-btn primary" onclick="event.preventDefault(); scrollToRegistration();">Registro guiado</a>
+    <a href="#registro" class="nav-btn primary" onclick="event.preventDefault(); setMode('emprendedor'); scrollToRegistration();">Kit 1.000 puntos</a>
   </div>
 </nav>
 
 <div id="stickyCta" class="sticky-cta">
   <span>¿Ya decidiste? Te ayudo a registrarte ahora mismo.</span>
-  <a href="#registro" class="nav-btn primary">Registrarme</a>
+  <a href="#registro" class="nav-btn primary" onclick="event.preventDefault(); scrollToRegistration();">Registrarme</a>
 </div>
 
 <section class="hero">
@@ -1802,6 +1802,15 @@ function enviarRegistroCompletado() {
 }
 
 let currentMode = 'consumo';
+
+function scrollToRegistration() {
+  const registration = document.getElementById('registro');
+  if (!registration) return;
+  const navOffset = 78;
+  const targetTop = registration.getBoundingClientRect().top + window.scrollY - navOffset;
+  window.scrollTo({ top: Math.max(0, targetTop), behavior: 'smooth' });
+  window.setTimeout(() => document.getElementById('lead-nombre')?.focus({ preventScroll: true }), 650);
+}
 
 function setMode(mode) {
   currentMode = mode;
