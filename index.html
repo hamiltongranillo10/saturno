@@ -1253,8 +1253,8 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
 
 <section id="registro" class="form-section reveal">
   <div class="section-header">
-    <h2>¿Prefieres que lo hagamos juntos?</h2>
-    <p class="lead">Elige qué tipo de cuenta te interesa, llena estos campos breves y el sistema te llevará directo a mi WhatsApp para asistirte paso a paso.</p>
+    <h2>¿Quieres que te ayude a registrarte en vivo?</h2>
+    <p class="lead">Si no quieres hacer el registro solo, coordinamos una reunión por Zoom. Me conecto contigo y te voy indicando paso a paso cómo registrarte como Cliente Admirable o cómo afiliarte con descuento.</p>
   </div>
   <div class="toggle-container">
     <button class="toggle-btn active" id="btn-cons" onclick="setMode('consumo')">Cliente (Precio Oficial)</button>
@@ -1274,9 +1274,9 @@ src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"
         <label class="form-label" id="mensaje-label" for="lead-mensaje">¿En qué te ayudo? <span style="font-weight: 400; opacity: .7;">(opcional)</span></label>
         <textarea id="lead-mensaje" name="mensaje" class="form-textarea" placeholder="Ej. Quiero saber cómo registrarme como Cliente Admirable y qué productos me recomiendas..."></textarea>
       </div>
-      <button type="submit" class="action-btn" id="submit-btn">Solicitar información de Cliente Admirable</button>
-      <p class="form-microcopy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Sin costo por la asesoría, sin compra mínima obligatoria</p>
-      <p class="privacy-microcopy">Tus datos se usan únicamente para responder tus dudas sobre el registro como Cliente Admirable o la Afiliación.</p>
+      <button type="submit" class="action-btn" id="submit-btn">Quiero ayuda para registrarme como Cliente Admirable</button>
+      <p class="form-microcopy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Asesoría por Zoom para hacer tu registro paso a paso</p>
+      <p class="privacy-microcopy">Tus datos se usan para coordinar tu acompañamiento de registro por Zoom.</p>
     </form>
   </div>
 </section>
@@ -1809,11 +1809,11 @@ function setMode(mode) {
   const mensajeField = document.getElementById('lead-mensaje');
   if (mode === 'consumo') {
     btnCons.classList.add('active'); btnDist.classList.remove('active');
-    submitBtn.innerText = 'Solicitar información de Cliente Admirable';
+    submitBtn.innerText = 'Quiero ayuda para registrarme como Cliente Admirable';
     mensajeField.placeholder = 'Ej. Quiero saber cómo registrarme como Cliente Admirable y qué productos me recomiendas...';
   } else {
     btnDist.classList.add('active'); btnCons.classList.remove('active');
-    submitBtn.innerText = 'Solicitar asesoría para Afiliación (Descuentos)';
+    submitBtn.innerText = 'Quiero ayuda para afiliarme con descuento';
     mensajeField.placeholder = 'Ej. Quiero saber cómo funciona la Afiliación, el costo del kit y cómo subir de nivel de descuento...';
   }
 }
@@ -1988,7 +1988,7 @@ function sendToWhatsApp(event) {
   const ciudad = document.getElementById('lead-ciudad').value.trim();
   const mensaje = document.getElementById('lead-mensaje').value.trim();
   const modalidad = currentMode === 'consumo' ? "Cliente Admirable" : "Afiliación de Distribuidor";
-  const texto = `Hola Hamilton 👋\n\n*Tipo:* Registro\n*Nombre:* ${nombre}\n*Ubicación:* ${ciudad}\n*Modalidad:* ${modalidad}\n*Detalle:* ${mensaje || 'Sin mensaje adicional'}`;
+  const texto = `Hola Hamilton 👋\n\n*Tipo:* Quiero hacer mi registro acompañado por Zoom\n*Nombre:* ${nombre}\n*Ubicación:* ${ciudad}\n*Modalidad:* ${modalidad}\n*Detalle:* ${mensaje || 'Quiero coordinar una sesión por Zoom para hacer mi registro paso a paso.'}`;
   if (typeof fbq !== 'undefined') fbq('track', 'Lead', {content_name: modalidad, content_category: 'Formulario principal'});
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
 }
