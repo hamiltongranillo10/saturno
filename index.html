@@ -723,6 +723,10 @@ footer { background: var(--bg); border-top: 1px solid var(--line); text-align: c
   .logo { font-size: 1rem; }
 }
 @media(max-width:560px){ .value-grid, .cat-grid { grid-template-columns: 1fr; } }
+
+.calculator-embedded-section{max-width:1360px;margin:0 auto;padding:80px 48px 90px;background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.calculator-embedded-head{text-align:center;max-width:760px;margin:0 auto 28px}.calculator-embedded-head .section-kicker{display:inline-block;color:var(--gold);font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px}.calculator-embedded-head h2{font-size:clamp(2rem,4vw,3rem);color:var(--ink);margin-bottom:12px}.calculator-embedded-head p{color:var(--muted);line-height:1.65}.calculator-iframe{display:block;width:100%;height:1180px;border:0;border-radius:20px;background:transparent;overflow:hidden}
+@media(max-width:640px){.calculator-embedded-section{padding:58px 14px 65px}.calculator-iframe{height:1450px;border-radius:14px}}
 </style>
 
 <!-- Meta (Facebook) Pixel Code -->
@@ -1291,7 +1295,195 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </details>
 </section>
 
-<section id="registro" class="form-section reveal">
+<section id="calculadora-afiliados" class="calculator-embedded-section" aria-labelledby="calculadora-afiliados-title"><div class="calculator-embedded-head"><span class="section-kicker">Herramienta exclusiva</span><h2 id="calculadora-afiliados-title">Calculadora exclusiva para afiliados</h2><p>Organiza tus productos, puntos, descuentos, inversión y ganancia estimada desde esta misma página.</p></div><iframe class="calculator-iframe" title="Calculadora exclusiva para afiliados" loading="lazy" srcdoc="&lt;!doctype html&gt;&lt;html lang=&quot;es&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;&lt;style&gt;
+    :root{
+      --ink:#17352a;--muted:#61736b;--cream:#f7faf6;--card:#ffffff;--line:#dbe8df;
+      --green:#1b6747;--green-2:#2d8a62;--mint:#e9f6ee;--gold:#d4a94a;--gold-soft:#fff7df;
+      --danger:#b33d3d;--danger-soft:#fff0f0;--shadow:0 18px 50px rgba(24,73,48,.10);--radius:20px;
+    }
+    *{box-sizing:border-box} body{margin:0;background:linear-gradient(135deg,#f8fbf8 0%,#eef7f0 48%,#fffaf0 100%);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;line-height:1.45}
+    button,input,select{font:inherit} button{cursor:pointer;border:0} .hidden{display:none!important}
+    .app{min-height:100vh}.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+    .topbar-inner{max-width:1360px;margin:auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;color:white;font-weight:900;background:linear-gradient(135deg,var(--green),#34a873);box-shadow:0 8px 18px rgba(27,103,71,.22)}
+    .brand h1{font-size:1rem;margin:0;letter-spacing:-.02em}.brand small{display:block;color:var(--muted);font-size:.72rem;margin-top:2px}.userbar{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.82rem}.user-email{max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .btn{border-radius:12px;padding:10px 15px;font-weight:800;transition:.18s ease;display:inline-flex;align-items:center;justify-content:center;gap:7px}.btn:hover{transform:translateY(-1px)}.btn-primary{background:var(--green);color:#fff;box-shadow:0 8px 18px rgba(27,103,71,.18)}.btn-secondary{background:#edf6f0;color:var(--green);border:1px solid #cfe5d7}.btn-ghost{background:transparent;color:var(--green);border:1px solid var(--line)}.btn-danger{background:var(--danger-soft);color:var(--danger);border:1px solid #f1caca}.btn-small{padding:7px 10px;font-size:.78rem}
+    .shell{max-width:1360px;margin:0 auto;padding:28px 22px 60px}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:stretch;margin-bottom:22px}.hero-card,.panel,.summary-card,.login-card{background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.hero-copy{padding:34px}.eyebrow{display:inline-flex;align-items:center;gap:7px;color:#9a7429;background:var(--gold-soft);border:1px solid #ead9a7;border-radius:999px;padding:7px 12px;font-size:.72rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase}.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--gold)}.hero h2{font-family:Georgia,serif;font-size:clamp(2rem,4vw,3.4rem);line-height:1.05;letter-spacing:-.05em;margin:18px 0 14px}.hero h2 span{color:var(--green-2)}.hero p{color:var(--muted);max-width:700px;margin:0}.hero-stat{padding:26px;background:linear-gradient(150deg,#164b35,#287d58);color:#fff;display:grid;align-content:center;border-radius:var(--radius);position:relative;overflow:hidden}.hero-stat:after{content:&quot;&quot;;position:absolute;width:230px;height:230px;border:30px solid rgba(255,255,255,.08);border-radius:50%;right:-95px;top:-80px}.hero-stat h3{font-size:1.2rem;margin:0 0 15px;position:relative;z-index:1}.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;position:relative;z-index:1}.stat{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:13px}.stat strong{display:block;font-size:1.35rem}.stat span{font-size:.72rem;opacity:.82}
+    .controls{display:flex;gap:12px;flex-wrap:wrap;align-items:end}.field{display:grid;gap:6px;min-width:180px}.field label{font-size:.74rem;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:11px;background:#fff;padding:11px 12px;color:var(--ink);outline:none}.field input:focus,.field select:focus{border-color:var(--green-2);box-shadow:0 0 0 3px rgba(45,138,98,.12)}.search-field{flex:1;min-width:230px}
+    .workspace{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(330px,.7fr);gap:22px;align-items:start}.panel{padding:22px}.panel-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:16px}.panel h3,.summary-card h3{margin:0;font-size:1.08rem}.panel-sub{color:var(--muted);font-size:.82rem;margin:4px 0 0}.product-table-wrap{overflow:auto;border:1px solid var(--line);border-radius:15px}.product-table{width:100%;border-collapse:collapse;min-width:780px;background:#fff}.product-table th{position:sticky;top:0;background:#edf7f0;color:var(--green);font-size:.7rem;text-align:left;text-transform:uppercase;letter-spacing:.05em;padding:12px;border-bottom:1px solid var(--line);white-space:nowrap}.product-table td{padding:11px 12px;border-bottom:1px solid #edf2ee;vertical-align:middle;font-size:.84rem}.product-table tr:last-child td{border-bottom:0}.product-table tr:hover{background:#fbfefb}.product-name{font-weight:800;min-width:270px}.product-code{display:block;font-size:.68rem;color:var(--muted);font-weight:600;margin-top:3px}.points{font-weight:900;color:var(--green)}.money{white-space:nowrap}.positive{color:var(--green-2);font-weight:800}.negative{color:var(--danger);font-weight:800}.qty-input{width:68px;padding:8px;border:1px solid var(--line);border-radius:9px;text-align:center}.add-btn{padding:8px 10px;border-radius:9px;background:var(--green);color:#fff;font-weight:800;font-size:.76rem}.warning{color:#9a5c28;background:#fff5e8;border:1px solid #f0d4aa;border-radius:9px;padding:9px 11px;font-size:.76rem;margin-top:12px}
+    .summary-card{padding:22px;position:sticky;top:84px}.summary-head{display:flex;justify-content:space-between;align-items:start;gap:8px}.badge{display:inline-flex;border-radius:999px;padding:5px 9px;background:var(--mint);color:var(--green);font-size:.7rem;font-weight:900}.summary-empty{padding:28px 0;color:var(--muted);font-size:.86rem;text-align:center}.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:17px 0}.metric{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:13px}.metric strong{display:block;font-size:1.2rem}.metric span{font-size:.7rem;color:var(--muted)}.metric.highlight{background:var(--mint);border-color:#bfe2cc}.metric.profit strong{color:var(--green-2)}.metric.loss{background:var(--danger-soft);border-color:#f2cccc}.metric.loss strong{color:var(--danger)}.cart-list{display:grid;gap:8px;max-height:330px;overflow:auto;margin:14px 0}.cart-row{display:grid;grid-template-columns:1fr auto;gap:8px;padding:10px 0;border-bottom:1px solid var(--line)}.cart-row:last-child{border-bottom:0}.cart-row strong{font-size:.8rem}.cart-row small{display:block;color:var(--muted);font-size:.7rem;margin-top:2px}.cart-actions{display:flex;gap:7px;align-items:center}.qty-stepper{display:flex;align-items:center;gap:5px}.qty-stepper button{width:23px;height:23px;border-radius:7px;background:#edf6f0;color:var(--green);font-weight:900}.summary-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.saved{margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}.saved-list{display:grid;gap:7px;margin-top:10px}.saved-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 10px;background:#f8fbf8;border:1px solid var(--line);border-radius:10px;font-size:.76rem}.saved-item button{background:transparent;color:var(--green);font-weight:800;font-size:.72rem}
+    .notice{font-size:.76rem;color:var(--muted);margin-top:16px}.footer{max-width:1360px;margin:auto;padding:0 22px 35px;color:var(--muted);font-size:.74rem}.login-screen{min-height:100vh;display:grid;place-items:center;padding:24px}.login-card{max-width:520px;width:100%;padding:34px}.login-card h1{font-family:Georgia,serif;font-size:2.2rem;line-height:1.05;margin:16px 0 10px}.login-card p{color:var(--muted);font-size:.9rem}.login-brand{display:flex;align-items:center;gap:10px;color:var(--green);font-weight:900}.brand-logo{width:42px;height:42px;object-fit:contain;border-radius:12px;display:block}.login-form{display:grid;gap:12px;margin-top:22px}.local-note{background:#edf8f0;border:1px solid #c8e4d1;color:#245e43;padding:12px;border-radius:12px;font-size:.78rem;margin-top:16px}.toast{position:fixed;right:20px;bottom:20px;z-index:40;background:#17352a;color:white;padding:12px 15px;border-radius:12px;box-shadow:var(--shadow);font-size:.82rem;opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translateY(0)}
+    @media(max-width:980px){.hero{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.summary-card{position:static}.hero-stat{min-height:220px}}
+    @media(max-width:620px){.topbar-inner{padding:11px 14px}.shell{padding:20px 14px 45px}.hero-copy,.panel,.summary-card,.login-card{padding:20px}.userbar{gap:6px}.user-email{max-width:130px}.userbar .btn{padding:8px}.hero h2{font-size:2.2rem}.controls{display:grid;grid-template-columns:1fr}.field,.search-field{min-width:0}.stat-grid{grid-template-columns:1fr 1fr}.metrics{grid-template-columns:1fr 1fr}.summary-actions .btn{flex:1}.brand small{display:none}}
+  &lt;/style&gt;&lt;/head&gt;&lt;body&gt;
+  &lt;div id=&quot;loginView&quot; class=&quot;login-screen&quot;&gt;
+    &lt;section class=&quot;login-card&quot;&gt;
+      &lt;div class=&quot;login-brand&quot;&gt;&lt;img class=&quot;brand-logo&quot; src=&quot;logo-hamilton.png&quot; alt=&quot;Logo Hamilton Networker&quot;&gt;&lt;span&gt;Hamilton Networker&lt;/span&gt;&lt;/div&gt;
+      &lt;h1&gt;Calculadora de afiliados&lt;/h1&gt;
+      &lt;p&gt;Consulta productos, puntos, precios según tu descuento y la ganancia estimada al vender al precio público.&lt;/p&gt;
+      &lt;form id=&quot;loginForm&quot; class=&quot;login-form&quot;&gt;
+        &lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;loginEmail&quot;&gt;Tu correo electrónico&lt;/label&gt;&lt;input id=&quot;loginEmail&quot; type=&quot;email&quot; autocomplete=&quot;email&quot; placeholder=&quot;afiliado@correo.com&quot; required&gt;&lt;/div&gt;
+        &lt;button class=&quot;btn btn-primary&quot; type=&quot;submit&quot;&gt;Entrar a mi calculadora&lt;/button&gt;
+      &lt;/form&gt;
+      &lt;div class=&quot;local-note&quot;&gt;&lt;strong&gt;Tu herramienta de apoyo:&lt;/strong&gt; la preparé para facilitarte algunos cálculos mientras planificas tus compras. Úsala para comparar descuentos, organizar tus productos, revisar tus puntos y visualizar tu ganancia estimada. Sigue aprendiendo, toma decisiones informadas y avanza paso a paso hacia tus objetivos.&lt;/div&gt;
+    &lt;/section&gt;
+  &lt;/div&gt;
+
+  &lt;div id=&quot;appView&quot; class=&quot;app hidden&quot;&gt;
+    &lt;header class=&quot;topbar&quot;&gt;&lt;div class=&quot;topbar-inner&quot;&gt;&lt;div class=&quot;brand&quot;&gt;&lt;img class=&quot;brand-logo&quot; src=&quot;logo-hamilton.png&quot; alt=&quot;Logo Hamilton Networker&quot;&gt;&lt;div&gt;&lt;h1&gt;Calculadora de Afiliados&lt;/h1&gt;&lt;small&gt;Hamilton Networker · catálogo de referencia&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;userbar&quot;&gt;&lt;span class=&quot;user-email&quot; id=&quot;userEmail&quot;&gt;&lt;/span&gt;&lt;button class=&quot;btn btn-ghost btn-small&quot; id=&quot;logoutBtn&quot;&gt;Salir&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/header&gt;
+    &lt;main class=&quot;shell&quot;&gt;
+      &lt;section class=&quot;hero&quot;&gt;
+        &lt;div class=&quot;hero-card hero-copy&quot;&gt;&lt;span class=&quot;eyebrow&quot;&gt;&lt;i&gt;&lt;/i&gt; Herramienta para planificar&lt;/span&gt;&lt;h2&gt;Arma tu pedido y mira tus números &lt;span&gt;antes de comprar.&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;Elige tu nivel de descuento, agrega productos y revisa en tiempo real los puntos, cuánto inviertes, cuánto venderías al precio público y tu ganancia estimada.&lt;/p&gt;&lt;/div&gt;
+        &lt;div class=&quot;hero-stat&quot;&gt;&lt;h3&gt;Tu resumen de hoy&lt;/h3&gt;&lt;div class=&quot;stat-grid&quot;&gt;&lt;div class=&quot;stat&quot;&gt;&lt;strong id=&quot;heroPoints&quot;&gt;0&lt;/strong&gt;&lt;span&gt;puntos seleccionados&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;stat&quot;&gt;&lt;strong id=&quot;heroItems&quot;&gt;0&lt;/strong&gt;&lt;span&gt;unidades&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;stat&quot;&gt;&lt;strong id=&quot;heroCost&quot;&gt;$0.00&lt;/strong&gt;&lt;span&gt;inversión&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;stat&quot;&gt;&lt;strong id=&quot;heroProfit&quot;&gt;$0.00&lt;/strong&gt;&lt;span&gt;ganancia estimada&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;section class=&quot;panel&quot; style=&quot;margin-bottom:22px&quot;&gt;&lt;div class=&quot;controls&quot;&gt;&lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;countrySelect&quot;&gt;País y catálogo&lt;/label&gt;&lt;select id=&quot;countrySelect&quot;&gt;&lt;option value=&quot;EC&quot;&gt;Ecuador · USD&lt;/option&gt;&lt;option value=&quot;AR&quot;&gt;Argentina · ARS&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;discountSelect&quot;&gt;Mi descuento&lt;/label&gt;&lt;select id=&quot;discountSelect&quot;&gt;&lt;option value=&quot;25&quot;&gt;25% · afiliación normal&lt;/option&gt;&lt;option value=&quot;30&quot;&gt;30% · Kit Emprendedor&lt;/option&gt;&lt;option value=&quot;35&quot;&gt;35% · nivel avanzado&lt;/option&gt;&lt;option value=&quot;40&quot;&gt;40% · nivel avanzado&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;field search-field&quot;&gt;&lt;label for=&quot;searchInput&quot;&gt;Buscar producto o código&lt;/label&gt;&lt;input id=&quot;searchInput&quot; type=&quot;search&quot; placeholder=&quot;Ej. Power Maker, Biocros, 2603201...&quot;&gt;&lt;/div&gt;&lt;button class=&quot;btn btn-secondary&quot; id=&quot;clearSearch&quot;&gt;Limpiar búsqueda&lt;/button&gt;&lt;/div&gt;&lt;p class=&quot;notice&quot; id=&quot;countryNote&quot;&gt;Catálogo de Ecuador en dólares estadounidenses (USD). Verifica vigencia, país, disponibilidad y condiciones oficiales antes de comprar o vender.&lt;/p&gt;&lt;/section&gt;
+
+      &lt;section class=&quot;workspace&quot;&gt;
+        &lt;div class=&quot;panel&quot;&gt;&lt;div class=&quot;panel-head&quot;&gt;&lt;div&gt;&lt;h3&gt;Catálogo de productos&lt;/h3&gt;&lt;p class=&quot;panel-sub&quot;&gt;&lt;span id=&quot;resultCount&quot;&gt;0&lt;/span&gt; productos disponibles · agrega cantidades para construir tu lista.&lt;/p&gt;&lt;/div&gt;&lt;span class=&quot;badge&quot; id=&quot;discountBadge&quot;&gt;25% seleccionado&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;product-table-wrap&quot;&gt;&lt;table class=&quot;product-table&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Producto&lt;/th&gt;&lt;th&gt;Puntos&lt;/th&gt;&lt;th&gt;Tu costo&lt;/th&gt;&lt;th&gt;PVP&lt;/th&gt;&lt;th&gt;Ganancia/u.&lt;/th&gt;&lt;th&gt;Cantidad&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;productRows&quot;&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;div id=&quot;dataWarnings&quot; class=&quot;warning hidden&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;aside class=&quot;summary-card&quot;&gt;&lt;div class=&quot;summary-head&quot;&gt;&lt;div&gt;&lt;h3&gt;Mi lista de compra&lt;/h3&gt;&lt;p class=&quot;panel-sub&quot;&gt;Descuento: &lt;strong id=&quot;summaryDiscount&quot;&gt;25%&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;&lt;span class=&quot;badge&quot; id=&quot;cartBadge&quot;&gt;0 artículos&lt;/span&gt;&lt;/div&gt;&lt;div id=&quot;summaryEmpty&quot; class=&quot;summary-empty&quot;&gt;Todavía no agregas productos.&lt;br&gt;Elige una cantidad y pulsa “Agregar”.&lt;/div&gt;&lt;div id=&quot;summaryContent&quot; class=&quot;hidden&quot;&gt;&lt;div class=&quot;metrics&quot;&gt;&lt;div class=&quot;metric highlight&quot;&gt;&lt;strong id=&quot;totalPoints&quot;&gt;0&lt;/strong&gt;&lt;span&gt;Puntos totales&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;strong id=&quot;totalCost&quot;&gt;$0.00&lt;/strong&gt;&lt;span&gt;Inversión a descuento&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;strong id=&quot;totalPublic&quot;&gt;$0.00&lt;/strong&gt;&lt;span&gt;Venta a precio público&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;metric profit&quot; id=&quot;profitMetric&quot;&gt;&lt;strong id=&quot;totalProfit&quot;&gt;$0.00&lt;/strong&gt;&lt;span&gt;Ganancia estimada&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id=&quot;cartList&quot; class=&quot;cart-list&quot;&gt;&lt;/div&gt;&lt;div class=&quot;summary-actions&quot;&gt;&lt;button class=&quot;btn btn-primary btn-small&quot; id=&quot;saveListBtn&quot;&gt;Guardar lista&lt;/button&gt;&lt;button class=&quot;btn btn-secondary btn-small&quot; id=&quot;clearCartBtn&quot;&gt;Vaciar&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;saved&quot;&gt;&lt;div class=&quot;panel-head&quot; style=&quot;margin:0&quot;&gt;&lt;div&gt;&lt;h3 style=&quot;font-size:.92rem&quot;&gt;Mis listas guardadas&lt;/h3&gt;&lt;p class=&quot;panel-sub&quot;&gt;Quedan guardadas en este navegador.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id=&quot;savedLists&quot; class=&quot;saved-list&quot;&gt;&lt;span class=&quot;notice&quot;&gt;No hay listas guardadas.&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/aside&gt;
+      &lt;/section&gt;
+    &lt;/main&gt;
+    &lt;footer class=&quot;footer&quot;&gt;Herramienta educativa de planificación. La ganancia mostrada es una diferencia matemática entre PVP y precio de compra, no una garantía de resultados. Los precios y puntos pueden cambiar.&lt;/footer&gt;
+  &lt;/div&gt;
+  &lt;div id=&quot;toast&quot; class=&quot;toast&quot; role=&quot;status&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;&lt;script&gt;
+    const PRODUCTS = [
+      [&quot;2603201&quot;,&quot;POWER MAKER EVOLUCION, CAJA CON 30 SOBRES&quot;,110,45.39,42.37,39.34,36.31,69.00],
+      [&quot;4850500&quot;,&quot;EGO FRUTAS DEL BOSQUE EVOL, SIX PACK (6 LATAS DE 355 ML)&quot;,27,16.78,15.66,14.54,13.42,25.50],
+      [&quot;2075722&quot;,&quot;BIOCROS SUPREME CAJA 30 SOBRES 240G&quot;,54,25.00,23.34,21.67,20.00,38.00],
+      [&quot;4250204&quot;,&quot;ALOE BETA PIÑA EVOLUCIÓN 960 ML&quot;,26,12.16,11.35,10.54,9.73,18.50],
+      [&quot;6305929&quot;,&quot;ONE C MIX EVOLUCION CAJA 150 G&quot;,46,24.01,22.41,20.81,19.21,36.50],
+      [&quot;1409621&quot;,&quot;FEM EVOLUCIÓN CAJA&quot;,56,25.66,23.95,22.24,20.53,39.00],
+      [&quot;2505711&quot;,&quot;OPTIMUS EVOLUCION CAJA&quot;,64,29.27,27.32,25.37,23.42,44.50],
+      [&quot;2350401&quot;,&quot;OMNIPLUS NARANJA EVOLUCION CAJA CON 30 SOBRES&quot;,87,40.46,37.76,35.07,32.37,61.50],
+      [&quot;4160400&quot;,&quot;*AGUA BLU SUPREME, 600 ML&quot;,1,1.05,.98,.91,.84,1.60],
+      [&quot;4250604&quot;,&quot;ALOE BETA PINA EVOLUCIÓN BOTELLA 200 ML&quot;,5,2.70,2.52,2.34,2.16,4.10],
+      [&quot;3905934&quot;,&quot;AQTUA EVOLUCION, CAJA CON 30 SACHETS&quot;,118,49.34,46.05,42.76,39.47,75.00],
+      [&quot;3304732&quot;,&quot;TMGN COFFE CAJA EVOLUCIÓN&quot;,39,24.34,22.72,21.09,19.47,37.00],
+      [&quot;5105932&quot;,&quot;CAFEZZINO EVOLUCIÓN&quot;,52,30.27,28.25,26.23,24.21,46.00],
+      [&quot;5177632&quot;,&quot;CAFEZZINO SIN ENDULZAR BOTE&quot;,58,32.57,30.40,28.23,26.05,49.50],
+      [&quot;4404710&quot;,&quot;DOLCE VITA EVOLUCIÓN CAJA 30 SOBRES&quot;,70,35.85,33.46,31.07,28.68,54.50],
+      [&quot;4650609&quot;,&quot;EGO 10 EVOLUCION BOTELLA 200 ML&quot;,5,2.70,2.52,2.34,2.16,4.10],
+      [&quot;4903204&quot;,&quot;EGO LIFE EVOLUCION CAJA 30 SOBRES&quot;,38,23.36,21.80,20.24,18.69,35.50],
+      [&quot;1260600&quot;,&quot;EGO PLANT EVOLUCION BOTELLA 200 ML&quot;,5,2.70,2.52,2.34,2.16,4.10],
+      [&quot;1675700&quot;,&quot;ESTOP PLUS CAJA 30 SACHETS 450G&quot;,102,49.02,45.75,42.48,39.21,74.50],
+      [&quot;1502208&quot;,&quot;FIBER’N PLUS EVOLUCIÓN CAJA 30 SOBRES 450G&quot;,70,37.83,35.31,32.79,30.26,57.50],
+      [&quot;8453000&quot;,&quot;FLU-Y BOTE 60 CAPSULAS&quot;,44,17.10,15.96,14.82,13.68,26.00],
+      [&quot;1729752&quot;,&quot;HOMO PLUS CAJA CON 30 SACHETS 180 G&quot;,55,25.00,23.34,21.67,20.00,38.00],
+      [&quot;3659152&quot;,&quot;OML IQU LATA 12 OZ&quot;,42,24.67,23.02,21.38,19.73,37.50],
+      [&quot;3659295&quot;,&quot;OML IQU LATA INDIVIDUAL 12 OZ&quot;,7,4.15,3.87,3.60,3.32,6.30],
+      [&quot;1850610&quot;,&quot;KOLINA EVOLUCION BOTELLA 200 ML&quot;,5,2.70,2.52,2.34,2.16,4.10],
+      [&quot;6724761&quot;,&quot;OMNILIFE PROBIOTIC EVOLUCION CAJA 30 SOBRES&quot;,66,33.22,31.01,28.79,26.58,50.50],
+      [&quot;5025516&quot;,&quot;OMNILIFE VKIDS DOYPACK 400 G&quot;,71,35.20,32.85,30.51,28.16,53.50],
+      [&quot;6571959&quot;,&quot;OMNIOST CAJA C/30 SOBRES 450 GRS&quot;,57,32.24,30.09,27.94,25.79,49.00],
+      [&quot;2350430&quot;,&quot;OMNIPLUS FRUTAS EVOLUCION CAJA 30 SOBRES&quot;,87,40.46,37.76,35.07,32.37,61.50],
+      [&quot;3000730&quot;,&quot;STARBIEN EVOLUCION CAJA CON 30 SOBRES&quot;,53,25.66,23.95,22.24,20.53,39.00],
+      [&quot;3178516&quot;,&quot;SUPER MIX SUPREME VAINILLA, CAJA 30 SOBR&quot;,76,37.50,35.00,32.50,30.00,57.00],
+      [&quot;3505605&quot;,&quot;TEATINO LIMÓN EVOLUCIÓN CAJA 30 SOBRES&quot;,63,25.67,23.96,22.25,20.53,39.00],
+      [&quot;3505609&quot;,&quot;TEATINO MARACUYÁ EVOLUCIÓN 30 SOBRES&quot;,95,45.07,42.06,39.06,36.05,68.50],
+      [&quot;3705934&quot;,&quot;UNDU EVOLUCION&quot;,107,43.42,40.52,37.63,34.73,66.00],
+      [&quot;3875700&quot;,&quot;UZO SUPREME, CAJA CON 30 SACHETS&quot;,166,80.26,74.91,69.56,64.21,122.00]
+    ].map(([code,name,points,p25,p30,p35,p40,pvp]) =&gt; ({code,name,points,prices:{25:p25,30:p30,35:p35,40:p40},pvp}));
+
+    const ARGENTINA_PRODUCTS = [
+      [&quot;2350430&quot;,&quot;OMNIPLUS FRUTAS EVOLUCION 30 SACH 600 ML&quot;,87,45040.80,42422.15,39803.50,37184.85,52610.00],
+      [&quot;3505605&quot;,&quot;TEATINO LIMON EVOLUCION CAJA C/SOBRES&quot;,63,32601.28,30705.86,28810.44,26915.01,38080.00],
+      [&quot;2075722&quot;,&quot;BIOCROS SUPREME CAJA C/30 SACHETS&quot;,54,33979.65,32004.09,30028.53,28052.96,39690.00],
+      [&quot;4160400&quot;,&quot;AGUA BLU SUPREME, 600 ML&quot;,2,2123.19,1999.75,1876.31,1752.86,2480.00],
+      [&quot;4160400-TM&quot;,&quot;AGUA BLU SUPREME, 600 ML (TELEMARKETING)&quot;,2,3086.19,2962.59,2839.15,2715.70,4220.00],
+      [&quot;4250604&quot;,&quot;ALOE BETA PIÑA EVOLUCION BOTELLA 200 ML&quot;,5,3612.85,3402.80,3192.75,2982.70,4220.00],
+      [&quot;4250204&quot;,&quot;ALOE BETA PIÑA EVOLUCION BOTELLA 960 ML&quot;,26,15513.01,14611.09,13709.17,12807.25,18120.00],
+      [&quot;3924734&quot;,&quot;AQTUA SUPREME, CAJA CON 30 SOBRES&quot;,112,68267.49,64298.45,60329.41,56360.37,79740.00],
+      [&quot;5105932&quot;,&quot;CAFEZZINO EVOLUCION&quot;,52,55134.53,51929.03,48723.54,45518.04,64000.00],
+      [&quot;4404710&quot;,&quot;DOLCE VITA EVOLUCION CAJA 30 SACH&quot;,70,43842.22,41293.25,38744.29,36195.32,51210.00],
+      [&quot;4650609&quot;,&quot;EGO 10 EVOLUCION BOTELLA 200 ML&quot;,5,4104.16,3863.18,3622.20,3381.23,4840.00],
+      [&quot;4850500&quot;,&quot;EGO FRUTAS DEL BOSQUE EVOLUCION 6 LATAS DE 255ML&quot;,27,30230.01,28455.05,26680.09,24905.13,35650.00],
+      [&quot;4903204&quot;,&quot;EGO LIFE EVOLUCION CAJA&quot;,33,37498.32,35318.19,33138.05,30957.92,43800.00],
+      [&quot;1260600&quot;,&quot;EGO HERBAL EVOLUCION BOTELLA 200 ML&quot;,5,3612.85,3402.80,3192.75,2982.70,4220.00],
+      [&quot;1675700&quot;,&quot;ESTOP PLUS SUPREME CAJA C30 SOBRES 450G&quot;,102,86271.83,81256.03,76240.22,71224.42,100770.00],
+      [&quot;1409621&quot;,&quot;FEM EVOLUCION CAJA&quot;,56,53935.95,50800.13,47664.32,44528.51,63000.00],
+      [&quot;1502208&quot;,&quot;FIBER N PLUS EVOLUCION&quot;,70,59783.29,56307.51,52831.74,49355.97,69830.00],
+      [&quot;2505711&quot;,&quot;FOCUS EVOLUCION CAJA C/30 SOBRES&quot;,64,45605.84,42954.34,40302.84,37651.25,53270.00],
+      [&quot;1729752&quot;,&quot;HOMO PLUS CAJA CON 30 SACHETS 180 G&quot;,55,42249.82,39793.43,37337.05,34880.66,49350.00],
+      [&quot;1850610&quot;,&quot;OMNIKOL EVOLUCION BOTELLA 200ML&quot;,5,3612.85,3402.80,3192.75,2982.70,4220.00],
+      [&quot;5025516&quot;,&quot;OMNILIFE VKIDS, DOYPACK 400 G&quot;,71,61760.94,58170.18,54579.43,50988.68,72140.00],
+      [&quot;6571959&quot;,&quot;OMNIOST CAJA 30 SOBRES 450 GRS&quot;,62,57874.12,54509.35,51144.57,47779.80,67600.00],
+      [&quot;5827415&quot;,&quot;OMNIVIU SUPREME CAJA C/30 SACHETS 150 GR&quot;,59,58439.17,55041.54,51643.91,48246.29,68260.00],
+      [&quot;6305929&quot;,&quot;ONE C MIX EVOLUCION CAJA 150 G&quot;,46,36659.32,34527.86,32396.61,30265.25,42820.00],
+      [&quot;2603201&quot;,&quot;POWER MAKER EVOLUCION&quot;,110,58422.04,55025.61,51628.78,48232.15,68240.00],
+      [&quot;7170943&quot;,&quot;SHAKE SUPREME COOKIES&amp;CREAM C/12 SO&quot;,76,67676.77,63742.08,59807.38,55872.69,79050.00],
+      [&quot;3000730&quot;,&quot;STARBIEN EVOLUCION CAJA C 30 SOBRES&quot;,53,38602.73,36358.30,34114.04,31869.70,45090.00],
+      [&quot;3178516&quot;,&quot;SUPER MIX SUPREME VAINILLA, CAJA 30 SOBRES&quot;,76,72933.38,68693.07,64452.76,60212.44,85190.00],
+      [&quot;3304732&quot;,&quot;TMGN COFFEE CAJA EVOLUCION&quot;,39,36197.17,34092.53,31988.05,29883.58,42280.00],
+      [&quot;3505609&quot;,&quot;TEATINO MARACUYÁ EVOLUCION&quot;,93,81717.23,76966.23,72215.23,67464.23,95450.00],
+      [&quot;3875700&quot;,&quot;UZO SUPREME, CAJA CON 30 SOBRES&quot;,166,103762.49,97729.78,91697.08,85664.38,121200.00]
+    ].map(([code,name,points,p25,p30,p35,p40,pvp]) =&gt; ({code,name,points,prices:{25:p25,30:p30,35:p35,40:p40},pvp}));
+
+    const CATALOGS = { EC:{name:&#x27;Ecuador&#x27;,currency:&#x27;USD&#x27;,locale:&#x27;en-US&#x27;,products:PRODUCTS}, AR:{name:&#x27;Argentina&#x27;,currency:&#x27;ARS&#x27;,locale:&#x27;es-AR&#x27;,products:ARGENTINA_PRODUCTS} };
+    let country = localStorage.getItem(&#x27;hamilton_country&#x27;) || &#x27;EC&#x27;;
+    let email = localStorage.getItem(&#x27;hamilton_affiliate_email&#x27;) || &#x27;&#x27;;
+    let discount = Number(localStorage.getItem(&#x27;hamilton_discount_&#x27; + country + &#x27;_&#x27; + email) || 25);
+    let cart = {};
+    const $ = id =&gt; document.getElementById(id);
+    const catalog = () =&gt; CATALOGS[country] || CATALOGS.EC;
+    const money = value =&gt; new Intl.NumberFormat(catalog().locale,{style:&#x27;currency&#x27;,currency:catalog().currency,minimumFractionDigits:2,maximumFractionDigits:2}).format(Number(value || 0));
+    const key = () =&gt; &#x27;hamilton_cart_&#x27; + country + &#x27;_&#x27; + email;
+    const listKey = () =&gt; &#x27;hamilton_lists_&#x27; + country + &#x27;_&#x27; + email;
+    const discountKey = () =&gt; &#x27;hamilton_discount_&#x27; + country + &#x27;_&#x27; + email;
+    function showToast(text){const t=$(&#x27;toast&#x27;);t.textContent=text;t.classList.add(&#x27;show&#x27;);clearTimeout(window._toast);window._toast=setTimeout(()=&gt;t.classList.remove(&#x27;show&#x27;),2600)}
+    function saveCart(){if(email)localStorage.setItem(key(),JSON.stringify(cart))}
+    function loadCart(){try{const saved=localStorage.getItem(key()) || (country===&#x27;EC&#x27; ? localStorage.getItem(&#x27;hamilton_cart_&#x27;+email) : null);cart=JSON.parse(saved||&#x27;{}&#x27;)||{}}catch{cart={}}}
+    function getProduct(code){return catalog().products.find(p=&gt;p.code===code)}
+    function productCost(p){return p.prices[discount]}
+    function totals(){return Object.entries(cart).reduce((a,[code,qty])=&gt;{const p=getProduct(code);if(!p)return a;const q=Number(qty)||0;a.items+=q;a.points+=p.points*q;a.cost+=productCost(p)*q;a.publicValue+=p.pvp*q;return a},{items:0,points:0,cost:0,publicValue:0})}
+    function renderProducts(){const query=$(&#x27;searchInput&#x27;).value.toLowerCase().trim();const visible=catalog().products.filter(p=&gt;(p.name+&#x27; &#x27;+p.code).toLowerCase().includes(query));$(&#x27;resultCount&#x27;).textContent=visible.length;$(&#x27;discountBadge&#x27;).textContent=discount+&#x27;% seleccionado&#x27;;$(&#x27;summaryDiscount&#x27;).textContent=discount+&#x27;%&#x27;;$(&#x27;productRows&#x27;).innerHTML=visible.map(p=&gt;{const q=cart[p.code]||0;const gain=p.pvp-productCost(p);const loss=gain&lt;0;return `&lt;tr&gt;&lt;td class=&quot;product-name&quot;&gt;${p.name}&lt;span class=&quot;product-code&quot;&gt;Código ${p.code}&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;points&quot;&gt;${p.points}&lt;/td&gt;&lt;td class=&quot;money&quot;&gt;${money(productCost(p))}&lt;/td&gt;&lt;td class=&quot;money&quot;&gt;${money(p.pvp)}&lt;/td&gt;&lt;td class=&quot;money ${loss?&#x27;negative&#x27;:&#x27;positive&#x27;}&quot;&gt;${money(gain)}${loss?&#x27; ⚠&#x27;:&#x27;&#x27;}&lt;/td&gt;&lt;td&gt;&lt;input class=&quot;qty-input&quot; type=&quot;number&quot; min=&quot;0&quot; step=&quot;1&quot; value=&quot;${q}&quot; data-qty=&quot;${p.code}&quot; aria-label=&quot;Cantidad de ${p.name}&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;add-btn&quot; data-add=&quot;${p.code}&quot;&gt;Agregar&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;`}).join(&#x27;&#x27;);$(&#x27;dataWarnings&#x27;).classList.toggle(&#x27;hidden&#x27;,!catalog().products.some(p=&gt;p.pvp&lt;productCost(p)));$(&#x27;dataWarnings&#x27;).textContent=&#x27;Hay productos cuyo PVP proporcionado es menor que su precio de afiliado. La app conserva los datos recibidos y muestra la diferencia negativa; conviene confirmar ese PVP antes de usarlo para tomar decisiones.&#x27;}
+    function renderCart(){const t=totals();$(&#x27;heroPoints&#x27;).textContent=t.points.toLocaleString(&#x27;es-ES&#x27;);$(&#x27;heroItems&#x27;).textContent=t.items.toLocaleString(&#x27;es-ES&#x27;);$(&#x27;heroCost&#x27;).textContent=money(t.cost);$(&#x27;heroProfit&#x27;).textContent=money(t.publicValue-t.cost);$(&#x27;cartBadge&#x27;).textContent=t.items+&#x27; artículo&#x27;+(t.items===1?&#x27;&#x27;:&#x27;s&#x27;);$(&#x27;summaryEmpty&#x27;).classList.toggle(&#x27;hidden&#x27;,t.items&gt;0);$(&#x27;summaryContent&#x27;).classList.toggle(&#x27;hidden&#x27;,t.items===0);$(&#x27;totalPoints&#x27;).textContent=t.points.toLocaleString(&#x27;es-ES&#x27;);$(&#x27;totalCost&#x27;).textContent=money(t.cost);$(&#x27;totalPublic&#x27;).textContent=money(t.publicValue);$(&#x27;totalProfit&#x27;).textContent=money(t.publicValue-t.cost);$(&#x27;profitMetric&#x27;).classList.toggle(&#x27;loss&#x27;,t.publicValue-t.cost&lt;0);$(&#x27;cartList&#x27;).innerHTML=Object.entries(cart).filter(([,q])=&gt;q&gt;0).map(([code,q])=&gt;{const p=getProduct(code);return `&lt;div class=&quot;cart-row&quot;&gt;&lt;div&gt;&lt;strong&gt;${p.name}&lt;/strong&gt;&lt;small&gt;${q} × ${money(productCost(p))} · ${p.points*q} puntos&lt;/small&gt;&lt;/div&gt;&lt;div class=&quot;cart-actions&quot;&gt;&lt;div class=&quot;qty-stepper&quot;&gt;&lt;button data-minus=&quot;${code}&quot; aria-label=&quot;Restar&quot;&gt;−&lt;/button&gt;&lt;b&gt;${q}&lt;/b&gt;&lt;button data-plus=&quot;${code}&quot; aria-label=&quot;Sumar&quot;&gt;+&lt;/button&gt;&lt;/div&gt;&lt;button class=&quot;btn btn-danger btn-small&quot; data-remove=&quot;${code}&quot; aria-label=&quot;Eliminar&quot;&gt;×&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;`}).join(&#x27;&#x27;);saveCart()}
+    function renderSaved(){let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||&#x27;[]&#x27;)||[]}catch{};$(&#x27;savedLists&#x27;).innerHTML=lists.length?lists.map((l,i)=&gt;`&lt;div class=&quot;saved-item&quot;&gt;&lt;span&gt;&lt;strong&gt;${l.name}&lt;/strong&gt;&lt;br&gt;&lt;small&gt;${l.discount}% · ${l.points} pts · ${money(l.cost)}&lt;/small&gt;&lt;/span&gt;&lt;span&gt;&lt;button data-load=&quot;${i}&quot;&gt;Cargar&lt;/button&gt;&lt;button data-delete=&quot;${i}&quot;&gt;×&lt;/button&gt;&lt;/span&gt;&lt;/div&gt;`).join(&#x27;&#x27;):&#x27;&lt;span class=&quot;notice&quot;&gt;No hay listas guardadas.&lt;/span&gt;&#x27;}
+    function renderAll(){const c=catalog();$(&#x27;countrySelect&#x27;).value=country;$(&#x27;countryNote&#x27;).textContent=&#x27;Catálogo de &#x27;+c.name+&#x27; en &#x27;+c.currency+&#x27;. Verifica vigencia, disponibilidad y condiciones oficiales antes de comprar o vender.&#x27;;renderProducts();renderCart();renderSaved()}
+    function saveList(){const t=totals();if(!t.items)return showToast(&#x27;Agrega al menos un producto antes de guardar.&#x27;);const name=prompt(&#x27;Nombre para esta lista:&#x27;, &#x27;Mi pedido &#x27;+new Date().toLocaleDateString(&#x27;es-ES&#x27;));if(!name)return;let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||&#x27;[]&#x27;)||[]}catch{};lists.unshift({name:name.trim(),discount,cart:{...cart},points:t.points,cost:t.cost,createdAt:Date.now()});localStorage.setItem(listKey(),JSON.stringify(lists.slice(0,20)));renderSaved();showToast(&#x27;Lista guardada en este navegador.&#x27;)}
+    const ACCESS_SCRIPT_URL = &#x27;https://script.google.com/macros/s/AKfycbyTYFmx38EtSgDw-4v3dN1z9xTsv2sfSz37B5xJqr8rAc_BlK3Aov4mL-Rz6OE5cNGqPA/exec&#x27;;
+    function accessState(data){
+      const raw = data &amp;&amp; (data.estado ?? data.status ?? data.state ?? data.access ?? data.autorizacion ?? data.authorization ?? data.resultado ?? data.result);
+      if (data &amp;&amp; (data.activo === true || data.active === true || data.authorized === true)) return &#x27;ACTIVO&#x27;;
+      return String(raw ?? &#x27;&#x27;).trim().toUpperCase();
+    }
+    async function verifyAffiliateAccess(candidate){
+      const url = ACCESS_SCRIPT_URL + &#x27;?action=verificar_acceso&amp;email=&#x27; + encodeURIComponent(candidate) + &#x27;&amp;callback=_hamiltonAccessCallback&#x27;;
+      try {
+        const response = await fetch(url, {method:&#x27;GET&#x27;, mode:&#x27;cors&#x27;, cache:&#x27;no-store&#x27;});
+        if (!response.ok) throw new Error(&#x27;HTTP &#x27;+response.status);
+        const data = await response.json();
+        return accessState(data);
+      } catch (error) {
+        throw new Error(&#x27;No se pudo consultar Google Sheets. Verifica que Apps Script esté implementado como aplicación web y permita acceso a cualquier usuario.&#x27;);
+      }
+    }
+    function accessMessage(state){
+      if (state === &#x27;PENDIENTE&#x27;) return &#x27;Tu correo fue registrado, pero todavía está pendiente de autorización. Escríbele a Hamilton por WhatsApp para confirmar tu afiliación.&#x27;;
+      if (state === &#x27;APAGADO&#x27; || state === &#x27;INACTIVO&#x27;) return &#x27;Este acceso está apagado temporalmente. Solicita a Hamilton que lo active cuando corresponda.&#x27;;
+      return &#x27;No encontramos este correo como afiliado activo. Usa el mismo correo registrado en tu afiliación o solicita autorización a Hamilton.&#x27;;
+    }
+    $(&#x27;loginForm&#x27;).addEventListener(&#x27;submit&#x27;, async e=&gt;{
+      e.preventDefault();
+      email=$(&#x27;loginEmail&#x27;).value.trim().toLowerCase();
+      if(!email)return;
+      const button=e.currentTarget.querySelector(&#x27;button&#x27;);
+      button.disabled=true; button.textContent=&#x27;Verificando autorización…&#x27;;
+      try {
+        const state=await verifyAffiliateAccess(email);
+        if(state !== &#x27;ACTIVO&#x27;) { showToast(accessMessage(state)); return; }
+        localStorage.setItem(&#x27;hamilton_affiliate_email&#x27;,email); discount=Number(localStorage.getItem(discountKey())||25); loadCart();
+        $(&#x27;loginView&#x27;).classList.add(&#x27;hidden&#x27;); $(&#x27;appView&#x27;).classList.remove(&#x27;hidden&#x27;); $(&#x27;userEmail&#x27;).textContent=email; $(&#x27;discountSelect&#x27;).value=discount; renderAll();
+      } catch(error) { showToast(error.message); }
+      finally { button.disabled=false; button.textContent=&#x27;Entrar a mi calculadora&#x27;; }
+    });
+    $(&#x27;logoutBtn&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{$(&#x27;appView&#x27;).classList.add(&#x27;hidden&#x27;);$(&#x27;loginView&#x27;).classList.remove(&#x27;hidden&#x27;);$(&#x27;loginEmail&#x27;).value=email});
+    $(&#x27;countrySelect&#x27;).addEventListener(&#x27;change&#x27;,e=&gt;{saveCart();country=e.target.value;localStorage.setItem(&#x27;hamilton_country&#x27;,country);discount=Number(localStorage.getItem(discountKey())||25);cart={};loadCart();$(&#x27;discountSelect&#x27;).value=discount;$(&#x27;searchInput&#x27;).value=&#x27;&#x27;;renderAll();showToast(&#x27;Catálogo cambiado a &#x27;+catalog().name+&#x27;.&#x27;)});
+    $(&#x27;discountSelect&#x27;).addEventListener(&#x27;change&#x27;,e=&gt;{discount=Number(e.target.value);localStorage.setItem(discountKey(),discount);renderAll();showToast(&#x27;Descuento actualizado al &#x27;+discount+&#x27;%.&#x27;)});
+    $(&#x27;searchInput&#x27;).addEventListener(&#x27;input&#x27;,renderProducts);$(&#x27;clearSearch&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{$(&#x27;searchInput&#x27;).value=&#x27;&#x27;;renderProducts()});$(&#x27;saveListBtn&#x27;).addEventListener(&#x27;click&#x27;,saveList);$(&#x27;clearCartBtn&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{cart={};renderAll();showToast(&#x27;Lista vaciada.&#x27;)});
+    document.addEventListener(&#x27;input&#x27;,e=&gt;{if(e.target.matches(&#x27;[data-qty]&#x27;)){const q=Math.max(0,parseInt(e.target.value||0,10));if(q)cart[e.target.dataset.qty]=q;else delete cart[e.target.dataset.qty];renderCart()}});
+    document.addEventListener(&#x27;click&#x27;,e=&gt;{const add=e.target.closest(&#x27;[data-add]&#x27;);if(add){const code=add.dataset.add;cart[code]=(cart[code]||0)+1;renderAll();showToast(&#x27;Producto agregado.&#x27;);return}const plus=e.target.closest(&#x27;[data-plus]&#x27;);if(plus){cart[plus.dataset.plus]=(cart[plus.dataset.plus]||0)+1;renderAll();return}const minus=e.target.closest(&#x27;[data-minus]&#x27;);if(minus){cart[minus.dataset.minus]=Math.max(0,(cart[minus.dataset.minus]||0)-1);if(!cart[minus.dataset.minus])delete cart[minus.dataset.minus];renderAll();return}const rem=e.target.closest(&#x27;[data-remove]&#x27;);if(rem){delete cart[rem.dataset.remove];renderAll();return}const load=e.target.closest(&#x27;[data-load]&#x27;);if(load){let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||&#x27;[]&#x27;)||[]}catch{};const l=lists[Number(load.dataset.load)];if(l){discount=l.discount;cart={...l.cart};$(&#x27;discountSelect&#x27;).value=discount;renderAll();showToast(&#x27;Lista cargada.&#x27;)}return}const del=e.target.closest(&#x27;[data-delete]&#x27;);if(del){let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||&#x27;[]&#x27;)||[]}catch{};lists.splice(Number(del.dataset.delete),1);localStorage.setItem(listKey(),JSON.stringify(lists));renderSaved();showToast(&#x27;Lista eliminada.&#x27;)}});
+    if(email){$(&#x27;loginEmail&#x27;).value=email; email=&#x27;&#x27;; localStorage.removeItem(&#x27;hamilton_affiliate_email&#x27;)}
+  &lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe></section><section id="registro" class="form-section reveal">
   <div class="section-header">
     <h2>¿Quieres que te ayude a registrarte en vivo?</h2>
     <p class="lead">Si no quieres hacer el registro solo, coordinamos una reunión por Zoom. Me conecto contigo y te voy indicando paso a paso cómo registrarte como Cliente Admirable o cómo afiliarte con descuento.</p>
