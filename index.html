@@ -860,22 +860,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <section id="tutorial" class="video-section reveal">
   <div class="video-profile-card" style="max-width: 1140px; margin: 0 auto;">
-    <div class="video-avatar-tag" style="background: var(--gold); color: var(--blue-ink); font-size: 0.72rem; padding: 5px 12px; border-radius: 4px; right: 16px; top: -14px;">
+    
+    <div
+      class="video-avatar-tag"
+      style="background: var(--gold); color: var(--blue-ink); font-size: 0.72rem; padding: 5px 12px; border-radius: 4px; right: 16px; top: -14px;"
+    >
       🎥 TUTORIAL DE REGISTRO
     </div>
-    
+
     <div class="video-container" id="videoContainer">
-      <img loading="lazy" decoding="async" src="miniatura_youtube.png" alt="Testimonio de registro paso a paso" class="video-poster" onerror="this.onerror=null; this.src='https://img.youtube.com/vi/MY3azjHyX2U/hqdefault.jpg';" width="1280" height="720">
-      
-      <button type="button" class="video-overlay" aria-label="Reproducir testimonio de registro" onclick="loadYouTubeVideo()">
+      <img
+        loading="lazy"
+        decoding="async"
+        src="https://img.youtube.com/vi/JNqD03C0PKk/maxresdefault.jpg"
+        alt="Cómo registrarte en Omnilife paso a paso"
+        class="video-poster"
+        onerror="this.onerror=null; this.src='https://img.youtube.com/vi/JNqD03C0PKk/hqdefault.jpg';"
+        width="1280"
+        height="720"
+      >
+
+      <button
+        type="button"
+        class="video-overlay"
+        aria-label="Reproducir tutorial de registro en Omnilife"
+        onclick="loadYouTubeVideo( )"
+      >
         <div class="play-button-center" id="playBtnCenter">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M8 5v14l11-7z"></path>
+          </svg>
         </div>
-      </div>
+      </button>
     </div>
+
     <div class="presentador-alert">
-      ⚠️ Al llenar el formulario, verifica que quede <strong>Granillo Ramirez Hamilton Leonel.</strong> como tu presentador — así aseguro tu asesoría personalizada por WhatsApp.
+      ⚠️ Al llenar el formulario, verifica que quede
+      <strong>Granillo Ramirez Hamilton Leonel.</strong>
+      como tu presentador — así aseguro tu asesoría personalizada por WhatsApp.
     </div>
+
   </div>
 </section>
 
@@ -1852,11 +1876,11 @@ function setMode(mode) {
   }
 }
 
-const YOUTUBE_VIDEO_ID = 'MY3azjHyX2U';
+const YOUTUBE_VIDEO_ID = 'JNqD03C0PKk';
 
 function loadYouTubeVideo() {
   const container = document.getElementById('videoContainer');
-  container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1" title="Testimonio de registro paso a paso" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+  container.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1&enablejsapi=1" title="title="Cómo registrarte en Omnilife paso a paso" " style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
 }
 
 function pauseGuideVideo() {
