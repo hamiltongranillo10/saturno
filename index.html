@@ -1446,6 +1446,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       if (data &amp;&amp; (data.activo === true || data.active === true || data.authorized === true)) return &#x27;ACTIVO&#x27;;
       return String(raw ?? &#x27;&#x27;).trim().toUpperCase();
     }
+    async function registerAffiliateRequest(candidate){
+      const payload = {
+        email: candidate,
+        name: &#x27;Solicitud desde calculadora&#x27;,
+        country: $(&#x27;countrySelect&#x27;)?.value === &#x27;AR&#x27; ? &#x27;Argentina&#x27; : &#x27;Ecuador&#x27;,
+        affiliateCode: &#x27;&#x27;
+      };
+      const response = await fetch(ACCESS_SCRIPT_URL, {
+        method: &#x27;POST&#x27;,
+        mode: &#x27;cors&#x27;,
+        headers: {&#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded;charset=UTF-8&#x27;},
+        body: new URLSearchParams(payload).toString()
+      });
+      if (!response.ok) throw new Error(&#x27;No se pudo registrar la solicitud en Google Sheets.&#x27;);
+      const data = await response.json();
+      if (data &amp;&amp; data.ok === false) throw new Error(data.error || &#x27;Google Sheets rechazó la solicitud.&#x27;);
+      return data;
+    }
+
     async function verifyAffiliateAccess(candidate){
       const url = ACCESS_SCRIPT_URL + &#x27;?action=verificar_acceso&amp;email=&#x27; + encodeURIComponent(candidate) + &#x27;&amp;callback=_hamiltonAccessCallback&#x27;;
       try {
@@ -1469,6 +1488,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const button=e.currentTarget.querySelector(&#x27;button&#x27;);
       button.disabled=true; button.textContent=&#x27;Verificando autorización…&#x27;;
       try {
+        await registerAffiliateRequest(email);
         const state=await verifyAffiliateAccess(email);
         if(state !== &#x27;ACTIVO&#x27;) { showToast(accessMessage(state)); return; }
         localStorage.setItem(&#x27;hamilton_affiliate_email&#x27;,email); discount=Number(localStorage.getItem(discountKey())||25); loadCart();
