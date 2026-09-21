@@ -726,7 +726,7 @@ footer { background: var(--bg); border-top: 1px solid var(--line); text-align: c
 
 .calculator-embedded-section{max-width:1360px;margin:0 auto;padding:80px 48px 90px;background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .calculator-embedded-head{text-align:center;max-width:760px;margin:0 auto 28px}.calculator-embedded-head .section-kicker{display:inline-block;color:var(--gold);font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px}.calculator-embedded-head h2{font-size:clamp(2rem,4vw,3rem);color:var(--ink);margin-bottom:12px}.calculator-embedded-head p{color:var(--muted);line-height:1.65}.calculator-iframe{display:block;width:100%;height:1450px;border:0;border-radius:20px;background:transparent;overflow:hidden}
-@media(max-width:640px){.calculator-embedded-section{padding:58px 14px 65px}.calculator-iframe{height:1750px;border-radius:14px}}
+@media(max-width:640px){.calculator-embedded-section{padding:58px 14px 65px}.calculator-iframe{height:1900px;border-radius:14px}}
 </style>
 
 <!-- Meta (Facebook) Pixel Code -->
@@ -1352,6 +1352,52 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 .stats-section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:15px}.stats-section h3{margin:0;font-size:1.1rem}.stats-section p{margin:4px 0 0;font-size:.78rem;opacity:.82}.stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.stats-item{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.16);border-radius:13px;padding:13px}.stats-item strong{display:block;font-size:1.15rem;color:#fff}.stats-item span{display:block;font-size:.68rem;opacity:.82;margin-top:3px}.stats-item.profit{background:rgba(255,255,255,.18)}.stats-note{font-size:.7rem;opacity:.72;margin:13px 0 0;line-height:1.4}
 @media(max-width:980px){.stats-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:620px){.stats-section{padding:17px}.stats-grid{grid-template-columns:repeat(2,1fr)}.stats-item strong{font-size:1rem}}
+
+/* Vista compacta sin recorte: todas las columnas y el botón caben en PC. */
+.workspace{grid-template-columns:minmax(0,1fr) 340px;gap:18px}
+.product-table-wrap{overflow:hidden}
+.product-table{width:100%;min-width:0;table-layout:fixed}
+.product-table th,.product-table td{padding:10px 7px;font-size:.76rem}
+.product-table th{font-size:.63rem;letter-spacing:.025em}
+.product-table th:nth-child(1),.product-table td:nth-child(1){width:32%}
+.product-table th:nth-child(2),.product-table td:nth-child(2){width:8%}
+.product-table th:nth-child(3),.product-table td:nth-child(3){width:12%}
+.product-table th:nth-child(4),.product-table td:nth-child(4){width:12%}
+.product-table th:nth-child(5),.product-table td:nth-child(5){width:14%}
+.product-table th:nth-child(6),.product-table td:nth-child(6){width:9%}
+.product-table th:nth-child(7),.product-table td:nth-child(7){width:13%}
+.product-name{min-width:0;font-size:.76rem;line-height:1.25;overflow-wrap:anywhere}
+.product-code{font-size:.61rem}
+.qty-input{width:100%;max-width:48px;font-size:.75rem;padding:7px 2px}
+.add-btn{display:block;width:100%;min-width:0;white-space:nowrap;padding:8px 2px;font-size:.64rem;letter-spacing:-.02em}
+.money{font-size:.72rem}
+@media(max-width:1080px) and (min-width:621px){
+  .workspace{grid-template-columns:minmax(0,1fr) 300px;gap:12px}
+  .product-table th,.product-table td{padding:8px 4px;font-size:.69rem}
+  .product-table th{font-size:.56rem}
+  .add-btn{font-size:.58rem}
+}
+@media(max-width:620px){
+  .workspace{display:block}
+  .product-table-wrap{overflow:visible;border:0}
+  .product-table,.product-table tbody{display:block;width:100%}
+  .product-table thead{display:none}
+  .product-table tr{display:grid;grid-template-columns:minmax(0,1fr) 54px 70px;gap:8px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+  .product-table td{display:block;width:auto!important;padding:0;border:0;overflow:visible}
+  .product-table td:nth-child(1){grid-column:1 / 4;grid-row:1}
+  .product-table td:nth-child(2){grid-column:1;grid-row:2;font-size:.78rem}
+  .product-table td:nth-child(3){grid-column:1;grid-row:3;font-size:.75rem}
+  .product-table td:nth-child(4){grid-column:2;grid-row:3;font-size:.75rem}
+  .product-table td:nth-child(5){grid-column:3;grid-row:3;font-size:.75rem}
+  .product-table td:nth-child(6){grid-column:2;grid-row:2}
+  .product-table td:nth-child(7){grid-column:3;grid-row:2}
+  .product-table td:nth-child(2)::before{content:&#x27;Puntos: &#x27;;color:var(--muted);font-weight:600}
+  .product-table td:nth-child(3)::before{content:&#x27;Costo: &#x27;;color:var(--muted);font-weight:600}
+  .product-table td:nth-child(4)::before{content:&#x27;PVP: &#x27;;color:var(--muted);font-weight:600}
+  .product-table td:nth-child(5)::before{content:&#x27;Gan.: &#x27;;color:var(--muted);font-weight:600}
+  .qty-input{max-width:54px}
+  .add-btn{font-size:.66rem;padding:8px 2px}
+}
 &lt;/style&gt;&lt;/head&gt;&lt;body&gt;
   &lt;div id=&quot;loginView&quot; class=&quot;login-screen&quot;&gt;
     &lt;section class=&quot;login-card&quot;&gt;
