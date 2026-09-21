@@ -727,6 +727,15 @@ footer { background: var(--bg); border-top: 1px solid var(--line); text-align: c
 .calculator-embedded-section{max-width:1360px;margin:0 auto;padding:80px 48px 90px;background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .calculator-embedded-head{text-align:center;max-width:760px;margin:0 auto 28px}.calculator-embedded-head .section-kicker{display:inline-block;color:var(--gold);font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px}.calculator-embedded-head h2{font-size:clamp(2rem,4vw,3rem);color:var(--ink);margin-bottom:12px}.calculator-embedded-head p{color:var(--muted);line-height:1.65}.calculator-iframe{display:block;width:100%;height:1450px;border:0;border-radius:20px;background:transparent;overflow:hidden}
 @media(max-width:640px){.calculator-embedded-section{padding:58px 14px 65px}.calculator-iframe{height:1900px;border-radius:14px}}
+/* En PC, al autorizar la calculadora se enfoca únicamente esta herramienta. En móvil se mantiene la landing completa. */
+/* Cuando el afiliado es autorizado, la calculadora toma toda la pantalla en PC y móvil. */
+body.calculator-mode-active > *:not(#calculadora-afiliados){display:none!important}
+body.calculator-mode-active{overflow-x:hidden;background:#f7faf6}
+body.calculator-mode-active #calculadora-afiliados{display:block;max-width:none;min-height:100vh;padding:28px 28px 42px;border:0}
+body.calculator-mode-active .calculator-embedded-head{margin-bottom:18px}
+body.calculator-mode-active .calculator-iframe{height:calc(100vh - 126px);min-height:760px;border-radius:20px}
+@media(max-width:980px){body.calculator-mode-active #calculadora-afiliados{padding:18px 14px 28px}body.calculator-mode-active .calculator-embedded-head{display:none}body.calculator-mode-active .calculator-iframe{height:calc(100vh - 46px);min-height:900px;border-radius:14px}}
+@media(max-width:620px){body.calculator-mode-active #calculadora-afiliados{padding:8px 0 0}body.calculator-mode-active .calculator-iframe{height:calc(100vh - 8px);min-height:1200px;border-radius:0}}
 </style>
 
 <!-- Meta (Facebook) Pixel Code -->
@@ -1593,10 +1602,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if(state !== &#x27;ACTIVO&#x27;) { showToast(accessMessage(state)); return; }
         localStorage.setItem(&#x27;hamilton_affiliate_email&#x27;,email); discount=Number(localStorage.getItem(discountKey())||25); loadCart();
         $(&#x27;loginView&#x27;).classList.add(&#x27;hidden&#x27;); $(&#x27;appView&#x27;).classList.remove(&#x27;hidden&#x27;); $(&#x27;userEmail&#x27;).textContent=email; $(&#x27;discountSelect&#x27;).value=discount; renderAll();
+        if (window.parent !== window) window.parent.postMessage({type:&#x27;hamilton-calculator-access&#x27;, authorized:true}, &#x27;*&#x27;);
       } catch(error) { showToast(error.message); }
       finally { button.disabled=false; button.textContent=&#x27;Entrar a mi calculadora&#x27;; }
     });
-    $(&#x27;logoutBtn&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{$(&#x27;appView&#x27;).classList.add(&#x27;hidden&#x27;);$(&#x27;loginView&#x27;).classList.remove(&#x27;hidden&#x27;);$(&#x27;loginEmail&#x27;).value=email});
+    $(&#x27;logoutBtn&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{$(&#x27;appView&#x27;).classList.add(&#x27;hidden&#x27;);$(&#x27;loginView&#x27;).classList.remove(&#x27;hidden&#x27;);$(&#x27;loginEmail&#x27;).value=email;if(window.parent!==window)window.parent.postMessage({type:&#x27;hamilton-calculator-access&#x27;,authorized:false},&#x27;*&#x27;)});
     $(&#x27;countrySelect&#x27;).addEventListener(&#x27;change&#x27;,e=&gt;{saveCart();country=e.target.value;localStorage.setItem(&#x27;hamilton_country&#x27;,country);discount=Number(localStorage.getItem(discountKey())||25);cart={};loadCart();$(&#x27;discountSelect&#x27;).value=discount;$(&#x27;searchInput&#x27;).value=&#x27;&#x27;;renderAll();showToast(&#x27;Catálogo cambiado a &#x27;+catalog().name+&#x27;.&#x27;)});
     $(&#x27;discountSelect&#x27;).addEventListener(&#x27;change&#x27;,e=&gt;{discount=Number(e.target.value);localStorage.setItem(discountKey(),discount);renderAll();showToast(&#x27;Descuento actualizado al &#x27;+discount+&#x27;%.&#x27;)});
     $(&#x27;searchInput&#x27;).addEventListener(&#x27;input&#x27;,renderProducts);$(&#x27;clearSearch&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{$(&#x27;searchInput&#x27;).value=&#x27;&#x27;;renderProducts()});$(&#x27;saveListBtn&#x27;).addEventListener(&#x27;click&#x27;,saveList);$(&#x27;clearCartBtn&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{cart={};renderAll();showToast(&#x27;Lista vaciada.&#x27;)});
@@ -2418,5 +2428,17 @@ window.addEventListener('load', () => {
 });
 </script>
 
+
+<script>
+window.addEventListener('message', function(event) {
+  const data = event.data || {};
+  if (data.type !== 'hamilton-calculator-access') return;
+  document.body.classList.toggle('calculator-mode-active', data.authorized === true);
+  if (data.authorized === true) {
+    const calculator = document.getElementById('calculadora-afiliados');
+    if (calculator) calculator.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+});
+</script>
 </body>
 </html>
