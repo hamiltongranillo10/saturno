@@ -745,7 +745,37 @@ body.calculator-mode-active .calculator-iframe{height:calc(100vh - 126px);min-he
 .kit-guide-country{display:flex;align-items:center;gap:10px;margin:0 0 12px}.kit-guide-country label{font-size:.73rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.kit-guide-country select{border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);padding:9px 10px}.kit-product-code{display:block;color:var(--muted);font-size:.65rem;margin-top:3px}.kit-guide-explainer{display:none;background:#f5f1df;border:1px solid #e4d39a;border-radius:11px;padding:13px 15px;color:#65542d;font-size:.8rem;line-height:1.52;margin:0 0 14px}.kit-guide-explainer p{margin:7px 0}.kit-guide-explainer p:first-of-type{margin-top:8px} .kit-guide-status.ready + .kit-guide-explainer{display:block}
 /* La mini-calculadora del Kit puede tomar toda la pantalla; la X la devuelve a la landing. */
 body.kit-guide-focus-active{overflow:hidden;background:#f7faf6}body.kit-guide-focus-active>*:not(#modal-puntos){display:none!important}body.kit-guide-focus-active #modal-puntos{display:flex!important;position:fixed;inset:0;z-index:9999;padding:18px;background:#f7faf6}body.kit-guide-focus-active #modal-puntos .country-modal{width:100%;max-width:1240px;max-height:calc(100vh - 36px);margin:auto}@media(max-width:620px){body.kit-guide-focus-active #modal-puntos{padding:0}body.kit-guide-focus-active #modal-puntos .country-modal{max-height:100vh;height:100vh;border-radius:0}}
-.kit-download-pdf{display:none;width:100%;margin:0 0 14px;padding:12px 16px;border:0;border-radius:10px;background:var(--blue);color:#fff;font-weight:800;cursor:pointer}.kit-guide-status.ready ~ .kit-download-pdf{display:block}</style>
+.kit-download-pdf{display:none;width:100%;margin:0 0 14px;padding:12px 16px;border:0;border-radius:10px;background:var(--blue);color:#fff;font-weight:800;cursor:pointer}.kit-guide-status.ready ~ .kit-download-pdf{display:block}
+/* En móvil, cada producto del Kit se convierte en una tarjeta vertical: nunca se desplaza horizontalmente. */
+@media (max-width: 640px){
+  body.kit-guide-focus-active #modal-puntos{padding:0}
+  body.kit-guide-focus-active #modal-puntos .country-modal{padding:16px 12px 24px;overflow-x:hidden}
+  .points-modal{max-width:100%;width:100%;}
+  .mini-kit-table-wrap{overflow-x:hidden;max-height:none;width:100%}
+  .mini-kit-table{display:block;width:100%;min-width:0;font-size:.78rem}
+  .mini-kit-table thead{display:none}
+  .mini-kit-table tbody,.mini-kit-table tr{display:block;width:100%}
+  .mini-kit-table tbody tr:not(.points-section-row){margin:0 0 10px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.035);box-sizing:border-box}
+  .mini-kit-table tbody tr:not(.points-section-row).kit-selected{border-color:rgba(37,211,102,.65);background:rgba(37,211,102,.07)}
+  .mini-kit-table td{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;width:100%;box-sizing:border-box;padding:6px 0;border:0;white-space:normal!important;text-align:right}
+  .mini-kit-table td::before{content:'';flex:0 0 auto;color:var(--muted);font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;text-align:left}
+  .mini-kit-table td:nth-child(1){display:block;text-align:left;padding:2px 0 9px;font-weight:800;font-size:.82rem}
+  .mini-kit-table td:nth-child(1)::before{display:none}
+  .mini-kit-table td:nth-child(2)::before{content:'Puntos'}
+  .mini-kit-table td:nth-child(3)::before{content:'Tu inversión · 30%'}
+  .mini-kit-table td:nth-child(4)::before{content:'Precio público'}
+  .mini-kit-table td:nth-child(5)::before{content:'Ganancia estimada'}
+  .mini-kit-table td:nth-child(6)::before{content:'Cantidad'}
+  .mini-kit-table td:nth-child(7)::before{content:''}
+  .mini-kit-table td:nth-child(6) .kit-qty{width:88px;min-height:38px;text-align:center;font-size:1rem}
+  .mini-kit-table td:nth-child(7){justify-content:flex-end;padding-top:8px}
+  .mini-kit-table .kit-add-btn{width:100%;min-height:42px;font-size:.82rem}
+  .mini-kit-table .points-section-row{margin:12px 0 8px;padding:0;border:0;background:transparent}
+  .mini-kit-table .points-section-row td{display:block;padding:8px 2px;background:rgba(201,166,72,.1);border-radius:8px;color:var(--gold);font-size:.7rem}
+  .mini-kit-table .points-section-row td::before{display:none}
+  .kit-guide-note{font-size:.78rem;line-height:1.5}
+}
+</style>
 
 <!-- Meta (Facebook) Pixel Code -->
 <script>
