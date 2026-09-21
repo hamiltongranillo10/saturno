@@ -725,8 +725,8 @@ footer { background: var(--bg); border-top: 1px solid var(--line); text-align: c
 @media(max-width:560px){ .value-grid, .cat-grid { grid-template-columns: 1fr; } }
 
 .calculator-embedded-section{max-width:1360px;margin:0 auto;padding:80px 48px 90px;background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.calculator-embedded-head{text-align:center;max-width:760px;margin:0 auto 28px}.calculator-embedded-head .section-kicker{display:inline-block;color:var(--gold);font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px}.calculator-embedded-head h2{font-size:clamp(2rem,4vw,3rem);color:var(--ink);margin-bottom:12px}.calculator-embedded-head p{color:var(--muted);line-height:1.65}.calculator-iframe{display:block;width:100%;height:1180px;border:0;border-radius:20px;background:transparent;overflow:hidden}
-@media(max-width:640px){.calculator-embedded-section{padding:58px 14px 65px}.calculator-iframe{height:1450px;border-radius:14px}}
+.calculator-embedded-head{text-align:center;max-width:760px;margin:0 auto 28px}.calculator-embedded-head .section-kicker{display:inline-block;color:var(--gold);font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px}.calculator-embedded-head h2{font-size:clamp(2rem,4vw,3rem);color:var(--ink);margin-bottom:12px}.calculator-embedded-head p{color:var(--muted);line-height:1.65}.calculator-iframe{display:block;width:100%;height:1450px;border:0;border-radius:20px;background:transparent;overflow:hidden}
+@media(max-width:640px){.calculator-embedded-section{padding:58px 14px 65px}.calculator-iframe{height:1750px;border-radius:14px}}
 </style>
 
 <!-- Meta (Facebook) Pixel Code -->
@@ -1314,15 +1314,55 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     .notice{font-size:.76rem;color:var(--muted);margin-top:16px}.footer{max-width:1360px;margin:auto;padding:0 22px 35px;color:var(--muted);font-size:.74rem}.login-screen{min-height:100vh;display:grid;place-items:center;padding:24px}.login-card{max-width:520px;width:100%;padding:34px}.login-card h1{font-family:Georgia,serif;font-size:2.2rem;line-height:1.05;margin:16px 0 10px}.login-card p{color:var(--muted);font-size:.9rem}.login-brand{display:flex;align-items:center;gap:10px;color:var(--green);font-weight:900}.brand-logo{width:42px;height:42px;object-fit:contain;border-radius:12px;display:block}.login-form{display:grid;gap:12px;margin-top:22px}.local-note{background:#edf8f0;border:1px solid #c8e4d1;color:#245e43;padding:12px;border-radius:12px;font-size:.78rem;margin-top:16px}.toast{position:fixed;right:20px;bottom:20px;z-index:40;background:#17352a;color:white;padding:12px 15px;border-radius:12px;box-shadow:var(--shadow);font-size:.82rem;opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translateY(0)}
     @media(max-width:980px){.hero{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.summary-card{position:static}.hero-stat{min-height:220px}}
     @media(max-width:620px){.topbar-inner{padding:11px 14px}.shell{padding:20px 14px 45px}.hero-copy,.panel,.summary-card,.login-card{padding:20px}.userbar{gap:6px}.user-email{max-width:130px}.userbar .btn{padding:8px}.hero h2{font-size:2.2rem}.controls{display:grid;grid-template-columns:1fr}.field,.search-field{min-width:0}.stat-grid{grid-template-columns:1fr 1fr}.metrics{grid-template-columns:1fr 1fr}.summary-actions .btn{flex:1}.brand small{display:none}}
-  &lt;/style&gt;&lt;/head&gt;&lt;body&gt;
+  
+/* Ajustes responsive: la tabla nunca invade ni corta el panel de resumen. */
+.product-table-wrap{width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.product-table{min-width:0;width:100%;table-layout:fixed}
+.product-table th,.product-table td{overflow:hidden}
+.product-table th:nth-child(1),.product-table td:nth-child(1){width:34%}
+.product-table th:nth-child(2),.product-table td:nth-child(2){width:9%}
+.product-table th:nth-child(3),.product-table td:nth-child(3){width:13%}
+.product-table th:nth-child(4),.product-table td:nth-child(4){width:13%}
+.product-table th:nth-child(5),.product-table td:nth-child(5){width:14%}
+.product-table th:nth-child(6),.product-table td:nth-child(6){width:9%}
+.product-table th:nth-child(7),.product-table td:nth-child(7){width:8%}
+.product-name{min-width:0;overflow-wrap:anywhere;word-break:break-word}
+.add-btn{white-space:nowrap;padding:8px 7px;font-size:.7rem}
+.qty-input{width:100%;max-width:58px;padding:7px 3px}
+.money{white-space:normal}
+@media(max-width:980px){
+  .workspace{grid-template-columns:minmax(0,1fr)}
+  .summary-card{position:static}
+  .product-table{min-width:680px;table-layout:auto}
+  .product-table th,.product-table td{overflow:visible}
+  .product-name{min-width:220px}
+}
+@media(max-width:620px){
+  .panel{padding:14px}
+  .product-table-wrap{margin-right:0}
+  .product-table{min-width:680px}
+  .product-table th,.product-table td{padding:9px 8px}
+  .product-name{min-width:210px;max-width:240px}
+  .product-table th:nth-child(1),.product-table td:nth-child(1){width:auto}
+  .add-btn{font-size:.72rem;padding:8px 9px}
+}
+
+/* Estadísticas privadas de planificación */
+.stats-section{margin:0 0 22px;padding:22px;background:linear-gradient(135deg,#164b35,#287d58);color:#fff;border-radius:var(--radius);box-shadow:var(--shadow)}
+.stats-section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:15px}.stats-section h3{margin:0;font-size:1.1rem}.stats-section p{margin:4px 0 0;font-size:.78rem;opacity:.82}.stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.stats-item{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.16);border-radius:13px;padding:13px}.stats-item strong{display:block;font-size:1.15rem;color:#fff}.stats-item span{display:block;font-size:.68rem;opacity:.82;margin-top:3px}.stats-item.profit{background:rgba(255,255,255,.18)}.stats-note{font-size:.7rem;opacity:.72;margin:13px 0 0;line-height:1.4}
+@media(max-width:980px){.stats-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:620px){.stats-section{padding:17px}.stats-grid{grid-template-columns:repeat(2,1fr)}.stats-item strong{font-size:1rem}}
+&lt;/style&gt;&lt;/head&gt;&lt;body&gt;
   &lt;div id=&quot;loginView&quot; class=&quot;login-screen&quot;&gt;
     &lt;section class=&quot;login-card&quot;&gt;
       &lt;div class=&quot;login-brand&quot;&gt;&lt;img class=&quot;brand-logo&quot; src=&quot;logo-hamilton.png&quot; alt=&quot;Logo Hamilton Networker&quot;&gt;&lt;span&gt;Hamilton Networker&lt;/span&gt;&lt;/div&gt;
       &lt;h1&gt;Calculadora de afiliados&lt;/h1&gt;
-      &lt;p&gt;Consulta productos, puntos, precios según tu descuento y la ganancia estimada al vender al precio público.&lt;/p&gt;
+      &lt;p&gt;Ingresa tus datos de afiliado para solicitar autorización y consultar productos, puntos, precios según tu descuento y ganancia estimada.&lt;/p&gt;
       &lt;form id=&quot;loginForm&quot; class=&quot;login-form&quot;&gt;
-        &lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;loginEmail&quot;&gt;Tu correo electrónico&lt;/label&gt;&lt;input id=&quot;loginEmail&quot; type=&quot;email&quot; autocomplete=&quot;email&quot; placeholder=&quot;afiliado@correo.com&quot; required&gt;&lt;/div&gt;
-        &lt;button class=&quot;btn btn-primary&quot; type=&quot;submit&quot;&gt;Entrar a mi calculadora&lt;/button&gt;
+        &lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;loginName&quot;&gt;Nombre completo&lt;/label&gt;&lt;input id=&quot;loginName&quot; type=&quot;text&quot; autocomplete=&quot;name&quot; placeholder=&quot;Tu nombre y apellido&quot; required&gt;&lt;/div&gt;
+        &lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;loginEmail&quot;&gt;Correo electrónico&lt;/label&gt;&lt;input id=&quot;loginEmail&quot; type=&quot;email&quot; autocomplete=&quot;email&quot; placeholder=&quot;afiliado@correo.com&quot; required&gt;&lt;/div&gt;
+        &lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;loginAffiliateCode&quot;&gt;Código de afiliado&lt;/label&gt;&lt;input id=&quot;loginAffiliateCode&quot; type=&quot;text&quot; autocomplete=&quot;off&quot; placeholder=&quot;Ej. 123456&quot; required&gt;&lt;/div&gt;
+        &lt;button class=&quot;btn btn-primary&quot; type=&quot;submit&quot;&gt;Solicitar acceso a mi calculadora&lt;/button&gt;
       &lt;/form&gt;
       &lt;div class=&quot;local-note&quot;&gt;&lt;strong&gt;Tu herramienta de apoyo:&lt;/strong&gt; la preparé para facilitarte algunos cálculos mientras planificas tus compras. Úsala para comparar descuentos, organizar tus productos, revisar tus puntos y visualizar tu ganancia estimada. Sigue aprendiendo, toma decisiones informadas y avanza paso a paso hacia tus objetivos.&lt;/div&gt;
     &lt;/section&gt;
@@ -1337,6 +1377,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       &lt;/section&gt;
 
       &lt;section class=&quot;panel&quot; style=&quot;margin-bottom:22px&quot;&gt;&lt;div class=&quot;controls&quot;&gt;&lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;countrySelect&quot;&gt;País y catálogo&lt;/label&gt;&lt;select id=&quot;countrySelect&quot;&gt;&lt;option value=&quot;EC&quot;&gt;Ecuador · USD&lt;/option&gt;&lt;option value=&quot;AR&quot;&gt;Argentina · ARS&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;discountSelect&quot;&gt;Mi descuento&lt;/label&gt;&lt;select id=&quot;discountSelect&quot;&gt;&lt;option value=&quot;25&quot;&gt;25% · afiliación normal&lt;/option&gt;&lt;option value=&quot;30&quot;&gt;30% · Kit Emprendedor&lt;/option&gt;&lt;option value=&quot;35&quot;&gt;35% · nivel avanzado&lt;/option&gt;&lt;option value=&quot;40&quot;&gt;40% · nivel avanzado&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;field search-field&quot;&gt;&lt;label for=&quot;searchInput&quot;&gt;Buscar producto o código&lt;/label&gt;&lt;input id=&quot;searchInput&quot; type=&quot;search&quot; placeholder=&quot;Ej. Power Maker, Biocros, 2603201...&quot;&gt;&lt;/div&gt;&lt;button class=&quot;btn btn-secondary&quot; id=&quot;clearSearch&quot;&gt;Limpiar búsqueda&lt;/button&gt;&lt;/div&gt;&lt;p class=&quot;notice&quot; id=&quot;countryNote&quot;&gt;Catálogo de Ecuador en dólares estadounidenses (USD). Verifica vigencia, país, disponibilidad y condiciones oficiales antes de comprar o vender.&lt;/p&gt;&lt;/section&gt;
+
+      &lt;section class=&quot;stats-section&quot; aria-labelledby=&quot;stats-title&quot;&gt;
+        &lt;div class=&quot;stats-section-head&quot;&gt;&lt;div&gt;&lt;h3 id=&quot;stats-title&quot;&gt;Estadísticas de mi planificación&lt;/h3&gt;&lt;p&gt;Una lectura rápida de tu pedido y su ganancia estimada.&lt;/p&gt;&lt;/div&gt;&lt;span class=&quot;badge&quot; style=&quot;background:rgba(255,255,255,.16);color:#fff;border-color:rgba(255,255,255,.2)&quot;&gt;En tiempo real&lt;/span&gt;&lt;/div&gt;
+        &lt;div class=&quot;stats-grid&quot;&gt;
+          &lt;div class=&quot;stats-item&quot;&gt;&lt;strong id=&quot;statsPoints&quot;&gt;0&lt;/strong&gt;&lt;span&gt;Puntos acumulados&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;stats-item&quot;&gt;&lt;strong id=&quot;statsCost&quot;&gt;$0.00&lt;/strong&gt;&lt;span&gt;Inversión&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;stats-item&quot;&gt;&lt;strong id=&quot;statsPublic&quot;&gt;$0.00&lt;/strong&gt;&lt;span&gt;Venta estimada&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;stats-item profit&quot;&gt;&lt;strong id=&quot;statsProfit&quot;&gt;$0.00&lt;/strong&gt;&lt;span&gt;Ganancia estimada&lt;/span&gt;&lt;/div&gt;
+          &lt;div class=&quot;stats-item&quot;&gt;&lt;strong id=&quot;statsMargin&quot;&gt;0%&lt;/strong&gt;&lt;span&gt;Margen estimado&lt;/span&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;p class=&quot;stats-note&quot;&gt;Estimación matemática basada en el catálogo cargado, tu descuento y el precio público indicado. No representa una garantía de resultados.&lt;/p&gt;
+      &lt;/section&gt;
 
       &lt;section class=&quot;workspace&quot;&gt;
         &lt;div class=&quot;panel&quot;&gt;&lt;div class=&quot;panel-head&quot;&gt;&lt;div&gt;&lt;h3&gt;Catálogo de productos&lt;/h3&gt;&lt;p class=&quot;panel-sub&quot;&gt;&lt;span id=&quot;resultCount&quot;&gt;0&lt;/span&gt; productos disponibles · agrega cantidades para construir tu lista.&lt;/p&gt;&lt;/div&gt;&lt;span class=&quot;badge&quot; id=&quot;discountBadge&quot;&gt;25% seleccionado&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;product-table-wrap&quot;&gt;&lt;table class=&quot;product-table&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Producto&lt;/th&gt;&lt;th&gt;Puntos&lt;/th&gt;&lt;th&gt;Tu costo&lt;/th&gt;&lt;th&gt;PVP&lt;/th&gt;&lt;th&gt;Ganancia/u.&lt;/th&gt;&lt;th&gt;Cantidad&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;productRows&quot;&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;div id=&quot;dataWarnings&quot; class=&quot;warning hidden&quot;&gt;&lt;/div&gt;&lt;/div&gt;
@@ -1436,7 +1488,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     function productCost(p){return p.prices[discount]}
     function totals(){return Object.entries(cart).reduce((a,[code,qty])=&gt;{const p=getProduct(code);if(!p)return a;const q=Number(qty)||0;a.items+=q;a.points+=p.points*q;a.cost+=productCost(p)*q;a.publicValue+=p.pvp*q;return a},{items:0,points:0,cost:0,publicValue:0})}
     function renderProducts(){const query=$(&#x27;searchInput&#x27;).value.toLowerCase().trim();const visible=catalog().products.filter(p=&gt;(p.name+&#x27; &#x27;+p.code).toLowerCase().includes(query));$(&#x27;resultCount&#x27;).textContent=visible.length;$(&#x27;discountBadge&#x27;).textContent=discount+&#x27;% seleccionado&#x27;;$(&#x27;summaryDiscount&#x27;).textContent=discount+&#x27;%&#x27;;$(&#x27;productRows&#x27;).innerHTML=visible.map(p=&gt;{const q=cart[p.code]||0;const gain=p.pvp-productCost(p);const loss=gain&lt;0;return `&lt;tr&gt;&lt;td class=&quot;product-name&quot;&gt;${p.name}&lt;span class=&quot;product-code&quot;&gt;Código ${p.code}&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;points&quot;&gt;${p.points}&lt;/td&gt;&lt;td class=&quot;money&quot;&gt;${money(productCost(p))}&lt;/td&gt;&lt;td class=&quot;money&quot;&gt;${money(p.pvp)}&lt;/td&gt;&lt;td class=&quot;money ${loss?&#x27;negative&#x27;:&#x27;positive&#x27;}&quot;&gt;${money(gain)}${loss?&#x27; ⚠&#x27;:&#x27;&#x27;}&lt;/td&gt;&lt;td&gt;&lt;input class=&quot;qty-input&quot; type=&quot;number&quot; min=&quot;0&quot; step=&quot;1&quot; value=&quot;${q}&quot; data-qty=&quot;${p.code}&quot; aria-label=&quot;Cantidad de ${p.name}&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;add-btn&quot; data-add=&quot;${p.code}&quot;&gt;Agregar&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;`}).join(&#x27;&#x27;);$(&#x27;dataWarnings&#x27;).classList.toggle(&#x27;hidden&#x27;,!catalog().products.some(p=&gt;p.pvp&lt;productCost(p)));$(&#x27;dataWarnings&#x27;).textContent=&#x27;Hay productos cuyo PVP proporcionado es menor que su precio de afiliado. La app conserva los datos recibidos y muestra la diferencia negativa; conviene confirmar ese PVP antes de usarlo para tomar decisiones.&#x27;}
-    function renderCart(){const t=totals();$(&#x27;heroPoints&#x27;).textContent=t.points.toLocaleString(&#x27;es-ES&#x27;);$(&#x27;heroItems&#x27;).textContent=t.items.toLocaleString(&#x27;es-ES&#x27;);$(&#x27;heroCost&#x27;).textContent=money(t.cost);$(&#x27;heroProfit&#x27;).textContent=money(t.publicValue-t.cost);$(&#x27;cartBadge&#x27;).textContent=t.items+&#x27; artículo&#x27;+(t.items===1?&#x27;&#x27;:&#x27;s&#x27;);$(&#x27;summaryEmpty&#x27;).classList.toggle(&#x27;hidden&#x27;,t.items&gt;0);$(&#x27;summaryContent&#x27;).classList.toggle(&#x27;hidden&#x27;,t.items===0);$(&#x27;totalPoints&#x27;).textContent=t.points.toLocaleString(&#x27;es-ES&#x27;);$(&#x27;totalCost&#x27;).textContent=money(t.cost);$(&#x27;totalPublic&#x27;).textContent=money(t.publicValue);$(&#x27;totalProfit&#x27;).textContent=money(t.publicValue-t.cost);$(&#x27;profitMetric&#x27;).classList.toggle(&#x27;loss&#x27;,t.publicValue-t.cost&lt;0);$(&#x27;cartList&#x27;).innerHTML=Object.entries(cart).filter(([,q])=&gt;q&gt;0).map(([code,q])=&gt;{const p=getProduct(code);return `&lt;div class=&quot;cart-row&quot;&gt;&lt;div&gt;&lt;strong&gt;${p.name}&lt;/strong&gt;&lt;small&gt;${q} × ${money(productCost(p))} · ${p.points*q} puntos&lt;/small&gt;&lt;/div&gt;&lt;div class=&quot;cart-actions&quot;&gt;&lt;div class=&quot;qty-stepper&quot;&gt;&lt;button data-minus=&quot;${code}&quot; aria-label=&quot;Restar&quot;&gt;−&lt;/button&gt;&lt;b&gt;${q}&lt;/b&gt;&lt;button data-plus=&quot;${code}&quot; aria-label=&quot;Sumar&quot;&gt;+&lt;/button&gt;&lt;/div&gt;&lt;button class=&quot;btn btn-danger btn-small&quot; data-remove=&quot;${code}&quot; aria-label=&quot;Eliminar&quot;&gt;×&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;`}).join(&#x27;&#x27;);saveCart()}
+    function renderCart(){const t=totals();$(&#x27;heroPoints&#x27;).textContent=t.points.toLocaleString(&#x27;es-ES&#x27;);$(&#x27;heroItems&#x27;).textContent=t.items.toLocaleString(&#x27;es-ES&#x27;);$(&#x27;heroCost&#x27;).textContent=money(t.cost);$(&#x27;heroProfit&#x27;).textContent=money(t.publicValue-t.cost);$(&#x27;cartBadge&#x27;).textContent=t.items+&#x27; artículo&#x27;+(t.items===1?&#x27;&#x27;:&#x27;s&#x27;);$(&#x27;summaryEmpty&#x27;).classList.toggle(&#x27;hidden&#x27;,t.items&gt;0);$(&#x27;summaryContent&#x27;).classList.toggle(&#x27;hidden&#x27;,t.items===0);$(&#x27;totalPoints&#x27;).textContent=t.points.toLocaleString(&#x27;es-ES&#x27;);$(&#x27;totalCost&#x27;).textContent=money(t.cost);$(&#x27;totalPublic&#x27;).textContent=money(t.publicValue);$(&#x27;totalProfit&#x27;).textContent=money(t.publicValue-t.cost);$(&#x27;statsPoints&#x27;).textContent=t.points.toLocaleString(&#x27;es-ES&#x27;);$(&#x27;statsCost&#x27;).textContent=money(t.cost);$(&#x27;statsPublic&#x27;).textContent=money(t.publicValue);$(&#x27;statsProfit&#x27;).textContent=money(t.publicValue-t.cost);$(&#x27;statsMargin&#x27;).textContent=(t.cost&gt;0?((t.publicValue-t.cost)/t.cost*100):0).toFixed(1)+&#x27;%&#x27;;$(&#x27;profitMetric&#x27;).classList.toggle(&#x27;loss&#x27;,t.publicValue-t.cost&lt;0);$(&#x27;cartList&#x27;).innerHTML=Object.entries(cart).filter(([,q])=&gt;q&gt;0).map(([code,q])=&gt;{const p=getProduct(code);return `&lt;div class=&quot;cart-row&quot;&gt;&lt;div&gt;&lt;strong&gt;${p.name}&lt;/strong&gt;&lt;small&gt;${q} × ${money(productCost(p))} · ${p.points*q} puntos&lt;/small&gt;&lt;/div&gt;&lt;div class=&quot;cart-actions&quot;&gt;&lt;div class=&quot;qty-stepper&quot;&gt;&lt;button data-minus=&quot;${code}&quot; aria-label=&quot;Restar&quot;&gt;−&lt;/button&gt;&lt;b&gt;${q}&lt;/b&gt;&lt;button data-plus=&quot;${code}&quot; aria-label=&quot;Sumar&quot;&gt;+&lt;/button&gt;&lt;/div&gt;&lt;button class=&quot;btn btn-danger btn-small&quot; data-remove=&quot;${code}&quot; aria-label=&quot;Eliminar&quot;&gt;×&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;`}).join(&#x27;&#x27;);saveCart()}
     function renderSaved(){let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||&#x27;[]&#x27;)||[]}catch{};$(&#x27;savedLists&#x27;).innerHTML=lists.length?lists.map((l,i)=&gt;`&lt;div class=&quot;saved-item&quot;&gt;&lt;span&gt;&lt;strong&gt;${l.name}&lt;/strong&gt;&lt;br&gt;&lt;small&gt;${l.discount}% · ${l.points} pts · ${money(l.cost)}&lt;/small&gt;&lt;/span&gt;&lt;span&gt;&lt;button data-load=&quot;${i}&quot;&gt;Cargar&lt;/button&gt;&lt;button data-delete=&quot;${i}&quot;&gt;×&lt;/button&gt;&lt;/span&gt;&lt;/div&gt;`).join(&#x27;&#x27;):&#x27;&lt;span class=&quot;notice&quot;&gt;No hay listas guardadas.&lt;/span&gt;&#x27;}
     function renderAll(){const c=catalog();$(&#x27;countrySelect&#x27;).value=country;$(&#x27;countryNote&#x27;).textContent=&#x27;Catálogo de &#x27;+c.name+&#x27; en &#x27;+c.currency+&#x27;. Verifica vigencia, disponibilidad y condiciones oficiales antes de comprar o vender.&#x27;;renderProducts();renderCart();renderSaved()}
     function saveList(){const t=totals();if(!t.items)return showToast(&#x27;Agrega al menos un producto antes de guardar.&#x27;);const name=prompt(&#x27;Nombre para esta lista:&#x27;, &#x27;Mi pedido &#x27;+new Date().toLocaleDateString(&#x27;es-ES&#x27;));if(!name)return;let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||&#x27;[]&#x27;)||[]}catch{};lists.unshift({name:name.trim(),discount,cart:{...cart},points:t.points,cost:t.cost,createdAt:Date.now()});localStorage.setItem(listKey(),JSON.stringify(lists.slice(0,20)));renderSaved();showToast(&#x27;Lista guardada en este navegador.&#x27;)}
@@ -1449,9 +1501,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     async function registerAffiliateRequest(candidate){
       const payload = {
         email: candidate,
-        name: &#x27;Solicitud desde calculadora&#x27;,
+        name: $(&#x27;loginName&#x27;).value.trim(),
         country: $(&#x27;countrySelect&#x27;)?.value === &#x27;AR&#x27; ? &#x27;Argentina&#x27; : &#x27;Ecuador&#x27;,
-        affiliateCode: &#x27;&#x27;
+        affiliateCode: $(&#x27;loginAffiliateCode&#x27;).value.trim()
       };
       const response = await fetch(ACCESS_SCRIPT_URL, {
         method: &#x27;POST&#x27;,
@@ -1483,8 +1535,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
     $(&#x27;loginForm&#x27;).addEventListener(&#x27;submit&#x27;, async e=&gt;{
       e.preventDefault();
+      const name=$(&#x27;loginName&#x27;).value.trim();
       email=$(&#x27;loginEmail&#x27;).value.trim().toLowerCase();
-      if(!email)return;
+      const affiliateCode=$(&#x27;loginAffiliateCode&#x27;).value.trim();
+      if(!name || !email || !affiliateCode){ showToast(&#x27;Completa tu nombre, correo y código de afiliado.&#x27;); return; }
       const button=e.currentTarget.querySelector(&#x27;button&#x27;);
       button.disabled=true; button.textContent=&#x27;Verificando autorización…&#x27;;
       try {
