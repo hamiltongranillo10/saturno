@@ -736,6 +736,15 @@ body.calculator-mode-active .calculator-embedded-head{margin-bottom:18px}
 body.calculator-mode-active .calculator-iframe{height:calc(100vh - 126px);min-height:760px;border-radius:20px}
 @media(max-width:980px){body.calculator-mode-active #calculadora-afiliados{padding:18px 14px 28px}body.calculator-mode-active .calculator-embedded-head{display:none}body.calculator-mode-active .calculator-iframe{height:calc(100vh - 46px);min-height:900px;border-radius:14px}}
 @media(max-width:620px){body.calculator-mode-active #calculadora-afiliados{padding:8px 0 0}body.calculator-mode-active .calculator-iframe{height:calc(100vh - 8px);min-height:1200px;border-radius:0}}
+
+/* Guía resumida del Kit Emprendedor */
+.kit-guide-modal{max-width:1120px}.kit-guide-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}.kit-guide-summary>div{background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}.kit-guide-summary strong{display:block;color:var(--gold);font-family:'Fraunces',serif;font-size:1.55rem}.kit-guide-summary span{display:block;color:var(--muted);font-size:.72rem;margin-top:3px}.kit-guide-note{background:rgba(45,106,79,.08);border:1px solid rgba(45,106,79,.2);border-radius:10px;padding:12px;color:var(--muted);font-size:.8rem;line-height:1.5;margin:0 0 14px}.kit-guide-table-wrap{max-height:52vh;overflow:auto}.kit-guide-table{min-width:760px}.kit-guide-table th{white-space:normal;line-height:1.2}.kit-guide-table td:nth-child(3),.kit-guide-table td:nth-child(4),.kit-guide-table td:nth-child(5){white-space:nowrap}.kit-guide-table td:nth-child(5){color:var(--blue);font-weight:800}.kit-guide-footnote{font-size:.75rem;color:var(--muted);margin-top:12px;font-style:italic;line-height:1.45}@media(max-width:620px){.kit-guide-summary{grid-template-columns:1fr 1fr}.kit-guide-summary>div:last-child{grid-column:1 / -1}.kit-guide-modal{padding:18px}.kit-guide-table-wrap{max-height:48vh}}
+
+/* Mini-calculadora pública del Kit Emprendedor: solo catálogo Ecuador y 30%. */
+.mini-kit-modal{max-width:1180px}.mini-kit-summary{grid-template-columns:repeat(4,1fr)}.mini-kit-summary .kit-guide-profit{background:rgba(45,106,79,.1)}.kit-guide-status{background:#fff7df;border:1px solid #ead9a7;color:#806020;border-radius:10px;padding:12px 14px;font-size:.82rem;font-weight:700;line-height:1.45;margin:0 0 14px}.kit-guide-status.ready{background:#e9f6ee;border-color:#bfe2cc;color:#1b6747}.mini-kit-table{min-width:900px}.mini-kit-table th:last-child,.mini-kit-table td:last-child{width:72px}.mini-kit-table td:nth-child(6){width:76px}.kit-qty{width:54px;padding:7px 4px;border:1px solid var(--line);border-radius:8px;text-align:center}.kit-add-btn{padding:7px 8px;border-radius:8px;background:var(--blue);color:#fff;font-weight:800;font-size:.7rem;white-space:nowrap}.mini-kit-table tr.kit-selected{background:rgba(45,106,79,.07)}@media(max-width:720px){.mini-kit-summary{grid-template-columns:1fr 1fr}.mini-kit-modal{padding:18px}.mini-kit-table-wrap{max-height:48vh}.mini-kit-table{min-width:930px}}
+.kit-guide-country{display:flex;align-items:center;gap:10px;margin:0 0 12px}.kit-guide-country label{font-size:.73rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.kit-guide-country select{border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);padding:9px 10px}.kit-product-code{display:block;color:var(--muted);font-size:.65rem;margin-top:3px}.kit-guide-explainer{display:none;background:#f5f1df;border:1px solid #e4d39a;border-radius:11px;padding:13px 15px;color:#65542d;font-size:.8rem;line-height:1.52;margin:0 0 14px}.kit-guide-explainer p{margin:7px 0}.kit-guide-explainer p:first-of-type{margin-top:8px} .kit-guide-status.ready + .kit-guide-explainer{display:block}
+/* La mini-calculadora del Kit puede tomar toda la pantalla; la X la devuelve a la landing. */
+body.kit-guide-focus-active{overflow:hidden;background:#f7faf6}body.kit-guide-focus-active>*:not(#modal-puntos){display:none!important}body.kit-guide-focus-active #modal-puntos{display:flex!important;position:fixed;inset:0;z-index:9999;padding:18px;background:#f7faf6}body.kit-guide-focus-active #modal-puntos .country-modal{width:100%;max-width:1240px;max-height:calc(100vh - 36px);margin:auto}@media(max-width:620px){body.kit-guide-focus-active #modal-puntos{padding:0}body.kit-guide-focus-active #modal-puntos .country-modal{max-height:100vh;height:100vh;border-radius:0}}
 </style>
 
 <!-- Meta (Facebook) Pixel Code -->
@@ -1687,23 +1696,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <div id="modal-puntos" role="dialog" aria-modal="true" aria-labelledby="modal-puntos-title" aria-hidden="true" class="country-modal-overlay" onclick="if(event.target===this) closeCountryModal('puntos')">
-  <div class="country-modal points-modal">
+  <div class="country-modal points-modal kit-guide-modal mini-kit-modal">
     <div class="country-modal-head">
-      <h4 id="modal-puntos-title">Puntos por producto</h4>
+      <h4 id="modal-puntos-title">Calculadora del Kit Emprendedor · 30%</h4>
       <button type="button" onclick="closeCountryModal('puntos')" aria-label="Cerrar">✕</button>
     </div>
-    <p class="country-modal-sub">Catálogo oficial de Ecuador (nutrición y belleza) — combina los productos que más te sirvan hasta llegar a tus 1000+ puntos para el Kit Emprendedor. A mayor puntaje acumulado, mayor tu descuento: 25%, 30%, 35% y hasta 40%.</p>
-    <input id="pointsSearch" type="text" class="form-input" placeholder="Buscar producto... ej. biocros, labial, shampoo" style="margin-bottom: 14px;" oninput="renderPointsTable()">
-    <div class="points-table-wrap">
-      <table class="points-table">
-        <thead>
-          <tr><th>Producto</th><th>Puntos</th><th>PVP</th></tr>
-        </thead>
+    <p class="country-modal-sub">Elige los productos que te interesen y mira cuánto inviertes con el <strong>30% de descuento</strong>. La meta es completar aproximadamente <strong>1.000 puntos</strong>; el total se calcula según el país, la moneda y los productos que elijas.</p>
+    <div class="kit-guide-summary mini-kit-summary">
+      <div><strong id="kitGuidePoints">0</strong><span>puntos elegidos</span></div>
+      <div><strong id="kitGuideCost">$0.00</strong><span>inversión con 30%</span></div>
+      <div><strong id="kitGuidePublic">$0.00</strong><span>venta a precio público</span></div>
+      <div class="kit-guide-profit"><strong id="kitGuideGain">$0.00</strong><span>ganancia estimada</span></div>
+    </div>
+    <div class="kit-guide-country"><label for="kitGuideCountry">País y catálogo</label><select id="kitGuideCountry"><option value="EC">Ecuador · USD</option><option value="AR">Argentina · ARS</option></select></div>
+    <div id="kitGuideStatus" class="kit-guide-status">Elige productos para comenzar. Te indicaremos cuántos puntos llevas y cuánto falta para llegar a 1.000.</div>
+    <div class="kit-guide-explainer"><strong>¿Qué pasa cuando completas los 1.000 puntos?</strong><p>Tu combinación alcanza la meta del Kit Emprendedor: compras los productos seleccionados con <strong>30% de descuento</strong>. La inversión total que ves arriba es lo que pagarías por esos productos; el precio público es lo que podrías recibir si los vendes a ese precio. La diferencia representa tu <strong>ahorro</strong> al comprar o tu <strong>ganancia bruta estimada</strong> si logras venderlos al precio público.</p><p>Además, el kit puede incluir <strong>hasta 3 productos adicionales de regalo</strong>, según las condiciones vigentes. Esos regalos son un beneficio extra que podrías vender nuevamente como emprendedor; no los sumamos al cálculo porque su valor y disponibilidad pueden variar. También pueden aplicar Sportmixer, App Mi Omninegocio u otros incentivos según las condiciones vigentes.</p><p>Si durante tus primeros 30 días acumulas otros <strong>1.000 puntos adicionales</strong>, la descripción del kit indica regalos extra como cosmetiquera SEYTÚ y Shaker SEYTÚ, sujetos a condiciones. Revisa siempre las condiciones actuales antes de comprar.</p></div>
+    <p class="kit-guide-note"><strong>Cómo funciona:</strong> la afiliación no tiene un costo separado; cada fila muestra cuántos puntos aporta el producto y cuánto invertirías al comprarlo con 30% de descuento. Pulsa “Agregar” o escribe una cantidad. El costo afiliado se calcula con el 70% del precio público porque aquí se usa únicamente el 30% de descuento.</p>
+    <input id="pointsSearch" type="text" class="form-input" placeholder="Buscar producto... ej. biocros, power maker, shampoo" style="margin-bottom: 14px;" oninput="renderPointsTable()">
+    <div class="points-table-wrap kit-guide-table-wrap mini-kit-table-wrap">
+      <table class="points-table kit-guide-table mini-kit-table">
+        <thead><tr><th>Producto</th><th>Puntos</th><th>Tu inversión<br><small>30% dto.</small></th><th>Precio público</th><th>Ganancia estimada</th><th>Cantidad</th><th></th></tr></thead>
         <tbody id="pointsTableBody"></tbody>
       </table>
     </div>
     <p id="pointsNoResults" style="display:none; text-align:center; color: var(--muted); font-size: .85rem; padding: 20px 0;">No encontramos productos con ese nombre.</p>
-    <p style="font-size: .78rem; color: var(--muted); margin-top: 14px; font-style: italic;">Varios productos de maquillaje vienen en distintos tonos con los mismos puntos/precio — se agrupan en una sola fila. Precios de referencia Ecuador, vigencia junio 2026 — pueden cambiar sin previo aviso. Escríbeme por WhatsApp si quieres armar la combinación exacta para tus 1000+ puntos.</p>
+    <p class="kit-guide-footnote">Precios de referencia para Ecuador. La inversión final depende de tu combinación de productos y puede cambiar con el catálogo vigente. La ganancia es una estimación matemática y no una garantía de resultados.</p>
   </div>
 </div>
 
@@ -2009,28 +2026,27 @@ const POINTS_CATALOG = [
   ]},
 ];
 
-function renderPointsTable() {
-  const query = (document.getElementById('pointsSearch')?.value || '').toLowerCase().trim();
-  const tbody = document.getElementById('pointsTableBody');
-  const noResults = document.getElementById('pointsNoResults');
-  if (!tbody) return;
-
-  let html = '';
-  let totalShown = 0;
-
-  POINTS_CATALOG.forEach((group) => {
-    const matches = group.items.filter(([name]) => name.toLowerCase().includes(query));
-    if (matches.length === 0) return;
-    html += `<tr class="points-section-row"><td colspan="3">${group.section}</td></tr>`;
-    matches.forEach(([name, points, price]) => {
-      html += `<tr><td>${name}</td><td>${points}</td><td>${price}</td></tr>`;
-    });
-    totalShown += matches.length;
-  });
-
-  tbody.innerHTML = html;
-  noResults.style.display = totalShown === 0 ? 'block' : 'none';
+const KIT_GUIDE_CATALOGS = {"EC":{"name":"Ecuador","currency":"USD","locale":"en-US","products":[["2603201","POWER MAKER EVOLUCION, CAJA CON 30 SOBRES",110,42.37,69.0],["4850500","EGO FRUTAS DEL BOSQUE EVOL, SIX PACK (6 LATAS DE 355 ML)",27,15.66,25.5],["2075722","BIOCROS SUPREME CAJA 30 SOBRES 240G",54,23.34,38.0],["4250204","ALOE BETA PIÑA EVOLUCIÓN 960 ML",26,11.35,18.5],["6305929","ONE C MIX EVOLUCION CAJA 150 G",46,22.41,36.5],["1409621","FEM EVOLUCIÓN CAJA",56,23.95,39.0],["2505711","OPTIMUS EVOLUCION CAJA",64,27.32,44.5],["2350401","OMNIPLUS NARANJA EVOLUCION CAJA CON 30 SOBRES",87,37.76,61.5],["4160400","*AGUA BLU SUPREME, 600 ML",1,0.98,1.6],["4250604","ALOE BETA PINA EVOLUCIÓN BOTELLA 200 ML",5,2.52,4.1],["3905934","AQTUA EVOLUCION, CAJA CON 30 SACHETS",118,46.05,75.0],["3304732","TMGN COFFE CAJA EVOLUCIÓN",39,22.72,37.0],["5105932","CAFEZZINO EVOLUCIÓN",52,28.25,46.0],["5177632","CAFEZZINO SIN ENDULZAR BOTE",58,30.4,49.5],["4404710","DOLCE VITA EVOLUCIÓN CAJA 30 SOBRES",70,33.46,54.5],["4650609","EGO 10 EVOLUCION BOTELLA 200 ML",5,2.52,4.1],["4903204","EGO LIFE EVOLUCION CAJA 30 SOBRES",38,21.8,35.5],["1260600","EGO PLANT EVOLUCION BOTELLA 200 ML",5,2.52,4.1],["1675700","ESTOP PLUS CAJA 30 SACHETS 450G",102,45.75,74.5],["1502208","FIBER’N PLUS EVOLUCIÓN CAJA 30 SOBRES 450G",70,35.31,57.5],["8453000","FLU-Y BOTE 60 CAPSULAS",44,15.96,26.0],["1729752","HOMO PLUS CAJA CON 30 SACHETS 180 G",55,23.34,38.0],["3659152","OML IQU LATA 12 OZ",42,23.02,37.5],["3659295","OML IQU LATA INDIVIDUAL 12 OZ",7,3.87,6.3],["1850610","KOLINA EVOLUCION BOTELLA 200 ML",5,2.52,4.1],["6724761","OMNILIFE PROBIOTIC EVOLUCION CAJA 30 SOBRES",66,31.01,50.5],["5025516","OMNILIFE VKIDS DOYPACK 400 G",71,32.85,53.5],["6571959","OMNIOST CAJA C/30 SOBRES 450 GRS",57,30.09,49.0],["2350430","OMNIPLUS FRUTAS EVOLUCION CAJA 30 SOBRES",87,37.76,61.5],["3000730","STARBIEN EVOLUCION CAJA CON 30 SOBRES",53,23.95,39.0],["3178516","SUPER MIX SUPREME VAINILLA, CAJA 30 SOBR",76,35.0,57.0],["3505605","TEATINO LIMÓN EVOLUCIÓN CAJA 30 SOBRES",63,23.96,39.0],["3505609","TEATINO MARACUYÁ EVOLUCIÓN 30 SOBRES",95,42.06,68.5],["3705934","UNDU EVOLUCION",107,40.52,66.0],["3875700","UZO SUPREME, CAJA CON 30 SACHETS",166,74.91,122.0]]},"AR":{"name":"Argentina","currency":"ARS","locale":"es-AR","products":[["2350430","OMNIPLUS FRUTAS EVOLUCION 30 SACH 600 ML",87,42422.15,52610.0],["3505605","TEATINO LIMON EVOLUCION CAJA C/SOBRES",63,30705.86,38080.0],["2075722","BIOCROS SUPREME CAJA C/30 SACHETS",54,32004.09,39690.0],["4160400","AGUA BLU SUPREME, 600 ML",2,1999.75,2480.0],["4160400-TM","AGUA BLU SUPREME, 600 ML (TELEMARKETING)",2,2962.59,4220.0],["4250604","ALOE BETA PIÑA EVOLUCION BOTELLA 200 ML",5,3402.8,4220.0],["4250204","ALOE BETA PIÑA EVOLUCION BOTELLA 960 ML",26,14611.09,18120.0],["3924734","AQTUA SUPREME, CAJA CON 30 SOBRES",112,64298.45,79740.0],["5105932","CAFEZZINO EVOLUCION",52,51929.03,64000.0],["4404710","DOLCE VITA EVOLUCION CAJA 30 SACH",70,41293.25,51210.0],["4650609","EGO 10 EVOLUCION BOTELLA 200 ML",5,3863.18,4840.0],["4850500","EGO FRUTAS DEL BOSQUE EVOLUCION 6 LATAS DE 255ML",27,28455.05,35650.0],["4903204","EGO LIFE EVOLUCION CAJA",33,35318.19,43800.0],["1260600","EGO HERBAL EVOLUCION BOTELLA 200 ML",5,3402.8,4220.0],["1675700","ESTOP PLUS SUPREME CAJA C30 SOBRES 450G",102,81256.03,100770.0],["1409621","FEM EVOLUCION CAJA",56,50800.13,63000.0],["1502208","FIBER N PLUS EVOLUCION",70,56307.51,69830.0],["2505711","FOCUS EVOLUCION CAJA C/30 SOBRES",64,42954.34,53270.0],["1729752","HOMO PLUS CAJA CON 30 SACHETS 180 G",55,39793.43,49350.0],["1850610","OMNIKOL EVOLUCION BOTELLA 200ML",5,3402.8,4220.0],["5025516","OMNILIFE VKIDS, DOYPACK 400 G",71,58170.18,72140.0],["6571959","OMNIOST CAJA 30 SOBRES 450 GRS",62,54509.35,67600.0],["5827415","OMNIVIU SUPREME CAJA C/30 SACHETS 150 GR",59,55041.54,68260.0],["6305929","ONE C MIX EVOLUCION CAJA 150 G",46,34527.86,42820.0],["2603201","POWER MAKER EVOLUCION",110,55025.61,68240.0],["7170943","SHAKE SUPREME COOKIES&CREAM C/12 SO",76,63742.08,79050.0],["3000730","STARBIEN EVOLUCION CAJA C 30 SOBRES",53,36358.3,45090.0],["3178516","SUPER MIX SUPREME VAINILLA, CAJA 30 SOBRES",76,68693.07,85190.0],["3304732","TMGN COFFEE CAJA EVOLUCION",39,34092.53,42280.0],["3505609","TEATINO MARACUYÁ EVOLUCION",93,76966.23,95450.0],["3875700","UZO SUPREME, CAJA CON 30 SOBRES",166,97729.78,121200.0]]}};
+let kitGuideCountry = 'EC';
+let kitGuideCart = {};
+function kitGuideCatalog(){return KIT_GUIDE_CATALOGS[kitGuideCountry] || KIT_GUIDE_CATALOGS.EC;}
+function kitGuideProduct(code){return kitGuideCatalog().products.find(item=>item[0]===code);}
+function kitGuideMoney(value){return new Intl.NumberFormat(kitGuideCatalog().locale,{style:'currency',currency:kitGuideCatalog().currency,minimumFractionDigits:2,maximumFractionDigits:2}).format(Number(value||0));}
+function updateKitGuideTotals(){
+  let points=0,cost=0,publicValue=0;
+  Object.entries(kitGuideCart).forEach(([code,qty])=>{const item=kitGuideProduct(code);const q=Number(qty)||0;if(!item||q<=0)return;points+=item[2]*q;cost+=item[3]*q;publicValue+=item[4]*q;});
+  const set=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value;};
+  const gain=publicValue-cost;set('kitGuidePoints',points.toLocaleString('es-ES'));set('kitGuideCost',kitGuideMoney(cost));set('kitGuidePublic',kitGuideMoney(publicValue));set('kitGuideGain',kitGuideMoney(gain));
+  const status=document.getElementById('kitGuideStatus');if(status){const remaining=Math.max(0,1000-points);status.classList.toggle('ready',points>=1000);status.innerHTML=points>=1000?`<strong>¡Completaste ${points.toLocaleString('es-ES')} puntos!</strong> Con esta combinación llegas a la meta de 1.000 puntos. Inviertes <strong>${kitGuideMoney(cost)}</strong>, el valor a precio público es <strong>${kitGuideMoney(publicValue)}</strong> y el ahorro/ganancia bruta estimada es <strong>${kitGuideMoney(gain)}</strong>. Los regalos se explican abajo y no están incluidos en este cálculo.`:points?`Llevas <strong>${points.toLocaleString('es-ES')} puntos</strong>. Te faltan <strong>${remaining.toLocaleString('es-ES')}</strong> para llegar a 1.000 puntos.`:'Elige productos para comenzar. Te indicaremos cuántos puntos llevas y cuánto falta para llegar a 1.000.';}}
+function renderPointsTable(){
+  const query=(document.getElementById('pointsSearch')?.value||'').toLowerCase().trim();const tbody=document.getElementById('pointsTableBody');const noResults=document.getElementById('pointsNoResults');if(!tbody)return;let html='';let totalShown=0;const c=kitGuideCatalog();
+  const groups=[['Catálogo de '+c.name,c.products]];
+  groups.forEach(([group,items])=>{const matches=items.filter(item=>(item[1]+' '+item[0]).toLowerCase().includes(query));if(!matches.length)return;html+=`<tr class="points-section-row"><td colspan="7">${group}</td></tr>`;matches.forEach(item=>{const [code,name,points,cost,publicValue]=item;const qty=kitGuideCart[code]||0;html+=`<tr class="${qty?'kit-selected':''}"><td>${name}<small class="kit-product-code">Código ${code}</small></td><td>${points}</td><td>${kitGuideMoney(cost)}</td><td>${kitGuideMoney(publicValue)}</td><td>${kitGuideMoney(publicValue-cost)}</td><td><input class="kit-qty" type="number" min="0" step="1" value="${qty}" data-kit-qty="${code}" aria-label="Cantidad de ${name}"></td><td><button class="kit-add-btn" type="button" data-kit-add="${code}">Agregar</button></td></tr>`;});totalShown+=matches.length;});
+  tbody.innerHTML=html;noResults.style.display=totalShown===0?'block':'none';updateKitGuideTotals();
 }
+document.addEventListener('input',(event)=>{const input=event.target.closest('[data-kit-qty]');if(!input)return;const code=input.dataset.kitQty;const qty=Math.max(0,parseInt(input.value||0,10));if(qty)kitGuideCart[code]=qty;else delete kitGuideCart[code];updateKitGuideTotals();input.closest('tr')?.classList.toggle('kit-selected',qty>0);});
+document.addEventListener('click',(event)=>{const button=event.target.closest('[data-kit-add]');if(!button)return;const code=button.dataset.kitAdd;kitGuideCart[code]=(kitGuideCart[code]||0)+1;renderPointsTable();});
+document.getElementById('kitGuideCountry')?.addEventListener('change',(event)=>{kitGuideCountry=event.target.value;kitGuideCart={};document.getElementById('pointsSearch').value='';renderPointsTable();});
 
 /* Visor de imágenes (lightbox): abre cualquier foto en grande al hacerle clic. */
 function openLightbox(src, alt) {
@@ -2053,6 +2069,7 @@ function openCountryModal(type) {
   const modal = document.getElementById(`modal-${type}`);
   if (!modal) return;
   modal.classList.add("open");
+  if (type === 'puntos') document.body.classList.add('kit-guide-focus-active');
   modal.setAttribute('aria-hidden', 'false');
   modal._previousFocus = document.activeElement;
   const firstControl = modal.querySelector('button, input, a, [tabindex]:not([tabindex="-1"])');
@@ -2063,6 +2080,7 @@ function closeCountryModal(type) {
   const modal = document.getElementById(`modal-${type}`);
   if (!modal) return;
   modal.classList.remove("open");
+  if (type === 'puntos') document.body.classList.remove('kit-guide-focus-active');
   modal.setAttribute('aria-hidden', 'true');
   if (modal._previousFocus && typeof modal._previousFocus.focus === 'function') modal._previousFocus.focus();
 }
