@@ -78,6 +78,8 @@ body {
 
 /* GRADIENTE DE FONDO — estático (sin animación continua) para no forzar
    repintados constantes en navegadores internos de TikTok/Facebook */
+.white-lower-zone { background: #fff; color: var(--ink); position: relative; z-index: 0; }
+.white-lower-zone footer { background: #fff; }
 body::before {
   content: ''; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
   background:
@@ -1268,6 +1270,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+</div>
+<div class="white-lower-zone">
 <section class="about-section reveal">
   <div class="about-grid">
     <div class="about-photo-frame">
@@ -1635,6 +1639,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p>&copy; 2026 Hamilton Granillo. Todos los derechos reservados.<br>
   <span style="font-size: 0.75rem; opacity: 0.6;">Este sitio corresponde a un Emprendedor Independiente y no es la página institucional de Omnilife.</span></p>
 </footer>
+</div>
 
 <div id="modal-cliente" role="dialog" aria-modal="true" aria-labelledby="modal-cliente-title" aria-hidden="true" class="country-modal-overlay" onclick="if(event.target===this) closeCountryModal('cliente')">
   <div class="country-modal">
