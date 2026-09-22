@@ -1681,8 +1681,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="kit-guide-summary mini-kit-summary">
       <div><strong id="kitGuidePoints">0</strong><span>puntos elegidos</span></div>
       <div><strong id="kitGuideCost">$0.00</strong><span>inversión con 30%</span></div>
-      <div><strong id="kitGuidePublic">$0.00</strong><span>venta a precio público</span></div>
-      <div class="kit-guide-profit"><strong id="kitGuideGain">$0.00</strong><span>ganancia estimada</span></div>
     </div>
     <div class="kit-guide-country"><label for="kitGuideCountry">País y catálogo</label><select id="kitGuideCountry"><option value="EC">Ecuador · USD</option></select></div>
     <div id="kitGuideStatus" class="kit-guide-status">Elige productos para comenzar. Te indicaremos cuántos puntos llevas y cuánto falta para llegar a 1.000.</div>
@@ -1692,7 +1690,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <input id="pointsSearch" type="text" class="form-input" placeholder="Buscar producto... ej. biocros, power maker, shampoo" style="margin-bottom: 14px;" oninput="renderPointsTable()">
     <div class="points-table-wrap kit-guide-table-wrap mini-kit-table-wrap">
       <table class="points-table kit-guide-table mini-kit-table">
-        <thead><tr><th>Producto</th><th>Puntos</th><th>Tu inversión<br><small>30% dto.</small></th><th>Precio público</th><th>Ganancia estimada</th><th>Cantidad</th><th></th></tr></thead>
+        <thead><tr><th>Producto</th><th>Puntos</th><th>Tu inversión<br><small>30% dto.</small></th><th>Cantidad</th><th></th></tr></thead>
         <tbody id="pointsTableBody"></tbody>
       </table>
     </div>
@@ -2026,7 +2024,7 @@ function downloadKitGuidePdf(){
 function renderPointsTable(){
   const query=(document.getElementById('pointsSearch')?.value||'').toLowerCase().trim();const tbody=document.getElementById('pointsTableBody');const noResults=document.getElementById('pointsNoResults');if(!tbody)return;let html='';let totalShown=0;const c=kitGuideCatalog();
   const groups=[['Omnilife',c.products.filter(item=>!String(item[1]).startsWith('SEYTÚ ·'))],['SEYTÚ Ecuador',c.products.filter(item=>String(item[1]).startsWith('SEYTÚ ·'))]];
-  groups.forEach(([group,items])=>{const matches=items.filter(item=>(item[1]+' '+item[0]).toLowerCase().includes(query));if(!matches.length)return;html+=`<tr class="points-section-row"><td colspan="7">${group}</td></tr>`;matches.forEach(item=>{const [code,name,points,cost,publicValue]=item;const qty=kitGuideCart[code]||0;html+=`<tr class="${qty?'kit-selected':''}"><td>${name}<small class="kit-product-code">Código ${code}</small></td><td>${points}</td><td>${kitGuideMoney(cost)}</td><td>${kitGuideMoney(publicValue)}</td><td>${kitGuideMoney(publicValue-cost)}</td><td><input class="kit-qty" type="number" min="0" step="1" value="${qty}" data-kit-qty="${code}" aria-label="Cantidad de ${name}"></td><td><button class="kit-add-btn" type="button" data-kit-add="${code}">Agregar</button></td></tr>`;});totalShown+=matches.length;});
+  groups.forEach(([group,items])=>{const matches=items.filter(item=>(item[1]+' '+item[0]).toLowerCase().includes(query));if(!matches.length)return;html+=`<tr class="points-section-row"><td colspan="5">${group}</td></tr>`;matches.forEach(item=>{const [code,name,points,cost,publicValue]=item;const qty=kitGuideCart[code]||0;html+=`<tr class="${qty?'kit-selected':''}"><td>${name}<small class="kit-product-code">Código ${code}</small></td><td>${points}</td><td>${kitGuideMoney(cost)}</td><td><input class="kit-qty" type="number" min="0" step="1" value="${qty}" data-kit-qty="${code}" aria-label="Cantidad de ${name}"></td><td><button class="kit-add-btn" type="button" data-kit-add="${code}">Agregar</button></td></tr>`;});totalShown+=matches.length;});
   tbody.innerHTML=html;noResults.style.display=totalShown===0?'block':'none';updateKitGuideTotals();
 }
 document.addEventListener('input',(event)=>{const input=event.target.closest('[data-kit-qty]');if(!input)return;const code=input.dataset.kitQty;const qty=Math.max(0,parseInt(input.value||0,10));if(qty)kitGuideCart[code]=qty;else delete kitGuideCart[code];updateKitGuideTotals();input.closest('tr')?.classList.toggle('kit-selected',qty>0);});
