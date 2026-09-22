@@ -1558,7 +1558,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 
     async function verifyAffiliateAccess(candidate){
-      const url = ACCESS_SCRIPT_URL + &#x27;?action=verificar_acceso&amp;email=&#x27; + encodeURIComponent(candidate) + &#x27;&amp;callback=_hamiltonAccessCallback&#x27;;
+      const url = ACCESS_SCRIPT_URL + &#x27;?action=verificar_acceso&amp;email=&#x27; + encodeURIComponent(candidate) + &#x27;&amp;_=&#x27; + Date.now();
       try {
         const response = await fetch(url, {method:&#x27;GET&#x27;, mode:&#x27;cors&#x27;, cache:&#x27;no-store&#x27;});
         if (!response.ok) throw new Error(&#x27;HTTP &#x27;+response.status);
@@ -1582,7 +1582,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       const button=e.currentTarget.querySelector(&#x27;button&#x27;);
       button.disabled=true; button.textContent=&#x27;Verificando autorización…&#x27;;
       try {
-        await registerAffiliateRequest(email);
+        // La autorización es la operación crítica. El registro en Sheets es opcional
+        // para no bloquear el acceso si el Apps Script no expone doPost o tarda.
+        registerAffiliateRequest(email).catch(()=&gt;{});
         const state=await verifyAffiliateAccess(email);
         if(state !== &#x27;ACTIVO&#x27;) { showToast(accessMessage(state)); return; }
         localStorage.setItem(&#x27;hamilton_affiliate_email&#x27;,email); discount=Number(localStorage.getItem(discountKey())||25); loadCart();
