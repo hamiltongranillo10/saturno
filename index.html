@@ -78,8 +78,6 @@ body {
 
 /* GRADIENTE DE FONDO — estático (sin animación continua) para no forzar
    repintados constantes en navegadores internos de TikTok/Facebook */
-.white-lower-zone { background: #fff; color: var(--ink); position: relative; z-index: 0; }
-.white-lower-zone footer { background: #fff; }
 body::before {
   content: ''; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
   background:
@@ -725,58 +723,6 @@ footer { background: var(--bg); border-top: 1px solid var(--line); text-align: c
   .logo { font-size: 1rem; }
 }
 @media(max-width:560px){ .value-grid, .cat-grid { grid-template-columns: 1fr; } }
-
-.calculator-embedded-section{max-width:1360px;margin:0 auto;padding:80px 48px 90px;background:var(--bg-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.calculator-embedded-head{text-align:center;max-width:760px;margin:0 auto 28px}.calculator-embedded-head .section-kicker{display:inline-block;color:var(--gold);font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px}.calculator-embedded-head h2{font-size:clamp(2rem,4vw,3rem);color:var(--ink);margin-bottom:12px}.calculator-embedded-head p{color:var(--muted);line-height:1.65}.calculator-iframe{display:block;width:100%;height:1450px;border:0;border-radius:20px;background:transparent;overflow:hidden}
-@media(max-width:640px){.calculator-embedded-section{padding:58px 14px 65px}.calculator-iframe{height:1900px;border-radius:14px}}
-/* En PC, al autorizar la calculadora se enfoca únicamente esta herramienta. En móvil se mantiene la landing completa. */
-/* Cuando el afiliado es autorizado, la calculadora toma toda la pantalla en PC y móvil. */
-body.calculator-mode-active > *:not(#calculadora-afiliados){display:none!important}
-body.calculator-mode-active{overflow-x:hidden;background:#f7faf6}
-body.calculator-mode-active #calculadora-afiliados{display:block;max-width:none;min-height:100vh;padding:28px 28px 42px;border:0}
-body.calculator-mode-active .calculator-embedded-head{margin-bottom:18px}
-body.calculator-mode-active .calculator-iframe{height:calc(100vh - 126px);min-height:760px;border-radius:20px}
-@media(max-width:980px){body.calculator-mode-active #calculadora-afiliados{padding:18px 14px 28px}body.calculator-mode-active .calculator-embedded-head{display:none}body.calculator-mode-active .calculator-iframe{height:calc(100vh - 46px);min-height:900px;border-radius:14px}}
-@media(max-width:620px){body.calculator-mode-active #calculadora-afiliados{padding:8px 0 0}body.calculator-mode-active .calculator-iframe{height:calc(100vh - 8px);min-height:1200px;border-radius:0}}
-
-/* Guía resumida del Kit Emprendedor */
-.kit-guide-modal{max-width:1120px}.kit-guide-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0}.kit-guide-summary>div{background:var(--bg-soft);border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center}.kit-guide-summary strong{display:block;color:var(--gold);font-family:'Fraunces',serif;font-size:1.55rem}.kit-guide-summary span{display:block;color:var(--muted);font-size:.72rem;margin-top:3px}.kit-guide-note{background:rgba(45,106,79,.08);border:1px solid rgba(45,106,79,.2);border-radius:10px;padding:12px;color:var(--muted);font-size:.8rem;line-height:1.5;margin:0 0 14px}.kit-guide-table-wrap{max-height:52vh;overflow:auto}.kit-guide-table{min-width:760px}.kit-guide-table th{white-space:normal;line-height:1.2}.kit-guide-table td:nth-child(3),.kit-guide-table td:nth-child(4),.kit-guide-table td:nth-child(5){white-space:nowrap}.kit-guide-table td:nth-child(5){color:var(--blue);font-weight:800}.kit-guide-footnote{font-size:.75rem;color:var(--muted);margin-top:12px;font-style:italic;line-height:1.45}@media(max-width:620px){.kit-guide-summary{grid-template-columns:1fr 1fr}.kit-guide-summary>div:last-child{grid-column:1 / -1}.kit-guide-modal{padding:18px}.kit-guide-table-wrap{max-height:48vh}}
-
-/* Mini-calculadora pública del Kit Emprendedor: solo catálogo Ecuador y 30%. */
-.mini-kit-modal{max-width:1180px}.mini-kit-summary{grid-template-columns:repeat(4,1fr)}.mini-kit-summary .kit-guide-profit{background:rgba(45,106,79,.1)}.kit-guide-status{background:#fff7df;border:1px solid #ead9a7;color:#806020;border-radius:10px;padding:12px 14px;font-size:.82rem;font-weight:700;line-height:1.45;margin:0 0 14px}.kit-guide-status.ready{background:#e9f6ee;border-color:#bfe2cc;color:#1b6747}.mini-kit-table{min-width:900px}.mini-kit-table th:last-child,.mini-kit-table td:last-child{width:72px}.mini-kit-table td:nth-child(6){width:76px}.kit-qty{width:54px;padding:7px 4px;border:1px solid var(--line);border-radius:8px;text-align:center}.kit-add-btn{padding:7px 8px;border-radius:8px;background:var(--blue);color:#fff;font-weight:800;font-size:.7rem;white-space:nowrap}.mini-kit-table tr.kit-selected{background:rgba(45,106,79,.07)}@media(max-width:720px){.mini-kit-summary{grid-template-columns:1fr 1fr}.mini-kit-modal{padding:18px}.mini-kit-table-wrap{max-height:48vh}.mini-kit-table{min-width:930px}}
-.kit-guide-country{display:flex;align-items:center;gap:10px;margin:0 0 12px}.kit-guide-country label{font-size:.73rem;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}.kit-guide-country select{border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--ink);padding:9px 10px}.kit-product-code{display:block;color:var(--muted);font-size:.65rem;margin-top:3px}.kit-guide-explainer{display:none;background:#f5f1df;border:1px solid #e4d39a;border-radius:11px;padding:13px 15px;color:#65542d;font-size:.8rem;line-height:1.52;margin:0 0 14px}.kit-guide-explainer p{margin:7px 0}.kit-guide-explainer p:first-of-type{margin-top:8px} .kit-guide-status.ready + .kit-guide-explainer{display:block}
-/* La mini-calculadora del Kit puede tomar toda la pantalla; la X la devuelve a la landing. */
-body.kit-guide-focus-active{overflow:hidden;background:#f7faf6}body.kit-guide-focus-active>*:not(#modal-puntos){display:none!important}body.kit-guide-focus-active #modal-puntos{display:flex!important;position:fixed;inset:0;z-index:9999;padding:18px;background:#f7faf6}body.kit-guide-focus-active #modal-puntos .country-modal{width:100%;max-width:1240px;max-height:calc(100vh - 36px);margin:auto}@media(max-width:620px){body.kit-guide-focus-active #modal-puntos{padding:0}body.kit-guide-focus-active #modal-puntos .country-modal{max-height:100vh;height:100vh;border-radius:0}}
-.kit-download-pdf{display:none;width:100%;margin:0 0 14px;padding:12px 16px;border:0;border-radius:10px;background:var(--blue);color:#fff;font-weight:800;cursor:pointer}.kit-guide-status.ready ~ .kit-download-pdf{display:block}
-/* En móvil, cada producto del Kit se convierte en una tarjeta vertical: nunca se desplaza horizontalmente. */
-@media (max-width: 640px){
-  body.kit-guide-focus-active #modal-puntos{padding:0}
-  body.kit-guide-focus-active #modal-puntos .country-modal{padding:16px 12px 24px;overflow-x:hidden}
-  .points-modal{max-width:100%;width:100%;}
-  .mini-kit-table-wrap{overflow-x:hidden;max-height:none;width:100%}
-  .mini-kit-table{display:block;width:100%;min-width:0;font-size:.78rem}
-  .mini-kit-table thead{display:none}
-  .mini-kit-table tbody,.mini-kit-table tr{display:block;width:100%}
-  .mini-kit-table tbody tr:not(.points-section-row){margin:0 0 10px;padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.035);box-sizing:border-box}
-  .mini-kit-table tbody tr:not(.points-section-row).kit-selected{border-color:rgba(37,211,102,.65);background:rgba(37,211,102,.07)}
-  .mini-kit-table td{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;width:100%;box-sizing:border-box;padding:6px 0;border:0;white-space:normal!important;text-align:right}
-  .mini-kit-table td::before{content:'';flex:0 0 auto;color:var(--muted);font-size:.66rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;text-align:left}
-  .mini-kit-table td:nth-child(1){display:block;text-align:left;padding:2px 0 9px;font-weight:800;font-size:.82rem}
-  .mini-kit-table td:nth-child(1)::before{display:none}
-  .mini-kit-table td:nth-child(2)::before{content:'Puntos'}
-  .mini-kit-table td:nth-child(3)::before{content:'Tu inversión · 30%'}
-  .mini-kit-table td:nth-child(4)::before{content:'Precio público'}
-  .mini-kit-table td:nth-child(5)::before{content:'Ganancia estimada'}
-  .mini-kit-table td:nth-child(6)::before{content:'Cantidad'}
-  .mini-kit-table td:nth-child(7)::before{content:''}
-  .mini-kit-table td:nth-child(6) .kit-qty{width:88px;min-height:38px;text-align:center;font-size:1rem}
-  .mini-kit-table td:nth-child(7){justify-content:flex-end;padding-top:8px}
-  .mini-kit-table .kit-add-btn{width:100%;min-height:42px;font-size:.82rem}
-  .mini-kit-table .points-section-row{margin:12px 0 8px;padding:0;border:0;background:transparent}
-  .mini-kit-table .points-section-row td{display:block;padding:8px 2px;background:rgba(201,166,72,.1);border-radius:8px;color:var(--gold);font-size:.7rem}
-  .mini-kit-table .points-section-row td::before{display:none}
-  .kit-guide-note{font-size:.78rem;line-height:1.5}
-}
 </style>
 
 <!-- Meta (Facebook) Pixel Code -->
@@ -1237,7 +1183,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="kit-badge emprendedor">Kit Emprendedor</span>
       <h4>Kit Emprendedor 1000 puntos</h4>
       <span class="kit-price">Desde 1000 ptos. (~$550 USD)</span>
-      <p class="kit-desc"><strong>Para quien quiere emprender arrancando con mayor volumen desde el primer día. Te ayudo personalmente a elegir los productos según lo que buscas y tu presupuesto.</strong> El Kit Emprendedor es una modalidad de afiliación: comienzas con <strong>30% de descuento</strong> y productos con puntos que eliges entre nutrición y belleza. El total (~$550 USD) corresponde al valor de esos productos — no es un cobro fijo aparte.*</p>
+      <p class="kit-desc"><strong>Para quien quiere emprender arrancando con mayor volumen desde el primer día.</strong> El Kit Emprendedor es una modalidad de afiliación: comienzas con <strong>30% de descuento</strong> y productos con puntos que eliges entre nutrición y belleza. El total (~$550 USD) corresponde al valor de esos productos — no es un cobro fijo aparte.*</p>
       <details class="why-accordion">
         <summary>Ver qué incluye <span class="accordion-hint-wrap"><span class="accordion-hint">👉</span><span class="plus">+</span></span></summary>
         <div class="why-accordion-body">
@@ -1262,10 +1208,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
   </div>
+  <p style="text-align:center; margin-top: 24px;">
+    <a href="#" onclick="event.preventDefault(); openCountryModal('puntos');" class="points-cta-btn">
+      📊 Ver puntos por producto — para armar tu Kit Emprendedor
+    </a>
+  </p>
+  <p style="text-align:center; color: var(--muted); font-size: .85rem; margin-top: 28px;">¿No estás seguro cuál elegir? Cuéntame qué buscas y te recomiendo el que mejor se ajusta a ti.</p>
+</section>
+
+<section class="printable-section reveal">
+  <div class="section-header">
+    <div class="sub">// Para el Kit Emprendedor</div>
+    <h2>Pídeme tu tarjeta con mi código</h2>
+    <p class="lead">Escríbeme por WhatsApp y te la mando directo. Llévala a tu CEDI más cercana para adquirir el Kit Emprendedor 1000 puntos — el código identifica que yo soy tu presentador, el kit lo pagas tú en la CEDI, no es gratis ni tiene descuento por usar el código.</p>
+  </div>
+  <div class="printable-wrap">
+    <div class="printable-card-frame">
+      <img loading="lazy" decoding="async" id="tarjetaImg" src="tarjeta-hamilton.png" alt="Tarjeta de asesor Hamilton Omnilife" class="printable-card-real" onerror="this.style.display='none'; document.getElementById('tarjetaFallback').style.display='flex';" onclick="openLightbox(this.src, this.alt)" style="cursor: zoom-in;" width="1200" height="675">
+      <div id="tarjetaFallback" class="printable-card-fallback">
+        <span class="fb-letter">🪪</span>
+        <p>Sube tu imagen como <code>tarjeta-hamilton.png</code> junto al resto de tus archivos para que aparezca acá.</p>
+      </div>
+    </div>
+    <button type="button" class="nav-btn primary" style="padding: 14px 26px; margin-top: 24px;" onclick="pedirTarjetaWhatsApp()">Pedirla por WhatsApp</button>
+  </div>
 </section>
 
 </div>
-<div class="white-lower-zone">
+
 <section class="about-section reveal">
   <div class="about-grid">
     <div class="about-photo-frame">
@@ -1321,289 +1291,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </details>
 </section>
 
-<section id="calculadora-afiliados" class="calculator-embedded-section" aria-labelledby="calculadora-afiliados-title"><div class="calculator-embedded-head"><span class="section-kicker">Herramienta exclusiva</span><h2 id="calculadora-afiliados-title">Calculadora exclusiva para afiliados</h2><p>Organiza tus productos, puntos, descuentos, inversión y ganancia estimada desde esta misma página.</p></div><iframe class="calculator-iframe" title="Calculadora exclusiva para afiliados" loading="lazy" srcdoc="&lt;!doctype html&gt;&lt;html lang=&quot;es&quot;&gt;&lt;head&gt;&lt;meta charset=&quot;utf-8&quot;&gt;&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;&lt;style&gt;
-    :root{
-      --ink:#17352a;--muted:#61736b;--cream:#f7faf6;--card:#ffffff;--line:#dbe8df;
-      --green:#1b6747;--green-2:#2d8a62;--mint:#e9f6ee;--gold:#d4a94a;--gold-soft:#fff7df;
-      --danger:#b33d3d;--danger-soft:#fff0f0;--shadow:0 18px 50px rgba(24,73,48,.10);--radius:20px;
-    }
-    *{box-sizing:border-box} body{margin:0;background:linear-gradient(135deg,#f8fbf8 0%,#eef7f0 48%,#fffaf0 100%);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,sans-serif;line-height:1.45}
-    button,input,select{font:inherit} button{cursor:pointer;border:0} .hidden{display:none!important}
-    .app{min-height:100vh}.topbar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
-    .topbar-inner{max-width:1360px;margin:auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:42px;height:42px;border-radius:14px;display:grid;place-items:center;color:white;font-weight:900;background:linear-gradient(135deg,var(--green),#34a873);box-shadow:0 8px 18px rgba(27,103,71,.22)}
-    .brand h1{font-size:1rem;margin:0;letter-spacing:-.02em}.brand small{display:block;color:var(--muted);font-size:.72rem;margin-top:2px}.userbar{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:.82rem}.user-email{max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-    .btn{border-radius:12px;padding:10px 15px;font-weight:800;transition:.18s ease;display:inline-flex;align-items:center;justify-content:center;gap:7px}.btn:hover{transform:translateY(-1px)}.btn-primary{background:var(--green);color:#fff;box-shadow:0 8px 18px rgba(27,103,71,.18)}.btn-secondary{background:#edf6f0;color:var(--green);border:1px solid #cfe5d7}.btn-ghost{background:transparent;color:var(--green);border:1px solid var(--line)}.btn-danger{background:var(--danger-soft);color:var(--danger);border:1px solid #f1caca}.btn-small{padding:7px 10px;font-size:.78rem}
-    .shell{max-width:1360px;margin:0 auto;padding:28px 22px 60px}.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:stretch;margin-bottom:22px}.hero-card,.panel,.summary-card,.login-card{background:rgba(255,255,255,.88);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.hero-copy{padding:34px}.eyebrow{display:inline-flex;align-items:center;gap:7px;color:#9a7429;background:var(--gold-soft);border:1px solid #ead9a7;border-radius:999px;padding:7px 12px;font-size:.72rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase}.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--gold)}.hero h2{font-family:Georgia,serif;font-size:clamp(2rem,4vw,3.4rem);line-height:1.05;letter-spacing:-.05em;margin:18px 0 14px}.hero h2 span{color:var(--green-2)}.hero p{color:var(--muted);max-width:700px;margin:0}.hero-stat{padding:26px;background:linear-gradient(150deg,#164b35,#287d58);color:#fff;display:grid;align-content:center;border-radius:var(--radius);position:relative;overflow:hidden}.hero-stat:after{content:&quot;&quot;;position:absolute;width:230px;height:230px;border:30px solid rgba(255,255,255,.08);border-radius:50%;right:-95px;top:-80px}.hero-stat h3{font-size:1.2rem;margin:0 0 15px;position:relative;z-index:1}.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;position:relative;z-index:1}.stat{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.16);border-radius:14px;padding:13px}.stat strong{display:block;font-size:1.35rem}.stat span{font-size:.72rem;opacity:.82}
-    .controls{display:flex;gap:12px;flex-wrap:wrap;align-items:end}.field{display:grid;gap:6px;min-width:180px}.field label{font-size:.74rem;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}.field input,.field select{width:100%;border:1px solid var(--line);border-radius:11px;background:#fff;padding:11px 12px;color:var(--ink);outline:none}.field input:focus,.field select:focus{border-color:var(--green-2);box-shadow:0 0 0 3px rgba(45,138,98,.12)}.search-field{flex:1;min-width:230px}
-    .workspace{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(330px,.7fr);gap:22px;align-items:start}.panel{padding:22px}.panel-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:16px}.panel h3,.summary-card h3{margin:0;font-size:1.08rem}.panel-sub{color:var(--muted);font-size:.82rem;margin:4px 0 0}.product-table-wrap{overflow:auto;border:1px solid var(--line);border-radius:15px}.product-table{width:100%;border-collapse:collapse;min-width:780px;background:#fff}.product-table th{position:sticky;top:0;background:#edf7f0;color:var(--green);font-size:.7rem;text-align:left;text-transform:uppercase;letter-spacing:.05em;padding:12px;border-bottom:1px solid var(--line);white-space:nowrap}.product-table td{padding:11px 12px;border-bottom:1px solid #edf2ee;vertical-align:middle;font-size:.84rem}.product-table tr:last-child td{border-bottom:0}.product-table tr:hover{background:#fbfefb}.product-name{font-weight:800;min-width:270px}.product-code{display:block;font-size:.68rem;color:var(--muted);font-weight:600;margin-top:3px}.points{font-weight:900;color:var(--green)}.money{white-space:nowrap}.positive{color:var(--green-2);font-weight:800}.negative{color:var(--danger);font-weight:800}.qty-input{width:68px;padding:8px;border:1px solid var(--line);border-radius:9px;text-align:center}.add-btn{padding:8px 10px;border-radius:9px;background:var(--green);color:#fff;font-weight:800;font-size:.76rem}.warning{color:#9a5c28;background:#fff5e8;border:1px solid #f0d4aa;border-radius:9px;padding:9px 11px;font-size:.76rem;margin-top:12px}
-    .summary-card{padding:22px;position:sticky;top:84px}.summary-head{display:flex;justify-content:space-between;align-items:start;gap:8px}.badge{display:inline-flex;border-radius:999px;padding:5px 9px;background:var(--mint);color:var(--green);font-size:.7rem;font-weight:900}.summary-empty{padding:28px 0;color:var(--muted);font-size:.86rem;text-align:center}.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:17px 0}.metric{background:var(--cream);border:1px solid var(--line);border-radius:14px;padding:13px}.metric strong{display:block;font-size:1.2rem}.metric span{font-size:.7rem;color:var(--muted)}.metric.highlight{background:var(--mint);border-color:#bfe2cc}.metric.profit strong{color:var(--green-2)}.metric.loss{background:var(--danger-soft);border-color:#f2cccc}.metric.loss strong{color:var(--danger)}.cart-list{display:grid;gap:8px;max-height:330px;overflow:auto;margin:14px 0}.cart-row{display:grid;grid-template-columns:1fr auto;gap:8px;padding:10px 0;border-bottom:1px solid var(--line)}.cart-row:last-child{border-bottom:0}.cart-row strong{font-size:.8rem}.cart-row small{display:block;color:var(--muted);font-size:.7rem;margin-top:2px}.cart-actions{display:flex;gap:7px;align-items:center}.qty-stepper{display:flex;align-items:center;gap:5px}.qty-stepper button{width:23px;height:23px;border-radius:7px;background:#edf6f0;color:var(--green);font-weight:900}.summary-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.saved{margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}.saved-list{display:grid;gap:7px;margin-top:10px}.saved-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 10px;background:#f8fbf8;border:1px solid var(--line);border-radius:10px;font-size:.76rem}.saved-item button{background:transparent;color:var(--green);font-weight:800;font-size:.72rem}
-    .notice{font-size:.76rem;color:var(--muted);margin-top:16px}.footer{max-width:1360px;margin:auto;padding:0 22px 35px;color:var(--muted);font-size:.74rem}.login-screen{min-height:100vh;display:grid;place-items:center;padding:24px}.login-card{max-width:520px;width:100%;padding:34px}.login-card h1{font-family:Georgia,serif;font-size:2.2rem;line-height:1.05;margin:16px 0 10px}.login-card p{color:var(--muted);font-size:.9rem}.login-brand{display:flex;align-items:center;gap:10px;color:var(--green);font-weight:900}.brand-logo{width:42px;height:42px;object-fit:contain;border-radius:12px;display:block}.login-form{display:grid;gap:12px;margin-top:22px}.local-note{background:#edf8f0;border:1px solid #c8e4d1;color:#245e43;padding:12px;border-radius:12px;font-size:.78rem;margin-top:16px}.toast{position:fixed;right:20px;bottom:20px;z-index:40;background:#17352a;color:white;padding:12px 15px;border-radius:12px;box-shadow:var(--shadow);font-size:.82rem;opacity:0;transform:translateY(10px);pointer-events:none;transition:.2s}.toast.show{opacity:1;transform:translateY(0)}
-    @media(max-width:980px){.hero{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.summary-card{position:static}.hero-stat{min-height:220px}}
-    @media(max-width:620px){.topbar-inner{padding:11px 14px}.shell{padding:20px 14px 45px}.hero-copy,.panel,.summary-card,.login-card{padding:20px}.userbar{gap:6px}.user-email{max-width:130px}.userbar .btn{padding:8px}.hero h2{font-size:2.2rem}.controls{display:grid;grid-template-columns:1fr}.field,.search-field{min-width:0}.stat-grid{grid-template-columns:1fr 1fr}.metrics{grid-template-columns:1fr 1fr}.summary-actions .btn{flex:1}.brand small{display:none}}
-  
-/* Ajustes responsive: la tabla nunca invade ni corta el panel de resumen. */
-.product-table-wrap{width:100%;max-width:100%;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
-.product-table{min-width:0;width:100%;table-layout:fixed}
-.product-table th,.product-table td{overflow:hidden}
-.product-table th:nth-child(1),.product-table td:nth-child(1){width:34%}
-.product-table th:nth-child(2),.product-table td:nth-child(2){width:9%}
-.product-table th:nth-child(3),.product-table td:nth-child(3){width:13%}
-.product-table th:nth-child(4),.product-table td:nth-child(4){width:13%}
-.product-table th:nth-child(5),.product-table td:nth-child(5){width:14%}
-.product-table th:nth-child(6),.product-table td:nth-child(6){width:9%}
-.product-table th:nth-child(7),.product-table td:nth-child(7){width:8%}
-.product-name{min-width:0;overflow-wrap:anywhere;word-break:break-word}
-.add-btn{white-space:nowrap;padding:8px 7px;font-size:.7rem}
-.qty-input{width:100%;max-width:58px;padding:7px 3px}
-.money{white-space:normal}
-@media(max-width:980px){
-  .workspace{grid-template-columns:minmax(0,1fr)}
-  .summary-card{position:static}
-  .product-table{min-width:680px;table-layout:auto}
-  .product-table th,.product-table td{overflow:visible}
-  .product-name{min-width:220px}
-}
-@media(max-width:620px){
-  .panel{padding:14px}
-  .product-table-wrap{margin-right:0}
-  .product-table{min-width:680px}
-  .product-table th,.product-table td{padding:9px 8px}
-  .product-name{min-width:210px;max-width:240px}
-  .product-table th:nth-child(1),.product-table td:nth-child(1){width:auto}
-  .add-btn{font-size:.72rem;padding:8px 9px}
-}
-
-/* Estadísticas privadas de planificación */
-.stats-section{margin:0 0 22px;padding:22px;background:linear-gradient(135deg,#164b35,#287d58);color:#fff;border-radius:var(--radius);box-shadow:var(--shadow)}
-.stats-section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-bottom:15px}.stats-section h3{margin:0;font-size:1.1rem}.stats-section p{margin:4px 0 0;font-size:.78rem;opacity:.82}.stats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.stats-item{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.16);border-radius:13px;padding:13px}.stats-item strong{display:block;font-size:1.15rem;color:#fff}.stats-item span{display:block;font-size:.68rem;opacity:.82;margin-top:3px}.stats-item.profit{background:rgba(255,255,255,.18)}.stats-note{font-size:.7rem;opacity:.72;margin:13px 0 0;line-height:1.4}
-@media(max-width:980px){.stats-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:620px){.stats-section{padding:17px}.stats-grid{grid-template-columns:repeat(2,1fr)}.stats-item strong{font-size:1rem}}
-
-/* Vista compacta sin recorte: todas las columnas y el botón caben en PC. */
-.workspace{grid-template-columns:minmax(0,1fr) 340px;gap:18px}
-.product-table-wrap{overflow:hidden}
-.product-table{width:100%;min-width:0;table-layout:fixed}
-.product-table th,.product-table td{padding:10px 7px;font-size:.76rem}
-.product-table th{font-size:.63rem;letter-spacing:.025em}
-.product-table th:nth-child(1),.product-table td:nth-child(1){width:32%}
-.product-table th:nth-child(2),.product-table td:nth-child(2){width:8%}
-.product-table th:nth-child(3),.product-table td:nth-child(3){width:12%}
-.product-table th:nth-child(4),.product-table td:nth-child(4){width:12%}
-.product-table th:nth-child(5),.product-table td:nth-child(5){width:14%}
-.product-table th:nth-child(6),.product-table td:nth-child(6){width:9%}
-.product-table th:nth-child(7),.product-table td:nth-child(7){width:13%}
-.product-name{min-width:0;font-size:.76rem;line-height:1.25;overflow-wrap:anywhere}
-.product-code{font-size:.61rem}
-.qty-input{width:100%;max-width:48px;font-size:.75rem;padding:7px 2px}
-.add-btn{display:block;width:100%;min-width:0;white-space:nowrap;padding:8px 2px;font-size:.64rem;letter-spacing:-.02em}
-.money{font-size:.72rem}
-@media(max-width:1080px) and (min-width:621px){
-  .workspace{grid-template-columns:minmax(0,1fr) 300px;gap:12px}
-  .product-table th,.product-table td{padding:8px 4px;font-size:.69rem}
-  .product-table th{font-size:.56rem}
-  .add-btn{font-size:.58rem}
-}
-@media(max-width:620px){
-  .workspace{display:block}
-  .product-table-wrap{overflow:visible;border:0}
-  .product-table,.product-table tbody{display:block;width:100%}
-  .product-table thead{display:none}
-  .product-table tr{display:grid;grid-template-columns:minmax(0,1fr) 54px 70px;gap:8px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
-  .product-table td{display:block;width:auto!important;padding:0;border:0;overflow:visible}
-  .product-table td:nth-child(1){grid-column:1 / 4;grid-row:1}
-  .product-table td:nth-child(2){grid-column:1;grid-row:2;font-size:.78rem}
-  .product-table td:nth-child(3){grid-column:1;grid-row:3;font-size:.75rem}
-  .product-table td:nth-child(4){grid-column:2;grid-row:3;font-size:.75rem}
-  .product-table td:nth-child(5){grid-column:3;grid-row:3;font-size:.75rem}
-  .product-table td:nth-child(6){grid-column:2;grid-row:2}
-  .product-table td:nth-child(7){grid-column:3;grid-row:2}
-  .product-table td:nth-child(2)::before{content:&#x27;Puntos: &#x27;;color:var(--muted);font-weight:600}
-  .product-table td:nth-child(3)::before{content:&#x27;Costo: &#x27;;color:var(--muted);font-weight:600}
-  .product-table td:nth-child(4)::before{content:&#x27;PVP: &#x27;;color:var(--muted);font-weight:600}
-  .product-table td:nth-child(5)::before{content:&#x27;Gan.: &#x27;;color:var(--muted);font-weight:600}
-  .qty-input{max-width:54px}
-  .add-btn{font-size:.66rem;padding:8px 2px}
-}
-&lt;/style&gt;&lt;/head&gt;&lt;body&gt;
-  &lt;div id=&quot;loginView&quot; class=&quot;login-screen&quot;&gt;
-    &lt;section class=&quot;login-card&quot;&gt;
-      &lt;div class=&quot;login-brand&quot;&gt;&lt;img class=&quot;brand-logo&quot; src=&quot;logo-hamilton.png&quot; alt=&quot;Logo Hamilton Networker&quot;&gt;&lt;span&gt;Hamilton Networker&lt;/span&gt;&lt;/div&gt;
-      &lt;h1&gt;Calculadora de afiliados&lt;/h1&gt;
-      &lt;p&gt;Ingresa tus datos de afiliado para solicitar autorización y consultar productos, puntos, precios según tu descuento y ganancia estimada.&lt;/p&gt;
-      &lt;form id=&quot;loginForm&quot; class=&quot;login-form&quot;&gt;
-        &lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;loginName&quot;&gt;Nombre completo&lt;/label&gt;&lt;input id=&quot;loginName&quot; type=&quot;text&quot; autocomplete=&quot;name&quot; placeholder=&quot;Tu nombre y apellido&quot; required&gt;&lt;/div&gt;
-        &lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;loginEmail&quot;&gt;Correo electrónico&lt;/label&gt;&lt;input id=&quot;loginEmail&quot; type=&quot;email&quot; autocomplete=&quot;email&quot; placeholder=&quot;afiliado@correo.com&quot; required&gt;&lt;/div&gt;
-        &lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;loginAffiliateCode&quot;&gt;Código de afiliado&lt;/label&gt;&lt;input id=&quot;loginAffiliateCode&quot; type=&quot;text&quot; autocomplete=&quot;off&quot; placeholder=&quot;Ej. 123456&quot; required&gt;&lt;/div&gt;
-        &lt;button class=&quot;btn btn-primary&quot; type=&quot;submit&quot;&gt;Solicitar acceso a mi calculadora&lt;/button&gt;
-      &lt;/form&gt;
-      &lt;div class=&quot;local-note&quot;&gt;&lt;strong&gt;Tu herramienta de apoyo:&lt;/strong&gt; la preparé para facilitarte algunos cálculos mientras planificas tus compras. Úsala para comparar descuentos, organizar tus productos, revisar tus puntos y visualizar tu ganancia estimada. Sigue aprendiendo, toma decisiones informadas y avanza paso a paso hacia tus objetivos.&lt;/div&gt;
-    &lt;/section&gt;
-  &lt;/div&gt;
-
-  &lt;div id=&quot;appView&quot; class=&quot;app hidden&quot;&gt;
-    &lt;header class=&quot;topbar&quot;&gt;&lt;div class=&quot;topbar-inner&quot;&gt;&lt;div class=&quot;brand&quot;&gt;&lt;img class=&quot;brand-logo&quot; src=&quot;logo-hamilton.png&quot; alt=&quot;Logo Hamilton Networker&quot;&gt;&lt;div&gt;&lt;h1&gt;Calculadora de Afiliados&lt;/h1&gt;&lt;small&gt;Hamilton Networker · catálogo de referencia&lt;/small&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;userbar&quot;&gt;&lt;span class=&quot;user-email&quot; id=&quot;userEmail&quot;&gt;&lt;/span&gt;&lt;button class=&quot;btn btn-ghost btn-small&quot; id=&quot;logoutBtn&quot;&gt;Salir&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;/header&gt;
-    &lt;main class=&quot;shell&quot;&gt;
-      &lt;section class=&quot;hero&quot;&gt;
-        &lt;div class=&quot;hero-card hero-copy&quot;&gt;&lt;span class=&quot;eyebrow&quot;&gt;&lt;i&gt;&lt;/i&gt; Herramienta para planificar&lt;/span&gt;&lt;h2&gt;Arma tu pedido y mira tus números &lt;span&gt;antes de comprar.&lt;/span&gt;&lt;/h2&gt;&lt;p&gt;Elige tu catálogo, nivel de descuento y agrega productos y revisa en tiempo real los puntos, cuánto inviertes, cuánto venderías al precio público y tu ganancia estimada.&lt;/p&gt;&lt;/div&gt;
-        &lt;div class=&quot;hero-stat&quot;&gt;&lt;h3&gt;Tu resumen de hoy&lt;/h3&gt;&lt;div class=&quot;stat-grid&quot;&gt;&lt;div class=&quot;stat&quot;&gt;&lt;strong id=&quot;heroPoints&quot;&gt;0&lt;/strong&gt;&lt;span&gt;puntos seleccionados&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;stat&quot;&gt;&lt;strong id=&quot;heroItems&quot;&gt;0&lt;/strong&gt;&lt;span&gt;unidades&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;stat&quot;&gt;&lt;strong id=&quot;heroCost&quot;&gt;$0.00&lt;/strong&gt;&lt;span&gt;inversión&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;stat&quot;&gt;&lt;strong id=&quot;heroProfit&quot;&gt;$0.00&lt;/strong&gt;&lt;span&gt;ganancia estimada&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;
-      &lt;/section&gt;
-
-      &lt;section class=&quot;panel&quot; style=&quot;margin-bottom:22px&quot;&gt;&lt;div class=&quot;controls&quot;&gt;&lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;countrySelect&quot;&gt;País y catálogo&lt;/label&gt;&lt;select id=&quot;countrySelect&quot;&gt;&lt;option value=&quot;EC&quot;&gt;Ecuador · USD&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;discountSelect&quot;&gt;Mi descuento&lt;/label&gt;&lt;select id=&quot;discountSelect&quot;&gt;&lt;option value=&quot;25&quot;&gt;25% · afiliación normal&lt;/option&gt;&lt;option value=&quot;30&quot;&gt;30% · Kit Emprendedor&lt;/option&gt;&lt;option value=&quot;35&quot;&gt;35% · nivel avanzado&lt;/option&gt;&lt;option value=&quot;40&quot;&gt;40% · nivel avanzado&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;field&quot;&gt;&lt;label for=&quot;brandFilter&quot;&gt;Catálogo&lt;/label&gt;&lt;select id=&quot;brandFilter&quot;&gt;&lt;option value=&quot;OMNILIFE&quot;&gt;Omnilife Ecuador&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div class=&quot;field search-field&quot;&gt;&lt;label for=&quot;searchInput&quot;&gt;Buscar producto o código&lt;/label&gt;&lt;input id=&quot;searchInput&quot; type=&quot;search&quot; placeholder=&quot;Ej. Power Maker, Biocros, 2603201...&quot;&gt;&lt;/div&gt;&lt;button class=&quot;btn btn-secondary&quot; id=&quot;clearSearch&quot;&gt;Limpiar búsqueda&lt;/button&gt;&lt;/div&gt;&lt;p class=&quot;notice&quot; id=&quot;countryNote&quot;&gt;Catálogo de Ecuador en dólares estadounidenses (USD). Verifica vigencia, país, disponibilidad y condiciones oficiales antes de comprar o vender.&lt;/p&gt;&lt;/section&gt;
-
-      &lt;section class=&quot;stats-section&quot; aria-labelledby=&quot;stats-title&quot;&gt;
-        &lt;div class=&quot;stats-section-head&quot;&gt;&lt;div&gt;&lt;h3 id=&quot;stats-title&quot;&gt;Estadísticas de mi planificación&lt;/h3&gt;&lt;p&gt;Una lectura rápida de tu pedido y su ganancia estimada.&lt;/p&gt;&lt;/div&gt;&lt;span class=&quot;badge&quot; style=&quot;background:rgba(255,255,255,.16);color:#fff;border-color:rgba(255,255,255,.2)&quot;&gt;En tiempo real&lt;/span&gt;&lt;/div&gt;
-        &lt;div class=&quot;stats-grid&quot;&gt;
-          &lt;div class=&quot;stats-item&quot;&gt;&lt;strong id=&quot;statsPoints&quot;&gt;0&lt;/strong&gt;&lt;span&gt;Puntos acumulados&lt;/span&gt;&lt;/div&gt;
-          &lt;div class=&quot;stats-item&quot;&gt;&lt;strong id=&quot;statsCost&quot;&gt;$0.00&lt;/strong&gt;&lt;span&gt;Inversión&lt;/span&gt;&lt;/div&gt;
-          &lt;div class=&quot;stats-item&quot;&gt;&lt;strong id=&quot;statsPublic&quot;&gt;$0.00&lt;/strong&gt;&lt;span&gt;Venta estimada&lt;/span&gt;&lt;/div&gt;
-          &lt;div class=&quot;stats-item profit&quot;&gt;&lt;strong id=&quot;statsProfit&quot;&gt;$0.00&lt;/strong&gt;&lt;span&gt;Ganancia estimada&lt;/span&gt;&lt;/div&gt;
-          &lt;div class=&quot;stats-item&quot;&gt;&lt;strong id=&quot;statsMargin&quot;&gt;0%&lt;/strong&gt;&lt;span&gt;Margen estimado&lt;/span&gt;&lt;/div&gt;
-        &lt;/div&gt;
-        &lt;p class=&quot;stats-note&quot;&gt;Estimación matemática basada en el catálogo cargado, tu descuento y el precio público indicado. No representa una garantía de resultados.&lt;/p&gt;
-      &lt;/section&gt;
-
-      &lt;section class=&quot;workspace&quot;&gt;
-        &lt;div class=&quot;panel&quot;&gt;&lt;div class=&quot;panel-head&quot;&gt;&lt;div&gt;&lt;h3&gt;Catálogo de productos&lt;/h3&gt;&lt;p class=&quot;panel-sub&quot;&gt;&lt;span id=&quot;resultCount&quot;&gt;0&lt;/span&gt; productos disponibles · agrega cantidades para construir tu lista.&lt;/p&gt;&lt;/div&gt;&lt;span class=&quot;badge&quot; id=&quot;discountBadge&quot;&gt;25% seleccionado&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;product-table-wrap&quot;&gt;&lt;table class=&quot;product-table&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Producto&lt;/th&gt;&lt;th&gt;Puntos&lt;/th&gt;&lt;th&gt;Tu costo&lt;/th&gt;&lt;th&gt;PVP&lt;/th&gt;&lt;th&gt;Ganancia/u.&lt;/th&gt;&lt;th&gt;Cantidad&lt;/th&gt;&lt;th&gt;&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;productRows&quot;&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;&lt;div id=&quot;dataWarnings&quot; class=&quot;warning hidden&quot;&gt;&lt;/div&gt;&lt;/div&gt;
-        &lt;aside class=&quot;summary-card&quot;&gt;&lt;div class=&quot;summary-head&quot;&gt;&lt;div&gt;&lt;h3&gt;Mi lista de compra&lt;/h3&gt;&lt;p class=&quot;panel-sub&quot;&gt;Descuento: &lt;strong id=&quot;summaryDiscount&quot;&gt;25%&lt;/strong&gt;&lt;/p&gt;&lt;/div&gt;&lt;span class=&quot;badge&quot; id=&quot;cartBadge&quot;&gt;0 artículos&lt;/span&gt;&lt;/div&gt;&lt;div id=&quot;summaryEmpty&quot; class=&quot;summary-empty&quot;&gt;Todavía no agregas productos.&lt;br&gt;Elige una cantidad y pulsa “Agregar”.&lt;/div&gt;&lt;div id=&quot;summaryContent&quot; class=&quot;hidden&quot;&gt;&lt;div class=&quot;metrics&quot;&gt;&lt;div class=&quot;metric highlight&quot;&gt;&lt;strong id=&quot;totalPoints&quot;&gt;0&lt;/strong&gt;&lt;span&gt;Puntos totales&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;strong id=&quot;totalCost&quot;&gt;$0.00&lt;/strong&gt;&lt;span&gt;Inversión a descuento&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;metric&quot;&gt;&lt;strong id=&quot;totalPublic&quot;&gt;$0.00&lt;/strong&gt;&lt;span&gt;Venta a precio público&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;metric profit&quot; id=&quot;profitMetric&quot;&gt;&lt;strong id=&quot;totalProfit&quot;&gt;$0.00&lt;/strong&gt;&lt;span&gt;Ganancia estimada&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id=&quot;cartList&quot; class=&quot;cart-list&quot;&gt;&lt;/div&gt;&lt;div class=&quot;summary-actions&quot;&gt;&lt;button class=&quot;btn btn-primary btn-small&quot; id=&quot;saveListBtn&quot;&gt;Guardar lista&lt;/button&gt;&lt;button class=&quot;btn btn-secondary btn-small&quot; id=&quot;clearCartBtn&quot;&gt;Vaciar&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;saved&quot;&gt;&lt;div class=&quot;panel-head&quot; style=&quot;margin:0&quot;&gt;&lt;div&gt;&lt;h3 style=&quot;font-size:.92rem&quot;&gt;Mis listas guardadas&lt;/h3&gt;&lt;p class=&quot;panel-sub&quot;&gt;Quedan guardadas en este navegador.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;&lt;div id=&quot;savedLists&quot; class=&quot;saved-list&quot;&gt;&lt;span class=&quot;notice&quot;&gt;No hay listas guardadas.&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/aside&gt;
-      &lt;/section&gt;
-    &lt;/main&gt;
-    &lt;footer class=&quot;footer&quot;&gt;Herramienta educativa de planificación. La ganancia mostrada es una diferencia matemática entre PVP y precio de compra, no una garantía de resultados. Los precios y puntos pueden cambiar.&lt;/footer&gt;
-  &lt;/div&gt;
-  &lt;div id=&quot;toast&quot; class=&quot;toast&quot; role=&quot;status&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;&lt;script&gt;
-    const PRODUCTS = [
-      [&quot;1260600&quot;,&quot;EGO PLANT EVOLUCION BOTELLA 200 ML&quot;,5,3.2,3.02,2.84,2.66,4.1],
-      [&quot;1409621&quot;,&quot;FEM EVOLUCION CAJA&quot;,56,30.45,28.74,27.03,25.32,39.0],
-      [&quot;1502208&quot;,&quot;FIBER´N PLUS EVOLUCIÓN CAJA 30 SOBRES 450G&quot;,70,44.89,42.37,39.85,37.32,57.5],
-      [&quot;1675700&quot;,&quot;STOP PLUS CAJA 30 SACHETS 450G&quot;,102,58.17,54.9,51.63,48.36,74.5],
-      [&quot;1729752&quot;,&quot;HOMO PLUS CAJA CON 30 SACHETS 180G&quot;,55,29.67,28.0,26.34,24.67,38.0],
-      [&quot;1850610&quot;,&quot;KOLINA EVOLUCION BOTELLA 200ML&quot;,5,3.2,3.02,2.84,2.66,4.1],
-      [&quot;2075722&quot;,&quot;BIOCROS SUPREME CAJA 30 SOBRES 240G&quot;,54,29.67,28.0,26.34,24.67,38.0],
-      [&quot;2350430&quot;,&quot;OMNIPLUS FRUTAS EVOLUCION CAJA 30 SOBRES&quot;,87,48.01,45.32,42.62,39.92,61.5],
-      [&quot;2505711&quot;,&quot;OPTIMUS EVOLUCION CAJA&quot;,64,34.74,32.79,30.83,28.88,44.5],
-      [&quot;2603201&quot;,&quot;POWER MAKER EVOLUCION CAJA CON 30 SOBRES&quot;,110,53.87,50.84,47.81,44.79,69.0],
-      [&quot;2350401&quot;,&quot;OMNIPLUS NARANJA EVOLUCION CAJA CON 30 SOBRES&quot;,87,48.01,45.32,42.62,39.92,61.5],
-      [&quot;3000730&quot;,&quot;STAR BIEN EVOLUCION CAJA 30 SOBRES&quot;,53,30.45,28.74,27.03,25.32,39.0],
-      [&quot;3178516&quot;,&quot;SUPER MIX SUPREME VAINILLA, CAJA 30 SOBR&quot;,76,44.5,42.0,39.5,37.0,57.0],
-      [&quot;3304732&quot;,&quot;TMGN COFFE CAJA EVOLUCION&quot;,39,28.88,27.26,25.64,24.02,37.0],
-      [&quot;3505605&quot;,&quot;TEATINO LIMON EVOLUCION CAJA 30 SOBRES&quot;,63,30.46,28.75,27.04,25.33,39.0],
-      [&quot;3505609&quot;,&quot;TEATINO MARACUYÁ EVOLUCIÓN 30 SOBRES&quot;,95,53.47,50.47,47.46,44.46,68.5],
-      [&quot;3659152&quot;,&quot;OML IQU LATA 12 OZ&quot;,42,29.27,27.63,25.98,24.34,37.5],
-      [&quot;3659295&quot;,&quot;OML IQU LATA INDIVIDUAL 12 OZ&quot;,7,4.92,4.65,4.37,4.09,6.3],
-      [&quot;3705934&quot;,&quot;UNDU EVOLUCION&quot;,107,51.52,48.63,45.73,42.84,66.0],
-      [&quot;3875700&quot;,&quot;UZO SUPREME, CAJA CON 30 SACHETS&quot;,166,95.25,89.9,84.55,79.19,122.0],
-      [&quot;3905934&quot;,&quot;AQTUA EVOLUCION, CAJA CON 30 SACHETS&quot;,118,58.55,55.26,51.98,48.69,75.0],
-      [&quot;3924734&quot;,&quot;AQTUA SUPREME, CAJA CON 30 SACHETS&quot;,112,57.78,54.53,51.28,48.04,74.0],
-      [&quot;4160400&quot;,&quot;AGUA BLU SUPREME, 600 ML&quot;,1,1.25,1.18,1.11,1.04,1.6],
-      [&quot;4250204&quot;,&quot;ALOE BETA PIÑA EVOLUCION 960 ML&quot;,26,14.43,13.62,12.81,12.0,18.5],
-      [&quot;4250604&quot;,&quot;ALOE BETA PIÑA EVOLUCION BOTELLA 200 ML&quot;,5,3.2,3.02,2.84,2.66,4.1],
-      [&quot;4404710&quot;,&quot;DOLCE VITA EVOLUCION CAJA 30 SOBRES&quot;,70,42.55,40.16,37.77,35.38,54.5],
-      [&quot;4650609&quot;,&quot;EGO 10 EVOLUCION BOTELLA 200 ML&quot;,5,3.2,3.02,2.84,2.66,4.1],
-      [&quot;4850500&quot;,&quot;EGO FRUTAS DEL BOSQUE EVOL LATA 355 ML&quot;,27,19.91,18.79,17.67,16.55,25.5],
-      [&quot;4903204&quot;,&quot;EGO LIFE EVOLUCION CAJA 30 SOBRES&quot;,38,27.72,26.16,24.6,23.05,35.5],
-      [&quot;5025516&quot;,&quot;OMNILIFE VKIDS DOYPACK 400 G&quot;,71,41.77,39.42,37.08,34.73,53.5],
-      [&quot;5105932&quot;,&quot;CAFEZZINO EVOLUCIÓN&quot;,52,35.91,33.9,31.88,29.86,46.0],
-      [&quot;5177632&quot;,&quot;CAFEZZINO SIN ENDULZAR BOTE&quot;,58,38.65,36.48,34.3,32.13,49.5],
-      [&quot;6305929&quot;,&quot;ONE C MIX EVOLUCION CAJA 150 G&quot;,46,28.49,26.89,25.29,23.69,36.5],
-      [&quot;6571959&quot;,&quot;OMNIOST CAJA C/30 SOBRES 450 GRS&quot;,57,38.26,36.11,33.96,31.81,49.0],
-      [&quot;6724761&quot;,&quot;OMNILIFE PROBIOTIC EVOLUCION CAJA 30 SOBRES&quot;,66,39.43,37.21,35.0,32.78,50.5],
-      [&quot;8453000&quot;,&quot;FLU-Y BOTE 60 CAPSULAS&quot;,44,20.3,19.16,18.02,16.88,26.0]
-    ].map(([code,name,points,p25,p30,p35,p40,pvp]) =&gt; ({code,name,points,prices:{25:p25,30:p30,35:p35,40:p40},pvp}));
-
-    const CATALOGS = { EC:{name:&#x27;Ecuador&#x27;,currency:&#x27;USD&#x27;,locale:&#x27;en-US&#x27;,products:PRODUCTS} };
-    let country = &#x27;EC&#x27;; localStorage.setItem(&#x27;hamilton_country&#x27;,&#x27;EC&#x27;);
-    let email = localStorage.getItem(&#x27;hamilton_affiliate_email&#x27;) || &#x27;&#x27;;
-    let discount = Number(localStorage.getItem(&#x27;hamilton_discount_&#x27; + country + &#x27;_&#x27; + email) || 25);
-    let brand = &#x27;OMNILIFE&#x27;;
-    let cart = {};
-    const $ = id =&gt; document.getElementById(id);
-    const catalog = () =&gt; CATALOGS[country] || CATALOGS.EC;
-    const money = value =&gt; new Intl.NumberFormat(catalog().locale,{style:&#x27;currency&#x27;,currency:catalog().currency,minimumFractionDigits:2,maximumFractionDigits:2}).format(Number(value || 0));
-    const key = () =&gt; &#x27;hamilton_cart_&#x27; + country + &#x27;_&#x27; + email;
-    const listKey = () =&gt; &#x27;hamilton_lists_&#x27; + country + &#x27;_&#x27; + email;
-    const discountKey = () =&gt; &#x27;hamilton_discount_&#x27; + country + &#x27;_&#x27; + email;
-    function showToast(text){const t=$(&#x27;toast&#x27;);t.textContent=text;t.classList.add(&#x27;show&#x27;);clearTimeout(window._toast);window._toast=setTimeout(()=&gt;t.classList.remove(&#x27;show&#x27;),2600)}
-    function saveCart(){if(email)localStorage.setItem(key(),JSON.stringify(cart))}
-    function loadCart(){try{const saved=localStorage.getItem(key()) || (country===&#x27;EC&#x27; ? localStorage.getItem(&#x27;hamilton_cart_&#x27;+email) : null);cart=JSON.parse(saved||&#x27;{}&#x27;)||{}}catch{cart={}}}
-    function getProduct(code){return catalog().products.find(p=&gt;p.code===code)}
-    function productCost(p){return p.prices[discount]}
-    function totals(){return Object.entries(cart).reduce((a,[code,qty])=&gt;{const p=getProduct(code);if(!p)return a;const q=Number(qty)||0;a.items+=q;a.points+=p.points*q;a.cost+=productCost(p)*q;a.publicValue+=p.pvp*q;return a},{items:0,points:0,cost:0,publicValue:0})}
-    function renderProducts(){const query=$(&#x27;searchInput&#x27;).value.toLowerCase().trim();const visible=catalog().products.filter(p=&gt;{const isSeytu=String(p.name).startsWith(&#x27;SEYTÚ ·&#x27;);const brandOk=brand===&#x27;ALL&#x27;||(brand===&#x27;SEYTU&#x27;?isSeytu:!isSeytu);return brandOk&amp;&amp;(p.name+&#x27; &#x27;+p.code).toLowerCase().includes(query)});$(&#x27;resultCount&#x27;).textContent=visible.length;$(&#x27;discountBadge&#x27;).textContent=discount+&#x27;% seleccionado&#x27;;$(&#x27;summaryDiscount&#x27;).textContent=discount+&#x27;%&#x27;;$(&#x27;productRows&#x27;).innerHTML=visible.map(p=&gt;{const q=cart[p.code]||0;const gain=p.pvp-productCost(p);const loss=gain&lt;0;return `&lt;tr&gt;&lt;td class=&quot;product-name&quot;&gt;${p.name}&lt;span class=&quot;product-code&quot;&gt;Código ${p.code}&lt;/span&gt;&lt;/td&gt;&lt;td class=&quot;points&quot;&gt;${p.points}&lt;/td&gt;&lt;td class=&quot;money&quot;&gt;${money(productCost(p))}&lt;/td&gt;&lt;td class=&quot;money&quot;&gt;${money(p.pvp)}&lt;/td&gt;&lt;td class=&quot;money ${loss?&#x27;negative&#x27;:&#x27;positive&#x27;}&quot;&gt;${money(gain)}${loss?&#x27; ⚠&#x27;:&#x27;&#x27;}&lt;/td&gt;&lt;td&gt;&lt;input class=&quot;qty-input&quot; type=&quot;number&quot; min=&quot;0&quot; step=&quot;1&quot; value=&quot;${q}&quot; data-qty=&quot;${p.code}&quot; aria-label=&quot;Cantidad de ${p.name}&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;add-btn&quot; data-add=&quot;${p.code}&quot;&gt;Agregar&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;`}).join(&#x27;&#x27;);$(&#x27;dataWarnings&#x27;).classList.toggle(&#x27;hidden&#x27;,!catalog().products.some(p=&gt;p.pvp&lt;productCost(p)));$(&#x27;dataWarnings&#x27;).textContent=&#x27;Hay productos cuyo PVP proporcionado es menor que su precio de afiliado. La app conserva los datos recibidos y muestra la diferencia negativa; conviene confirmar ese PVP antes de usarlo para tomar decisiones.&#x27;}
-    function renderCart(){const t=totals();$(&#x27;heroPoints&#x27;).textContent=t.points.toLocaleString(&#x27;es-ES&#x27;);$(&#x27;heroItems&#x27;).textContent=t.items.toLocaleString(&#x27;es-ES&#x27;);$(&#x27;heroCost&#x27;).textContent=money(t.cost);$(&#x27;heroProfit&#x27;).textContent=money(t.publicValue-t.cost);$(&#x27;cartBadge&#x27;).textContent=t.items+&#x27; artículo&#x27;+(t.items===1?&#x27;&#x27;:&#x27;s&#x27;);$(&#x27;summaryEmpty&#x27;).classList.toggle(&#x27;hidden&#x27;,t.items&gt;0);$(&#x27;summaryContent&#x27;).classList.toggle(&#x27;hidden&#x27;,t.items===0);$(&#x27;totalPoints&#x27;).textContent=t.points.toLocaleString(&#x27;es-ES&#x27;);$(&#x27;totalCost&#x27;).textContent=money(t.cost);$(&#x27;totalPublic&#x27;).textContent=money(t.publicValue);$(&#x27;totalProfit&#x27;).textContent=money(t.publicValue-t.cost);$(&#x27;statsPoints&#x27;).textContent=t.points.toLocaleString(&#x27;es-ES&#x27;);$(&#x27;statsCost&#x27;).textContent=money(t.cost);$(&#x27;statsPublic&#x27;).textContent=money(t.publicValue);$(&#x27;statsProfit&#x27;).textContent=money(t.publicValue-t.cost);$(&#x27;statsMargin&#x27;).textContent=(t.cost&gt;0?((t.publicValue-t.cost)/t.cost*100):0).toFixed(1)+&#x27;%&#x27;;$(&#x27;profitMetric&#x27;).classList.toggle(&#x27;loss&#x27;,t.publicValue-t.cost&lt;0);$(&#x27;cartList&#x27;).innerHTML=Object.entries(cart).filter(([,q])=&gt;q&gt;0).map(([code,q])=&gt;{const p=getProduct(code);return `&lt;div class=&quot;cart-row&quot;&gt;&lt;div&gt;&lt;strong&gt;${p.name}&lt;/strong&gt;&lt;small&gt;${q} × ${money(productCost(p))} · ${p.points*q} puntos&lt;/small&gt;&lt;/div&gt;&lt;div class=&quot;cart-actions&quot;&gt;&lt;div class=&quot;qty-stepper&quot;&gt;&lt;button data-minus=&quot;${code}&quot; aria-label=&quot;Restar&quot;&gt;−&lt;/button&gt;&lt;b&gt;${q}&lt;/b&gt;&lt;button data-plus=&quot;${code}&quot; aria-label=&quot;Sumar&quot;&gt;+&lt;/button&gt;&lt;/div&gt;&lt;button class=&quot;btn btn-danger btn-small&quot; data-remove=&quot;${code}&quot; aria-label=&quot;Eliminar&quot;&gt;×&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;`}).join(&#x27;&#x27;);saveCart()}
-    function renderSaved(){let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||&#x27;[]&#x27;)||[]}catch{};$(&#x27;savedLists&#x27;).innerHTML=lists.length?lists.map((l,i)=&gt;`&lt;div class=&quot;saved-item&quot;&gt;&lt;span&gt;&lt;strong&gt;${l.name}&lt;/strong&gt;&lt;br&gt;&lt;small&gt;${l.discount}% · ${l.points} pts · ${money(l.cost)}&lt;/small&gt;&lt;/span&gt;&lt;span&gt;&lt;button data-load=&quot;${i}&quot;&gt;Cargar&lt;/button&gt;&lt;button data-delete=&quot;${i}&quot;&gt;×&lt;/button&gt;&lt;/span&gt;&lt;/div&gt;`).join(&#x27;&#x27;):&#x27;&lt;span class=&quot;notice&quot;&gt;No hay listas guardadas.&lt;/span&gt;&#x27;}
-    function renderAll(){const c=catalog();$(&#x27;countrySelect&#x27;).value=country;$(&#x27;brandFilter&#x27;).value=brand;$(&#x27;countryNote&#x27;).textContent=&#x27;Catálogo de &#x27;+c.name+&#x27; en &#x27;+c.currency+&#x27;. Verifica vigencia, disponibilidad y condiciones oficiales antes de comprar o vender.&#x27;;renderProducts();renderCart();renderSaved()}
-    function saveList(){const t=totals();if(!t.items)return showToast(&#x27;Agrega al menos un producto antes de guardar.&#x27;);const name=prompt(&#x27;Nombre para esta lista:&#x27;, &#x27;Mi pedido &#x27;+new Date().toLocaleDateString(&#x27;es-ES&#x27;));if(!name)return;let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||&#x27;[]&#x27;)||[]}catch{};lists.unshift({name:name.trim(),discount,cart:{...cart},points:t.points,cost:t.cost,createdAt:Date.now()});localStorage.setItem(listKey(),JSON.stringify(lists.slice(0,20)));renderSaved();showToast(&#x27;Lista guardada en este navegador.&#x27;)}
-    const ACCESS_SCRIPT_URL = &#x27;https://script.google.com/macros/s/AKfycbyTYFmx38EtSgDw-4v3dN1z9xTsv2sfSz37B5xJqr8rAc_BlK3Aov4mL-Rz6OE5cNGqPA/exec&#x27;;
-    function accessState(data){
-      const raw = data &amp;&amp; (data.estado ?? data.status ?? data.state ?? data.access ?? data.autorizacion ?? data.authorization ?? data.resultado ?? data.result);
-      if (data &amp;&amp; (data.activo === true || data.active === true || data.authorized === true)) return &#x27;ACTIVO&#x27;;
-      return String(raw ?? &#x27;&#x27;).trim().toUpperCase();
-    }
-    async function registerAffiliateRequest(candidate){
-      const payload = {
-        email: candidate,
-        name: $(&#x27;loginName&#x27;).value.trim(),
-        country: &#x27;Ecuador&#x27;,
-        affiliateCode: $(&#x27;loginAffiliateCode&#x27;).value.trim()
-      };
-      const response = await fetch(ACCESS_SCRIPT_URL, {
-        method: &#x27;POST&#x27;,
-        mode: &#x27;cors&#x27;,
-        headers: {&#x27;Content-Type&#x27;: &#x27;application/x-www-form-urlencoded;charset=UTF-8&#x27;},
-        body: new URLSearchParams(payload).toString()
-      });
-      if (!response.ok) throw new Error(&#x27;No se pudo registrar la solicitud en Google Sheets.&#x27;);
-      const data = await response.json();
-      if (data &amp;&amp; data.ok === false) throw new Error(data.error || &#x27;Google Sheets rechazó la solicitud.&#x27;);
-      return data;
-    }
-
-    async function verifyAffiliateAccess(candidate){
-      const url = ACCESS_SCRIPT_URL + &#x27;?action=verificar_acceso&amp;email=&#x27; + encodeURIComponent(candidate) + &#x27;&amp;_=&#x27; + Date.now();
-      const controller = new AbortController();
-      const timeout = setTimeout(() =&gt; controller.abort(), 45000);
-      try {
-        const response = await fetch(url, {method:&#x27;GET&#x27;, mode:&#x27;cors&#x27;, cache:&#x27;no-store&#x27;, signal:controller.signal});
-        if (!response.ok) throw new Error(&#x27;HTTP &#x27;+response.status);
-        const data = await response.json();
-        return accessState(data);
-      } catch (error) {
-        if (error &amp;&amp; error.name === &#x27;AbortError&#x27;) throw new Error(&#x27;La validación está tardando demasiado. Revisa que tu Apps Script esté implementado como aplicación web y vuelve a intentarlo.&#x27;);
-        throw new Error(&#x27;No se pudo consultar Google Sheets. Verifica que Apps Script esté implementado como aplicación web y permita acceso a cualquier usuario.&#x27;);
-      } finally { clearTimeout(timeout); }
-    }
-    function accessMessage(state){
-      if (state === &#x27;PENDIENTE&#x27;) return &#x27;Tu correo fue registrado, pero todavía está pendiente de autorización. Escríbele a Hamilton por WhatsApp para confirmar tu afiliación.&#x27;;
-      if (state === &#x27;APAGADO&#x27; || state === &#x27;INACTIVO&#x27;) return &#x27;Este acceso está apagado temporalmente. Solicita a Hamilton que lo active cuando corresponda.&#x27;;
-      return &#x27;No encontramos este correo como afiliado activo. Usa el mismo correo registrado en tu afiliación o solicita autorización a Hamilton.&#x27;;
-    }
-    $(&#x27;loginForm&#x27;).addEventListener(&#x27;submit&#x27;, async e=&gt;{
-      e.preventDefault();
-      const name=$(&#x27;loginName&#x27;).value.trim();
-      email=$(&#x27;loginEmail&#x27;).value.trim().toLowerCase();
-      const affiliateCode=$(&#x27;loginAffiliateCode&#x27;).value.trim();
-      if(!name || !email || !affiliateCode){ showToast(&#x27;Completa tu nombre, correo y código de afiliado.&#x27;); return; }
-      const button=e.currentTarget.querySelector(&#x27;button&#x27;);
-      button.disabled=true; button.textContent=&#x27;Verificando autorización…&#x27;;
-      try {
-        // La autorización es la operación crítica. El registro en Sheets es opcional
-        // para no bloquear el acceso si el Apps Script no expone doPost o tarda.
-        registerAffiliateRequest(email).catch(()=&gt;{});
-        const state=await verifyAffiliateAccess(email);
-        if(state !== &#x27;ACTIVO&#x27;) { showToast(accessMessage(state)); return; }
-        localStorage.setItem(&#x27;hamilton_affiliate_email&#x27;,email); discount=Number(localStorage.getItem(discountKey())||25); loadCart();
-        $(&#x27;loginView&#x27;).classList.add(&#x27;hidden&#x27;); $(&#x27;appView&#x27;).classList.remove(&#x27;hidden&#x27;); $(&#x27;userEmail&#x27;).textContent=email; $(&#x27;discountSelect&#x27;).value=discount; renderAll();
-        if (window.parent !== window) window.parent.postMessage({type:&#x27;hamilton-calculator-access&#x27;, authorized:true}, &#x27;*&#x27;);
-      } catch(error) { showToast(error.message); }
-      finally { button.disabled=false; button.textContent=&#x27;Entrar a mi calculadora&#x27;; }
-    });
-    $(&#x27;logoutBtn&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{$(&#x27;appView&#x27;).classList.add(&#x27;hidden&#x27;);$(&#x27;loginView&#x27;).classList.remove(&#x27;hidden&#x27;);$(&#x27;loginEmail&#x27;).value=email;if(window.parent!==window)window.parent.postMessage({type:&#x27;hamilton-calculator-access&#x27;,authorized:false},&#x27;*&#x27;)});
-    $(&#x27;countrySelect&#x27;).addEventListener(&#x27;change&#x27;,e=&gt;{saveCart();country=e.target.value;localStorage.setItem(&#x27;hamilton_country&#x27;,country);brand=&#x27;ALL&#x27;;localStorage.setItem(&#x27;hamilton_brand_&#x27;+country+&#x27;_&#x27;+email,brand);discount=Number(localStorage.getItem(discountKey())||25);cart={};loadCart();$(&#x27;discountSelect&#x27;).value=discount;$(&#x27;searchInput&#x27;).value=&#x27;&#x27;;renderAll();showToast(&#x27;Catálogo cambiado a &#x27;+catalog().name+&#x27;.&#x27;)});
-    $(&#x27;discountSelect&#x27;).addEventListener(&#x27;change&#x27;,e=&gt;{discount=Number(e.target.value);localStorage.setItem(discountKey(),discount);renderAll();showToast(&#x27;Descuento actualizado al &#x27;+discount+&#x27;%.&#x27;)});$(&#x27;brandFilter&#x27;).addEventListener(&#x27;change&#x27;,e=&gt;{brand=e.target.value;localStorage.setItem(&#x27;hamilton_brand_&#x27;+country+&#x27;_&#x27;+email,brand);renderProducts();showToast(brand===&#x27;SEYTU&#x27;?&#x27;Mostrando catálogo SEYTÚ.&#x27;:brand===&#x27;OMNILIFE&#x27;?&#x27;Mostrando catálogo Omnilife.&#x27;:&#x27;Mostrando ambos catálogos.&#x27;)});
-    $(&#x27;searchInput&#x27;).addEventListener(&#x27;input&#x27;,renderProducts);$(&#x27;clearSearch&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{$(&#x27;searchInput&#x27;).value=&#x27;&#x27;;renderProducts()});$(&#x27;saveListBtn&#x27;).addEventListener(&#x27;click&#x27;,saveList);$(&#x27;clearCartBtn&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{cart={};renderAll();showToast(&#x27;Lista vaciada.&#x27;)});
-    document.addEventListener(&#x27;input&#x27;,e=&gt;{if(e.target.matches(&#x27;[data-qty]&#x27;)){const q=Math.max(0,parseInt(e.target.value||0,10));if(q)cart[e.target.dataset.qty]=q;else delete cart[e.target.dataset.qty];renderCart()}});
-    document.addEventListener(&#x27;click&#x27;,e=&gt;{const add=e.target.closest(&#x27;[data-add]&#x27;);if(add){const code=add.dataset.add;cart[code]=(cart[code]||0)+1;renderAll();showToast(&#x27;Producto agregado.&#x27;);return}const plus=e.target.closest(&#x27;[data-plus]&#x27;);if(plus){cart[plus.dataset.plus]=(cart[plus.dataset.plus]||0)+1;renderAll();return}const minus=e.target.closest(&#x27;[data-minus]&#x27;);if(minus){cart[minus.dataset.minus]=Math.max(0,(cart[minus.dataset.minus]||0)-1);if(!cart[minus.dataset.minus])delete cart[minus.dataset.minus];renderAll();return}const rem=e.target.closest(&#x27;[data-remove]&#x27;);if(rem){delete cart[rem.dataset.remove];renderAll();return}const load=e.target.closest(&#x27;[data-load]&#x27;);if(load){let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||&#x27;[]&#x27;)||[]}catch{};const l=lists[Number(load.dataset.load)];if(l){discount=l.discount;cart={...l.cart};$(&#x27;discountSelect&#x27;).value=discount;renderAll();showToast(&#x27;Lista cargada.&#x27;)}return}const del=e.target.closest(&#x27;[data-delete]&#x27;);if(del){let lists=[];try{lists=JSON.parse(localStorage.getItem(listKey())||&#x27;[]&#x27;)||[]}catch{};lists.splice(Number(del.dataset.delete),1);localStorage.setItem(listKey(),JSON.stringify(lists));renderSaved();showToast(&#x27;Lista eliminada.&#x27;)}});
-    if(email){$(&#x27;loginEmail&#x27;).value=email; email=&#x27;&#x27;; localStorage.removeItem(&#x27;hamilton_affiliate_email&#x27;)}
-  &lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe></section><section id="registro" class="form-section reveal">
+<section id="registro" class="form-section reveal">
   <div class="section-header">
     <h2>¿Quieres que te ayude a registrarte en vivo?</h2>
     <p class="lead">Si no quieres hacer el registro solo, coordinamos una reunión por Zoom. Me conecto contigo y te voy indicando paso a paso cómo registrarte como Cliente Admirable o cómo afiliarte con descuento.</p>
@@ -1638,7 +1326,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <p>&copy; 2026 Hamilton Granillo. Todos los derechos reservados.<br>
   <span style="font-size: 0.75rem; opacity: 0.6;">Este sitio corresponde a un Emprendedor Independiente y no es la página institucional de Omnilife.</span></p>
 </footer>
-</div>
 
 <div id="modal-cliente" role="dialog" aria-modal="true" aria-labelledby="modal-cliente-title" aria-hidden="true" class="country-modal-overlay" onclick="if(event.target===this) closeCountryModal('cliente')">
   <div class="country-modal">
@@ -1677,31 +1364,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </div>
 
-<div id="modal-puntos" hidden role="dialog" aria-modal="true" aria-labelledby="modal-puntos-title" aria-hidden="true" class="country-modal-overlay" onclick="if(event.target===this) closeCountryModal('puntos')">
-  <div class="country-modal points-modal kit-guide-modal mini-kit-modal">
+<div id="modal-puntos" role="dialog" aria-modal="true" aria-labelledby="modal-puntos-title" aria-hidden="true" class="country-modal-overlay" onclick="if(event.target===this) closeCountryModal('puntos')">
+  <div class="country-modal points-modal">
     <div class="country-modal-head">
-      <h4 id="modal-puntos-title">Calculadora del Kit Emprendedor · 30%</h4>
+      <h4 id="modal-puntos-title">Puntos por producto</h4>
       <button type="button" onclick="closeCountryModal('puntos')" aria-label="Cerrar">✕</button>
     </div>
-    <p class="country-modal-sub">Elige productos de <strong>Omnilife Ecuador</strong> y mira cuánto inviertes con el <strong>30% de descuento</strong>. La meta es completar aproximadamente <strong>1.000 puntos</strong>; el total se calcula según los productos de Ecuador que elijas.</p>
-    <div class="kit-guide-summary mini-kit-summary">
-      <div><strong id="kitGuidePoints">0</strong><span>puntos elegidos</span></div>
-      <div><strong id="kitGuideCost">$0.00</strong><span>inversión con 30%</span></div>
-    </div>
-    <div class="kit-guide-country"><label for="kitGuideCountry">País y catálogo</label><select id="kitGuideCountry"><option value="EC">Ecuador · USD</option></select></div>
-    <div id="kitGuideStatus" class="kit-guide-status">Elige productos para comenzar. Te indicaremos cuántos puntos llevas y cuánto falta para llegar a 1.000.</div>
-    <div class="kit-guide-explainer"><strong>¿Qué pasa cuando completas los 1.000 puntos?</strong><p>Tu combinación alcanza la meta del Kit Emprendedor: compras los productos seleccionados con <strong>30% de descuento</strong>. La inversión total que ves arriba es lo que pagarías por esos productos; el precio público es lo que podrías recibir si los vendes a ese precio. La diferencia representa tu <strong>ahorro</strong> al comprar o tu <strong>ganancia bruta estimada</strong> si logras venderlos al precio público.</p><p>Además, el kit puede incluir <strong>hasta 3 productos adicionales de regalo</strong>, según las condiciones vigentes. Esos regalos son un beneficio extra que podrías vender nuevamente como emprendedor; no los sumamos al cálculo porque su valor y disponibilidad pueden variar. También pueden aplicar Sportmixer, App Mi Omninegocio u otros incentivos según las condiciones vigentes.</p><p>Si durante tus primeros 30 días acumulas otros <strong>1.000 puntos adicionales</strong>, la descripción del kit indica regalos extra como cosmetiquera SEYTÚ y Shaker SEYTÚ, sujetos a condiciones. Revisa siempre las condiciones actuales antes de comprar.</p></div>
-    <button id="kitDownloadPdf" class="kit-download-pdf" type="button" onclick="downloadKitGuidePdf()">⬇ Descargar mi lista del Kit en PDF</button>
-    <p class="kit-guide-note"><strong>Cómo funciona:</strong> la afiliación no tiene un costo separado; cada fila muestra cuántos puntos aporta el producto y cuánto invertirías al comprarlo con 30% de descuento. Pulsa “Agregar” o escribe una cantidad. El costo afiliado se calcula con el 70% del precio público porque aquí se usa únicamente el 30% de descuento.</p>
-    <input id="pointsSearch" type="text" class="form-input" placeholder="Buscar producto... ej. biocros, power maker, shampoo" style="margin-bottom: 14px;" oninput="renderPointsTable()">
-    <div class="points-table-wrap kit-guide-table-wrap mini-kit-table-wrap">
-      <table class="points-table kit-guide-table mini-kit-table">
-        <thead><tr><th>Producto</th><th>Puntos</th><th>Tu inversión<br><small>30% dto.</small></th><th>Cantidad</th><th></th></tr></thead>
+    <p class="country-modal-sub">Catálogo oficial de Ecuador (nutrición y belleza) — combina los productos que más te sirvan hasta llegar a tus 1000+ puntos para el Kit Emprendedor. A mayor puntaje acumulado, mayor tu descuento: 25%, 30%, 35% y hasta 40%.</p>
+    <input id="pointsSearch" type="text" class="form-input" placeholder="Buscar producto... ej. biocros, labial, shampoo" style="margin-bottom: 14px;" oninput="renderPointsTable()">
+    <div class="points-table-wrap">
+      <table class="points-table">
+        <thead>
+          <tr><th>Producto</th><th>Puntos</th><th>PVP</th></tr>
+        </thead>
         <tbody id="pointsTableBody"></tbody>
       </table>
     </div>
     <p id="pointsNoResults" style="display:none; text-align:center; color: var(--muted); font-size: .85rem; padding: 20px 0;">No encontramos productos con ese nombre.</p>
-    <p class="kit-guide-footnote">Precios de referencia para Ecuador: Omnilife. La inversión final depende de tu combinación de productos y puede cambiar con el catálogo vigente. La ganancia es una estimación matemática y no una garantía de resultados.</p>
+    <p style="font-size: .78rem; color: var(--muted); margin-top: 14px; font-style: italic;">Varios productos de maquillaje vienen en distintos tonos con los mismos puntos/precio — se agrupan en una sola fila. Precios de referencia Ecuador, vigencia junio 2026 — pueden cambiar sin previo aviso. Escríbeme por WhatsApp si quieres armar la combinación exacta para tus 1000+ puntos.</p>
   </div>
 </div>
 
@@ -2007,35 +1687,28 @@ const POINTS_CATALOG = [
   ]},
 ];
 
-const KIT_GUIDE_CATALOGS = {"EC":{"name":"Ecuador","currency":"USD","locale":"en-US","products":[["1260600","EGO PLANT EVOLUCION BOTELLA 200 ML",5,3.02,4.1],["1409621","FEM EVOLUCION CAJA",56,28.74,39.0],["1502208","FIBER´N PLUS EVOLUCIÓN CAJA 30 SOBRES 450G",70,42.37,57.5],["1675700","STOP PLUS CAJA 30 SACHETS 450G",102,54.9,74.5],["1729752","HOMO PLUS CAJA CON 30 SACHETS 180G",55,28.0,38.0],["1850610","KOLINA EVOLUCION BOTELLA 200ML",5,3.02,4.1],["2075722","BIOCROS SUPREME CAJA 30 SOBRES 240G",54,28.0,38.0],["2350430","OMNIPLUS FRUTAS EVOLUCION CAJA 30 SOBRES",87,45.32,61.5],["2505711","OPTIMUS EVOLUCION CAJA",64,32.79,44.5],["2603201","POWER MAKER EVOLUCION CAJA CON 30 SOBRES",110,50.84,69.0],["2350401","OMNIPLUS NARANJA EVOLUCION CAJA CON 30 SOBRES",87,45.32,61.5],["3000730","STAR BIEN EVOLUCION CAJA 30 SOBRES",53,28.74,39.0],["3178516","SUPER MIX SUPREME VAINILLA, CAJA 30 SOBR",76,42.0,57.0],["3304732","TMGN COFFE CAJA EVOLUCION",39,27.26,37.0],["3505605","TEATINO LIMON EVOLUCION CAJA 30 SOBRES",63,28.75,39.0],["3505609","TEATINO MARACUYÁ EVOLUCIÓN 30 SOBRES",95,50.47,68.5],["3659152","OML IQU LATA 12 OZ",42,27.63,37.5],["3659295","OML IQU LATA INDIVIDUAL 12 OZ",7,4.65,6.3],["3705934","UNDU EVOLUCION",107,48.63,66.0],["3875700","UZO SUPREME, CAJA CON 30 SACHETS",166,89.9,122.0],["3905934","AQTUA EVOLUCION, CAJA CON 30 SACHETS",118,55.26,75.0],["3924734","AQTUA SUPREME, CAJA CON 30 SACHETS",112,54.53,74.0],["4160400","AGUA BLU SUPREME, 600 ML",1,1.18,1.6],["4250204","ALOE BETA PIÑA EVOLUCION 960 ML",26,13.62,18.5],["4250604","ALOE BETA PIÑA EVOLUCION BOTELLA 200 ML",5,3.02,4.1],["4404710","DOLCE VITA EVOLUCION CAJA 30 SOBRES",70,40.16,54.5],["4650609","EGO 10 EVOLUCION BOTELLA 200 ML",5,3.02,4.1],["4850500","EGO FRUTAS DEL BOSQUE EVOL LATA 355 ML",27,18.79,25.5],["4903204","EGO LIFE EVOLUCION CAJA 30 SOBRES",38,26.16,35.5],["5025516","OMNILIFE VKIDS DOYPACK 400 G",71,39.42,53.5],["5105932","CAFEZZINO EVOLUCIÓN",52,33.9,46.0],["5177632","CAFEZZINO SIN ENDULZAR BOTE",58,36.48,49.5],["6305929","ONE C MIX EVOLUCION CAJA 150 G",46,26.89,36.5],["6571959","OMNIOST CAJA C/30 SOBRES 450 GRS",57,36.11,49.0],["6724761","OMNILIFE PROBIOTIC EVOLUCION CAJA 30 SOBRES",66,37.21,50.5],["8453000","FLU-Y BOTE 60 CAPSULAS",44,19.16,26.0]]}};
-let kitGuideCountry = 'EC';
-let kitGuideCart = {};
-function kitGuideCatalog(){return KIT_GUIDE_CATALOGS[kitGuideCountry] || KIT_GUIDE_CATALOGS.EC;}
-function kitGuideProduct(code){return kitGuideCatalog().products.find(item=>item[0]===code);}
-function kitGuideMoney(value){return new Intl.NumberFormat(kitGuideCatalog().locale,{style:'currency',currency:kitGuideCatalog().currency,minimumFractionDigits:2,maximumFractionDigits:2}).format(Number(value||0));}
-function updateKitGuideTotals(){
-  let points=0,cost=0,publicValue=0;
-  Object.entries(kitGuideCart).forEach(([code,qty])=>{const item=kitGuideProduct(code);const q=Number(qty)||0;if(!item||q<=0)return;points+=item[2]*q;cost+=item[3]*q;publicValue+=item[4]*q;});
-  const set=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value;};
-  const gain=publicValue-cost;set('kitGuidePoints',points.toLocaleString('es-ES'));set('kitGuideCost',kitGuideMoney(cost));set('kitGuidePublic',kitGuideMoney(publicValue));set('kitGuideGain',kitGuideMoney(gain));
-  const status=document.getElementById('kitGuideStatus');if(status){const remaining=Math.max(0,1000-points);status.classList.toggle('ready',points>=1000);const pdfButton=document.getElementById('kitDownloadPdf');if(pdfButton)pdfButton.style.display=points>=1000?'block':'none';status.innerHTML=points>=1000?`<strong>¡Completaste ${points.toLocaleString('es-ES')} puntos!</strong> Con esta combinación llegas a la meta de 1.000 puntos. Inviertes <strong>${kitGuideMoney(cost)}</strong>, el valor a precio público es <strong>${kitGuideMoney(publicValue)}</strong> y el ahorro/ganancia bruta estimada es <strong>${kitGuideMoney(gain)}</strong>. Los regalos se explican abajo y no están incluidos en este cálculo.`:points?`Llevas <strong>${points.toLocaleString('es-ES')} puntos</strong>. Te faltan <strong>${remaining.toLocaleString('es-ES')}</strong> para llegar a 1.000 puntos.`:'Elige productos para comenzar. Te indicaremos cuántos puntos llevas y cuánto falta para llegar a 1.000.';}}
-function downloadKitGuidePdf(){
-  const catalog=kitGuideCatalog(); let points=0,cost=0,publicValue=0,rows='';
-  const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-  Object.entries(kitGuideCart).forEach(([code,qty])=>{const item=kitGuideProduct(code);const q=Number(qty)||0;if(!item||q<=0)return;const [product, name, pts, unitCost, unitPublic]=item;const totalPts=pts*q,totalCost=unitCost*q,totalPublic=unitPublic*q,totalGain=totalPublic-totalCost;points+=totalPts;cost+=totalCost;publicValue+=totalPublic;rows+=`<tr><td>${esc(name)}</td><td>${esc(product)}</td><td>${q}</td><td>${totalPts}</td><td>${kitGuideMoney(totalCost)}</td><td>${kitGuideMoney(totalPublic)}</td><td>${kitGuideMoney(totalGain)}</td></tr>`;});
-  if(!rows){alert('Primero selecciona productos para crear tu lista.');return;}
-  const gain=publicValue-cost; const printWindow=window.open('','_blank','width=1000,height=800'); if(!printWindow){alert('Permite las ventanas emergentes para generar tu PDF.');return;}
-  printWindow.document.write(`<!doctype html><html lang="es"><head><meta charset="utf-8"><title>Lista Kit Emprendedor - ${esc(catalog.name)}</title><style>body{font-family:Arial,sans-serif;color:#173c2c;margin:32px;line-height:1.4}h1{margin:0 0 5px;color:#155b42}h2{margin-top:28px;font-size:18px}p{color:#50605a}table{border-collapse:collapse;width:100%;font-size:11px}th{background:#e9f3ec;color:#155b42}th,td{border:1px solid #cbd9cf;padding:7px;text-align:left}td:nth-child(n+3),th:nth-child(n+3){text-align:right}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0}.summary div{border:1px solid #cbd9cf;border-radius:8px;padding:10px;text-align:center}.summary b{display:block;font-size:18px;color:#b08021}.presenter{background:#e9f3ec;border:1px solid #9fc8ae;border-radius:8px;padding:11px 13px;color:#155b42}.presenter b{font-size:18px;letter-spacing:1px}.note{margin-top:20px;padding:12px;background:#f5f1df;border:1px solid #e4d39a;border-radius:8px;font-size:12px}@media print{body{margin:15mm}.no-print{display:none}}</style></head><body><h1>Lista de compra · Kit Emprendedor</h1><p>País: <strong>${esc(catalog.name)}</strong> · Descuento único aplicado: <strong>30%</strong> · Afiliación: <strong>sin costo separado</strong></p><p class="presenter"><strong>Código de presentador para tu compra y afiliación:</strong> <b>593672828GRH</b></p><div class="summary"><div><b>${points.toLocaleString('es-ES')}</b>Puntos</div><div><b>${kitGuideMoney(cost)}</b>Inversión</div><div><b>${kitGuideMoney(publicValue)}</b>Precio público</div><div><b>${kitGuideMoney(gain)}</b>Ahorro / ganancia</div></div><h2>Productos seleccionados</h2><table><thead><tr><th>Producto</th><th>Código</th><th>Cant.</th><th>Puntos</th><th>Inversión 30%</th><th>Precio público</th><th>Ganancia estimada</th></tr></thead><tbody>${rows}</tbody></table><div class="note"><strong>Al completar 1.000 puntos:</strong> esta lista representa los productos seleccionados para el Kit. El kit puede incluir hasta 3 productos adicionales de regalo, según las condiciones vigentes. Esos regalos son un beneficio extra para el emprendedor y su valor no está incluido en este cálculo; podrían venderse nuevamente. Verifica precios, disponibilidad e incentivos vigentes antes de comprar.</div><p class="no-print">En la ventana de impresión, selecciona <strong>Guardar como PDF</strong> como destino.</p><script>window.onload=()=>setTimeout(()=>window.print(),250);<\/script></body></html>`); printWindow.document.close();
+function renderPointsTable() {
+  const query = (document.getElementById('pointsSearch')?.value || '').toLowerCase().trim();
+  const tbody = document.getElementById('pointsTableBody');
+  const noResults = document.getElementById('pointsNoResults');
+  if (!tbody) return;
+
+  let html = '';
+  let totalShown = 0;
+
+  POINTS_CATALOG.forEach((group) => {
+    const matches = group.items.filter(([name]) => name.toLowerCase().includes(query));
+    if (matches.length === 0) return;
+    html += `<tr class="points-section-row"><td colspan="3">${group.section}</td></tr>`;
+    matches.forEach(([name, points, price]) => {
+      html += `<tr><td>${name}</td><td>${points}</td><td>${price}</td></tr>`;
+    });
+    totalShown += matches.length;
+  });
+
+  tbody.innerHTML = html;
+  noResults.style.display = totalShown === 0 ? 'block' : 'none';
 }
-function renderPointsTable(){
-  const query=(document.getElementById('pointsSearch')?.value||'').toLowerCase().trim();const tbody=document.getElementById('pointsTableBody');const noResults=document.getElementById('pointsNoResults');if(!tbody)return;let html='';let totalShown=0;const c=kitGuideCatalog();
-  const groups=[['Omnilife',c.products.filter(item=>!String(item[1]).startsWith('SEYTÚ ·'))],['SEYTÚ Ecuador',c.products.filter(item=>String(item[1]).startsWith('SEYTÚ ·'))]];
-  groups.forEach(([group,items])=>{const matches=items.filter(item=>(item[1]+' '+item[0]).toLowerCase().includes(query));if(!matches.length)return;html+=`<tr class="points-section-row"><td colspan="5">${group}</td></tr>`;matches.forEach(item=>{const [code,name,points,cost,publicValue]=item;const qty=kitGuideCart[code]||0;html+=`<tr class="${qty?'kit-selected':''}"><td>${name}<small class="kit-product-code">Código ${code}</small></td><td>${points}</td><td>${kitGuideMoney(cost)}</td><td><input class="kit-qty" type="number" min="0" step="1" value="${qty}" data-kit-qty="${code}" aria-label="Cantidad de ${name}"></td><td><button class="kit-add-btn" type="button" data-kit-add="${code}">Agregar</button></td></tr>`;});totalShown+=matches.length;});
-  tbody.innerHTML=html;noResults.style.display=totalShown===0?'block':'none';updateKitGuideTotals();
-}
-document.addEventListener('input',(event)=>{const input=event.target.closest('[data-kit-qty]');if(!input)return;const code=input.dataset.kitQty;const qty=Math.max(0,parseInt(input.value||0,10));if(qty)kitGuideCart[code]=qty;else delete kitGuideCart[code];updateKitGuideTotals();input.closest('tr')?.classList.toggle('kit-selected',qty>0);});
-document.addEventListener('click',(event)=>{const button=event.target.closest('[data-kit-add]');if(!button)return;const code=button.dataset.kitAdd;kitGuideCart[code]=(kitGuideCart[code]||0)+1;renderPointsTable();});
-document.getElementById('kitGuideCountry')?.addEventListener('change',(event)=>{kitGuideCountry=event.target.value;kitGuideCart={};document.getElementById('pointsSearch').value='';renderPointsTable();});
 
 /* Visor de imágenes (lightbox): abre cualquier foto en grande al hacerle clic. */
 function openLightbox(src, alt) {
@@ -2058,7 +1731,6 @@ function openCountryModal(type) {
   const modal = document.getElementById(`modal-${type}`);
   if (!modal) return;
   modal.classList.add("open");
-  if (type === 'puntos') document.body.classList.add('kit-guide-focus-active');
   modal.setAttribute('aria-hidden', 'false');
   modal._previousFocus = document.activeElement;
   const firstControl = modal.querySelector('button, input, a, [tabindex]:not([tabindex="-1"])');
@@ -2069,7 +1741,6 @@ function closeCountryModal(type) {
   const modal = document.getElementById(`modal-${type}`);
   if (!modal) return;
   modal.classList.remove("open");
-  if (type === 'puntos') document.body.classList.remove('kit-guide-focus-active');
   modal.setAttribute('aria-hidden', 'true');
   if (modal._previousFocus && typeof modal._previousFocus.focus === 'function') modal._previousFocus.focus();
 }
@@ -2435,17 +2106,7 @@ window.addEventListener('load', () => {
 });
 </script>
 
-
-<script>
-window.addEventListener('message', function(event) {
-  const data = event.data || {};
-  if (data.type !== 'hamilton-calculator-access') return;
-  document.body.classList.toggle('calculator-mode-active', data.authorized === true);
-  if (data.authorized === true) {
-    const calculator = document.getElementById('calculadora-afiliados');
-    if (calculator) calculator.scrollIntoView({behavior:'smooth', block:'start'});
-  }
-});
-</script>
 </body>
 </html>
+
+
