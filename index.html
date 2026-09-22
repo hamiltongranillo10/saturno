@@ -1559,14 +1559,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     async function verifyAffiliateAccess(candidate){
       const url = ACCESS_SCRIPT_URL + &#x27;?action=verificar_acceso&amp;email=&#x27; + encodeURIComponent(candidate) + &#x27;&amp;_=&#x27; + Date.now();
+      const controller = new AbortController();
+      const timeout = setTimeout(() =&gt; controller.abort(), 45000);
       try {
-        const response = await fetch(url, {method:&#x27;GET&#x27;, mode:&#x27;cors&#x27;, cache:&#x27;no-store&#x27;});
+        const response = await fetch(url, {method:&#x27;GET&#x27;, mode:&#x27;cors&#x27;, cache:&#x27;no-store&#x27;, signal:controller.signal});
         if (!response.ok) throw new Error(&#x27;HTTP &#x27;+response.status);
         const data = await response.json();
         return accessState(data);
       } catch (error) {
+        if (error &amp;&amp; error.name === &#x27;AbortError&#x27;) throw new Error(&#x27;La validación está tardando demasiado. Revisa que tu Apps Script esté implementado como aplicación web y vuelve a intentarlo.&#x27;);
         throw new Error(&#x27;No se pudo consultar Google Sheets. Verifica que Apps Script esté implementado como aplicación web y permita acceso a cualquier usuario.&#x27;);
-      }
+      } finally { clearTimeout(timeout); }
     }
     function accessMessage(state){
       if (state === &#x27;PENDIENTE&#x27;) return &#x27;Tu correo fue registrado, pero todavía está pendiente de autorización. Escríbele a Hamilton por WhatsApp para confirmar tu afiliación.&#x27;;
