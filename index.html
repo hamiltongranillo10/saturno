@@ -18,13 +18,7 @@
 <meta name="twitter:image" content="https://hamiltonnetworker.com/Hamilton.jpg">
 <link rel="canonical" href="https://hamiltonnetworker.com/">
 <meta name="theme-color" content="#1A4331">
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-NMKKFPHN');</script>
-<!-- End Google Tag Manager -->
+<!-- Google Tag Manager queda bloqueado hasta que la persona acepte cookies analíticas. -->
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
@@ -68,6 +62,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 * { margin: 0; padding: 0; box-sizing: border-box; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 .privacy-microcopy { text-align: center; font-size: .72rem; color: var(--muted); margin-top: 8px; line-height: 1.45; }
+.privacy-consent { display:flex; gap:9px; align-items:flex-start; margin:14px 0 4px; color:var(--muted); font-size:.78rem; line-height:1.45; }
+.privacy-consent input { width:18px; height:18px; flex:0 0 auto; margin-top:1px; accent-color:var(--blue); }
+.privacy-consent a { color:var(--blue); font-weight:700; }
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, summary:focus-visible { outline:3px solid #D49B2A; outline-offset:3px; }
+.cookie-banner { position:fixed; left:18px; right:18px; bottom:18px; z-index:1000; background:#fff; color:#17392A; border:1px solid #B8CFC2; border-radius:14px; box-shadow:0 18px 50px rgba(0,0,0,.22); padding:18px 20px; display:flex; gap:18px; align-items:center; justify-content:space-between; }
+.cookie-banner[hidden] { display:none; }
+.cookie-banner p { margin:0; max-width:760px; font-size:.86rem; line-height:1.5; }
+.cookie-banner a { color:#1A4331; font-weight:700; }
+.cookie-actions { display:flex; gap:9px; flex-wrap:wrap; justify-content:flex-end; }
+.cookie-actions button { border:0; border-radius:7px; padding:10px 14px; font-weight:700; cursor:pointer; }
+.cookie-accept { background:#1A4331; color:#fff; }
+.cookie-reject { background:#EEF4F0; color:#17392A; border:1px solid #B8CFC2 !important; }
+.legal-links { position:static !important; display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:8px; padding:12px 0 0; background:transparent; border:0; box-shadow:none; backdrop-filter:none; -webkit-backdrop-filter:none; }
+.legal-links a, .legal-links button { color:inherit; background:transparent; border:0; padding:0; font:inherit; font-size:.78rem; cursor:pointer; text-decoration:underline; }
+@media(max-width:640px){ .cookie-banner { left:10px; right:10px; bottom:10px; display:block; } .cookie-actions { margin-top:12px; justify-content:flex-start; } }
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Inter', sans-serif;
@@ -118,12 +127,7 @@ h1, h2, h3, h4 { font-family: 'Fraunces', serif; }
 .animated-hero-text.d4 { animation-delay: .48s; }
 .animated-hero-card { opacity: 0; animation: fadeInUp 1.1s cubic-bezier(0.16,1,0.3,1) forwards; animation-delay: .4s; }
 
-.reveal { 
-  opacity: 0; 
-  transform: translateY(35px) scale(0.98); 
-  filter: blur(2px);
-  transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1), filter .8s cubic-bezier(.16,1,.3,1); 
-}
+.reveal { opacity: 1; transform: none; filter: none; transition: opacity .8s cubic-bezier(.16,1,.3,1), transform .8s cubic-bezier(.16,1,.3,1), filter .8s cubic-bezier(.16,1,.3,1); }
 .reveal.is-visible { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
 
 nav {
@@ -1329,6 +1333,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <textarea id="lead-mensaje" name="mensaje" class="form-textarea" placeholder="Ej. Quiero saber cómo registrarme como Cliente Admirable y qué productos me recomiendas..."></textarea>
       </div>
       <button type="submit" class="action-btn" id="submit-btn">Quiero ayuda para registrarme como Cliente Admirable</button>
+      <label class="privacy-consent" for="lead-consent"><input id="lead-consent" type="checkbox" required> <span>Acepto que mis datos se utilicen para responder mi solicitud y que, al enviar, se compartan con WhatsApp. He leído la <a href="politica-privacidad.html" target="_blank" rel="noopener">Política de privacidad</a>.</span></label>
       <p class="form-microcopy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Asesoría por Zoom para hacer tu registro paso a paso</p>
       <p class="privacy-microcopy">Tus datos se usan para coordinar tu acompañamiento de registro por Zoom.</p>
     </form>
@@ -1337,7 +1342,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <footer>
   <p>&copy; 2026 Hamilton Granillo. Todos los derechos reservados.<br>
-  <span style="font-size: 0.75rem; opacity: 0.6;">Este sitio corresponde a un Emprendedor Independiente y no es la página institucional de Omnilife.</span></p>
+  <span style="font-size: 0.75rem; opacity: 0.6;">Sitio administrado de manera independiente por Hamilton Leonel Granillo Ramírez; no es el sitio institucional de Omnilife.</span></p>
+  <nav class="legal-links" aria-label="Enlaces legales"><a href="politica-privacidad.html">Aviso de privacidad</a> · <a href="politica-cookies.html">Cookies</a> · <button type="button" onclick="openCookiePreferences()">Configurar cookies</button></nav>
 </footer>
 
 <div id="modal-cliente" role="dialog" aria-modal="true" aria-labelledby="modal-cliente-title" aria-hidden="true" class="country-modal-overlay" onclick="if(event.target===this) closeCountryModal('cliente')">
@@ -1431,6 +1437,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <label for="chat-duda">Tu duda</label>
         <textarea id="chat-duda" placeholder="Escribe aquí tu pregunta..."></textarea>
       </div>
+      <label class="privacy-consent chat-consent" for="chat-consent"><input id="chat-consent" type="checkbox"> <span>Acepto que mis datos se utilicen para responderme por WhatsApp. <a href="politica-privacidad.html" target="_blank" rel="noopener">Privacidad</a>.</span></label>
       <button id="chat-start-btn" type="button" class="chat-start-btn">Enviar duda por WhatsApp</button>
     </div>
   </div>
@@ -1442,7 +1449,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h4 id="modal-registro-title">✅ Ya completé mi registro</h4>
       <button type="button" onclick="closeCountryModal('registro')" aria-label="Cerrar">✕</button>
     </div>
-    <p class="country-modal-sub">¡Felicidades por dar el paso! Cuéntame tu nombre, tu código de cliente o afiliación, tu correo y tu teléfono. Estos datos se guardan en mi panel privado para confirmar tu registro y darte seguimiento después de verificarlo.</p>
+    <p class="country-modal-sub">¡Felicidades por dar el paso! Envíame tu nombre y código para que pueda verificarlo por WhatsApp. El correo y teléfono se usan por separado para seguimiento y atribución publicitaria, con tu consentimiento.</p>
     <div class="form-group">
       <label class="form-label" for="registro-nombre">Nombre</label>
       <input id="registro-nombre" name="registro_nombre" autocomplete="name" type="text" class="form-input" placeholder="Tu nombre" required>
@@ -1456,20 +1463,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <input id="registro-email" name="registro_email" autocomplete="email" type="email" class="form-input" placeholder="tucorreo@ejemplo.com" required>
     </div>
     <div class="form-group">
-      <label class="form-label" for="registro-telefono">Tu teléfono</label>
+      <label class="form-label" for="registro-telefono">Tu número de teléfono</label>
       <div style="display:flex; gap:8px;">
-        <select id="registro-pais-tel" class="form-input" style="max-width:112px; flex-shrink:0; padding-left:10px; padding-right:6px;"></select>
+        <select id="registro-pais-tel" class="form-input" aria-label="Código de país" style="max-width:112px; flex-shrink:0; padding-left:10px; padding-right:6px;"></select>
         <input id="registro-telefono" name="registro_telefono" autocomplete="tel-national" type="tel" inputmode="numeric" class="form-input" placeholder="991234567" required>
       </div>
     </div>
-    <p id="registro-error" style="display:none; color:#C0392B; font-size:.82rem; margin-top:4px; margin-bottom:0;">Por favor completa nombre, código, correo y teléfono antes de continuar.</p>
+    <label class="privacy-consent" for="registro-consent"><input id="registro-consent" type="checkbox" required> <span>Acepto que mi nombre y código se envíen por WhatsApp para verificar mi registro, y que mi nombre, correo y teléfono se utilicen para medición y atribución publicitaria de Meta. He leído la <a href="politica-privacidad.html" target="_blank" rel="noopener">Política de privacidad</a>.</span></label>
+    <p id="registro-error" style="display:none; color:#C0392B; font-size:.82rem; margin-top:4px; margin-bottom:0;">Completa nombre, código, correo, teléfono y consentimiento antes de continuar.</p>
     <button type="button" class="nav-btn primary" style="width:100%; margin-top: 12px;" onclick="enviarRegistroCompletado()">Avisar que ya me registré</button>
   </div>
 </div>
 
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-description" hidden>
+  <div><strong id="cookie-title">Privacidad y cookies</strong><p id="cookie-description">Usamos cookies necesarias para que la página funcione y, con tu permiso, herramientas que nos ayudan a conocer las visitas y mejorar nuestras campañas. Puedes aceptar o continuar solo con las necesarias. <a href="politica-privacidad.html">Leer el aviso de privacidad</a> · <a href="politica-cookies.html">Ver cookies</a>.</p></div>
+  <div class="cookie-actions"><button type="button" class="cookie-reject" onclick="setCookieConsent('necessary')">Solo necesarias</button><button type="button" class="cookie-accept" onclick="setCookieConsent('analytics')">Aceptar analíticas</button></div>
+</div>
 <script>
 
 const WHATSAPP_PHONE = "593968107948";
+const GTM_ID = 'GTM-NMKKFPHN';
+function loadAnalytics() {
+  if (window.__gtmLoaded) return;
+  window.__gtmLoaded = true;
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(GTM_ID);
+  document.head.appendChild(script);
+}
+function getCookieConsent() { return localStorage.getItem('site_cookie_consent') || ''; }
+function setCookieConsent(value) {
+  localStorage.setItem('site_cookie_consent', value);
+  document.getElementById('cookie-banner')?.setAttribute('hidden', '');
+  if (value === 'analytics') loadAnalytics();
+}
+function openCookiePreferences() {
+  const banner = document.getElementById('cookie-banner');
+  banner?.removeAttribute('hidden');
+  banner?.querySelector('.cookie-reject')?.focus();
+}
+if (getCookieConsent() === 'analytics') loadAnalytics();
+else if (!getCookieConsent()) document.getElementById('cookie-banner')?.removeAttribute('hidden');
+
 
 const DIST_CODE = "593672828GRH";
 const PHONE_DIAL_CODES = [
@@ -1823,6 +1860,7 @@ chatPanelClose.addEventListener('click', () => {
 chatStartBtn.addEventListener('click', () => {
   const nombre = document.getElementById('chat-nombre').value.trim();
   const duda = document.getElementById('chat-duda').value.trim();
+  if (!document.getElementById('chat-consent')?.checked) { alert('Acepta el consentimiento de privacidad para continuar.'); return; }
   const texto = `Hola Hamilton 👋\n\n*Tipo:* Duda\n*Nombre:* ${nombre || 'No especificado'}\n*Detalle:* ${duda || 'Tengo una duda, ¿me puedes ayudar?'}`;
   if (typeof fbq !== 'undefined') fbq('track', 'Lead', {content_name: 'Duda por WhatsApp', content_category: 'Chat widget'});
   window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(texto)}`, '_blank');
@@ -1853,20 +1891,19 @@ function enviarRegistroCompletado() {
   const telefonoLocal = document.getElementById('registro-telefono').value.trim();
   const errorMsg = document.getElementById('registro-error');
 
-  if (!nombre || !codigo || !email || !telefonoLocal) {
+  if (!nombre || !codigo || !email || !telefonoLocal || !document.getElementById('registro-consent')?.checked) {
     errorMsg.style.display = 'block';
     return;
   }
   errorMsg.style.display = 'none';
 
   const telefono = `${dialCode} ${telefonoLocal}`;
-  const texto = `Hola Hamilton 👋\n\n*Tipo:* Ya me registré\n*Nombre:* ${nombre}\n*Código:* ${codigo}\n*Correo:* ${email}\n*Teléfono:* ${telefono}\n*Detalle:* Ya completé mi registro en Omnilife y me salió la pantalla de confirmación. Quiero saber cómo iniciar sesión para comprar en la web, o cuál es la CEDI más cercana a mí.`;
+  const texto = `Hola Hamilton 👋\n\n*Tipo:* Ya me registré\n*Nombre:* ${nombre}\n*Código:* ${codigo}\n*Detalle:* Ya completé mi registro en Omnilife. ¿Me ayudas a verificar mi código y me indicas cómo continuar?`;
   // Ya no se dispara CompleteRegistration aquí. Solo se guarda como
   // "Registro pendiente" — el evento real a Meta se envía server-side
   // desde el panel de administrador, cuando Hamilton verifica el código
-  // manualmente en Omnilife y lo confirma. El correo/teléfono viajan
-  // también, para que ese evento lleve datos con los que Meta pueda
-  // emparejar mejor a la persona.
+  // manualmente en Omnilife y lo confirma. El correo y el teléfono se
+  // envían al sistema de medición/seguimiento autorizado, no al WhatsApp.
   fetch(CARD_SCRIPT_URL, {
     method: 'POST',
     mode: 'no-cors',
@@ -1884,6 +1921,7 @@ function enviarRegistroCompletado() {
   document.getElementById('registro-codigo').value = '';
   document.getElementById('registro-email').value = '';
   document.getElementById('registro-telefono').value = '';
+  document.getElementById('registro-consent').checked = false;
   closeCountryModal('registro');
 }
 
@@ -2090,6 +2128,7 @@ document.addEventListener('visibilitychange', () => {
 
 function sendToWhatsApp(event) {
   event.preventDefault();
+  if (!document.getElementById('lead-consent')?.checked) { alert('Acepta el consentimiento de privacidad para continuar.'); return; }
   const nombre = document.getElementById('lead-nombre').value.trim();
   const ciudad = document.getElementById('lead-ciudad').value.trim();
   const mensaje = document.getElementById('lead-mensaje').value.trim();
