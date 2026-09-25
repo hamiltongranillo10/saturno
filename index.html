@@ -768,12 +768,24 @@ footer { background: var(--bg); border-top: 1px solid var(--line); text-align: c
 .legal-pdf-close { width:36px; height:36px; border:1px solid #B8CFC2; border-radius:50%; background:#fff; color:#17392A; font-size:1.25rem; line-height:1; cursor:pointer; }
 .legal-pdf-body { height:calc(100% - 126px); background:#3D4247; }
 .legal-pdf-frame { display:block; width:100%; height:100%; border:0; background:#3D4247; }
+.legal-pdf-mobile-message { display:none; }
 .legal-pdf-footer { min-height:60px; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:10px; padding:10px 16px; background:#fff; border-top:1px solid #D7E1DA; }
 .legal-pdf-button { display:inline-flex; align-items:center; justify-content:center; min-width:140px; padding:10px 22px; border-radius:22px; font:inherit; font-weight:700; text-decoration:none; cursor:pointer; }
 .legal-pdf-button.primary { border:1px solid #6A2A85; background:#6A2A85; color:#fff; }
 .legal-pdf-button.secondary { border:1px solid #A9B8B0; background:#fff; color:#4E6960; }
 .privacy-consent button.privacy-modal-link { border:0; padding:0; background:transparent; color:var(--blue); font:inherit; font-weight:700; text-decoration:underline; cursor:pointer; }
-@media(max-width:640px){ .legal-pdf-modal { width:calc(100vw - 20px); height:calc(100vh - 32px); border-radius:10px; } .legal-pdf-header { padding:10px 12px; } .legal-pdf-title { font-size:1rem; } .legal-pdf-footer { padding:8px 10px; } .legal-pdf-button { min-width:120px; padding:9px 16px; } }
+@media(max-width:640px){
+  .legal-pdf-modal { position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); margin:0; width:calc(100vw - 28px); height:auto; max-height:calc(100vh - 44px); border-radius:24px; }
+  .legal-pdf-header { min-height:0; justify-content:center; padding:28px 28px 0; border-bottom:0; }
+  .legal-pdf-title { display:none; }
+  .legal-pdf-close { position:absolute; top:12px; right:14px; width:30px; height:30px; border:0; color:#6A2A85; font-size:1.5rem; }
+  .legal-pdf-body { display:none; }
+  .legal-pdf-mobile-message { display:block; padding:34px 28px 16px; text-align:center; color:#505050; font-size:1.05rem; line-height:1.38; }
+  .legal-pdf-mobile-message strong { display:block; margin-bottom:12px; color:#6A2A85; font-size:1.15rem; }
+  .legal-pdf-footer { min-height:0; flex-direction:column; gap:14px; padding:10px 28px 30px; border-top:0; }
+  .legal-pdf-button { width:100%; min-width:0; min-height:54px; padding:13px 18px; border-radius:30px; font-size:1.05rem; }
+  .legal-pdf-download { margin-top:10px; color:#6A2A85; font-size:.98rem; }
+}
 
 </style>
 
@@ -1506,13 +1518,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <h2 id="legal-pdf-title" class="legal-pdf-title">Aviso de privacidad</h2>
     <button type="button" class="legal-pdf-close" aria-label="Cerrar documento" onclick="cancelLegalPdf()">×</button>
   </header>
+  <div class="legal-pdf-mobile-message">
+    <strong>Protección de tus datos</strong>
+    Al hacer clic en “Aceptar”, confirmas que has leído el Aviso de privacidad y autorizas el tratamiento de tus datos para atender tu solicitud y brindarte acompañamiento, conforme a lo explicado en el documento.
+  </div>
   <div class="legal-pdf-body">
     <iframe id="legal-pdf-frame" class="legal-pdf-frame" title="Documento legal"></iframe>
   </div>
   <footer class="legal-pdf-footer">
     <button type="button" class="legal-pdf-button secondary" onclick="cancelLegalPdf()">Cancelar</button>
     <button type="button" class="legal-pdf-button primary" onclick="acceptLegalPdf()">Aceptar</button>
-    <a id="legal-pdf-download" class="legal-pdf-download" href="Aviso-de-privacidad-Hamilton-Granillo.pdf" download>Descargar PDF ↓</a>
+    <a id="legal-pdf-download" class="legal-pdf-download" href="Aviso-de-privacidad-Hamilton-Granillo.pdf" download>↓&nbsp; Descargar políticas</a>
   </footer>
 </dialog>
 
