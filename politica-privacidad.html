@@ -5,6 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Aviso de privacidad de la página independiente de Hamilton Granillo.">
   <title>Aviso de privacidad | Hamilton Granillo</title>
+  <!-- Google Tag Manager: las etiquetas no necesarias permanecen bloqueadas hasta el consentimiento -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      analytics_storage: 'denied',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      wait_for_update: 500
+    });
+    if (localStorage.getItem('site_cookie_consent') === 'analytics') {
+      gtag('consent', 'update', {
+        analytics_storage: 'granted',
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted'
+      });
+    }
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-NMKKFPHN');
+  </script>
   <style>
     :root{--green:#1A4331;--green-dark:#123322;--soft:#F1F5F2;--ink:#17392A;--muted:#4E6960;--line:#D7E1DA;--gold:#B98A3E}
     *{box-sizing:border-box}
