@@ -761,7 +761,7 @@ footer { background: var(--bg); border-top: 1px solid var(--line); text-align: c
 
 /* Visor modal de políticas PDF */
 .legal-links .legal-download { text-decoration: none; font-weight: 700; }
-.legal-pdf-modal { width: min(720px, calc(100vw - 28px)); height: min(700px, calc(100vh - 44px)); padding: 0; border: 0; border-radius: 12px; overflow: hidden; background: #fff; color: #17392A; box-shadow: 0 24px 80px rgba(0,0,0,.35); }
+.legal-pdf-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); margin: 0; width: min(720px, calc(100vw - 28px)); height: min(700px, calc(100vh - 44px)); padding: 0; border: 0; border-radius: 12px; overflow: hidden; background: #fff; color: #17392A; box-shadow: 0 24px 80px rgba(0,0,0,.35); }
 .legal-pdf-modal::backdrop { background: rgba(0,0,0,.58); backdrop-filter: blur(3px); }
 .legal-pdf-header { min-height: 58px; display:flex; align-items:center; justify-content:space-between; gap:14px; padding:12px 18px; background:#fff; border-bottom:1px solid #D7E1DA; }
 .legal-pdf-title { margin:0; font-family:'Fraunces',Georgia,serif; font-size:1.15rem; color:#1A4331; }
@@ -2281,8 +2281,12 @@ function closeLegalPdf() {
 }
 document.querySelectorAll('.privacy-consent input[type="checkbox"]').forEach((checkbox) => {
   checkbox.addEventListener('click', (event) => {
-    if (!checkbox.checked) {
+    // En un evento click, el navegador ya cambió visualmente el estado.
+    // Si ahora está marcado, significa que este fue el primer clic para aceptar.
+    if (checkbox.checked) {
       event.preventDefault();
+      event.stopPropagation();
+      checkbox.checked = false;
       openLegalPdf('privacy', checkbox.id);
     }
   });
