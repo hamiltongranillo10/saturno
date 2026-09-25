@@ -761,19 +761,19 @@ footer { background: var(--bg); border-top: 1px solid var(--line); text-align: c
 
 /* Visor modal de políticas PDF */
 .legal-links .legal-download { text-decoration: none; font-weight: 700; }
-.legal-pdf-modal { width: min(1100px, calc(100vw - 24px)); height: min(88vh, 900px); padding: 0; border: 0; border-radius: 14px; overflow: hidden; background: #fff; color: #17392A; box-shadow: 0 24px 80px rgba(0,0,0,.35); }
+.legal-pdf-modal { width: min(720px, calc(100vw - 28px)); height: min(700px, calc(100vh - 44px)); padding: 0; border: 0; border-radius: 12px; overflow: hidden; background: #fff; color: #17392A; box-shadow: 0 24px 80px rgba(0,0,0,.35); }
 .legal-pdf-modal::backdrop { background: rgba(0,0,0,.58); backdrop-filter: blur(3px); }
 .legal-pdf-header { min-height: 58px; display:flex; align-items:center; justify-content:space-between; gap:14px; padding:12px 18px; background:#fff; border-bottom:1px solid #D7E1DA; }
 .legal-pdf-title { margin:0; font-family:'Fraunces',Georgia,serif; font-size:1.15rem; color:#1A4331; }
 .legal-pdf-close { width:36px; height:36px; border:1px solid #B8CFC2; border-radius:50%; background:#fff; color:#17392A; font-size:1.25rem; line-height:1; cursor:pointer; }
-.legal-pdf-body { height:calc(100% - 118px); background:#3D4247; }
+.legal-pdf-body { height:calc(100% - 126px); background:#3D4247; }
 .legal-pdf-frame { display:block; width:100%; height:100%; border:0; background:#3D4247; }
 .legal-pdf-footer { min-height:60px; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:10px; padding:10px 16px; background:#fff; border-top:1px solid #D7E1DA; }
 .legal-pdf-button { display:inline-flex; align-items:center; justify-content:center; min-width:140px; padding:10px 22px; border-radius:22px; font:inherit; font-weight:700; text-decoration:none; cursor:pointer; }
 .legal-pdf-button.primary { border:1px solid #6A2A85; background:#6A2A85; color:#fff; }
 .legal-pdf-button.secondary { border:1px solid #A9B8B0; background:#fff; color:#4E6960; }
 .privacy-consent button.privacy-modal-link { border:0; padding:0; background:transparent; color:var(--blue); font:inherit; font-weight:700; text-decoration:underline; cursor:pointer; }
-@media(max-width:640px){ .legal-pdf-modal { width:calc(100vw - 12px); height:92vh; border-radius:10px; } .legal-pdf-header { padding:10px 12px; } .legal-pdf-title { font-size:1rem; } .legal-pdf-footer { padding:8px 10px; } .legal-pdf-button { min-width:120px; padding:9px 16px; } }
+@media(max-width:640px){ .legal-pdf-modal { width:calc(100vw - 20px); height:calc(100vh - 32px); border-radius:10px; } .legal-pdf-header { padding:10px 12px; } .legal-pdf-title { font-size:1rem; } .legal-pdf-footer { padding:8px 10px; } .legal-pdf-button { min-width:120px; padding:9px 16px; } }
 
 </style>
 
@@ -1504,10 +1504,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <dialog id="legal-pdf-modal" class="legal-pdf-modal" aria-labelledby="legal-pdf-title">
   <header class="legal-pdf-header">
     <h2 id="legal-pdf-title" class="legal-pdf-title">Aviso de privacidad</h2>
-    <button type="button" class="legal-pdf-close" aria-label="Cerrar documento" onclick="closeLegalPdf()">×</button>
+    <button type="button" class="legal-pdf-close" aria-label="Cerrar documento" onclick="cancelLegalPdf()">×</button>
   </header>
   <div class="legal-pdf-body">
-    <iframe id="legal-pdf-frame" class="legal-pdf-frame" title="Documento legal" loading="lazy"></iframe>
+    <iframe id="legal-pdf-frame" class="legal-pdf-frame" title="Documento legal"></iframe>
   </div>
   <footer class="legal-pdf-footer">
     <button type="button" class="legal-pdf-button secondary" onclick="cancelLegalPdf()">Cancelar</button>
@@ -2264,6 +2264,10 @@ function acceptLegalPdf() {
   closeLegalPdf();
 }
 function cancelLegalPdf() {
+  if (pendingConsentId) {
+    const checkbox = document.getElementById(pendingConsentId);
+    if (checkbox) checkbox.checked = false;
+  }
   pendingConsentId = null;
   closeLegalPdf();
 }
@@ -2274,7 +2278,6 @@ function closeLegalPdf() {
   if (typeof modal.close === 'function' && modal.open) modal.close();
   else modal.removeAttribute('open');
   if (frame) frame.removeAttribute('src');
-  pendingConsentId = null;
 }
 document.querySelectorAll('.privacy-consent input[type="checkbox"]').forEach((checkbox) => {
   checkbox.addEventListener('click', (event) => {
@@ -2287,9 +2290,9 @@ document.querySelectorAll('.privacy-consent input[type="checkbox"]').forEach((ch
 document.getElementById('legal-pdf-modal')?.addEventListener('click', (event) => {
   const modal = event.currentTarget;
   const bounds = modal.getBoundingClientRect();
-  if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeLegalPdf();
+  if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) cancelLegalPdf();
 });
-document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeLegalPdf(); });
+document.addEventListener('keydown', (event) => { if (event.key === 'Escape') cancelLegalPdf(); });
 </script>
 
 </body>
