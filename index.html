@@ -758,6 +758,23 @@ footer { background: var(--bg); border-top: 1px solid var(--line); text-align: c
   .logo { font-size: 1rem; }
 }
 @media(max-width:560px){ .value-grid, .cat-grid { grid-template-columns: 1fr; } }
+
+/* Visor modal de políticas PDF */
+.legal-links .legal-download { text-decoration: none; font-weight: 700; }
+.legal-pdf-modal { width: min(1100px, calc(100vw - 24px)); height: min(88vh, 900px); padding: 0; border: 0; border-radius: 14px; overflow: hidden; background: #fff; color: #17392A; box-shadow: 0 24px 80px rgba(0,0,0,.35); }
+.legal-pdf-modal::backdrop { background: rgba(0,0,0,.58); backdrop-filter: blur(3px); }
+.legal-pdf-header { min-height: 58px; display:flex; align-items:center; justify-content:space-between; gap:14px; padding:12px 18px; background:#fff; border-bottom:1px solid #D7E1DA; }
+.legal-pdf-title { margin:0; font-family:'Fraunces',Georgia,serif; font-size:1.15rem; color:#1A4331; }
+.legal-pdf-close { width:36px; height:36px; border:1px solid #B8CFC2; border-radius:50%; background:#fff; color:#17392A; font-size:1.25rem; line-height:1; cursor:pointer; }
+.legal-pdf-body { height:calc(100% - 118px); background:#3D4247; }
+.legal-pdf-frame { display:block; width:100%; height:100%; border:0; background:#3D4247; }
+.legal-pdf-footer { min-height:60px; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:10px; padding:10px 16px; background:#fff; border-top:1px solid #D7E1DA; }
+.legal-pdf-button { display:inline-flex; align-items:center; justify-content:center; min-width:140px; padding:10px 22px; border-radius:22px; font:inherit; font-weight:700; text-decoration:none; cursor:pointer; }
+.legal-pdf-button.primary { border:1px solid #6A2A85; background:#6A2A85; color:#fff; }
+.legal-pdf-button.secondary { border:1px solid #A9B8B0; background:#fff; color:#4E6960; }
+.privacy-consent button.privacy-modal-link { border:0; padding:0; background:transparent; color:var(--blue); font:inherit; font-weight:700; text-decoration:underline; cursor:pointer; }
+@media(max-width:640px){ .legal-pdf-modal { width:calc(100vw - 12px); height:92vh; border-radius:10px; } .legal-pdf-header { padding:10px 12px; } .legal-pdf-title { font-size:1rem; } .legal-pdf-footer { padding:8px 10px; } .legal-pdf-button { min-width:120px; padding:9px 16px; } }
+
 </style>
 
 <!-- Meta (Facebook) Pixel Code -->
@@ -1333,7 +1350,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <textarea id="lead-mensaje" name="mensaje" class="form-textarea" placeholder="Ej. Quiero saber cómo registrarme como Cliente Admirable y qué productos me recomiendas..."></textarea>
       </div>
       <button type="submit" class="action-btn" id="submit-btn">Quiero ayuda para registrarme como Cliente Admirable</button>
-      <label class="privacy-consent" for="lead-consent"><input id="lead-consent" type="checkbox" required> <span>Acepto que mis datos se utilicen para responder mi solicitud y que, al enviar, se compartan con WhatsApp. He leído la <a href="politica-privacidad.html" target="_blank" rel="noopener">Política de privacidad</a>.</span></label>
+      <label class="privacy-consent" for="lead-consent"><input id="lead-consent" type="checkbox" required> <span>Acepto que mis datos se utilicen para responder mi solicitud y que, al enviar, se compartan con WhatsApp. He leído la <button type="button" class="privacy-modal-link" onclick="openLegalPdf('privacy')">Política de privacidad</button>.</span></label>
       <p class="form-microcopy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Asesoría por Zoom para hacer tu registro paso a paso</p>
       <p class="privacy-microcopy">Tus datos se usan para coordinar tu acompañamiento de registro por Zoom.</p>
     </form>
@@ -1343,7 +1360,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer>
   <p>&copy; 2026 Hamilton Granillo. Todos los derechos reservados.<br>
   <span style="font-size: 0.75rem; opacity: 0.6;">Sitio independiente administrado por Hamilton Leonel Granillo Ramírez, Distribuidor Independiente de Omnilife. No es el sitio oficial de Omnilife.</span></p>
-  <nav class="legal-links" aria-label="Enlaces legales"><a href="politica-privacidad.html">Aviso de privacidad</a> · <a href="politica-cookies.html">Cookies</a> · <button type="button" onclick="openCookiePreferences()">Configurar cookies</button></nav>
+  <nav class="legal-links" aria-label="Enlaces legales">
+    <button type="button" onclick="openLegalPdf('privacy')">Aviso de privacidad</button> ·
+    <button type="button" onclick="openLegalPdf('cookies')">Política de cookies</button> ·
+    <a class="legal-download" href="Aviso-de-privacidad-Hamilton-Granillo.pdf" download>Descargar privacidad ↓</a> ·
+    <a class="legal-download" href="Politica-de-cookies-Hamilton-Granillo.pdf" download>Descargar cookies ↓</a> ·
+    <button type="button" onclick="openCookiePreferences()">Configurar cookies</button>
+  </nav>
 </footer>
 
 <div id="modal-cliente" role="dialog" aria-modal="true" aria-labelledby="modal-cliente-title" aria-hidden="true" class="country-modal-overlay" onclick="if(event.target===this) closeCountryModal('cliente')">
@@ -1437,7 +1460,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <label for="chat-duda">Tu duda</label>
         <textarea id="chat-duda" placeholder="Escribe aquí tu pregunta..."></textarea>
       </div>
-      <label class="privacy-consent chat-consent" for="chat-consent"><input id="chat-consent" type="checkbox"> <span>Acepto que mis datos se utilicen para responderme por WhatsApp. <a href="politica-privacidad.html" target="_blank" rel="noopener">Privacidad</a>.</span></label>
+      <label class="privacy-consent chat-consent" for="chat-consent"><input id="chat-consent" type="checkbox"> <span>Acepto que mis datos se utilicen para responderme por WhatsApp. <button type="button" class="privacy-modal-link" onclick="openLegalPdf('privacy')">Privacidad</button>.</span></label>
       <button id="chat-start-btn" type="button" class="chat-start-btn">Enviar duda por WhatsApp</button>
     </div>
   </div>
@@ -1469,14 +1492,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <input id="registro-telefono" name="registro_telefono" autocomplete="tel-national" type="tel" inputmode="numeric" class="form-input" placeholder="991234567" required>
       </div>
     </div>
-    <label class="privacy-consent" for="registro-consent"><input id="registro-consent" type="checkbox" required> <span>Acepto que mi nombre y código se envíen por WhatsApp para verificar mi registro, y que mi nombre, correo y teléfono se utilicen para medición y atribución publicitaria de Meta. He leído la <a href="politica-privacidad.html" target="_blank" rel="noopener">Política de privacidad</a>.</span></label>
+    <label class="privacy-consent" for="registro-consent"><input id="registro-consent" type="checkbox" required> <span>Acepto que mi nombre y código se envíen por WhatsApp para verificar mi registro, y que mi nombre, correo y teléfono se utilicen para medición y atribución publicitaria de Meta. He leído la <button type="button" class="privacy-modal-link" onclick="openLegalPdf('privacy')">Política de privacidad</button>.</span></label>
     <p id="registro-error" style="display:none; color:#C0392B; font-size:.82rem; margin-top:4px; margin-bottom:0;">Completa nombre, código, correo, teléfono y consentimiento antes de continuar.</p>
     <button type="button" class="nav-btn primary" style="width:100%; margin-top: 12px;" onclick="enviarRegistroCompletado()">Avisar que ya me registré</button>
   </div>
 </div>
 
+
+
+<!-- Visor modal de las políticas PDF -->
+<dialog id="legal-pdf-modal" class="legal-pdf-modal" aria-labelledby="legal-pdf-title">
+  <header class="legal-pdf-header">
+    <h2 id="legal-pdf-title" class="legal-pdf-title">Aviso de privacidad</h2>
+    <button type="button" class="legal-pdf-close" aria-label="Cerrar documento" onclick="closeLegalPdf()">×</button>
+  </header>
+  <div class="legal-pdf-body">
+    <iframe id="legal-pdf-frame" class="legal-pdf-frame" title="Documento legal" loading="lazy"></iframe>
+  </div>
+  <footer class="legal-pdf-footer">
+    <button type="button" class="legal-pdf-button secondary" onclick="cancelLegalPdf()">Cancelar</button>
+    <button type="button" class="legal-pdf-button primary" onclick="acceptLegalPdf()">Aceptar</button>
+    <a id="legal-pdf-download" class="legal-pdf-download" href="Aviso-de-privacidad-Hamilton-Granillo.pdf" download>Descargar PDF ↓</a>
+  </footer>
+</dialog>
+
 <div id="cookie-banner" class="cookie-banner" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-description" hidden>
-  <div><strong id="cookie-title">Privacidad y cookies</strong><p id="cookie-description">Usamos cookies necesarias para que la página funcione y, con tu permiso, herramientas que nos ayudan a conocer las visitas y mejorar nuestras campañas. Puedes aceptar o continuar solo con las necesarias. <a href="politica-privacidad.html">Leer el aviso de privacidad</a> · <a href="politica-cookies.html">Ver cookies</a>.</p></div>
+  <div><strong id="cookie-title">Privacidad y cookies</strong><p id="cookie-description">Usamos cookies necesarias para que la página funcione y, con tu permiso, herramientas que nos ayudan a conocer las visitas y mejorar nuestras campañas. Puedes aceptar o continuar solo con las necesarias. <button type="button" class="privacy-modal-link" onclick="openLegalPdf('privacy')">Leer el aviso de privacidad</button> · <button type="button" class="privacy-modal-link" onclick="openLegalPdf('cookies')">Ver cookies</button>.</p></div>
   <div class="cookie-actions"><button type="button" class="cookie-reject" onclick="setCookieConsent('necessary')">Solo necesarias</button><button type="button" class="cookie-accept" onclick="setCookieConsent('analytics')">Aceptar analíticas</button></div>
 </div>
 <script>
@@ -2190,6 +2231,65 @@ window.addEventListener('load', () => {
     revealElements.forEach(el => el.classList.add('is-visible'));
   }, 1200);
 });
+
+
+/* Visor de políticas PDF y aceptación desde las casillas */
+const LEGAL_PDFS = {
+  privacy: { title: 'Aviso de privacidad', file: 'Aviso-de-privacidad-Hamilton-Granillo.pdf' },
+  cookies: { title: 'Política de cookies', file: 'Politica-de-cookies-Hamilton-Granillo.pdf' }
+};
+let pendingConsentId = null;
+function openLegalPdf(type, consentId = null) {
+  const legalDocument = LEGAL_PDFS[type];
+  const modal = document.getElementById('legal-pdf-modal');
+  const frame = document.getElementById('legal-pdf-frame');
+  const title = document.getElementById('legal-pdf-title');
+  const download = document.getElementById('legal-pdf-download');
+  if (!legalDocument || !modal || !frame || !title || !download) return;
+  pendingConsentId = consentId;
+  title.textContent = legalDocument.title;
+  frame.title = legalDocument.title;
+  frame.src = legalDocument.file;
+  download.href = legalDocument.file;
+  download.download = legalDocument.file;
+  if (typeof modal.showModal === 'function') modal.showModal();
+  else modal.setAttribute('open', '');
+}
+function acceptLegalPdf() {
+  if (pendingConsentId) {
+    const checkbox = document.getElementById(pendingConsentId);
+    if (checkbox) checkbox.checked = true;
+  }
+  pendingConsentId = null;
+  closeLegalPdf();
+}
+function cancelLegalPdf() {
+  pendingConsentId = null;
+  closeLegalPdf();
+}
+function closeLegalPdf() {
+  const modal = document.getElementById('legal-pdf-modal');
+  const frame = document.getElementById('legal-pdf-frame');
+  if (!modal) return;
+  if (typeof modal.close === 'function' && modal.open) modal.close();
+  else modal.removeAttribute('open');
+  if (frame) frame.removeAttribute('src');
+  pendingConsentId = null;
+}
+document.querySelectorAll('.privacy-consent input[type="checkbox"]').forEach((checkbox) => {
+  checkbox.addEventListener('click', (event) => {
+    if (!checkbox.checked) {
+      event.preventDefault();
+      openLegalPdf('privacy', checkbox.id);
+    }
+  });
+});
+document.getElementById('legal-pdf-modal')?.addEventListener('click', (event) => {
+  const modal = event.currentTarget;
+  const bounds = modal.getBoundingClientRect();
+  if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) closeLegalPdf();
+});
+document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeLegalPdf(); });
 </script>
 
 </body>
