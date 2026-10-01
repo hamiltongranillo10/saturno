@@ -1064,6 +1064,230 @@ body{
 }
 </style>
 
+
+<style id="faq-footer-upgrade">
+/* ===== FAQ + FOOTER UPGRADE ===== */
+.faq{
+  max-width:70rem;
+}
+.faq-intro{
+  max-width:42rem;
+  margin:.8rem auto 0;
+  color:var(--muted);
+  line-height:1.7;
+}
+.faq-list{
+  margin-top:2.8rem;
+  border-top:1px solid rgba(23,63,53,.14);
+}
+.faq-list details{
+  border-bottom:1px solid rgba(23,63,53,.14);
+  padding:0;
+  transition:border-color .35s ease, background .35s ease;
+}
+.faq-list details[open]{
+  background:rgba(247,244,235,.42);
+}
+.faq-list summary{
+  display:grid;
+  grid-template-columns:3rem 1fr auto;
+  align-items:center;
+  gap:1rem;
+  padding:1.35rem 1rem;
+  list-style:none;
+  cursor:pointer;
+  color:var(--ink);
+  font-size:1.02rem;
+  font-weight:650;
+}
+.faq-list summary::-webkit-details-marker{display:none}
+.faq-number{
+  color:var(--gold);
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.12em;
+}
+.faq-question{
+  line-height:1.45;
+}
+.faq-icon{
+  width:2.15rem;
+  height:2.15rem;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(23,63,53,.18);
+  border-radius:50%;
+  color:var(--green);
+  font-size:1.25rem;
+  font-weight:400;
+  transition:transform .35s var(--lumora-ease),background .35s ease,color .35s ease;
+}
+.faq-list details[open] .faq-icon{
+  transform:rotate(45deg);
+  background:var(--green);
+  color:#fff;
+}
+.faq-answer{
+  padding:0 4.15rem 1.5rem;
+}
+.faq-answer p{
+  margin:0;
+  max-width:52rem;
+  color:#65716c;
+  line-height:1.75;
+}
+.faq-cta{
+  margin-top:2.5rem;
+  padding:1.5rem 1.6rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1.5rem;
+  background:var(--green);
+  color:#fff;
+  border-radius:1.5rem;
+  box-shadow:0 20px 50px rgba(10,34,25,.12);
+}
+.faq-cta div{
+  display:flex;
+  flex-direction:column;
+  gap:.3rem;
+}
+.faq-cta strong{font-size:1rem}
+.faq-cta span{color:rgba(255,255,255,.68);font-size:.88rem}
+.faq-cta .btn{
+  flex-shrink:0;
+  background:#fff;
+  color:var(--green);
+  border-color:#fff;
+}
+.faq-cta .btn:hover{
+  background:var(--gold);
+  color:#fff;
+  border-color:var(--gold);
+}
+
+/* Footer richer, while keeping the original Hamilton palette */
+.footer{
+  margin-top:2rem;
+  overflow:hidden;
+  position:relative;
+}
+.footer::before{
+  content:"";
+  position:absolute;
+  width:22rem;
+  height:22rem;
+  right:-8rem;
+  top:-10rem;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:50%;
+  box-shadow:0 0 0 4rem rgba(255,255,255,.018),0 0 0 8rem rgba(255,255,255,.012);
+  pointer-events:none;
+}
+.footer-inner{position:relative;z-index:1}
+.footer-brand{
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  margin-bottom:3rem;
+}
+.footer-mark{
+  width:3.2rem;
+  height:3.2rem;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:1rem;
+  color:var(--gold-light);
+  font-size:.8rem;
+  font-weight:800;
+  letter-spacing:.08em;
+}
+.footer-brand strong{
+  display:block;
+  color:#fff;
+  font-size:1.05rem;
+}
+.footer-brand p{
+  margin:.3rem 0 0;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2rem;
+  padding-bottom:3rem;
+}
+.footer-col{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:.7rem;
+}
+.footer-label{
+  margin-bottom:.35rem;
+  color:var(--gold-light);
+  font-size:.68rem;
+  font-weight:800;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.footer-col a{
+  color:rgba(255,255,255,.68);
+  transition:color .25s ease,transform .25s ease;
+}
+.footer-col a:hover{
+  color:#fff;
+  transform:translateX(4px);
+}
+.footer-divider{
+  height:1px;
+  background:rgba(255,255,255,.12);
+}
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-end;
+  gap:2rem;
+  padding-top:1.7rem;
+}
+.footer-bottom .disclaimer{
+  margin:0;
+  max-width:55rem;
+  font-size:.76rem;
+  line-height:1.65;
+  text-align:left;
+}
+.footer-copy{
+  margin:0;
+  white-space:nowrap;
+  color:rgba(255,255,255,.38)!important;
+  font-size:.72rem!important;
+}
+@media(max-width:700px){
+  .faq-list summary{
+    grid-template-columns:2.2rem 1fr auto;
+    gap:.7rem;
+    padding:1.2rem .4rem;
+  }
+  .faq-answer{padding:0 2.9rem 1.3rem}
+  .faq-cta{
+    align-items:flex-start;
+    flex-direction:column;
+    padding:1.35rem;
+  }
+  .faq-cta .btn{width:100%;justify-content:center}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem 1rem}
+  .footer-bottom{flex-direction:column;align-items:flex-start;gap:.8rem}
+  .footer-copy{white-space:normal}
+}
+@media(max-width:450px){
+  .footer-grid{grid-template-columns:1fr}
+  .faq-number{font-size:.65rem}
+  .faq-question{font-size:.94rem}
+  .faq-icon{width:2rem;height:2rem}
+}
+</style>
 </head>
 <body>
 <header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="#inicio">Hamilton Granillo <span>Distribuidor Independiente</span></a><nav class="nav-links"><a href="#opciones">Opciones</a><a href="#como-funciona">Cómo funciona</a><a href="#preguntas">Preguntas</a><a class="btn btn-primary" href="#registro">Quiero orientación</a></nav><button class="mobile-nav" aria-label="Ir al formulario" onclick="document.querySelector('#registro').scrollIntoView({behavior:'smooth'})">↓</button></div></header>
@@ -1095,9 +1319,97 @@ body{
 <section class="section process reveal" id="como-funciona"><div class="wrap"><div class="section-head"><div class="eyebrow">Así de simple</div><h2>Yo te acompaño en cada paso.</h2><p>No tienes que descifrar el proceso por tu cuenta.</p></div><div class="process-grid"><article class="step reveal reveal-delay-1"><div class="step-no">01</div><h3>Me cuentas tu objetivo</h3><p>¿Quieres comprar, ahorrar en tus productos o explorar un emprendimiento? Te escucho sin presión.</p></article><article class="step reveal reveal-delay-2"><div class="step-no">02</div><h3>Elegimos la ruta</h3><p>Te explico costos, descuentos y condiciones de cada opción para que tomes una decisión informada.</p></article><article class="step reveal reveal-delay-3"><div class="step-no">03</div><h3>Te guío en el registro</h3><p>Te acompaño por WhatsApp o Zoom mientras completas el proceso en el portal oficial.</p></article></div></div></section>
 
 <section class="section form-section reveal" id="registro"><div class="wrap form-grid"><div class="form-copy"><div class="eyebrow">El siguiente paso</div><h2>Cuéntame qué necesitas y te respondo personalmente.</h2><p>Déjame tu nombre y ciudad. Al enviar, se abrirá WhatsApp con un mensaje preparado para que podamos continuar.</p><div class="mini-guarantee">Tu consulta no te obliga a comprar ni a afiliarte. Primero resolvemos tus dudas; después tú decides.</div></div><form class="lead-form" id="leadForm"><div class="mode-tabs" role="tablist" aria-label="Elige tu interés"><button type="button" class="active" data-mode="recomendacion">No sé aún</button><button type="button" data-mode="cliente">Comprar</button><button type="button" data-mode="afiliacion">Descuento</button></div><div class="field"><label for="name">¿Cómo te llamas?</label><input id="name" name="name" autocomplete="name" required placeholder="Tu nombre"></div><div class="field"><label for="city">¿En qué ciudad y país estás?</label><input id="city" name="city" autocomplete="address-level2" required placeholder="Ej. Guayaquil, Ecuador"></div><div class="field"><label for="message">¿Qué quieres saber? <span style="font-weight:400;color:var(--muted)">(opcional)</span></label><textarea id="message" name="message" placeholder="Cuéntame si quieres comprar, tener descuento o emprender..."></textarea></div><label class="consent"><input id="consent" type="checkbox" required><span>Acepto que mis datos se usen para responder mi solicitud por WhatsApp. <a href="https://hamiltonnetworker.com/politica-privacidad.html" target="_blank" rel="noopener">Leer privacidad</a>.</span></label><button class="btn btn-primary form-submit" type="submit">Abrir WhatsApp y recibir orientación →</button><p class="form-status" id="formStatus" aria-live="polite"></p></form></div></section>
-<section class="section reveal" id="preguntas"><div class="wrap faq"><div class="section-head"><div class="eyebrow">Antes de escribir</div><h2>Preguntas rápidas</h2></div><details><summary>¿Tengo que comprar mensualmente?<span>+</span></summary><p>No. Puedes comprar a tu propio ritmo. Las condiciones específicas dependen de la modalidad y del país.</p></details><details><summary>¿El registro como Cliente Admirable tiene costo?<span>+</span></summary><p>La información del sitio indica que es gratuito. Te ayudo a confirmarlo en el portal correspondiente a tu país.</p></details><details><summary>¿Puedo afiliarme solo para comprar con descuento?<span>+</span></summary><p>Sí, muchas personas se afilian principalmente para acceder a descuentos. Emprender es una decisión adicional, no una obligación.</p></details><details><summary>¿Prometes ingresos o resultados?<span>+</span></summary><p>No. Los resultados económicos no están garantizados y dependen de la actividad, habilidades, condiciones y esfuerzo de cada persona.</p></details><details><summary>¿Dónde se hace el registro?<span>+</span></summary><p>El registro se completa en el portal oficial. Yo te ayudo a encontrar la ruta correcta y a no equivocarte con los datos del presentador.</p></details></div></section>
+<section class="section reveal" id="preguntas">
+  <div class="wrap faq">
+    <div class="section-head">
+      <div class="eyebrow">Antes de escribir</div>
+      <h2>Preguntas frecuentes</h2>
+      <p class="faq-intro">Resuelve las dudas más comunes antes de elegir una opción. Si tu pregunta no aparece aquí, puedes escribirme directamente.</p>
+    </div>
+
+    <div class="faq-list">
+      <details>
+        <summary><span class="faq-number">01</span><span class="faq-question">¿Qué es Omnilife y cómo puedo empezar?</span><span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>Omnilife cuenta con diferentes modalidades para quienes desean comprar productos, acceder a descuentos o conocer una opción de emprendimiento. Primero revisamos lo que buscas y después te explico el proceso correspondiente.</p></div>
+      </details>
+
+      <details>
+        <summary><span class="faq-number">02</span><span class="faq-question">¿Cuál es la diferencia entre Cliente Admirable, Afiliación y Kit Emprendedor?</span><span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>Cliente Admirable está orientado a comprar productos; la Afiliación permite acceder a descuentos; y el Kit Emprendedor está pensado para quienes quieren conocer una alternativa de emprendimiento con mayor volumen inicial. Te explico cada opción antes de que decidas.</p></div>
+      </details>
+
+      <details>
+        <summary><span class="faq-number">03</span><span class="faq-question">¿El registro como Cliente Admirable tiene costo?</span><span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>En esta landing se presenta el registro como Cliente Admirable como gratuito. Antes de completar el proceso, te ayudo a confirmar las condiciones vigentes y la ruta correspondiente a tu país.</p></div>
+      </details>
+
+      <details>
+        <summary><span class="faq-number">04</span><span class="faq-question">¿Tengo que comprar productos todos los meses?</span><span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>No necesariamente. Puedes comprar según tus necesidades. Las condiciones específicas pueden depender de la modalidad, el país y las condiciones comerciales vigentes, por eso te explico lo que aplica antes de registrarte.</p></div>
+      </details>
+
+      <details>
+        <summary><span class="faq-number">05</span><span class="faq-question">¿Qué descuento puedo obtener?</span><span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>Los descuentos pueden variar según la modalidad, el país y la vigencia comercial. En la página mostramos opciones con descuentos desde el 25% y, para el Kit Emprendedor, desde el 30%. Te ayudo a confirmar el porcentaje que corresponde a tu caso.</p></div>
+      </details>
+
+      <details>
+        <summary><span class="faq-number">06</span><span class="faq-question">¿Qué incluye el Kit Emprendedor de 1.000 puntos?</span><span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>La composición y las condiciones del kit pueden variar según el país y la vigencia comercial. Antes de registrarte te explico qué aplica actualmente y te indico dónde puedes verificar la información oficial.</p></div>
+      </details>
+
+      <details>
+        <summary><span class="faq-number">07</span><span class="faq-question">¿Puedo empezar solo para comprar productos?</span><span class="faq-icon">+</span></summary>
+        <div class="faq-answer"><p>Sí. La opción de Cliente Admirable está orientada a quienes desean comprar productos. Si buscas acceder a descuentos o conocer una alternativa de emprendimiento, también puedo explicarte las demás opciones.</p></div>
+      </details>
+    </div>
+
+    <div class="faq-cta">
+      <div><strong>¿No encontraste tu pregunta?</strong><span>Escríbeme y revisamos tu caso paso a paso.</span></div>
+      <a class="btn btn-primary" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20tengo%20una%20pregunta%20sobre%20Omnilife." target="_blank" rel="noopener" onclick="trackEvent('faq_whatsapp_click')">Quiero conversar contigo →</a>
+    </div>
+  </div>
+</section>
 </main>
-<footer class="footer"><div class="wrap"><strong>Hamilton Granillo</strong><p>Distribuidor Independiente Omnilife</p><p class="disclaimer">Este sitio es independiente y no es el sitio oficial de Omnilife. Los precios, descuentos, kits y condiciones pueden cambiar según el país y la vigencia comercial. El código de presentador se comparte durante la orientación.</p><p><a href="https://hamiltonnetworker.com/politica-privacidad.html" target="_blank" rel="noopener">Aviso de privacidad</a> · <a href="https://hamiltonnetworker.com/politica-cookies.html" target="_blank" rel="noopener">Política de cookies</a></p></div></footer>
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <div class="footer-mark">HG</div>
+      <div>
+        <strong>Hamilton Granillo</strong>
+        <p>Distribuidor Independiente Omnilife</p>
+      </div>
+    </div>
+
+    <div class="footer-grid">
+      <div class="footer-col">
+        <span class="footer-label">Explora</span>
+        <a href="#opciones">Mis opciones</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#preguntas">Preguntas frecuentes</a>
+      </div>
+
+      <div class="footer-col">
+        <span class="footer-label">Orientación</span>
+        <a href="#registro">Quiero orientación</a>
+        <a href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20recibir%20orientaci%C3%B3n%20sobre%20Omnilife." target="_blank" rel="noopener">Hablar por WhatsApp</a>
+      </div>
+
+      <div class="footer-col">
+        <span class="footer-label">Información</span>
+        <a href="https://hamiltonnetworker.com/politica-privacidad.html" target="_blank" rel="noopener">Aviso de privacidad</a>
+        <a href="https://hamiltonnetworker.com/politica-cookies.html" target="_blank" rel="noopener">Política de cookies</a>
+      </div>
+    </div>
+
+    <div class="footer-divider"></div>
+
+    <div class="footer-bottom">
+      <p class="disclaimer">Este sitio es independiente y no es el sitio oficial de Omnilife. Los precios, descuentos, kits y condiciones pueden cambiar según el país y la vigencia comercial. El código de presentador se comparte durante la orientación.</p>
+      <p class="footer-copy">© 2026 Hamilton Granillo · Información y orientación personalizada</p>
+    </div>
+  </div>
+</footer>
 <div class="cookie-notice" id="cookieNotice" role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieText" hidden><div><strong id="cookieTitle">Privacidad y medición</strong><p id="cookieText">Usamos herramientas de medición para saber qué contenido funciona y mejorar esta página. Solo se activan si las aceptas. <a href="https://hamiltonnetworker.com/politica-privacidad.html" target="_blank" rel="noopener">Leer privacidad</a>.</p></div><div class="cookie-actions"><button class="cookie-reject" type="button" onclick="setTrackingConsent('necessary')">Solo necesarias</button><button class="cookie-accept" type="button" onclick="setTrackingConsent('analytics')">Aceptar medición</button></div></div>
 <a class="float-wa" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20tengo%20una%20duda%20sobre%20Omnilife%20y%20quiero%20recibir%20orientaci%C3%B3n." target="_blank" rel="noopener" aria-label="Pedir orientación por WhatsApp" onclick="trackEvent('floating_whatsapp_click')"><span>¿Tienes dudas? Te ayudo</span></a><div class="toast" id="toast" role="status"></div>
 
@@ -1236,4 +1548,16 @@ document.addEventListener('DOMContentLoaded', function(){
 });
 </script>
 
+
+<script id="faq-accordion">
+/* FAQ accordion: only one question stays open at a time */
+document.querySelectorAll('.faq-list details').forEach(item=>{
+  item.addEventListener('toggle',()=>{
+    if(!item.open) return;
+    document.querySelectorAll('.faq-list details[open]').forEach(other=>{
+      if(other!==item) other.removeAttribute('open');
+    });
+  });
+});
+</script>
 </body></html>
