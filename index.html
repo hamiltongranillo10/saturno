@@ -7,7 +7,7 @@
 <title>Conoce Omnilife | Día Morado y acompañamiento personal</title>
 <meta name="description" content="Conoce cómo se vive un Día Morado en Omnilife, descubre experiencias de personas y recibe orientación personalizada para conocer tus opciones de registro.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#111b17;
@@ -555,6 +555,513 @@ body{overflow-x:hidden}
 .video-lazy:hover .video-play{transform:scale(1.08);box-shadow:0 20px 55px rgba(0,0,0,.45)}
 .video-fallback{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);color:#fff;background:rgba(0,0,0,.58);border:1px solid rgba(255,255,255,.22);border-radius:30px;padding:9px 15px;font-size:.74rem;font-weight:800;backdrop-filter:blur(8px);white-space:nowrap}
 .video-fallback:hover{background:rgba(0,0,0,.78)}
+</style>
+
+
+<style id="lumora-inspired-theme">
+/* =========================================================
+   LUMORA-INSPIRED VISUAL SYSTEM
+   Content and conversion flow remain Hamilton / Omnilife.
+   ========================================================= */
+:root{
+  --ink:#173F35;
+  --green:#173F35;
+  --green-2:#24584A;
+  --deep:#102E27;
+  --gold:#D4AF37;
+  --gold-light:#E4C65A;
+  --cream:#F7F4EA;
+  --paper:#ffffff;
+  --sage:#EEF2EE;
+  --muted:#6B756F;
+  --line:#DCE5DF;
+  --shadow:0 22px 70px rgba(10,10,10,.10);
+  --shadow-lg:0 35px 100px rgba(10,10,10,.18);
+  --lumora-ease:cubic-bezier(.22,1,.36,1);
+  --lumora-fast:cubic-bezier(.2,.8,.2,1);
+}
+
+html{scroll-behavior:smooth}
+body{
+  background:#fff;
+  color:#111;
+  font-family:'Onest',sans-serif;
+  letter-spacing:-.005em;
+}
+::selection{background:#173F35;color:#fff}
+
+.wrap{width:min(88rem,calc(100% - 40px));max-width:88rem}
+.section{padding:7rem 0}
+.eyebrow{
+  color:rgba(17,17,17,.62);
+  font-size:.75rem;
+  font-weight:500;
+  letter-spacing:.02em;
+  text-transform:none;
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+}
+.eyebrow:before{
+  content:"";
+  width:.375rem;height:.375rem;
+  border-radius:999px;
+  background:var(--gold);
+  display:inline-block;
+}
+.section-head{max-width:48rem;margin-bottom:3.5rem}
+.section-head h2{
+  color:#111;
+  font-size:clamp(2.25rem,5vw,4.5rem);
+  font-weight:600;
+  line-height:.98;
+  letter-spacing:-.045em;
+  margin:1rem 0 1.25rem;
+}
+.section-head p{color:#8d8d8d;font-size:.95rem;max-width:40rem}
+
+/* Header — transparent / editorial overlay */
+.site-nav{
+  position:absolute;
+  inset-inline:0;
+  top:0;
+  background:rgba(255,255,255,.48);
+  border-bottom:1px solid rgba(230,229,226,.72);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  transition:background .35s var(--lumora-ease),box-shadow .35s var(--lumora-ease);
+}
+.site-nav:hover{background:rgba(255,255,255,.72)}
+.nav-inner{height:76px;padding:0}
+.brand{
+  color:#111;
+  font-weight:600;
+  font-size:1.125rem;
+  letter-spacing:-.02em;
+  display:flex;
+  align-items:center;
+  gap:.55rem;
+  transition:transform .35s var(--lumora-ease);
+}
+.brand:before{
+  content:"✦";
+  color:var(--gold);
+  font-size:1.15rem;
+  transition:transform .45s var(--lumora-ease);
+}
+.brand:hover{transform:translateY(-1px)}
+.brand:hover:before{transform:rotate(18deg) scale(1.08)}
+.brand span{
+  color:rgba(17,17,17,.45);
+  font-family:'Onest',sans-serif;
+  font-size:.68rem;
+  letter-spacing:.04em;
+  font-weight:500;
+  text-transform:none;
+  margin-left:.15rem;
+}
+.nav-links{gap:1.75rem;color:rgba(17,17,17,.65);font-size:.8rem}
+.nav-links a{
+  position:relative;
+  transition:color .3s ease,transform .3s var(--lumora-ease);
+}
+.nav-links a:not(.btn):after{
+  content:"";
+  position:absolute;
+  left:0;right:100%;bottom:-5px;height:1px;
+  background:#111;
+  transition:right .35s var(--lumora-ease);
+}
+.nav-links a:not(.btn):hover{color:#111;transform:translateY(-2px)}
+.nav-links a:not(.btn):hover:after{right:0}
+
+/* Buttons — Lumora pill system */
+.btn{
+  min-height:2.75rem;
+  border-radius:999px;
+  padding:.375rem .375rem .375rem 1.35rem;
+  font-size:.8rem;
+  font-weight:500;
+  letter-spacing:0;
+  transition:transform .35s var(--lumora-ease),box-shadow .35s var(--lumora-ease),background .3s ease,border-color .3s ease;
+}
+.btn:not(.btn-light):not(.btn-wa){
+  background:#173F35;
+  color:#fff;
+  box-shadow:none;
+}
+.btn-primary{background:#173F35;color:#fff;box-shadow:none}
+.btn-primary:hover{background:#173F35;transform:translateY(-3px);box-shadow:0 12px 28px rgba(10,10,10,.16)}
+.btn-light{
+  border:1px solid #e6e5e2;
+  background:#fff;
+  color:#111;
+}
+.btn-light:hover{border-color:#bcbab5;background:#f1f0ee;transform:translateY(-3px)}
+.hero-actions .btn:after{
+  content:"↗";
+  width:2.25rem;height:2.25rem;
+  display:grid;place-items:center;
+  border-radius:50%;
+  background:#f1f0ee;color:#111;
+  margin-left:.35rem;
+  font-size:.9rem;
+  transition:transform .35s var(--lumora-ease);
+}
+.hero-actions .btn-light:after{background:#173F35;color:#fff}
+.hero-actions .btn:hover:after{transform:translate(2px,-2px)}
+
+/* Hero — clean Lumora editorial composition */
+.hero{
+  min-height:calc(100svh - 1px);
+  display:flex;
+  align-items:center;
+  padding:9rem 0 5rem;
+  background:
+    radial-gradient(circle at 88% 15%,rgba(177,95,44,.10),transparent 24%),
+    linear-gradient(180deg,#f1f0ee 0%,#fff 72%);
+}
+.hero:after{
+  width:34rem;height:34rem;
+  right:-18rem;top:-15rem;
+  border:1px solid rgba(177,95,44,.16);
+  box-shadow:inset 0 0 0 5rem rgba(255,255,255,.15);
+}
+.hero-grid{
+  max-width:88rem;
+  width:100%;
+  grid-template-columns:minmax(0,7fr) minmax(18rem,5fr);
+  gap:3rem;
+}
+.hero-grid>div:first-child{max-width:58rem}
+.hero h1{
+  font-family:'Onest',sans-serif;
+  font-size:clamp(3.4rem,7vw,7rem);
+  font-weight:600;
+  line-height:.91;
+  letter-spacing:-.07em;
+  color:#111;
+  margin:1.25rem 0 1.75rem;
+}
+.hero h1 em{color:#8d8d8d}
+.hero-lead{max-width:39rem;color:#666;font-size:1.05rem;line-height:1.65}
+.trust{gap:1.4rem;color:#8d8d8d;font-size:.75rem}
+.trust span:before{color:var(--gold)}
+
+/* Floating editorial geometry */
+.hero:before{
+  content:"OMNILIFE";
+  position:absolute;
+  right:-.5rem;
+  bottom:3rem;
+  font-size:clamp(6rem,13vw,13rem);
+  line-height:.8;
+  font-weight:700;
+  letter-spacing:-.08em;
+  color:rgba(17,17,17,.035);
+  pointer-events:none;
+  user-select:none;
+}
+
+/* Choice band */
+.choice-band{
+  background:#173F35;
+  padding:1.35rem 0;
+  border-radius:0 0 2rem 2rem;
+}
+.choice-band strong{font-size:.95rem;font-weight:500}
+.choice-band p{color:rgba(255,255,255,.48);font-size:.78rem}
+.choice-band .btn{
+  background:#f1f0ee;
+  color:#111;
+  padding:.375rem .375rem .375rem 1.25rem;
+}
+.choice-band .btn:after{
+  content:"→";
+  width:2.25rem;height:2.25rem;border-radius:50%;
+  display:grid;place-items:center;background:#173F35;color:#fff;
+}
+
+/* Video — black editorial card */
+.video-section{
+  padding:7rem 0;
+  background:#fff;
+  color:#111;
+}
+.video-section:before{
+  width:38rem;height:38rem;
+  border-color:rgba(177,95,44,.10);
+  right:-18rem;top:-18rem;
+}
+.video-section .section-head h2{color:#111}
+.video-section .section-head p{color:#8d8d8d}
+.video-box{
+  border-radius:2rem;
+  border:1px solid rgba(17,17,17,.08);
+  box-shadow:0 25px 80px rgba(10,10,10,.14);
+}
+.video-play{
+  width:4.5rem;height:4.5rem;
+  background:#173F35;color:#fff;
+  box-shadow:0 18px 40px rgba(0,0,0,.25);
+  transition:transform .45s var(--lumora-ease),background .3s ease;
+}
+.video-box:hover .video-play{transform:translate(-50%,-50%) scale(1.08);background:var(--gold)}
+.video-meta{color:#8d8d8d}
+.video-meta strong{color:var(--gold)}
+
+/* Photo / proof */
+.photo-section{background:#fff}
+.proof-grid{gap:5rem}
+.proof-image{
+  border-radius:2rem;
+  border:1px solid #e6e5e2;
+  box-shadow:none;
+  background:#f1f0ee;
+  overflow:hidden;
+}
+.proof-image img{transition:transform .9s var(--lumora-ease);filter:saturate(.94)}
+.proof-image:hover img{transform:scale(1.035)}
+.proof-copy h2{
+  font-family:'Onest',sans-serif;
+  font-size:clamp(2.3rem,4.6vw,4.5rem);
+  font-weight:600;
+  letter-spacing:-.055em;
+  color:#111;
+}
+.quote{border-left:1px solid var(--gold);color:#666}
+.proof-points{gap:1rem}
+.proof-points div{
+  padding:.85rem 0;
+  border-top:1px solid #e6e5e2;
+  display:grid;
+  grid-template-columns:minmax(9rem,13rem) 1fr;
+  gap:1rem;
+}
+.proof-points div:last-child{border-bottom:1px solid #e6e5e2}
+.proof-points b{font-weight:500;color:#111}
+.proof-points span{color:#8d8d8d}
+
+/* Options — black editorial cards */
+.options{background:#fff}
+.options-grid{gap:1rem}
+.option{
+  border:1px solid #e6e5e2;
+  border-radius:2rem;
+  padding:2rem;
+  background:#fff;
+  min-height:27rem;
+  transition:transform .45s var(--lumora-ease),box-shadow .45s var(--lumora-ease),background .35s ease,color .35s ease,border-color .35s ease;
+}
+.option:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(10,10,10,.10);border-color:#d0cec9}
+.option.featured{
+  background:#173F35;
+  color:#fff;
+  border-color:#173F35;
+  box-shadow:none;
+  transform:translateY(-10px);
+}
+.option.featured:hover{transform:translateY(-15px);box-shadow:0 28px 70px rgba(10,10,10,.20)}
+.option-badge{
+  top:1.25rem;right:1.25rem;
+  border-radius:999px;
+  padding:.45rem .8rem;
+  background:var(--gold);
+  color:#fff;
+  font-size:.65rem;
+  font-weight:600;
+}
+.option-icon{
+  width:2.75rem;height:2.75rem;
+  border-radius:999px;
+  background:#f1f0ee;
+  color:#111;
+  margin-bottom:1.5rem;
+}
+.option.featured .option-icon{background:#fff;color:#111}
+.option h3{font-family:'Onest',sans-serif;font-size:1.65rem;font-weight:500;color:#111}
+.option.featured h3{color:#fff}
+.option .price{color:var(--gold);font-weight:600}
+.option p,.option ul{color:#8d8d8d}
+.option.featured p,.option.featured ul{color:rgba(255,255,255,.58)}
+.option li:before{color:var(--gold)}
+.option .btn{border-radius:999px}
+.option.featured .btn-primary{background:#f1f0ee;color:#111}
+.option.featured .btn-primary:after{
+  content:"↗";
+  width:2.25rem;height:2.25rem;display:grid;place-items:center;
+  border-radius:50%;background:#173F35;color:#fff;
+}
+.small-note{color:#8d8d8d}
+
+/* Process — four-pill inspired rhythm without changing content */
+.process{background:#fff}
+.process-grid{gap:.75rem}
+.step{
+  border:0;
+  border-radius:999px;
+  background:#f1f0ee;
+  padding:1.5rem 1.75rem;
+  min-height:9rem;
+  transition:transform .4s var(--lumora-ease),background .35s ease;
+}
+.step:nth-child(2){background:linear-gradient(135deg,#E4C65A,#97501f);color:#fff}
+.step:nth-child(3){background:#173F35;color:#fff}
+.step:hover{transform:translateY(-6px) scale(1.015)}
+.step-no{font-size:1rem;color:rgba(17,17,17,.4);font-weight:500}
+.step:nth-child(2) .step-no,.step:nth-child(3) .step-no{color:rgba(255,255,255,.55)}
+.step h3{color:#111;font-size:1.25rem;font-weight:500;margin:.7rem 0 .35rem}
+.step:nth-child(2) h3,.step:nth-child(3) h3{color:#fff}
+.step p{color:#8d8d8d;font-size:.8rem}
+.step:nth-child(2) p,.step:nth-child(3) p{color:rgba(255,255,255,.58)}
+
+/* Form — black panel + clean white form */
+.form-section{
+  background:#fff;
+  color:#111;
+  padding-top:5rem;
+}
+.form-grid{
+  background:#173F35;
+  border-radius:2rem;
+  padding:4rem;
+  color:#fff;
+  box-shadow:none;
+}
+.form-copy h2{font-family:'Onest',sans-serif;font-weight:600;letter-spacing:-.055em}
+.form-copy p{color:rgba(255,255,255,.55)}
+.form-copy .eyebrow{color:rgba(255,255,255,.68)}
+.form-copy .eyebrow:before{background:var(--gold)}
+.mini-guarantee{border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.62);border-radius:1rem}
+.lead-form{border-radius:1.5rem;padding:1.5rem;box-shadow:none}
+.mode-tabs button{border-radius:999px;background:#f1f0ee}
+.mode-tabs button.active{background:#173F35}
+.field input,.field textarea{border-radius:.875rem;background:#f7f6f4}
+.field input:focus,.field textarea:focus{border-color:#aaa;box-shadow:0 0 0 3px rgba(177,95,44,.10)}
+.form-submit{padding-left:1.35rem}
+.consent{color:#8d8d8d}
+
+/* FAQ — minimal editorial rows */
+.faq{max-width:58rem}
+.faq details{border-top:1px solid #e6e5e2;border-bottom:0;padding:0}
+.faq details:last-child{border-bottom:1px solid #e6e5e2}
+.faq summary{
+  padding:1.35rem 0;
+  font-size:1rem;
+  font-weight:500;
+  color:#111;
+  transition:padding-left .35s var(--lumora-ease);
+}
+.faq details:hover summary{padding-left:.5rem}
+.faq summary span{font-size:1.2rem;color:var(--gold)}
+.faq p{color:#8d8d8d;padding:0 2.5rem 1.35rem 0}
+
+/* Footer */
+.footer{
+  background:#173F35;
+  border-radius:2rem 2rem 0 0;
+  padding:5rem 0 3rem;
+  text-align:left;
+}
+.footer p{color:rgba(255,255,255,.48)}
+.footer a{text-decoration:none}
+.footer .disclaimer{max-width:48rem;margin:1.25rem auto 0}
+
+/* WhatsApp premium button stays functional */
+.float-wa{
+  right:1.5rem;bottom:1.5rem;
+  min-height:3.5rem;
+  padding:.5rem 1rem .5rem .5rem;
+  background:#173F35;
+  border:1px solid rgba(255,255,255,.18);
+  color:#fff;
+  box-shadow:0 18px 45px rgba(0,0,0,.20);
+}
+.float-wa:hover{
+  transform:translateY(-4px) scale(1.015);
+  background:#111;
+  box-shadow:0 24px 55px rgba(0,0,0,.26);
+}
+.float-wa::before{
+  width:2.5rem;height:2.5rem;flex-basis:2.5rem;
+  background-color:#25d366;
+}
+
+/* Motion — Lumora-inspired reveal / spring-like feel */
+.reveal{
+  opacity:0;
+  transform:translateY(2rem);
+  transition:opacity .8s var(--lumora-ease),transform .8s var(--lumora-ease);
+}
+.reveal.is-visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.09s}
+.reveal-delay-2{transition-delay:.18s}
+.reveal-delay-3{transition-delay:.27s}
+
+.hero .eyebrow,
+.hero h1,
+.hero .hero-lead,
+.hero .hero-actions,
+.hero .trust{
+  animation:lumoraRise .85s var(--lumora-ease) both;
+}
+.hero .eyebrow{animation-delay:.12s}
+.hero h1{animation-delay:.20s}
+.hero .hero-lead{animation-delay:.34s}
+.hero .hero-actions{animation-delay:.46s}
+.hero .trust{animation-delay:.58s}
+
+@keyframes lumoraRise{
+  from{opacity:0;transform:translateY(1.25rem)}
+  to{opacity:1;transform:none}
+}
+
+@keyframes lumoraFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-5px)}
+}
+
+.video-section .video-box,
+.proof-image,
+.option,
+.step,
+.lead-form{
+  will-change:transform;
+}
+
+.video-section .video-box{
+  animation:lumoraFloat 7s ease-in-out infinite;
+}
+.option:nth-child(2){transition-delay:.04s}
+.option:nth-child(3){transition-delay:.08s}
+
+@media(prefers-reduced-motion:reduce){
+  .hero .eyebrow,.hero h1,.hero .hero-lead,.hero .hero-actions,.hero .trust,
+  .video-section .video-box{animation:none!important}
+  .reveal{opacity:1;transform:none;transition:none!important}
+}
+
+@media(max-width:850px){
+  .site-nav{position:sticky}
+  .hero{min-height:auto;padding:8rem 0 5rem}
+  .hero-grid{grid-template-columns:1fr}
+  .hero:before{font-size:6rem;bottom:1.5rem}
+  .process-grid{grid-template-columns:1fr}
+  .step{border-radius:2rem;min-height:auto}
+  .form-grid{padding:2rem}
+  .proof-points div{grid-template-columns:1fr;gap:.35rem}
+}
+
+@media(max-width:480px){
+  .wrap{width:min(100% - 28px,88rem)}
+  .hero h1{font-size:3.05rem}
+  .section{padding:5rem 0}
+  .choice-band{border-radius:0 0 1.5rem 1.5rem}
+  .video-box{border-radius:1.25rem}
+  .option,.step{border-radius:1.5rem}
+  .form-grid{border-radius:1.5rem;padding:1.25rem}
+  .float-wa{right:1rem;bottom:1rem}
+}
 </style>
 
 </head>
