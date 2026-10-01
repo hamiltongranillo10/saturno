@@ -1288,9 +1288,114 @@ body{
   .faq-icon{width:2rem;height:2rem}
 }
 </style>
+
+<style id="responsive-hardening">
+/* ===== PC + MOBILE HARDENING ===== */
+html{scroll-padding-top:88px}
+body{min-width:320px;overflow-x:hidden}
+.hero h1,.section-head h2,.proof-copy h2,.form-copy h2{font-family:'Onest',system-ui,-apple-system,sans-serif}
+.option h3,.step-no{font-family:'Onest',system-ui,-apple-system,sans-serif}
+.btn{min-width:0;touch-action:manipulation}
+.site-nav{isolation:isolate}
+.mobile-nav{width:44px;height:44px;padding:0;border-radius:50%;display:none;align-items:center;justify-content:center;flex-direction:column;gap:4px}
+.mobile-nav span{display:block;width:19px;height:2px;border-radius:2px;background:currentColor;transition:transform .3s var(--ease-premium),opacity .2s ease}
+.mobile-nav.is-open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.mobile-nav.is-open span:nth-child(2){opacity:0}
+.mobile-nav.is-open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.mobile-menu{display:none}
+.mobile-menu a{display:flex;align-items:center;justify-content:space-between;min-height:52px;padding:13px 4px;border-bottom:1px solid rgba(23,63,53,.10);font-size:.95rem;color:#173f35}
+.mobile-menu a:last-child{border-bottom:0}
+.mobile-menu-cta{margin-top:10px;padding:13px 18px!important;border:0!important;border-radius:999px;background:#173f35;color:#fff!important}
+.mobile-menu[hidden]{display:none!important}
+@media(max-width:850px){
+  .site-nav{position:sticky;top:0;background:rgba(251,250,246,.94)}
+  .nav-inner{height:68px}
+  .mobile-nav{display:flex;border:1px solid rgba(23,63,53,.14);background:rgba(255,255,255,.72);color:var(--green)}
+  .mobile-menu{display:block;position:absolute;left:0;right:0;top:100%;padding:8px 20px 18px;background:rgba(251,250,246,.98);border-bottom:1px solid rgba(23,63,53,.10);box-shadow:0 20px 40px rgba(7,27,20,.12);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);animation:mobileMenuIn .28s var(--ease-premium) both}
+  .mobile-menu[hidden]{display:none!important}
+  .brand{max-width:calc(100% - 58px);line-height:1.1}
+  .brand span{display:block;margin-left:0;margin-top:3px;font-size:.54rem}
+  .hero{padding:82px 0 88px}
+  .hero-grid{max-width:none}
+  .choice-band-inner{gap:16px}
+  .video-box{border-radius:14px}
+  .video-overlay .video-play{width:68px;height:68px}
+  .video-meta{gap:8px}
+  .proof-grid{gap:34px}
+  .form-grid{gap:28px}
+  .lead-form{width:100%}
+  .cookie-notice{left:12px;right:12px;bottom:12px;flex-direction:column;align-items:stretch;gap:12px;max-height:min(72vh,520px);overflow:auto}
+  .cookie-actions{width:100%}
+  .cookie-actions button{flex:1;min-height:44px}
+}
+@media(max-width:600px){
+  .wrap{width:min(100% - 28px,1160px)}
+  .section{padding:68px 0}
+  .hero{padding:68px 0 76px}
+  .hero h1{font-size:clamp(2.65rem,13vw,4rem);letter-spacing:-.055em}
+  .hero-lead{font-size:1rem;line-height:1.55}
+  .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
+  .hero-actions .btn{width:100%;min-height:50px}
+  .trust{display:grid;grid-template-columns:1fr 1fr;gap:9px 12px;font-size:.75rem}
+  .choice-band{padding:22px 0}
+  .choice-band .btn{width:100%;min-height:48px}
+  .section-head{margin-bottom:30px}
+  .section-head h2{font-size:clamp(2rem,10vw,3rem)}
+  .video-section{padding:68px 0}
+  .video-box{aspect-ratio:16/10}
+  .video-overlay .video-play{width:62px;height:62px;font-size:1.2rem}
+  .video-overlay span{font-size:.68rem}
+  .video-fallback{max-width:calc(100% - 24px);overflow:hidden;text-overflow:ellipsis;bottom:10px}
+  .video-meta span{display:block}
+  .options-grid,.process-grid{gap:14px}
+  .option{padding:24px;min-height:0}
+  .option-badge{right:14px}
+  .proof-image{width:100%!important;max-width:330px;margin:0 auto}
+  .proof-copy h2,.form-copy h2{font-size:clamp(2rem,10vw,3rem)}
+  .proof-points div{display:grid;grid-template-columns:1fr;gap:3px}
+  .proof-copy .btn{width:100%;min-height:50px}
+  .mode-tabs{grid-template-columns:1fr!important}
+  .mode-tabs button{min-height:44px}
+  .lead-form{padding:18px}
+  .field input,.field textarea{font-size:16px;min-height:48px}
+  .field textarea{min-height:110px}
+  .form-submit{min-height:52px}
+  .faq-answer{padding-left:0!important;padding-right:2.8rem!important}
+  .faq-cta{margin-top:24px}
+  .faq-cta .btn{min-height:50px}
+  .float-wa{max-width:calc(100vw - 28px)}
+  .float-wa span{white-space:nowrap}
+}
+@media(max-width:390px){
+  .wrap{width:calc(100% - 24px)}
+  .brand{font-size:.98rem}
+  .brand span{font-size:.49rem}
+  .hero h1{font-size:2.45rem}
+  .trust{grid-template-columns:1fr}
+  .video-box{aspect-ratio:16/11}
+  .faq-list summary{grid-template-columns:2rem 1fr 2rem!important;gap:.5rem!important}
+  .faq-number{font-size:.58rem!important}
+  .faq-question{font-size:.9rem!important}
+}
+@keyframes mobileMenuIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.mobile-menu{animation:none}}
+</style>
+
 </head>
 <body>
-<header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="#inicio">Hamilton Granillo <span>Distribuidor Independiente</span></a><nav class="nav-links"><a href="#opciones">Opciones</a><a href="#como-funciona">Cómo funciona</a><a href="#preguntas">Preguntas</a><a class="btn btn-primary" href="#registro">Quiero orientación</a></nav><button class="mobile-nav" aria-label="Ir al formulario" onclick="document.querySelector('#registro').scrollIntoView({behavior:'smooth'})">↓</button></div></header>
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#inicio">Hamilton Granillo <span>Distribuidor Independiente</span></a>
+    <nav class="nav-links" aria-label="Navegación principal"><a href="#opciones">Opciones</a><a href="#como-funciona">Cómo funciona</a><a href="#preguntas">Preguntas</a><a class="btn btn-primary" href="#registro">Quiero orientación</a></nav>
+    <button class="mobile-nav" id="mobileNavToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span><span></span></button>
+  </div>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Navegación móvil" hidden>
+    <a href="#opciones">Opciones</a>
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#preguntas">Preguntas frecuentes</a>
+    <a class="mobile-menu-cta" href="#registro">Quiero orientación <span>→</span></a>
+  </nav>
+</header>
 <main>
 <section class="hero" id="inicio"><div class="wrap hero-grid"><div><div class="eyebrow">Acompañamiento personal para tu registro</div><h1>Conoce Omnilife.<br><em>Decide con claridad.</em></h1><p class="hero-lead">Descubre cómo funciona, conoce las distintas formas de participar y recibe acompañamiento personal para explorar la opción que mejor se adapta a tu objetivo.</p><div class="hero-actions"><a class="btn btn-primary" href="#opciones">Conocer mis opciones <span>↓</span></a><a class="btn btn-light" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20recibir%20orientaci%C3%B3n%20sobre%20Omnilife." target="_blank" rel="noopener">Hablar conmigo por WhatsApp</a></div><div class="trust"><span>Sin presión</span><span>Explicación clara</span><span>Registro en portal oficial</span></div></div></div></section>
 <section class="choice-band reveal"><div class="wrap choice-band-inner"><div><strong>¿No sabes cuál elegir?</strong><p>Cuéntame qué buscas y te recomiendo una opción según tu objetivo.</p></div><a class="btn" href="#registro" data-mode="recomendacion">Quiero una recomendación</a></div></section>
@@ -1559,5 +1664,20 @@ document.querySelectorAll('.faq-list details').forEach(item=>{
     });
   });
 });
+</script>
+
+<script id="mobile-menu-script">
+(function(){
+  const toggle=document.getElementById('mobileNavToggle');
+  const menu=document.getElementById('mobileMenu');
+  if(!toggle||!menu)return;
+  const close=()=>{menu.hidden=true;toggle.classList.remove('is-open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Abrir menú')};
+  const open=()=>{menu.hidden=false;toggle.classList.add('is-open');toggle.setAttribute('aria-expanded','true');toggle.setAttribute('aria-label','Cerrar menú')};
+  toggle.addEventListener('click',()=>menu.hidden?open():close());
+  menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>close()));
+  document.addEventListener('click',e=>{if(!menu.hidden&&!menu.contains(e.target)&&!toggle.contains(e.target))close()});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
+  window.addEventListener('resize',()=>{if(window.innerWidth>850)close()});
+})();
 </script>
 </body></html>
