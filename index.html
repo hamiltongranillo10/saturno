@@ -514,7 +514,7 @@ body{overflow-x:hidden}
 <body>
 <header class="site-nav"><div class="wrap nav-inner"><a class="brand" href="#inicio">Hamilton Granillo <span>Distribuidor Independiente</span></a><nav class="nav-links"><a href="#opciones">Opciones</a><a href="#como-funciona">Cómo funciona</a><a href="#preguntas">Preguntas</a><a class="btn btn-primary" href="#registro">Quiero orientación</a></nav><button class="mobile-nav" aria-label="Ir al formulario" onclick="document.querySelector('#registro').scrollIntoView({behavior:'smooth'})">↓</button></div></header>
 <main>
-<section class="hero" id="inicio"><div class="wrap hero-grid"><div><div class="eyebrow">Acompañamiento personal para tu registro</div><h1>Conoce Omnilife.<br><em>Decide con claridad.</em></h1><p class="hero-lead">Descubre cómo funciona, conoce las distintas formas de participar y recibe acompañamiento personal para explorar la opción que mejor se adapta a tu objetivo.</p><div class="hero-actions"><a class="btn btn-primary" href="#opciones">Conocer mis opciones <span>↓</span></a><a class="btn btn-light" href="#registro">Hablar conmigo por WhatsApp</a></div><div class="trust"><span>Sin presión</span><span>Explicación clara</span><span>Registro en portal oficial</span></div></div></div></section>
+<section class="hero" id="inicio"><div class="wrap hero-grid"><div><div class="eyebrow">Acompañamiento personal para tu registro</div><h1>Conoce Omnilife.<br><em>Decide con claridad.</em></h1><p class="hero-lead">Descubre cómo funciona, conoce las distintas formas de participar y recibe acompañamiento personal para explorar la opción que mejor se adapta a tu objetivo.</p><div class="hero-actions"><a class="btn btn-primary" href="#opciones">Conocer mis opciones <span>↓</span></a><a class="btn btn-light" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20recibir%20orientaci%C3%B3n%20sobre%20Omnilife." target="_blank" rel="noopener">Hablar conmigo por WhatsApp</a></div><div class="trust"><span>Sin presión</span><span>Explicación clara</span><span>Registro en portal oficial</span></div></div></div></section>
 <section class="choice-band reveal"><div class="wrap choice-band-inner"><div><strong>¿No sabes cuál elegir?</strong><p>Cuéntame qué buscas y te recomiendo una opción según tu objetivo.</p></div><a class="btn" href="#registro" data-mode="recomendacion">Quiero una recomendación</a></div></section>
 <section class="video-section" id="video reveal">
   <div class="wrap video-wrap">
@@ -545,7 +545,7 @@ body{overflow-x:hidden}
 </main>
 <footer class="footer"><div class="wrap"><strong>Hamilton Granillo</strong><p>Distribuidor Independiente Omnilife</p><p class="disclaimer">Este sitio es independiente y no es el sitio oficial de Omnilife. Los precios, descuentos, kits y condiciones pueden cambiar según el país y la vigencia comercial. El código de presentador se comparte durante la orientación.</p><p><a href="https://hamiltonnetworker.com/politica-privacidad.html" target="_blank" rel="noopener">Aviso de privacidad</a> · <a href="https://hamiltonnetworker.com/politica-cookies.html" target="_blank" rel="noopener">Política de cookies</a></p></div></footer>
 <div class="cookie-notice" id="cookieNotice" role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieText" hidden><div><strong id="cookieTitle">Privacidad y medición</strong><p id="cookieText">Usamos herramientas de medición para saber qué contenido funciona y mejorar esta página. Solo se activan si las aceptas. <a href="https://hamiltonnetworker.com/politica-privacidad.html" target="_blank" rel="noopener">Leer privacidad</a>.</p></div><div class="cookie-actions"><button class="cookie-reject" type="button" onclick="setTrackingConsent('necessary')">Solo necesarias</button><button class="cookie-accept" type="button" onclick="setTrackingConsent('analytics')">Aceptar medición</button></div></div>
-<a class="float-wa" href="#registro" aria-label="Pedir orientación por WhatsApp">◉ <span>¿Tienes dudas? Te ayudo</span></a><div class="toast" id="toast" role="status"></div>
+<a class="float-wa" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20tengo%20una%20duda%20sobre%20Omnilife%20y%20quiero%20recibir%20orientaci%C3%B3n." target="_blank" rel="noopener" aria-label="Pedir orientación por WhatsApp" onclick="trackEvent('floating_whatsapp_click')">◉ <span>¿Tienes dudas? Te ayudo</span></a><div class="toast" id="toast" role="status"></div>
 
 <script>
 const META_PIXEL_ID='1330108458187229';
@@ -560,9 +560,10 @@ function loadGuideVideo(){
   const box=document.querySelector('#videoBox');
   if(!box || box.dataset.loaded==='1') return;
   box.dataset.loaded='1';
-  box.innerHTML='<iframe src="https://www.youtube.com/embed/bl1jFjnwoXE?rel=0&modestbranding=1&playsinline=1" title="Resultados Omnilife - Día Morado" loading="eager" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><a class="video-fallback" href="https://youtu.be/bl1jFjnwoXE" target="_blank" rel="noopener noreferrer">Abrir en YouTube</a>';
+  const origin = window.location.origin && window.location.origin !== 'null' ? `&origin=${encodeURIComponent(window.location.origin)}` : '';
+  box.innerHTML=`<iframe src="https://www.youtube.com/embed/bl1jFjnwoXE?si=DJS9MmJD03T_VcTZ&rel=0&modestbranding=1&playsinline=1${origin}" title="Resultados Omnilife - Día Morado" loading="eager" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe><a class="video-fallback" href="https://youtu.be/bl1jFjnwoXE?si=DJS9MmJD03T_VcTZ" target="_blank" rel="noopener noreferrer">Si el reproductor no carga, ver en YouTube</a>`;
   trackEvent('video_play',{video:'dia_morado_omnilife'});
-})}
+}
 if(localStorage.getItem('hamilton_tracking_consent')==='analytics'){loadMetaPixel();loadGtm();loadGa4()}else if(!localStorage.getItem('hamilton_tracking_consent'))document.querySelector('#cookieNotice').hidden=false;
 </script>
 <script>
