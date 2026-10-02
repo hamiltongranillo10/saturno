@@ -840,13 +840,24 @@ img{max-width:100%;display:block}
       <h2>Así se vive un Día Morado en Omnilife.</h2>
       <p>Conoce experiencias y resultados compartidos por personas que decidieron cambiar su estilo de vida y explorar nuevas oportunidades con Omnilife.</p>
     </div>
-    <div class="video-box reveal" id="videoBox" role="button" tabindex="0" aria-label="Reproducir video de Día Morado" onclick="loadGuideVideo()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();loadGuideVideo()}">
-      <img src="https://i.ytimg.com/vi/bl1jFjnwoXE/maxresdefault.jpg" alt="Resultados Omnilife - Día Morado" loading="lazy" width="1280" height="720">
+    
+    <!-- ✅ CAMBIO 1: Añadida clase 'video-lazy' y decoding="async" -->
+    <div class="video-box video-lazy reveal" id="videoBox" role="button" tabindex="0" 
+         aria-label="Reproducir video de Día Morado" 
+         onclick="loadGuideVideo()" 
+         onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();loadGuideVideo()}">
+      
+      <img src="https://i.ytimg.com/vi/bl1jFjnwoXE/maxresdefault.jpg" 
+           alt="Resultados Omnilife - Día Morado" 
+           loading="lazy" decoding="async" width="1280" height="720">
+           
       <div class="video-overlay">
-        <button class="video-play" type="button" aria-label="Reproducir video de Día Morado" onclick="event.stopPropagation();loadGuideVideo()">▶</button>
+        <button class="video-play" type="button" aria-label="Reproducir video de Día Morado" 
+                onclick="event.stopPropagation();loadGuideVideo()">▶</button>
         <span>Ver video</span>
       </div>
     </div>
+    
     <div class="video-meta reveal">
       <span><strong>RESULTADOS OMNILIFE · DÍA MORADO</strong></span>
       <span>Historias, experiencias y una mirada más cercana a la comunidad.</span>
@@ -1109,12 +1120,24 @@ function setTrackingConsent(value){localStorage.setItem('hamilton_tracking_conse
 function trackEvent(name,params={}){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:name,...params});if(window.fbq)fbq('trackCustom',name,params)}
 function trackMetaStandard(name,params={}){if(window.fbq)fbq('track',name,params)}
 function loadGuideVideo(){
-  const box=document.querySelector('#videoBox');
-  if(!box||box.dataset.loaded==='1')return;
-  box.dataset.loaded='1';
-  box.innerHTML='<iframe src="https://www.youtube-nocookie.com/embed/bl1jFjnwoXE?autoplay=1&rel=0&modestbranding=1&enablejsapi=1&playsinline=1" title="Resultados Omnilife - Día Morado" loading="eager" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
-  trackMetaStandard('ViewContent',{content_name:'Video Día Morado Omnilife',content_category:'Video'});
-  trackEvent('video_play',{video:'dia_morado_omnilife'});
+  const box = document.getElementById('videoBox');
+  if(!box || box.dataset.loaded === '1') return;
+  
+  box.dataset.loaded = '1';
+  box.classList.add('loaded'); // Activa la regla CSS para liberar GPU
+  
+  box.innerHTML = `
+    <iframe 
+      src="https://www.youtube-nocookie.com/embed/bl1jFjnwoXE?autoplay=1&rel=0&modestbranding=1&playsinline=1" 
+      title="Resultados Omnilife - Día Morado" 
+      loading="eager" 
+      referrerpolicy="strict-origin-when-cross-origin" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen
+      style="position:absolute;inset:0;width:100%;height:100%;border:0;">
+    </iframe>`;
+    
+  trackEvent('video_play', {video:'dia_morado_omnilife'});
 }
 if(localStorage.getItem('hamilton_tracking_consent')==='analytics'){loadMetaPixel();loadGtm();loadGa4()}else if(!localStorage.getItem('hamilton_tracking_consent'))document.querySelector('#cookieNotice').hidden=false;
 </script>
@@ -1297,19 +1320,36 @@ document.addEventListener('DOMContentLoaded',()=>{
       card.style.setProperty('--mouse-x',`${x}px`);card.style.setProperty('--mouse-y',`${y}px`);
     });
   });
-  if(!isMobile){
+   if(!isMobile){
     document.querySelectorAll('.magnetic-btn').forEach(btn=>{
       btn.addEventListener('mousemove',(e)=>{
-        const rect=btn.getBoundingClientRect();const x=e.clientX-rect.left-rect.width/2;const y=e.clientY-rect.top-rect.height/2;
+        const rect=btn.getBoundingClientRect();
+        const x=e.clientX-rect.left-rect.width/2;
+        const y=e.clientY-rect.top-rect.height/2;
         btn.style.transform=`translate(${x*0.15}px,${y*0.15}px)`;
       });
       btn.addEventListener('mouseleave',()=>{btn.style.transform='translate(0,0)'});
     });
   }
-  const revealObserver=new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target)}});
-  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
-  document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+  // ✅ OBSERVER OPTIMIZADO CON CONTENT-VISIBILITY
+  const revealObserver = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        // Libera el renderizado una vez visible para ahorrar RAM
+        entry.target.style.contentVisibility = 'visible'; 
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.1, rootMargin:'0px 0px -50px 0px'}); // Threshold más bajo = menos trabajo CPU
+
+  // Inicializa los elementos con content-visibility antes de observarlos
+  document.querySelectorAll('.reveal').forEach(el=>{
+    el.style.contentVisibility = 'auto';
+    el.style.containIntrinsicSize = '0 500px';
+    revealObserver.observe(el);
+  });
 });
 </script>
 </body>
