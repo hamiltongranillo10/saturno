@@ -1152,29 +1152,68 @@ document.querySelectorAll('.faq-list details').forEach(item=>{
 });
 </script>
 
-<!-- ✅ SCRIPT DEL MENÚ MÓVIL CORREGIDO -->
 <script id="mobile-menu-script">
 (function(){
-  const toggle=document.getElementById('mobileNavToggle');
-  const menu=document.getElementById('mobileMenu');
-  if(!toggle||!menu)return;
-  const close=()=>{
-    menu.hidden=true;
+  const toggle = document.getElementById('mobileNavToggle');
+  const menu = document.getElementById('mobileMenu');
+  
+  if(!toggle || !menu) {
+    console.error('No se encontraron los elementos del menú móvil');
+    return;
+  }
+  
+  function closeMenu(){
+    menu.hidden = true;
     toggle.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded','false');
-    toggle.setAttribute('aria-label','Abrir menú');
-  };
-  const open=()=>{
-    menu.hidden=false;
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Abrir menú');
+  }
+  
+  function openMenu(){
+    menu.hidden = false;
     toggle.classList.add('is-open');
-    toggle.setAttribute('aria-expanded','true');
-    toggle.setAttribute('aria-label','Cerrar menú');
-  };
-  toggle.addEventListener('click',()=>menu.hidden?open():close());
-  menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>close()));
-  document.addEventListener('click',e=>{if(!menu.hidden&&!menu.contains(e.target)&&!toggle.contains(e.target))close()});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
-  window.addEventListener('resize',()=>{if(window.innerWidth>850)close()});
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Cerrar menú');
+  }
+  
+  toggle.addEventListener('click', function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if(menu.hidden){
+      openMenu();
+    } else {
+      closeMenu();
+    }
+  });
+  
+  // Cerrar al hacer clic en un enlace
+  menu.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      closeMenu();
+    });
+  });
+  
+  // Cerrar al hacer clic fuera
+  document.addEventListener('click', function(e){
+    if(!menu.hidden && !menu.contains(e.target) && !toggle.contains(e.target)){
+      closeMenu();
+    }
+  });
+  
+  // Cerrar con tecla Escape
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape'){
+      closeMenu();
+    }
+  });
+  
+  // Cerrar al cambiar tamaño de ventana
+  window.addEventListener('resize', function(){
+    if(window.innerWidth > 850){
+      closeMenu();
+    }
+  });
 })();
 </script>
 
