@@ -579,10 +579,10 @@ img{max-width:100%;display:block}
 }
 
 /* =========================================
-   📱 RESPONSIVE - MÓVIL
+    RESPONSIVE - MÓVIL CORREGIDO
    ========================================= */
 @media(max-width:600px){
-  .wrap{width:calc(100% - 28px)}
+  .wrap{width:calc(100% - 28px);max-width:100%}
   .nav-inner{height:64px}
   .hero{padding:100px 0 76px}
   .hero h1{font-size:clamp(2.65rem,13vw,4rem);letter-spacing:-.055em}
@@ -599,38 +599,44 @@ img{max-width:100%;display:block}
   .options-grid,.process-grid{gap:14px}
   .option{padding:24px;min-height:0}
   .option-badge{top:12px;right:12px;font-size:.68rem;padding:5px 12px}
-  .proof-copy h2,.form-copy h2{font-size:clamp(2rem,10vw,3rem)}
   
-  /* ✅ FOTO SECTION - TODO CENTRADO EN MÓVIL */
+  /* ✅ PHOTO SECTION - CORRECCIÓN COMPLETA */
   .photo-section .proof-grid{
+    grid-template-columns:1fr !important;
     gap:32px;
+    display:grid;
   }
   .photo-section .proof-image{
-    width:min(72vw,280px);
-    max-width:280px;
+    width:min(72vw,280px) !important;
+    max-width:280px !important;
     padding:5px;
     border-radius:16px;
-    margin:0 auto;
+    margin:0 auto !important;
+    justify-self:center !important;
   }
   .photo-section .proof-image img{
     border-radius:11px;
     aspect-ratio:4 / 4.45;
   }
   .photo-section .proof-copy{
-    padding:0 8px;
-    text-align:center;
-    margin:0 auto;
-    max-width:100%;
-  }
-  .photo-section .proof-copy h2{
-    font-size:clamp(1.8rem,8vw,2.5rem);
-    margin:10px 0 16px;
-    text-align:center;
+    max-width:100% !important;
+    width:100% !important;
+    padding:0 8px !important;
+    margin:0 auto !important;
+    text-align:center !important;
+    overflow:hidden;
   }
   .photo-section .proof-copy .eyebrow{
     display:block;
     text-align:center;
     margin-bottom:12px;
+  }
+  .photo-section .proof-copy h2{
+    font-size:clamp(1.8rem,8vw,2.5rem) !important;
+    margin:10px 0 16px;
+    text-align:center;
+    word-wrap:break-word;
+    overflow-wrap:break-word;
   }
   .photo-section .quote{
     font-size:.95rem;
@@ -680,6 +686,7 @@ img{max-width:100%;display:block}
     justify-content:center;
   }
   
+  .proof-copy h2,.form-copy h2{font-size:clamp(2rem,10vw,3rem)}
   .mode-tabs{grid-template-columns:1fr!important}
   .mode-tabs button{min-height:44px}
   .lead-form{padding:18px}
