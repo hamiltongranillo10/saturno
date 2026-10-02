@@ -579,13 +579,13 @@ img{max-width:100%;display:block}
 }
 
 /* =========================================
-    RESPONSIVE - MÓVIL CORREGIDO
+   📱 RESPONSIVE - MÓVIL - SOLUCIÓN DEFINITIVA
    ========================================= */
 @media(max-width:600px){
-  .wrap{width:calc(100% - 28px);max-width:100%}
+  .wrap{width:calc(100% - 28px) !important;max-width:100% !important}
   .nav-inner{height:64px}
   .hero{padding:100px 0 76px}
-  .hero h1{font-size:clamp(2.65rem,13vw,4rem);letter-spacing:-.055em}
+  .hero h1{font-size:clamp(2.65rem,13vw,4rem) !important;letter-spacing:-.055em}
   .hero-lead{font-size:1rem;line-height:1.55}
   .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
   .hero-actions .btn{width:100%;min-height:50px}
@@ -600,90 +600,123 @@ img{max-width:100%;display:block}
   .option{padding:24px;min-height:0}
   .option-badge{top:12px;right:12px;font-size:.68rem;padding:5px 12px}
   
-  /* ✅ PHOTO SECTION - CORRECCIÓN COMPLETA */
+  /* ✅ PHOTO SECTION - FORZAR TODO A IZQUIERDA Y CENTRADO */
   .photo-section .proof-grid{
     grid-template-columns:1fr !important;
-    gap:32px;
-    display:grid;
+    grid-template-rows:auto auto !important;
+    gap:32px !important;
+    display:grid !important;
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
   }
+  
   .photo-section .proof-image{
     width:min(72vw,280px) !important;
     max-width:280px !important;
-    padding:5px;
-    border-radius:16px;
-    margin:0 auto !important;
+    padding:5px !important;
+    border-radius:16px !important;
+    margin:0 auto 20px auto !important;
     justify-self:center !important;
+    grid-column:1 / -1 !important;
   }
   .photo-section .proof-image img{
-    border-radius:11px;
-    aspect-ratio:4 / 4.45;
+    border-radius:11px !important;
+    aspect-ratio:4 / 4.45 !important;
+    width:100% !important;
   }
+  
   .photo-section .proof-copy{
     max-width:100% !important;
     width:100% !important;
-    padding:0 8px !important;
-    margin:0 auto !important;
+    padding:0 16px !important;
+    margin:0 !important;
     text-align:center !important;
-    overflow:hidden;
+    grid-column:1 / -1 !important;
+    overflow:hidden !important;
+    box-sizing:border-box !important;
   }
+  
   .photo-section .proof-copy .eyebrow{
-    display:block;
-    text-align:center;
-    margin-bottom:12px;
+    display:block !important;
+    text-align:center !important;
+    margin:0 0 12px 0 !important;
+    padding:0 !important;
+    width:100% !important;
   }
+  
   .photo-section .proof-copy h2{
     font-size:clamp(1.8rem,8vw,2.5rem) !important;
-    margin:10px 0 16px;
-    text-align:center;
-    word-wrap:break-word;
-    overflow-wrap:break-word;
+    margin:0 0 16px 0 !important;
+    text-align:center !important;
+    word-wrap:break-word !important;
+    overflow-wrap:break-word !important;
+    width:100% !important;
+    max-width:100% !important;
+    line-height:1.1 !important;
+    padding:0 !important;
   }
+  
   .photo-section .quote{
-    font-size:.95rem;
-    padding-left:14px;
-    margin:18px auto;
-    max-width:100%;
-    text-align:left;
-    border-left:2px solid var(--gold);
+    font-size:.95rem !important;
+    padding:0 0 0 14px !important;
+    margin:18px auto !important;
+    max-width:100% !important;
+    width:100% !important;
+    text-align:left !important;
+    border-left:2px solid var(--gold) !important;
+    box-sizing:border-box !important;
   }
+  
   .photo-section .proof-points{
-    gap:12px;
-    margin:24px auto;
-    max-width:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+    gap:12px !important;
+    margin:24px 0 !important;
+    max-width:100% !important;
+    width:100% !important;
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:stretch !important;
+    padding:0 !important;
   }
+  
   .photo-section .proof-points div{
-    flex-direction:column;
-    gap:6px;
-    padding:14px 16px;
-    background:var(--sage);
-    border-radius:12px;
-    border-left:3px solid var(--gold);
-    text-align:left;
-    width:100%;
-    max-width:100%;
-    box-sizing:border-box;
+    flex-direction:column !important;
+    gap:6px !important;
+    padding:14px 16px !important;
+    background:var(--sage) !important;
+    border-radius:12px !important;
+    border-left:3px solid var(--gold) !important;
+    text-align:left !important;
+    width:100% !important;
+    max-width:100% !important;
+    box-sizing:border-box !important;
+    margin:0 !important;
   }
+  
   .photo-section .proof-points b{
-    min-width:auto;
-    font-size:.95rem;
-    margin-bottom:2px;
-    text-align:left;
-    display:block;
+    min-width:auto !important;
+    font-size:.95rem !important;
+    margin-bottom:2px !important;
+    text-align:left !important;
+    display:block !important;
+    width:100% !important;
   }
+  
   .photo-section .proof-points span{
-    font-size:.88rem;
-    line-height:1.5;
-    text-align:left;
-    display:block;
+    font-size:.88rem !important;
+    line-height:1.5 !important;
+    text-align:left !important;
+    display:block !important;
+    width:100% !important;
   }
+  
   .photo-section .proof-copy .btn{
-    width:100%;
-    margin:20px auto 0;
-    display:flex;
-    justify-content:center;
+    width:100% !important;
+    margin:20px 0 0 0 !important;
+    display:flex !important;
+    justify-content:center !important;
+    max-width:100% !important;
   }
   
   .proof-copy h2,.form-copy h2{font-size:clamp(2rem,10vw,3rem)}
