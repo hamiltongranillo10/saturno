@@ -601,26 +601,83 @@ img{max-width:100%;display:block}
   .option-badge{top:12px;right:12px;font-size:.68rem;padding:5px 12px}
   .proof-copy h2,.form-copy h2{font-size:clamp(2rem,10vw,3rem)}
   
-  /* ✅ PUNTOS EN MÓVIL - TARJETAS CON FONDO */
-  .proof-points div{
+  /* ✅ FOTO SECTION - TODO CENTRADO EN MÓVIL */
+  .photo-section .proof-grid{
+    gap:32px;
+  }
+  .photo-section .proof-image{
+    width:min(72vw,280px);
+    max-width:280px;
+    padding:5px;
+    border-radius:16px;
+    margin:0 auto;
+  }
+  .photo-section .proof-image img{
+    border-radius:11px;
+    aspect-ratio:4 / 4.45;
+  }
+  .photo-section .proof-copy{
+    padding:0 8px;
+    text-align:center;
+    margin:0 auto;
+    max-width:100%;
+  }
+  .photo-section .proof-copy h2{
+    font-size:clamp(1.8rem,8vw,2.5rem);
+    margin:10px 0 16px;
+    text-align:center;
+  }
+  .photo-section .proof-copy .eyebrow{
+    display:block;
+    text-align:center;
+    margin-bottom:12px;
+  }
+  .photo-section .quote{
+    font-size:.95rem;
+    padding-left:14px;
+    margin:18px auto;
+    max-width:100%;
+    text-align:left;
+    border-left:2px solid var(--gold);
+  }
+  .photo-section .proof-points{
+    gap:12px;
+    margin:24px auto;
+    max-width:100%;
+    display:flex;
     flex-direction:column;
-    gap:4px;
+    align-items:center;
+  }
+  .photo-section .proof-points div{
+    flex-direction:column;
+    gap:6px;
     padding:14px 16px;
     background:var(--sage);
     border-radius:12px;
     border-left:3px solid var(--gold);
     text-align:left;
+    width:100%;
+    max-width:100%;
+    box-sizing:border-box;
   }
-  .proof-points b{
+  .photo-section .proof-points b{
     min-width:auto;
     font-size:.95rem;
-    margin-bottom:4px;
+    margin-bottom:2px;
     text-align:left;
+    display:block;
   }
-  .proof-points span{
-    font-size:.9rem;
+  .photo-section .proof-points span{
+    font-size:.88rem;
     line-height:1.5;
     text-align:left;
+    display:block;
+  }
+  .photo-section .proof-copy .btn{
+    width:100%;
+    margin:20px auto 0;
+    display:flex;
+    justify-content:center;
   }
   
   .mode-tabs{grid-template-columns:1fr!important}
@@ -642,19 +699,6 @@ img{max-width:100%;display:block}
   .footer-brand{margin-bottom:2rem}
   .footer-mark{width:2.8rem;height:2.8rem;font-size:.7rem}
   .footer-grid{grid-template-columns:1fr;gap:1.5rem;padding-bottom:2rem}
-  
-  /* ✅ FOTO EN MÓVIL - TEXTO CENTRADO PERO PUNTOS ALINEADOS IZQUIERDA */
-  .photo-section .proof-image{width:min(72vw,280px);max-width:280px;padding:5px;border-radius:16px;margin:0 auto}
-  .photo-section .proof-image img{border-radius:11px;aspect-ratio:4 / 4.45}
-  .photo-section .proof-copy{
-    padding:0 4px;
-    text-align:center;
-    margin:0 auto;
-  }
-  .proof-copy h2{font-size:clamp(1.8rem,8vw,2.5rem);margin:10px 0 16px}
-  .quote{font-size:.95rem;padding-left:14px;margin:18px auto;max-width:100%;text-align:left}
-  .proof-points{gap:12px;margin:24px auto;max-width:100%}
-  
   .carousel-3d-section{padding:70px 0}
   .carousel-3d-item{width:min(240px,70vw);height:280px;padding:20px}
   .carousel-3d-item h4{font-size:1.1rem}
