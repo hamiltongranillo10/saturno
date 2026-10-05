@@ -741,6 +741,15 @@ html{scroll-behavior:smooth!important}
 .reveal.is-visible{opacity:1;transform:none}
 .scroll-progress-3d,#particles-canvas,.cursor-dot,.cursor-outline,.loading-screen,.page-transition-overlay{display:none!important}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* IMÁGENES DE CATEGORÍAS — integradas sin cambiar la estructura visual */
+.need-card{overflow:hidden;padding-top:0!important;}
+.need-card-image-wrap{height:150px;margin:0 -24px 20px;overflow:hidden;background:#f3f5f2;}
+.need-card-image{width:100%;height:100%;object-fit:cover;display:block;}
+.need-card .selection-icon{margin-top:0;}
+.cart-result-image-wrap{width:100%;height:210px;margin-bottom:20px;overflow:hidden;border-radius:16px;background:#f3f5f2;}
+.cart-result-image{width:100%;height:100%;object-fit:cover;display:block;}
+
 </style>
 </head>
 
@@ -947,7 +956,7 @@ IMPORTANTE:
 
 const CART_LINKS = {
   mexico: {
-    limpieza_10_dias: "https://portal.omnilife.com/carritos-prearmados/7b3bb270-6b02-47d5-aa8a-93d167f71484",
+    limpieza: "https://portal.omnilife.com/carritos-prearmados/7b3bb270-6b02-47d5-aa8a-93d167f71484",
     cardiovascular: "https://portal.omnilife.com/carritos-prearmados/76125ddc-4259-4493-be4b-b05dac1ab7c3",
     nervioso: "https://portal.omnilife.com/carritos-prearmados/3695eb50-3633-4fd6-813a-acb4df971507",
     reproductor_masculino: "https://portal.omnilife.com/carritos-prearmados/5d544598-ecf9-497d-b511-79401528078a",
@@ -958,12 +967,12 @@ const CART_LINKS = {
     respiratorio: "https://portal.omnilife.com/carritos-prearmados/4543197e-66d9-40dd-89d2-4c0d23856d48",
     inmunologico: "https://portal.omnilife.com/carritos-prearmados/50bc4284-f132-463e-9719-512ee0eb9072",
     energia_deporte: "https://portal.omnilife.com/carritos-prearmados/2642d400-0a1e-4b99-b7d8-9a972ff3321b",
-    peso_talla: "https://portal.omnilife.com/carritos-prearmados/06af8655-f03e-411e-989b-7d2487713196"
+    control_peso: "https://portal.omnilife.com/carritos-prearmados/06af8655-f03e-411e-989b-7d2487713196"
   },
-  ecuador: {},
-  usa: {},
-  panama: {},
-  republica_dominicana: {}
+  ecuador: {digestion:"",energia:"",bienestar:"",belleza:""},
+  usa: {digestion:"",energia:"",bienestar:"",belleza:""},
+  panama: {digestion:"",energia:"",bienestar:"",belleza:""},
+  republica_dominicana: {digestion:"",energia:"",bienestar:"",belleza:""}
 };
 /* =========================================================
    🎥 ENLACE DEL VIDEO TUTORIAL
@@ -983,33 +992,33 @@ const COUNTRIES = {
 
 /* ✏️ CATEGORÍAS: aquí puedes cambiar los nombres y descripciones de las categorías. */
 const NEEDS = {
-  limpieza_10_dias:{name:"Limpieza profunda de 10 días",icon:"10",desc:"Selección para acompañar una rutina de bienestar digestivo."},
-  cardiovascular:{name:"Sistema cardiovascular",icon:"♥",desc:"Selección para acompañar el bienestar cardiovascular."},
-  nervioso:{name:"Sistema Nervioso",icon:"N",desc:"Selección para acompañar concentración, claridad y descanso."},
-  reproductor_masculino:{name:"Reproductor Masculino",icon:"M",desc:"Selección para acompañar el bienestar masculino."},
-  reproductor_femenino:{name:"Reproductor Femenino",icon:"F",desc:"Selección para acompañar el bienestar femenino."},
-  renal:{name:"Sistema Renal",icon:"R",desc:"Selección para acompañar la depuración y el bienestar renal."},
-  oseo_muscular:{name:"Sistema Óseo y Muscular",icon:"O",desc:"Selección para acompañar huesos, músculos y articulaciones."},
-  digestivo:{name:"Sistema Digestivo",icon:"D",desc:"Selección para acompañar el bienestar digestivo."},
-  respiratorio:{name:"Sistema Respiratorio",icon:"S",desc:"Selección para acompañar el bienestar respiratorio."},
-  inmunologico:{name:"Sistema inmunológico",icon:"I",desc:"Selección para apoyar las defensas naturales del organismo."},
-  energia_deporte:{name:"Energía y deporte",icon:"E",desc:"Selección para acompañar entrenamientos y actividad física."},
-  peso_talla:{name:"Control de peso y talla",icon:"P",desc:"Selección para acompañar tus objetivos de control de peso y talla."}
+  limpieza:{name:"Limpieza profunda de 10 días",icon:"L",desc:"Selección para acompañar una rutina de bienestar digestivo.",image:"limpieza_10_dias.jpg"},
+  cardiovascular:{name:"Sistema cardiovascular",icon:"C",desc:"Selección para acompañar el bienestar cardiovascular.",image:"sistema_cardiovascular.jpg"},
+  nervioso:{name:"Sistema Nervioso",icon:"N",desc:"Selección para acompañar concentración, claridad y descanso.",image:"sistema_nervioso.jpg"},
+  reproductor_masculino:{name:"Reproductor Masculino",icon:"M",desc:"Selección para acompañar el bienestar masculino.",image:"reproductor_masculino.jpg"},
+  reproductor_femenino:{name:"Reproductor Femenino",icon:"F",desc:"Selección para acompañar el bienestar femenino.",image:"reproductor_femenino.jpg"},
+  renal:{name:"Sistema Renal",icon:"R",desc:"Selección para acompañar la depuración y el bienestar renal.",image:"sistema_renal.jpg"},
+  oseo_muscular:{name:"Sistema Óseo y Muscular",icon:"O",desc:"Selección para acompañar huesos, músculos y articulaciones.",image:"sistema_oseo_muscular.jpg"},
+  digestivo:{name:"Sistema Digestivo",icon:"D",desc:"Selección para acompañar el bienestar digestivo.",image:"sistema_digestivo.jpg"},
+  respiratorio:{name:"Sistema Respiratorio",icon:"S",desc:"Selección para acompañar el bienestar respiratorio.",image:"sistema_respiratorio.jpg"},
+  inmunologico:{name:"Sistema inmunológico",icon:"I",desc:"Selección para apoyar las defensas naturales del organismo.",image:"sistema_inmunologico.jpg"},
+  energia_deporte:{name:"Energía y deporte",icon:"E",desc:"Selección para acompañar entrenamientos y actividad física.",image:"energia_deporte.jpg"},
+  control_peso:{name:"Control de peso y talla",icon:"P",desc:"Selección para acompañar tus objetivos de control de peso y talla.",image:"control_peso_talla.jpg"}
 };
 
 const CART_CONTENT = {
-  limpieza_10_dias:{title:"Carrito Limpieza profunda de 10 días",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañarte durante 10 días en tu rutina de bienestar digestivo. Revisa la selección y realiza tu pedido de forma fácil y rápida.",productsCount:18,price:"$5,565.00"},
-  cardiovascular:{title:"Carrito sistema cardiovascular",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el cuidado de tu sistema cardiovascular, apoyando una buena circulación y una rutina de bienestar integral.",productsCount:8,price:"$3,800.00"},
-  nervioso:{title:"Carrito Sistema Nervioso",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar tu bienestar mental, favorecer la concentración y claridad de pensamiento, y apoyar una rutina de descanso y relajación.",productsCount:9,price:"$3,180.00"},
-  reproductor_masculino:{title:"Carrito Reproductor Masculino",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar masculino, apoyar el equilibrio hormonal y contribuir a una vida íntima y activa.",productsCount:31,price:"$3,845.00"},
-  reproductor_femenino:{title:"Carrito Reproductor Femenino",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar femenino, apoyar el equilibrio hormonal y contribuir a una vida íntima y activa.",productsCount:31,price:"$3,880.00"},
-  renal:{title:"Carrito Sistema Renal",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar la depuración y el bienestar del sistema renal, como parte de una rutina integral de cuidado y bienestar.",productsCount:31,price:"$4,005.00"},
-  oseo_muscular:{title:"Carrito Sistema Óseo y Muscular",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar óseo y muscular, apoyar el cuidado de huesos, músculos, tejidos, ligamentos y articulaciones.",productsCount:8,price:"$3,525.00"},
-  digestivo:{title:"Carrito Sistema Digestivo",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar digestivo, apoyar una buena función del sistema digestivo y complementar una rutina de cuidado y bienestar.",productsCount:31,price:"$3,710.00"},
-  respiratorio:{title:"Carrito Sistema Respiratorio",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar respiratorio, apoyar las defensas del organismo y complementar una rutina de bienestar con antioxidantes.",productsCount:8,price:"$3,635.00"},
-  inmunologico:{title:"Carrito sistema inmunológico",desc:"¡Hola! Preparé este carrito con productos seleccionados para apoyar las defensas naturales del organismo y acompañar el bienestar del sistema inmunológico.",productsCount:9,price:"$4,385.00"},
-  energia_deporte:{title:"Carrito energía y deporte",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar tu rendimiento físico, apoyar la hidratación y mantenerte activo durante tus entrenamientos y actividades deportivas.",productsCount:4,price:"$2,675.00"},
-  peso_talla:{title:"Carrito control de peso y talla",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañarte en tu objetivo de control de peso y talla y apoyar una rutina enfocada en alcanzar tus metas de bienestar.",productsCount:3,price:"$1,760.00"}
+  limpieza:{title:"Limpieza profunda de 10 días",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar una rutina de bienestar digestivo.",products:["18 productos","$5,565.00"]},
+  cardiovascular:{title:"Sistema cardiovascular",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el cuidado de tu sistema cardiovascular, apoyando una buena circulación y una rutina de bienestar integral.",products:["8 productos","$3,800.00"]},
+  nervioso:{title:"Sistema Nervioso",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar tu bienestar mental, favorecer la concentración y claridad de pensamiento, y apoyar una rutina de descanso y relajación.",products:["9 productos","$3,180.00"]},
+  reproductor_masculino:{title:"Reproductor Masculino",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar masculino, apoyar el equilibrio hormonal y contribuir a una vida íntima y activa.",products:["31 productos","$3,845.00"]},
+  reproductor_femenino:{title:"Reproductor Femenino",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar femenino, apoyar el equilibrio hormonal y contribuir a una vida íntima y activa.",products:["31 productos","$3,880.00"]},
+  renal:{title:"Sistema Renal",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar la depuración y el bienestar del sistema renal, como parte de una rutina integral de cuidado y bienestar.",products:["31 productos","$4,005.00"]},
+  oseo_muscular:{title:"Sistema Óseo y Muscular",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar óseo y muscular, apoyar el cuidado de huesos, músculos, tejidos, ligamentos y articulaciones.",products:["8 productos","$3,525.00"]},
+  digestivo:{title:"Sistema Digestivo",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar digestivo, apoyar una buena función del sistema digestivo y complementar una rutina de cuidado y bienestar.",products:["31 productos","$3,710.00"]},
+  respiratorio:{title:"Sistema Respiratorio",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar respiratorio, apoyar las defensas del organismo y complementar una rutina de bienestar con antioxidantes.",products:["8 productos","$3,635.00"]},
+  inmunologico:{title:"Sistema inmunológico",desc:"¡Hola! Preparé este carrito con productos seleccionados para apoyar las defensas naturales del organismo y acompañar el bienestar del sistema inmunológico.",products:["9 productos","$4,385.00"]},
+  energia_deporte:{title:"Energía y deporte",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar tu rendimiento físico, apoyar la hidratación y mantenerte activo durante tus entrenamientos y actividades deportivas.",products:["4 productos","$2,675.00"]},
+  control_peso:{title:"Control de peso y talla",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañarte en tu objetivo de control de peso y talla y apoyar una rutina enfocada en alcanzar tus metas de bienestar.",products:["3 productos","$1,760.00"]}
 };
 
 let selectedCountry = null;
@@ -1034,6 +1043,9 @@ function renderCountries(){
 function renderNeeds(){
   needGrid.innerHTML=Object.entries(NEEDS).map(([id,n])=>`
     <button class="need-card ${selectedNeed===id?"active":""}" data-need="${id}" type="button">
+      <div class="need-card-image-wrap">
+        <img class="need-card-image" src="imagenes/carritos/${n.image}" alt="${n.name}" loading="lazy">
+      </div>
       <div class="selection-icon">${n.icon}</div><strong>${n.name}</strong><span>${n.desc}</span>
     </button>`).join("");
   needGrid.querySelectorAll("[data-need]").forEach(btn=>btn.addEventListener("click",()=>{
