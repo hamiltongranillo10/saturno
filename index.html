@@ -4,11 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>Conoce Omnilife | Día Morado y acompañamiento personal</title>
-<meta name="description" content="Conoce cómo se vive un Día Morado en Omnilife, descubre experiencias de personas y recibe orientación personalizada para conocer tus opciones de registro.">
+<title>Encuentra tu carrito Omnilife | Hamilton Granillo</title>
+<meta name="description" content="Elige tu país, selecciona lo que buscas y encuentra un carrito recomendado para comprar de forma sencilla.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
 <style>
 :root{
   --ink:#111b17;--green:#123d2c;--green-2:#1d6044;--deep:#071b14;
@@ -767,44 +766,59 @@ img{max-width:100%;display:block}
 @media(prefers-reduced-motion:reduce){
   *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+
+/* ===== NUEVO RECORRIDO: PAÍS → NECESIDAD → CARRITO ===== */
+.selection-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.selection-btn,.need-card{border:1px solid var(--line);background:#fff;border-radius:16px;padding:20px;text-align:left;transition:all .35s var(--ease-premium)}
+.selection-btn:hover,.need-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--gold)}
+.selection-btn.active,.need-card.active{border-color:var(--gold);box-shadow:0 14px 35px rgba(199,161,90,.16);background:linear-gradient(145deg,#fff,#fbfaf6)}
+.selection-icon{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--sage);color:var(--green);font-weight:800;margin-bottom:13px}
+.selection-btn strong,.need-card strong{display:block;color:var(--green);font-size:1rem}
+.selection-btn span,.need-card span{display:block;color:var(--muted);font-size:.78rem;margin-top:5px}
+.need-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cart-area{background:var(--sage);border-radius:22px;padding:30px}
+.cart-empty{text-align:center;padding:38px 20px;color:var(--muted)}
+.cart-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;display:grid;grid-template-columns:1fr auto;gap:25px;align-items:center;box-shadow:0 15px 40px rgba(10,34,25,.07)}
+.cart-card h3{color:var(--green);font-size:1.55rem;margin:7px 0}
+.cart-card p{color:var(--muted);max-width:650px}
+.cart-badge{display:inline-flex;padding:6px 11px;border-radius:999px;background:var(--gold-light);color:var(--deep);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
+.cart-products{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
+.cart-products span{padding:6px 10px;border-radius:999px;background:var(--sage);color:var(--green);font-size:.76rem}
+.cart-card-actions{display:flex;flex-direction:column;gap:9px;min-width:190px}
+.btn-disabled{background:#e9eeeb!important;color:#75837d!important;box-shadow:none!important;cursor:not-allowed!important}
+.how-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.tutorial-placeholder{border:1px dashed rgba(199,161,90,.5);background:rgba(255,255,255,.05);border-radius:16px;min-height:120px;display:grid;place-items:center;text-align:center;padding:20px;color:#bcd0c6}
+.tutorial-placeholder strong{color:var(--gold-light);display:block;margin-bottom:5px}
+.helper-band{background:var(--deep);color:#fff;padding:55px 0}
+.helper-inner{display:flex;align-items:center;justify-content:space-between;gap:25px;flex-wrap:wrap}
+.helper-inner h2{font-size:clamp(1.8rem,3.5vw,3rem);color:#fff;margin:8px 0}
+.helper-inner p{color:#bcd0c6;max-width:650px}
+@media(max-width:1000px){.selection-grid{grid-template-columns:repeat(3,1fr)}.need-grid{grid-template-columns:repeat(2,1fr)}.how-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:700px){.selection-grid,.need-grid,.how-grid{grid-template-columns:1fr 1fr}.cart-card{grid-template-columns:1fr}.cart-card-actions{min-width:0}.cart-area{padding:18px}}
+@media(max-width:450px){.selection-grid,.need-grid,.how-grid{grid-template-columns:1fr}}
 </style>
 </head>
 
 <body>
-<div class="loading-screen" id="loadingScreen">
-  <div class="loading-logo">HG</div>
-  <div class="loading-sub">Hamilton Granillo</div>
-  <div class="loading-bar"><div class="loading-bar-fill"></div></div>
-</div>
+<div class="loading-screen" id="loadingScreen"><div class="loading-logo">HG</div><div class="loading-sub">Hamilton Granillo</div><div class="loading-bar"><div class="loading-bar-fill"></div></div></div>
 <div class="scroll-progress-3d" id="scrollProgress"></div>
-<div class="page-transition-overlay" id="pageTransition"><div class="loader"></div></div>
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-outline" id="cursorOutline"></div>
+<div class="cursor-dot" id="cursorDot"></div><div class="cursor-outline" id="cursorOutline"></div>
 <canvas id="particles-canvas"></canvas>
 
 <header class="site-nav" id="siteNav">
   <div class="wrap nav-inner">
     <a class="brand" href="#inicio">Hamilton Granillo <span>Distribuidor Independiente</span></a>
     <nav class="nav-links" aria-label="Navegación principal">
-      <a href="#opciones">Opciones</a>
-      <a href="#como-funciona">Cómo funciona</a>
-      <a href="#preguntas">Preguntas</a>
-      <a class="btn btn-primary magnetic-btn" href="#registro">Quiero orientación</a>
+      <a href="#paises">Países</a><a href="#carritos">Carritos</a><a href="#como-pedir">Cómo pedir</a><a href="#preguntas">Preguntas</a>
+      <a class="btn btn-primary magnetic-btn" href="#paises">Ver carritos</a>
     </nav>
-    <!-- ✅ BOTÓN HAMBURGUESA CORREGIDO -->
     <button class="mobile-nav" id="mobileNavToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
-      <div class="mobile-nav-lines">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
+      <div class="mobile-nav-lines"><span></span><span></span><span></span></div>
     </button>
   </div>
   <nav class="mobile-menu" id="mobileMenu" aria-label="Navegación móvil">
-    <a href="#opciones">Opciones</a>
-    <a href="#como-funciona">Cómo funciona</a>
-    <a href="#preguntas">Preguntas frecuentes</a>
-    <a class="mobile-menu-cta" href="#registro">Quiero orientación <span>→</span></a>
+    <a href="#paises">Países</a><a href="#carritos">Carritos</a><a href="#como-pedir">Cómo pedir</a><a href="#preguntas">Preguntas frecuentes</a>
+    <a class="mobile-menu-cta" href="#paises">Ver carritos <span>→</span></a>
   </nav>
 </header>
 
@@ -812,544 +826,332 @@ img{max-width:100%;display:block}
 <section class="hero" id="inicio">
   <div class="wrap hero-grid">
     <div>
-      <div class="eyebrow reveal">Acompañamiento personal para tu registro</div>
-      <h1 class="reveal reveal-delay-1">Conoce Omnilife.<br><em>Decide con claridad.</em></h1>
+      <div class="eyebrow reveal">Compra de forma sencilla</div>
+      <h1 class="reveal reveal-delay-1">Encuentra el carrito<br><em>ideal para ti.</em></h1>
       <div class="typewriter-3d" id="typewriter"></div>
+      <p class="hero-lead reveal reveal-delay-1">Elige tu país, selecciona lo que buscas y encuentra un carrito recomendado para revisar y comprar de forma sencilla.</p>
       <div class="hero-actions reveal reveal-delay-2">
-        <a class="btn btn-primary magnetic-btn" href="#opciones">Conocer mis opciones <span>↓</span></a>
-        <a class="btn btn-light magnetic-btn" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20recibir%20orientaci%C3%B3n%20sobre%20Omnilife." target="_blank" rel="noopener">Hablar conmigo por WhatsApp</a>
+        <a class="btn btn-primary magnetic-btn" href="#paises">Explorar carritos <span>↓</span></a>
+        <a class="btn btn-light magnetic-btn" href="#como-pedir">¿Cómo hago mi pedido?</a>
       </div>
-      <div class="trust reveal reveal-delay-3">
-        <span>Sin presión</span><span>Explicación clara</span><span>Registro en portal oficial</span>
-      </div>
+      <div class="trust reveal reveal-delay-3"><span>Carritos prearmados</span><span>Enlace de compra</span><span>Ayuda por WhatsApp</span></div>
     </div>
   </div>
 </section>
 
 <section class="choice-band reveal">
   <div class="wrap choice-band-inner">
-    <div><strong>¿No sabes cuál elegir?</strong><p>Cuéntame qué buscas y te recomiendo una opción según tu objetivo.</p></div>
-    <a class="btn magnetic-btn" href="#registro" data-mode="recomendacion">Quiero una recomendación</a>
+    <div><strong>¿No sabes qué carrito elegir?</strong><p>Selecciona tu país y lo que estás buscando. Te mostramos la selección disponible.</p></div>
+    <a class="btn magnetic-btn" href="#paises">Empezar ahora</a>
   </div>
 </section>
 
-<section class="video-section" id="video">
+<section class="section" id="paises">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Paso 01</div><h2>Primero, elige tu país.</h2>
+      <p>Selecciona dónde realizarás tu compra para mostrarte las opciones preparadas para ese mercado.</p>
+    </div>
+    <div class="selection-grid" id="countryGrid"></div>
+  </div>
+</section>
+
+<section class="section options" id="necesidades">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Paso 02</div><h2>¿Qué estás buscando?</h2>
+      <p>Elige una categoría para encontrar el carrito que mejor corresponde a tu objetivo.</p>
+    </div>
+    <div class="need-grid" id="needGrid"></div>
+  </div>
+</section>
+
+<section class="section" id="carritos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Paso 03</div><h2>Tu carrito recomendado.</h2>
+      <p id="cartIntro">Selecciona un país y una categoría para ver la opción disponible.</p>
+    </div>
+    <div class="cart-area" id="cartArea">
+      <div class="cart-empty">Selecciona tu país y lo que estás buscando para mostrar tu carrito.</div>
+    </div>
+  </div>
+</section>
+
+<section class="video-section" id="como-pedir">
   <div class="wrap video-wrap">
     <div class="section-head reveal">
-      <div class="eyebrow">Mira antes de decidir</div>
-      <h2>Así se vive un Día Morado en Omnilife.</h2>
-      <p>Conoce experiencias y resultados compartidos por personas que decidieron cambiar su estilo de vida y explorar nuevas oportunidades con Omnilife.</p>
+      <div class="eyebrow">Compra paso a paso</div>
+      <h2>¿Cómo hago mi pedido?</h2>
+      <p>Aquí podrás colocar tu video tutorial para explicar cómo abrir el carrito, revisarlo, agregar productos si corresponde y continuar con el proceso de compra.</p>
     </div>
-    
-    <!-- ✅ CAMBIO 1: Añadida clase 'video-lazy' y decoding="async" -->
-    <div class="video-box video-lazy reveal" id="videoBox" role="button" tabindex="0" 
-         aria-label="Reproducir video de Día Morado" 
-         onclick="loadGuideVideo()" 
-         onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();loadGuideVideo()}">
-      
-      <img src="https://i.ytimg.com/vi/bl1jFjnwoXE/maxresdefault.jpg" 
-           alt="Resultados Omnilife - Día Morado" 
-           loading="lazy" decoding="async" width="1280" height="720">
-           
-      <div class="video-overlay">
-        <button class="video-play" type="button" aria-label="Reproducir video de Día Morado" 
-                onclick="event.stopPropagation();loadGuideVideo()">▶</button>
-        <span>Ver video</span>
-      </div>
+    <div class="tutorial-placeholder reveal">
+      <div><strong>VIDEO TUTORIAL</strong><span>Cuando tengas el video, coloca su enlace en la variable indicada dentro del código.</span></div>
     </div>
-    
-    <div class="video-meta reveal">
-      <span><strong>RESULTADOS OMNILIFE · DÍA MORADO</strong></span>
-      <span>Historias, experiencias y una mirada más cercana a la comunidad.</span>
+    <div class="how-grid" style="margin-top:25px">
+      <article class="step"><div class="step-no">01</div><h3>Abre el carrito</h3><p>Entra desde el botón del carrito recomendado.</p></article>
+      <article class="step"><div class="step-no">02</div><h3>Revisa tu selección</h3><p>Comprueba los productos y la información mostrada.</p></article>
+      <article class="step"><div class="step-no">03</div><h3>Añade lo que necesites</h3><p>Si el carrito permite modificaciones, puedes revisar y agregar productos.</p></article>
+      <article class="step"><div class="step-no">04</div><h3>Continúa tu compra</h3><p>Sigue los pasos que muestre el portal para envío y datos de entrega.</p></article>
+      <article class="step"><div class="step-no">05</div><h3>Finaliza</h3><p>Revisa tu pedido y completa el proceso indicado por la plataforma.</p></article>
     </div>
   </div>
 </section>
 
 <section class="section photo-section">
   <div class="wrap proof-grid">
-    <div class="proof-image reveal">
-      <img src="Hamilton.jpg" alt="Hamilton Granillo brinda asesoría personalizada" loading="lazy" width="1000" height="1000">
-    </div>
+    <div class="proof-image reveal"><img src="Hamilton.jpg" alt="Hamilton Granillo brinda asesoría personalizada" loading="lazy" width="1000" height="1000"></div>
     <div class="proof-copy">
       <div class="eyebrow reveal">Por qué contar conmigo</div>
-      <h2 class="reveal reveal-delay-1">Una orientación clara para tomar mejores decisiones.</h2>
-      <p class="quote reveal reveal-delay-2">"Conoce tus opciones, resuelve tus dudas y recibe acompañamiento personalizado durante tu proceso."</p>
+      <h2 class="reveal reveal-delay-1">Una orientación clara para elegir y comprar.</h2>
+      <p class="quote reveal reveal-delay-2">"Encuentra tu carrito, revisa tus opciones y, si tienes alguna duda, puedes escribirme directamente."</p>
       <div class="proof-points">
-        <div class="reveal reveal-delay-1"><b>✓ Atención personal</b><span>Hablas directamente conmigo y recibes orientación según tus objetivos.</span></div>
-        <div class="reveal reveal-delay-2"><b>✓ Información transparente</b><span>Conoce las opciones, condiciones y pasos antes de tomar una decisión.</span></div>
-        <div class="reveal reveal-delay-3"><b>✓ Registro oficial</b><span>El registro se realiza en el sitio oficial de Omnilife.</span></div>
+        <div class="reveal reveal-delay-1"><b>✓ Selección sencilla</b><span>Elige primero tu país y después la categoría que te interesa.</span></div>
+        <div class="reveal reveal-delay-2"><b>✓ Información clara</b><span>Conoce qué opción estás abriendo antes de continuar.</span></div>
+        <div class="reveal reveal-delay-3"><b>✓ Ayuda personal</b><span>Si necesitas orientación, puedes contactarme por WhatsApp.</span></div>
       </div>
-      <a class="btn btn-primary magnetic-btn reveal reveal-delay-3" href="#registro">Quiero conversar contigo</a>
+      <a class="btn btn-primary magnetic-btn reveal reveal-delay-3" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20necesito%20ayuda%20para%20elegir%20un%20carrito%20Omnilife." target="_blank" rel="noopener">Hablar por WhatsApp</a>
     </div>
   </div>
 </section>
 
-<section class="section options reveal" id="opciones">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Primero, elige tu objetivo</div>
-      <h2>Tres caminos. Una decisión sencilla.</h2>
-      <p>No necesitas saberlo todo antes de comenzar. Lee la opción que más se parece a lo que quieres hacer hoy.</p>
-    </div>
-    <div class="options-grid">
-      <article class="option spotlight-card reveal reveal-delay-1">
-        <div class="option-icon">C</div>
-        <h3>Cliente Admirable</h3>
-        <div class="price">Registro gratuito</div>
-        <p>Para comprar productos para ti, tu familia o probar la línea sin iniciar un negocio.</p>
-        <ul><li>Sin costo de registro</li><li>Compra a precio oficial</li><li>Sin compras mensuales forzosas</li></ul>
-        <button class="btn btn-light choose-mode magnetic-btn" data-mode="cliente">Quiero esta opción</button>
-      </article>
-      <article class="option spotlight-card reveal reveal-delay-2">
-        <div class="option-icon">A</div>
-        <h3>Afiliación</h3>
-        <div class="price">Descuentos desde 25%</div>
-        <p>Para comprar con descuento y dejar abierta la posibilidad de emprender más adelante.</p>
-        <ul><li>Kit de afiliación según país</li><li>Descuento desde el inicio</li><li>Acompañamiento y capacitación</li></ul>
-        <button class="btn btn-light choose-mode magnetic-btn" data-mode="afiliacion">Quiero esta opción</button>
-      </article>
-      <article class="option featured spotlight-card reveal reveal-delay-3">
-        <div class="option-badge">Más elegida</div>
-        <div class="option-icon">1K</div>
-        <h3>Kit Emprendedor</h3>
-        <div class="price">1.000 puntos · desde 30%</div>
-        <p>Para quienes quieren comenzar con más volumen y conocer una ruta de emprendimiento.</p>
-        <ul><li>Productos según tus objetivos</li><li>Mayor volumen inicial</li><li>Recomendación personalizada</li></ul>
-        <button class="btn btn-primary choose-mode magnetic-btn" data-mode="emprendedor">Quiero información</button>
-      </article>
-    </div>
-    <p class="small-note reveal">Los precios, descuentos, kits y condiciones pueden variar según el país y las reglas vigentes. Te ayudo a confirmarlos antes de registrarte.</p>
+<section class="helper-band">
+  <div class="wrap helper-inner">
+    <div><div class="eyebrow">¿Necesitas ayuda?</div><h2>Te ayudo a encontrar tu opción.</h2><p>Si no sabes qué categoría seleccionar o tienes dudas sobre el proceso, escríbeme directamente.</p></div>
+    <a class="btn btn-light magnetic-btn" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20ayuda%20para%20elegir%20un%20carrito%20Omnilife." target="_blank" rel="noopener">Escribirme por WhatsApp</a>
   </div>
 </section>
 
-<section class="section process reveal" id="como-funciona">
-  <div class="wrap">
-    <div class="section-head">
-      <div class="eyebrow">Así de simple</div>
-      <h2>Yo te acompaño en cada paso.</h2>
-      <p>No tienes que descifrar el proceso por tu cuenta.</p>
-    </div>
-    <div class="process-grid">
-      <article class="step spotlight-card reveal reveal-delay-1">
-        <div class="step-no">01</div>
-        <h3>Me cuentas tu objetivo</h3>
-        <p>¿Quieres comprar, ahorrar en tus productos o explorar un emprendimiento? Te escucho sin presión.</p>
-      </article>
-      <article class="step spotlight-card reveal reveal-delay-2">
-        <div class="step-no">02</div>
-        <h3>Elegimos la ruta</h3>
-        <p>Te explico costos, descuentos y condiciones de cada opción para que tomes una decisión informada.</p>
-      </article>
-      <article class="step spotlight-card reveal reveal-delay-3">
-        <div class="step-no">03</div>
-        <h3>Te guío en el registro</h3>
-        <p>Te acompaño por WhatsApp o Zoom mientras completas el proceso en el portal oficial.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<section class="carousel-3d-section reveal" id="experiencias">
-  <div class="wrap" style="text-align:center;">
-    <div class="section-head" style="margin:0 auto 20px;color:white;">
-      <div class="eyebrow" style="color:var(--gold-light);">Testimonios Reales</div>
-      <h2 style="color:white;">Experiencias que inspiran</h2>
-      <p style="color:#bcd0c6;">Así se vive el acompañamiento y el crecimiento con Omnilife.</p>
-    </div>
-    <div class="carousel-3d-container" id="carouselContainer">
-      <div class="carousel-3d" id="carousel3d">
-        <div class="carousel-3d-item">
-          <h4>María G. · Ecuador</h4>
-          <p>"El acompañamiento de Hamilton hizo que mi registro fuera increíblemente sencillo. Ahora tengo mi propio negocio."</p>
-        </div>
-        <div class="carousel-3d-item">
-          <h4>Carlos R. · Colombia</h4>
-          <p>"Empecé como Cliente Admirable por los productos, y la calidad me convenció de dar el salto al Kit Emprendedor."</p>
-        </div>
-        <div class="carousel-3d-item">
-          <h4>Laura M. · México</h4>
-          <p>"La claridad con la que me explicaron las opciones sin presión fue lo que me decidió. 100% recomendado."</p>
-        </div>
-        <div class="carousel-3d-item">
-          <h4>David P. · Perú</h4>
-          <p>"El Día Morado cambió mi perspectiva. La comunidad y el soporte son de otro nivel."</p>
-        </div>
-      </div>
-    </div>
-    <div class="carousel-controls">
-      <button class="carousel-btn magnetic-btn" id="prevBtn" aria-label="Anterior">←</button>
-      <button class="carousel-btn magnetic-btn" id="nextBtn" aria-label="Siguiente">→</button>
-    </div>
-  </div>
-</section>
-
-<section class="section form-section reveal" id="registro">
-  <div class="wrap form-grid">
-    <div class="form-copy">
-      <div class="eyebrow">El siguiente paso</div>
-      <h2>Cuéntame qué necesitas y te respondo personalmente.</h2>
-      <p>Déjame tu nombre y ciudad. Al enviar, se abrirá WhatsApp con un mensaje preparado para que podamos continuar.</p>
-      <div class="mini-guarantee">Tu consulta no te obliga a comprar ni a afiliarte. Primero resolvemos tus dudas; después tú decides.</div>
-    </div>
-    <form class="lead-form" id="leadForm">
-      <div class="mode-tabs" role="tablist" aria-label="Elige tu interés">
-        <button type="button" class="active" data-mode="recomendacion">No sé aún</button>
-        <button type="button" data-mode="cliente">Comprar</button>
-        <button type="button" data-mode="afiliacion">Descuento</button>
-      </div>
-      <div class="field">
-        <label for="name">¿Cómo te llamas?</label>
-        <input id="name" name="name" autocomplete="name" required placeholder="Tu nombre">
-      </div>
-      <div class="field">
-        <label for="city">¿En qué ciudad y país estás?</label>
-        <input id="city" name="city" autocomplete="address-level2" required placeholder="Ej. Guayaquil, Ecuador">
-      </div>
-      <div class="field">
-        <label for="message">¿Qué quieres saber? <span style="font-weight:400;color:var(--muted)">(opcional)</span></label>
-        <textarea id="message" name="message" placeholder="Cuéntame si quieres comprar, tener descuento o emprender..."></textarea>
-      </div>
-      <label class="consent">
-        <input id="consent" type="checkbox" required>
-        <span>Acepto que mis datos se usen para responder mi solicitud por WhatsApp. <a href="https://hamiltonnetworker.com/politica-privacidad.html" target="_blank" rel="noopener">Leer privacidad</a>.</span>
-      </label>
-      <button class="btn btn-primary form-submit magnetic-btn" type="submit">Abrir WhatsApp y recibir orientación →</button>
-      <p class="form-status" id="formStatus" aria-live="polite"></p>
-    </form>
-  </div>
-</section>
-
-<section class="section reveal" id="preguntas">
+<section class="section" id="preguntas">
   <div class="wrap faq">
-    <div class="section-head">
-      <div class="eyebrow">Antes de escribir</div>
-      <h2>Preguntas frecuentes</h2>
-      <p class="faq-intro">Resuelve las dudas más comunes antes de elegir una opción. Si tu pregunta no aparece aquí, puedes escribirme directamente.</p>
-    </div>
+    <div class="section-head reveal"><div class="eyebrow">Preguntas frecuentes</div><h2>Lo esencial antes de comprar.</h2><p class="faq-intro">Respuestas rápidas sobre el funcionamiento de esta página y los carritos.</p></div>
     <div class="faq-list">
-      <details>
-        <summary><span class="faq-number">01</span><span class="faq-question">¿Qué es Omnilife y cómo puedo empezar?</span><span class="faq-icon">+</span></summary>
-        <div class="faq-answer"><p>Omnilife cuenta con diferentes modalidades para quienes desean comprar productos, acceder a descuentos o conocer una opción de emprendimiento. Primero revisamos lo que buscas y después te explico el proceso correspondiente.</p></div>
-      </details>
-      <details>
-        <summary><span class="faq-number">02</span><span class="faq-question">¿Cuál es la diferencia entre Cliente Admirable, Afiliación y Kit Emprendedor?</span><span class="faq-icon">+</span></summary>
-        <div class="faq-answer"><p>Cliente Admirable está orientado a comprar productos; la Afiliación permite acceder a descuentos; y el Kit Emprendedor está pensado para quienes quieren conocer una alternativa de emprendimiento con mayor volumen inicial. Te explico cada opción antes de que decidas.</p></div>
-      </details>
-      <details>
-        <summary><span class="faq-number">03</span><span class="faq-question">¿El registro como Cliente Admirable tiene costo?</span><span class="faq-icon">+</span></summary>
-        <div class="faq-answer"><p>El registro como Cliente Admirable es sin costo. Para adquirir tus productos en una CEDI o realizar compras en línea, primero debes registrarte como Cliente Admirable. Si quieres, te guío paso a paso para realizar tu registro y comenzar a comprar.</p></div>
-      </details>
-      <details>
-        <summary><span class="faq-number">04</span><span class="faq-question">¿Tengo que comprar productos todos los meses?</span><span class="faq-icon">+</span></summary>
-        <div class="faq-answer"><p>No necesariamente. Puedes comprar según tus necesidades. Las condiciones específicas pueden depender de la modalidad, el país y las condiciones comerciales vigentes, por eso te explico lo que aplica antes de registrarte.</p></div>
-      </details>
-      <details>
-        <summary><span class="faq-number">05</span><span class="faq-question">¿Qué descuento puedo obtener?</span><span class="faq-icon">+</span></summary>
-        <div class="faq-answer"><p>Los descuentos pueden variar según la modalidad, el país y la vigencia comercial. En la página mostramos opciones con descuentos desde el 25% y, para el Kit Emprendedor, desde el 30%. Te ayudo a confirmar el porcentaje que corresponde a tu caso.</p></div>
-      </details>
-      <details>
-        <summary><span class="faq-number">06</span><span class="faq-question">¿Qué incluye el Kit Emprendedor de 1.000 puntos?</span><span class="faq-icon">+</span></summary>
-        <div class="faq-answer"><p>La composición y las condiciones del kit pueden variar según el país y la vigencia comercial. Antes de registrarte te explico qué aplica actualmente y te indico dónde puedes verificar la información oficial.</p></div>
-      </details>
-      <details>
-        <summary><span class="faq-number">07</span><span class="faq-question">¿Puedo empezar solo para comprar productos?</span><span class="faq-icon">+</span></summary>
-        <div class="faq-answer"><p>Sí. La opción de Cliente Admirable está orientada a quienes desean comprar productos. Si buscas acceder a descuentos o conocer una alternativa de emprendimiento, también puedo explicarte las demás opciones.</p></div>
-      </details>
+      <details><summary><span class="faq-number">01</span><span class="faq-question">¿Qué es un carrito prearmado?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>Es una selección de productos preparada previamente para facilitarte el proceso de compra.</p></div></details>
+      <details><summary><span class="faq-number">02</span><span class="faq-question">¿Puedo modificar mi carrito?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>Dependerá de las opciones disponibles en el carrito y en la plataforma de compra. Revisa siempre lo que aparece antes de finalizar.</p></div></details>
+      <details><summary><span class="faq-number">03</span><span class="faq-question">¿Qué hago si mi país todavía no tiene enlace?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>La opción aparecerá como “Próximamente”. Cuando el enlace esté disponible, se podrá activar desde el código.</p></div></details>
+      <details><summary><span class="faq-number">04</span><span class="faq-question">¿Puedo pedir ayuda para elegir?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>Sí. Puedes escribirme por WhatsApp y comentarme qué estás buscando para orientarte.</p></div></details>
     </div>
-    <div class="faq-cta">
-      <div><strong>¿No encontraste tu pregunta?</strong><span>Escríbeme y revisamos tu caso paso a paso.</span></div>
-      <a class="btn btn-primary magnetic-btn" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20tengo%20una%20pregunta%20sobre%20Omnilife." target="_blank" rel="noopener" onclick="trackEvent('faq_whatsapp_click')">Quiero conversar contigo →</a>
-    </div>
+    <div class="faq-cta reveal"><div><strong>¿Todavía tienes dudas?</strong><span>Escríbeme y revisamos juntos tu opción.</span></div><a class="btn" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20tengo%20una%20duda%20sobre%20los%20carritos." target="_blank" rel="noopener">Contactarme</a></div>
   </div>
 </section>
 </main>
 
 <footer class="footer">
   <div class="wrap footer-inner">
-    <div class="footer-brand">
-      <div class="footer-mark">HG</div>
-      <div><strong>Hamilton Granillo</strong><p>Distribuidor Independiente Omnilife</p></div>
-    </div>
+    <div class="footer-brand"><div class="footer-mark">HG</div><div><strong>Hamilton Granillo</strong><p>Distribuidor Independiente</p></div></div>
     <div class="footer-grid">
-      <div class="footer-col">
-        <span class="footer-label">Explora</span>
-        <a href="#opciones">Mis opciones</a>
-        <a href="#como-funciona">Cómo funciona</a>
-        <a href="#preguntas">Preguntas frecuentes</a>
-      </div>
-      <div class="footer-col">
-        <span class="footer-label">Orientación</span>
-        <a href="#registro">Quiero orientación</a>
-        <a href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20recibir%20orientaci%C3%B3n%20sobre%20Omnilife." target="_blank" rel="noopener">Hablar por WhatsApp</a>
-      </div>
-      <div class="footer-col">
-        <span class="footer-label">Información</span>
-        <a href="https://hamiltonnetworker.com/politica-privacidad.html" target="_blank" rel="noopener">Aviso de privacidad</a>
-        <a href="https://hamiltonnetworker.com/politica-cookies.html" target="_blank" rel="noopener">Política de cookies</a>
-      </div>
+      <div class="footer-col"><div class="footer-label">Navegación</div><a href="#paises">Países</a><a href="#carritos">Carritos</a><a href="#como-pedir">Cómo pedir</a></div>
+      <div class="footer-col"><div class="footer-label">Ayuda</div><a href="#preguntas">Preguntas frecuentes</a><a href="https://wa.me/593968107948" target="_blank" rel="noopener">WhatsApp</a></div>
+      <div class="footer-col"><div class="footer-label">Información</div><a href="https://hamiltonnetworker.com/politica-privacidad.html" target="_blank" rel="noopener">Política de privacidad</a><a href="https://hamiltonnetworker.com/politica-cookies.html" target="_blank" rel="noopener">Política de cookies</a></div>
     </div>
     <div class="footer-divider"></div>
-    <div class="footer-bottom">
-      <p class="disclaimer">Este sitio es independiente y no es el sitio oficial de Omnilife. Los precios, descuentos, kits y condiciones pueden cambiar según el país y la vigencia comercial. El código de presentador se comparte durante la orientación.</p>
-      <p class="footer-copy">© 2026 Hamilton Granillo · Información y orientación personalizada</p>
-    </div>
+    <div class="footer-bottom"><p class="disclaimer">Sitio de orientación y selección de carritos. Hamilton Granillo es distribuidor independiente. Los productos, precios, disponibilidad y condiciones de compra corresponden a la plataforma donde se complete el pedido.</p><p class="footer-copy">© 2026 Hamilton Granillo</p></div>
   </div>
 </footer>
 
-<div class="cookie-notice" id="cookieNotice" role="dialog" aria-labelledby="cookieTitle" aria-describedby="cookieText" hidden>
-  <div><strong id="cookieTitle">Privacidad y medición</strong><p id="cookieText">Usamos herramientas de medición para saber qué contenido funciona y mejorar esta página. Solo se activan si las aceptas. <a href="https://hamiltonnetworker.com/politica-privacidad.html" target="_blank" rel="noopener">Leer privacidad</a>.</p></div>
-  <div class="cookie-actions">
-    <button class="cookie-reject" type="button" onclick="setTrackingConsent('necessary')">Solo necesarias</button>
-    <button class="cookie-accept" type="button" onclick="setTrackingConsent('analytics')">Aceptar medición</button>
-  </div>
+<a class="float-wa" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20ayuda%20con%20un%20carrito%20Omnilife." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><span>¿Necesitas ayuda?</span></a>
+
+<div class="cookie-notice" id="cookieNotice" hidden>
+  <p>Usamos cookies y tecnologías similares para mejorar la experiencia. Puedes consultar la <a href="https://hamiltonnetworker.com/politica-cookies.html" target="_blank" rel="noopener">política de cookies</a>.</p>
+  <div class="cookie-actions"><button class="cookie-reject" id="cookieReject">Rechazar</button><button class="cookie-accept" id="cookieAccept">Aceptar</button></div>
 </div>
 
-<a class="float-wa" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20tengo%20una%20duda%20sobre%20Omnilife%20y%20quiero%20recibir%20orientaci%C3%B3n." target="_blank" rel="noopener" aria-label="Pedir orientación por WhatsApp" onclick="trackEvent('floating_whatsapp_click')">
-  <span>¿Tienes dudas? Te ayudo</span>
-</a>
-<div class="toast" id="toast" role="status"></div>
-
 <script>
-const META_PIXEL_ID='1330108458187229';
-const GTM_ID='GTM-NMKKFPHN';
-const GA4_ID='';
-function loadMetaPixel(){if(window.__metaLoaded)return;window.__metaLoaded=true;!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=true;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=true;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init',META_PIXEL_ID);fbq('track','PageView')}
-function loadGtm(){if(window.__gtmLoaded)return;window.__gtmLoaded=true;window.dataLayer=window.dataLayer||[];window.dataLayer.push({'gtm.start':Date.now(),event:'gtm.js'});const s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtm.js?id='+encodeURIComponent(GTM_ID);document.head.appendChild(s)}
-function loadGa4(){if(!GA4_ID||window.__ga4Loaded)return;window.__ga4Loaded=true;window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments)};gtag('js',new Date);gtag('config',GA4_ID);const s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(GA4_ID);document.head.appendChild(s)}
-function setTrackingConsent(value){localStorage.setItem('hamilton_tracking_consent',value);document.querySelector('#cookieNotice').hidden=true;if(value==='analytics'){loadMetaPixel();loadGtm();loadGa4();trackEvent('tracking_consent',{consent:'analytics'})}}
-function trackEvent(name,params={}){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:name,...params});if(window.fbq)fbq('trackCustom',name,params)}
-function trackMetaStandard(name,params={}){if(window.fbq)fbq('track',name,params)}
-function loadGuideVideo(){
-  const box = document.getElementById('videoBox');
-  if(!box || box.dataset.loaded === '1') return;
-  
-  box.dataset.loaded = '1';
-  box.classList.add('loaded'); // Activa la regla CSS para liberar GPU
-  
-  box.innerHTML = `
-    <iframe 
-      src="https://www.youtube-nocookie.com/embed/bl1jFjnwoXE?autoplay=1&rel=0&modestbranding=1&playsinline=1" 
-      title="Resultados Omnilife - Día Morado" 
-      loading="eager" 
-      referrerpolicy="strict-origin-when-cross-origin" 
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-      allowfullscreen
-      style="position:absolute;inset:0;width:100%;height:100%;border:0;">
-    </iframe>`;
-    
-  trackEvent('video_play', {video:'dia_morado_omnilife'});
+/* =========================================================
+   🔗 ENLACES DE TUS CARRITOS OMNILIFE
+   =========================================================
+   AQUÍ ES DONDE TÚ VAS A PEGAR LOS ENLACES DESPUÉS.
+
+   1. Busca el PAÍS.
+   2. Busca la CATEGORÍA.
+   3. Reemplaza SOLO las comillas vacías "" por el enlace.
+
+   EJEMPLO:
+   digestion: "https://AQUI-VA-TU-ENLACE.com"
+
+   Si dejas "" vacío, la página mostrará "Próximamente".
+   No necesitas modificar ninguna otra parte del código.
+   ========================================================= */
+
+const CART_LINKS = {
+  mexico: {
+    digestion: "",
+    energia: "",
+    bienestar: "",
+    belleza: ""
+  },
+  ecuador: {
+    digestion: "",
+    energia: "",
+    bienestar: "",
+    belleza: ""
+  },
+  usa: {
+    digestion: "",
+    energia: "",
+    bienestar: "",
+    belleza: ""
+  },
+  panama: {
+    digestion: "",
+    energia: "",
+    bienestar: "",
+    belleza: ""
+  },
+  republica_dominicana: {
+    digestion: "",
+    energia: "",
+    bienestar: "",
+    belleza: ""
+  }
+};
+
+/* =========================================================
+   🎥 ENLACE DEL VIDEO TUTORIAL
+   Cuando tengas tu video, pega aquí su URL.
+   Ejemplo: const TUTORIAL_VIDEO_URL = "https://...";
+   ========================================================= */
+const TUTORIAL_VIDEO_URL = "";
+
+const COUNTRIES = {
+  mexico:{name:"México",short:"MX"},
+  ecuador:{name:"Ecuador",short:"EC"},
+  usa:{name:"Estados Unidos",short:"US"},
+  panama:{name:"Panamá",short:"PA"},
+  republica_dominicana:{name:"República Dominicana",short:"RD"}
+};
+
+const NEEDS = {
+  digestion:{name:"Digestión",icon:"D",desc:"Selección enfocada en tu rutina de bienestar digestivo."},
+  energia:{name:"Energía",icon:"E",desc:"Selección pensada para acompañar tu día a día."},
+  bienestar:{name:"Bienestar",icon:"B",desc:"Una selección general para acompañar tu rutina."},
+  belleza:{name:"Belleza",icon:"✦",desc:"Selección para complementar tu rutina de belleza."}
+};
+
+const CART_CONTENT = {
+  digestion:{title:"Carrito Digestión",desc:"Una selección de productos pensada para acompañar tu rutina de bienestar digestivo.",products:["Selección digestiva","Rutina diaria"]},
+  energia:{title:"Carrito Energía",desc:"Una selección de productos para acompañar tus actividades y tu rutina diaria.",products:["Selección de energía","Rutina diaria"]},
+  bienestar:{title:"Carrito Bienestar",desc:"Una selección general para quienes buscan incorporar productos Omnilife a su rutina.",products:["Selección de bienestar","Rutina diaria"]},
+  belleza:{title:"Carrito Belleza",desc:"Una selección para complementar tu rutina personal de belleza y cuidado.",products:["Selección de belleza","Rutina personal"]}
+};
+
+let selectedCountry = null;
+let selectedNeed = null;
+
+const countryGrid=document.getElementById("countryGrid");
+const needGrid=document.getElementById("needGrid");
+const cartArea=document.getElementById("cartArea");
+const cartIntro=document.getElementById("cartIntro");
+
+function renderCountries(){
+  countryGrid.innerHTML=Object.entries(COUNTRIES).map(([id,c])=>`
+    <button class="selection-btn ${selectedCountry===id?"active":""}" data-country="${id}" type="button">
+      <div class="selection-icon">${c.short}</div><strong>${c.name}</strong><span>Ver carritos disponibles</span>
+    </button>`).join("");
+  countryGrid.querySelectorAll("[data-country]").forEach(btn=>btn.addEventListener("click",()=>{
+    selectedCountry=btn.dataset.country; selectedNeed=null; renderCountries(); renderNeeds(); renderCart();
+    document.getElementById("necesidades").scrollIntoView({behavior:"smooth",block:"start"});
+  }));
 }
-if(localStorage.getItem('hamilton_tracking_consent')==='analytics'){loadMetaPixel();loadGtm();loadGa4()}else if(!localStorage.getItem('hamilton_tracking_consent'))document.querySelector('#cookieNotice').hidden=false;
-</script>
 
-<script>
-const PHONE='593968107948';let selectedMode='recomendacion';
-const labels={recomendacion:'Todavía no sé cuál opción me conviene',cliente:'Cliente Admirable',afiliacion:'Afiliación con descuento',emprendedor:'Kit Emprendedor de 1.000 puntos'};
-function setMode(mode){
-  selectedMode=mode;
-  document.querySelectorAll('[data-mode]').forEach(el=>{if(el.closest('.mode-tabs'))el.classList.toggle('active',el.dataset.mode===mode)});
-  const msg=document.querySelector('#message');
-  if(msg)msg.placeholder=mode==='cliente'?'Ej. Quiero comprar para mi consumo y saber cómo registrarme...':mode==='afiliacion'?'Ej. Quiero conocer el costo y el descuento de la afiliación...':mode==='emprendedor'?'Ej. Quiero saber qué incluye el Kit Emprendedor...':'Cuéntame si quieres comprar, tener descuento o emprender...';
-  document.querySelector('#registro')?.scrollIntoView({behavior:'smooth',block:'start'});
-  setTimeout(()=>document.querySelector('#name')?.focus(),450);
+function renderNeeds(){
+  needGrid.innerHTML=Object.entries(NEEDS).map(([id,n])=>`
+    <button class="need-card ${selectedNeed===id?"active":""}" data-need="${id}" type="button">
+      <div class="selection-icon">${n.icon}</div><strong>${n.name}</strong><span>${n.desc}</span>
+    </button>`).join("");
+  needGrid.querySelectorAll("[data-need]").forEach(btn=>btn.addEventListener("click",()=>{
+    if(!selectedCountry){document.getElementById("paises").scrollIntoView({behavior:"smooth"});return;}
+    selectedNeed=btn.dataset.need; renderNeeds(); renderCart();
+    document.getElementById("carritos").scrollIntoView({behavior:"smooth",block:"start"});
+  }));
 }
-document.querySelectorAll('.choose-mode,[data-mode]').forEach(el=>el.addEventListener('click',()=>setMode(el.dataset.mode)));
-document.querySelector('#leadForm').addEventListener('submit',e=>{
-  e.preventDefault();
-  const name=document.querySelector('#name').value.trim(),city=document.querySelector('#city').value.trim(),message=document.querySelector('#message').value.trim();
-  if(!document.querySelector('#consent').checked){document.querySelector('#formStatus').textContent='Acepta el aviso de privacidad para continuar.';return}
-  const text=`Hola Hamilton 👋\n\n*Quiero orientación sobre:* ${labels[selectedMode]}\n*Nombre:* ${name}\n*Ciudad y país:* ${city}\n*Mensaje:* ${message||'Quiero conocer mis opciones y saber cómo continuar.'}`;
-  trackEvent('lead_whatsapp',{mode:selectedMode,channel:'whatsapp'});
-  trackMetaStandard('Lead',{content_name:'Solicitud de orientación Omnilife',content_category:'Omnilife',lead_type:selectedMode});
-  trackMetaStandard('Contact',{content_name:'Contacto por WhatsApp',content_category:'Omnilife',contact_method:'whatsapp'});
-  window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`,'_blank','noopener');
-  document.querySelector('#formStatus').textContent='Se abrió WhatsApp. Si no aparece, revisa tus ventanas bloqueadas.'
-});
-</script>
 
-<script id="faq-accordion">
-document.querySelectorAll('.faq-list details').forEach(item=>{
-  item.addEventListener('toggle',()=>{
-    if(!item.open)return;
-    document.querySelectorAll('.faq-list details[open]').forEach(other=>{if(other!==item)other.removeAttribute('open')});
-  });
-});
-</script>
+function renderCart(){
+  if(!selectedCountry||!selectedNeed){
+    cartIntro.textContent="Selecciona un país y una categoría para ver la opción disponible.";
+    cartArea.innerHTML='<div class="cart-empty">Primero selecciona tu país y después lo que estás buscando.</div>';
+    return;
+  }
+  const country=COUNTRIES[selectedCountry], need=NEEDS[selectedNeed], content=CART_CONTENT[selectedNeed];
+  const url=(CART_LINKS[selectedCountry]||{})[selectedNeed]||"";
+  const available=Boolean(url && url.trim());
+  cartIntro.textContent=`Opción seleccionada: ${country.name} · ${need.name}`;
+  cartArea.innerHTML=`
+    <article class="cart-card">
+      <div>
+        <span class="cart-badge">${country.name} · ${need.name}</span>
+        <h3>${content.title}</h3>
+        <p>${content.desc}</p>
+        <div class="cart-products">${content.products.map(x=>`<span>${x}</span>`).join("")}</div>
+      </div>
+      <div class="cart-card-actions">
+        ${available
+          ? `<a class="btn btn-primary" href="${escapeAttr(url)}" target="_blank" rel="noopener">Ver carrito ↗</a>`
+          : `<button class="btn btn-primary btn-disabled" type="button" disabled>Próximamente</button>`}
+        <a class="btn btn-light" href="https://wa.me/593968107948?text=${encodeURIComponent("Hola Hamilton, necesito ayuda para elegir un carrito de "+need.name+" para "+country.name+".")}" target="_blank" rel="noopener">Necesito ayuda</a>
+      </div>
+    </article>`;
+}
 
-<script id="mobile-menu-script">
-(function(){
-  const toggle = document.getElementById('mobileNavToggle');
-  const menu = document.getElementById('mobileMenu');
-  if(!toggle || !menu) return;
-  
-  function closeMenu(){
-    menu.classList.remove('is-open');
-    toggle.classList.remove('is-open');
-    toggle.setAttribute('aria-expanded', 'false');
-  }
-  function openMenu(){
-    menu.classList.add('is-open');
-    toggle.classList.add('is-open');
-    toggle.setAttribute('aria-expanded', 'true');
-  }
-  
-  toggle.addEventListener('click', function(e){
-    e.preventDefault();
-    e.stopPropagation();
-    if(menu.classList.contains('is-open')){
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
-  
-  menu.querySelectorAll('a').forEach(function(link){
-    link.addEventListener('click', function(){ closeMenu(); });
-  });
-  
-  document.addEventListener('click', function(e){
-    if(menu.classList.contains('is-open') && !menu.contains(e.target) && !toggle.contains(e.target)){
-      closeMenu();
-    }
-  });
-  
-  document.addEventListener('keydown', function(e){
-    if(e.key === 'Escape') closeMenu();
-  });
-  
-  window.addEventListener('resize', function(){
-    if(window.innerWidth > 850) closeMenu();
-  });
-})();
-</script>
-<script>
-window.addEventListener('scroll',()=>{
-  const nav=document.getElementById('siteNav');
-  if(window.scrollY>50){nav.classList.add('scrolled')}else{nav.classList.remove('scrolled')}
-},{passive:true});
-</script>
+function escapeAttr(value){return value.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
-<script id="premium-js">
-document.addEventListener('DOMContentLoaded',()=>{
-  const isMobile=/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)||window.innerWidth<850;
-  setTimeout(()=>{document.getElementById('loadingScreen').classList.add('hidden')},1800);
-  if(!isMobile){
-    const cursorDot=document.getElementById('cursorDot');
-    const cursorOutline=document.getElementById('cursorOutline');
-    let mouseX=0,mouseY=0,outlineX=0,outlineY=0;
-    document.addEventListener('mousemove',(e)=>{mouseX=e.clientX;mouseY=e.clientY;cursorDot.style.left=`${mouseX}px`;cursorDot.style.top=`${mouseY}px`});
-    function animateCursor(){outlineX+=(mouseX-outlineX)*0.15;outlineY+=(mouseY-outlineY)*0.15;cursorOutline.style.left=`${outlineX}px`;cursorOutline.style.top=`${outlineY}px`;requestAnimationFrame(animateCursor)}
-    animateCursor();
-    document.querySelectorAll('a,button,input,textarea,.option,.step,.faq details').forEach(el=>{
-      el.addEventListener('mouseenter',()=>cursorOutline.classList.add('hovered'));
-      el.addEventListener('mouseleave',()=>cursorOutline.classList.remove('hovered'));
-    });
+document.addEventListener("DOMContentLoaded",()=>{
+  renderCountries(); renderNeeds(); renderCart();
+
+  const typewriter=document.getElementById("typewriter");
+  const phrases=["Elige tu país.","Selecciona lo que buscas.","Abre tu carrito.","Haz tu pedido."];
+  let pi=0,ci=0,deleting=false;
+  function type(){
+    const phrase=phrases[pi];
+    typewriter.textContent=phrase.slice(0,ci);
+    if(!deleting && ci<phrase.length){ci++;setTimeout(type,55);}
+    else if(!deleting){deleting=true;setTimeout(type,1300);}
+    else if(ci>0){ci--;setTimeout(type,30);}
+    else{deleting=false;pi=(pi+1)%phrases.length;setTimeout(type,250);}
   }
-  window.addEventListener('scroll',()=>{
-    const scrollTop=document.documentElement.scrollTop||document.body.scrollTop;
-    const scrollHeight=document.documentElement.scrollHeight-document.documentElement.clientHeight;
-    const scrolled=(scrollTop/scrollHeight)*100;
-    document.getElementById('scrollProgress').style.width=scrolled+'%';
+  type();
+
+  setTimeout(()=>document.getElementById("loadingScreen")?.classList.add("hidden"),900);
+
+  const nav=document.getElementById("siteNav");
+  const progress=document.getElementById("scrollProgress");
+  window.addEventListener("scroll",()=>{
+    nav.classList.toggle("scrolled",window.scrollY>20);
+    const max=document.documentElement.scrollHeight-window.innerHeight;
+    progress.style.width=(max>0?(window.scrollY/max)*100:0)+"%";
   },{passive:true});
-  const textToType=isMobile?"Descubre Omnilife y recibe acompañamiento personal.":"Descubre cómo funciona, conoce las formas de participar y recibe acompañamiento personal.";
-  const typewriterEl=document.getElementById('typewriter');
-  let typeIndex=0;
-  function typeWriter(){if(typeIndex<textToType.length){typewriterEl.textContent+=textToType.charAt(typeIndex);typeIndex++;setTimeout(typeWriter,isMobile?25:35)}}
-  setTimeout(typeWriter,2000);
-  const carousel=document.getElementById('carousel3d');
-  const items=carousel.querySelectorAll('.carousel-3d-item');
-  const totalItems=items.length;
-  const angleStep=360/totalItems;
-  const radius=isMobile?220:380;
-  let currentAngle=0;
-  items.forEach((item,index)=>{const angle=angleStep*index;item.style.transform=`translate(-50%,-50%) rotateY(${angle}deg) translateZ(${radius}px)`});
-  function updateCarousel(){carousel.style.transform=`translateX(-50%) rotateY(${currentAngle}deg)`}
-  document.getElementById('nextBtn').addEventListener('click',()=>{currentAngle-=angleStep;updateCarousel()});
-  document.getElementById('prevBtn').addEventListener('click',()=>{currentAngle+=angleStep;updateCarousel()});
-  let touchStartX=0;
-  const carouselContainer=document.getElementById('carouselContainer');
-  carouselContainer.addEventListener('touchstart',(e)=>{touchStartX=e.touches[0].clientX},{passive:true});
-  carouselContainer.addEventListener('touchend',(e)=>{
-    const touchEndX=e.changedTouches[0].clientX;const diff=touchStartX-touchEndX;
-    if(Math.abs(diff)>50){if(diff>0){currentAngle-=angleStep}else{currentAngle+=angleStep}updateCarousel()}
+
+  const toggle=document.getElementById("mobileNavToggle"),menu=document.getElementById("mobileMenu");
+  toggle.addEventListener("click",()=>{
+    const open=toggle.classList.toggle("is-open");
+    menu.classList.toggle("is-open",open);toggle.setAttribute("aria-expanded",String(open));
   });
-  let autoRotate=setInterval(()=>{currentAngle-=angleStep;updateCarousel()},5000);
-  carousel.addEventListener('mouseenter',()=>clearInterval(autoRotate));
-  carousel.addEventListener('mouseleave',()=>{autoRotate=setInterval(()=>{currentAngle-=angleStep;updateCarousel()},5000)});
-  const transitionOverlay=document.getElementById('pageTransition');
-  document.querySelectorAll('a[href^="#"]').forEach(link=>{
-    link.addEventListener('click',(e)=>{
-      const targetId=link.getAttribute('href');
-      if(targetId==='#'||targetId==='#inicio'||targetId.length<2)return;
-      e.preventDefault();transitionOverlay.classList.add('active');
-      setTimeout(()=>{document.querySelector(targetId).scrollIntoView({behavior:'auto'});setTimeout(()=>{transitionOverlay.classList.remove('active')},300)},700);
-    });
-  });
-  if(!isMobile){
-    const canvas=document.getElementById('particles-canvas');
-    const ctx=canvas.getContext('2d');
-    let particles=[];const particleCount=40;
-    function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
-    window.addEventListener('resize',resizeCanvas);resizeCanvas();
-    class Particle{
-      constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.z=Math.random()*2;this.vx=(Math.random()-0.5)*0.3;this.vy=(Math.random()-0.5)*0.3;this.size=Math.random()*2+1}
-      update(){this.x+=this.vx;this.y+=this.vy;if(this.x<0||this.x>canvas.width)this.vx*=-1;if(this.y<0||this.y>canvas.height)this.vy*=-1}
-      draw(){ctx.beginPath();ctx.arc(this.x,this.y,this.size*this.z,0,Math.PI*2);ctx.fillStyle=`rgba(199,161,90,${0.3*this.z})`;ctx.fill()}
-    }
-    for(let i=0;i<particleCount;i++)particles.push(new Particle());
-    function animateParticles(){
-      ctx.clearRect(0,0,canvas.width,canvas.height);
-      particles.forEach(p=>{p.update();p.draw()});
-      for(let i=0;i<particles.length;i++){
-        for(let j=i+1;j<particles.length;j++){
-          const dx=particles[i].x-particles[j].x;const dy=particles[i].y-particles[j].y;const distance=Math.sqrt(dx*dx+dy*dy);
-          if(distance<120){ctx.beginPath();ctx.strokeStyle=`rgba(199,161,90,${0.1*(1-distance/120)})`;ctx.lineWidth=0.5;ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke()}
-        }
-      }
-      requestAnimationFrame(animateParticles);
-    }
-    animateParticles();
-    canvas.addEventListener('mousemove',(e)=>{
-      const mx=e.clientX,my=e.clientY;
-      particles.forEach(p=>{const dx=p.x-mx,dy=p.y-my;const dist=Math.sqrt(dx*dx+dy*dy);if(dist<150){p.x+=dx*0.02;p.y+=dy*0.02}});
-    });
-  }
-  document.querySelectorAll('.spotlight-card').forEach(card=>{
-    card.addEventListener('mousemove',(e)=>{
-      const rect=card.getBoundingClientRect();const x=e.clientX-rect.left;const y=e.clientY-rect.top;
-      card.style.setProperty('--mouse-x',`${x}px`);card.style.setProperty('--mouse-y',`${y}px`);
-    });
-  });
-   if(!isMobile){
-    document.querySelectorAll('.magnetic-btn').forEach(btn=>{
-      btn.addEventListener('mousemove',(e)=>{
-        const rect=btn.getBoundingClientRect();
-        const x=e.clientX-rect.left-rect.width/2;
-        const y=e.clientY-rect.top-rect.height/2;
-        btn.style.transform=`translate(${x*0.15}px,${y*0.15}px)`;
-      });
-      btn.addEventListener('mouseleave',()=>{btn.style.transform='translate(0,0)'});
-    });
+  menu.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{toggle.classList.remove("is-open");menu.classList.remove("is-open");toggle.setAttribute("aria-expanded","false");}));
+
+  const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("is-visible")}),{threshold:.08});
+  document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+
+  document.querySelectorAll(".faq-list details").forEach(d=>d.addEventListener("toggle",()=>{if(d.open)document.querySelectorAll(".faq-list details").forEach(o=>{if(o!==d)o.removeAttribute("open")})}));
+
+  if(TUTORIAL_VIDEO_URL){
+    const box=document.querySelector(".tutorial-placeholder");
+    box.innerHTML=`<a class="btn btn-primary" href="${escapeAttr(TUTORIAL_VIDEO_URL)}" target="_blank" rel="noopener">Ver tutorial de compra ↗</a>`;
   }
 
-  // ✅ OBSERVER OPTIMIZADO CON CONTENT-VISIBILITY
-  const revealObserver = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('is-visible');
-        // Libera el renderizado una vez visible para ahorrar RAM
-        entry.target.style.contentVisibility = 'visible'; 
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },{threshold:0.1, rootMargin:'0px 0px -50px 0px'}); // Threshold más bajo = menos trabajo CPU
+  if(localStorage.getItem("hg_cookie_consent")!=="yes"){
+    document.getElementById("cookieNotice").hidden=false;
+  }
+  document.getElementById("cookieAccept").addEventListener("click",()=>{localStorage.setItem("hg_cookie_consent","yes");document.getElementById("cookieNotice").hidden=true});
+  document.getElementById("cookieReject").addEventListener("click",()=>{localStorage.setItem("hg_cookie_consent","no");document.getElementById("cookieNotice").hidden=true});
 
-  // Inicializa los elementos con content-visibility antes de observarlos
-  document.querySelectorAll('.reveal').forEach(el=>{
-    el.style.contentVisibility = 'auto';
-    el.style.containIntrinsicSize = '0 500px';
-    revealObserver.observe(el);
-  });
+  if(window.matchMedia("(hover:hover)").matches){
+    const dot=document.getElementById("cursorDot"),outline=document.getElementById("cursorOutline");
+    window.addEventListener("mousemove",e=>{dot.style.left=e.clientX+"px";dot.style.top=e.clientY+"px";outline.style.left=e.clientX+"px";outline.style.top=e.clientY+"px"});
+    document.querySelectorAll("a,button,.selection-btn,.need-card").forEach(el=>{
+      el.addEventListener("mouseenter",()=>outline.classList.add("hovered"));
+      el.addEventListener("mouseleave",()=>outline.classList.remove("hovered"));
+    });
+  }
 });
 </script>
 </body>
