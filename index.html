@@ -1,5 +1,4 @@
 <!doctype html>
-<!-- Versión preparada para visualizadores HTML restringidos. -->
 <html lang="es">
 <head>
 <meta charset="utf-8">
@@ -745,6 +744,8 @@ html{scroll-behavior:smooth!important}
 
 /* IMÁGENES DE CATEGORÍAS — integradas sin cambiar la estructura visual */
 .need-card{overflow:hidden;padding-top:0!important;}
+.need-card-image-wrap.is-error{display:flex;align-items:center;justify-content:center;min-height:180px;background:var(--sage)}
+.need-card-image-wrap.is-error .need-card-image{display:none}
 .need-card-image-wrap{height:150px;margin:0 -24px 20px;overflow:hidden;background:#f3f5f2;}
 .need-card-image{width:100%;height:100%;object-fit:cover;display:block;}
 .need-card .selection-icon{margin-top:0;}
@@ -1030,6 +1031,10 @@ const needGrid=document.getElementById("needGrid");
 const cartArea=document.getElementById("cartArea");
 const cartIntro=document.getElementById("cartIntro");
 
+function handleImageError(img){
+  img.closest(".need-card-image-wrap")?.classList.add("is-error");
+}
+
 function renderCountries(){
   countryGrid.innerHTML=Object.entries(COUNTRIES).map(([id,c])=>`
     <button class="selection-btn ${selectedCountry===id?"active":""}" data-country="${id}" type="button">
@@ -1045,7 +1050,7 @@ function renderNeeds(){
   needGrid.innerHTML=Object.entries(NEEDS).map(([id,n])=>`
     <button class="need-card ${selectedNeed===id?"active":""}" data-need="${id}" type="button">
       <div class="need-card-image-wrap">
-        <img class="need-card-image" src="imagenes/carritos/${n.image}" alt="${n.name}" loading="lazy">
+        <img class="need-card-image" src="${n.image}" alt="${n.name}" loading="eager" decoding="async" onerror="handleImageError(this)">
       </div>
       <div class="selection-icon">${n.icon}</div><strong>${n.name}</strong><span>${n.desc}</span>
     </button>`).join("");
@@ -1072,10 +1077,6 @@ function renderCart(){
         <span class="cart-badge">${country.name} · ${need.name}</span>
         <h3>${content.title}</h3>
         <p>${content.desc}</p>
-        <div class="cart-products">
-          <span>${content.productsCount} productos</span>
-          <span>Precio al público: ${content.price}</span>
-        </div>
       </div>
       <div class="cart-card-actions">
         ${available
@@ -1108,27 +1109,11 @@ document.addEventListener("DOMContentLoaded",()=>{
     box.innerHTML=`<a class="btn btn-primary" href="${escapeAttr(TUTORIAL_VIDEO_URL)}" target="_blank" rel="noopener">Ver tutorial de compra ↗</a>`;
   }
 
-  /* Almacenamiento seguro para visualizadores HTML restringidos. */
-  let cookieConsent = "no";
-  try {
-    cookieConsent = window.localStorage.getItem("hg_cookie_consent") || "no";
-  } catch(e) {
-    cookieConsent = "no";
-  }
-
-  if(cookieConsent!=="yes"){
+  if(localStorage.getItem("hg_cookie_consent")!=="yes"){
     document.getElementById("cookieNotice").hidden=false;
   }
-
-  document.getElementById("cookieAccept").addEventListener("click",()=>{
-    try { window.localStorage.setItem("hg_cookie_consent","yes"); } catch(e) {}
-    document.getElementById("cookieNotice").hidden=true;
-  });
-
-  document.getElementById("cookieReject").addEventListener("click",()=>{
-    try { window.localStorage.setItem("hg_cookie_consent","no"); } catch(e) {}
-    document.getElementById("cookieNotice").hidden=true;
-  });
+  document.getElementById("cookieAccept").addEventListener("click",()=>{localStorage.setItem("hg_cookie_consent","yes");document.getElementById("cookieNotice").hidden=true});
+  document.getElementById("cookieReject").addEventListener("click",()=>{localStorage.setItem("hg_cookie_consent","no");document.getElementById("cookieNotice").hidden=true});
 
 });
 </script>
