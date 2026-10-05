@@ -800,11 +800,32 @@ img{max-width:100%;display:block}
 </head>
 
 <body>
+<!--
+=========================================================
+📝 GUÍA RÁPIDA PARA EDITAR ESTA PÁGINA
+=========================================================
+Esta página ya está diseñada y funcionando. No necesitas tocar el CSS
+ni modificar la estructura para hacer los cambios habituales.
+
+EDITA SOLO ESTAS ZONAS CUANDO LAS NECESITES:
+1) TEXTOS: busca comentarios "✏️ TEXTOS EDITABLES".
+2) IMÁGENES: busca comentarios "🖼️ IMÁGENES EDITABLES".
+3) WHATSAPP: busca "📲 WHATSAPP". Tu número ya está configurado.
+4) ENLACES DE CARRITOS: busca "🔗 ENLACES DE TUS CARRITOS OMNILIFE".
+5) VIDEO TUTORIAL: busca "🎥 ENLACE DEL VIDEO TUTORIAL".
+
+IMPORTANTE:
+- No cambies los colores ni el CSS si solo quieres cambiar contenido.
+- No borres las comillas de los enlaces.
+- Si no tienes un enlace todavía, déjalo como "".
+=========================================================
+-->
 <div class="loading-screen" id="loadingScreen"><div class="loading-logo">HG</div><div class="loading-sub">Hamilton Granillo</div><div class="loading-bar"><div class="loading-bar-fill"></div></div></div>
 <div class="scroll-progress-3d" id="scrollProgress"></div>
 <div class="cursor-dot" id="cursorDot"></div><div class="cursor-outline" id="cursorOutline"></div>
 <canvas id="particles-canvas"></canvas>
 
+<!-- ✏️ TEXTOS EDITABLES: nombre de marca y textos del menú -->
 <header class="site-nav" id="siteNav">
   <div class="wrap nav-inner">
     <a class="brand" href="#inicio">Hamilton Granillo <span>Distribuidor Independiente</span></a>
@@ -823,6 +844,7 @@ img{max-width:100%;display:block}
 </header>
 
 <main>
+<!-- ✏️ TEXTOS EDITABLES: título, descripción y textos principales de portada -->
 <section class="hero" id="inicio">
   <div class="wrap hero-grid">
     <div>
@@ -898,6 +920,7 @@ img{max-width:100%;display:block}
   </div>
 </section>
 
+<!-- 🖼️ IMAGEN EDITABLE: si quieres cambiar tu foto, reemplaza "Hamilton.jpg" por el nombre de tu nueva imagen. -->
 <section class="section photo-section">
   <div class="wrap proof-grid">
     <div class="proof-image reveal"><img src="Hamilton.jpg" alt="Hamilton Granillo brinda asesoría personalizada" loading="lazy" width="1000" height="1000"></div>
@@ -910,6 +933,7 @@ img{max-width:100%;display:block}
         <div class="reveal reveal-delay-2"><b>✓ Información clara</b><span>Conoce qué opción estás abriendo antes de continuar.</span></div>
         <div class="reveal reveal-delay-3"><b>✓ Ayuda personal</b><span>Si necesitas orientación, puedes contactarme por WhatsApp.</span></div>
       </div>
+      <!-- 📲 WHATSAPP: tu número ya está configurado. No necesitas cambiarlo. -->
       <a class="btn btn-primary magnetic-btn reveal reveal-delay-3" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20necesito%20ayuda%20para%20elegir%20un%20carrito%20Omnilife." target="_blank" rel="noopener">Hablar por WhatsApp</a>
     </div>
   </div>
@@ -918,6 +942,7 @@ img{max-width:100%;display:block}
 <section class="helper-band">
   <div class="wrap helper-inner">
     <div><div class="eyebrow">¿Necesitas ayuda?</div><h2>Te ayudo a encontrar tu opción.</h2><p>Si no sabes qué categoría seleccionar o tienes dudas sobre el proceso, escríbeme directamente.</p></div>
+    <!-- 📲 WHATSAPP: tu número ya está configurado. -->
     <a class="btn btn-light magnetic-btn" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20ayuda%20para%20elegir%20un%20carrito%20Omnilife." target="_blank" rel="noopener">Escribirme por WhatsApp</a>
   </div>
 </section>
@@ -936,6 +961,7 @@ img{max-width:100%;display:block}
 </section>
 </main>
 
+<!-- ✏️ TEXTOS EDITABLES: pie de página, si algún día quieres cambiar información. -->
 <footer class="footer">
   <div class="wrap footer-inner">
     <div class="footer-brand"><div class="footer-mark">HG</div><div><strong>Hamilton Granillo</strong><p>Distribuidor Independiente</p></div></div>
@@ -949,6 +975,7 @@ img{max-width:100%;display:block}
   </div>
 </footer>
 
+<!-- 📲 WHATSAPP FLOTANTE: tu número ya está configurado. -->
 <a class="float-wa" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20ayuda%20con%20un%20carrito%20Omnilife." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><span>¿Necesitas ayuda?</span></a>
 
 <div class="cookie-notice" id="cookieNotice" hidden>
@@ -971,6 +998,9 @@ img{max-width:100%;display:block}
 
    Si dejas "" vacío, la página mostrará "Próximamente".
    No necesitas modificar ninguna otra parte del código.
+
+   IMPORTANTE: tu número de WhatsApp ya está configurado en los botones
+   de la página. Aquí SOLO debes pegar los enlaces de los carritos cuando los tengas.
    ========================================================= */
 
 const CART_LINKS = {
@@ -1011,8 +1041,9 @@ const CART_LINKS = {
    Cuando tengas tu video, pega aquí su URL.
    Ejemplo: const TUTORIAL_VIDEO_URL = "https://...";
    ========================================================= */
-const TUTORIAL_VIDEO_URL = "";
+const TUTORIAL_VIDEO_URL = ""; // ← PEGA AQUÍ EL ENLACE DEL VIDEO CUANDO LO TENGAS.
 
+/* ✏️ TEXTOS DE PAÍSES: puedes agregar o cambiar nombres aquí si más adelante lo necesitas. */
 const COUNTRIES = {
   mexico:{name:"México",short:"MX"},
   ecuador:{name:"Ecuador",short:"EC"},
@@ -1021,6 +1052,7 @@ const COUNTRIES = {
   republica_dominicana:{name:"República Dominicana",short:"RD"}
 };
 
+/* ✏️ CATEGORÍAS: aquí puedes cambiar los nombres y descripciones de las categorías. */
 const NEEDS = {
   digestion:{name:"Digestión",icon:"D",desc:"Selección enfocada en tu rutina de bienestar digestivo."},
   energia:{name:"Energía",icon:"E",desc:"Selección pensada para acompañar tu día a día."},
@@ -1028,6 +1060,7 @@ const NEEDS = {
   belleza:{name:"Belleza",icon:"✦",desc:"Selección para complementar tu rutina de belleza."}
 };
 
+/* ✏️ CONTENIDO DE LOS CARRITOS: aquí puedes cambiar título, descripción y productos mostrados. */
 const CART_CONTENT = {
   digestion:{title:"Carrito Digestión",desc:"Una selección de productos pensada para acompañar tu rutina de bienestar digestivo.",products:["Selección digestiva","Rutina diaria"]},
   energia:{title:"Carrito Energía",desc:"Una selección de productos para acompañar tus actividades y tu rutina diaria.",products:["Selección de energía","Rutina diaria"]},
