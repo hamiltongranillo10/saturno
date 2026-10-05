@@ -1022,7 +1022,7 @@ const NEEDS = {
   respiratorio:{name:"Sistema Respiratorio",icon:"S",desc:"Selección para acompañar el bienestar respiratorio.",image:"sistema_respiratorio.png"},
   inmunologico:{name:"Sistema inmunológico",icon:"I",desc:"Selección para apoyar las defensas naturales del organismo.",image:"sistema_inmunologico.png"},
   energia_deporte:{name:"Energía y deporte",icon:"E",desc:"Selección para acompañar entrenamientos y actividad física.",image:"energia_deporte.png"},
-  control_peso:{name:"Control de peso y talla",icon:"P",desc:"Selección para acompañar tus objetivos de control de peso y talla.",image:"control_peso_talla.jpg"}
+  control_peso:{name:"Control de peso y talla",icon:"P",desc:"Selección para acompañar tus objetivos de control de peso y talla.",image:"control_peso_talla.png"}
 };
 
 const CART_CONTENT = {
@@ -1063,7 +1063,7 @@ function renderNeeds(){
   needGrid.innerHTML=Object.entries(NEEDS).map(([id,n])=>`
     <button class="need-card ${selectedNeed===id?"active":""}" data-need="${id}" type="button">
       <div class="need-card-image-wrap">
-        <img class="need-card-image" src="imagenes/carritos/${n.image}" alt="${n.name}" loading="lazy">
+        <img class="need-card-image" src="${n.image}" alt="${n.name}" loading="lazy">
       </div>
       <div class="selection-icon">${n.icon}</div><strong>${n.name}</strong><span>${n.desc}</span>
     </button>`).join("");
