@@ -983,11 +983,30 @@ const TUTORIAL_VIDEO_URL = ""; // ← PEGA AQUÍ EL ENLACE DEL VIDEO CUANDO LO T
 
 /* ✏️ TEXTOS DE PAÍSES: puedes agregar o cambiar nombres aquí si más adelante lo necesitas. */
 const COUNTRIES = {
-  mexico:{name:"México",short:"MX"},
-  ecuador:{name:"Ecuador",short:"EC"},
-  usa:{name:"Estados Unidos",short:"US"},
-  panama:{name:"Panamá",short:"PA"},
-  republica_dominicana:{name:"República Dominicana",short:"RD"}
+  mexico:{name:"México",short:"MX",image:"mexico.png"},
+  ecuador:{name:"Ecuador",short:"EC",image:"ecuador.png"},
+  usa:{name:"Estados Unidos",short:"US",image:"estados_unidos.png"},
+  panama:{name:"Panamá",short:"PA",image:"panama.png"},
+  republica_dominicana:{name:"República Dominicana",short:"RD",image:"republica_dominicana.png"},
+  argentina:{name:"Argentina",short:"AR",image:"argentina.png"},
+  bolivia:{name:"Bolivia",short:"BO",image:"bolivia.png"},
+  brasil:{name:"Brasil",short:"BR",image:"brasil.png"},
+  belgica:{name:"Bélgica",short:"BE",image:"belgica.png"},
+  chile:{name:"Chile",short:"CL",image:"chile.png"},
+  colombia:{name:"Colombia",short:"CO",image:"colombia.png"},
+  costa_rica:{name:"Costa Rica",short:"CR",image:"costa_rica.png"},
+  el_salvador:{name:"El Salvador",short:"SV",image:"el_salvador.png"},
+  espana:{name:"España",short:"ES",image:"espana.png"},
+  francia:{name:"Francia",short:"FR",image:"francia.png"},
+  guatemala:{name:"Guatemala",short:"GT",image:"guatemala.png"},
+  honduras:{name:"Honduras",short:"HN",image:"honduras.png"},
+  italia:{name:"Italia",short:"IT",image:"italia.png"},
+  nicaragua:{name:"Nicaragua",short:"NI",image:"nicaragua.png"},
+  paraguay:{name:"Paraguay",short:"PY",image:"paraguay.png"},
+  peru:{name:"Perú",short:"PE",image:"peru.png"},
+  portugal:{name:"Portugal",short:"PT",image:"portugal.png"},
+  rusia:{name:"Rusia",short:"RU",image:"rusia.png"},
+  uruguay:{name:"Uruguay",short:"UY",image:"uruguay.png"}
 };
 
 /* ✏️ CATEGORÍAS: aquí puedes cambiar los nombres y descripciones de las categorías. */
@@ -1032,7 +1051,7 @@ const cartIntro=document.getElementById("cartIntro");
 function renderCountries(){
   countryGrid.innerHTML=Object.entries(COUNTRIES).map(([id,c])=>`
     <button class="selection-btn ${selectedCountry===id?"active":""}" data-country="${id}" type="button">
-      <div class="selection-icon">${c.short}</div><strong>${c.name}</strong><span>Ver carritos disponibles</span>
+      <div class="country-flag-wrap"><img class="country-flag" src="${c.image}" alt="Bandera de ${c.name}" loading="eager" decoding="async"></div><strong>${c.name}</strong><span>Ver carritos disponibles</span>
     </button>`).join("");
   countryGrid.querySelectorAll("[data-country]").forEach(btn=>btn.addEventListener("click",()=>{
     selectedCountry=btn.dataset.country; selectedNeed=null; renderCountries(); renderNeeds(); renderCart();
@@ -1117,5 +1136,3 @@ document.addEventListener("DOMContentLoaded",()=>{
 </script>
 </body>
 </html>
-
-
