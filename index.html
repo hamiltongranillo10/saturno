@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- Versión preparada para visualizadores HTML restringidos. -->
 <html lang="es">
 <head>
 <meta charset="utf-8">
@@ -1107,11 +1108,27 @@ document.addEventListener("DOMContentLoaded",()=>{
     box.innerHTML=`<a class="btn btn-primary" href="${escapeAttr(TUTORIAL_VIDEO_URL)}" target="_blank" rel="noopener">Ver tutorial de compra ↗</a>`;
   }
 
-  if(localStorage.getItem("hg_cookie_consent")!=="yes"){
+  /* Almacenamiento seguro para visualizadores HTML restringidos. */
+  let cookieConsent = "no";
+  try {
+    cookieConsent = window.localStorage.getItem("hg_cookie_consent") || "no";
+  } catch(e) {
+    cookieConsent = "no";
+  }
+
+  if(cookieConsent!=="yes"){
     document.getElementById("cookieNotice").hidden=false;
   }
-  document.getElementById("cookieAccept").addEventListener("click",()=>{localStorage.setItem("hg_cookie_consent","yes");document.getElementById("cookieNotice").hidden=true});
-  document.getElementById("cookieReject").addEventListener("click",()=>{localStorage.setItem("hg_cookie_consent","no");document.getElementById("cookieNotice").hidden=true});
+
+  document.getElementById("cookieAccept").addEventListener("click",()=>{
+    try { window.localStorage.setItem("hg_cookie_consent","yes"); } catch(e) {}
+    document.getElementById("cookieNotice").hidden=true;
+  });
+
+  document.getElementById("cookieReject").addEventListener("click",()=>{
+    try { window.localStorage.setItem("hg_cookie_consent","no"); } catch(e) {}
+    document.getElementById("cookieNotice").hidden=true;
+  });
 
 });
 </script>
