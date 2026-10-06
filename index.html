@@ -752,63 +752,14 @@ html{scroll-behavior:smooth!important}
 
 
 
-/* ===== FLUJO SECUENCIAL EN PC Y MÓVIL =====
-   Paso 01 y Paso 02 bloquean el avance por scroll.
-   El usuario puede desplazarse dentro del paso actual si lo necesita,
-   pero no puede pasar al siguiente hasta pulsar Continuar.
+/* ===== FLUJO SECUENCIAL SIN DOBLE BARRA DE SCROLL =====
+   El documento usa UNA sola barra de desplazamiento.
+   Los pasos siguientes permanecen ocultos hasta pulsar Continuar.
 */
-body.flow-locked{overflow:hidden!important;}
-html.flow-locked{overflow:hidden!important;}
-
-.flow-gated-step{
-  max-height:calc(100vh - 96px);
-  overflow-y:auto;
-  overscroll-behavior:contain;
-  scroll-behavior:smooth;
-  scrollbar-gutter:stable;
-}
-
-.flow-gated-step .wrap{padding-bottom:48px;}
-
 .flow-gated-step.is-hidden{display:none!important;}
-
-#paises.flow-gated-step,
-#necesidades.flow-gated-step{
-  min-height:calc(100vh - 96px);
-  display:block;
-}
-
-#necesidades.flow-gated-step.is-hidden,
-#carritos.flow-gated-step.is-hidden{
-  display:none!important;
-}
-
-.flow-lock-note{
-  text-align:center;
-  margin:14px auto 0;
-  color:var(--muted);
-  font-size:.78rem;
-  opacity:.82;
-}
-
+.flow-lock-note{text-align:center;margin:14px auto 0;color:var(--muted);font-size:.78rem;opacity:.82;}
 @media(max-width:600px){
-  .flow-gated-step{
-    max-height:calc(100vh - 78px);
-  }
-  #paises.flow-gated-step,
-  #necesidades.flow-gated-step{
-    min-height:calc(100vh - 78px);
-  }
-}
-
-/* ===== FLUJO GUIADO SOLO EN MÓVIL ===== */
-@media(max-width:600px){
-  .mobile-flow-step.is-hidden{display:none!important}
-  .selection-btn,.need-card{position:relative;transition:transform .25s var(--ease-premium),box-shadow .25s ease,border-color .25s ease,background .25s ease}
-  .selection-btn:active,.need-card:active{transform:scale(.985)}
-  .selection-btn.active,.need-card.active{border:2px solid var(--gold)!important;box-shadow:0 12px 30px rgba(199,161,90,.22),0 0 0 3px rgba(199,161,90,.10);background:linear-gradient(145deg,#fff,#fbfaf6);transform:translateY(-2px)}
-  .selection-btn.active::after,.need-card.active::after{content:'✓';position:absolute;top:10px;right:10px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:var(--gold);color:#fff;font-size:.78rem;font-weight:900;box-shadow:0 5px 14px rgba(199,161,90,.28)}
-  .selection-btn.active .selection-icon,.need-card.active .selection-icon{background:var(--gold);color:#fff;transform:scale(1.05)}
+  .flow-gated-step.is-hidden{display:none!important;}
 }
 </style>
 <!-- Google Analytics 4 -->
@@ -1105,15 +1056,16 @@ function hideStep(id){
 function showMobileStep(id){showStep(id);}
 
 function setFlowLock(locked){
+  // El flujo usa una sola barra de scroll en todo el documento.
+  // Solo controla qué paso está visible; nunca crea un scroll interno.
   flowUnlocked=!locked;
-  document.documentElement.classList.toggle("flow-locked",locked);
-  document.body.classList.toggle("flow-locked",locked);
+  document.documentElement.classList.remove("flow-locked");
+  document.body.classList.remove("flow-locked");
 }
 
 function scrollToStep(id){
   const el=document.getElementById(id);
   if(!el) return;
-  el.scrollTo?.({top:0,behavior:"smooth"});
   el.scrollIntoView({behavior:"smooth",block:"start"});
 }
 
@@ -1245,18 +1197,6 @@ function trackCartWhatsAppClick(){
 document.addEventListener("click",(event)=>{
   const btn=event.target.closest("#whatsappCarritoBtn");
   if(btn) trackCartWhatsAppClick();
-
-  // Mientras el flujo esté bloqueado, ningún enlace interno puede saltarse
-  // los pasos 01 y 02. El usuario debe avanzar con los botones Continuar.
-  const internalLink=event.target.closest('a[href^="#"]');
-  if(flowUnlocked || !internalLink) return;
-
-  const target=internalLink.getAttribute("href");
-  const allowed=["#paises","#inicio"];
-  if(!allowed.includes(target)){
-    event.preventDefault();
-    document.getElementById("paises")?.scrollIntoView({behavior:"smooth",block:"start"});
-  }
 });
 
 document.addEventListener("DOMContentLoaded",()=>{
