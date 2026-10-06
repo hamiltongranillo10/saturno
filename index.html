@@ -6,45 +6,114 @@
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Encuentra tu carrito Omnilife | Hamilton Granillo</title>
 <meta name="description" content="Elige tu país, selecciona lo que buscas y encuentra un carrito recomendado para comprar de forma sencilla.">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
 :root{
-  --ink:#111b17;--green:#123d2c;--green-2:#1d6044;--deep:#071b14;
-  --gold:#c7a15a;--gold-light:#e8d2a0;--cream:#fbfaf6;--paper:#ffffff;
-  --sage:#eef4f0;--muted:#66766f;--line:#e3e8e4;--wa:#25d366;
-  --shadow:0 24px 70px rgba(10,34,25,.12);--shadow-lg:0 35px 100px rgba(7,27,20,.18);
+  --ink:#111b17;
+  --green:#123d2c;
+  --green-2:#1d6044;
+  --deep:#071b14;
+  --gold:#c7a15a;
+  --gold-light:#e8d2a0;
+  --cream:#fbfaf6;
+  --paper:#ffffff;
+  --sage:#eef4f0;
+  --muted:#66766f;
+  --line:#e3e8e4;
+  --wa:#25d366;
+  --shadow:0 24px 70px rgba(10,34,25,.12);
+  --shadow-lg:0 35px 100px rgba(7,27,20,.18);
   --ease-premium:cubic-bezier(.22,1,.36,1);
 }
+
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:90px;overflow-x:hidden}
-body{
-  margin:0;background:var(--cream);color:var(--ink);
-  font:16px/1.6 'Onest',system-ui,-apple-system,sans-serif;
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;max-width:100vw;position:relative;
+
+html{
+  scroll-behavior:smooth;
+  scroll-padding-top:90px;
+  overflow-x:hidden
 }
+
+body{
+  margin:0;
+  background:var(--cream);
+  color:var(--ink);
+  font:16px/1.6 'Onest',system-ui,-apple-system,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  max-width:100vw;
+  position:relative;
+}
+
 a{text-decoration:none;color:inherit}
 button,input,textarea{font:inherit}
 button{cursor:pointer}
 img{max-width:100%;display:block}
-.wrap{width:min(1160px,calc(100% - 40px));margin:auto;max-width:100%}
-.eyebrow{color:var(--gold);font-weight:800;letter-spacing:.18em;text-transform:uppercase;font-size:.68rem}
+
+.wrap{
+  width:min(1160px,calc(100% - 40px));
+  margin:auto;
+  max-width:100%
+}
+
+.eyebrow{
+  color:var(--gold);
+  font-weight:800;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-size:.68rem
+}
 
 .btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  border:1px solid transparent;border-radius:999px;padding:14px 22px;
-  font-weight:700;transition:all .3s var(--ease-premium);position:relative;overflow:hidden;font-size:.9rem;max-width:100%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  border:1px solid transparent;
+  border-radius:999px;
+  padding:14px 22px;
+  font-weight:700;
+  transition:all .3s var(--ease-premium);
+  position:relative;
+  overflow:hidden;
+  font-size:.9rem;
+  max-width:100%;
 }
-.btn-primary{background:var(--green);color:#fff;box-shadow:0 12px 30px rgba(18,61,44,.2)}
-.btn-primary:hover{background:var(--green-2);transform:translateY(-3px);box-shadow:0 18px 40px rgba(18,61,44,.3)}
-.btn-light{border-color:var(--line);background:#fff;color:var(--green)}
-.btn-light:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 12px 30px rgba(199,161,90,.15)}
 
-/* =========================================
-   🧭 NAVEGACIÓN - HAMBURGUESA CORREGIDA
-   ========================================= */
+.btn-primary{
+  background:var(--green);
+  color:#fff;
+  box-shadow:0 12px 30px rgba(18,61,44,.2)
+}
+
+.btn-primary:hover{
+  background:var(--green-2);
+  transform:translateY(-3px);
+  box-shadow:0 18px 40px rgba(18,61,44,.3)
+}
+
+.btn-light{
+  border-color:var(--line);
+  background:#fff;
+  color:var(--green)
+}
+
+.btn-light:hover{
+  border-color:var(--gold);
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(199,161,90,.15)
+}
+
+/* NAVEGACIÓN */
 .site-nav{
-  position:fixed;top:0;left:0;right:0;z-index:1000;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
   background:rgba(251,250,246,.85);
   backdrop-filter:blur(25px) saturate(180%);
   -webkit-backdrop-filter:blur(25px) saturate(180%);
@@ -52,1159 +121,1792 @@ img{max-width:100%;display:block}
   transition:none;
   box-shadow:0 1px 0 rgba(0,0,0,.02);
 }
+
 .site-nav.scrolled{
   background:rgba(251,250,246,.85);
   box-shadow:0 1px 0 rgba(0,0,0,.02);
   border-bottom-color:rgba(227,232,228,.6);
 }
-.nav-inner{height:80px;display:flex;align-items:center;justify-content:space-between}
+
+.nav-inner{
+  height:80px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between
+}
+
 .site-nav.scrolled .nav-inner{height:80px}
+
 .brand{
-  font-weight:800;font-size:1.1rem;color:var(--green);letter-spacing:-.02em;
-  transition:all .3s var(--ease-premium);display:flex;align-items:center;gap:8px;position:relative;
+  font-weight:800;
+  font-size:1.1rem;
+  color:var(--green);
+  letter-spacing:-.02em;
+  transition:all .3s var(--ease-premium);
+  display:flex;
+  align-items:center;
+  gap:8px;
+  position:relative;
 }
-.brand::before{
-  content:'';position:absolute;left:-12px;top:50%;transform:translateY(-50%);
-  width:4px;height:4px;background:var(--gold);border-radius:50%;
-  box-shadow:0 0 8px var(--gold);opacity:0;transition:opacity .3s ease;
-}
-.site-nav.scrolled .brand::before{opacity:0}
-.brand:hover{transform:translateY(-1px)}
+
 .brand span{
-  display:inline-block;margin-left:9px;color:var(--gold);
-  font:700 .59rem monospace;letter-spacing:.1em;text-transform:uppercase;opacity:.8;transition:opacity .3s ease;
+  display:inline-block;
+  margin-left:9px;
+  color:var(--gold);
+  font:700 .59rem monospace;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  opacity:.8;
+  transition:opacity .3s ease;
 }
+
 .brand:hover span{opacity:1}
-.nav-links{display:flex;align-items:center;gap:32px;font-size:.9rem;color:var(--muted)}
-.nav-links a{position:relative;padding:8px 0;transition:color .3s ease,transform .3s var(--ease-premium);font-weight:500}
-.nav-links a:not(.btn){color:var(--ink)}
-.nav-links a:not(.btn)::after{
-  content:'';position:absolute;bottom:0;left:50%;width:0;height:2px;background:var(--gold);
-  transition:all .3s var(--ease-premium);transform:translateX(-50%);
+
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:32px;
+  font-size:.9rem;
+  color:var(--muted)
 }
-.nav-links a:not(.btn):hover{color:var(--green);transform:translateY(-2px)}
+
+.nav-links a{
+  position:relative;
+  padding:8px 0;
+  transition:color .3s ease,transform .3s var(--ease-premium);
+  font-weight:500
+}
+
+.nav-links a:not(.btn){color:var(--ink)}
+
+.nav-links a:not(.btn)::after{
+  content:'';
+  position:absolute;
+  bottom:0;
+  left:50%;
+  width:0;
+  height:2px;
+  background:var(--gold);
+  transition:all .3s var(--ease-premium);
+  transform:translateX(-50%);
+}
+
+.nav-links a:not(.btn):hover{
+  color:var(--green);
+  transform:translateY(-2px)
+}
+
 .nav-links a:not(.btn):hover::after{width:100%}
+
 .nav-links .btn-primary{
-  padding:10px 20px;font-size:.85rem;
+  padding:10px 20px;
+  font-size:.85rem;
   background:linear-gradient(135deg,var(--green) 0%,var(--green-2) 100%);
   box-shadow:0 4px 16px rgba(18,61,44,.2);
 }
-.nav-links .btn-primary:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 8px 24px rgba(18,61,44,.3)}
 
-/* ✅ BOTÓN HAMBURGUESA CORREGIDO */
 .mobile-nav{
-  display:none;width:48px;height:48px;padding:0;border-radius:12px;
-  align-items:center;justify-content:center;
-  border:1px solid rgba(23,63,53,.15);background:rgba(255,255,255,.8);color:var(--green);
-  transition:all .3s var(--ease-premium);backdrop-filter:blur(10px);
+  display:none;
+  width:48px;
+  height:48px;
+  padding:0;
+  border-radius:12px;
+  align-items:center;
+  justify-content:center;
+  border:1px solid rgba(23,63,53,.15);
+  background:rgba(255,255,255,.8);
+  color:var(--green);
+  transition:all .3s var(--ease-premium);
+  backdrop-filter:blur(10px);
   cursor:pointer;
 }
-.mobile-nav:hover{background:rgba(255,255,255,1);border-color:var(--gold);transform:scale(1.05)}
 
-/* ✅ LÍNEAS DEL HAMBURGUESA - BIEN SEPARADAS Y VISIBLES */
 .mobile-nav-lines{
-  display:flex;flex-direction:column;justify-content:center;align-items:center;
-  width:22px;height:22px;position:relative;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  width:22px;
+  height:22px;
+  position:relative;
 }
+
 .mobile-nav-lines span{
-  display:block;width:22px;height:3px;border-radius:3px;
+  display:block;
+  width:22px;
+  height:3px;
+  border-radius:3px;
   background:currentColor;
   transition:all .35s var(--ease-premium);
-  position:absolute;left:0;
+  position:absolute;
+  left:0;
 }
+
 .mobile-nav-lines span:nth-child(1){top:2px}
 .mobile-nav-lines span:nth-child(2){top:50%;transform:translateY(-50%)}
 .mobile-nav-lines span:nth-child(3){bottom:2px}
 
-/* ✅ ANIMACIÓN A X CUANDO ESTÁ ABIERTO */
-.mobile-nav.is-open{background:var(--green);color:#fff;border-color:var(--green)}
+.mobile-nav.is-open{
+  background:var(--green);
+  color:#fff;
+  border-color:var(--green)
+}
+
 .mobile-nav.is-open .mobile-nav-lines span:nth-child(1){
-  top:50%;transform:translateY(-50%) rotate(45deg);
+  top:50%;
+  transform:translateY(-50%) rotate(45deg)
 }
+
 .mobile-nav.is-open .mobile-nav-lines span:nth-child(2){
-  opacity:0;transform:translateY(-50%) scaleX(0);
+  opacity:0;
+  transform:translateY(-50%) scaleX(0)
 }
+
 .mobile-nav.is-open .mobile-nav-lines span:nth-child(3){
-  bottom:auto;top:50%;transform:translateY(-50%) rotate(-45deg);
+  bottom:auto;
+  top:50%;
+  transform:translateY(-50%) rotate(-45deg)
 }
 
 .mobile-menu{
-  display:none;position:absolute;left:0;right:0;top:100%;
-  padding:12px 20px 20px;background:rgba(251,250,246,.98);
-  backdrop-filter:blur(25px) saturate(180%);-webkit-backdrop-filter:blur(25px) saturate(180%);
+  display:none;
+  position:absolute;
+  left:0;
+  right:0;
+  top:100%;
+  padding:12px 20px 20px;
+  background:rgba(251,250,246,.98);
+  backdrop-filter:blur(25px) saturate(180%);
+  -webkit-backdrop-filter:blur(25px) saturate(180%);
   border-bottom:1px solid rgba(199,161,90,.2);
-  box-shadow:0 20px 40px rgba(7,27,20,.12);animation:mobileMenuIn .35s var(--ease-premium) both;
+  box-shadow:0 20px 40px rgba(7,27,20,.12);
 }
-.mobile-menu.is-open{display:block}
-.mobile-menu[hidden]{display:none!important}
-.mobile-menu a{
-  display:flex;align-items:center;justify-content:space-between;
-  min-height:56px;padding:14px 8px;border-bottom:1px solid rgba(23,63,53,.08);
-  font-size:1rem;color:var(--ink);font-weight:500;transition:all .3s ease;
-}
-.mobile-menu a:hover{padding-left:16px;color:var(--green)}
-.mobile-menu a:last-child{border-bottom:0}
-.mobile-menu-cta{
-  margin-top:12px;padding:14px 20px!important;border:0!important;border-radius:12px;
-  background:linear-gradient(135deg,var(--green) 0%,var(--green-2) 100%);
-  color:#fff!important;font-weight:700;justify-content:center;
-  box-shadow:0 8px 24px rgba(18,61,44,.2);
-}
-.mobile-menu-cta:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(18,61,44,.3)}
-@keyframes mobileMenuIn{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
 
-/* =========================================
-   🏠 HERO
-   ========================================= */
+.mobile-menu.is-open{display:block}
+
+.mobile-menu a{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  min-height:56px;
+  padding:14px 8px;
+  border-bottom:1px solid rgba(23,63,53,.08);
+  font-size:1rem;
+  color:var(--ink);
+  font-weight:500
+}
+
+/* HERO */
 .hero{
-  position:relative;overflow:hidden;padding:140px 0 125px;
-  background:radial-gradient(circle at 85% 25%,rgba(199,161,90,.14),transparent 25%),
-             linear-gradient(135deg,#fbfaf6 0%,#f0f6f2 100%);
+  position:relative;
+  overflow:hidden;
+  padding:140px 0 125px;
+  background:
+    radial-gradient(circle at 85% 25%,rgba(199,161,90,.14),transparent 25%),
+    linear-gradient(135deg,#fbfaf6 0%,#f0f6f2 100%);
 }
-.hero:after{
-  content:"";position:absolute;width:min(520px,80vw);height:min(520px,80vw);
-  border:1px solid rgba(199,161,90,.18);border-radius:50%;
-  right:-220px;top:-190px;pointer-events:none;
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:28px;
+  align-items:center;
+  max-width:930px;
+  position:relative;
+  z-index:1
 }
-.hero-grid{display:grid;grid-template-columns:1fr;gap:28px;align-items:center;max-width:930px;position:relative;z-index:1}
+
 .hero h1{
   font:800 clamp(3rem,6.2vw,6.1rem)/.98 'Onest',sans-serif;
-  letter-spacing:-.065em;color:var(--green);margin:16px 0 25px;
-  word-wrap:break-word;overflow-wrap:break-word;
+  letter-spacing:-.065em;
+  color:var(--green);
+  margin:16px 0 25px;
+  word-wrap:break-word;
+  overflow-wrap:break-word
 }
-.hero h1 em{font-style:normal;color:var(--gold)}
-.hero-lead{font-size:1.16rem;color:var(--muted);max-width:650px;margin-bottom:30px}
-.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px}
-.trust{display:flex;flex-wrap:wrap;gap:19px;color:var(--muted);font-size:.8rem}
-.trust span:before{content:"✓";color:var(--gold);font-weight:900;margin-right:7px}
 
-/* =========================================
-   📌 SECCIONES
-   ========================================= */
+.hero h1 em{
+  font-style:normal;
+  color:var(--gold)
+}
+
+.hero-lead{
+  font-size:1.16rem;
+  color:var(--muted);
+  max-width:650px;
+  margin-bottom:30px
+}
+
+.hero-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:24px
+}
+
+.trust{
+  display:flex;
+  flex-wrap:wrap;
+  gap:19px;
+  color:var(--muted);
+  font-size:.8rem
+}
+
+.trust span:before{
+  content:"✓";
+  color:var(--gold);
+  font-weight:900;
+  margin-right:7px
+}
+
+/* SECCIONES */
 .section{padding:105px 0}
-.section-head{max-width:720px;margin-bottom:44px}
+
+.section-head{
+  max-width:720px;
+  margin-bottom:44px
+}
+
 .section-head h2{
-  font-size:clamp(2.2rem,4.3vw,4rem);line-height:1.03;
-  letter-spacing:-.045em;margin:10px 0 18px;color:var(--green);font-weight:700;
-  word-wrap:break-word;overflow-wrap:break-word;
+  font-size:clamp(2.2rem,4.3vw,4rem);
+  line-height:1.03;
+  letter-spacing:-.045em;
+  margin:10px 0 18px;
+  color:var(--green);
+  font-weight:700;
+  word-wrap:break-word;
+  overflow-wrap:break-word
 }
-.section-head p{color:var(--muted);font-size:1.04rem;max-width:650px}
 
-.choice-band{background:var(--deep);color:#fff;padding:23px 0}
-.choice-band-inner{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.section-head p{
+  color:var(--muted);
+  font-size:1.04rem;
+  max-width:650px
+}
+
+.choice-band{
+  background:var(--deep);
+  color:#fff;
+  padding:23px 0
+}
+
+.choice-band-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap
+}
+
 .choice-band strong{font-size:1.02rem}
-.choice-band p{margin:3px 0 0;color:#bcd0c6;font-size:.87rem}
-.choice-band .btn{white-space:nowrap;background:var(--gold);color:var(--deep)}
+.choice-band p{
+  margin:3px 0 0;
+  color:#bcd0c6;
+  font-size:.87rem
+}
 
-.video-section{padding:105px 0;background:var(--deep);color:white;position:relative;overflow:hidden}
-.video-section:before{
-  content:"";position:absolute;width:min(600px,90vw);height:min(600px,90vw);border-radius:50%;
-  border:1px solid rgba(199,161,90,.12);right:-250px;top:-250px;pointer-events:none;
+.choice-band .btn{
+  white-space:nowrap;
+  background:var(--gold);
+  color:var(--deep)
 }
-.video-wrap{max-width:1020px;position:relative;z-index:1}
-.video-section .section-head{max-width:760px}
-.video-section .section-head h2{color:#fff}
-.video-section .section-head p{color:#bcd0c6}
-.video-box{
-  position:relative;aspect-ratio:16/9;background:#000;border-radius:16px;
-  overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid rgba(255,255,255,.1);cursor:pointer;max-width:100%;
-}
-.video-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.video-play{
-  position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);
-  width:78px;height:78px;border:0;border-radius:50%;background:var(--gold);color:#fff;font-size:1.5rem;
-  box-shadow:0 15px 40px rgba(0,0,0,.35);transition:transform .35s var(--ease-premium);
-}
-.video-box:hover .video-play{transform:translate(-50%,-50%) scale(1.08)}
-.video-overlay{
-  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
-  background:radial-gradient(circle,rgba(7,27,20,.08),rgba(7,27,20,.32));
-  color:#fff;font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-}
-.video-meta{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-top:18px;color:#bcd0c6;font-size:.82rem;flex-wrap:wrap}
-.video-meta strong{color:var(--gold-light);font-weight:800}
 
-/* =========================================
-   📸 PHOTO SECTION - TEXTO CORREGIDO
-   ========================================= */
+/* SELECCIONES */
+.selection-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:14px
+}
+
+.selection-btn,
+.need-card{
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:16px;
+  padding:20px;
+  text-align:left;
+  transition:all .35s var(--ease-premium)
+}
+
+.selection-btn:hover,
+.need-card:hover{
+  transform:translateY(-5px);
+  box-shadow:var(--shadow);
+  border-color:var(--gold)
+}
+
+.selection-btn.active,
+.need-card.active{
+  border-color:var(--gold);
+  box-shadow:0 14px 35px rgba(199,161,90,.16);
+  background:linear-gradient(145deg,#fff,#fbfaf6)
+}
+
+.selection-icon{
+  width:44px;
+  height:44px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:var(--sage);
+  color:var(--green);
+  font-weight:800;
+  margin-bottom:13px
+}
+
+.selection-btn strong,
+.need-card strong{
+  display:block;
+  color:var(--green);
+  font-size:1rem
+}
+
+.selection-btn span,
+.need-card span{
+  display:block;
+  color:var(--muted);
+  font-size:.78rem;
+  margin-top:5px
+}
+
+.need-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px
+}
+
+/* CARRITO */
+.cart-area{
+  background:var(--sage);
+  border-radius:22px;
+  padding:30px
+}
+
+.cart-empty{
+  text-align:center;
+  padding:38px 20px;
+  color:var(--muted)
+}
+
+.cart-card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:28px;
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:25px;
+  align-items:center;
+  box-shadow:0 15px 40px rgba(10,34,25,.07)
+}
+
+.cart-card h3{
+  color:var(--green);
+  font-size:1.55rem;
+  margin:7px 0
+}
+
+.cart-card p{
+  color:var(--muted);
+  max-width:650px
+}
+
+.cart-badge{
+  display:inline-flex;
+  padding:6px 11px;
+  border-radius:999px;
+  background:var(--gold-light);
+  color:var(--deep);
+  font-size:.68rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.08em
+}
+
+.cart-products{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:15px
+}
+
+.cart-products span{
+  padding:6px 10px;
+  border-radius:999px;
+  background:var(--sage);
+  color:var(--green);
+  font-size:.76rem
+}
+
+.cart-card-actions{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  min-width:190px
+}
+
+.btn-disabled{
+  background:#e9eeeb!important;
+  color:#75837d!important;
+  box-shadow:none!important;
+  cursor:not-allowed!important
+}
+
+/* PASO A PASO */
+.how-grid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:14px
+}
+
+.step{
+  background:white;
+  border-radius:14px;
+  padding:27px;
+  border:1px solid var(--line);
+  transition:transform .4s var(--ease-premium),box-shadow .4s ease
+}
+
+.step:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow)
+}
+
+.step-no{
+  font:800 2.3rem/1 'Onest',sans-serif;
+  color:var(--gold)
+}
+
+.step h3{
+  color:var(--green);
+  margin:15px 0 7px;
+  font-weight:700
+}
+
+.step p{
+  color:var(--muted);
+  margin:0;
+  font-size:.92rem
+}
+
+/* FOTO */
 .photo-section{background:#fff}
-.photo-section .proof-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
-.photo-section .proof-image{
-  width:min(100%, 410px);max-width:410px;justify-self:center;margin:auto;
-  padding:7px;background:linear-gradient(145deg,#fff,#eef4f0);
-  border:1px solid rgba(199,161,90,.22);border-radius:20px;
-  box-shadow:0 24px 60px rgba(10,34,25,.13);
-  overflow:hidden;transition:transform .6s var(--ease-premium), box-shadow .6s ease;
-}
-.photo-section .proof-image img{
-  width:100%;height:auto;aspect-ratio:4 / 4.35;
-  object-fit:cover;object-position:center top;border-radius:14px;
-  transition:transform 1.2s var(--ease-premium);
-}
-.photo-section .proof-image:hover{transform:translateY(-6px);box-shadow:0 35px 85px rgba(10,34,25,.18)}
-.photo-section .proof-image:hover img{transform:scale(1.035)}
 
-/* ✅ TEXTO SIEMPRE ALINEADO A LA IZQUIERDA */
+.photo-section .proof-grid{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:60px;
+  align-items:center
+}
+
+.photo-section .proof-image{
+  width:min(100%,410px);
+  max-width:410px;
+  justify-self:center;
+  margin:auto;
+  padding:7px;
+  background:linear-gradient(145deg,#fff,#eef4f0);
+  border:1px solid rgba(199,161,90,.22);
+  border-radius:20px;
+  box-shadow:0 24px 60px rgba(10,34,25,.13);
+  overflow:hidden
+}
+
+.photo-section .proof-image img{
+  width:100%;
+  height:auto;
+  aspect-ratio:4/4.35;
+  object-fit:cover;
+  object-position:center top;
+  border-radius:14px
+}
+
 .photo-section .proof-copy{
   max-width:570px;
-  text-align:left;
+  text-align:left
 }
+
 .proof-copy h2{
   font:700 clamp(2.1rem,4vw,3.7rem)/1.04 'Onest',sans-serif;
-  color:var(--green);margin:12px 0 18px;letter-spacing:-.045em;
-  word-wrap:break-word;overflow-wrap:break-word;
+  color:var(--green);
+  margin:12px 0 18px;
+  letter-spacing:-.045em
 }
-.quote{border-left:2px solid var(--gold);padding-left:18px;color:var(--muted);font-size:1.04rem;margin:20px 0}
 
-/* ✅ PUNTOS - SIEMPRE ALINEADOS A LA IZQUIERDA */
-.proof-points{display:grid;gap:13px;margin:27px 0}
+.quote{
+  border-left:2px solid var(--gold);
+  padding-left:18px;
+  color:var(--muted);
+  font-size:1.04rem;
+  margin:20px 0
+}
+
+.proof-points{
+  display:grid;
+  gap:13px;
+  margin:27px 0
+}
+
 .proof-points div{
-  display:flex;gap:12px;align-items:flex-start;
-  text-align:left;
+  display:flex;
+  gap:12px;
+  align-items:flex-start;
+  text-align:left
 }
-.proof-points b{color:var(--green);min-width:140px;flex-shrink:0;display:block}
-.proof-points span{color:var(--muted);font-size:.9rem;flex:1;min-width:0}
 
-/* =========================================
-   📦 OPTIONS - BADGE VISIBLE
-   ========================================= */
-.options{background:#fff}
-.options-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.option{
-  border:1px solid var(--line);border-radius:14px;padding:30px;
-  position:relative;display:flex;flex-direction:column;
-  min-height:350px;background:#fff;
-  transition:transform .4s var(--ease-premium), box-shadow .4s ease, border-color .35s ease;
+.proof-points b{
+  color:var(--green);
+  min-width:140px;
+  flex-shrink:0;
+  display:block
 }
-.option:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:#b8c9bf}
-.option.featured{border:1px solid var(--gold);box-shadow:0 18px 45px rgba(199,161,90,.14)}
-.option-badge{
-  position:absolute;top:16px;right:16px;border-radius:20px;padding:6px 14px;
-  background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);
-  color:white;font-size:.72rem;font-weight:800;letter-spacing:.04em;
-  z-index:3;box-shadow:0 4px 12px rgba(199,161,90,.3);text-transform:uppercase;
-}
-.option-icon{
-  width:45px;height:45px;border-radius:50%;background:var(--sage);
-  display:grid;place-items:center;color:var(--green);font-weight:800;
-  margin-bottom:21px;transition:transform .45s var(--ease-premium);
-}
-.option:hover .option-icon{transform:rotate(-5deg) scale(1.08)}
-.option h3{font:700 1.55rem/1.1 'Onest',sans-serif;color:var(--green);margin:0 0 8px;word-wrap:break-word}
-.option .price{color:var(--gold);font-weight:800;margin-bottom:14px}
-.option p{color:var(--muted);margin:0 0 18px;font-size:.92rem}
-.option ul{padding:0;margin:0 0 22px;list-style:none;color:var(--ink);font-size:.86rem}
-.option li{margin:8px 0}
-.option li:before{content:"✓";color:var(--green-2);font-weight:800;margin-right:8px}
-.option .btn{margin-top:auto;width:100%}
-.small-note{font-size:.76rem;color:var(--muted);margin-top:22px}
 
-.process{background:var(--sage)}
-.process-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.step{
-  background:white;border-radius:14px;padding:27px;border:1px solid var(--line);
-  transition:transform .4s var(--ease-premium), box-shadow .4s ease;
+.proof-points span{
+  color:var(--muted);
+  font-size:.9rem;
+  flex:1;
+  min-width:0
 }
-.step:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.step-no{font:800 2.3rem/1 'Onest',sans-serif;color:var(--gold);transition:transform .45s var(--ease-premium)}
-.step:hover .step-no{transform:translateX(5px)}
-.step h3{color:var(--green);margin:15px 0 7px;font-weight:700}
-.step p{color:var(--muted);margin:0;font-size:.92rem}
 
-.form-section{background:var(--deep);color:white}
-.form-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:start}
-.form-copy h2{font:800 clamp(2.3rem,4.2vw,4.1rem)/1.04 'Onest',sans-serif;margin:12px 0 18px;letter-spacing:-.05em;word-wrap:break-word}
-.form-copy p{color:#bcd0c6}
-.form-copy .eyebrow{color:var(--gold-light)}
-.mini-guarantee{margin-top:30px;padding:17px;border:1px solid rgba(255,255,255,.13);border-radius:10px;color:#d7e9dd;font-size:.86rem}
-.lead-form{background:white;color:var(--ink);border-radius:16px;padding:30px;box-shadow:var(--shadow-lg);max-width:100%}
-.mode-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:21px}
-.mode-tabs button{
-  border:1px solid var(--line);border-radius:7px;background:var(--sage);
-  padding:10px 6px;color:var(--muted);font-size:.75rem;font-weight:800;
-  transition:all .3s var(--ease-premium);
+/* FAQ */
+.faq{
+  max-width:800px;
+  margin:auto
 }
-.mode-tabs button.active{background:var(--green);color:white;border-color:var(--green)}
-.field{margin-bottom:15px}
-.field label{display:block;font-weight:800;font-size:.81rem;margin-bottom:6px}
-.field input,.field textarea{
-  width:100%;border:1px solid var(--line);border-radius:7px;
-  padding:12px 13px;outline:none;background:#fff;color:var(--ink);
-  transition:border-color .3s ease, box-shadow .3s ease;max-width:100%;
-}
-.field textarea{min-height:100px;resize:vertical}
-.field input:focus,.field textarea:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(35,107,75,.12)}
-.form-submit{width:100%;border:0}
-.consent{display:flex;gap:9px;align-items:flex-start;font-size:.71rem;color:var(--muted);margin:13px 0}
-.consent input{margin-top:3px;accent-color:var(--green)}
-.consent a{color:var(--green);text-decoration:underline}
-.form-status{font-size:.8rem;color:var(--green);min-height:20px;text-align:center}
 
-.faq{max-width:800px;margin:auto}
-.faq-intro{max-width:600px;margin:10px 0 0;color:var(--muted);line-height:1.7}
-.faq-list{margin-top:30px;border-top:1px solid var(--line)}
-.faq-list details{border-bottom:1px solid var(--line);padding:0;transition:background .35s ease}
-.faq-list details[open]{background:rgba(238,244,240,.5)}
+.faq-intro{
+  max-width:600px;
+  margin:10px 0 0;
+  color:var(--muted);
+  line-height:1.7
+}
+
+.faq-list{
+  margin-top:30px;
+  border-top:1px solid var(--line)
+}
+
+.faq-list details{
+  border-bottom:1px solid var(--line);
+  padding:0
+}
+
 .faq-list summary{
-  display:grid;grid-template-columns:2.5rem 1fr auto;align-items:center;gap:1rem;
-  padding:1.25rem 0.5rem;list-style:none;cursor:pointer;
-  color:var(--ink);font-size:1rem;font-weight:650;transition:padding-left .35s var(--ease-premium);
+  display:grid;
+  grid-template-columns:2.5rem 1fr auto;
+  align-items:center;
+  gap:1rem;
+  padding:1.25rem .5rem;
+  list-style:none;
+  cursor:pointer;
+  color:var(--ink);
+  font-size:1rem;
+  font-weight:650
 }
+
 .faq-list summary::-webkit-details-marker{display:none}
-.faq-list summary:hover{padding-left:1rem}
-.faq-number{color:var(--gold);font-size:.72rem;font-weight:800;letter-spacing:.12em;font-family:'Onest',sans-serif}
-.faq-question{line-height:1.45;color:var(--ink);word-wrap:break-word}
+
+.faq-number{
+  color:var(--gold);
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.12em
+}
+
+.faq-question{
+  line-height:1.45;
+  color:var(--ink);
+  word-wrap:break-word
+}
+
 .faq-icon{
-  width:2.15rem;height:2.15rem;display:grid;place-items:center;
-  border:1px solid rgba(23,63,53,.18);border-radius:50%;
-  color:var(--green);font-size:1.25rem;font-weight:400;
-  transition:transform .35s var(--ease-premium),background .35s ease,color .35s ease;flex-shrink:0;
+  width:2.15rem;
+  height:2.15rem;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(23,63,53,.18);
+  border-radius:50%;
+  color:var(--green);
+  font-size:1.25rem;
+  font-weight:400;
+  flex-shrink:0
 }
-.faq-list details[open] .faq-icon{transform:rotate(45deg);background:var(--green);color:#fff;border-color:var(--green)}
-.faq-answer{padding:0 0.5rem 1.5rem 3.5rem}
-.faq-answer p{margin:0;max-width:52rem;color:var(--muted);line-height:1.75;font-size:.95rem}
-.faq-cta{
-  margin-top:40px;padding:1.5rem 1.6rem;
-  display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
-  background:var(--green);color:#fff;border-radius:1.5rem;
-  box-shadow:0 20px 50px rgba(10,34,25,.12);flex-wrap:wrap;
+
+.faq-answer{
+  padding:0 .5rem 1.5rem 3.5rem
 }
-.faq-cta div{display:flex;flex-direction:column;gap:.3rem;flex:1;min-width:200px}
-.faq-cta strong{font-size:1rem}
-.faq-cta span{color:rgba(255,255,255,.68);font-size:.88rem}
-.faq-cta .btn{flex-shrink:0;background:#fff;color:var(--green);border-color:#fff}
-.faq-cta .btn:hover{background:var(--gold);color:#fff;border-color:var(--gold)}
 
-.footer{background:#06170f;color:white;padding:60px 0 40px;margin-top:0;overflow:hidden;position:relative}
-.footer::before{
-  content:"";position:absolute;width:min(22rem,50vw);height:min(22rem,50vw);
-  right:-8rem;top:-10rem;border:1px solid rgba(255,255,255,.08);border-radius:50%;pointer-events:none;
-  box-shadow:0 0 0 4rem rgba(255,255,255,.018),0 0 0 8rem rgba(255,255,255,.012);
+.faq-answer p{
+  margin:0;
+  max-width:52rem;
+  color:var(--muted);
+  line-height:1.75;
+  font-size:.95rem
 }
-.footer-inner{position:relative;z-index:1}
-.footer-brand{display:flex;align-items:center;gap:1rem;margin-bottom:3rem;flex-wrap:wrap}
-.footer-mark{
-  width:3.2rem;height:3.2rem;display:grid;place-items:center;
-  border:1px solid rgba(255,255,255,.22);border-radius:1rem;
-  color:var(--gold-light);font-size:.8rem;font-weight:800;letter-spacing:.08em;flex-shrink:0;
+
+/* BANDAS */
+.helper-band{
+  background:var(--deep);
+  color:#fff;
+  padding:55px 0
 }
-.footer-brand strong{display:block;color:#fff;font-size:1.05rem}
-.footer-brand p{margin:.3rem 0 0;color:rgba(255,255,255,.6)}
-.footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;padding-bottom:3rem}
-.footer-col{display:flex;flex-direction:column;align-items:flex-start;gap:.7rem}
-.footer-label{margin-bottom:.35rem;color:var(--gold-light);font-size:.68rem;font-weight:800;letter-spacing:.13em;text-transform:uppercase}
-.footer-col a{color:rgba(255,255,255,.68);transition:color .25s ease,transform .25s ease;display:inline-block;word-wrap:break-word}
-.footer-col a:hover{color:#fff;transform:translateX(4px)}
-.footer-divider{height:1px;background:rgba(255,255,255,.12);margin-bottom:1.5rem}
-.footer-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;flex-wrap:wrap}
-.footer-bottom .disclaimer{margin:0;max-width:55rem;font-size:.76rem;line-height:1.65;text-align:left;color:rgba(255,255,255,.5);flex:1;min-width:250px}
-.footer-copy{margin:0;white-space:nowrap;color:rgba(255,255,255,.38)!important;font-size:.72rem!important}
 
-.float-wa{
-  position:fixed;right:24px;bottom:24px;z-index:45;
-  display:flex;align-items:center;gap:11px;min-height:58px;
-  padding:9px 18px 9px 10px;border:1px solid rgba(255,255,255,.38);border-radius:999px;
-  background:linear-gradient(135deg,#25d366 0%,#16b957 100%);color:#fff;
-  box-shadow:0 14px 34px rgba(7,73,38,.25),0 4px 12px rgba(0,0,0,.12);
-  font-size:.84rem;font-weight:800;letter-spacing:-.01em;
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-  transition:transform .28s ease,box-shadow .28s ease;max-width:calc(100vw - 48px);
+.helper-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:25px;
+  flex-wrap:wrap
 }
-.float-wa::before{
-  content:'';width:40px;height:40px;flex:0 0 40px;border-radius:50%;
-  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.28);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='white' d='M19.1 17.2c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.8-1.8-2.1-.2-.3 0-.5.1-.7.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.6-1-2.2-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1 2.9 1.1 3.1c.1.2 2 3 4.9 4.2.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2.1-1.3.3-.6.3-1.1.2-1.3-.1-.2-.3-.3-.6-.5Z'/%3E%3Cpath fill='white' d='M16 3.5A12.5 12.5 0 0 0 5.2 22.3L3.7 28.1l5.9-1.5A12.5 12.5 0 1 0 16 3.5Zm0 22.8c-2 0-4-.5-5.7-1.6l-.4-.2-3.5.9.9-3.4-.2-.4A10.3 10.3 0 1 1 16 26.3Z'/%3E%3C/svg%3E");
-  background-size:23px 23px;background-position:center;background-repeat:no-repeat;
+
+.helper-inner h2{
+  font-size:clamp(1.8rem,3.5vw,3rem);
+  color:#fff;
+  margin:8px 0
 }
-.float-wa span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.float-wa:hover{transform:translateY(-4px) scale(1.015);box-shadow:0 18px 42px rgba(7,73,38,.32),0 6px 16px rgba(0,0,0,.14);animation:none}
 
-.toast{position:fixed;left:50%;bottom:22px;transform:translate(-50%,120%);background:var(--green);color:white;padding:12px 18px;border-radius:8px;z-index:50;transition:.3s ease;max-width:calc(100vw - 40px)}
-.toast.show{transform:translate(-50%,0)}
-
-.cookie-notice{
-  position:fixed;left:18px;right:18px;bottom:18px;z-index:60;
-  background:#fff;border:1px solid #cbded2;border-radius:14px;
-  box-shadow:0 18px 45px rgba(0,0,0,.18);padding:16px 18px;
-  display:flex;gap:18px;align-items:center;justify-content:space-between;max-width:calc(100vw - 36px);
+.helper-inner p{
+  color:#bcd0c6;
+  max-width:650px
 }
-.cookie-notice[hidden]{display:none}
-.cookie-notice p{margin:0;color:#405b4e;font-size:.78rem;line-height:1.45;max-width:760px}
-.cookie-notice a{color:#164b36;text-decoration:underline}
-.cookie-actions{display:flex;gap:8px;flex-wrap:wrap}
-.cookie-actions button{border-radius:7px;padding:10px 13px;border:1px solid #d9e6dd;font-weight:800;font-size:.76rem}
-.cookie-accept{background:#164b36;color:#fff;border-color:#164b36!important}
-.cookie-reject{background:#eef7f1;color:#164b36}
 
-
-.spotlight-card{position:relative}
-.spotlight-card::before{
-  content:'';position:absolute;inset:0;border-radius:inherit;
-  background:radial-gradient(600px circle at var(--mouse-x,50%) var(--mouse-y,50%),rgba(199,161,90,0.15),transparent 40%);
-  opacity:0;transition:opacity 0.3s;pointer-events:none;z-index:1;
+/* IMÁGENES DE CATEGORÍAS */
+.need-card{
+  overflow:hidden;
+  padding-top:0!important
 }
-.spotlight-card:hover::before{opacity:1}
 
-.magnetic-btn{transition:none}
-
-.carousel-3d-section{padding:100px 0;background:var(--deep);color:white;overflow:hidden;position:relative}
-.carousel-3d-container{perspective:1200px;width:100%;max-width:900px;margin:40px auto;height:400px;position:relative;overflow:hidden}
-.carousel-3d{width:100%;height:100%;position:absolute;transform-style:preserve-3d;transition:transform 1s var(--ease-premium);left:50%;transform:translateX(-50%)}
-.carousel-3d-item{
-  position:absolute;width:min(320px,80vw);height:360px;left:50%;top:50%;
-  transform:translate(-50%,-50%);
-  background:rgba(255,255,255,0.05);backdrop-filter:blur(10px);
-  border:1px solid rgba(199,161,90,0.2);border-radius:20px;padding:30px;
-  display:flex;flex-direction:column;justify-content:center;text-align:center;
-  box-shadow:0 20px 50px rgba(0,0,0,0.3);transition:box-shadow 0.3s;
+.need-card-image-wrap{
+  height:150px;
+  margin:0 -24px 20px;
+  overflow:hidden;
+  background:#f3f5f2
 }
-.carousel-3d-item:hover{box-shadow:0 30px 60px rgba(199,161,90,0.2)}
-.carousel-3d-item h4{color:var(--gold);font-size:1.3rem;margin-bottom:15px}
-.carousel-3d-item p{color:#bcd0c6;font-size:0.95rem;line-height:1.6}
-.carousel-controls{display:flex;justify-content:center;gap:20px;margin-top:30px}
-.carousel-btn{
-  width:50px;height:50px;border-radius:50%;border:1px solid var(--gold);
-  background:transparent;color:var(--gold);font-size:1.2rem;
-  transition:all 0.3s var(--ease-premium);display:flex;align-items:center;justify-content:center;
+
+.need-card-image{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block
 }
-.carousel-btn:hover{background:var(--gold);color:var(--deep);transform:scale(1.1)}
 
-#particles-canvas{display:none!important}
+.cart-result-image-wrap{
+  width:100%;
+  height:210px;
+  margin-bottom:20px;
+  overflow:hidden;
+  border-radius:16px;
+  background:#f3f5f2
+}
 
-.reveal{opacity:0;transform:none;transition:opacity .55s ease}
-.reveal.is-visible{opacity:1;transform:none}
-.reveal-delay-1{transition-delay:.1s}
-.reveal-delay-2{transition-delay:.2s}
-.reveal-delay-3{transition-delay:.3s}
+.cart-result-image{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block
+}
 
-/* =========================================
-   📱 RESPONSIVE - TABLET
-   ========================================= */
-@media(max-width:850px){
-  .nav-links{display:none}
-  .mobile-nav{display:flex}
-  .hero{padding:120px 0 90px}
-  .hero-grid,.proof-grid,.form-grid{grid-template-columns:1fr;gap:38px}
-  .options-grid,.process-grid{grid-template-columns:1fr}
-  .option{min-height:0}
-  .choice-band-inner{flex-direction:column;text-align:center;gap:16px}
-  .choice-band .btn{margin-top:14px;width:100%;max-width:320px}
-  .section{padding:78px 0}
-  .float-wa{right:14px;bottom:14px}
-  .video-meta{flex-direction:column;align-items:flex-start;gap:8px}
-  .form-grid{gap:25px}
-  .carousel-3d-item{width:min(280px,75vw);height:320px}
-  .carousel-3d-container{height:340px}
-  .faq-list summary{grid-template-columns:2.2rem 1fr auto;gap:.8rem;padding:1.1rem .4rem}
-  .faq-answer{padding:0 .4rem 1.3rem 3rem}
-  .faq-cta{flex-direction:column;align-items:flex-start;padding:1.35rem}
-  .faq-cta .btn{width:100%;justify-content:center}
-  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem 1rem}
-  .footer-bottom{flex-direction:column;align-items:flex-start;gap:.8rem}
-  .footer-copy{white-space:normal}
-  
-  /* ✅ FOTO - ALINEACIÓN CORREGIDA EN TABLET */
-  .photo-section .proof-image{width:min(78vw,340px);max-width:340px;margin:0 auto}
-  .photo-section .proof-grid{gap:42px}
-  .photo-section .proof-copy{
-    max-width:100%;
-    text-align:left;
-    margin:0 auto;
-    padding:0 10px;
+/* FLUJO SECUENCIAL */
+body.flow-locked{
+  overflow:hidden!important
+}
+
+html.flow-locked{
+  overflow:hidden!important
+}
+
+.flow-gated-step{
+  max-height:calc(100vh - 96px);
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  scroll-behavior:smooth;
+  scrollbar-gutter:stable
+}
+
+.flow-gated-step .wrap{
+  padding-bottom:48px
+}
+
+.flow-gated-step.is-hidden{
+  display:none!important
+}
+
+#paises.flow-gated-step,
+#necesidades.flow-gated-step{
+  min-height:calc(100vh - 96px);
+  display:block
+}
+
+#necesidades.flow-gated-step.is-hidden,
+#carritos.flow-gated-step.is-hidden{
+  display:none!important
+}
+
+.flow-lock-note{
+  text-align:center;
+  margin:14px auto 0;
+  color:var(--muted);
+  font-size:.78rem;
+  opacity:.82
+}
+
+.flow-confirm{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  flex-wrap:wrap;
+  margin:28px auto 0;
+  max-width:900px;
+  padding:18px 20px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:18px;
+  background:rgba(255,255,255,.035);
+  backdrop-filter:blur(10px)
+}
+
+.flow-selection-message{
+  font-size:.92rem;
+  letter-spacing:.01em;
+  color:var(--muted);
+  min-height:24px
+}
+
+.flow-selection-message strong{color:inherit}
+
+.flow-confirm .btn:disabled{
+  opacity:.38;
+  cursor:not-allowed;
+  transform:none
+}
+
+.premium-steps .step{
+  transition:transform .3s ease,box-shadow .3s ease
+}
+
+.premium-steps .step:hover{
+  transform:translateY(-4px)
+}
+
+@media(max-width:1000px){
+  .selection-grid{grid-template-columns:repeat(3,1fr)}
+  .need-grid{grid-template-columns:repeat(2,1fr)}
+  .how-grid{grid-template-columns:repeat(3,1fr)}
+}
+
+@media(max-width:700px){
+  .selection-grid,
+  .need-grid,
+  .how-grid{
+    grid-template-columns:1fr 1fr
   }
-  .quote{margin:20px auto;max-width:500px}
-  .proof-points{max-width:500px;margin:27px auto}
+
+  .cart-card{
+    grid-template-columns:1fr
+  }
+
+  .cart-card-actions{
+    min-width:0
+  }
+
+  .cart-area{
+    padding:18px
+  }
 }
 
-/* =========================================
-   📱 RESPONSIVE - MÓVIL - SOLUCIÓN DEFINITIVA
-   ========================================= */
 @media(max-width:600px){
-  .wrap{width:calc(100% - 28px) !important;max-width:100% !important}
-  .nav-inner{height:64px}
-  .hero{padding:100px 0 76px}
-  .hero h1{font-size:clamp(2.65rem,13vw,4rem) !important;letter-spacing:-.055em}
-  .hero-lead{font-size:1rem;line-height:1.55}
-  .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
-  .hero-actions .btn{width:100%;min-height:50px}
-  .trust{display:grid;grid-template-columns:1fr 1fr;gap:9px 12px;font-size:.75rem}
-  .choice-band{padding:22px 0}
-  .section-head{margin-bottom:30px}
-  .section-head h2{font-size:clamp(2rem,10vw,3rem)}
-  .video-section{padding:70px 0}
-  .video-box{border-radius:14px}
-  .video-overlay .video-play{width:62px;height:62px;font-size:1.2rem}
-  .options-grid,.process-grid{gap:14px}
-  .option{padding:24px;min-height:0}
-  .option-badge{top:12px;right:12px;font-size:.68rem;padding:5px 12px}
-  
-  /* ✅ PHOTO SECTION - FORZAR TODO A IZQUIERDA Y CENTRADO */
-  .photo-section .proof-grid{
-    grid-template-columns:1fr !important;
-    grid-template-rows:auto auto !important;
-    gap:32px !important;
-    display:grid !important;
-    width:100% !important;
-    max-width:100% !important;
-    margin:0 !important;
-    padding:0 !important;
+  .mobile-nav{
+    display:flex
   }
-  
-  .photo-section .proof-image{
-    width:min(72vw,280px) !important;
-    max-width:280px !important;
-    padding:5px !important;
-    border-radius:16px !important;
-    margin:0 auto 20px auto !important;
-    justify-self:center !important;
-    grid-column:1 / -1 !important;
+
+  .nav-links{
+    display:none
   }
-  .photo-section .proof-image img{
-    border-radius:11px !important;
-    aspect-ratio:4 / 4.45 !important;
-    width:100% !important;
+
+  .flow-gated-step{
+    max-height:calc(100vh - 78px)
   }
-  
-  .photo-section .proof-copy{
-    max-width:100% !important;
-    width:100% !important;
-    padding:0 16px !important;
-    margin:0 !important;
-    text-align:center !important;
-    grid-column:1 / -1 !important;
-    overflow:hidden !important;
-    box-sizing:border-box !important;
+
+  #paises.flow-gated-step,
+  #necesidades.flow-gated-step{
+    min-height:calc(100vh - 78px)
   }
-  
-  .photo-section .proof-copy .eyebrow{
-    display:block !important;
-    text-align:center !important;
-    margin:0 0 12px 0 !important;
-    padding:0 !important;
-    width:100% !important;
+
+  .flow-confirm{
+    margin-top:20px;
+    padding:16px
   }
-  
-  .photo-section .proof-copy h2{
-    font-size:clamp(1.8rem,8vw,2.5rem) !important;
-    margin:0 0 16px 0 !important;
-    text-align:center !important;
-    word-wrap:break-word !important;
-    overflow-wrap:break-word !important;
-    width:100% !important;
-    max-width:100% !important;
-    line-height:1.1 !important;
-    padding:0 !important;
-  }
-  
-  .photo-section .quote{
-    font-size:.95rem !important;
-    padding:0 0 0 14px !important;
-    margin:18px auto !important;
-    max-width:100% !important;
-    width:100% !important;
-    text-align:left !important;
-    border-left:2px solid var(--gold) !important;
-    box-sizing:border-box !important;
-  }
-  
-  .photo-section .proof-points{
-    gap:12px !important;
-    margin:24px 0 !important;
-    max-width:100% !important;
-    width:100% !important;
-    display:flex !important;
-    flex-direction:column !important;
-    align-items:stretch !important;
-    padding:0 !important;
-  }
-  
-  .photo-section .proof-points div{
-    flex-direction:column !important;
-    gap:6px !important;
-    padding:14px 16px !important;
-    background:var(--sage) !important;
-    border-radius:12px !important;
-    border-left:3px solid var(--gold) !important;
-    text-align:left !important;
-    width:100% !important;
-    max-width:100% !important;
-    box-sizing:border-box !important;
-    margin:0 !important;
-  }
-  
-  .photo-section .proof-points b{
-    min-width:auto !important;
-    font-size:.95rem !important;
-    margin-bottom:2px !important;
-    text-align:left !important;
-    display:block !important;
-    width:100% !important;
-  }
-  
-  .photo-section .proof-points span{
-    font-size:.88rem !important;
-    line-height:1.5 !important;
-    text-align:left !important;
-    display:block !important;
-    width:100% !important;
-  }
-  
-  .photo-section .proof-copy .btn{
-    width:100% !important;
-    margin:20px 0 0 0 !important;
-    display:flex !important;
-    justify-content:center !important;
-    max-width:100% !important;
-  }
-  
-  .proof-copy h2,.form-copy h2{font-size:clamp(2rem,10vw,3rem)}
-  .mode-tabs{grid-template-columns:1fr!important}
-  .mode-tabs button{min-height:44px}
-  .lead-form{padding:18px}
-  .field input,.field textarea{font-size:16px;min-height:48px}
-  .field textarea{min-height:110px}
-  .form-submit{min-height:52px}
-  .faq-list summary{grid-template-columns:2rem 1fr 2rem;gap:.6rem;padding:1rem .3rem;font-size:.94rem}
-  .faq-number{font-size:.65rem}
-  .faq-icon{width:2rem;height:2rem;font-size:1.1rem}
-  .faq-answer{padding:0 .3rem 1.2rem 2.6rem}
-  .faq-answer p{font-size:.9rem}
-  .faq-cta{margin-top:24px;padding:1.25rem;border-radius:1.25rem}
-  .faq-cta strong{font-size:.95rem}
-  .faq-cta span{font-size:.82rem}
-  .faq-cta .btn{min-height:50px;font-size:.9rem}
-  .footer{padding:50px 0 30px}
-  .footer-brand{margin-bottom:2rem}
-  .footer-mark{width:2.8rem;height:2.8rem;font-size:.7rem}
-  .footer-grid{grid-template-columns:1fr;gap:1.5rem;padding-bottom:2rem}
-  .carousel-3d-section{padding:70px 0}
-  .carousel-3d-item{width:min(240px,70vw);height:280px;padding:20px}
-  .carousel-3d-item h4{font-size:1.1rem}
-  .carousel-3d-item p{font-size:.88rem}
-  .carousel-3d-container{height:300px}
-  .carousel-btn{width:44px;height:44px;font-size:1rem}
-  .float-wa{max-width:calc(100vw - 28px);right:14px;bottom:14px}
-  .float-wa span{white-space:nowrap}
-  .cookie-notice{left:12px;right:12px;bottom:12px;flex-direction:column;align-items:stretch;gap:12px}
-  .cookie-actions{width:100%}
-  .cookie-actions button{flex:1;min-height:44px}
 }
 
-@media(max-width:390px){
-  .wrap{width:calc(100% - 24px)}
-  .brand{font-size:.98rem}
-  .brand span{font-size:.49rem}
-  .hero h1{font-size:2.45rem}
-  .trust{grid-template-columns:1fr}
-  .option-badge{top:10px;right:10px;font-size:.64rem;padding:4px 10px}
+@media(max-width:450px){
+  .selection-grid,
+  .need-grid,
+  .how-grid{
+    grid-template-columns:1fr
+  }
+}
+
+.reveal{
+  opacity:0;
+  transform:translate3d(0,18px,0);
+  transition:opacity .7s ease,transform .7s var(--ease-premium);
+  will-change:opacity,transform
+}
+
+.reveal.is-visible{
+  opacity:1;
+  transform:none
 }
 
 @media(prefers-reduced-motion:reduce){
-  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-}
-
-/* ===== NUEVO RECORRIDO: PAÍS → NECESIDAD → CARRITO ===== */
-.selection-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-.selection-btn,.need-card{border:1px solid var(--line);background:#fff;border-radius:16px;padding:20px;text-align:left;transition:all .35s var(--ease-premium)}
-.selection-btn:hover,.need-card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:var(--gold)}
-.selection-btn.active,.need-card.active{border-color:var(--gold);box-shadow:0 14px 35px rgba(199,161,90,.16);background:linear-gradient(145deg,#fff,#fbfaf6)}
-.selection-icon{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--sage);color:var(--green);font-weight:800;margin-bottom:13px}
-.selection-btn strong,.need-card strong{display:block;color:var(--green);font-size:1rem}
-.selection-btn span,.need-card span{display:block;color:var(--muted);font-size:.78rem;margin-top:5px}
-.need-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.cart-area{background:var(--sage);border-radius:22px;padding:30px}
-.cart-empty{text-align:center;padding:38px 20px;color:var(--muted)}
-.cart-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;display:grid;grid-template-columns:1fr auto;gap:25px;align-items:center;box-shadow:0 15px 40px rgba(10,34,25,.07)}
-.cart-card h3{color:var(--green);font-size:1.55rem;margin:7px 0}
-.cart-card p{color:var(--muted);max-width:650px}
-.cart-badge{display:inline-flex;padding:6px 11px;border-radius:999px;background:var(--gold-light);color:var(--deep);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
-.cart-products{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
-.cart-products span{padding:6px 10px;border-radius:999px;background:var(--sage);color:var(--green);font-size:.76rem}
-.cart-card-actions{display:flex;flex-direction:column;gap:9px;min-width:190px}
-.btn-disabled{background:#e9eeeb!important;color:#75837d!important;box-shadow:none!important;cursor:not-allowed!important}
-.how-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
-.tutorial-placeholder{border:1px dashed rgba(199,161,90,.5);background:rgba(255,255,255,.05);border-radius:16px;min-height:120px;display:grid;place-items:center;text-align:center;padding:20px;color:#bcd0c6}
-.tutorial-placeholder strong{color:var(--gold-light);display:block;margin-bottom:5px}
-.helper-band{background:var(--deep);color:#fff;padding:55px 0}
-.helper-inner{display:flex;align-items:center;justify-content:space-between;gap:25px;flex-wrap:wrap}
-.helper-inner h2{font-size:clamp(1.8rem,3.5vw,3rem);color:#fff;margin:8px 0}
-.helper-inner p{color:#bcd0c6;max-width:650px}
-@media(max-width:1000px){.selection-grid{grid-template-columns:repeat(3,1fr)}.need-grid{grid-template-columns:repeat(2,1fr)}.how-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:700px){.selection-grid,.need-grid,.how-grid{grid-template-columns:1fr 1fr}.cart-card{grid-template-columns:1fr}.cart-card-actions{min-width:0}.cart-area{padding:18px}}
-@media(max-width:450px){.selection-grid,.need-grid,.how-grid{grid-template-columns:1fr}}
-
-/* ANIMACIONES FLUIDAS — sin ciclos infinitos ni parpadeos */
-html{scroll-behavior:smooth!important}
-.site-nav{transition:background .3s ease,box-shadow .3s ease,border-color .3s ease}
-.brand,.brand span{transition:transform .3s var(--ease-premium),opacity .3s ease}
-.reveal{opacity:0;transform:translate3d(0,18px,0);transition:opacity .7s ease,transform .7s var(--ease-premium);will-change:opacity,transform}
-.reveal.is-visible{opacity:1;transform:none}
-.scroll-progress-3d,#particles-canvas,.cursor-dot,.cursor-outline,.loading-screen,.page-transition-overlay{display:none!important}
-@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-
-/* IMÁGENES DE CATEGORÍAS — integradas sin cambiar la estructura visual */
-.need-card{overflow:hidden;padding-top:0!important;}
-.need-card-image-wrap{height:150px;margin:0 -24px 20px;overflow:hidden;background:#f3f5f2;}
-.need-card-image{width:100%;height:100%;object-fit:cover;display:block;}
-.need-card .selection-icon{margin-top:0;}
-.cart-result-image-wrap{width:100%;height:210px;margin-bottom:20px;overflow:hidden;border-radius:16px;background:#f3f5f2;}
-.cart-result-image{width:100%;height:100%;object-fit:cover;display:block;}
-
-
-/* ===== FLUJO GUIADO SOLO EN MÓVIL ===== */
-@media(max-width:600px){
-  .mobile-flow-step.is-hidden{display:none!important}
-  .selection-btn,.need-card{position:relative;transition:transform .25s var(--ease-premium),box-shadow .25s ease,border-color .25s ease,background .25s ease}
-  .selection-btn:active,.need-card:active{transform:scale(.985)}
-  .selection-btn.active,.need-card.active{border:2px solid var(--gold)!important;box-shadow:0 12px 30px rgba(199,161,90,.22),0 0 0 3px rgba(199,161,90,.10);background:linear-gradient(145deg,#fff,#fbfaf6);transform:translateY(-2px)}
-  .selection-btn.active::after,.need-card.active::after{content:'✓';position:absolute;top:10px;right:10px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:var(--gold);color:#fff;font-size:.78rem;font-weight:900;box-shadow:0 5px 14px rgba(199,161,90,.28)}
-  .selection-btn.active .selection-icon,.need-card.active .selection-icon{background:var(--gold);color:#fff;transform:scale(1.05)}
+  *{
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important
+  }
 }
 </style>
+
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6J8EMMPLPZ"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-6J8EMMPLPZ');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-6J8EMMPLPZ');
 </script>
-
-<style>
-.flow-confirm{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin:28px auto 0;max-width:900px;padding:18px 20px;border:1px solid rgba(255,255,255,.10);border-radius:18px;background:rgba(255,255,255,.035);backdrop-filter:blur(10px);transition:opacity .35s ease,transform .35s ease}
-.flow-selection-message{font-size:.92rem;letter-spacing:.01em;color:var(--muted);min-height:24px}
-.flow-selection-message strong{color:inherit}
-.flow-confirm .btn:disabled{opacity:.38;cursor:not-allowed;transform:none}
-.premium-steps .step{transition:transform .3s ease,box-shadow .3s ease}
-.premium-steps .step:hover{transform:translateY(-4px)}
-@media (max-width:600px){
-  .flow-confirm{margin-top:20px;padding:16px}
-}
-</style>
-
 </head>
 
 <body>
-<!--
-=========================================================
-📝 GUÍA RÁPIDA PARA EDITAR ESTA PÁGIN
-=========================================================
-Esta página ya está diseñada y funcionando. No necesitas tocar el CSS
-ni modificar la estructura para hacer los cambios habituales.
 
-EDITA SOLO ESTAS ZONAS CUANDO LAS NECESITES:
-1) TEXTOS: busca comentarios "✏️ TEXTOS EDITABLES".
-2) IMÁGENES: busca comentarios "🖼️ IMÁGENES EDITABLES".
-3) WHATSAPP: busca "📲 WHATSAPP". Tu número ya está configurado.
-4) WHATSAPP DE CARRITOS: el botón final envía la selección a WhatsApp para solicitar el enlace del carrito.
-5) VIDEO TUTORIAL: busca "🎥 ENLACE DEL VIDEO TUTORIAL".
-
-IMPORTANTE:
-- No cambies los colores ni el CSS si solo quieres cambiar contenido.
-- No borres las comillas de los enlaces.
-- Si no tienes un enlace todavía, déjalo como "".
-=========================================================
--->
-<div class="loading-sub">Hamilton Granillo</div><div class="loading-bar"><div class="loading-bar-fill"></div></div></div>
-<div class="scroll-progress-3d" id="scrollProgress"></div>
-
-<!-- ✏️ TEXTOS EDITABLES: nombre de marca y textos del menú -->
 <header class="site-nav" id="siteNav">
   <div class="wrap nav-inner">
-    <a class="brand" href="#inicio">Hamilton Granillo <span>Distribuidor Independiente</span></a>
+    <a class="brand" href="#inicio">
+      Hamilton Granillo
+      <span>Distribuidor Independiente</span>
+    </a>
+
     <nav class="nav-links" aria-label="Navegación principal">
-      <a href="#paises">Países</a><a href="#carritos">Carritos</a><a href="#como-pedir">Cómo pedir</a><a href="#preguntas">Preguntas</a>
-      <a class="btn btn-primary magnetic-btn" href="#paises">Ver carritos</a>
+      <a href="#paises">Países</a>
+      <a href="#carritos">Carritos</a>
+      <a href="#como-pedir">Cómo pedir</a>
+      <a href="#preguntas">Preguntas</a>
+      <a class="btn btn-primary" href="#paises">Ver carritos</a>
     </nav>
-    <button class="mobile-nav" id="mobileNavToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
-      <div class="mobile-nav-lines"><span></span><span></span><span></span></div>
+
+    <button
+      class="mobile-nav"
+      id="mobileNavToggle"
+      type="button"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobileMenu">
+      <div class="mobile-nav-lines">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </button>
   </div>
+
   <nav class="mobile-menu" id="mobileMenu" aria-label="Navegación móvil">
-    <a href="#paises">Países</a><a href="#carritos">Carritos</a><a href="#como-pedir">Cómo pedir</a><a href="#preguntas">Preguntas frecuentes</a>
-    <a class="mobile-menu-cta" href="#paises">Ver carritos <span>→</span></a>
+    <a href="#paises">Países</a>
+    <a href="#carritos">Carritos</a>
+    <a href="#como-pedir">Cómo pedir</a>
+    <a href="#preguntas">Preguntas frecuentes</a>
+    <a class="mobile-menu-cta" href="#paises">
+      Ver carritos <span>→</span>
+    </a>
   </nav>
 </header>
 
 <main>
-<!-- ✏️ TEXTOS EDITABLES: título, descripción y textos principales de portada -->
+
 <section class="hero" id="inicio">
   <div class="wrap hero-grid">
     <div>
       <div class="eyebrow reveal">Compra de forma sencilla</div>
-      <h1 class="reveal reveal-delay-1">Encuentra el carrito<br><em>ideal para ti.</em></h1>
-  <p class="hero-lead reveal reveal-delay-1">Elige tu país, selecciona lo que buscas y encuentra un carrito recomendado para revisar y comprar de forma sencilla.</p>
-      <div class="hero-actions reveal reveal-delay-2">
-        <a class="btn btn-primary magnetic-btn" href="#paises">Explorar carritos <span>↓</span></a>
-        <a class="btn btn-light magnetic-btn" href="#como-pedir">¿Cómo hago mi pedido?</a>
+
+      <h1 class="reveal">
+        Encuentra el carrito<br>
+        <em>ideal para ti.</em>
+      </h1>
+
+      <p class="hero-lead reveal">
+        Elige tu país, selecciona lo que buscas y encuentra un carrito recomendado
+        para revisar y comprar de forma sencilla.
+      </p>
+
+      <div class="hero-actions reveal">
+        <a class="btn btn-primary" href="#paises">
+          Explorar carritos <span>↓</span>
+        </a>
+
+        <a class="btn btn-light" href="#como-pedir">
+          ¿Cómo hago mi pedido?
+        </a>
       </div>
-      <div class="trust reveal reveal-delay-3"><span>Carritos prearmados</span><span>Carrito personalizado</span><span>Ayuda por WhatsApp</span></div>
+
+      <div class="trust reveal">
+        <span>Carritos prearmados</span>
+        <span>Carrito personalizado</span>
+        <span>Ayuda por WhatsApp</span>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="choice-band reveal">
+<section class="choice-band">
   <div class="wrap choice-band-inner">
-    <div><strong>¿No sabes qué carrito elegir?</strong><p>Selecciona tu país y lo que estás buscando. Te mostramos la selección disponible.</p></div>
-    <a class="btn magnetic-btn" href="#paises">Empezar ahora</a>
+    <div>
+      <strong>¿No sabes qué carrito elegir?</strong>
+      <p>
+        Selecciona tu país y lo que estás buscando.
+        Te mostramos la selección disponible.
+      </p>
+    </div>
+
+    <a class="btn" href="#paises">Empezar ahora</a>
   </div>
 </section>
 
-<section class="section" id="paises">
+<!-- PASO 01 -->
+<section class="section flow-gated-step" id="paises">
   <div class="wrap">
+
     <div class="section-head reveal">
-      <div class="eyebrow">Paso 01</div><h2>Primero, elige tu país.</h2>
-      <p>Selecciona una bandera para confirmar tu país y continuar.</p>
+      <div class="eyebrow">Paso 01</div>
+
+      <h2>Primero, elige tu país.</h2>
+
+      <p>
+        Selecciona una bandera para confirmar tu país y continuar.
+      </p>
     </div>
+
     <div class="selection-grid" id="countryGrid"></div>
+
     <div class="flow-confirm" id="countryConfirm" aria-live="polite">
-      <div class="flow-selection-message" id="countrySelectionMessage"></div>
-      <button class="btn btn-primary" id="countryContinue" type="button" disabled>Continuar <span>→</span></button>
+
+      <div
+        class="flow-selection-message"
+        id="countrySelectionMessage">
+      </div>
+
+      <button
+        class="btn btn-primary"
+        id="countryContinue"
+        type="button"
+        disabled>
+        Continuar <span>→</span>
+      </button>
+
+      <div
+        class="flow-lock-note"
+        id="countryLockNote">
+        Selecciona un país y pulsa <strong>Continuar</strong>
+        para pasar al siguiente paso.
+      </div>
+
     </div>
   </div>
 </section>
 
-<section class="section options mobile-flow-step is-hidden" id="necesidades">
+<!-- PASO 02 -->
+<section
+  class="section options mobile-flow-step flow-gated-step is-hidden"
+  id="necesidades">
+
   <div class="wrap">
+
     <div class="section-head reveal">
-      <div class="eyebrow">Paso 02</div><h2>¿Qué estás buscando?</h2>
-      <p>Elige una categoría para confirmar tu necesidad y continuar.</p>
+      <div class="eyebrow">Paso 02</div>
+
+      <h2>¿Qué estás buscando?</h2>
+
+      <p>
+        Elige una categoría para confirmar tu necesidad y continuar.
+      </p>
     </div>
+
     <div class="need-grid" id="needGrid"></div>
+
     <div class="flow-confirm" id="needConfirm" aria-live="polite">
-      <div class="flow-selection-message" id="needSelectionMessage"></div>
-      <button class="btn btn-primary" id="needContinue" type="button" disabled>Continuar <span>→</span></button>
+
+      <div
+        class="flow-selection-message"
+        id="needSelectionMessage">
+      </div>
+
+      <button
+        class="btn btn-primary"
+        id="needContinue"
+        type="button"
+        disabled>
+        Continuar <span>→</span>
+      </button>
+
+      <div
+        class="flow-lock-note"
+        id="needLockNote">
+        Selecciona una opción y pulsa <strong>Continuar</strong>
+        para ver tu carrito.
+      </div>
+
     </div>
   </div>
 </section>
 
-<section class="section mobile-flow-step is-hidden" id="carritos">
+<!-- PASO 03 -->
+<section
+  class="section mobile-flow-step flow-gated-step is-hidden"
+  id="carritos">
+
   <div class="wrap">
+
     <div class="section-head reveal">
-      <div class="eyebrow">Paso 03</div><h2>Tu carrito recomendado.</h2>
-      <p id="cartIntro">Selecciona un país y una categoría para ver la opción disponible.</p>
+      <div class="eyebrow">Paso 03</div>
+
+      <h2>Tu carrito recomendado.</h2>
+
+      <p id="cartIntro">
+        Selecciona un país y una categoría para ver la opción disponible.
+      </p>
     </div>
+
     <div class="cart-area" id="cartArea">
-      <div class="cart-empty">Selecciona tu país y lo que estás buscando para mostrar tu carrito.</div>
+      <div class="cart-empty">
+        Selecciona tu país y lo que estás buscando
+        para mostrar tu carrito.
+      </div>
     </div>
+
   </div>
 </section>
 
+<!-- CÓMO PEDIR -->
 <section class="section" id="como-pedir">
   <div class="wrap">
+
     <div class="section-head reveal">
       <div class="eyebrow">Compra paso a paso</div>
+
       <h2>Tu proceso, claro y sencillo.</h2>
-      <p>Selecciona tu país, elige lo que buscas y recibe tu carrito por WhatsApp para continuar con asesoramiento personalizado.</p>
+
+      <p>
+        Avanza paso a paso: selecciona tu país, pulsa Continuar,
+        elige lo que buscas, pulsa Continuar y finalmente revisa
+        tu carrito para recibirlo por WhatsApp.
+      </p>
     </div>
+
     <div class="how-grid premium-steps">
-      <article class="step"><div class="step-no">01</div><h3>Elige tu país</h3><p>Selecciona <strong>México</strong> o <strong>Estados Unidos</strong>. Verás tu selección confirmada antes de continuar.</p></article>
-      <article class="step"><div class="step-no">02</div><h3>Selecciona lo que buscas</h3><p>Elige la opción que mejor corresponde a lo que necesitas y confirma tu selección.</p></article>
-      <article class="step"><div class="step-no">03</div><h3>Revisa tu carrito</h3><p>Visualiza el carrito recomendado según el país y la necesidad que seleccionaste.</p></article>
-      <article class="step"><div class="step-no">04</div><h3>Recibe tu carrito por WhatsApp</h3><p>Haz clic en <strong>“Recibir mi carrito por WhatsApp”</strong> para continuar con tu asesoramiento.</p></article>
-      <article class="step"><div class="step-no">05</div><h3>Recibe acompañamiento</h3><p>Podremos conocer tu selección, resolver tus dudas y dar seguimiento a tu proceso.</p></article>
+
+      <article class="step">
+        <div class="step-no">01</div>
+        <h3>Elige tu país</h3>
+        <p>
+          Selecciona <strong>México</strong> o
+          <strong>Estados Unidos</strong>.
+          Verás tu selección confirmada antes de continuar.
+        </p>
+      </article>
+
+      <article class="step">
+        <div class="step-no">02</div>
+        <h3>Selecciona lo que buscas</h3>
+        <p>
+          Elige la opción que mejor corresponde a lo que necesitas
+          y confirma tu selección.
+        </p>
+      </article>
+
+      <article class="step">
+        <div class="step-no">03</div>
+        <h3>Revisa tu carrito</h3>
+        <p>
+          Visualiza el carrito recomendado según el país
+          y la necesidad que seleccionaste.
+        </p>
+      </article>
+
+      <article class="step">
+        <div class="step-no">04</div>
+        <h3>Recibe tu carrito por WhatsApp</h3>
+        <p>
+          Haz clic en <strong>“Recibir mi carrito por WhatsApp”</strong>
+          para continuar con tu asesoramiento.
+        </p>
+      </article>
+
+      <article class="step">
+        <div class="step-no">05</div>
+        <h3>Recibe acompañamiento</h3>
+        <p>
+          Podremos conocer tu selección, resolver tus dudas
+          y dar seguimiento a tu proceso.
+        </p>
+      </article>
+
     </div>
   </div>
 </section>
 
-<!-- 🖼️ IMAGEN EDITABLE: si quieres cambiar tu foto, reemplaza "Hamilton.jpg" por el nombre de tu nueva imagen. --> si quieres cambiar tu foto, reemplaza "Hamilton.jpg" por el nombre de tu nueva imagen. -->
+<!-- FOTO -->
 <section class="section photo-section">
+
   <div class="wrap proof-grid">
-    <div class="proof-image reveal"><img src="Hamilton.jpg" alt="Hamilton Granillo brinda asesoría personalizada" loading="lazy" width="1000" height="1000"></div>
+
+    <div class="proof-image reveal">
+      <img
+        src="Hamilton.jpg"
+        alt="Hamilton Granillo brinda asesoría personalizada"
+        loading="lazy">
+    </div>
+
     <div class="proof-copy">
-      <div class="eyebrow reveal">Por qué contar conmigo</div>
-      <h2 class="reveal reveal-delay-1">Una orientación clara para elegir y comprar.</h2>
-      <p class="quote reveal reveal-delay-2">"Encuentra tu carrito, revisa tus opciones y, si tienes alguna duda, puedes escribirme directamente."</p>
-      <div class="proof-points">
-        <div class="reveal reveal-delay-1"><b>✓ Selección sencilla</b><span>Elige primero tu país y después la categoría que te interesa.</span></div>
-        <div class="reveal reveal-delay-2"><b>✓ Información clara</b><span>Conoce qué opción estás abriendo antes de continuar.</span></div>
-        <div class="reveal reveal-delay-3"><b>✓ Ayuda personal</b><span>Si necesitas orientación, puedes contactarme por WhatsApp.</span></div>
+
+      <div class="eyebrow reveal">
+        Por qué contar conmigo
       </div>
-      <!-- 📲 WHATSAPP: tu número ya está configurado. No necesitas cambiarlo. -->
-      <a class="btn btn-primary magnetic-btn reveal reveal-delay-3" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20necesito%20ayuda%20para%20elegir%20un%20carrito%20Omnilife." target="_blank" rel="noopener">Hablar por WhatsApp</a>
+
+      <h2 class="reveal">
+        Una orientación clara para elegir y comprar.
+      </h2>
+
+      <p class="quote reveal">
+        "Encuentra tu carrito, revisa tus opciones y,
+        si tienes alguna duda, puedes escribirme directamente."
+      </p>
+
+      <div class="proof-points">
+
+        <div class="reveal">
+          <b>✓ Selección sencilla</b>
+          <span>
+            Elige primero tu país y después la categoría que te interesa.
+          </span>
+        </div>
+
+        <div class="reveal">
+          <b>✓ Información clara</b>
+          <span>
+            Conoce qué opción estás abriendo antes de continuar.
+          </span>
+        </div>
+
+        <div class="reveal">
+          <b>✓ Ayuda personal</b>
+          <span>
+            Si necesitas orientación, puedes contactarme por WhatsApp.
+          </span>
+        </div>
+
+      </div>
+
+      <a
+        class="btn btn-primary reveal"
+        href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20necesito%20ayuda%20para%20elegir%20un%20carrito%20Omnilife."
+        target="_blank"
+        rel="noopener">
+        Hablar por WhatsApp
+      </a>
+
     </div>
   </div>
 </section>
 
+<!-- AYUDA -->
 <section class="helper-band">
+
   <div class="wrap helper-inner">
-    <div><div class="eyebrow">¿Necesitas ayuda?</div><h2>Te ayudo a encontrar tu opción.</h2><p>Si no sabes qué categoría seleccionar o tienes dudas sobre el proceso, escríbeme directamente.</p></div>
-    <!-- 📲 WHATSAPP: tu número ya está configurado. -->
-    <a class="btn btn-light magnetic-btn" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20ayuda%20para%20elegir%20un%20carrito%20Omnilife." target="_blank" rel="noopener">Escribirme por WhatsApp</a>
+
+    <div>
+
+      <div class="eyebrow">
+        ¿Necesitas ayuda?
+      </div>
+
+      <h2>
+        Te ayudo a encontrar tu opción.
+      </h2>
+
+      <p>
+        Si no sabes qué categoría seleccionar o tienes dudas
+        sobre el proceso, escríbeme directamente.
+      </p>
+
+    </div>
+
+    <a
+      class="btn btn-light"
+      href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20ayuda%20para%20elegir%20un%20carrito%20Omnilife."
+      target="_blank"
+      rel="noopener">
+      Escribirme por WhatsApp
+    </a>
+
   </div>
 </section>
 
+<!-- PREGUNTAS FRECUENTES -->
 <section class="section" id="preguntas">
+
   <div class="wrap faq">
-    <div class="section-head reveal"><div class="eyebrow">Preguntas frecuentes</div><h2>Lo esencial antes de comprar.</h2><p class="faq-intro">Respuestas rápidas sobre el funcionamiento de esta página y los carritos.</p></div>
-    <div class="faq-list">
-      <details><summary><span class="faq-number">01</span><span class="faq-question">¿Qué es un carrito prearmado?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>Es una selección de productos preparada previamente para facilitarte el proceso. Tú eliges tu país y lo que estás buscando, y la página te muestra la opción correspondiente.</p></div></details>
-      <details><summary><span class="faq-number">02</span><span class="faq-question">¿Cómo funciona el proceso?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>Primero seleccionas México o Estados Unidos, luego eliges lo que estás buscando y finalmente revisas el carrito que corresponde a tu selección.</p></div></details>
-      <details><summary><span class="faq-number">03</span><span class="faq-question">¿Puedo modificar mi carrito?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>La selección que aparece en la página corresponde a la opción recomendada. Antes de continuar, puedes revisar la información y conversar conmigo si necesitas orientación.</p></div></details>
-      <details><summary><span class="faq-number">04</span><span class="faq-question">¿Puedo pedir ayuda para elegir?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>Sí. Puedes solicitar asesoramiento para conocer mejor tu selección, resolver dudas y recibir acompañamiento durante el proceso.</p></div></details>
-      <details><summary><span class="faq-number">05</span><span class="faq-question">¿Por qué recibir mi carrito por WhatsApp?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>Porque así podemos conocer tu selección, brindarte asesoramiento personalizado y acompañarte durante el proceso, resolviendo tus dudas y dando seguimiento para ayudarte a obtener los mejores resultados.</p></div></details>
+
+    <div class="section-head reveal">
+
+      <div class="eyebrow">
+        Preguntas frecuentes
+      </div>
+
+      <h2>
+        Lo esencial antes de comprar.
+      </h2>
+
+      <p class="faq-intro">
+        Respuestas rápidas sobre el funcionamiento de esta página
+        y los carritos.
+      </p>
+
     </div>
-    <div class="faq-cta reveal"><div><strong>¿Todavía tienes dudas?</strong><span>Escríbeme y revisamos juntos tu opción.</span></div><a class="btn" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20tengo%20una%20duda%20sobre%20los%20carritos." target="_blank" rel="noopener">Contactarme</a></div>
+
+    <div class="faq-list">
+
+      <details>
+        <summary>
+          <span class="faq-number">01</span>
+          <span class="faq-question">
+            ¿Qué es un carrito prearmado?
+          </span>
+          <span class="faq-icon">+</span>
+        </summary>
+
+        <div class="faq-answer">
+          <p>
+            Es una selección de productos preparada previamente
+            para facilitarte el proceso. Tú eliges tu país y lo que
+            estás buscando, y la página te muestra la opción correspondiente.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="faq-number">02</span>
+          <span class="faq-question">
+            ¿Cómo funciona el proceso?
+          </span>
+          <span class="faq-icon">+</span>
+        </summary>
+
+        <div class="faq-answer">
+          <p>
+            Primero seleccionas México o Estados Unidos,
+            luego eliges lo que estás buscando y finalmente
+            revisas el carrito que corresponde a tu selección.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="faq-number">03</span>
+          <span class="faq-question">
+            ¿Puedo modificar mi carrito?
+          </span>
+          <span class="faq-icon">+</span>
+        </summary>
+
+        <div class="faq-answer">
+          <p>
+            La selección que aparece en la página corresponde
+            a la opción recomendada. Antes de continuar, puedes
+            revisar la información y conversar conmigo si necesitas orientación.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="faq-number">04</span>
+          <span class="faq-question">
+            ¿Puedo pedir ayuda para elegir?
+          </span>
+          <span class="faq-icon">+</span>
+        </summary>
+
+        <div class="faq-answer">
+          <p>
+            Sí. Puedes solicitar asesoramiento para conocer mejor
+            tu selección, resolver dudas y recibir acompañamiento
+            durante el proceso.
+          </p>
+        </div>
+      </details>
+
+      <details>
+        <summary>
+          <span class="faq-number">05</span>
+          <span class="faq-question">
+            ¿Por qué recibir mi carrito por WhatsApp?
+          </span>
+          <span class="faq-icon">+</span>
+        </summary>
+
+        <div class="faq-answer">
+          <p>
+            Porque así podemos conocer tu selección, brindarte
+            asesoramiento personalizado y acompañarte durante el proceso,
+            resolviendo tus dudas y dando seguimiento para ayudarte
+            a obtener los mejores resultados.
+          </p>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="faq-cta reveal">
+
+      <div>
+        <strong>¿Todavía tienes dudas?</strong>
+        <span>Escríbeme y revisamos juntos tu opción.</span>
+      </div>
+
+      <a
+        class="btn"
+        href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20tengo%20una%20duda%20sobre%20los%20carritos."
+        target="_blank"
+        rel="noopener">
+        Contactarme
+      </a>
+
+    </div>
+
   </div>
 </section>
+
 </main>
 
-<!-- ✏️ TEXTOS EDITABLES: pie de página, si algún día quieres cambiar información. -->
-<footer class="footer">
-  <div class="wrap footer-inner">
-    <div class="footer-brand"><div class="footer-mark">HG</div><div><strong>Hamilton Granillo</strong><p>Distribuidor Independiente</p></div></div>
-    <div class="footer-grid">
-      <div class="footer-col"><div class="footer-label">Navegación</div><a href="#paises">Países</a><a href="#carritos">Carritos</a><a href="#como-pedir">Cómo pedir</a></div>
-      <div class="footer-col"><div class="footer-label">Ayuda</div><a href="#preguntas">Preguntas frecuentes</a><a href="https://wa.me/593968107948" target="_blank" rel="noopener">WhatsApp</a></div>
-      <div class="footer-col"><div class="footer-label">Información</div><a href="https://hamiltonnetworker.com/politica-privacidad.html" target="_blank" rel="noopener">Política de privacidad</a><a href="https://hamiltonnetworker.com/politica-cookies.html" target="_blank" rel="noopener">Política de cookies</a></div>
-    </div>
-    <div class="footer-divider"></div>
-    <div class="footer-bottom"><p class="disclaimer">Sitio de orientación y selección de carritos. Hamilton Granillo es distribuidor independiente. Los productos, precios, disponibilidad y condiciones de compra corresponden a la plataforma donde se complete el pedido.</p><p class="footer-copy">© 2026 Hamilton Granillo</p></div>
+<footer>
+  <div class="wrap">
+    <p>© 2026 Hamilton Granillo · Distribuidor Independiente</p>
   </div>
 </footer>
 
-<!-- 📲 WHATSAPP FLOTANTE: tu número ya está configurado. -->
-<a class="float-wa" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20ayuda%20con%20un%20carrito%20Omnilife." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><span>¿Necesitas ayuda?</span></a>
-
-<div class="cookie-notice" id="cookieNotice" hidden>
-  <p>Usamos cookies y tecnologías similares para mejorar la experiencia. Puedes consultar la <a href="https://hamiltonnetworker.com/politica-cookies.html" target="_blank" rel="noopener">política de cookies</a>.</p>
-  <div class="cookie-actions"><button class="cookie-reject" id="cookieReject">Rechazar</button><button class="cookie-accept" id="cookieAccept">Aceptar</button></div>
-</div>
-
 <script>
-/* =========================================================
-   🔗 ENLACES DE TUS CARRITOS OMNILIFE
-   =========================================================
-   Aquí están cargados los enlaces de los carritos disponibles.
 
-   1. Busca el PAÍS.
-   2. Busca la CATEGORÍA.
-   3. Reemplaza SOLO las comillas vacías "" por el enlace.
+/* ============================================
+   DATOS DE PAÍSES
+============================================ */
 
-   EJEMPLO:
-   digestion: "https://AQUI-VA-TU-ENLACE.com"
+const countries = [
+  {
+    id: "mexico",
+    name: "México",
+    flag: "🇲🇽"
+  },
+  {
+    id: "usa",
+    name: "Estados Unidos",
+    flag: "🇺🇸"
+  }
+];
 
-   Los países sin carritos cargados mostrarán "Próximamente".
-   No necesitas modificar ninguna otra parte del código.
 
-   IMPORTANTE: tu número de WhatsApp ya está configurado en los botones
-   de la página. Los enlaces de México ya están configurados; los demás países se irán agregando cuando corresponda.
-   ========================================================= */
+/* ============================================
+   CATEGORÍAS
+============================================ */
 
-const CART_LINKS = {};
-/* ✏️ TEXTOS DE PAÍSES: puedes agregar o cambiar nombres aquí si más adelante lo necesitas. */
-const COUNTRIES = {
-  mexico:{name:"México",short:"MX",image:"mexico.png"},
-  usa:{name:"Estados Unidos",short:"US",image:"estados_unidos.png"}
-};
+const needs = [
+  {
+    id:"energia",
+    name:"Energía",
+    description:"Apoyo para energía y vitalidad.",
+    image:"energia.jpg"
+  },
+  {
+    id:"digestivo",
+    name:"Digestión",
+    description:"Opciones enfocadas en bienestar digestivo.",
+    image:"digestivo.jpg"
+  },
+  {
+    id:"peso",
+    name:"Control de peso",
+    description:"Opciones para acompañar tus objetivos.",
+    image:"peso.jpg"
+  },
+  {
+    id:"defensas",
+    name:"Defensas",
+    description:"Opciones para apoyar tu bienestar.",
+    image:"defensas.jpg"
+  },
+  {
+    id:"belleza",
+    name:"Belleza",
+    description:"Cuidado y bienestar desde adentro.",
+    image:"belleza.jpg"
+  },
+  {
+    id:"deporte",
+    name:"Deporte",
+    description:"Opciones para acompañar actividad física.",
+    image:"deporte.jpg"
+  },
+  {
+    id:"nutricion",
+    name:"Nutrición",
+    description:"Opciones para complementar tu alimentación.",
+    image:"nutricion.jpg"
+  },
+  {
+    id:"sueño",
+    name:"Descanso",
+    description:"Opciones para acompañar tu rutina de descanso.",
+    image:"sueno.jpg"
+  },
+  {
+    id:"estres",
+    name:"Estrés",
+    description:"Opciones para acompañar tu bienestar diario.",
+    image:"estres.jpg"
+  },
+  {
+    id:"general",
+    name:"Bienestar general",
+    description:"Una opción para comenzar.",
+    image:"bienestar.jpg"
+  },
+  {
+    id:"familia",
+    name:"Familia",
+    description:"Opciones para diferentes necesidades.",
+    image:"familia.jpg"
+  },
+  {
+    id:"personalizado",
+    name:"Carrito personalizado",
+    description:"Si quieres una selección más específica.",
+    image:"personalizado.jpg"
+  }
+];
 
-/* ✏️ CATEGORÍAS: aquí puedes cambiar los nombres y descripciones de las categorías. */
-const NEEDS = {
-  limpieza:{name:"Limpieza profunda de 10 días",icon:"L",desc:"Selección para acompañar una rutina de bienestar digestivo.",image:"limpieza_10_dias.png"},
-  cardiovascular:{name:"Sistema cardiovascular",icon:"C",desc:"Selección para acompañar el bienestar cardiovascular.",image:"sistema_cardiovascular.png"},
-  nervioso:{name:"Sistema Nervioso",icon:"N",desc:"Selección para acompañar concentración, claridad y descanso.",image:"sistema_nervioso.png"},
-  reproductor_masculino:{name:"Reproductor Masculino",icon:"M",desc:"Selección para acompañar el bienestar masculino.",image:"reproductor_masculino.png"},
-  reproductor_femenino:{name:"Reproductor Femenino",icon:"F",desc:"Selección para acompañar el bienestar femenino.",image:"reproductor_femenino.png"},
-  renal:{name:"Sistema Renal",icon:"R",desc:"Selección para acompañar la depuración y el bienestar renal.",image:"sistema_renal.png"},
-  oseo_muscular:{name:"Sistema Óseo y Muscular",icon:"O",desc:"Selección para acompañar huesos, músculos y articulaciones.",image:"sistema_oseo_muscular.png"},
-  digestivo:{name:"Sistema Digestivo",icon:"D",desc:"Selección para acompañar el bienestar digestivo.",image:"sistema_digestivo.png"},
-  respiratorio:{name:"Sistema Respiratorio",icon:"S",desc:"Selección para acompañar el bienestar respiratorio.",image:"sistema_respiratorio.png"},
-  inmunologico:{name:"Sistema inmunológico",icon:"I",desc:"Selección para apoyar las defensas naturales del organismo.",image:"sistema_inmunologico.png"},
-  energia_deporte:{name:"Energía y deporte",icon:"E",desc:"Selección para acompañar entrenamientos y actividad física.",image:"energia_deporte.png"},
-  control_peso:{name:"Control de peso y talla",icon:"P",desc:"Selección para acompañar tus objetivos de control de peso y talla.",image:"control_peso_talla.png"}
-};
 
-const CART_CONTENT = {
-  limpieza:{title:"Limpieza profunda de 10 días",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar una rutina de bienestar digestivo.",products:["18 productos","$5,565.00"]},
-  cardiovascular:{title:"Sistema cardiovascular",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el cuidado de tu sistema cardiovascular, apoyando una buena circulación y una rutina de bienestar integral.",products:["8 productos","$3,800.00"]},
-  nervioso:{title:"Sistema Nervioso",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar tu bienestar mental, favorecer la concentración y claridad de pensamiento, y apoyar una rutina de descanso y relajación.",products:["9 productos","$3,180.00"]},
-  reproductor_masculino:{title:"Reproductor Masculino",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar masculino, apoyar el equilibrio hormonal y contribuir a una vida íntima y activa.",products:["31 productos","$3,845.00"]},
-  reproductor_femenino:{title:"Reproductor Femenino",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar femenino, apoyar el equilibrio hormonal y contribuir a una vida íntima y activa.",products:["31 productos","$3,880.00"]},
-  renal:{title:"Sistema Renal",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar la depuración y el bienestar del sistema renal, como parte de una rutina integral de cuidado y bienestar.",products:["31 productos","$4,005.00"]},
-  oseo_muscular:{title:"Sistema Óseo y Muscular",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar óseo y muscular, apoyar el cuidado de huesos, músculos, tejidos, ligamentos y articulaciones.",products:["8 productos","$3,525.00"]},
-  digestivo:{title:"Sistema Digestivo",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar digestivo, apoyar una buena función del sistema digestivo y complementar una rutina de cuidado y bienestar.",products:["31 productos","$3,710.00"]},
-  respiratorio:{title:"Sistema Respiratorio",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar respiratorio, apoyar las defensas del organismo y complementar una rutina de bienestar con antioxidantes.",products:["8 productos","$3,635.00"]},
-  inmunologico:{title:"Sistema inmunológico",desc:"¡Hola! Preparé este carrito con productos seleccionados para apoyar las defensas naturales del organismo y acompañar el bienestar del sistema inmunológico.",products:["9 productos","$4,385.00"]},
-  energia_deporte:{title:"Energía y deporte",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar tu rendimiento físico, apoyar la hidratación y mantenerte activo durante tus entrenamientos y actividades deportivas.",products:["4 productos","$2,675.00"]},
-  control_peso:{title:"Control de peso y talla",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañarte en tu objetivo de control de peso y talla y apoyar una rutina enfocada en alcanzar tus metas de bienestar.",products:["3 productos","$1,760.00"]}
-};
+/* ============================================
+   ELEMENTOS
+============================================ */
+
+const countryGrid =
+  document.getElementById("countryGrid");
+
+const needGrid =
+  document.getElementById("needGrid");
+
+const countryContinue =
+  document.getElementById("countryContinue");
+
+const needContinue =
+  document.getElementById("needContinue");
+
+const necesidades =
+  document.getElementById("necesidades");
+
+const carritos =
+  document.getElementById("carritos");
+
+const cartArea =
+  document.getElementById("cartArea");
+
+const countrySelectionMessage =
+  document.getElementById("countrySelectionMessage");
+
+const needSelectionMessage =
+  document.getElementById("needSelectionMessage");
+
 
 let selectedCountry = null;
 let selectedNeed = null;
 
-const countryGrid=document.getElementById("countryGrid");
-const needGrid=document.getElementById("needGrid");
-const cartArea=document.getElementById("cartArea");
-const cartIntro=document.getElementById("cartIntro");
 
-function isMobile(){return window.matchMedia("(max-width:600px)").matches;}
-function showStep(id){
-  const el=document.getElementById(id);
-  if(el) el.classList.remove("is-hidden");
-}
-function hideStep(id){
-  const el=document.getElementById(id);
-  if(el) el.classList.add("is-hidden");
-}
-function showMobileStep(id){showStep(id);}
+/* ============================================
+   CREAR PAÍSES
+============================================ */
 
-function updateCountryConfirmation(){
-  const box=document.getElementById("countryConfirm");
-  const message=document.getElementById("countrySelectionMessage");
-  const button=document.getElementById("countryContinue");
-  if(!box||!message||!button) return;
-  if(selectedCountry){
-    const country=COUNTRIES[selectedCountry];
-    message.innerHTML=`Seleccionaste <strong>${country.name}</strong>. Cuando estés listo, continúa con el siguiente paso.`;
-    button.disabled=false;
-  }else{
-    message.textContent="";
-    button.disabled=true;
-  }
-}
-function updateNeedConfirmation(){
-  const box=document.getElementById("needConfirm");
-  const message=document.getElementById("needSelectionMessage");
-  const button=document.getElementById("needContinue");
-  if(!box||!message||!button) return;
-  if(selectedNeed){
-    const need=NEEDS[selectedNeed];
-    message.innerHTML=`Seleccionaste <strong>${need.name}</strong>. Tu carrito está a un paso.`;
-    button.disabled=false;
-  }else{
-    message.textContent="";
-    button.disabled=true;
-  }
-}
+countries.forEach(country => {
 
-function renderCountries(){
-  countryGrid.innerHTML=Object.entries(COUNTRIES).map(([id,c])=>`
-    <button class="selection-btn ${selectedCountry===id?"active":""}" data-country="${id}" type="button">
-      <div class="country-flag-wrap"><img class="country-flag" src="${c.image}" alt="Bandera de ${c.name}" loading="eager" decoding="async"></div><strong>${c.name}</strong><span>Seleccionar ${c.name}</span>
-    </button>`).join("");
-  countryGrid.querySelectorAll("[data-country]").forEach(btn=>btn.addEventListener("click",()=>{
-    selectedCountry=btn.dataset.country;
-    selectedNeed=null;
-    hideStep("carritos");
-    hideStep("necesidades");
-    renderCountries();
-    renderNeeds();
-    renderCart();
-    updateCountryConfirmation();
-    updateNeedConfirmation();
-    document.getElementById("countryConfirm")?.scrollIntoView({behavior:"smooth",block:"center"});
-  }));
-}
+  const button =
+    document.createElement("button");
 
-function renderNeeds(){
-  needGrid.innerHTML=Object.entries(NEEDS).map(([id,n])=>`
-    <button class="need-card ${selectedNeed===id?"active":""}" data-need="${id}" type="button">
-      <div class="need-card-image-wrap">
-        <img class="need-card-image" src="${n.image}" alt="${n.name}" loading="lazy">
-      </div>
-      <div class="selection-icon">${n.icon}</div><strong>${n.name}</strong><span>${n.desc}</span>
-    </button>`).join("");
-  needGrid.querySelectorAll("[data-need]").forEach(btn=>btn.addEventListener("click",()=>{
-    if(!selectedCountry){
-      document.getElementById("paises").scrollIntoView({behavior:"smooth",block:"start"});
-      return;
-    }
-    selectedNeed=btn.dataset.need;
-    renderNeeds();
-    renderCart();
-    updateNeedConfirmation();
-    document.getElementById("needConfirm")?.scrollIntoView({behavior:"smooth",block:"center"});
-  }));
-}
+  button.type = "button";
+  button.className = "selection-btn";
+
+  button.innerHTML = `
+    <div class="selection-icon">
+      ${country.flag}
+    </div>
+
+    <strong>${country.name}</strong>
+
+    <span>
+      Seleccionar país
+    </span>
+  `;
+
+  button.addEventListener("click", () => {
+
+    selectedCountry = country;
+
+    document
+      .querySelectorAll(".selection-btn")
+      .forEach(btn => btn.classList.remove("active"));
+
+    button.classList.add("active");
+
+    countrySelectionMessage.innerHTML =
+      `Has seleccionado <strong>${country.flag} ${country.name}</strong>.`;
+
+    countryContinue.disabled = false;
+
+  });
+
+  countryGrid.appendChild(button);
+
+});
+
+
+/* ============================================
+   CREAR NECESIDADES
+============================================ */
+
+needs.forEach(need => {
+
+  const card =
+    document.createElement("button");
+
+  card.type = "button";
+  card.className = "need-card";
+
+  card.innerHTML = `
+    <div class="need-card-image-wrap">
+      <img
+        class="need-card-image"
+        src="${need.image}"
+        alt="${need.name}"
+        loading="lazy">
+    </div>
+
+    <div class="selection-icon">
+      ✓
+    </div>
+
+    <strong>${need.name}</strong>
+
+    <span>${need.description}</span>
+  `;
+
+  card.addEventListener("click", () => {
+
+    selectedNeed = need;
+
+    document
+      .querySelectorAll(".need-card")
+      .forEach(btn => btn.classList.remove("active"));
+
+    card.classList.add("active");
+
+    needSelectionMessage.innerHTML =
+      `Has seleccionado <strong>${need.name}</strong>.`;
+
+    needContinue.disabled = false;
+
+  });
+
+  needGrid.appendChild(card);
+
+});
+
+
+/* ============================================
+   CONTINUAR PAÍS
+============================================ */
+
+countryContinue.addEventListener("click", () => {
+
+  if(!selectedCountry) return;
+
+  necesidades.classList.remove("is-hidden");
+
+  setTimeout(() => {
+
+    necesidades.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+  },50);
+
+});
+
+
+/* ============================================
+   CONTINUAR NECESIDAD
+============================================ */
+
+needContinue.addEventListener("click", () => {
+
+  if(!selectedNeed) return;
+
+  carritos.classList.remove("is-hidden");
+
+  renderCart();
+
+  setTimeout(() => {
+
+    carritos.scrollIntoView({
+      behavior:"smooth",
+      block:"start"
+    });
+
+  },50);
+
+});
+
+
+/* ============================================
+   CARRITO
+============================================ */
 
 function renderCart(){
-  if(!selectedCountry||!selectedNeed){
-    cartIntro.textContent="Selecciona un país y una categoría para ver la opción disponible.";
-    cartArea.innerHTML='<div class="cart-empty">Primero selecciona tu país y después lo que estás buscando.</div>';
-    return;
-  }
-  const country=COUNTRIES[selectedCountry], need=NEEDS[selectedNeed], content=CART_CONTENT[selectedNeed];
-  const whatsappMessage="Hola Hamilton, ya seleccioné mi carrito de "+need.name+" para "+country.name+" en tu página. Quiero recibir el enlace de mi carrito y también tu asesoramiento para completar mi compra.";
-  const whatsappUrl="https://wa.me/593968107948?text="+encodeURIComponent(whatsappMessage);
-  cartIntro.textContent=`Opción seleccionada: ${country.name} · ${need.name}`;
-  cartArea.innerHTML=`
-    <article class="cart-card">
+
+  const country =
+    selectedCountry
+      ? selectedCountry.name
+      : "";
+
+  const need =
+    selectedNeed
+      ? selectedNeed.name
+      : "";
+
+  cartArea.innerHTML = `
+
+    <div class="cart-card">
+
       <div>
-        <span class="cart-badge">${country.name} · ${need.name}</span>
-        <h3>${content.title}</h3>
-        <p>${content.desc}</p>
+
+        <span class="cart-badge">
+          Carrito recomendado
+        </span>
+
+        <h3>
+          ${need}
+        </h3>
+
+        <p>
+          Hemos preparado esta selección tomando
+          en cuenta tu país y la categoría que elegiste.
+        </p>
+
         <div class="cart-products">
-          <span>Carrito prearmado</span>
-          <span>Asesoramiento por WhatsApp</span>
+
+          <span>
+            ${country}
+          </span>
+
+          <span>
+            ${need}
+          </span>
+
+          <span>
+            Selección recomendada
+          </span>
+
         </div>
+
       </div>
+
       <div class="cart-card-actions">
-        <a id="whatsappCarritoBtn" class="btn btn-primary" href="${whatsappUrl}" target="_blank" rel="noopener">Recibir mi carrito por WhatsApp ↗</a>
-        <p style="font-size:.78rem;color:var(--muted);margin:0;text-align:center">Tu selección llegará a mi WhatsApp para brindarte asesoramiento personalizado, resolver tus dudas y dar seguimiento a tu proceso.</p>
+
+        <a
+          class="btn btn-primary"
+          id="whatsappCartBtn"
+          href="#"
+          target="_blank"
+          rel="noopener">
+          Recibir mi carrito por WhatsApp ↗
+        </a>
+
       </div>
-    </article>`;
-}
-function escapeAttr(value){return value.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+    </div>
+  `;
 
 
-function trackCartWhatsAppClick(){
-  if(typeof gtag!=="function") return;
-  const country=selectedCountry?COUNTRIES[selectedCountry]:null;
-  const need=selectedNeed?NEEDS[selectedNeed]:null;
+  const whatsappMessage =
+    `Hola Hamilton, ya seleccioné mi carrito.%0A%0A` +
+    `País: ${country}%0A` +
+    `Necesidad: ${need}%0A%0A` +
+    `Quiero recibir mi carrito y asesoría.`;
 
-  gtag("event","whatsapp_carrito",{
-    pais:country?country.name:"",
-    necesidad:need?need.name:"",
-    destino:"WhatsApp"
+  const whatsappUrl =
+    `https://wa.me/593968107948?text=${whatsappMessage}`;
+
+
+  const whatsappButton =
+    document.getElementById("whatsappCartBtn");
+
+  whatsappButton.href = whatsappUrl;
+
+
+  whatsappButton.addEventListener("click", () => {
+
+    if(typeof gtag === "function"){
+
+      gtag("event","whatsapp_carrito",{
+        pais:country,
+        necesidad:need,
+        destino_whatsapp:"593968107948"
+      });
+
+    }
+
   });
+
 }
 
-document.addEventListener("click",(event)=>{
-  const btn=event.target.closest("#whatsappCarritoBtn");
-  if(btn) trackCartWhatsAppClick();
+
+/* ============================================
+   MENÚ MÓVIL
+============================================ */
+
+const mobileNavToggle =
+  document.getElementById("mobileNavToggle");
+
+const mobileMenu =
+  document.getElementById("mobileMenu");
+
+
+mobileNavToggle.addEventListener("click", () => {
+
+  const isOpen =
+    mobileNavToggle.classList.toggle("is-open");
+
+  mobileMenu.classList.toggle("is-open");
+
+  mobileNavToggle.setAttribute(
+    "aria-expanded",
+    isOpen ? "true" : "false"
+  );
+
 });
 
-document.addEventListener("DOMContentLoaded",()=>{
-  renderCountries();
-  renderNeeds();
-  renderCart();
-  hideStep("necesidades");
-  hideStep("carritos");
-  updateCountryConfirmation();
-  updateNeedConfirmation();
 
-  document.getElementById("countryContinue")?.addEventListener("click",()=>{
-    if(!selectedCountry) return;
-    showStep("necesidades");
-    document.getElementById("necesidades")?.scrollIntoView({behavior:"smooth",block:"start"});
-  });
+mobileMenu
+  .querySelectorAll("a")
+  .forEach(link => {
 
-  document.getElementById("needContinue")?.addEventListener("click",()=>{
-    if(!selectedNeed) return;
-    showStep("carritos");
-    renderCart();
-    document.getElementById("carritos")?.scrollIntoView({behavior:"smooth",block:"start"});
-  });
+    link.addEventListener("click", () => {
 
-  const toggle=document.getElementById("mobileNavToggle"),menu=document.getElementById("mobileMenu");
-  toggle.addEventListener("click",()=>{
-    const open=toggle.classList.toggle("is-open");
-    menu.classList.toggle("is-open",open);toggle.setAttribute("aria-expanded",String(open));
-  });
-  menu.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{toggle.classList.remove("is-open");menu.classList.remove("is-open");toggle.setAttribute("aria-expanded","false");}));
-
-  const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("is-visible")}),{threshold:.08});
-  document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-
-  document.querySelectorAll(".faq-list details").forEach(d=>d.addEventListener("toggle",()=>{if(d.open)document.querySelectorAll(".faq-list details").forEach(o=>{if(o!==d)o.removeAttribute("open")})}));
-
-  if(localStorage.getItem("hg_cookie_consent")!=="yes"){
-    document.getElementById("cookieNotice").hidden=false;
-  }
-  document.getElementById("cookieAccept").addEventListener("click",()=>{localStorage.setItem("hg_cookie_consent","yes");document.getElementById("cookieNotice").hidden=true});
-  document.getElementById("cookieReject").addEventListener("click",()=>{localStorage.setItem("hg_cookie_consent","no");document.getElementById("cookieNotice").hidden=true});
-
-});
-</script>
-</body>
-</html>
+      mobileNavToggle.classList.remove("is-open");
