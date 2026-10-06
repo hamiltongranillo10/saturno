@@ -787,30 +787,11 @@ html{scroll-behavior:smooth!important}
 </head>
 
 <body>
-<!--
-=========================================================
-📝 GUÍA RÁPIDA PARA EDITAR ESTA PÁGIN
-=========================================================
-Esta página ya está diseñada y funcionando. No necesitas tocar el CSS
-ni modificar la estructura para hacer los cambios habituales.
 
-EDITA SOLO ESTAS ZONAS CUANDO LAS NECESITES:
-1) TEXTOS: busca comentarios "✏️ TEXTOS EDITABLES".
-2) IMÁGENES: busca comentarios "🖼️ IMÁGENES EDITABLES".
-3) WHATSAPP: busca "📲 WHATSAPP". Tu número ya está configurado.
-4) WHATSAPP DE CARRITOS: el botón final envía la selección a WhatsApp para solicitar el enlace del carrito.
-5) FLUJO: el Paso 01 y el Paso 02 están bloqueados contra el scroll hasta pulsar Continuar.
-
-IMPORTANTE:
-- No cambies los colores ni el CSS si solo quieres cambiar contenido.
-- No borres las comillas de los enlaces.
-- Si no tienes un enlace todavía, déjalo como "".
-=========================================================
--->
 <div class="loading-sub">Hamilton Granillo</div><div class="loading-bar"><div class="loading-bar-fill"></div></div></div>
 <div class="scroll-progress-3d" id="scrollProgress"></div>
 
-<!-- ✏️ TEXTOS EDITABLES: nombre de marca y textos del menú -->
+
 <header class="site-nav" id="siteNav">
   <div class="wrap nav-inner">
     <a class="brand" href="#inicio">Hamilton Granillo <span>Distribuidor Independiente</span></a>
@@ -829,7 +810,7 @@ IMPORTANTE:
 </header>
 
 <main>
-<!-- ✏️ TEXTOS EDITABLES: título, descripción y textos principales de portada -->
+
 <section class="hero" id="inicio">
   <div class="wrap hero-grid">
     <div>
@@ -911,7 +892,6 @@ IMPORTANTE:
   </div>
 </section>
 
-<!-- 🖼️ IMAGEN EDITABLE: si quieres cambiar tu foto, reemplaza "Hamilton.jpg" por el nombre de tu nueva imagen. --> si quieres cambiar tu foto, reemplaza "Hamilton.jpg" por el nombre de tu nueva imagen. -->
 <section class="section photo-section">
   <div class="wrap proof-grid">
     <div class="proof-image reveal"><img src="Hamilton.jpg" alt="Hamilton Granillo brinda asesoría personalizada" loading="lazy" width="1000" height="1000"></div>
@@ -924,7 +904,7 @@ IMPORTANTE:
         <div class="reveal reveal-delay-2"><b>✓ Información clara</b><span>Conoce qué opción estás abriendo antes de continuar.</span></div>
         <div class="reveal reveal-delay-3"><b>✓ Ayuda personal</b><span>Si necesitas orientación, puedes contactarme por WhatsApp.</span></div>
       </div>
-      <!-- 📲 WHATSAPP: tu número ya está configurado. No necesitas cambiarlo. -->
+      
       <a class="btn btn-primary magnetic-btn reveal reveal-delay-3" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20necesito%20ayuda%20para%20elegir%20un%20carrito%20Omnilife." target="_blank" rel="noopener">Hablar por WhatsApp</a>
     </div>
   </div>
@@ -933,7 +913,6 @@ IMPORTANTE:
 <section class="helper-band">
   <div class="wrap helper-inner">
     <div><div class="eyebrow">¿Necesitas ayuda?</div><h2>Te ayudo a encontrar tu opción.</h2><p>Si no sabes qué categoría seleccionar o tienes dudas sobre el proceso, escríbeme directamente.</p></div>
-    <!-- 📲 WHATSAPP: tu número ya está configurado. -->
     <a class="btn btn-light magnetic-btn" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20ayuda%20para%20elegir%20un%20carrito%20Omnilife." target="_blank" rel="noopener">Escribirme por WhatsApp</a>
   </div>
 </section>
@@ -953,7 +932,7 @@ IMPORTANTE:
 </section>
 </main>
 
-<!-- ✏️ TEXTOS EDITABLES: pie de página, si algún día quieres cambiar información. -->
+
 <footer class="footer">
   <div class="wrap footer-inner">
     <div class="footer-brand"><div class="footer-mark">HG</div><div><strong>Hamilton Granillo</strong><p>Distribuidor Independiente</p></div></div>
@@ -967,7 +946,7 @@ IMPORTANTE:
   </div>
 </footer>
 
-<!-- 📲 WHATSAPP FLOTANTE: tu número ya está configurado. -->
+
 <a class="float-wa" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20ayuda%20con%20un%20carrito%20Omnilife." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"><span>¿Necesitas ayuda?</span></a>
 
 <div class="cookie-notice" id="cookieNotice" hidden>
@@ -976,33 +955,14 @@ IMPORTANTE:
 </div>
 
 <script>
-/* =========================================================
-   🔗 ENLACES DE TUS CARRITOS OMNILIFE
-   =========================================================
-   Aquí están cargados los enlaces de los carritos disponibles.
 
-   1. Busca el PAÍS.
-   2. Busca la CATEGORÍA.
-   3. Reemplaza SOLO las comillas vacías "" por el enlace.
-
-   EJEMPLO:
-   digestion: "https://AQUI-VA-TU-ENLACE.com"
-
-   Los países sin carritos cargados mostrarán "Próximamente".
-   No necesitas modificar ninguna otra parte del código.
-
-   IMPORTANTE: tu número de WhatsApp ya está configurado en los botones
-   de la página. Los enlaces de México ya están configurados; los demás países se irán agregando cuando corresponda.
-   ========================================================= */
 
 const CART_LINKS = {};
-/* ✏️ TEXTOS DE PAÍSES: puedes agregar o cambiar nombres aquí si más adelante lo necesitas. */
 const COUNTRIES = {
   mexico:{name:"México",short:"MX",image:"mexico.png"},
   usa:{name:"Estados Unidos",short:"US",image:"estados_unidos.png"}
 };
 
-/* ✏️ CATEGORÍAS: aquí puedes cambiar los nombres y descripciones de las categorías. */
 const NEEDS = {
   limpieza:{name:"Limpieza profunda de 10 días",icon:"L",desc:"Selección para acompañar una rutina de bienestar digestivo.",image:"limpieza_10_dias.png"},
   cardiovascular:{name:"Sistema cardiovascular",icon:"C",desc:"Selección para acompañar el bienestar cardiovascular.",image:"sistema_cardiovascular.png"},
@@ -1056,8 +1016,7 @@ function hideStep(id){
 function showMobileStep(id){showStep(id);}
 
 function setFlowLock(locked){
-  // El flujo usa una sola barra de scroll en todo el documento.
-  // Solo controla qué paso está visible; nunca crea un scroll interno.
+ 
   flowUnlocked=!locked;
   document.documentElement.classList.remove("flow-locked");
   document.body.classList.remove("flow-locked");
@@ -1111,7 +1070,7 @@ function renderCountries(){
     selectedCountry=btn.dataset.country;
     selectedNeed=null;
 
-    // Cambiar de país reinicia el flujo desde el paso 1.
+    
     hideStep("necesidades");
     hideStep("carritos");
     setFlowLock(true);
@@ -1204,7 +1163,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   renderNeeds();
   renderCart();
 
-  // Inicio: solo el Paso 01 está disponible.
+  
   hideStep("necesidades");
   hideStep("carritos");
   setFlowLock(false);
@@ -1212,8 +1171,7 @@ document.addEventListener("DOMContentLoaded",()=>{
   updateCountryConfirmation();
   updateNeedConfirmation();
 
-  // El inicio/hero se puede recorrer normalmente. El flujo guiado comienza
-  // únicamente cuando el usuario llega a la sección "Primero, elige tu país".
+  
   const countrySection = document.getElementById("paises");
   if(countrySection){
     const flowObserver = new IntersectionObserver((entries)=>{
@@ -1226,7 +1184,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     flowObserver.observe(countrySection);
   }
 
-  // Paso 01 -> Paso 02.
+  
   document.getElementById("countryContinue")?.addEventListener("click",()=>{
     if(!selectedCountry) return;
 
@@ -1237,7 +1195,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     scrollToStep("necesidades");
   });
 
-  // Paso 02 -> Paso 03 y, a partir de aquí, se libera el scroll completo.
+  
   document.getElementById("needContinue")?.addEventListener("click",()=>{
     if(!selectedNeed) return;
 
