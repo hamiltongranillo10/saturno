@@ -784,6 +784,24 @@ html{scroll-behavior:smooth!important}
 }
 </style>
 
+
+<style>
+/* ===== FLUIDEZ EXTRA PARA MÓVIL =====
+/* El scroll táctil queda nativo; solo las transiciones programáticas usan suavizado. */
+@media (max-width: 600px){
+  html{scroll-behavior:auto!important;}
+  body{touch-action:pan-y;overscroll-behavior-y:auto;}
+  .site-nav{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+  .mobile-menu{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);}
+  .selection-grid,.need-grid{contain:layout paint;}
+  .selection-btn,.need-card{transition:transform .18s ease,border-color .18s ease,background-color .18s ease,box-shadow .18s ease;}
+  .selection-btn:hover,.need-card:hover{transform:none;box-shadow:none;}
+  .selection-btn:active,.need-card:active{transform:scale(.99);}
+  .selection-btn.active,.need-card.active{box-shadow:0 8px 22px rgba(199,161,90,.12);}
+  .reveal{will-change:auto;transition:opacity .35s ease;}
+  .float-wa{backdrop-filter:none;-webkit-backdrop-filter:none;}
+}
+</style>
 </head>
 
 <body>
