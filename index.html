@@ -1084,7 +1084,8 @@ const CART_CONTENT = {
 
 let selectedCountry = null;
 let selectedNeed = null;
-let flowUnlocked = false;
+let flowUnlocked = true;
+let flowStarted = false;
 
 const countryGrid=document.getElementById("countryGrid");
 const needGrid=document.getElementById("needGrid");
@@ -1266,10 +1267,24 @@ document.addEventListener("DOMContentLoaded",()=>{
   // Inicio: solo el Paso 01 está disponible.
   hideStep("necesidades");
   hideStep("carritos");
-  setFlowLock(true);
+  setFlowLock(false);
 
   updateCountryConfirmation();
   updateNeedConfirmation();
+
+  // El inicio/hero se puede recorrer normalmente. El flujo guiado comienza
+  // únicamente cuando el usuario llega a la sección "Primero, elige tu país".
+  const countrySection = document.getElementById("paises");
+  if(countrySection){
+    const flowObserver = new IntersectionObserver((entries)=>{
+      const entry = entries[0];
+      if(!entry.isIntersecting || flowStarted) return;
+      flowStarted = true;
+      setFlowLock(true);
+      countrySection.scrollIntoView({behavior:"smooth",block:"start"});
+    },{threshold:0.45});
+    flowObserver.observe(countrySection);
+  }
 
   // Paso 01 -> Paso 02.
   document.getElementById("countryContinue")?.addEventListener("click",()=>{
