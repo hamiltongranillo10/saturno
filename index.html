@@ -801,6 +801,21 @@ html{scroll-behavior:smooth!important}
   .reveal{will-change:auto;transition:opacity .35s ease;}
   .float-wa{backdrop-filter:none;-webkit-backdrop-filter:none;}
 }
+
+/* ===== DETALLES DE PRODUCTOS ===== */
+.product-details-btn{margin-top:18px;background:transparent;border:1px solid var(--gold);color:var(--green);padding:10px 16px;border-radius:999px;font-weight:800;font-size:.82rem;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:all .25s ease}
+.product-details-btn:hover{background:var(--gold);color:#fff;transform:translateY(-2px)}
+.product-modal{position:fixed;inset:0;z-index:2000;display:grid;place-items:center;padding:20px;background:rgba(7,27,20,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.product-modal[hidden]{display:none}
+.product-modal-card{width:min(720px,100%);max-height:min(82vh,760px);overflow:auto;background:#fff;border-radius:22px;padding:26px;box-shadow:0 35px 100px rgba(0,0,0,.28);position:relative}
+.product-modal-head{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:20px}
+.product-modal-head h3{color:var(--green);font-size:1.35rem;margin:0}
+.product-modal-close{width:38px;height:38px;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--green);font-size:1.2rem;display:grid;place-items:center;flex:0 0 auto}
+.product-mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.product-mini{border:1px solid var(--line);border-radius:14px;background:#fbfaf6;padding:10px;min-width:0}
+.product-mini img{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:10px;background:#fff}
+.product-modal-note{margin-top:16px;color:var(--muted);font-size:.76rem;text-align:center}
+@media(max-width:600px){.product-modal{padding:12px}.product-modal-card{padding:18px;border-radius:18px;max-height:88vh}.product-mini-grid{grid-template-columns:repeat(2,1fr);gap:10px}.product-details-btn{width:100%}}
 </style>
 </head>
 
@@ -1011,6 +1026,21 @@ const CART_CONTENT = {
   control_peso:{title:"Control de peso y talla",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañarte en tu objetivo de control de peso y talla y apoyar una rutina enfocada en alcanzar tus metas de bienestar.",products:["3 productos","$1,760.00"]}
 };
 
+const PRODUCT_IMAGES = {
+  limpieza:["","","","","",""],
+  cardiovascular:["","","","","",""],
+  nervioso:["","","","","",""],
+  reproductor_masculino:["","","","","",""],
+  reproductor_femenino:["","","","","",""],
+  renal:["","","","","",""],
+  oseo_muscular:["","","","","",""],
+  digestivo:["","","","","",""],
+  respiratorio:["","","","","",""],
+  inmunologico:["","","","","",""],
+  energia_deporte:["","","","","",""],
+  control_peso:["","","","","",""]
+ };
+
 let selectedCountry = null;
 let selectedNeed = null;
 let flowUnlocked = true;
@@ -1149,12 +1179,42 @@ function renderCart(){
           <span>Carrito prearmado</span>
           <span>Asesoramiento por WhatsApp</span>
         </div>
+        <button class="product-details-btn" type="button" data-product-details="${selectedNeed}">Ver detalles <span>→</span></button>
       </div>
       <div class="cart-card-actions">
         <a id="whatsappCarritoBtn" class="btn btn-primary" href="${whatsappUrl}" target="_blank" rel="noopener">Recibir mi carrito por WhatsApp ↗</a>
         <p style="font-size:.78rem;color:var(--muted);margin:0;text-align:center">Tu selección llegará a mi WhatsApp para brindarte asesoramiento personalizado, resolver tus dudas y dar seguimiento a tu proceso.</p>
       </div>
-    </article>`;
+    </article>
+    <div class="product-modal" id="productModal" hidden aria-hidden="true">
+      <div class="product-modal-card" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
+        <div class="product-modal-head">
+          <h3 id="productModalTitle">Productos incluidos</h3>
+          <button class="product-modal-close" type="button" id="productModalClose" aria-label="Cerrar">×</button>
+        </div>
+        <div class="product-mini-grid" id="productMiniGrid"></div>
+        <p class="product-modal-note">Aquí se muestran únicamente las imágenes de los productos que agregues.</p>
+      </div>
+    </div>`;
+
+  document.querySelector("[data-product-details]")?.addEventListener("click",()=>openProductDetails(selectedNeed));
+  document.getElementById("productModalClose")?.addEventListener("click",closeProductDetails);
+  document.getElementById("productModal")?.addEventListener("click",e=>{if(e.target.id==="productModal")closeProductDetails()});
+}
+
+function openProductDetails(needId){
+  const modal=document.getElementById("productModal");
+  const grid=document.getElementById("productMiniGrid");
+  if(!modal||!grid) return;
+  const images=(PRODUCT_IMAGES[needId]||[]).filter(Boolean).slice(0,6);
+  grid.innerHTML=images.map((src,i)=>`<div class="product-mini"><img src="${src}" alt="Producto ${i+1}" loading="lazy" decoding="async"></div>`).join("");
+  if(!images.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:35px 15px;color:var(--muted)">Próximamente podrás ver aquí los productos de este carrito.</div>';}
+  modal.hidden=false; modal.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden";
+}
+function closeProductDetails(){
+  const modal=document.getElementById("productModal");
+  if(!modal) return;
+  modal.hidden=true; modal.setAttribute("aria-hidden","true"); document.body.style.overflow="";
 }
 
 function escapeAttr(value){return value.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
