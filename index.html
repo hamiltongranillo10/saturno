@@ -751,23 +751,36 @@ html{scroll-behavior:smooth!important}
 .cart-result-image{width:100%;height:100%;object-fit:cover;display:block;}
 
 
+/* ===== FLUJO GUIADO SOLO EN MÓVIL ===== */
+@media(max-width:600px){
+  .mobile-flow-step.is-hidden{display:none!important}
+  .selection-btn,.need-card{position:relative;transition:transform .25s var(--ease-premium),box-shadow .25s ease,border-color .25s ease,background .25s ease}
+  .selection-btn:active,.need-card:active{transform:scale(.985)}
+  .selection-btn.active,.need-card.active{border:2px solid var(--gold)!important;box-shadow:0 12px 30px rgba(199,161,90,.22),0 0 0 3px rgba(199,161,90,.10);background:linear-gradient(145deg,#fff,#fbfaf6);transform:translateY(-2px)}
+  .selection-btn.active::after,.need-card.active::after{content:'✓';position:absolute;top:10px;right:10px;width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:var(--gold);color:#fff;font-size:.78rem;font-weight:900;box-shadow:0 5px 14px rgba(199,161,90,.28)}
+  .selection-btn.active .selection-icon,.need-card.active .selection-icon{background:var(--gold);color:#fff;transform:scale(1.05)}
+}
 </style>
-<!-- Meta Pixel Code -->
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6J8EMMPLPZ"></script>
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window,document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1330108458187229');
-fbq('track', 'PageView');
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6J8EMMPLPZ');
 </script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1330108458187229&ev=PageView&noscript=1"/></noscript>
-<!-- End Meta Pixel Code -->
+
+<style>
+.flow-confirm{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin:28px auto 0;max-width:900px;padding:18px 20px;border:1px solid rgba(255,255,255,.10);border-radius:18px;background:rgba(255,255,255,.035);backdrop-filter:blur(10px);transition:opacity .35s ease,transform .35s ease}
+.flow-selection-message{font-size:.92rem;letter-spacing:.01em;color:var(--muted);min-height:24px}
+.flow-selection-message strong{color:inherit}
+.flow-confirm .btn:disabled{opacity:.38;cursor:not-allowed;transform:none}
+.premium-steps .step{transition:transform .3s ease,box-shadow .3s ease}
+.premium-steps .step:hover{transform:translateY(-4px)}
+@media (max-width:600px){
+  .flow-confirm{margin-top:20px;padding:16px}
+}
+</style>
 
 </head>
 
@@ -784,7 +797,7 @@ EDITA SOLO ESTAS ZONAS CUANDO LAS NECESITES:
 2) IMÁGENES: busca comentarios "🖼️ IMÁGENES EDITABLES".
 3) WHATSAPP: busca "📲 WHATSAPP". Tu número ya está configurado.
 4) WHATSAPP DE CARRITOS: el botón final envía la selección a WhatsApp para solicitar el enlace del carrito.
-5) EVENTOS: el Meta Pixel y los eventos de interacción ya están configurados.
+5) VIDEO TUTORIAL: busca "🎥 ENLACE DEL VIDEO TUTORIAL".
 
 IMPORTANTE:
 - No cambies los colores ni el CSS si solo quieres cambiar contenido.
@@ -841,10 +854,13 @@ IMPORTANTE:
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Paso 01</div><h2>Primero, elige tu país.</h2>
-      <p>Selecciona dónde realizarás tu compra para mostrarte las opciones preparadas para ese mercado.</p>
+      <p>Selecciona una bandera para confirmar tu país y continuar.</p>
     </div>
-    <div class="flow-helper" id="countryHelper" role="status" aria-live="polite">Selecciona un país para continuar.</div>
     <div class="selection-grid" id="countryGrid"></div>
+    <div class="flow-confirm" id="countryConfirm" aria-live="polite">
+      <div class="flow-selection-message" id="countrySelectionMessage"></div>
+      <button class="btn btn-primary" id="countryContinue" type="button" disabled>Continuar <span>→</span></button>
+    </div>
   </div>
 </section>
 
@@ -852,10 +868,13 @@ IMPORTANTE:
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Paso 02</div><h2>¿Qué estás buscando?</h2>
-      <p>Elige una categoría para encontrar el carrito que mejor corresponde a tu objetivo.</p>
+      <p>Elige una categoría para confirmar tu necesidad y continuar.</p>
     </div>
-    <div class="flow-helper" id="needHelper" role="status" aria-live="polite">Selecciona un carrito para continuar.</div>
     <div class="need-grid" id="needGrid"></div>
+    <div class="flow-confirm" id="needConfirm" aria-live="polite">
+      <div class="flow-selection-message" id="needSelectionMessage"></div>
+      <button class="btn btn-primary" id="needContinue" type="button" disabled>Continuar <span>→</span></button>
+    </div>
   </div>
 </section>
 
@@ -871,24 +890,24 @@ IMPORTANTE:
   </div>
 </section>
 
-<section class="process section" id="como-pedir">
+<section class="section" id="como-pedir">
   <div class="wrap">
     <div class="section-head reveal">
       <div class="eyebrow">Compra paso a paso</div>
-      <h2>¿Cómo hago mi pedido?</h2>
-      <p>Sigue estos cinco pasos para encontrar tu carrito y recibir el enlace directamente por WhatsApp.</p>
+      <h2>Tu proceso, claro y sencillo.</h2>
+      <p>Selecciona tu país, elige lo que buscas y recibe tu carrito por WhatsApp para continuar con asesoramiento personalizado.</p>
     </div>
-    <div class="how-grid" style="margin-top:25px">
-      <article class="step"><div class="step-no">01</div><h3>Elige tu país</h3><p>Selecciona México o Estados Unidos para continuar.</p></article>
-      <article class="step"><div class="step-no">02</div><h3>Selecciona lo que buscas</h3><p>Elige la categoría o carrito que corresponde a lo que buscas.</p></article>
-      <article class="step"><div class="step-no">03</div><h3>Revisa tu carrito</h3><p>Conoce la opción recomendada antes de continuar.</p></article>
-      <article class="step"><div class="step-no">04</div><h3>Conéctate conmigo</h3><p>Haz clic en “Recibir mi carrito por WhatsApp” para escribirme directamente.</p></article>
-      <article class="step"><div class="step-no">05</div><h3>Recibe tu enlace</h3><p>Te enviaré el enlace del carrito seleccionado y te acompañaré durante el proceso.</p></article>
+    <div class="how-grid premium-steps">
+      <article class="step"><div class="step-no">01</div><h3>Elige tu país</h3><p>Selecciona <strong>México</strong> o <strong>Estados Unidos</strong>. Verás tu selección confirmada antes de continuar.</p></article>
+      <article class="step"><div class="step-no">02</div><h3>Selecciona lo que buscas</h3><p>Elige la opción que mejor corresponde a lo que necesitas y confirma tu selección.</p></article>
+      <article class="step"><div class="step-no">03</div><h3>Revisa tu carrito</h3><p>Visualiza el carrito recomendado según el país y la necesidad que seleccionaste.</p></article>
+      <article class="step"><div class="step-no">04</div><h3>Recibe tu carrito por WhatsApp</h3><p>Haz clic en <strong>“Recibir mi carrito por WhatsApp”</strong> para continuar con tu asesoramiento.</p></article>
+      <article class="step"><div class="step-no">05</div><h3>Recibe acompañamiento</h3><p>Podremos conocer tu selección, resolver tus dudas y dar seguimiento a tu proceso.</p></article>
     </div>
   </div>
 </section>
 
-<!-- 🖼️ IMAGEN EDITABLE: si quieres cambiar tu foto, reemplaza "Hamilton.jpg" por el nombre de tu nueva imagen. -->
+<!-- 🖼️ IMAGEN EDITABLE: si quieres cambiar tu foto, reemplaza "Hamilton.jpg" por el nombre de tu nueva imagen. --> si quieres cambiar tu foto, reemplaza "Hamilton.jpg" por el nombre de tu nueva imagen. -->
 <section class="section photo-section">
   <div class="wrap proof-grid">
     <div class="proof-image reveal"><img src="Hamilton.jpg" alt="Hamilton Granillo brinda asesoría personalizada" loading="lazy" width="1000" height="1000"></div>
@@ -919,10 +938,11 @@ IMPORTANTE:
   <div class="wrap faq">
     <div class="section-head reveal"><div class="eyebrow">Preguntas frecuentes</div><h2>Lo esencial antes de comprar.</h2><p class="faq-intro">Respuestas rápidas sobre el funcionamiento de esta página y los carritos.</p></div>
     <div class="faq-list">
-      <details><summary><span class="faq-number">01</span><span class="faq-question">¿Qué es un carrito prearmado?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>Es una selección de productos preparada previamente para facilitarte el proceso de compra. Tú eliges la categoría y la página te muestra el carrito recomendado.</p></div></details>
-      <details><summary><span class="faq-number">02</span><span class="faq-question">¿Puedo modificar mi carrito?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>Dependerá de las opciones disponibles en el carrito y en la plataforma de compra. Revisa siempre lo que aparece antes de finalizar.</p></div></details>
-      <details><summary><span class="faq-number">03</span><span class="faq-question">¿Qué hago si mi país todavía no tiene enlace?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>Actualmente puedes seleccionar México o Estados Unidos. Si más adelante agregamos otro país, aparecerá cuando esté habilitado.</p></div></details>
-      <details><summary><span class="faq-number">04</span><span class="faq-question">¿Puedo pedir ayuda para elegir?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>Sí. Puedes escribirme por WhatsApp y comentarme qué estás buscando para orientarte.</p></div></details>
+      <details><summary><span class="faq-number">01</span><span class="faq-question">¿Qué es un carrito prearmado?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>Es una selección de productos preparada previamente para facilitarte el proceso. Tú eliges tu país y lo que estás buscando, y la página te muestra la opción correspondiente.</p></div></details>
+      <details><summary><span class="faq-number">02</span><span class="faq-question">¿Cómo funciona el proceso?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>Primero seleccionas México o Estados Unidos, luego eliges lo que estás buscando y finalmente revisas el carrito que corresponde a tu selección.</p></div></details>
+      <details><summary><span class="faq-number">03</span><span class="faq-question">¿Puedo modificar mi carrito?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>La selección que aparece en la página corresponde a la opción recomendada. Antes de continuar, puedes revisar la información y conversar conmigo si necesitas orientación.</p></div></details>
+      <details><summary><span class="faq-number">04</span><span class="faq-question">¿Puedo pedir ayuda para elegir?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>Sí. Puedes solicitar asesoramiento para conocer mejor tu selección, resolver dudas y recibir acompañamiento durante el proceso.</p></div></details>
+      <details><summary><span class="faq-number">05</span><span class="faq-question">¿Por qué recibir mi carrito por WhatsApp?</span><span class="faq-icon">+</span></summary><div class="faq-answer"><p>Porque así podemos conocer tu selección, brindarte asesoramiento personalizado y acompañarte durante el proceso, resolviendo tus dudas y dando seguimiento para ayudarte a obtener los mejores resultados.</p></div></details>
     </div>
     <div class="faq-cta reveal"><div><strong>¿Todavía tienes dudas?</strong><span>Escríbeme y revisamos juntos tu opción.</span></div><a class="btn" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20tengo%20una%20duda%20sobre%20los%20carritos." target="_blank" rel="noopener">Contactarme</a></div>
   </div>
@@ -1016,95 +1036,96 @@ const countryGrid=document.getElementById("countryGrid");
 const needGrid=document.getElementById("needGrid");
 const cartArea=document.getElementById("cartArea");
 const cartIntro=document.getElementById("cartIntro");
-const countrySection=document.getElementById("paises");
-const needSection=document.getElementById("necesidades");
-const cartSection=document.getElementById("carritos");
-const countryHelper=document.getElementById("countryHelper");
-const needHelper=document.getElementById("needHelper");
 
-function scrollToStep(id){
+function isMobile(){return window.matchMedia("(max-width:600px)").matches;}
+function showStep(id){
   const el=document.getElementById(id);
-  if(el) el.scrollIntoView({behavior:"smooth",block:"start"});
+  if(el) el.classList.remove("is-hidden");
 }
-
-function showHelper(el,text,success=false){
-  if(!el) return;
-  el.textContent=text;
-  el.classList.toggle("success",success);
+function hideStep(id){
+  const el=document.getElementById(id);
+  if(el) el.classList.add("is-hidden");
 }
+function showMobileStep(id){showStep(id);}
 
-function trackCustom(eventName,params={}){
-  if(typeof window.fbq==="function") window.fbq("trackCustom",eventName,params);
+function updateCountryConfirmation(){
+  const box=document.getElementById("countryConfirm");
+  const message=document.getElementById("countrySelectionMessage");
+  const button=document.getElementById("countryContinue");
+  if(!box||!message||!button) return;
+  if(selectedCountry){
+    const country=COUNTRIES[selectedCountry];
+    message.innerHTML=`Seleccionaste <strong>${country.name}</strong>. Cuando estés listo, continúa con el siguiente paso.`;
+    button.disabled=false;
+  }else{
+    message.textContent="";
+    button.disabled=true;
+  }
+}
+function updateNeedConfirmation(){
+  const box=document.getElementById("needConfirm");
+  const message=document.getElementById("needSelectionMessage");
+  const button=document.getElementById("needContinue");
+  if(!box||!message||!button) return;
+  if(selectedNeed){
+    const need=NEEDS[selectedNeed];
+    message.innerHTML=`Seleccionaste <strong>${need.name}</strong>. Tu carrito está a un paso.`;
+    button.disabled=false;
+  }else{
+    message.textContent="";
+    button.disabled=true;
+  }
 }
 
 function renderCountries(){
   countryGrid.innerHTML=Object.entries(COUNTRIES).map(([id,c])=>`
-    <button class="selection-btn ${selectedCountry===id?"active":""}" data-country="${id}" type="button" aria-pressed="${selectedCountry===id}">
-      <div class="country-flag-wrap"><img class="country-flag" src="${c.image}" alt="Bandera de ${c.name}" loading="eager" decoding="async"></div>
-      <strong>${c.name}</strong><span>Ver carritos disponibles</span>
+    <button class="selection-btn ${selectedCountry===id?"active":""}" data-country="${id}" type="button">
+      <div class="country-flag-wrap"><img class="country-flag" src="${c.image}" alt="Bandera de ${c.name}" loading="eager" decoding="async"></div><strong>${c.name}</strong><span>Seleccionar ${c.name}</span>
     </button>`).join("");
-
   countryGrid.querySelectorAll("[data-country]").forEach(btn=>btn.addEventListener("click",()=>{
     selectedCountry=btn.dataset.country;
     selectedNeed=null;
+    hideStep("carritos");
+    hideStep("necesidades");
     renderCountries();
     renderNeeds();
     renderCart();
-
-    const country=COUNTRIES[selectedCountry];
-    showHelper(countryHelper,`✓ ${country.name} seleccionado. Continuemos.`,true);
-    showHelper(needHelper,"Selecciona un carrito para continuar.",false);
-
-    needSection.classList.remove("guided-hidden","is-hidden");
-    cartSection.classList.add("guided-hidden");
-    trackCustom("SelectCountry",{country:country.name,country_code:country.short});
-    requestAnimationFrame(()=>scrollToStep("necesidades"));
+    updateCountryConfirmation();
+    updateNeedConfirmation();
+    document.getElementById("countryConfirm")?.scrollIntoView({behavior:"smooth",block:"center"});
   }));
 }
 
 function renderNeeds(){
   needGrid.innerHTML=Object.entries(NEEDS).map(([id,n])=>`
-    <button class="need-card ${selectedNeed===id?"active":""}" data-need="${id}" type="button" aria-pressed="${selectedNeed===id}">
+    <button class="need-card ${selectedNeed===id?"active":""}" data-need="${id}" type="button">
       <div class="need-card-image-wrap">
         <img class="need-card-image" src="${n.image}" alt="${n.name}" loading="lazy">
       </div>
-      <div class="selection-icon">${n.icon}</div>
-      <strong>${n.name}</strong><span>${n.desc}</span>
+      <div class="selection-icon">${n.icon}</div><strong>${n.name}</strong><span>${n.desc}</span>
     </button>`).join("");
-
   needGrid.querySelectorAll("[data-need]").forEach(btn=>btn.addEventListener("click",()=>{
     if(!selectedCountry){
-      showHelper(countryHelper,"Selecciona un país para continuar.",false);
-      scrollToStep("paises");
+      document.getElementById("paises").scrollIntoView({behavior:"smooth",block:"start"});
       return;
     }
-
     selectedNeed=btn.dataset.need;
     renderNeeds();
     renderCart();
-
-    const need=NEEDS[selectedNeed];
-    showHelper(needHelper,`✓ ${need.name} seleccionado. Continuemos.`,true);
-    cartSection.classList.remove("guided-hidden","is-hidden");
-    trackCustom("SelectCartCategory",{category:need.name,category_id:selectedNeed,country:COUNTRIES[selectedCountry].name});
-    requestAnimationFrame(()=>scrollToStep("carritos"));
+    updateNeedConfirmation();
+    document.getElementById("needConfirm")?.scrollIntoView({behavior:"smooth",block:"center"});
   }));
 }
 
 function renderCart(){
   if(!selectedCountry||!selectedNeed){
-    cartIntro.textContent="Selecciona un país y un carrito para ver la opción disponible.";
-    cartArea.innerHTML='<div class="cart-empty">Selecciona tu país y lo que estás buscando para mostrar tu carrito.</div>';
+    cartIntro.textContent="Selecciona un país y una categoría para ver la opción disponible.";
+    cartArea.innerHTML='<div class="cart-empty">Primero selecciona tu país y después lo que estás buscando.</div>';
     return;
   }
-
-  const country=COUNTRIES[selectedCountry];
-  const need=NEEDS[selectedNeed];
-  const content=CART_CONTENT[selectedNeed];
-
+  const country=COUNTRIES[selectedCountry], need=NEEDS[selectedNeed], content=CART_CONTENT[selectedNeed];
   const whatsappMessage="Hola Hamilton, ya seleccioné mi carrito de "+need.name+" para "+country.name+" en tu página. Quiero recibir el enlace de mi carrito y también tu asesoramiento para completar mi compra.";
   const whatsappUrl="https://wa.me/593968107948?text="+encodeURIComponent(whatsappMessage);
-
   cartIntro.textContent=`Opción seleccionada: ${country.name} · ${need.name}`;
   cartArea.innerHTML=`
     <article class="cart-card">
@@ -1118,83 +1139,51 @@ function renderCart(){
         </div>
       </div>
       <div class="cart-card-actions">
-        <a class="btn btn-primary" id="whatsappCartBtn" href="${whatsappUrl}" target="_blank" rel="noopener">Recibir mi carrito por WhatsApp ↗</a>
-        <p style="font-size:.78rem;color:var(--muted);margin:0;text-align:center">Te conectarás conmigo para que pueda enviarte el carrito que seleccionaste y ayudarte con cualquier duda.</p>
+        <a id="whatsappCarritoBtn" class="btn btn-primary" href="${whatsappUrl}" target="_blank" rel="noopener">Recibir mi carrito por WhatsApp ↗</a>
+        <p style="font-size:.78rem;color:var(--muted);margin:0;text-align:center">Tu selección llegará a mi WhatsApp para brindarte asesoramiento personalizado, resolver tus dudas y dar seguimiento a tu proceso.</p>
       </div>
     </article>`;
-
-  trackCustom("ViewCart",{country:country.name,category:need.name,category_id:selectedNeed});
-
-  const waBtn=document.getElementById("whatsappCartBtn");
-  if(waBtn){
-    waBtn.addEventListener("click",()=>{
-      trackCustom("WhatsAppClick",{country:country.name,category:need.name});
-      trackCustom("Contact",{method:"WhatsApp",country:country.name,category:need.name});
-      trackCustom("Lead",{method:"WhatsApp",country:country.name,category:need.name});
-    });
-  }
 }
-
-document.addEventListener("DOMContentLoaded",()=>{
-  needSection.classList.add("guided-hidden");
-  cartSection.classList.add("guided-hidden");
-  showHelper(countryHelper,"Selecciona un país para continuar.",false);
-  showHelper(needHelper,"Selecciona un carrito para continuar.",false);
-
-  renderCountries();
-  renderNeeds();
-  renderCart();
-
-  const toggle=document.getElementById("mobileNavToggle"),menu=document.getElementById("mobileMenu");
-  toggle.addEventListener("click",()=>{
-    const open=toggle.classList.toggle("is-open");
-    menu.classList.toggle("is-open",open);
-    toggle.setAttribute("aria-expanded",String(open));
-  });
-  menu.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{
-    toggle.classList.remove("is-open");
-    menu.classList.remove("is-open");
-    toggle.setAttribute("aria-expanded","false");
-  }));
-
-  const observer=new IntersectionObserver(entries=>entries.forEach(e=>{
-    if(e.isIntersecting)e.target.classList.add("is-visible")
-  }),{threshold:.08});
-  document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
-
-  document.querySelectorAll(".faq-list details").forEach(d=>d.addEventListener("toggle",()=>{
-    if(d.open)document.querySelectorAll(".faq-list details").forEach(o=>{
-      if(o!==d)o.removeAttribute("open")
-    })
-  }));
-
-  if(localStorage.getItem("hg_cookie_consent")!=="yes"){
-    document.getElementById("cookieNotice").hidden=false;
-  }
-  document.getElementById("cookieAccept").addEventListener("click",()=>{
-    localStorage.setItem("hg_cookie_consent","yes");
-    document.getElementById("cookieNotice").hidden=true;
-  });
-  document.getElementById("cookieReject").addEventListener("click",()=>{
-    localStorage.setItem("hg_cookie_consent","no");
-    document.getElementById("cookieNotice").hidden=true;
-  });
-});
 function escapeAttr(value){return value.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
+
+function trackCartWhatsAppClick(){
+  if(typeof gtag!=="function") return;
+  const country=selectedCountry?COUNTRIES[selectedCountry]:null;
+  const need=selectedNeed?NEEDS[selectedNeed]:null;
+
+  gtag("event","whatsapp_carrito",{
+    pais:country?country.name:"",
+    necesidad:need?need.name:"",
+    destino:"WhatsApp"
+  });
+}
+
+document.addEventListener("click",(event)=>{
+  const btn=event.target.closest("#whatsappCarritoBtn");
+  if(btn) trackCartWhatsAppClick();
+});
+
 document.addEventListener("DOMContentLoaded",()=>{
   renderCountries();
   renderNeeds();
   renderCart();
-  if(!isMobile()){
-    document.getElementById("necesidades")?.classList.remove("is-hidden");
-    document.getElementById("carritos")?.classList.remove("is-hidden");
-  }
-  window.addEventListener("resize",()=>{
-    if(!isMobile()){
-      document.getElementById("necesidades")?.classList.remove("is-hidden");
-      document.getElementById("carritos")?.classList.remove("is-hidden");
-    }
+  hideStep("necesidades");
+  hideStep("carritos");
+  updateCountryConfirmation();
+  updateNeedConfirmation();
+
+  document.getElementById("countryContinue")?.addEventListener("click",()=>{
+    if(!selectedCountry) return;
+    showStep("necesidades");
+    document.getElementById("necesidades")?.scrollIntoView({behavior:"smooth",block:"start"});
+  });
+
+  document.getElementById("needContinue")?.addEventListener("click",()=>{
+    if(!selectedNeed) return;
+    showStep("carritos");
+    renderCart();
+    document.getElementById("carritos")?.scrollIntoView({behavior:"smooth",block:"start"});
   });
 
   const toggle=document.getElementById("mobileNavToggle"),menu=document.getElementById("mobileMenu");
@@ -1208,11 +1197,6 @@ document.addEventListener("DOMContentLoaded",()=>{
   document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 
   document.querySelectorAll(".faq-list details").forEach(d=>d.addEventListener("toggle",()=>{if(d.open)document.querySelectorAll(".faq-list details").forEach(o=>{if(o!==d)o.removeAttribute("open")})}));
-
-  if(TUTORIAL_VIDEO_URL){
-    const box=document.querySelector(".tutorial-placeholder");
-    box.innerHTML=`<a class="btn btn-primary" href="${escapeAttr(TUTORIAL_VIDEO_URL)}" target="_blank" rel="noopener">Ver tutorial de compra ↗</a>`;
-  }
 
   if(localStorage.getItem("hg_cookie_consent")!=="yes"){
     document.getElementById("cookieNotice").hidden=false;
