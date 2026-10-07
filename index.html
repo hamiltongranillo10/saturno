@@ -1245,6 +1245,22 @@ const NEEDS = {
   control_peso:{name:"Control de peso y talla",short:"Peso",icon:"P",desc:"Selección para acompañar tus objetivos de control de peso y talla.",image:"control_peso_talla.png"}
 };
 
+
+const CART_POINTS = {
+  limpieza: 582,
+  cardiovascular: 437,
+  nervioso: 345,
+  reproductor_masculino: 415,
+  reproductor_femenino: 416,
+  renal: 447,
+  oseo_muscular: 404,
+  digestivo: 407,
+  respiratorio: 429,
+  inmunologico: 505,
+  energia_deporte: 278,
+  control_peso: 169
+};
+
 const CART_CONTENT = {
   limpieza:{title:"Limpieza profunda de 10 días",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar una rutina de bienestar digestivo.",products:["18 productos","$5,565.00"]},
   cardiovascular:{title:"Sistema cardiovascular",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el cuidado de tu sistema cardiovascular, apoyando una buena circulación y una rutina de bienestar integral.",products:["8 productos","$3,800.00"]},
@@ -1452,14 +1468,14 @@ function renderCart(){
         <div class="cart-summary">
           <span>${productCount}</span>
           ${cartPrice ? `<span>${cartPrice}</span>` : ""}
-          <span>200 puntos</span><span>Envío gratis con tu compra</span>
+          <span>${CART_POINTS[selectedNeed]} puntos</span><span>A partir de 200 puntos, tu envío es gratis.</span>
         </div>
 
         <button class="product-details-btn" type="button" data-product-details="${selectedNeed}">Ver productos incluidos <span>→</span></button>
 
         <div class="cart-card-actions">
           <a id="whatsappCarritoBtn" class="btn btn-primary" href="${whatsappUrl}" target="_blank" rel="noopener">Recibir mi carrito por WhatsApp ↗</a>
-          <p class="cart-note">Con la compra de tus productos obtienes 200 puntos y envío gratis.</p>
+          <p class="cart-note">Con la compra de este carrito obtienes ${CART_POINTS[selectedNeed]} puntos. A partir de 200 puntos, tu envío es gratis.</p>
         </div>
       </div>
     </article>
