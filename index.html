@@ -712,15 +712,42 @@ img{max-width:100%;display:block}
 .selection-btn strong,.need-card strong{display:block;color:var(--green);font-size:1rem}
 .selection-btn span,.need-card span{display:block;color:var(--muted);font-size:.78rem;margin-top:5px}
 .need-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.cart-area{background:var(--sage);border-radius:22px;padding:30px}
-.cart-empty{text-align:center;padding:38px 20px;color:var(--muted)}
-.cart-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:28px;display:grid;grid-template-columns:1fr auto;gap:25px;align-items:center;box-shadow:0 15px 40px rgba(10,34,25,.07)}
-.cart-card h3{color:var(--green);font-size:1.55rem;margin:7px 0}
-.cart-card p{color:var(--muted);max-width:650px}
+
+/* ===== CARRITO VISUAL — ligero, premium y sin aspecto de tarjeta ===== */
+.cart-area{background:linear-gradient(145deg,#f3f7f4 0%,#eaf2ed 100%);border-radius:26px;padding:34px;position:relative;overflow:hidden}
+.cart-area:before{content:"";position:absolute;width:360px;height:360px;border:1px solid rgba(199,161,90,.16);border-radius:50%;right:-190px;top:-190px;pointer-events:none}
+.cart-empty{text-align:center;padding:50px 20px;color:var(--muted)}
+
+.cart-stage{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:38px;align-items:center}
+.cart-visual{position:relative;min-height:340px;padding:24px 18px 12px}
+.cart-handle{position:absolute;left:12%;top:30px;width:72px;height:112px;border:7px solid var(--green);border-right:0;border-radius:24px 0 0 24px;transform:skewY(-8deg)}
+.cart-handle:after{content:"";position:absolute;right:-7px;top:-7px;width:22px;height:7px;background:var(--green);border-radius:0 5px 5px 0}
+.cart-basket{position:absolute;left:18%;right:6%;top:78px;height:190px;border:3px solid var(--green);border-top-width:7px;border-radius:12px 12px 30px 30px;background:rgba(255,255,255,.82);transform:skewX(-5deg);box-shadow:0 20px 45px rgba(18,61,44,.09);overflow:hidden}
+.cart-basket:before{content:"";position:absolute;inset:18px 15px 22px;background:repeating-linear-gradient(90deg,transparent 0 28px,rgba(18,61,44,.08) 29px 31px),repeating-linear-gradient(0deg,transparent 0 25px,rgba(18,61,44,.06) 26px 28px);border-radius:8px}
+.cart-basket-top{position:absolute;left:-5px;right:-5px;top:-7px;height:9px;background:var(--green);border-radius:10px}
+.cart-items{position:absolute;inset:22px 20px 20px;display:flex;align-items:flex-end;justify-content:center;gap:10px;z-index:2}
+.cart-item{width:62px;height:88px;border-radius:9px 9px 6px 6px;background:#fff;border:1px solid rgba(18,61,44,.14);box-shadow:0 10px 22px rgba(10,34,25,.08);overflow:hidden;display:flex;align-items:flex-end;justify-content:center;position:relative}
+.cart-item:nth-child(2){height:108px;width:70px}
+.cart-item:nth-child(3){height:78px}
+.cart-item:before{content:"";position:absolute;left:8px;right:8px;top:12px;height:8px;border-radius:5px;background:var(--gold-light)}
+.cart-item:after{content:"";position:absolute;left:10px;right:10px;top:28px;height:3px;background:rgba(18,61,44,.13);box-shadow:0 9px 0 rgba(18,61,44,.09),0 18px 0 rgba(18,61,44,.07)}
+.cart-item-label{position:absolute;bottom:7px;left:5px;right:5px;text-align:center;font-size:.48rem;line-height:1.1;font-weight:800;color:var(--green);text-transform:uppercase}
+.cart-wheel{position:absolute;top:274px;width:40px;height:40px;border-radius:50%;background:var(--deep);border:7px solid #fff;box-shadow:0 0 0 2px var(--green)}
+.cart-wheel.left{left:27%}.cart-wheel.right{right:10%}
+.cart-visual-caption{text-align:center;margin-top:305px;color:var(--muted);font-size:.76rem;letter-spacing:.04em;text-transform:uppercase;font-weight:700}
+
+.cart-info{padding:8px 0}
 .cart-badge{display:inline-flex;padding:6px 11px;border-radius:999px;background:var(--gold-light);color:var(--deep);font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em}
-.cart-products{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px}
-.cart-products span{padding:6px 10px;border-radius:999px;background:var(--sage);color:var(--green);font-size:.76rem}
-.cart-card-actions{display:flex;flex-direction:column;gap:9px;min-width:190px}
+.cart-info h3{color:var(--green);font-size:clamp(1.7rem,3vw,2.35rem);line-height:1.08;letter-spacing:-.035em;margin:12px 0 14px}
+.cart-info p{color:var(--muted);max-width:620px}
+.cart-summary{display:flex;flex-wrap:wrap;gap:9px;margin:22px 0}
+.cart-summary span{padding:7px 11px;border:1px solid rgba(18,61,44,.11);border-radius:999px;background:rgba(255,255,255,.7);color:var(--green);font-size:.76rem;font-weight:700}
+.cart-card-actions{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-width:0;margin-top:24px}
+.cart-card-actions .btn{width:100%}
+.cart-note{font-size:.76rem!important;color:var(--muted)!important;margin:0!important;line-height:1.5}
+.product-details-btn{border:0;background:transparent;color:var(--green);font-weight:800;font-size:.82rem;padding:4px 0;margin-top:4px}
+.product-details-btn:hover{color:var(--gold)}
+
 .btn-disabled{background:#e9eeeb!important;color:#75837d!important;box-shadow:none!important;cursor:not-allowed!important}
 .how-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
 .tutorial-placeholder{border:1px dashed rgba(199,161,90,.5);background:rgba(255,255,255,.05);border-radius:16px;min-height:120px;display:grid;place-items:center;text-align:center;padding:20px;color:#bcd0c6}
@@ -729,9 +756,39 @@ img{max-width:100%;display:block}
 .helper-inner{display:flex;align-items:center;justify-content:space-between;gap:25px;flex-wrap:wrap}
 .helper-inner h2{font-size:clamp(1.8rem,3.5vw,3rem);color:#fff;margin:8px 0}
 .helper-inner p{color:#bcd0c6;max-width:650px}
-@media(max-width:1000px){.selection-grid{grid-template-columns:repeat(3,1fr)}.need-grid{grid-template-columns:repeat(2,1fr)}.how-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:700px){.selection-grid,.need-grid,.how-grid{grid-template-columns:1fr 1fr}.cart-card{grid-template-columns:1fr}.cart-card-actions{min-width:0}.cart-area{padding:18px}}
-@media(max-width:450px){.selection-grid,.need-grid,.how-grid{grid-template-columns:1fr}}
+@media(max-width:1000px){
+  .selection-grid{grid-template-columns:repeat(3,1fr)}
+  .need-grid{grid-template-columns:repeat(2,1fr)}
+  .how-grid{grid-template-columns:repeat(3,1fr)}
+  .cart-stage{grid-template-columns:1fr;gap:10px}
+  .cart-visual{max-width:620px;width:100%;margin:auto}
+  .cart-info{text-align:center}
+  .cart-info p{margin-inline:auto}
+  .cart-summary{justify-content:center}
+  .cart-card-actions{align-items:center}
+}
+@media(max-width:700px){
+  .selection-grid,.need-grid,.how-grid{grid-template-columns:1fr 1fr}
+  .cart-area{padding:20px}
+  .cart-visual{min-height:300px;padding:10px 0}
+  .cart-handle{left:8%;top:27px}
+  .cart-basket{left:15%;right:2%;top:72px;height:165px}
+  .cart-wheel{top:246px}
+  .cart-visual-caption{margin-top:275px}
+}
+@media(max-width:450px){
+  .selection-grid,.need-grid,.how-grid{grid-template-columns:1fr}
+  .cart-area{padding:16px}
+  .cart-handle{left:4%;transform:skewY(-8deg) scale(.9);transform-origin:top left}
+  .cart-basket{left:12%;right:0;height:150px}
+  .cart-items{gap:6px}
+  .cart-item{width:48px;height:72px}
+  .cart-item:nth-child(2){width:55px;height:88px}
+  .cart-item:nth-child(3){height:64px}
+  .cart-wheel{top:225px;width:34px;height:34px}
+  .cart-wheel.left{left:23%}.cart-wheel.right{right:7%}
+  .cart-visual-caption{margin-top:250px}
+}
 
 /* ANIMACIONES FLUIDAS — sin ciclos infinitos ni parpadeos */
 html{scroll-behavior:smooth!important}
@@ -997,33 +1054,18 @@ const COUNTRIES = {
 };
 
 const NEEDS = {
-  limpieza:{name:"Limpieza profunda de 10 días",icon:"L",desc:"Selección para acompañar una rutina de bienestar digestivo.",image:"limpieza_10_dias.png"},
-  cardiovascular:{name:"Sistema cardiovascular",icon:"C",desc:"Selección para acompañar el bienestar cardiovascular.",image:"sistema_cardiovascular.png"},
-  nervioso:{name:"Sistema Nervioso",icon:"N",desc:"Selección para acompañar concentración, claridad y descanso.",image:"sistema_nervioso.png"},
-  reproductor_masculino:{name:"Reproductor Masculino",icon:"M",desc:"Selección para acompañar el bienestar masculino.",image:"reproductor_masculino.png"},
-  reproductor_femenino:{name:"Reproductor Femenino",icon:"F",desc:"Selección para acompañar el bienestar femenino.",image:"reproductor_femenino.png"},
-  renal:{name:"Sistema Renal",icon:"R",desc:"Selección para acompañar la depuración y el bienestar renal.",image:"sistema_renal.png"},
-  oseo_muscular:{name:"Sistema Óseo y Muscular",icon:"O",desc:"Selección para acompañar huesos, músculos y articulaciones.",image:"sistema_oseo_muscular.png"},
-  digestivo:{name:"Sistema Digestivo",icon:"D",desc:"Selección para acompañar el bienestar digestivo.",image:"sistema_digestivo.png"},
-  respiratorio:{name:"Sistema Respiratorio",icon:"S",desc:"Selección para acompañar el bienestar respiratorio.",image:"sistema_respiratorio.png"},
-  inmunologico:{name:"Sistema inmunológico",icon:"I",desc:"Selección para apoyar las defensas naturales del organismo.",image:"sistema_inmunologico.png"},
-  energia_deporte:{name:"Energía y deporte",icon:"E",desc:"Selección para acompañar entrenamientos y actividad física.",image:"energia_deporte.png"},
-  control_peso:{name:"Control de peso y talla",icon:"P",desc:"Selección para acompañar tus objetivos de control de peso y talla.",image:"control_peso_talla.png"}
-};
-
-const CART_CONTENT = {
-  limpieza:{title:"Limpieza profunda de 10 días",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar una rutina de bienestar digestivo.",products:["18 productos","$5,565.00"]},
-  cardiovascular:{title:"Sistema cardiovascular",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el cuidado de tu sistema cardiovascular, apoyando una buena circulación y una rutina de bienestar integral.",products:["8 productos","$3,800.00"]},
-  nervioso:{title:"Sistema Nervioso",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar tu bienestar mental, favorecer la concentración y claridad de pensamiento, y apoyar una rutina de descanso y relajación.",products:["9 productos","$3,180.00"]},
-  reproductor_masculino:{title:"Reproductor Masculino",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar masculino, apoyar el equilibrio hormonal y contribuir a una vida íntima y activa.",products:["31 productos","$3,845.00"]},
-  reproductor_femenino:{title:"Reproductor Femenino",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar femenino, apoyar el equilibrio hormonal y contribuir a una vida íntima y activa.",products:["31 productos","$3,880.00"]},
-  renal:{title:"Sistema Renal",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar la depuración y el bienestar del sistema renal, como parte de una rutina integral de cuidado y bienestar.",products:["31 productos","$4,005.00"]},
-  oseo_muscular:{title:"Sistema Óseo y Muscular",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar óseo y muscular, apoyar el cuidado de huesos, músculos, tejidos, ligamentos y articulaciones.",products:["8 productos","$3,525.00"]},
-  digestivo:{title:"Sistema Digestivo",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar digestivo, apoyar una buena función del sistema digestivo y complementar una rutina de cuidado y bienestar.",products:["31 productos","$3,710.00"]},
-  respiratorio:{title:"Sistema Respiratorio",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar respiratorio, apoyar las defensas del organismo y complementar una rutina de bienestar con antioxidantes.",products:["8 productos","$3,635.00"]},
-  inmunologico:{title:"Sistema inmunológico",desc:"¡Hola! Preparé este carrito con productos seleccionados para apoyar las defensas naturales del organismo y acompañar el bienestar del sistema inmunológico.",products:["9 productos","$4,385.00"]},
-  energia_deporte:{title:"Energía y deporte",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar tu rendimiento físico, apoyar la hidratación y mantenerte activo durante tus entrenamientos y actividades deportivas.",products:["4 productos","$2,675.00"]},
-  control_peso:{title:"Control de peso y talla",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañarte en tu objetivo de control de peso y talla y apoyar una rutina enfocada en alcanzar tus metas de bienestar.",products:["3 productos","$1,760.00"]}
+  ,"582 puntos"},
+  ,"437 puntos"},
+  ,"345 puntos"},
+  ,"415 puntos"},
+  ,"416 puntos"},
+  ,"447 puntos"},
+  ,"404 puntos"},
+  ,"407 puntos"},
+  ,"429 puntos"},
+  ,"505 puntos"},
+  ,"278 puntos"},
+  ,"169 puntos"}
 };
 
 const PRODUCT_IMAGES = {
@@ -1169,23 +1211,52 @@ function renderCart(){
   const whatsappUrl="https://wa.me/593968107948?text="+encodeURIComponent(whatsappMessage);
 
   cartIntro.textContent=`Opción seleccionada: ${country.name} · ${need.name}`;
+  const categoryImage=need.image;
+  const productCount=content.products?.[0] || "Carrito prearmado";
+  const cartPrice=content.products?.[1] || "";
   cartArea.innerHTML=`
-    <article class="cart-card">
-      <div>
+    <article class="cart-stage">
+      <div class="cart-visual" aria-label="Vista visual del carrito recomendado">
+        <div class="cart-handle" aria-hidden="true"></div>
+        <div class="cart-basket">
+          <div class="cart-basket-top"></div>
+          <div class="cart-items">
+            <div class="cart-item">
+              <span class="cart-item-label">${need.short || need.name.slice(0,10)}</span>
+            </div>
+            <div class="cart-item">
+              <span class="cart-item-label">${country.short}</span>
+            </div>
+            <div class="cart-item">
+              <span class="cart-item-label">HG</span>
+            </div>
+          </div>
+        </div>
+        <div class="cart-wheel left" aria-hidden="true"></div>
+        <div class="cart-wheel right" aria-hidden="true"></div>
+        <div class="cart-visual-caption">Tu carrito recomendado</div>
+      </div>
+
+      <div class="cart-info">
         <span class="cart-badge">${country.name} · ${need.name}</span>
         <h3>${content.title}</h3>
         <p>${content.desc}</p>
-        <div class="cart-products">
-          <span>Carrito prearmado</span>
-          <span>Asesoramiento por WhatsApp</span>
+
+        <div class="cart-summary">
+          <span>${productCount}</span>
+          ${cartPrice ? `<span>${cartPrice}</span>` : ""}
+          <span>${content.products?.[2] || ""}</span><span>A partir de 200 puntos, tu envío es gratis.</span>
         </div>
-        <button class="product-details-btn" type="button" data-product-details="${selectedNeed}">Ver detalles <span>→</span></button>
-      </div>
-      <div class="cart-card-actions">
-        <a id="whatsappCarritoBtn" class="btn btn-primary" href="${whatsappUrl}" target="_blank" rel="noopener">Recibir mi carrito por WhatsApp ↗</a>
-        <p style="font-size:.78rem;color:var(--muted);margin:0;text-align:center">Tu selección llegará a mi WhatsApp para brindarte asesoramiento personalizado, resolver tus dudas y dar seguimiento a tu proceso.</p>
+
+        <button class="product-details-btn" type="button" data-product-details="${selectedNeed}">Ver productos incluidos <span>→</span></button>
+
+        <div class="cart-card-actions">
+          <a id="whatsappCarritoBtn" class="btn btn-primary" href="${whatsappUrl}" target="_blank" rel="noopener">Recibir mi carrito por WhatsApp ↗</a>
+          <p class="cart-note">Tu selección llegará a mi WhatsApp para brindarte asesoramiento personalizado, resolver tus dudas y dar seguimiento a tu proceso.</p>
+        </div>
       </div>
     </article>
+
     <div class="product-modal" id="productModal" hidden aria-hidden="true">
       <div class="product-modal-card" role="dialog" aria-modal="true" aria-labelledby="productModalTitle">
         <div class="product-modal-head">
