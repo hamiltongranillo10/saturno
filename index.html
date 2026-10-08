@@ -843,6 +843,48 @@ html{scroll-behavior:smooth!important}
 
 
 <style>
+/* ===== PRODUCTOS EN UNA SOLA FILA — TAMAÑO NORMAL ===== */
+.product-mini-grid{
+  display:flex !important;
+  flex-wrap:nowrap !important;
+  gap:12px !important;
+  overflow-x:auto !important;
+  overflow-y:hidden !important;
+  padding:4px 4px 12px !important;
+  scroll-snap-type:x proximity;
+  -webkit-overflow-scrolling:touch;
+}
+.product-mini{
+  flex:0 0 92px !important;
+  width:92px !important;
+  min-width:92px !important;
+  scroll-snap-align:start;
+  padding:7px !important;
+}
+.product-mini img{
+  width:100% !important;
+  aspect-ratio:1/1 !important;
+  object-fit:contain !important;
+}
+.product-mini-grid::-webkit-scrollbar{height:6px}
+.product-mini-grid::-webkit-scrollbar-thumb{
+  background:rgba(18,61,44,.22);
+  border-radius:999px;
+}
+.product-mini-grid::-webkit-scrollbar-track{background:rgba(18,61,44,.06);border-radius:999px}
+@media(max-width:600px){
+  .product-mini-grid{
+    gap:8px !important;
+    padding-bottom:9px !important;
+  }
+  .product-mini{
+    flex-basis:76px !important;
+    width:76px !important;
+    min-width:76px !important;
+    padding:6px !important;
+  }
+}
+
 /* ===== FLUIDEZ EXTRA PARA MÓVIL =====
 /* El scroll táctil queda nativo; solo las transiciones programáticas usan suavizado. */
 @media (max-width: 600px){
@@ -1054,6 +1096,7 @@ const COUNTRIES = {
 };
 
 const NEEDS = {
+  gymrat:{name:"Carrito para Gymrat",short:"Gymrat",icon:"G",desc:"Selección para complementar tu rutina de entrenamiento y acompañar tus objetivos deportivos y de nutrición.",image:"energia_deporte.png"},
   limpieza:{name:"Limpieza profunda de 10 días",short:"Limpieza",icon:"L",desc:"Selección para acompañar una rutina de bienestar digestivo.",image:"limpieza_10_dias.png"},
   cardiovascular:{name:"Sistema cardiovascular",short:"Cardio",icon:"C",desc:"Selección para acompañar el bienestar cardiovascular.",image:"sistema_cardiovascular.png"},
   nervioso:{name:"Sistema Nervioso",short:"Nervioso",icon:"N",desc:"Selección para acompañar concentración, claridad y descanso.",image:"sistema_nervioso.png"},
@@ -1069,6 +1112,7 @@ const NEEDS = {
 };
 
 const CART_CONTENT = {
+  gymrat:{title:"Carrito para Gymrat",desc:"Hola, armé este carrito especialmente para complementar tu rutina de entrenamiento. Incluye creatina, proteína, Power Maker y Biocros, seleccionados para acompañarte en tus objetivos deportivos y de nutrición.",products:["4 productos","$3,390.00"],points:341},
   limpieza:{title:"Limpieza profunda de 10 días",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar una rutina de bienestar digestivo.",products:["18 productos","$5,565.00"],points:582},
   cardiovascular:{title:"Sistema cardiovascular",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el cuidado de tu sistema cardiovascular, apoyando una buena circulación y una rutina de bienestar integral.",products:["8 productos","$3,800.00"],points:437},
   nervioso:{title:"Sistema Nervioso",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar tu bienestar mental, favorecer la concentración y claridad de pensamiento, y apoyar una rutina de descanso y relajación.",products:["9 productos","$3,180.00"],points:345},
@@ -1084,6 +1128,7 @@ const CART_CONTENT = {
 };
 
 const PRODUCT_IMAGES = {
+  gymrat:["","","","","",""] ,
   limpieza:["ego_sixpac.jpg","aloe_x10.jpg","optimus.jpg","dolce.jpg","star_bien.jpg",""],
   cardiovascular:["stoplus.jpg","actua.jpg","aloex5.jpg","omniplus.jpg","",""],
   nervioso:["aloex5.jpg","star_bien.jpg","fluyer.jpg","magnus.jpg","optimus.jpg",""],
@@ -1267,7 +1312,7 @@ function renderCart(){
         <button class="product-details-btn" type="button" data-product-details="${selectedNeed}">Ver productos incluidos <span>→</span></button>
 
         <div class="cart-card-actions">
-          <a id="whatsappCarritoBtn" class="btn btn-primary" href="${whatsappUrl}" target="_blank" rel="noopener">Pedir mi carrito por WhatsApp ↗</a>
+          <a id="whatsappCarritoBtn" class="btn btn-primary" href="${whatsappUrl}" target="_blank" rel="noopener">Recibir mi carrito por WhatsApp ↗</a>
           <p class="cart-note">Tu selección llegará a mi WhatsApp para brindarte asesoramiento personalizado, resolver tus dudas y dar seguimiento a tu proceso.</p>
         </div>
       </div>
