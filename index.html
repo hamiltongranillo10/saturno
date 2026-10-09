@@ -915,6 +915,10 @@ html{scroll-behavior:smooth!important}
 .product-mini img{width:100%;aspect-ratio:1/1;object-fit:contain;border-radius:10px;background:#fff}
 .product-modal-note{margin-top:16px;color:var(--muted);font-size:.76rem;text-align:center}
 @media(max-width:600px){.product-modal{padding:12px}.product-modal-card{padding:18px;border-radius:18px;max-height:88vh}.product-mini-grid{grid-template-columns:repeat(2,1fr);gap:10px}.product-details-btn{width:100%}}
+
+/* ===== OPCIÓN DE PERSONALIZACIÓN ===== */
+.need-card[data-need="personalizado"]{border-color:rgba(199,161,90,.55);background:linear-gradient(145deg,#fffdf8,#fbfaf6)}
+.need-card[data-need="personalizado"] .selection-icon{background:var(--gold-light);color:var(--deep)}
 </style>
 </head>
 
@@ -1016,7 +1020,7 @@ html{scroll-behavior:smooth!important}
     </div>
     <div class="how-grid premium-steps">
       <article class="step"><div class="step-no">01</div><h3>Elige tu país</h3><p>Selecciona <strong>México</strong> o <strong>Estados Unidos</strong>. Verás tu selección confirmada antes de continuar.</p></article>
-      <article class="step"><div class="step-no">02</div><h3>Selecciona lo que buscas</h3><p>Elige la opción que mejor corresponde a lo que necesitas y confirma tu selección.</p></article>
+      <article class="step"><div class="step-no">02</div><h3>Selecciona lo que buscas</h3><p>Elige un carrito recomendado o selecciona <strong>Personaliza tus productos</strong> para armar tu propia selección.</p></article>
       <article class="step"><div class="step-no">03</div><h3>Revisa tu carrito</h3><p>Visualiza el carrito recomendado según el país y la necesidad que seleccionaste.</p></article>
       <article class="step"><div class="step-no">04</div><h3>Recibe tu carrito por WhatsApp</h3><p>Haz clic en <strong>“Recibir mi carrito por WhatsApp”</strong> para continuar con tu asesoramiento.</p></article>
       <article class="step"><div class="step-no">05</div><h3>Recibe acompañamiento</h3><p>Podremos conocer tu selección, resolver tus dudas y dar seguimiento a tu proceso.</p></article>
@@ -1096,7 +1100,7 @@ const COUNTRIES = {
 };
 
 const NEEDS = {
-  gymrat:{name:"Gymrat",short:"Gymrat",icon:"G",desc:"Selección para complementar tu rutina de entrenamiento y acompañar tus objetivos deportivos y de nutrición.",image:"gymrat.jpg"},
+  gymrat:{name:"Carrito para Gymrat",short:"Gymrat",icon:"G",desc:"Selección para complementar tu rutina de entrenamiento y acompañar tus objetivos deportivos y de nutrición.",image:"gymrat.jpg"},
   limpieza:{name:"Limpieza profunda de 10 días",short:"Limpieza",icon:"L",desc:"Selección para acompañar una rutina de bienestar digestivo.",image:"limpieza_10_dias.png"},
   cardiovascular:{name:"Sistema cardiovascular",short:"Cardio",icon:"C",desc:"Selección para acompañar el bienestar cardiovascular.",image:"sistema_cardiovascular.png"},
   nervioso:{name:"Sistema Nervioso",short:"Nervioso",icon:"N",desc:"Selección para acompañar concentración, claridad y descanso.",image:"chicamente.jpg"},
@@ -1108,10 +1112,11 @@ const NEEDS = {
   respiratorio:{name:"Sistema Respiratorio",short:"Respiratorio",icon:"S",desc:"Selección para acompañar el bienestar respiratorio.",image:"sistema_respiratorio.png"},
   inmunologico:{name:"Sistema inmunológico",short:"Inmunológico",icon:"I",desc:"Selección para apoyar las defensas naturales del organismo.",image:"sistema_inmunologico.png"},
   energia_deporte:{name:"Energía y deporte",short:"Energía",icon:"E",desc:"Selección para acompañar entrenamientos y actividad física.",image:"runner.jpg"},
-  control_peso:{name:"Control de peso y talla",short:"Peso",icon:"P",desc:"Selección para acompañar tus objetivos de control de peso y talla.",image:"talla.jpg"}
+  control_peso:{name:"Control de peso y talla",short:"Peso",icon:"P",desc:"Selección para acompañar tus objetivos de control de peso y talla.",image:"talla.jpg"},
+  personalizado:{name:"Personaliza tus productos",short:"Personalizado",icon:"+",desc:"Arma tu propia selección de productos con orientación personalizada.",image:"personaliza_productos.jpg"}
 };
 
-const CART_CONTENT = {
+const CART_CONTENT_MX = {
   gymrat:{title:"Carrito para Gymrat",desc:"Hola, armé este carrito especialmente para complementar tu rutina de entrenamiento. Incluye creatina, proteína, Power Maker y Biocros, seleccionados para acompañarte en tus objetivos deportivos y de nutrición.",products:["4 productos","$3,390.00"],points:341},
   limpieza:{title:"Limpieza profunda de 10 días",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar una rutina de bienestar digestivo.",products:["18 productos","$5,565.00"],points:582},
   cardiovascular:{title:"Sistema cardiovascular",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el cuidado de tu sistema cardiovascular, apoyando una buena circulación y una rutina de bienestar integral.",products:["8 productos","$3,800.00"],points:437},
@@ -1127,7 +1132,34 @@ const CART_CONTENT = {
   control_peso:{title:"Control de peso y talla",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañarte en tu objetivo de control de peso y talla y apoyar una rutina enfocada en alcanzar tus metas de bienestar.",products:["3 productos","$1,760.00"],points:169}
 };
 
-const PRODUCT_IMAGES = {
+const CART_CONTENT_US = {
+  limpieza:{title:"Limpieza profunda de 10 días",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar una rutina de bienestar digestivo.",products:["18 productos","$443.52"],points:585},
+  cardiovascular:{title:"Sistema cardiovascular",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el cuidado de tu sistema cardiovascular, apoyando una buena circulación y una rutina de bienestar integral.",products:["8 productos","$304.73"],points:436},
+  nervioso:{title:"Sistema Nervioso",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar tu bienestar mental, favorecer la concentración y claridad de pensamiento, y apoyar una rutina de descanso y relajación.",products:["9 productos","$244.79"],points:351},
+  reproductor_masculino:{title:"Reproductor Masculino",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar masculino, apoyar el equilibrio hormonal y contribuir a una vida íntima y activa.",products:["31 productos","$310.90"],points:432},
+  reproductor_femenino:{title:"Reproductor Femenino",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar femenino, apoyar el equilibrio hormonal y contribuir a una vida íntima y activa.",products:["31 productos","$312.57"],points:433},
+  renal:{title:"Sistema Renal",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar la depuración y el bienestar del sistema renal, como parte de una rutina integral de cuidado y bienestar.",products:["31 productos","$335.88"],points:469},
+  oseo_muscular:{title:"Sistema Óseo y Muscular",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar óseo y muscular, apoyar el cuidado de huesos, músculos, tejidos, ligamentos y articulaciones.",products:["8 productos","$289.74"],points:421},
+  digestivo:{title:"Sistema Digestivo",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar digestivo, apoyar una buena función del sistema digestivo y complementar una rutina de cuidado y bienestar.",products:["31 productos","$313.13"],points:418},
+  respiratorio:{title:"Sistema Respiratorio",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar el bienestar respiratorio, apoyar las defensas del organismo y complementar una rutina de bienestar con antioxidantes.",products:["8 productos","$306.95"],points:435},
+  inmunologico:{title:"Sistema inmunológico",desc:"¡Hola! Preparé este carrito con productos seleccionados para apoyar las defensas naturales del organismo y acompañar el bienestar del sistema inmunológico.",products:["9 productos","$351.91"],points:504},
+  energia_deporte:{title:"Energía y deporte",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañar tu rendimiento físico, apoyar la hidratación y mantenerte activo durante tus entrenamientos y actividades deportivas.",products:["4 productos","$189.27"],points:286},
+  control_peso:{title:"Control de peso y talla",desc:"¡Hola! Preparé este carrito con productos seleccionados para acompañarte en tu objetivo de control de peso y talla y apoyar una rutina enfocada en alcanzar tus metas de bienestar.",products:["3 productos","$120.44"],points:172}
+};
+
+const CART_CONTENT_CUSTOM = {
+  title:"Personaliza tus productos",
+  desc:"Arma tu propia selección de productos y recibe orientación personalizada para elegir lo que buscas.",
+  products:[],
+  points:null
+};
+
+function getCartContent(countryId, needId){
+  if(needId === "personalizado") return CART_CONTENT_CUSTOM;
+  return countryId === "usa" ? CART_CONTENT_US[needId] : CART_CONTENT_MX[needId];
+}
+
+const PRODUCT_IMAGES_MX = {
   gymrat:["","","","","",""] ,
   limpieza:["ego_sixpac.jpg","aloe_x10.jpg","optimus.jpg","dolce.jpg","star_bien.jpg",""],
   cardiovascular:["stoplus.jpg","actua.jpg","aloex5.jpg","omniplus.jpg","",""],
@@ -1140,8 +1172,31 @@ const PRODUCT_IMAGES = {
   respiratorio:["","","","","",""],
   inmunologico:["","","","","",""],
   energia_deporte:["","","","","",""],
-  control_peso:["","","","","",""]
- };
+  control_peso:["","","","","",""] ,
+  personalizado:["","","","","",""]
+};
+
+// Productos de Estados Unidos: usa aquí los nombres exactos de los archivos que subas al repositorio.
+const PRODUCT_IMAGES_US = {
+  limpieza:["","","","","",""],
+  cardiovascular:["","","","","",""],
+  nervioso:["","","","","",""],
+  reproductor_masculino:["","","","","",""],
+  reproductor_femenino:["","","","","",""],
+  renal:["","","","","",""],
+  oseo_muscular:["","","","","",""],
+  digestivo:["","","","","",""],
+  respiratorio:["","","","","",""],
+  inmunologico:["","","","","",""],
+  energia_deporte:["","","","","",""],
+  control_peso:["","","","","",""] ,
+  personalizado:["","","","","",""]
+};
+
+function getProductImages(countryId, needId){
+  const source = countryId === "usa" ? PRODUCT_IMAGES_US : PRODUCT_IMAGES_MX;
+  return source[needId] || [];
+}
 
 let selectedCountry = null;
 let selectedNeed = null;
@@ -1218,6 +1273,7 @@ function renderCountries(){
 
   countryGrid.querySelectorAll("[data-country]").forEach(btn=>btn.addEventListener("click",()=>{
     selectedCountry=btn.dataset.country;
+    if(selectedCountry === "usa" && selectedNeed === "gymrat") selectedNeed=null;
     selectedNeed=null;
 
     
@@ -1236,7 +1292,8 @@ function renderCountries(){
 }
 
 function renderNeeds(){
-  needGrid.innerHTML=Object.entries(NEEDS).map(([id,n])=>`
+  const visibleNeeds=Object.entries(NEEDS).filter(([id])=>selectedCountry!=="usa" || id!=="gymrat");
+  needGrid.innerHTML=visibleNeeds.map(([id,n])=>`
     <button class="need-card ${selectedNeed===id?"active":""}" data-need="${id}" type="button">
       <div class="need-card-image-wrap">
         <img class="need-card-image" src="${n.image}" alt="${n.name}" loading="lazy">
@@ -1266,8 +1323,11 @@ function renderCart(){
     return;
   }
 
-  const country=COUNTRIES[selectedCountry], need=NEEDS[selectedNeed], content=CART_CONTENT[selectedNeed];
-  const whatsappMessage="Hola Hamilton, ya seleccioné mi carrito de "+need.name+" para "+country.name+" en tu página. Quiero recibir el enlace de mi carrito y también tu asesoramiento para completar mi compra.";
+  const country=COUNTRIES[selectedCountry], need=NEEDS[selectedNeed], content=getCartContent(selectedCountry,selectedNeed);
+  const isCustom=selectedNeed==="personalizado";
+  const whatsappMessage=isCustom
+    ? "Hola Hamilton, quiero armar mis productos personalizados para "+country.name+". Me gustaría recibir tu ayuda para elegir los productos que necesito y conocer cómo realizar mi pedido."
+    : "Hola Hamilton, ya seleccioné mi carrito de "+need.name+" para "+country.name+" en tu página. Quiero recibir el enlace de mi carrito y también tu asesoramiento para completar mi compra.";
   const whatsappUrl="https://wa.me/593968107948?text="+encodeURIComponent(whatsappMessage);
 
   cartIntro.textContent=`Opción seleccionada: ${country.name} · ${need.name}`;
@@ -1303,13 +1363,15 @@ function renderCart(){
         <p>${content.desc}</p>
 
         <div class="cart-summary">
-          <span>${productCount}</span>
-          ${cartPrice ? `<span>${cartPrice}</span>` : ""}
-          <span>${content.points} puntos</span>
-          <span>A partir de 200 puntos, tu envío es gratis</span>
+          ${isCustom ? `<span>Selección personalizada</span>` : `
+            <span>${productCount}</span>
+            ${cartPrice ? `<span>${cartPrice}</span>` : ""}
+            <span>${content.points} puntos</span>
+            <span>A partir de 200 puntos, tu envío es gratis</span>
+          `}
         </div>
 
-        <button class="product-details-btn" type="button" data-product-details="${selectedNeed}">Ver productos incluidos <span>→</span></button>
+        ${isCustom ? "" : `<button class="product-details-btn" type="button" data-product-details="${selectedNeed}">Ver productos incluidos <span>→</span></button>`}
 
         <div class="cart-card-actions">
           <a id="whatsappCarritoBtn" class="btn btn-primary" href="${whatsappUrl}" target="_blank" rel="noopener">Recibir mi carrito por WhatsApp ↗</a>
@@ -1338,7 +1400,7 @@ function openProductDetails(needId){
   const modal=document.getElementById("productModal");
   const grid=document.getElementById("productMiniGrid");
   if(!modal||!grid) return;
-  const images=(PRODUCT_IMAGES[needId]||[]).filter(Boolean).slice(0,6);
+  const images=getProductImages(selectedCountry,needId).filter(Boolean).slice(0,6);
   grid.innerHTML=images.map((src,i)=>`<div class="product-mini"><img src="${src}" alt="Producto ${i+1}" loading="lazy" decoding="async"></div>`).join("");
   if(!images.length){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:35px 15px;color:var(--muted)">Próximamente podrás ver aquí los productos de este carrito.</div>';}
   modal.hidden=false; modal.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden";
@@ -1359,6 +1421,7 @@ function trackCartWhatsAppClick(){
   gtag("event","whatsapp_carrito",{
     pais:country?country.name:"",
     necesidad:need?need.name:"",
+    tipo:selectedNeed==="personalizado"?"personalizado":"carrito_prearmado",
     destino:"WhatsApp"
   });
 }
