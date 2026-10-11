@@ -920,7 +920,20 @@ html{scroll-behavior:smooth!important}
 .need-card[data-need="personalizado"]{border-color:rgba(199,161,90,.55);background:linear-gradient(145deg,#fffdf8,#fbfaf6)}
 .need-card[data-need="personalizado"] .selection-icon{background:var(--gold-light);color:var(--deep)}
 </style>
-</head>
+<style>\n
+/* ===== TESTIMONIOS EN VIDEO ===== */
+.testimonials-section{padding:88px 0;background:linear-gradient(145deg,#fbfaf6 0%,#eef4f0 100%)}
+.testimonials-layout{display:grid;grid-template-columns:minmax(0,.85fr) minmax(260px,1fr);gap:48px;align-items:center}
+.testimonials-copy h2{font-size:clamp(2.1rem,4.2vw,3.7rem);line-height:1.05;letter-spacing:-.045em;color:var(--green);margin:12px 0 18px}
+.testimonials-copy p{color:var(--muted);max-width:540px}
+.testimonials-copy .eyebrow{color:var(--gold)}
+.testimonials-note{margin-top:18px;font-size:.78rem;color:var(--muted)}
+.testimonials-player{width:min(100%,390px);justify-self:center;position:relative;border-radius:22px;overflow:hidden;background:#071b14;border:1px solid rgba(199,161,90,.45);box-shadow:var(--shadow-lg)}
+.testimonials-player video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:contain;background:#071b14}
+.testimonials-player video::cue{color:#fff;background:rgba(7,27,20,.88);font-weight:700}
+.testimonials-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+@media(max-width:800px){.testimonials-section{padding:68px 0}.testimonials-layout{grid-template-columns:1fr;gap:28px}.testimonials-copy{text-align:center}.testimonials-copy p{margin-inline:auto}.testimonials-cta{justify-content:center}.testimonials-player{width:min(100%,340px)}}
+\n</style>\n</head>
 
 <body>
 
@@ -932,7 +945,7 @@ html{scroll-behavior:smooth!important}
   <div class="wrap nav-inner">
     <a class="brand" href="#inicio">Hamilton Granillo <span>Distribuidor Independiente</span></a>
     <nav class="nav-links" aria-label="Navegación principal">
-      <a href="#paises">Países</a><a href="#carritos">Carritos</a><a href="#como-pedir">Cómo pedir</a><a href="#preguntas">Preguntas</a>
+      <a href="#paises">Países</a><a href="#carritos">Carritos</a><a href="#testimonios">Testimonios</a><a href="#como-pedir">Cómo pedir</a><a href="#preguntas">Preguntas</a>
       <a class="btn btn-primary magnetic-btn" href="#paises">Ver carritos</a>
     </nav>
     <button class="mobile-nav" id="mobileNavToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu">
@@ -940,7 +953,7 @@ html{scroll-behavior:smooth!important}
     </button>
   </div>
   <nav class="mobile-menu" id="mobileMenu" aria-label="Navegación móvil">
-    <a href="#paises">Países</a><a href="#carritos">Carritos</a><a href="#como-pedir">Cómo pedir</a><a href="#preguntas">Preguntas frecuentes</a>
+    <a href="#paises">Países</a><a href="#carritos">Carritos</a><a href="#testimonios">Testimonios</a><a href="#como-pedir">Cómo pedir</a><a href="#preguntas">Preguntas frecuentes</a>
     <a class="mobile-menu-cta" href="#paises">Ver carritos <span>→</span></a>
   </nav>
 </header>
@@ -1007,6 +1020,27 @@ html{scroll-behavior:smooth!important}
     </div>
     <div class="cart-area" id="cartArea">
       <div class="cart-empty">Selecciona tu país y lo que estás buscando para mostrar tu carrito.</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="testimonials-section" id="testimonios">
+  <div class="wrap testimonials-layout">
+    <div class="testimonials-copy reveal">
+      <div class="eyebrow">Experiencias personales</div>
+      <h2>Testimonios de personas</h2>
+      <p>Conoce las experiencias que distintas personas comparten sobre su camino de bienestar y los productos OMNILIFE.</p>
+      <p class="testimonials-note">Cada experiencia es personal y los resultados pueden variar. Estos testimonios no sustituyen la orientación de un profesional de la salud.</p>
+      <div class="testimonials-cta">
+        <a class="btn btn-primary" href="#paises">Explorar carritos <span>→</span></a>
+      </div>
+    </div>
+    <div class="testimonials-player reveal reveal-delay-1">
+      <video controls playsinline preload="metadata" poster="portada_testimonios_conversion.jpg" aria-label="Video de testimonios de personas">
+        <source src="testimonios_omnilife_con_sonido.mp4" type="video/mp4">
+        Tu navegador no puede reproducir este video. Puedes descargarlo o abrirlo en otro navegador.
+      </video>
     </div>
   </div>
 </section>
