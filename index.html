@@ -799,13 +799,50 @@ html{scroll-behavior:smooth!important}
 .scroll-progress-3d,#particles-canvas,.cursor-dot,.cursor-outline,.loading-screen,.page-transition-overlay{display:none!important}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
-/* IMÁGENES DE CATEGORÍAS — integradas sin cambiar la estructura visual */
-.need-card{overflow:hidden;padding-top:0!important;}
-.need-card-image-wrap{height:150px;margin:0 -24px 20px;overflow:hidden;background:#f3f5f2;}
-.need-card-image{width:100%;height:100%;object-fit:cover;display:block;}
-.need-card .selection-icon{margin-top:0;}
-.cart-result-image-wrap{width:100%;height:210px;margin-bottom:20px;overflow:hidden;border-radius:16px;background:#f3f5f2;}
-.cart-result-image{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* IMÁGENES DE CATEGORÍAS — portadas completas sin recortar */
+.need-card {
+  overflow: hidden;
+  padding-top: 0 !important;
+}
+
+.need-card-image-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  margin: 0 -24px 20px;
+  overflow: hidden;
+  background: #f3f5f2;
+}
+
+.need-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+.need-card .selection-icon {
+  margin-top: 0;
+}
+
+/* IMÁGENES DE LOS CARRITOS — conservar diseño original */
+.cart-result-image-wrap {
+  width: 100%;
+  height: 210px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #f3f5f2;
+}
+
+.cart-result-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
 
 
