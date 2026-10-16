@@ -799,13 +799,50 @@ html{scroll-behavior:smooth!important}
 .scroll-progress-3d,#particles-canvas,.cursor-dot,.cursor-outline,.loading-screen,.page-transition-overlay{display:none!important}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
-/* IMÁGENES DE CATEGORÍAS — integradas sin cambiar la estructura visual */
-.need-card{overflow:hidden;padding-top:0!important;}
-.need-card-image-wrap{height:150px;margin:0 -24px 20px;overflow:hidden;background:#f3f5f2;}
-.need-card-image{width:100%;height:100%;object-fit:cover;display:block;}
-.need-card .selection-icon{margin-top:0;}
-.cart-result-image-wrap{width:100%;height:210px;margin-bottom:20px;overflow:hidden;border-radius:16px;background:#f3f5f2;}
-.cart-result-image{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* IMÁGENES DE CATEGORÍAS — portadas completas sin recortar */
+.need-card {
+  overflow: hidden;
+  padding-top: 0 !important;
+}
+
+.need-card-image-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  margin: 0 -24px 20px;
+  overflow: hidden;
+  background: #f3f5f2;
+}
+
+.need-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+.need-card .selection-icon {
+  margin-top: 0;
+}
+
+/* IMÁGENES DE LOS CARRITOS — conservar diseño original */
+.cart-result-image-wrap {
+  width: 100%;
+  height: 210px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #f3f5f2;
+}
+
+.cart-result-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
 
 
@@ -819,7 +856,7 @@ html{scroll-behavior:smooth!important}
   .flow-gated-step.is-hidden{display:none!important;}
 }
 </style>
-<!-- Google Analytics 4 se carga únicamente después de aceptar las cookies analíticas. -->
+<!-- Google Analytics 4: se inicializa únicamente tras aceptar las cookies analíticas. -->
 
 <style>
 .flow-confirm{display:flex;align-items:center;justify-content:center;gap:18px;flex-wrap:wrap;margin:28px auto 0;max-width:900px;padding:18px 20px;border:1px solid rgba(255,255,255,.10);border-radius:18px;background:rgba(255,255,255,.035);backdrop-filter:blur(10px);transition:opacity .35s ease,transform .35s ease}
@@ -1031,7 +1068,7 @@ html{scroll-behavior:smooth!important}
     </div>
     <div class="testimonials-player reveal reveal-delay-1">
       <video controls playsinline preload="metadata" poster="portada_testimonios_conversion.jpg" aria-label="Video de testimonios de personas">
-        <source src="testimonios_omnilife_con_sonido.mp4" type="video/mp4">
+        <source src="testimonios_omnilife_ligero_sin_portada.mp4" type="video/mp4">
         Tu navegador no puede reproducir este video. Puedes descargarlo o abrirlo en otro navegador.
       </video>
     </div>
@@ -1122,24 +1159,24 @@ html{scroll-behavior:smooth!important}
 
 const CART_LINKS = {};
 const COUNTRIES = {
-  mexico:{name:"México",short:"MX",image:"mexico.png"},
-  usa:{name:"Estados Unidos",short:"US",image:"estados_unidos.png"}
+  mexico:{name:"México",short:"MX",image:"bandera_mexico.webp"},
+  usa:{name:"Estados Unidos",short:"US",image:"bandera_estados_unidos.webp"}
 };
 
 const NEEDS = {
-  gymrat:{name:"Carrito para Gymrat",short:"Gymrat",icon:"G",desc:"Selección para complementar tu rutina de entrenamiento y acompañar tus objetivos deportivos y de nutrición.",image:"gymrat.jpg"},
-  limpieza:{name:"Limpieza profunda de 10 días",short:"Limpieza",icon:"L",desc:"Selección para acompañar una rutina de bienestar digestivo.",image:"limpieza_10_dias.png"},
-  cardiovascular:{name:"Sistema cardiovascular",short:"Cardio",icon:"C",desc:"Selección para acompañar el bienestar cardiovascular.",image:"sistema_cardiovascular.png"},
-  nervioso:{name:"Sistema Nervioso",short:"Nervioso",icon:"N",desc:"Selección para acompañar concentración, claridad y descanso.",image:"chicamente.jpg"},
-  reproductor_masculino:{name:"Reproductor Masculino",short:"Masculino",icon:"M",desc:"Selección para acompañar el bienestar masculino.",image:"reproductor_masculino.png"},
-  reproductor_femenino:{name:"Reproductor Femenino",short:"Femenino",icon:"F",desc:"Selección para acompañar el bienestar femenino.",image:"reproductor_femenino.png"},
-  renal:{name:"Sistema Renal",short:"Renal",icon:"R",desc:"Selección para acompañar la depuración y el bienestar renal.",image:"sistema_renal.png"},
-  oseo_muscular:{name:"Sistema Óseo y Muscular",short:"Óseo",icon:"O",desc:"Selección para acompañar huesos, músculos y articulaciones.",image:"sistema_oseo_muscular.png"},
-  digestivo:{name:"Sistema Digestivo",short:"Digestivo",icon:"D",desc:"Selección para acompañar el bienestar digestivo.",image:"sistema_digestivo.png"},
-  respiratorio:{name:"Sistema Respiratorio",short:"Respiratorio",icon:"S",desc:"Selección para acompañar el bienestar respiratorio.",image:"sistema_respiratorio.png"},
-  inmunologico:{name:"Sistema inmunológico",short:"Inmunológico",icon:"I",desc:"Selección para apoyar las defensas naturales del organismo.",image:"sistema_inmunologico.png"},
-  energia_deporte:{name:"Energía y deporte",short:"Energía",icon:"E",desc:"Selección para acompañar entrenamientos y actividad física.",image:"runner.jpg"},
-  control_peso:{name:"Control de peso y talla",short:"Peso",icon:"P",desc:"Selección para acompañar tus objetivos de control de peso y talla.",image:"talla.jpg"},
+  gymrat:{name:"Carrito para Gymrat",short:"Gymrat",icon:"G",desc:"Selección para complementar tu rutina de entrenamiento y acompañar tus objetivos deportivos y de nutrición.",image:"gym_fuerza_bienestar.webp"},
+  limpieza:{name:"Limpieza profunda de 10 días",short:"Limpieza",icon:"L",desc:"Selección para acompañar una rutina de bienestar digestivo.",image:"limpieza_colon_bienestar.webp"},
+  cardiovascular:{name:"Sistema cardiovascular",short:"Cardio",icon:"C",desc:"Selección para acompañar el bienestar cardiovascular.",image:"salud_cardiovascular_bienestar.webp"},
+  nervioso:{name:"Sistema Nervioso",short:"Nervioso",icon:"N",desc:"Selección para acompañar concentración, claridad y descanso.",image:"sistema_nervioso_bienestar.webp"},
+  reproductor_masculino:{name:"Reproductor Masculino",short:"Masculino",icon:"M",desc:"Selección para acompañar el bienestar masculino.",image:"aparato_reproductor_masculino.webp"},
+  reproductor_femenino:{name:"Reproductor Femenino",short:"Femenino",icon:"F",desc:"Selección para acompañar el bienestar femenino.",image:"salud_femenina_bienestar.webp"},
+  renal:{name:"Sistema Renal",short:"Renal",icon:"R",desc:"Selección para acompañar la depuración y el bienestar renal.",image:"salud_renal_bienestar.webp"},
+  oseo_muscular:{name:"Sistema Óseo y Muscular",short:"Óseo",icon:"O",desc:"Selección para acompañar huesos, músculos y articulaciones.",image:"salud_osea_muscular.webp"},
+  digestivo:{name:"Sistema Digestivo",short:"Digestivo",icon:"D",desc:"Selección para acompañar el bienestar digestivo.",image:"sistema_digestivo_bienestar.webp"},
+  respiratorio:{name:"Sistema Respiratorio",short:"Respiratorio",icon:"S",desc:"Selección para acompañar el bienestar respiratorio.",image:"sistema_respiratorio.webp"},
+  inmunologico:{name:"Sistema inmunológico",short:"Inmunológico",icon:"I",desc:"Selección para apoyar las defensas naturales del organismo.",image:"sistema_inmunologico.webp"},
+  energia_deporte:{name:"Energía y deporte",short:"Energía",icon:"E",desc:"Selección para acompañar entrenamientos y actividad física.",image:"energia_deporte.webp"},
+  control_peso:{name:"Control de peso y talla",short:"Peso",icon:"P",desc:"Selección para acompañar tus objetivos de control de peso y talla.",image:"control_de_peso.webp"},
   personalizado:{name:"Personaliza tus productos",short:"Personalizado",icon:"+",desc:"Arma tu propia selección de productos con orientación personalizada.",image:"personalizacion.jpg"}
 };
 
@@ -1523,7 +1560,6 @@ document.addEventListener("DOMContentLoaded",()=>{
   const cookieReject = document.getElementById("cookieReject");
   const consentKey = "hg_cookie_consent";
 
-  // Analítica opcional: no se solicita ni se carga hasta que exista aceptación.
   function loadGoogleAnalyticsAfterConsent(){
     if (window.__hgAnalyticsLoaded) return;
     window.__hgAnalyticsLoaded = true;
