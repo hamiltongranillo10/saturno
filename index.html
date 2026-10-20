@@ -1151,6 +1151,10 @@ html{scroll-behavior:smooth!important}
 .flow-bg{position:relative;isolation:isolate;clip-path:inset(0);background:#0b2a1e}
 .flow-bg::before{content:"";position:fixed;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(7,27,20,.80),rgba(7,27,20,.72)),url("fondo-test.webp") center/cover no-repeat,url("fondo-1.webp") center/cover no-repeat;pointer-events:none}
 .flow-bg>section{background:transparent!important}
+.flow-bg>section{position:relative;z-index:1}
+.flow-bg::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath fill='%23071b14' d='M0,0H1440V26C1200,54 960,54 720,38C480,22 240,18 0,44Z'/%3E%3C/svg%3E") top left/100% 56px no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath fill='%23fbfaf6' d='M0,34C240,8 480,8 720,26C960,44 1200,44 1440,16V60H0Z'/%3E%3C/svg%3E") bottom left/100% 56px no-repeat}
+@media (max-width:600px){.flow-bg::after{background-size:100% 34px,100% 34px}}
+.testimonials-section{background:linear-gradient(180deg,#fbfaf6 0,#fbfaf6 70px,#eef4f0 100%)}
 </style>
 </head>
 
