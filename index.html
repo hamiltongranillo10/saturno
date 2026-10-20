@@ -1137,6 +1137,17 @@ html{scroll-behavior:smooth!important}
 .quiz-links{display:flex;justify-content:space-between;gap:10px;font-size:.84rem}
 .quiz-links button,.quiz-links a{background:none;border:0;padding:0;color:var(--green);font:600 .84rem 'Onest',sans-serif;cursor:pointer;text-decoration:underline}
 @media (min-width:901px){.conv-grid{grid-template-columns:1.1fr .9fr;gap:64px}}
+#paises,#necesidades,#carritos{position:relative;background-color:#0b2a1e;background-image:linear-gradient(180deg,rgba(7,27,20,.84),rgba(7,27,20,.74)),url("fondo-test.webp"),url("fondo-1.webp");background-size:cover;background-position:center}
+#necesidades{background-position:center 30%}
+#carritos{background-position:center 70%}
+#paises .eyebrow,#necesidades .eyebrow,#carritos .eyebrow{color:var(--gold-light)}
+#paises .section-head h2,#necesidades .section-head h2,#carritos .section-head h2{color:#fff}
+#paises .section-head p,#necesidades .section-head p,#carritos .section-head p{color:rgba(255,255,255,.86)}
+#paises .flow-selection-message,#necesidades .flow-selection-message,#paises .flow-lock-note,#necesidades .flow-lock-note{color:rgba(255,255,255,.86)}
+#paises .flow-lock-note strong,#necesidades .flow-lock-note strong{color:#fff}
+#carritos .cart-empty{background:rgba(255,255,255,.96);border-radius:20px}
+.float-wa{transition:opacity .25s ease,transform .25s ease}
+.float-wa.is-away{opacity:0!important;pointer-events:none;transform:translateY(16px)!important;animation:none!important}
 </style>
 </head>
  
@@ -1830,6 +1841,15 @@ document.addEventListener("DOMContentLoaded",()=>{
  
 });
 </script>
+<script>
+(function(){
+  var fw=document.querySelector('.float-wa'),t=['carritos','test-carrito'].map(function(i){return document.getElementById(i)}).filter(Boolean);
+  if(!fw||!t.length||!('IntersectionObserver' in window))return;
+  var on={};
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){on[e.target.id]=e.isIntersecting;});
+    fw.classList.toggle('is-away',Object.keys(on).some(function(k){return on[k]}));},{threshold:0.12});
+  t.forEach(function(x){io.observe(x)});
+})();
+</script>
 </body>
 </html>
- 
