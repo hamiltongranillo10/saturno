@@ -1303,13 +1303,13 @@ html{scroll-behavior:smooth!important}
   var box=document.getElementById('quiz'); if(!box)return;
   var WA='https://wa.me/593968107948?text=';
   var CARTS={
-    gymrat:{n:'Carrito para Gymrat',d:'Para quienes buscan llevar sus entrenamientos más lejos: explora opciones de nutrición deportiva para complementar fuerza, rendimiento y recuperación.',i:'gym_fuerza_bienestar.webp'},
-    energia_deporte:{n:'Energía y deporte',d:'Para días activos y entrenamientos exigentes: descubre opciones para complementar tu nutrición, hidratación y energía diaria.',i:'energia_deporte.webp'},
-    control_peso:{n:'Control de peso y talla',d:'¿Tienes metas de composición corporal? Encuentra opciones para complementar tu alimentación, actividad física y constancia, a tu propio ritmo.',i:'control_de_peso.webp'},
-    digestivo:{n:'Sistema Digestivo',d:'Para quienes quieren cuidar su rutina digestiva: conoce opciones que puedes complementar con una alimentación equilibrada e hidratación adecuada.',i:'sistema_digestivo_bienestar.webp'},
-    inmunologico:{n:'Sistema inmunológico',d:'Si quieres enfocarte en tus hábitos diarios, descubre opciones de nutrición para complementar una rutina que incluya alimentación variada, descanso y actividad física.',i:'sistema_inmunologico.webp'},
-    nervioso:{n:'Sistema Nervioso',d:'Para días de mucho movimiento mental: explora opciones mientras fortaleces tus hábitos de descanso, organización y concentración.',i:'sistema_nervioso_bienestar.webp'},
-    personalizado:{n:'Personaliza tus productos',d:'Cuéntame qué buscas y armamos una selección a tu medida, según tus intereses y presupuesto. Te ayudo a revisar las opciones paso a paso.',i:'personalizacion.jpg'}
+    gymrat:{n:'Carrito para Gymrat',d:'¿Quieres sacarle más provecho a tus entrenamientos? Explora opciones de nutrición deportiva para complementar tu rutina y tus objetivos de fuerza.',i:'gym_fuerza_bienestar.webp'},
+    energia_deporte:{n:'Energía y deporte',d:'¿Te mueves, corres o entrenas con frecuencia? Explora opciones para complementar tu nutrición y tus días activos.',i:'energia_deporte.webp'},
+    control_peso:{n:'Control de peso y talla',d:'¿Tienes una meta de peso o composición corporal? Encuentra opciones para complementar tu alimentación, movimiento y constancia.',i:'control_de_peso.webp'},
+    digestivo:{n:'Sistema Digestivo',d:'¿Quieres prestar más atención a tu digestión? Explora opciones que puedes integrar a una rutina con alimentación equilibrada e hidratación.',i:'sistema_digestivo_bienestar.webp'},
+    inmunologico:{n:'Sistema inmunológico',d:'Refuerza tu rutina de buenos hábitos: descubre opciones de nutrición que puedes combinar con descanso y una alimentación variada.',i:'sistema_inmunologico.webp'},
+    nervioso:{n:'Sistema Nervioso',d:'¿Tu día está lleno de pendientes? Explora opciones para complementar una rutina que priorice el descanso y la concentración.',i:'sistema_nervioso_bienestar.webp'},
+    personalizado:{n:'Personaliza tus productos',d:'¿No sabes por dónde empezar? Cuéntame qué buscas y tu presupuesto; te ayudo a elegir entre opciones reales de productos.',i:'personalizacion.jpg'}
   };
   var Q=[
     {t:'¿Qué quieres priorizar ahora?',o:[
@@ -1414,20 +1414,20 @@ const COUNTRIES = {
 };
 
 const NEEDS = {
-  gymrat:{name:"Carrito para Gymrat",short:"Gymrat",icon:"G",desc:"Selección para complementar tu rutina de entrenamiento y acompañar tus objetivos deportivos y de nutrición.",image:"gym_fuerza_bienestar.webp"},
-  limpieza:{name:"Limpieza profunda de 10 días",short:"Limpieza",icon:"L",desc:"Selección para acompañar una rutina de bienestar digestivo.",image:"limpieza_colon_bienestar.webp"},
-  cardiovascular:{name:"Sistema cardiovascular",short:"Cardio",icon:"C",desc:"Selección para acompañar el bienestar cardiovascular.",image:"salud_cardiovascular_bienestar.webp"},
-  nervioso:{name:"Sistema Nervioso",short:"Nervioso",icon:"N",desc:"Selección para acompañar concentración, claridad y descanso.",image:"sistema_nervioso_bienestar.webp"},
-  reproductor_masculino:{name:"Reproductor Masculino",short:"Masculino",icon:"M",desc:"Selección para acompañar el bienestar masculino.",image:"aparato_reproductor_masculino.webp"},
-  reproductor_femenino:{name:"Reproductor Femenino",short:"Femenino",icon:"F",desc:"Selección para acompañar el bienestar femenino.",image:"salud_femenina_bienestar.webp"},
-  renal:{name:"Sistema Renal",short:"Renal",icon:"R",desc:"Selección para acompañar la depuración y el bienestar renal.",image:"salud_renal_bienestar.webp"},
-  oseo_muscular:{name:"Sistema Óseo y Muscular",short:"Óseo",icon:"O",desc:"Selección para acompañar huesos, músculos y articulaciones.",image:"salud_osea_muscular.webp"},
-  digestivo:{name:"Sistema Digestivo",short:"Digestivo",icon:"D",desc:"Selección para acompañar el bienestar digestivo.",image:"sistema_digestivo_bienestar.webp"},
-  respiratorio:{name:"Sistema Respiratorio",short:"Respiratorio",icon:"S",desc:"Selección para acompañar el bienestar respiratorio.",image:"sistema_respiratorio.webp"},
-  inmunologico:{name:"Sistema inmunológico",short:"Inmunológico",icon:"I",desc:"Selección para apoyar las defensas naturales del organismo.",image:"sistema_inmunologico.webp"},
-  energia_deporte:{name:"Energía y deporte",short:"Energía",icon:"E",desc:"Selección para acompañar entrenamientos y actividad física.",image:"energia_deporte.webp"},
-  control_peso:{name:"Control de peso y talla",short:"Peso",icon:"P",desc:"Selección para acompañar tus objetivos de control de peso y talla.",image:"control_de_peso.webp"},
-  personalizado:{name:"Personaliza tus productos",short:"Personalizado",icon:"+",desc:"Arma tu propia selección de productos con orientación personalizada.",image:"personalizacion.jpg"}
+  gymrat:{name:"Carrito para Gymrat",short:"Gymrat",icon:"G",desc:"¿Quieres sacarle más provecho a tus entrenamientos? Explora opciones de nutrición deportiva para complementar tu rutina y tus objetivos de fuerza.",image:"gym_fuerza_bienestar.webp"},
+  limpieza:{name:"Limpieza profunda de 10 días",short:"Limpieza",icon:"L",desc:"¿Buscas sentirte más cómodo con tu rutina digestiva? Conoce opciones para complementar tus hábitos de alimentación e hidratación.",image:"limpieza_colon_bienestar.webp"},
+  cardiovascular:{name:"Sistema cardiovascular",short:"Cardio",icon:"C",desc:"¿Quieres cuidar tu corazón a largo plazo? Descubre opciones y hábitos que pueden formar parte de una rutina enfocada en tu salud cardiovascular.",image:"salud_cardiovascular_bienestar.webp"},
+  nervioso:{name:"Sistema Nervioso",short:"Nervioso",icon:"N",desc:"¿Tu día está lleno de pendientes? Explora opciones para complementar una rutina que priorice el descanso y la concentración.",image:"sistema_nervioso_bienestar.webp"},
+  reproductor_masculino:{name:"Reproductor Masculino",short:"Masculino",icon:"M",desc:"Encuentra opciones pensadas para tus objetivos de cuidado masculino y conoce cómo integrarlas a tus hábitos diarios.",image:"aparato_reproductor_masculino.webp"},
+  reproductor_femenino:{name:"Reproductor Femenino",short:"Femenino",icon:"F",desc:"Conoce opciones de nutrición y cuidado personal que puedes elegir según tus intereses y tu rutina.",image:"salud_femenina_bienestar.webp"},
+  renal:{name:"Sistema Renal",short:"Renal",icon:"R",desc:"La hidratación y los hábitos diarios cuentan. Explora opciones y recibe orientación para elegir de forma informada.",image:"salud_renal_bienestar.webp"},
+  oseo_muscular:{name:"Sistema Óseo y Muscular",short:"Óseo",icon:"O",desc:"¿Quieres mantenerte activo y cuidar tu movilidad? Descubre opciones para complementar tu nutrición y tus hábitos de movimiento.",image:"salud_osea_muscular.webp"},
+  digestivo:{name:"Sistema Digestivo",short:"Digestivo",icon:"D",desc:"¿Quieres prestar más atención a tu digestión? Explora opciones que puedes integrar a una rutina con alimentación equilibrada e hidratación.",image:"sistema_digestivo_bienestar.webp"},
+  respiratorio:{name:"Sistema Respiratorio",short:"Respiratorio",icon:"S",desc:"Conoce opciones para tu rutina de cuidado personal y hábitos diarios que favorezcan un estilo de vida activo.",image:"sistema_respiratorio.webp"},
+  inmunologico:{name:"Sistema inmunológico",short:"Inmunológico",icon:"I",desc:"Refuerza tu rutina de buenos hábitos: descubre opciones de nutrición que puedes combinar con descanso y una alimentación variada.",image:"sistema_inmunologico.webp"},
+  energia_deporte:{name:"Energía y deporte",short:"Energía",icon:"E",desc:"¿Te mueves, corres o entrenas con frecuencia? Explora opciones para complementar tu nutrición y tus días activos.",image:"energia_deporte.webp"},
+  control_peso:{name:"Control de peso y talla",short:"Peso",icon:"P",desc:"¿Tienes una meta de peso o composición corporal? Encuentra opciones para complementar tu alimentación, movimiento y constancia.",image:"control_de_peso.webp"},
+  personalizado:{name:"Personaliza tus productos",short:"Personalizado",icon:"+",desc:"¿No sabes por dónde empezar? Cuéntame qué buscas y tu presupuesto; te ayudo a elegir entre opciones reales de productos.",image:"personalizacion.jpg"}
 };
 
 const CART_CONTENT_MX = {
