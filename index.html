@@ -1045,11 +1045,27 @@ html{scroll-behavior:smooth!important}
 .testimonials-copy p{color:var(--muted);max-width:540px}
 .testimonials-copy .eyebrow{color:var(--gold)}
 .testimonials-note{margin-top:18px;font-size:.78rem;color:var(--muted)}
-.testimonials-player{width:min(100%,390px);justify-self:center;position:relative;border-radius:22px;overflow:hidden;background:#071b14;border:1px solid rgba(199,161,90,.45);box-shadow:var(--shadow-lg)}
-.testimonials-player video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:contain;background:#071b14}
+.testimonials-player{
+  width:min(100%,360px);justify-self:center;position:relative;
+  border-radius:18px;overflow:hidden;background:#071b14;
+  border:1px solid rgba(199,161,90,.35);box-shadow:var(--shadow-lg);
+  isolation:isolate;
+}
+.testimonials-player video{
+  display:block;width:100%;height:auto;aspect-ratio:9/16;
+  object-fit:cover;object-position:center;background:#071b14;
+}
 .testimonials-player video::cue{color:#fff;background:rgba(7,27,20,.88);font-weight:700}
 .testimonials-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
-@media(max-width:800px){.testimonials-section{padding:68px 0}.testimonials-layout{grid-template-columns:1fr;gap:28px}.testimonials-copy{text-align:center}.testimonials-copy p{margin-inline:auto}.testimonials-cta{justify-content:center}.testimonials-player{width:min(100%,340px)}}
+@media(max-width:800px){
+  .testimonials-section{padding:60px 0}
+  .testimonials-layout{grid-template-columns:1fr;gap:24px}
+  .testimonials-copy{text-align:center}
+  .testimonials-copy p{margin-inline:auto}
+  .testimonials-cta{justify-content:center}
+  .testimonials-player{width:min(100%,310px);border-radius:16px}
+  .testimonials-player video{aspect-ratio:9/16;object-fit:cover}
+}
 </style>
 <style id="hamilton-process-background-fix">
 /* Fondo de compras 3D aplicado únicamente a la sección de pasos */
@@ -1108,7 +1124,10 @@ html{scroll-behavior:smooth!important}
 }
 .how-grid.premium-steps{grid-template-columns:repeat(3,1fr)}
 @media (max-width:900px){.how-grid.premium-steps{grid-template-columns:1fr}}
-@media (max-width:900px){.hero-photo{order:-1;max-width:120px;justify-self:start;border-radius:50%;aspect-ratio:1/1;border:2px solid var(--gold-light)}.hero-photo img{height:100%;object-fit:cover}.hero-photo figcaption{display:none}}
+@media (max-width:900px){
+  /* En móvil se oculta la imagen principal; en escritorio se conserva. */
+  .hero-photo{display:none !important}
+}
 .conv-section{position:relative;background-color:#0b2a1e;background-image:linear-gradient(90deg,rgba(7,27,20,.88) 0%,rgba(7,27,20,.62) 55%,rgba(7,27,20,.4) 100%),url("fondo-test.webp"),url("fondo-1.webp");background-size:cover;background-position:center}
 .conv-section .eyebrow{color:var(--gold-light)}
 .conv-section h2{color:#fff}
@@ -1262,7 +1281,7 @@ html{scroll-behavior:smooth!important}
       </div>
     </div>
     <div class="testimonials-player reveal reveal-delay-1">
-      <video controls playsinline preload="metadata" poster="portada_testimonios_conversion.jpg" aria-label="Video de testimonios de personas">
+      <video controls playsinline preload="auto" aria-label="Video de testimonios de personas">
         <source src="testimonios_omnilife_ligero_sin_portada.mp4" type="video/mp4">
         Tu navegador no puede reproducir este video. Puedes descargarlo o abrirlo en otro navegador.
       </video>
