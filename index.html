@@ -268,6 +268,32 @@ img{max-width:100%;display:block}
 /* ---------- SECUENCIA POR SCROLL ---------- */
 .seq{position:relative;height:440vh;background:linear-gradient(180deg,var(--cream),#E9E7E1)}
 .seq[hidden]{display:none}
+
+/* ---------- PREPARACIÓN: el video de la taza avanza con el scroll ---------- */
+.prep{position:relative;height:320vh;background:#EFE3CF}
+.prep-stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.prep-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+/* PC: los textos van en la columna derecha, sobre la pared lisa */
+.prep-text{position:absolute;right:clamp(16px,6vw,96px);top:0;bottom:0;width:min(360px,30vw);z-index:2}
+.prep-head{position:absolute;left:0;right:0;top:18vh;transition:opacity .5s ease,transform .6s var(--ease)}
+.prep-head .kicker{color:var(--amber-deep)}
+.prep-head h2{font-size:clamp(2rem,3.6vw,3rem);line-height:1.05;color:var(--sage-ink);margin-top:10px}
+.prep.past-head .prep-head{opacity:0;transform:translateY(-14px)}
+.prep-cap{position:absolute;left:0;right:0;top:42vh;opacity:0;transform:translateY(18px);transition:opacity .45s ease,transform .6s var(--ease)}
+.prep-cap.on{opacity:1;transform:none}
+.prep-cap .num{font-family:'Lora',serif;color:var(--amber-deep);font-size:1.15rem}
+.prep-cap strong{display:block;font-family:'Lora',serif;font-weight:600;font-size:clamp(1.6rem,2.6vw,2.2rem);line-height:1.1;color:var(--sage-ink);margin:4px 0 6px}
+.prep-cap p{color:var(--muted)}
+.prep-head,.prep-cap{text-shadow:0 1px 12px rgba(251,246,236,.9)}
+/* Celular: textos arriba, centrados, sobre la parte lisa de la pared */
+@media(max-width:760px){
+  .prep{height:300vh}
+  .prep-text{left:16px;right:16px;width:auto;text-align:center}
+  .prep-head{top:86px}
+  .prep-head h2{font-size:1.9rem}
+  .prep-cap{top:92px}
+  .prep-cap strong{font-size:1.7rem}
+}
 /* Modo video: el fondo toma los tonos cálidos del video y los bordes del video se difuminan */
 .seq.is-video{background:radial-gradient(ellipse 70% 60% at 50% 45%,#F6E3CC 0%,#EBCBA6 60%,#DFBB93 100%)}
 .seq.is-video .seq-plinth{display:none}
@@ -1103,6 +1129,23 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
   </div>
   <div class="scroll-hint">Scroll</div>
  </div>
+</section>
+
+<!-- ================= PREPARACIÓN (taza + Optimus) =================
+     🎬 Video convertido en cuadros que avanzan con el scroll:
+       PC: carpeta "frames-taza-pc" (taza_001.webp … taza_080.webp, horizontal)
+       Celular: carpeta "frames-taza" (taza_001.webp … taza_080.webp, vertical)
+     ✏️ Los textos de cada paso están aquí abajo (data-from / data-to: en qué parte del scroll aparecen, de 0 a 1). -->
+<section class="prep" id="preparacion" aria-label="Cómo se prepara">
+  <div class="prep-stage">
+    <canvas class="prep-canvas" id="prepCanvas" aria-hidden="true"></canvas>
+    <div class="prep-text">
+      <div class="prep-head"><div class="kicker">Así de fácil</div><h2 class="serif">Prepáralo en segundos.</h2></div>
+      <div class="prep-cap" data-from=".1" data-to=".36"><span class="num">01</span><strong>Agua a tu gusto</strong><p>Llena tu taza hasta la mitad.</p></div>
+      <div class="prep-cap" data-from=".36" data-to=".8"><span class="num">02</span><strong>Un sobre</strong><p>Vierte el polvo en el agua.</p></div>
+      <div class="prep-cap" data-from=".8" data-to="1.01"><span class="num">03</span><strong>Listo en segundos</strong><p>Mezcla y disfruta.</p></div>
+    </div>
+  </div>
 </section>
 
 <!-- ================= SECUENCIA POR SCROLL (EGO FRUTAS) =================
@@ -2923,6 +2966,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     { id:'inicio',       poses:['0','8'], say:'¡{saludo}! Soy Hamilton 👋 Aquí estoy si necesitas ayuda.' },
     { id:'inicio-red',   poses:['7'] },
     { id:'producto',     poses:['1','5'], mobileHide:true },   // en celular deja ver la lata completa
+    { id:'preparacion',  poses:['1','6'], mobileHide:true },   // en celular deja ver la taza completa
     { id:'productos',    hide:true },   // no tapa los productos ni sus textos
     { id:'flujo',        hide:true },   // aquí ya está el personaje grande
     { id:'arma',         poses:['9','5','3'], say:'Elige con calma: yo reviso tu lista antes de tu pedido.' },
@@ -3177,6 +3221,60 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     if (fwWa) fwWa.addEventListener('click', function(){ if (window.gtag) gtag('event', 'despedida_whatsapp'); });
   }
 
+  /* ---------- PREPARACIÓN: cuadros del video de la taza que avanzan con el scroll ----------
+     ✏️ PREP_SETS: carpeta de cada video, cuántos cuadros tiene y cada cuántos se cargan (step 2 = la mitad, más liviano). */
+  var PREP_SETS = {
+    pc:    { folder: 'frames-taza-pc/', total: 80, step: 1 },
+    movil: { folder: 'frames-taza/',    total: 80, step: 2 }
+  };
+  var prepSec = document.getElementById('preparacion'), prepCanvas = document.getElementById('prepCanvas');
+  var prepCtx = prepCanvas && prepCanvas.getContext('2d'), prepImgs = [], prepCur = -1, prepLoaded = false;
+  var prepCaps = prepSec ? [].slice.call(prepSec.querySelectorAll('.prep-cap')) : [];
+  var PS = matchMedia('(max-width:760px)').matches ? PREP_SETS.movil : PREP_SETS.pc;
+  function prepLoad(){
+    if (prepLoaded) return; prepLoaded = true;
+    for (var k = 0; k * PS.step < PS.total; k++){
+      var im = new Image(); im.decoding = 'async';
+      im.src = PS.folder + 'taza_' + String(k * PS.step + 1).padStart(3, '0') + '.webp';
+      if (k === 0) im.onload = function(){ prepSize(); };
+      prepImgs.push(im);
+    }
+  }
+  function prepSize(){
+    if (!prepCanvas) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2), r = prepCanvas.getBoundingClientRect();
+    prepCanvas.width = Math.round(r.width * dpr); prepCanvas.height = Math.round(r.height * dpr);
+    prepCur = -1; applyPrep();
+  }
+  // Dibuja el cuadro "ff" (con decimales: mezcla suave entre dos cuadros) cubriendo toda la pantalla
+  function prepDraw(ff){
+    var a = Math.floor(ff), b = Math.min(prepImgs.length - 1, a + 1), t = ff - a;
+    var A = prepImgs[a], B = prepImgs[b];
+    if (!A || !A.complete || !A.naturalWidth) return;
+    var W = prepCanvas.width, H = prepCanvas.height, s = Math.max(W / A.naturalWidth, H / A.naturalHeight);
+    var dw = A.naturalWidth * s, dh = A.naturalHeight * s, dx = (W - dw) / 2, dy = (H - dh) / 2;
+    prepCtx.globalAlpha = 1; prepCtx.drawImage(A, dx, dy, dw, dh);
+    if (t > .01 && B && B.complete && B.naturalWidth){ prepCtx.globalAlpha = t; prepCtx.drawImage(B, dx, dy, dw, dh); prepCtx.globalAlpha = 1; }
+  }
+  function applyPrep(){
+    if (!prepSec) return;
+    var r = prepSec.getBoundingClientRect();
+    if (r.bottom < -50 || r.top > innerHeight + 50) return;
+    var p = clamp01(-r.top / Math.max(1, prepSec.offsetHeight - innerHeight));
+    var ff = p * (prepImgs.length - 1);
+    if (Math.abs(ff - prepCur) > .01){ prepCur = ff; prepDraw(ff); }
+    prepSec.classList.toggle('past-head', p > .08);
+    prepCaps.forEach(function(c){ c.classList.toggle('on', p >= +c.dataset.from && p < +c.dataset.to); });
+  }
+  if (prepSec){
+    // Los cuadros se cargan solo cuando la sección se acerca (así el inicio de la página carga rápido)
+    if ('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ if (es[0].isIntersecting) prepLoad(); }, { rootMargin: '1200px 0px' }).observe(prepSec);
+    } else prepLoad();
+    addEventListener('resize', prepSize);
+    prepSize();
+  }
+
   // Testimonios: la rama de olivo va al frente y se mueve más rápido que la página (da profundidad)
   var testiSec = document.getElementById('testimonios'), testiBg = testiSec && testiSec.querySelector('.testi-bg');
   function applyTesti(){
@@ -3206,7 +3304,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   var ticking = false;
   function onScroll(){
     ticking = false;
-    applyHero(); applySeq(); applyStars(); updatePose(); applyFlowFx(); applyTesti(); applyFarewell(); updateBuddy();
+    applyHero(); applySeq(); applyStars(); updatePose(); applyFlowFx(); applyPrep(); applyTesti(); applyFarewell(); updateBuddy();
     nav.classList.toggle('dark', window.scrollY > hero.offsetHeight - 72);
     nav.classList.toggle('on-light', photoHero && window.scrollY <= hero.offsetHeight - 72);
   }
