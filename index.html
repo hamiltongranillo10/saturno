@@ -876,7 +876,8 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 .faq-section .section-head{text-shadow:0 0 18px rgba(251,250,247,.95),0 0 4px rgba(251,250,247,.9)}
 .faq-section .faq-list{border-top:0;padding:6px 20px;border-radius:22px;background:rgba(251,250,247,.88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 20px 50px rgba(120,90,50,.12)}
 .faq-section .faq-list details:last-child{border-bottom:0}
-@media(max-width:760px){.faq-section{background-size:190% auto;padding-top:calc(100vw * 1.9 * .5625 * .72)}.faq-section .faq-list{padding:4px 12px}}
+/* Celular: su propia foto vertical (4:5), recortada de la misma, para que se vean el sol y el mar sin ampliar */
+@media(max-width:760px){.faq-section{background-image:url(fondo-preguntas-movil.webp);background-size:100% auto;padding-top:calc(100vw * 1.25 * .76)}.faq-section .faq-list{padding:4px 12px}}
 .faq{max-width:820px;margin:auto}
 .faq-list{border-top:1px solid var(--line)}
 .faq-list details{border-bottom:1px solid var(--line);transition:background .3s}
@@ -1286,7 +1287,7 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 </section>
 
 <!-- ================= PREGUNTAS ================= -->
-<!-- 🖼️ Amanecer arriba de las preguntas: fondo-preguntas.webp (una sola imagen para PC y celular) -->
+<!-- 🖼️ Amanecer arriba de las preguntas: fondo-preguntas.webp (PC) y fondo-preguntas-movil.webp (celular) -->
 <section class="section faq-section" id="preguntas">
   <div class="wrap faq">
     <div class="section-head rv"><div class="kicker">Preguntas frecuentes</div><h2 class="serif">Respuestas rápidas.</h2><p>¿Algo más? Escríbeme directamente.</p></div>
