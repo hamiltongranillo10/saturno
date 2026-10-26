@@ -53,7 +53,9 @@
 :root{
   --sage:#9CAF88;--sage-light:#B7C6A7;--sage-soft:#E4EBDD;--sage-deep:#5E6E54;--sage-ink:#2F3A2B;
   --concrete:#A7A7A7;--concrete-light:#CFCDC8;--cream:#F3F1EC;--paper:#FBFAF7;
-  --gold:#C7A15A;--ink:#1F261C;--muted:#5d6858;--line:#E2E3DC;--wa:#25D366;
+  /* Ámbar (Amber Glow #D5851F): color de acento de toda la página */
+  --amber:#D5851F;--amber-light:#F6C27E;--amber-soft:#F7E6CC;
+  --gold:var(--amber);--ink:#1F261C;--muted:#5d6858;--line:#E2E3DC;--wa:#25D366;
   --shadow:0 20px 50px rgba(30,40,25,.10);
   --ease:cubic-bezier(.22,1,.36,1);
 }
@@ -112,7 +114,7 @@ img{max-width:100%;display:block}
 .hero{position:relative;height:230vh;background:var(--sage)}
 .hero-pin{position:sticky;top:0;height:100vh;overflow:hidden;isolation:isolate}
 .layer{position:absolute;inset:0;will-change:transform;pointer-events:none}
-.l-wall{inset:-12% -4%;background:radial-gradient(ellipse 60% 55% at 72% 32%,rgba(255,255,255,.22),transparent 70%),linear-gradient(180deg,#A6B893 0%,#93A67F 62%,#8A9C77 100%)}
+.l-wall{inset:-12% -4%;background:radial-gradient(ellipse 45% 50% at 82% 18%,rgba(213,133,31,.28),transparent 70%),radial-gradient(ellipse 60% 55% at 72% 32%,rgba(255,255,255,.22),transparent 70%),linear-gradient(180deg,#A6B893 0%,#93A67F 62%,#8A9C77 100%)}
 .l-light{inset:-12% -10%;opacity:.9;background:repeating-linear-gradient(112deg,transparent 0 70px,rgba(255,250,235,.10) 70px 150px,transparent 150px 230px);
   -webkit-mask-image:radial-gradient(ellipse 55% 60% at 70% 35%,#000,transparent 75%);mask-image:radial-gradient(ellipse 55% 60% at 70% 35%,#000,transparent 75%)}
 .l-plant{inset:auto -2% auto auto;top:-4%;width:min(560px,55vw);height:70%;opacity:.16}
@@ -127,7 +129,7 @@ img{max-width:100%;display:block}
 .hero-copy{position:absolute;left:clamp(16px,6vw,90px);top:calc(50% + 34px);transform:translateY(-50%);max-width:540px;color:#fff;z-index:5;will-change:transform,opacity}
 .hero-copy .kicker{opacity:.88}
 .hero-copy h1{font-size:min(clamp(2.5rem,5.2vw,4.6rem),9.5vh);line-height:1.03;margin:16px 0 18px}
-.hero-copy h1 em{font-style:italic;color:#F4E2B8}
+.hero-copy h1 em{font-style:italic;color:var(--amber-light)}
 .hero-trust a{text-decoration:underline;text-underline-offset:3px;opacity:.95}
 .hero-copy p{max-width:400px;font-size:.98rem;opacity:.92}
 .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
@@ -155,21 +157,21 @@ img{max-width:100%;display:block}
 
 /* ---------- RED DE CARACTERÍSTICAS DEL PRODUCTO ---------- */
 .hero-net{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none;overflow:visible}
-.hero-net path{fill:none;stroke:#F4E2B8;stroke-width:1.5;stroke-dasharray:1;stroke-dashoffset:1}
-.hero-net .dot{fill:#F4E2B8;opacity:0;transition:opacity .3s}
-.hero-net .ring{fill:none;stroke:#F4E2B8;stroke-width:1.5;opacity:0;transform-box:fill-box;transform-origin:center}
+.hero-net path{fill:none;stroke:var(--amber-light);stroke-width:1.5;stroke-dasharray:1;stroke-dashoffset:1}
+.hero-net .dot{fill:var(--amber-light);opacity:0;transition:opacity .3s}
+.hero-net .ring{fill:none;stroke:var(--amber-light);stroke-width:1.5;opacity:0;transform-box:fill-box;transform-origin:center}
 .hero-net .on{opacity:1}
 .hero-net .ring.on{animation:ringPulse 1.8s ease-out 3}
 @keyframes ringPulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.4);opacity:0}}
 .hero-feats{position:absolute;inset:0;z-index:5;pointer-events:none}
 .feat-head{position:absolute;left:50%;top:13vh;translate:-50% 0;text-align:center;color:#fff;opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .6s var(--ease)}
 .feat-head.on{opacity:1;transform:none}
-.feat-head .kicker{color:#F4E2B8}
+.feat-head .kicker{color:var(--amber-light)}
 .feat-head h2{font-size:clamp(1.8rem,3.4vw,2.8rem);line-height:1.05;margin-top:6px}
 .feat{position:absolute;width:230px;color:#fff;opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .6s var(--ease)}
 .feat.on{opacity:1;transform:none}
 .feat.left{text-align:right}
-.feat .kicker{color:#F4E2B8;font-size:.6rem}
+.feat .kicker{color:var(--amber-light);font-size:.6rem}
 .feat strong{display:block;font-family:'Fraunces',serif;font-weight:400;font-size:1.3rem;line-height:1.15;margin:3px 0 4px}
 .feat p{font-size:.8rem;opacity:.85;line-height:1.45}
 .hero-final{position:absolute;left:50%;bottom:5vh;translate:-50% 0;z-index:6;display:flex;flex-direction:column;align-items:center;gap:12px;width:max-content;max-width:calc(100vw - 32px);padding:16px 18px;border-radius:22px;
@@ -209,9 +211,47 @@ img{max-width:100%;display:block}
 }
 
 /* ---------- SECUENCIA POR SCROLL ---------- */
-.seq{position:relative;height:300vh;background:linear-gradient(180deg,var(--cream),#E9E7E1)}
+.seq{position:relative;height:440vh;background:linear-gradient(180deg,var(--cream),#E9E7E1)}
+/* Modo video: el fondo toma los tonos cálidos del video y los bordes del video se difuminan */
+.seq.is-video{background:radial-gradient(ellipse 70% 60% at 50% 45%,#F6E3CC 0%,#EBCBA6 60%,#DFBB93 100%)}
+.seq.is-video .seq-plinth{display:none}
+/* Fondo a todo el ancho: cuadro del video en baja resolución, ampliado y desenfocado */
+.seq-backdrop{display:none;position:absolute;left:-6%;top:-6%;width:112%;height:112%;z-index:0;filter:blur(22px) saturate(1.15);pointer-events:none}
+.seq.is-video .seq-backdrop{display:block}
+.seq.is-video .seq-stage::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse 45% 60% at 50% 50%,rgba(246,227,204,0) 40%,rgba(246,227,204,.35) 100%)}
+/* Video nítido al centro, alto de toda la pantalla y con bordes muy suaves para fundirse con el fondo */
+.seq.is-video .seq-canvas{width:min(78vw,54vh);
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 24%,#000 76%,transparent),linear-gradient(to bottom,transparent,#000 7%,#000 93%,transparent);
+  -webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 24%,#000 76%,transparent),linear-gradient(to bottom,transparent,#000 7%,#000 93%,transparent);mask-composite:intersect}
+/* PC con video horizontal: ocupa toda la pantalla, sin fondo desenfocado ni bordes difuminados */
+.seq.is-wide .seq-stage::after{display:none}
+.seq.is-video.is-wide .seq-canvas{position:absolute;inset:0;width:100%;height:100%;margin:0;aspect-ratio:auto;-webkit-mask-image:none;mask-image:none}
+.seq.is-video .seq-caption{z-index:5;background:rgba(251,250,247,.82);padding:14px 18px;border-radius:18px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 12px 30px rgba(60,40,20,.12)}
+@media(max-width:760px){
+  .seq.is-video .seq-canvas{width:min(92vw,48vh);margin-top:10vh}
+  .seq.is-video .seq-caption{padding:12px 14px;border-radius:16px}
+}
+/* Efecto fruta → jugo → lata */
+.ego-tint{position:absolute;inset:0;z-index:0;opacity:0;pointer-events:none;background:radial-gradient(ellipse 60% 55% at 50% 58%,rgba(213,133,31,.38),rgba(213,133,31,.1) 60%,transparent 82%)}
+.ego-glow{position:absolute;left:50%;top:55%;width:min(560px,92vw);aspect-ratio:1;translate:-50% -50%;border-radius:50%;z-index:1;opacity:0;pointer-events:none;background:radial-gradient(circle,rgba(246,194,126,.95),rgba(213,133,31,.35) 40%,transparent 70%)}
+.ego-fruit{position:absolute;left:50%;top:0;width:min(210px,44vw);aspect-ratio:1;margin-left:calc(min(210px,44vw) / -2);margin-top:calc(min(210px,44vw) / -2);z-index:3;pointer-events:none;will-change:transform,opacity}
+.ego-fruit svg,.ego-fruit img{position:absolute;inset:0;width:100%;height:100%}
+.ego-fruit img{object-fit:contain;opacity:0}
+.ego-fruit.has-img img{opacity:1}.ego-fruit.has-img svg{display:none}
+.ego-fruit .shine{position:absolute;inset:-25%;border-radius:50%;opacity:0;z-index:2;background:radial-gradient(circle,rgba(255,244,220,.95),rgba(255,200,120,.45) 35%,transparent 65%)}
+.ego-juice{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none;overflow:visible}
+.ego-juice path{fill:none;stroke-linecap:round;stroke-dasharray:1 1;stroke-dashoffset:1}
+#egoJuicePath{stroke:#E8742A;stroke-width:16}
+#egoJuiceHi{stroke:rgba(255,236,200,.7);stroke-width:4}
+.ego-drops,.ego-orbit{position:absolute;inset:0;pointer-events:none}
+.ego-orbit{z-index:1}.ego-orbit.front,.ego-drops{z-index:4}
+.ego-drop{position:absolute;left:0;top:0;width:14px;height:18px;margin:-9px 0 0 -7px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;opacity:0;will-change:transform,opacity;background:radial-gradient(circle at 35% 30%,#ffd9a8,#E8742A 55%,#b4521a)}
+.ego-o{position:absolute;left:0;top:0;width:var(--s,60px);height:var(--s,60px);margin:calc(var(--s,60px) / -2) 0 0 calc(var(--s,60px) / -2);opacity:0;will-change:transform,opacity}
+.ego-o svg,.ego-o img{width:100%;height:100%;object-fit:contain}
+@media(min-width:861px){.ego-o.blur svg,.ego-o.blur img{filter:blur(3px)}}
 .seq-stage{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden}
-.seq-canvas{width:min(360px,64vw);aspect-ratio:3/4;position:relative;z-index:2}
+.seq-canvas{width:min(360px,64vw,48vh);aspect-ratio:3/4;position:relative;z-index:2;will-change:transform,opacity}
 .seq-plinth{position:absolute;bottom:10vh;left:50%;translate:-50% 0;width:min(460px,86vw);height:15vh;border-radius:4px 4px 0 0;background:linear-gradient(180deg,#d6d4cf 0,#bebcb7 8%,#acaaa5 9%,#a7a7a7 70%,#999 100%);z-index:1}
 .seq-caption{position:absolute;max-width:300px;opacity:0;translate:0 20px;transition:opacity .6s ease,translate .8s var(--ease);z-index:3}
 .seq-caption.on{opacity:1;translate:0 0}
@@ -220,7 +260,8 @@ img{max-width:100%;display:block}
 .seq-caption .kicker{color:var(--sage-deep)}
 .cap-1{left:7vw;top:22vh}.cap-2{right:7vw;top:32vh;text-align:right}.cap-3{left:7vw;top:48vh}.cap-4{right:7vw;top:58vh;text-align:right}
 @media(max-width:760px){
-  .seq{height:240vh}
+  .seq{height:360vh}
+  .ego-drop{width:10px;height:13px}
   .seq-canvas{width:min(240px,56vw);margin-top:14vh}
   .seq-caption{left:16px!important;right:16px!important;top:12vh!important;max-width:none;text-align:center!important}
   .seq-plinth{bottom:8vh;height:12vh}
@@ -267,7 +308,7 @@ img{max-width:100%;display:block}
 .need-card strong{display:block;color:var(--sage-ink);line-height:1.25}
 .need-card span.desc{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;color:var(--muted);font-size:.8rem;margin-top:6px}
 .need-card[data-need="personalizado"]{border-color:rgba(199,161,90,.55);background:linear-gradient(145deg,#fffdf8,#fbfaf6)}
-.need-card[data-need="personalizado"] .need-icon{background:#efe0bd;color:var(--sage-ink)}
+.need-card[data-need="personalizado"] .need-icon{background:var(--amber-soft);color:var(--sage-ink)}
 /* Imagen faltante (aún no subida) */
 .img-wrap{position:relative}
 .img-wrap.noimg::after{content:attr(data-label);position:absolute;inset:0;display:grid;place-items:center;font-family:'Fraunces',serif;font-size:1.6rem;color:var(--sage-deep);background:linear-gradient(145deg,var(--sage-soft),#d5dfcb)}
@@ -353,7 +394,7 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 .cart-card .img-wrap{min-height:100%;background:var(--sage-soft)}
 .cart-card .img-wrap img{width:100%;height:100%;object-fit:cover}
 .cart-info{padding:26px}
-.cart-badge{display:inline-block;padding:6px 11px;border-radius:999px;background:#efe0bd;color:var(--sage-ink);font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.cart-badge{display:inline-block;padding:6px 11px;border-radius:999px;background:var(--amber-soft);color:var(--sage-ink);font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
 .cart-info h3{font-size:clamp(1.6rem,2.6vw,2.1rem);line-height:1.1;color:var(--sage-ink);margin:12px 0 10px}
 .cart-info p{color:var(--muted);font-size:.92rem}
 .cart-chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0}
@@ -486,9 +527,9 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
   .star-item{left:50%;top:47%}
   .star-item .pvis{--w:170px;margin:-110px 0 0 -85px}
   .stars-plinth{left:50%;top:calc(47% + 100px);width:76vw;height:10vh}
-  .stars-copy{left:16px;right:16px;width:auto;top:auto;bottom:16vh;text-align:center}
+  .stars-copy{left:16px;right:16px;width:auto;top:61vh;bottom:auto;text-align:center}
   .star-in{justify-content:center}
-  .stars-dots{left:50%;translate:-50% 0;bottom:7vh}
+  .stars-dots{left:50%;translate:-50% 0;bottom:3vh}
 }
 
 /* ---------- PRODUCTOS DENTRO DEL CARRITO ---------- */
@@ -557,7 +598,7 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 .quiz-section .section-head h2{color:#fff}
 .quiz-section .section-head p{color:rgba(255,255,255,.88)}
 .quiz-points{list-style:none;display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.86rem;color:rgba(255,255,255,.9)}
-.quiz-points li::before{content:"✓";color:#f4e2b8;font-weight:800;margin-right:6px}
+.quiz-points li::before{content:"✓";color:var(--amber-light);font-weight:800;margin-right:6px}
 .quiz{background:rgba(255,255,255,.97);color:var(--ink);border-radius:24px;padding:26px;box-shadow:0 30px 70px rgba(30,40,25,.2);max-width:470px;width:100%;justify-self:center}
 .quiz-top{display:flex;justify-content:space-between;align-items:center;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
 .quiz-back{background:none;border:0;color:var(--muted);font-weight:600;font-size:.82rem;text-transform:none;letter-spacing:0}
@@ -743,8 +784,25 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
     <!-- ✏️ Las características que aparecen mientras gira la lata se editan en SEQ_PRODUCT (script de datos) -->
     <div id="seqCaptions"></div>
     <!-- 🖼️ Aquí se dibuja la secuencia de la lata girando. Para usar tus cuadros reales, mira SEQUENCE en el script. -->
+    <!-- Fondo: el mismo cuadro del video, ampliado y desenfocado a todo el ancho (para que no se vea como un reel angosto) -->
+    <canvas class="seq-backdrop" id="seqBackdrop" aria-hidden="true"></canvas>
     <canvas class="seq-canvas" id="seqCanvas" aria-label="Lata de Ego Frutas girando"></canvas>
     <div class="seq-plinth" aria-hidden="true"></div>
+
+    <!-- 🍊 EFECTO "FRUTA → JUGO → LATA" (como el video de referencia). Lo mueve el script con el scroll.
+         Imágenes opcionales con fondo transparente: mira EGO_FX en el script de datos. -->
+    <div class="ego-tint" id="egoTint" aria-hidden="true"></div>
+    <div class="ego-glow" id="egoGlow" aria-hidden="true"></div>
+    <div class="ego-orbit" id="egoOrbitBack" aria-hidden="true"></div>
+    <svg class="ego-juice" id="egoJuice" aria-hidden="true"><path id="egoJuicePath" pathLength="1"/><path id="egoJuiceHi" pathLength="1"/></svg>
+    <div class="ego-fruit" id="egoFruit" aria-hidden="true">
+      <div class="shine"></div>
+      <svg viewBox="0 0 100 100"><defs><radialGradient id="gOr" cx=".38" cy=".35" r=".7"><stop offset="0" stop-color="#FFC27A"/><stop offset=".55" stop-color="#E8742A"/><stop offset="1" stop-color="#A9461A"/></radialGradient></defs>
+        <circle cx="50" cy="54" r="40" fill="url(#gOr)"/><path d="M50 16c6-10 18-12 26-8-6 9-16 12-26 8z" fill="#5E8A4A"/><path d="M50 18v-8" stroke="#6b4a2a" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="36" cy="38" rx="9" ry="5" fill="#fff" opacity=".45" transform="rotate(-30 36 38)"/></svg>
+    </div>
+    <div class="ego-drops" id="egoDrops" aria-hidden="true"></div>
+    <div class="ego-orbit front" id="egoOrbitFront" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -784,15 +842,15 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
           <circle cx="176" cy="42" r="4" fill="#FBFAF7" stroke="#2F3A2B" stroke-width="2"/>
           <circle cx="190" cy="28" r="7" fill="#FBFAF7" stroke="#2F3A2B" stroke-width="2"/>
           <circle cx="222" cy="10" r="22" fill="#FBFAF7" stroke="#2F3A2B" stroke-width="2.5"/>
-          <text x="222" y="19" text-anchor="middle" font-family="Fraunces,serif" font-size="26" fill="#C7A15A">?</text>
+          <text x="222" y="19" text-anchor="middle" font-family="Fraunces,serif" font-size="26" fill="#D5851F">?</text>
         </g>
         <g class="prop prop-list">
           <rect x="88" y="138" width="84" height="76" rx="8" fill="#FBFAF7" stroke="#2F3A2B" stroke-width="3"/>
-          <rect x="114" y="132" width="32" height="12" rx="4" fill="#C7A15A"/>
+          <rect x="114" y="132" width="32" height="12" rx="4" fill="#D5851F"/>
           <path d="M98 160l5 5 9-10M98 180l5 5 9-10M98 200l5 5 9-10" fill="none" stroke="#5E6E54" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M120 162h40M120 182h34M120 202h38" stroke="#A7A7A7" stroke-width="4" stroke-linecap="round"/>
         </g>
-        <g class="prop prop-spark" fill="#C7A15A">
+        <g class="prop prop-spark" fill="#D5851F">
           <path d="M60 40l4 10 10 4-10 4-4 10-4-10-10-4 10-4z"/>
           <path d="M212 34l3 8 8 3-8 3-3 8-3-8-8-3 8-3z"/>
           <path d="M228 100l2.5 6 6 2.5-6 2.5-2.5 6-2.5-6-6-2.5 6-2.5z"/>
@@ -807,7 +865,7 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
         <g class="prop prop-cart">
           <path d="M206 140 l12 0 l10 62 l62 0" stroke="#2F3A2B" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M222 156 h70 l-8 38 h-56z" fill="#F3F1EC" stroke="#2F3A2B" stroke-width="4" stroke-linejoin="round"/>
-          <rect x="234" y="162" width="14" height="26" rx="3" fill="#9CAF88"/><rect x="252" y="158" width="14" height="30" rx="3" fill="#C7A15A"/><rect x="270" y="164" width="11" height="24" rx="3" fill="#5E6E54"/>
+          <rect x="234" y="162" width="14" height="26" rx="3" fill="#9CAF88"/><rect x="252" y="158" width="14" height="30" rx="3" fill="#D5851F"/><rect x="270" y="164" width="11" height="24" rx="3" fill="#5E6E54"/>
           <circle cx="238" cy="214" r="7" fill="#2F3A2B"/><circle cx="280" cy="214" r="7" fill="#2F3A2B"/>
         </g>
         <g class="body-all">
@@ -818,7 +876,7 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
           <path d="M116 108 l14 18 l14 -18" fill="none" stroke="#F3F1EC" stroke-width="4" stroke-linejoin="round"/>
           <g class="prop prop-board">
             <rect x="82" y="142" width="96" height="70" rx="10" fill="#FBFAF7" stroke="#2F3A2B" stroke-width="3"/>
-            <rect x="92" y="152" width="34" height="22" rx="5" fill="#9CAF88"/><rect x="134" y="152" width="34" height="22" rx="5" fill="#C7A15A"/>
+            <rect x="92" y="152" width="34" height="22" rx="5" fill="#9CAF88"/><rect x="134" y="152" width="34" height="22" rx="5" fill="#D5851F"/>
             <rect x="92" y="180" width="34" height="22" rx="5" fill="#A7A7A7"/><rect x="134" y="180" width="34" height="22" rx="5" fill="#5E6E54"/>
           </g>
           <g class="head">
@@ -1107,6 +1165,27 @@ const SEQ_PRODUCT = {
     {title:"Sabor",           text:"Texto de prueba: describe su sabor en una línea."},
     {title:"Cómo se prepara", text:"Texto de prueba: por ejemplo, 1 porción en agua fría."},
     {title:"Presentación",    text:"Texto de prueba: tamaño de la lata y porciones."}
+  ]
+};
+
+/* 🍊 EFECTO "FRUTA → JUGO → LATA" de la sección de Ego Frutas.
+   Mientras no haya imágenes, se dibujan figuras de prueba.
+   - fruit: imagen de la fruta principal que brilla y se convierte en jugo (WebP transparente ~500 px).
+   - juice: color del chorro de jugo.
+   - orbit: frutas que flotan alrededor de la lata al final. shape (figura de prueba): slice | strawberry | berry | leaf.
+       image (opcional): WebP transparente ~200 px · ang: posición en grados · r: distancia · s: tamaño en px
+       front: true = pasa por delante de la lata · blur: true = desenfocada (da profundidad) */
+const EGO_FX = {
+  fruit: "ego-fruta.webp",
+  juice: "#E8742A",
+  orbit: [
+    {shape:"slice",      image:"", ang:-155, r:1.0,  s:74},
+    {shape:"strawberry", image:"", ang:-28,  r:1.05, s:66, front:true},
+    {shape:"berry",      image:"", ang:18,   r:.95,  s:34},
+    {shape:"leaf",       image:"", ang:165,  r:1.12, s:64, front:true, blur:true},
+    {shape:"slice",      image:"", ang:102,  r:1.12, s:48, front:true, blur:true},
+    {shape:"strawberry", image:"", ang:-100, r:1.2,  s:40},
+    {shape:"berry",      image:"", ang:62,   r:1.08, s:26, front:true}
   ]
 };
 
@@ -1451,7 +1530,7 @@ function renderArma(){
 armaGrid.addEventListener("click", e => {
   const b = e.target.closest("[data-arma]"); if(!b) return;
   const card = b.closest("[data-product]"), id = card.dataset.product;
-  if(Number(b.dataset.arma) < 0) window.HG3D && window.HG3D.buddySay("Sin problema, ajústalo a tu gusto 😊", "5");
+  if(Number(b.dataset.arma) < 0) window.HG3D && window.HG3D.buddySay(null, "5");
   armaQty[id] = Math.max(0, (armaQty[id] || 0) + Number(b.dataset.arma));
   if(!armaQty[id]) delete armaQty[id];
   saveArma();
@@ -1462,8 +1541,8 @@ armaGrid.addEventListener("click", e => {
   updateArmaBar(true);
   if(Number(b.dataset.arma) > 0){
     track("arma_agregar", {producto: PRODUCTS[id].name});
-    const cheers = ["¡Buena elección! 🎉", "¡Va a tu lista! 🛒", "¡Me encanta ese! 💚"];
-    window.HG3D && window.HG3D.buddySay(cheers[armaTotal() % cheers.length], "6");
+    // Solo habla con el primer producto; después celebra en silencio
+    window.HG3D && window.HG3D.buddySay("¡Buena elección! Cuando termines, envíame tu lista 💚", "6", 2600, "arma-first");
   }
 });
 
@@ -1492,7 +1571,7 @@ document.getElementById("heroAdd").addEventListener("click", function(){
   track("arma_agregar", {producto: PRODUCTS[id].name, origen: "inicio"});
   this.dataset.added = "1";
   this.textContent = "✓ Agregado · Ver mi lista";
-  window.HG3D && window.HG3D.buddySay("¡Ya está en tu lista! 🎉", "6");
+  window.HG3D && window.HG3D.buddySay(null, "6");
 });
 document.getElementById("armaSend").addEventListener("click", () => track("arma_carrito_whatsapp", {productos: armaTotal(), pais: selectedCountry ? COUNTRIES[selectedCountry].name : ""}));
 
@@ -1572,7 +1651,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     var bar = el('div','quiz-bar'); for(var k=0;k<3;k++) bar.appendChild(el('i',k<=step?'on':'')); box.appendChild(bar);
     box.appendChild(el('h3','',Q[step].t));
     var opts = el('div','quiz-opts');
-    Q[step].o.forEach(function(o){ var bt=el('button','quiz-opt',o[0]); bt.type='button'; bt.onclick=function(){ans.push(o);step++;setTimeout(render,160); if(step===2 && window.HG3D) window.HG3D.buddySay('¡Vas muy bien! 🙌','6',1600);}; opts.appendChild(bt); });
+    Q[step].o.forEach(function(o){ var bt=el('button','quiz-opt',o[0]); bt.type='button'; bt.onclick=function(){ans.push(o);step++;setTimeout(render,160); if(step===2 && window.HG3D) window.HG3D.buddySay(null,'6',1600);}; opts.appendChild(bt); });
     box.appendChild(opts);
   }
   function result(){
@@ -1591,7 +1670,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     var ln = el('div','quiz-links'); var again = el('button','','Repetir test'); again.type='button'; again.onclick=function(){step=0;ans=[];render();};
     var all = el('a','','Ver todos los carritos'); all.href = '#paises'; ln.appendChild(again); ln.appendChild(all); act.appendChild(ln);
     r.appendChild(act); box.appendChild(r);
-    window.HG3D && window.HG3D.buddySay('¡Encontramos tu carrito! 🎉', '6', 2200);
+    window.HG3D && window.HG3D.buddySay('¡Listo! Si quieres, te lo explico por WhatsApp 💚', '6', 3000, 'quiz-result');
   }
   render();
 })();
@@ -1706,9 +1785,32 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
        2. Nómbralas ego_001.webp ... ego_060.webp y súbelas a una carpeta "frames".
        3. Cambia src: null por:
           src: function(i){ return 'frames/ego_' + String(i + 1).padStart(3, '0') + '.webp'; }
-       En celular se cargan solo 30 (una sí, una no) para que pese la mitad. */
-  var SEQUENCE = { desktopFrames: 60, mobileFrames: 30, src: null };
-  var frames = isMobile ? SEQUENCE.mobileFrames : SEQUENCE.desktopFrames;
+       En celular se cargan solo 30 (una sí, una no) para que pese la mitad.
+
+     🎬 OPCIÓN VIDEO COMPLETO (como el reel): si generas con IA un video que ya incluye
+       fruta → jugo → lata → giro, saca ~90 cuadros (ego_001 ... ego_090), pon desktopFrames: 90,
+       mobileFrames: 45 y withIntro: true. Así los cuadros cubren todo el efecto y se apaga
+       la animación hecha con código (fruta, chorro, gotas). */
+  // ✅ Activado con los videos de Ego Frutas (frutos del bosque → jugo → lata).
+  //    La página carga SOLO el video del dispositivo:
+  //    total: cuadros que hay en la carpeta · load: cuántos carga (en celular uno sí, uno no)
+  var SEQUENCE_SETS = {
+    // 📱 Celular: video vertical 9:16 (carpeta "frames"), a pantalla completa y nítido (sin fondo desenfocado)
+    mobile: { total: 96, load: 48, aspect: '9 / 16', wide: true,
+              src: function(i){ return 'frames/ego_' + String(i + 1).padStart(3, '0') + '.webp'; } },
+    // 💻 Computadora: video horizontal 16:9 (carpeta "frames-pc"), a pantalla completa
+    pc:     { total: 96, load: 96, aspect: '16 / 9', wide: true,
+              src: function(i){ return 'frames-pc/ego_' + String(i + 1).padStart(3, '0') + '.webp'; } }
+  };
+  var SET = matchMedia('(min-width:861px)').matches ? SEQUENCE_SETS.pc : SEQUENCE_SETS.mobile;
+  //    El video avanza durante TODO el scroll de la sección (nunca se congela):
+  //    formVideo: en qué parte del video (0 a 1) la lata ya está completa (en tus videos, ~0.6).
+  //    formScroll: en qué parte del scroll pasa eso. Antes de ese punto el video va rápido (se forma la lata);
+  //    después sigue en cámara lenta (frutas flotando) mientras salen las características.
+  var SEQUENCE = { withIntro: true, formVideo: .6, formScroll: .4, aspect: SET.aspect, wide: SET.wide,
+                   desktopFrames: SET.total, mobileFrames: SET.load, src: SET.src };
+  var INTRO_END = SEQUENCE.formScroll;   // desde aquí (0 a 1) salen las características: la lata ya está completa
+  var frames = SET.load;
   var seq = document.getElementById('producto');
   var canvas = document.getElementById('seqCanvas');
   var ctx = canvas.getContext('2d');
@@ -1717,7 +1819,9 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     var sp = (typeof SEQ_PRODUCT !== 'undefined') ? SEQ_PRODUCT : { features: [] };
     var nm = (PRODUCTS[sp.id] || {}).name || '', n = sp.features.length;
     document.getElementById('seqCaptions').innerHTML = sp.features.map(function(f, i){
-      return '<div class="seq-caption cap-' + (i % 4 + 1) + '" data-from="' + (i / n).toFixed(3) + '" data-to="' + (i === n - 1 ? 1.01 : (i + 1) / n).toFixed(3) + '">' +
+      // Las características salen después del efecto de la fruta (desde INTRO_END hasta el final)
+      var a = INTRO_END + .02, span = (1 - a) / n;
+      return '<div class="seq-caption cap-' + (i % 4 + 1) + '" data-from="' + (a + i * span).toFixed(3) + '" data-to="' + (i === n - 1 ? 1.01 : a + (i + 1) * span).toFixed(3) + '">' +
         '<div class="kicker">0' + (i + 1) + ' · ' + nm + '</div><h3 class="serif">' + f.title + '</h3><p>' + f.text + '</p></div>';
     }).join('');
   })();
@@ -1727,6 +1831,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   function sizeCanvas(){
     var dpr = Math.min(window.devicePixelRatio || 1, 2), r = canvas.getBoundingClientRect();
     canvas.width = Math.round(r.width * dpr); canvas.height = Math.round(r.height * dpr);
+    sizeBackdrop();
     current = -1; applySeq();
   }
   if (SEQUENCE.src){
@@ -1768,25 +1873,178 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     ctx.fillStyle = g; ctx.beginPath(); ctx.ellipse(cx0, top, r, lid, 0, 0, Math.PI * 2); ctx.fill();
     ctx.fillStyle = '#cfcec9'; ctx.beginPath(); ctx.ellipse(cx0, top, r * .82, lid * .75, 0, 0, Math.PI * 2); ctx.fill();
   }
-  function drawFrame(f){
-    if (SEQUENCE.src){
-      var img = images[f];
-      if (!img || !img.complete || !img.naturalWidth){
-        for (var k = f; k >= 0; k--) if (images[k].complete && images[k].naturalWidth){ img = images[k]; break; }
-        if (!img || !img.naturalWidth) return;
-      }
-      var W = canvas.width, H = canvas.height, s = Math.min(W / img.naturalWidth, H / img.naturalHeight);
-      ctx.clearRect(0, 0, W, H);
-      ctx.drawImage(img, (W - img.naturalWidth * s) / 2, (H - img.naturalHeight * s) / 2, img.naturalWidth * s, img.naturalHeight * s);
-    } else drawProcedural(f / frames * Math.PI * 2);
+  function loaded(im){ return im && im.complete && im.naturalWidth; }
+  // En PC el video horizontal llena la pantalla, pero sin acercarse más de 1.2× (para no cortar la lata
+  // en pantallas muy anchas o bajas; si sobra espacio a los lados, se ve el fondo desenfocado).
+  // En celular el video vertical se ve completo ("contain").
+  function drawFit(img){
+    var W = canvas.width, H = canvas.height, fitH = H / img.naturalHeight;
+    var s = SEQUENCE.wide ? Math.max(fitH, Math.min(W / img.naturalWidth, fitH * 1.2)) : Math.min(W / img.naturalWidth, fitH);
+    ctx.drawImage(img, (W - img.naturalWidth * s) / 2, (H - img.naturalHeight * s) / 2, img.naturalWidth * s, img.naturalHeight * s);
   }
+  // ff puede tener decimales: dibuja el cuadro actual y funde encima el siguiente según cuánto falta
+  // para llegar a él. Así el movimiento se ve continuo aunque haya pocos cuadros (sobre todo en celular).
+  function drawFrame(ff){
+    if (!SEQUENCE.src){ drawProcedural(ff / frames * Math.PI * 2); return; }
+    var f = Math.floor(ff), a = ff - f, img = images[f];
+    if (!loaded(img)){
+      for (var k = f; k >= 0; k--) if (loaded(images[k])){ img = images[k]; a = 0; break; }
+      if (!loaded(img)) return;
+    }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.globalAlpha = 1; drawFit(img);
+    var next = images[f + 1];
+    if (a > .02 && loaded(next)){ ctx.globalAlpha = a; drawFit(next); ctx.globalAlpha = 1; }
+    drawBackdrop(a > .5 && loaded(next) ? next : img);
+  }
+  // Tiempo del video según el scroll: rápido mientras se forma la lata, cámara lenta después
+  function videoTime(p){
+    var fs = SEQUENCE.formScroll, fv = SEQUENCE.formVideo;
+    return p < fs ? (p / fs) * fv : fv + ((p - fs) / (1 - fs)) * (1 - fv);
+  }
+
+  // Fondo a todo el ancho: el mismo cuadro en miniatura ("cover"), que el CSS amplía y desenfoca.
+  // Dibujarlo tan pequeño es lo que lo hace ligero, también en celular.
+  var backdrop = document.getElementById('seqBackdrop'), bctx = backdrop.getContext('2d');
+  function sizeBackdrop(){
+    var st = seq.querySelector('.seq-stage');
+    backdrop.width = 96; backdrop.height = Math.max(1, Math.round(96 * st.offsetHeight / Math.max(1, st.offsetWidth)));
+  }
+  function drawBackdrop(img){
+    var bw = backdrop.width, bh = backdrop.height;
+    // Usa la parte central del video (donde está la lata) para que el fondo tenga sus colores
+    var s = Math.max(bw / img.naturalWidth, bh / (img.naturalHeight * .6));
+    var dw = img.naturalWidth * s, dh = img.naturalHeight * s;
+    bctx.drawImage(img, (bw - dw) / 2, (bh - dh) / 2, dw, dh);
+  }
+  /* ---------- 2b) EFECTO FRUTA → JUGO → LATA ----------
+     Etapas según el scroll de la sección (0 a 1):
+       0.00–0.14 la fruta flota y empieza a brillar
+       0.12–0.26 la fruta se abre en gotas
+       0.16–0.40 cae el chorro de jugo y la lata sube desde abajo
+       0.33–0.46 salpica, se ilumina en ámbar y aparecen frutas flotando
+       0.46–1.00 la lata gira y salen sus características */
+  var stageEl = seq.querySelector('.seq-stage'), smallFx = matchMedia('(max-width:860px)');
+  var egoFruit = document.getElementById('egoFruit'), egoShine = egoFruit.querySelector('.shine');
+  var egoTint = document.getElementById('egoTint'), egoGlow = document.getElementById('egoGlow');
+  var juiceSvg = document.getElementById('egoJuice'), juiceP = document.getElementById('egoJuicePath'), juiceHi = document.getElementById('egoJuiceHi');
+  var FX = (typeof EGO_FX !== 'undefined') ? EGO_FX : { orbit: [] };
+  if (FX.juice) juiceP.style.stroke = FX.juice;
+  if (FX.fruit){
+    var fImg = new Image(); fImg.alt = ''; fImg.decoding = 'async';
+    fImg.onload = function(){ egoFruit.classList.add('has-img'); };
+    fImg.src = FX.fruit; egoFruit.appendChild(fImg);
+  }
+  var SHAPES = {
+    slice: '<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="#F5A54A"/><circle cx="50" cy="50" r="36" fill="#FFD08A"/><path d="M50 14V86M14 50H86M24.5 24.5L75.5 75.5M75.5 24.5L24.5 75.5" stroke="#F5A54A" stroke-width="3"/></svg>',
+    strawberry: '<svg viewBox="0 0 100 100"><path d="M50 92C26 76 16 56 20 40c4-14 20-18 30-12 10-6 26-2 30 12 4 16-6 36-30 52z" fill="#D9473A"/><path d="M34 26c6 2 10 0 16-6 6 6 10 8 16 6-4 8-10 10-16 8-6 2-12 0-16-8z" fill="#5E8A4A"/><g fill="#FFE3A8"><circle cx="38" cy="48" r="2"/><circle cx="52" cy="44" r="2"/><circle cx="64" cy="52" r="2"/><circle cx="44" cy="62" r="2"/><circle cx="58" cy="66" r="2"/><circle cx="50" cy="78" r="2"/></g></svg>',
+    berry: '<svg viewBox="0 0 100 100"><circle cx="50" cy="52" r="36" fill="#4B4F8C"/><circle cx="40" cy="40" r="8" fill="#fff" opacity=".35"/><path d="M42 20l8 8 8-8" stroke="#2c2f5e" stroke-width="5" fill="none"/></svg>',
+    leaf: '<svg viewBox="0 0 100 60"><path d="M0 30C20 0 70 0 100 30 70 60 20 60 0 30z" fill="#7FA36A"/></svg>'
+  };
+  var orbitEls = FX.orbit.map(function(o){
+    var el = document.createElement('div');
+    el.className = 'ego-o' + (o.blur ? ' blur' : '');
+    el.style.setProperty('--s', (smallFx.matches ? o.s * .7 : o.s) + 'px');
+    el.innerHTML = o.image ? '<img src="' + o.image + '" alt="">' : (SHAPES[o.shape] || SHAPES.slice);
+    document.getElementById(o.front ? 'egoOrbitFront' : 'egoOrbitBack').appendChild(el);
+    return el;
+  });
+  var dropsBox = document.getElementById('egoDrops'), burst = [], splash = [];
+  for (var di = 0; di < 14; di++){ var d1 = document.createElement('i'); d1.className = 'ego-drop'; dropsBox.appendChild(d1); burst.push({ el: d1, a: di / 14 * Math.PI * 2 + (di % 3) * .2, v: .7 + (di % 4) * .12 }); }
+  for (var dj = 0; dj < 10; dj++){ var d2 = document.createElement('i'); d2.className = 'ego-drop'; dropsBox.appendChild(d2); splash.push({ el: d2, a: -Math.PI + dj / 9 * Math.PI, v: .6 + (dj % 3) * .2 }); }
+  var egoOff = !!(SEQUENCE.src && SEQUENCE.withIntro);
+  if (egoOff){
+    [egoFruit, juiceSvg, dropsBox, document.getElementById('egoOrbitBack'), document.getElementById('egoOrbitFront')].forEach(function(e){ e.style.display = 'none'; });
+    // El lienzo toma la forma del video y el fondo de la sección se iguala a sus colores
+    seq.classList.add('is-video');
+    if (SEQUENCE.wide) seq.classList.add('is-wide');
+    else if (SEQUENCE.aspect) canvas.style.aspectRatio = SEQUENCE.aspect;
+  }
+
+  function applyEgo(p){
+    var W = stageEl.offsetWidth, H = stageEl.offsetHeight;
+    juiceSvg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    var cvTop = canvas.offsetTop, cvH = canvas.offsetHeight, cvW = canvas.offsetWidth, cx = W / 2;
+    var canTop = cvTop + cvH * .17, canMidY = cvTop + cvH * .55;
+    var A = clamp01(p / .14), B = clamp01((p - .12) / .14), C = clamp01((p - .2) / .18), D = clamp01((p - .36) / .12);
+
+    // Lata: sube desde abajo
+    var rise = 1 - easeOut(C);
+    // Con video: acercamiento lento y continuo mientras salen las características (sensación de cámara viva)
+    canvas.style.transform = egoOff
+      ? 'scale(' + (1 + .07 * clamp01((p - INTRO_END) / (1 - INTRO_END))).toFixed(4) + ')'
+      : 'translate3d(0,' + (rise * H * .65).toFixed(1) + 'px,0) scale(' + (.9 + .1 * easeOut(C)).toFixed(3) + ')';
+    canvas.style.opacity = egoOff ? '' : Math.min(1, C * 2.2).toFixed(3);
+
+    // Brillo ámbar y fondo cálido cuando la lata "aterriza"
+    var flash = Math.sin(D * Math.PI);
+    egoGlow.style.opacity = (.3 * D + .55 * flash).toFixed(3);
+    egoGlow.style.transform = 'scale(' + (.6 + .5 * D).toFixed(3) + ')';
+    egoTint.style.opacity = (D * .95).toFixed(3);
+    if (egoOff) return;
+
+    // Fruta: flota, brilla y se abre
+    var fy = H * (smallFx.matches ? .3 : .26), fs = egoFruit.offsetWidth;
+    var fScale = .8 + .25 * easeOut(A) + .35 * B, fOp = 1 - clamp01((B - .3) / .5);
+    egoFruit.style.transform = 'translate3d(0,' + (fy + Math.sin(A * Math.PI) * -10).toFixed(1) + 'px,0) rotate(' + (A * 10 - B * 25).toFixed(1) + 'deg) scale(' + fScale.toFixed(3) + ')';
+    egoFruit.style.opacity = fOp.toFixed(3);
+    egoShine.style.opacity = (A * .9 * (1 - B * .6)).toFixed(3);
+
+    // Gotas que salen al abrirse la fruta
+    burst.forEach(function(b){
+      var t = B, dist = fs * 1.4 * b.v * easeOut(t);
+      var x = cx + Math.cos(b.a) * dist, y = fy + Math.sin(b.a) * dist + t * t * 90;
+      b.el.style.opacity = (t > 0 && t < 1 ? 1 - t : 0).toFixed(3);
+      b.el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotate(' + (b.a * 57 + 90).toFixed(0) + 'deg) scale(' + (1.2 - t * .6).toFixed(2) + ')';
+    });
+
+    // Chorro de jugo: se dibuja hacia la lata y luego se vacía
+    var grow = clamp01((p - .16) / .12), drain = clamp01((p - .31) / .09);
+    var ey = canTop + rise * H * .65 + 6;
+    var dPath = 'M' + cx + ' ' + (fy + fs * .15).toFixed(1) + ' Q' + (cx + 14) + ' ' + ((fy + ey) / 2).toFixed(1) + ' ' + cx + ' ' + ey.toFixed(1);
+    juiceP.setAttribute('d', dPath); juiceHi.setAttribute('d', dPath);
+    var off = grow < 1 ? 1 - grow : -drain;
+    juiceP.style.strokeDashoffset = off.toFixed(3); juiceHi.style.strokeDashoffset = off.toFixed(3);
+    juiceP.style.strokeWidth = (16 * (1 - drain * .7)).toFixed(1);
+
+    // Salpicadura en la boca de la lata
+    var s = clamp01((p - .33) / .12);
+    splash.forEach(function(b){
+      var x = cx + Math.cos(b.a) * cvW * .45 * b.v * s, y = canTop - Math.sin(s * Math.PI) * 70 * b.v + s * 30;
+      b.el.style.opacity = (s > 0 && s < 1 ? 1 - s : 0).toFixed(3);
+      b.el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) scale(' + (1 - s * .5).toFixed(2) + ')';
+    });
+
+    // Frutas flotando alrededor de la lata
+    var ap = easeOut(clamp01((p - .38) / .12)), spin = Math.max(0, p - .38) * 70;
+    orbitEls.forEach(function(el, i){
+      var o = FX.orbit[i], ang = (o.ang + spin * (i % 2 ? 1 : -1)) * Math.PI / 180;
+      var rad = cvW * .62 * o.r * (.55 + .45 * ap);
+      var x = cx + Math.cos(ang) * rad, y = canMidY + Math.sin(ang) * rad * .6 + Math.sin(p * 12 + i) * 6;
+      el.style.opacity = (ap * (o.front ? .95 : .85)).toFixed(3);
+      el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) rotate(' + (o.ang + spin * 2).toFixed(0) + 'deg) scale(' + (.5 + .5 * ap).toFixed(3) + ')';
+    });
+  }
+
   function applySeq(){
     var r = seq.getBoundingClientRect(), total = seq.offsetHeight - innerHeight;
-    if (r.bottom < -50 || r.top > innerHeight + 50){ if (current === -1){ drawFrame(0); current = 0; } return; }
+    if (r.bottom < -50 || r.top > innerHeight + 50){ if (current === -1){ drawFrame(0); current = 0; applyEgo(0); } return; }
     var p = Math.min(1, Math.max(0, -r.top / total));
-    var f = Math.round(p * (frames - 1));
-    if (f !== current){ current = f; drawFrame(f); }
-    captions.forEach(function(c){ c.classList.toggle('on', p >= +c.dataset.from && p < +c.dataset.to); });
+    applyEgo(p);
+    // Con video: avanza durante todo el scroll. Sin video: la lata de prueba gira después del efecto.
+    var q = egoOff ? videoTime(p) : clamp01((p - INTRO_END) / (1 - INTRO_END));
+    var ff = q * (frames - 1);
+    if (!egoOff) ff = Math.round(ff);
+    if (Math.abs(ff - current) > .005){ current = ff; drawFrame(ff); }
+    // Cada característica aparece en su tramo y sube despacio mientras se ve (no se queda fija)
+    captions.forEach(function(c){
+      var from = +c.dataset.from, to = +c.dataset.to, on = p >= from && p < to;
+      c.classList.toggle('on', on);
+      if (on){
+        var span = Math.min(1, to) - from, local = span > 0 ? clamp01((p - from) / span) : 0;
+        c.style.transform = 'translateY(' + ((.5 - local) * 40).toFixed(1) + 'px)';
+      }
+    });
   }
 
   /* ---------- 3) PERSONAJE GUÍA ----------
@@ -1949,50 +2207,39 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   }
 
   /* ---------- 7) ACOMPAÑANTE EN TODA LA PÁGINA ----------
-     ✏️ Qué hace y qué dice en cada sección. Cada sección tiene varias "lines" (pose + mensaje):
-     la primera sale al llegar y las siguientes van apareciendo si la persona se queda leyendo.
+     El personaje SIEMPRE hace algo (cambia de gesto según la sección), pero HABLA muy poco:
+     solo en momentos importantes y cada mensaje una sola vez por visita.
+     ✏️ En cada sección:
+       poses: gestos que va haciendo en silencio mientras la persona está ahí (cambian cada POSE_EVERY).
+       say:   (opcional) mensaje importante que dice UNA vez al llegar. Úsalo poco.
      {saludo} se cambia por "Buenos días / Buenas tardes / Buenas noches" según la hora.
      Poses: 0 saluda · 1 señala · 2 tablero · 3 carrito · 4 celular · 5 pensando · 6 celebra
             7 apunta arriba · 8 corazón · 9 lista
      hide:true = no aparece en esa sección · mobileHide:true = no aparece ahí en celular. */
   var BUDDY_SCENES = [
-    { id:'inicio', lines:[
-      { pose:'0', msg:'¡{saludo}! Soy Hamilton 👋 Qué gusto que estés aquí.' },
-      { pose:'8', msg:'Recorre la página sin prisa. Si algo no te queda claro, aquí estoy.' } ]},
-    { id:'inicio-red', lines:[
-      { pose:'7', msg:'Aquí ves lo que trae cada producto, para que elijas con calma.' } ]},
-    { id:'producto', lines:[
-      { pose:'1', msg:'Te cuento lo que contiene, para que sepas exactamente qué tomas.' },
-      { pose:'5', msg:'¿Dudas sobre cómo se prepara? Pregúntame sin pena.' } ]},
-    { id:'productos', mobileHide:true, lines:[
-      { pose:'2', msg:'Estos son los que más me piden. Conócelos con calma.' },
-      { pose:'0', msg:'Si uno te llama la atención, te explico cómo usarlo.' } ]},
-    { id:'flujo', hide:true },   // aquí ya está el personaje grande
-    { id:'arma', lines:[
-      { pose:'9', msg:'Elige con calma. Yo reviso tu lista y te digo si combina bien.' },
-      { pose:'5', msg:'¿No sabes cuántos? Agrega uno y lo ajustamos juntos.' },
-      { pose:'3', msg:'Cuando estés listo, me la mandas y la armamos.' } ]},
-    { id:'testimonios', lines:[
-      { pose:'8', msg:'Cada historia es distinta, igual que la tuya 💚' },
-      { pose:'0', msg:'Me encantaría conocer la tuya algún día.' } ]},
-    { id:'test-carrito', lines:[
-      { pose:'5', msg:'Si no sabes por dónde empezar, es normal. El test te orienta en 30 segundos.' },
-      { pose:'0', msg:'Responde con sinceridad; no hay respuestas incorrectas.' } ]},
-    { id:'ayuda', lines:[
-      { pose:'4', msg:'Escríbeme cuando quieras. Te respondo yo, en persona.' } ]},
-    { id:'preguntas', lines:[
-      { pose:'5', msg:'No hay preguntas tontas. Si no ves la tuya, escríbeme.' } ]},
-    { id:'pie', lines:[
-      { pose:'8', msg:'Gracias por tu tiempo 💚 Aquí estaré cuando me necesites.' } ]}
+    { id:'inicio',       poses:['0','8'], say:'¡{saludo}! Soy Hamilton 👋 Aquí estoy si necesitas ayuda.' },
+    { id:'inicio-red',   poses:['7'] },
+    { id:'producto',     poses:['1','5'], mobileHide:true },   // en celular deja ver la lata completa
+    { id:'productos',    poses:['2','0'], mobileHide:true },
+    { id:'flujo',        hide:true },   // aquí ya está el personaje grande
+    { id:'arma',         poses:['9','5','3'], say:'Elige con calma: yo reviso tu lista antes de tu pedido.' },
+    { id:'testimonios',  poses:['8','0'] },
+    { id:'test-carrito', poses:['5','0'], mobileHide:true },   // en celular no tapa las opciones del test
+    { id:'ayuda',        poses:['4'] },
+    { id:'preguntas',    poses:['5'] },
+    { id:'pie',          poses:['8','0'] }
   ];
-  var LINE_EVERY = 9000;   // cada cuánto cambia de mensaje si la persona se queda en la sección (ms)
+  var POSE_EVERY = 7000;   // cada cuánto cambia de gesto (en silencio) si la persona se queda en la sección (ms)
 
   // Saludo según la hora y si ya había visitado la página
   var hr = new Date().getHours();
   var saludo = hr < 5 ? 'Buenas noches' : hr < 12 ? 'Buenos días' : hr < 19 ? 'Buenas tardes' : 'Buenas noches';
   var returning = false;
   try { returning = !!localStorage.getItem('hg_visited'); localStorage.setItem('hg_visited', '1'); } catch (e) {}
-  if (returning) BUDDY_SCENES[0].lines[0] = { pose:'8', msg:'¡{saludo}! Qué gusto verte de nuevo 💚' };
+  if (returning) BUDDY_SCENES[0].say = '¡{saludo}! Qué gusto verte de nuevo 💚';
+  // Cada mensaje se dice una sola vez por visita
+  var said = {};
+  function sayOnce(key, msg){ if (said[key]) return false; said[key] = true; say(msg); return true; }
   function fill(msg){ return msg.replace('{saludo}', saludo); }
 
   var buddy = document.getElementById('buddy'), bubble = document.getElementById('buddyBubble'), bFig = document.getElementById('buddyFig');
@@ -2024,12 +2271,12 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     return found;
   }
   function sceneById(id){ for (var i = 0; i < BUDDY_SCENES.length; i++) if (BUDDY_SCENES[i].id === id) return BUDDY_SCENES[i]; return null; }
-  function playLine(s, i){
-    var l = s.lines[i]; if (!l) return;
-    lineIdx = i; buddyPose(l.pose); say(l.msg);
+  // Gestos en silencio: va cambiando de pose mientras la persona sigue en la sección
+  function playPose(s, i){
+    if (!s.poses || !s.poses.length) return;
+    lineIdx = i % s.poses.length; buddyPose(s.poses[lineIdx]);
     clearTimeout(lineT);
-    // Si la persona sigue en la misma sección, después de un rato cambia de gesto y de mensaje
-    if (i + 1 < s.lines.length) lineT = setTimeout(function(){ if (sceneKey === s.id && !overriding) playLine(s, i + 1); }, LINE_EVERY);
+    if (s.poses.length > 1) lineT = setTimeout(function(){ if (sceneKey === s.id && !overriding) playPose(s, lineIdx + 1); }, POSE_EVERY);
   }
   function updateBuddy(){
     if (!buddyReady || overriding) return;
@@ -2037,32 +2284,34 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     var hide = !s || s.hide || (s.mobileHide && mobileGuide.matches);
     buddy.classList.toggle('show', !hide);
     if (hide){ bubble.classList.remove('on'); clearTimeout(lineT); sceneKey = s ? s.id : null; return; }
-    if (s.id !== sceneKey){ sceneKey = s.id; playLine(s, 0); }
+    if (s.id !== sceneKey){
+      sceneKey = s.id; playPose(s, 0);
+      if (s.say) sayOnce('scene-' + s.id, s.say);
+    }
   }
-  // Al tocarlo, dice el siguiente mensaje de la sección
-  bFig.addEventListener('click', function(){
-    var s = currentScene(); if (!s || !s.lines) return;
-    playLine(s, (lineIdx + 1) % s.lines.length);
-  });
+  // Al tocarlo, saluda y ofrece ayuda (la persona lo pidió, así que sí habla)
+  bFig.addEventListener('click', function(){ buddyPose('4'); say('¿Te ayudo? Escríbeme por WhatsApp y lo vemos juntos 💬'); });
   // Reacciones a lo que hace la persona (agregar productos, terminar el test…)
-  function buddySay(msg, pose, ms){
+  // Reacción a algo que hizo la persona: hace un gesto y, solo si es importante (msg + key), habla una vez
+  function buddySay(msg, pose, ms, key){
     if (!buddy.classList.contains('show')) return;
-    overriding = true; buddyPose(pose || '6'); say(msg);
+    overriding = true; buddyPose(pose || '6');
+    if (msg) { if (key) sayOnce(key, msg); else say(msg); }
     clearTimeout(overrideT);
     overrideT = setTimeout(function(){
       overriding = false;
-      var s = currentScene(); if (s && s.lines && s.lines[lineIdx]) buddyPose(s.lines[lineIdx].pose);
+      var s = currentScene(); if (s && s.poses) buddyPose(s.poses[lineIdx % s.poses.length]);
     }, ms || 2200);
   }
 
-  /* Reacciones empáticas a lo que hace la persona */
+  /* Reacciones a lo que hace la persona (casi todas en silencio, solo con gestos) */
   var video = document.querySelector('#testimonios video');
   if (video){
-    video.addEventListener('play', function(){ buddySay('Tómate tu tiempo, aquí te espero 😊', '8', 3000); });
-    video.addEventListener('ended', function(){ buddySay('¿Te identificaste con alguna historia? Me encantaría escucharte 💬', '4', 4500); });
+    video.addEventListener('play', function(){ buddySay(null, '8', 3000); });
+    video.addEventListener('ended', function(){ buddySay('¿Te identificaste con alguna historia? Escríbeme cuando quieras 💬', '4', 4500, 'video-end'); });
   }
   [].forEach.call(document.querySelectorAll('.faq-list details'), function(d){
-    d.addEventListener('toggle', function(){ if (d.open) buddySay('Buena pregunta. Si te queda alguna duda, escríbeme 💬', '5', 3000); });
+    d.addEventListener('toggle', function(){ if (d.open) buddySay(null, '5', 2500); });
   });
   // Si la persona se queda quieta un rato, le ofrece ayuda (una sola vez por visita)
   var lastActive = Date.now(), offeredHelp = false;
@@ -2070,7 +2319,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   setInterval(function(){
     if (offeredHelp || overriding || Date.now() - lastActive < 25000 || !buddy.classList.contains('show')) return;
     offeredHelp = true;
-    buddySay('¿Te ayudo a elegir? Estoy aquí para ti 😊', '4', 5000);
+    buddySay('¿Te ayudo a elegir? Estoy aquí para ti 😊', '4', 5000, 'idle-help');
   }, 5000);
   setTimeout(function(){ buddyReady = true; updateBuddy(); }, 1600);
   new IntersectionObserver(function(es){ armaIn = es[0].isIntersecting; syncArmaBar(); }, { threshold: .05 }).observe(document.getElementById('arma'));
@@ -2111,7 +2360,8 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     es.forEach(function(e){ on[e.target.id] = e.isIntersecting; });
     fw.classList.toggle('is-away', Object.keys(on).some(function(k){ return on[k]; }));
   }, { threshold: .12 });
-  ['carritos','test-carrito','arma','productos'].forEach(function(id){ var x = document.getElementById(id); if (x) fio.observe(x); });
+  // En celular también se esconde en la sección de Ego Frutas, para no tapar la lata
+  ['carritos','test-carrito','arma','productos'].concat(matchMedia('(max-width:760px)').matches ? ['producto'] : []).forEach(function(id){ var x = document.getElementById(id); if (x) fio.observe(x); });
 
   /* ---------- Cookies + Google Analytics (solo tras aceptar) ---------- */
   var cookieNotice = document.getElementById('cookieNotice'), consentKey = 'hg_cookie_consent';
