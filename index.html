@@ -319,10 +319,14 @@ img{max-width:100%;display:block}
 #guide{position:relative;width:min(400px,92%);height:auto;overflow:visible}
 .guide-bg,.guide-caption{transition:opacity .5s ease}
 body.scene-on .guide-bg{opacity:0}
-/* Escena de entrada: arco de travertino con camino de piedras (el personaje se para en el umbral) */
-.flow-scene{position:absolute;left:0;right:0;top:0;height:120vh;overflow:hidden;pointer-events:none;
-  -webkit-mask-image:linear-gradient(#000 72%,transparent);mask-image:linear-gradient(#000 72%,transparent)}
+/* Escena: arco de travertino con camino de piedras. En PC se queda fija detrás del personaje en toda la sección
+   (el personaje siempre parado en el umbral) y un velo crema aparece del lado del texto al bajar. */
+.flow-scene{position:absolute;inset:0;overflow:clip;pointer-events:none;
+  -webkit-mask-image:linear-gradient(#000 calc(100% - 40vh),transparent);mask-image:linear-gradient(#000 calc(100% - 40vh),transparent)}
+.fs-sticky{position:sticky;top:0;height:100vh;overflow:hidden}
 .fs-img{position:absolute;left:0;top:0;max-width:none;will-change:transform}
+.fs-veil{position:absolute;inset:0;opacity:0;background:linear-gradient(90deg,rgba(251,250,247,0) 34%,rgba(251,250,247,.93) 50%)}
+@media(min-width:861px){.flow.has-scene .guide-bg{display:none}}
 .fs-guy{display:none}
 .flow-grid{position:relative;z-index:1}
 .flow-content{padding:18vh 0 14vh}
@@ -493,7 +497,9 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
   body.guide-on.scene-on .guide-stage{opacity:0;transform:scale(.6) translateY(20px)}
   .guide-bg,.guide-caption{display:none}
   /* Celular: el arco va arriba y el texto empieza sobre la pared lisa */
-  .flow-scene{height:auto;-webkit-mask-image:linear-gradient(#000 80%,transparent);mask-image:linear-gradient(#000 80%,transparent)}
+  .flow-scene{bottom:auto;height:auto;-webkit-mask-image:linear-gradient(#000 80%,transparent);mask-image:linear-gradient(#000 80%,transparent)}
+  .fs-sticky{position:relative;height:100%}
+  .fs-veil{display:none}
   .fs-guy{display:block;position:absolute;width:auto;max-width:none;filter:drop-shadow(0 14px 16px rgba(30,40,25,.25))}
   .flow.has-scene .flow-content{padding-top:var(--scene-pad,70px)}
   #guide{width:100%;height:100%}
@@ -951,7 +957,7 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 <section class="flow" id="flujo">
   <!-- 🖼️ Fondo del arco: fondo-guia-pc.webp (PC) y fondo-guia-movil.webp (celular). Si no existen, queda el círculo de siempre. -->
   <div class="flow-scene" id="flowScene" aria-hidden="true" hidden>
-    <img class="fs-img" alt="" decoding="async">
+    <div class="fs-sticky"><img class="fs-img" alt="" decoding="async"><i class="fs-veil"></i></div>
     <img class="fs-guy" src="personaje-saluda.webp" alt="" decoding="async">
   </div>
   <div class="flow-deco" aria-hidden="true">
@@ -2364,7 +2370,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     // Mientras se ve el arco: sin círculo detrás (PC) y sin burbuja (celular, ya está el personaje de pie)
     if (!scene) return;
     var small = mobileGuide.matches, sh = parseFloat(scene.style.height) || 0;
-    document.body.classList.toggle('scene-on', !scene.hidden &&fr.top + sh * (small ? .5 : .8) > (small ? 80 : innerHeight * .4));
+    document.body.classList.toggle('scene-on', !scene.hidden && (!small || fr.top + sh * .5 > 80));
   }
   /* ---------- 4) MOVIMIENTO EN LA ZONA DE CARRITOS ---------- */
   var EASE = 'cubic-bezier(.22,1,.36,1)';
@@ -2454,8 +2460,11 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     }
     sceneImg.style.width = dw + 'px'; sceneImg.style.height = dh + 'px';
     sceneImg.style.left = x.toFixed(1) + 'px'; sceneImg.style.top = y.toFixed(1) + 'px';
-    scene.style.height = Math.round(y + dh) + 'px';
+    // El acercamiento lento parte del umbral del arco (los pies del personaje)
+    sceneImg.style.transformOrigin = (B.ax * 100) + '% ' + (B.ay * 100) + '%';
+    scene.style.height = small ? Math.round(y + dh) + 'px' : '';
   }
+  var sceneVeil = scene.querySelector('.fs-veil');
   loadScene();
 
   function applyFlowFx(){
@@ -2463,10 +2472,19 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     if (fr.bottom < 0 || fr.top > innerHeight) return;
     loadScene();
     if (sceneOk && (flow.clientWidth !== sceneW || (sceneKind === 'pc' && innerHeight !== sceneVH))) placeScene();
+    if (sceneOk && sceneKind === 'pc'){
+      // PC: el arco se queda detrás del personaje; al bajar, un velo crema cubre el lado del texto
+      var down = -fr.top;
+      sceneVeil.style.opacity = Math.min(1, Math.max(0, (down - innerHeight * .25) / (innerHeight * .5))).toFixed(3);
+      if (!reduce){
+        var p = Math.min(1, Math.max(0, down / Math.max(1, flow.offsetHeight - innerHeight)));
+        sceneImg.style.transform = 'scale(' + (1 + p * .08).toFixed(4) + ')';   // como si avanzara por el camino
+      }
+    }
     if (reduce) return;
-    // La foto del arco baja más lento que la página; el personaje del celular un poco más rápido (profundidad)
-    if (sceneOk && fr.top > -innerHeight * 1.5){
-      var k = sceneKind === 'movil' ? .18 : .3, off = -fr.top * k;
+    // Celular: la foto del arco baja más lento que la página; el personaje un poco más rápido (profundidad)
+    if (sceneOk && sceneKind === 'movil' && fr.top > -innerHeight * 1.5){
+      var off = -fr.top * .18;
       sceneImg.style.transform = 'translate3d(0,' + off.toFixed(1) + 'px,0)';
       sceneGuy.style.transform = 'translate3d(0,' + (off * .7).toFixed(1) + 'px,0)';
     }
@@ -2731,7 +2749,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   // En celular también se esconde en la sección de Ego Frutas, para no tapar la lata
   ['carritos','test-carrito','arma','productos'].concat(matchMedia('(max-width:760px)').matches ? ['producto'] : []).forEach(function(id){ var x = document.getElementById(id); if (x) fio.observe(x); });
 
-  /* ---------- Cookies + Google Analytics (solo tras aceptar) ---------- */
+  
   var cookieNotice = document.getElementById('cookieNotice'), consentKey = 'hg_cookie_consent';
   function loadGoogleAnalyticsAfterConsent(){
     if (window.__hgAnalyticsLoaded) return;
