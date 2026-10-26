@@ -345,6 +345,21 @@ body.scene-on .guide-bg{opacity:0}
 .country-card.active{border-color:var(--gold);box-shadow:0 2px 0 #e6e8e5,0 6px 0 #dcdfda,0 16px 30px rgba(199,161,90,.22)}
 .country-card .img-wrap{height:110px;border-radius:12px;background:linear-gradient(180deg,#f6f7f4,#eceee9);display:grid;place-items:center;padding:10px;margin-bottom:12px}
 .country-card img{width:100%;height:100%;object-fit:contain}
+/* Globos de cristal que giran (mapa plano que se desliza dentro de un círculo + luz y sombra encima) */
+.globe-wrap{--d:118px;position:relative;height:178px;border-radius:12px;margin-bottom:12px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:16px;
+  background:radial-gradient(circle at 50% 40%,rgba(213,133,31,.14),transparent 60%),linear-gradient(180deg,#f6f7f4,#eceee9);overflow:hidden}
+.globe{position:relative;z-index:1;width:var(--d);height:var(--d);border-radius:50%;overflow:hidden;margin-bottom:-7px;background:#EEF1E7;
+  box-shadow:0 16px 22px -12px rgba(30,40,25,.45);transition:transform .5s var(--ease);-webkit-mask-image:radial-gradient(#000 70%,#000);transform:translateZ(0)}
+.globe-map{position:absolute;left:0;top:0;height:100%;width:calc(var(--d) * 360 / 95 * 2);background:var(--map) repeat-x 0 0/50% 100%;will-change:transform}
+.globe::before{content:"";position:absolute;inset:0;z-index:1;border-radius:50%;
+  background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.55),rgba(255,255,255,0) 22%),radial-gradient(circle at 50% 50%,rgba(0,0,0,0) 55%,rgba(47,58,43,.4) 100%)}
+.globe::after{content:"";position:absolute;inset:0;z-index:2;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(255,255,255,.7),inset -10px -12px 20px rgba(47,58,43,.2),inset 8px 10px 16px rgba(255,255,255,.4)}
+/* Pedestal de travertino */
+.globe-base{position:relative;width:calc(var(--d) * .62);height:20px;border-radius:0 0 50% 50%/0 0 8px 8px;
+  background:linear-gradient(90deg,#d3c8b6,#efe8dc 38%,#e6ddcf 62%,#c9bda9);box-shadow:0 10px 14px -6px rgba(30,40,25,.3)}
+.globe-base::before{content:"";position:absolute;left:0;right:0;top:-6px;height:12px;border-radius:50%;background:radial-gradient(#f7f2ea,#e8dfd1)}
+.country-card:hover .globe,.country-card.active .globe{transform:translateY(-4px) scale(1.04)}
+.country-card.active .globe-wrap{background:radial-gradient(circle at 50% 40%,rgba(213,133,31,.28),transparent 62%),linear-gradient(180deg,#f8f4ec,#efe9dd)}
 .country-card strong{display:block;color:var(--sage-ink)}
 .country-card span{font-size:.8rem;color:var(--muted)}
 /* Necesidades */
@@ -486,6 +501,7 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
   .flow-block{padding:44px 0}
   .country-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
   .country-card .img-wrap{height:84px}
+  .globe-wrap{--d:94px;height:140px;padding-bottom:12px}
   .need-grid{gap:10px}
   .need-card .need-body{padding:11px 12px 13px}
   .need-card span.desc{display:none}
@@ -1170,8 +1186,9 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 const WA_NUMBER = "593968107948";
 
 const COUNTRIES = {
-  mexico:{name:"México",short:"MX",code:"mx",flag:"🇲🇽",currency:"MXN",image:"bandera_mexico.webp"},
-  usa:{name:"Estados Unidos",short:"US",code:"us",flag:"🇺🇸",currency:"USD",image:"bandera_estados_unidos.webp"}
+  // map: mapa del globo que gira · lon: longitud que queda al frente al elegirlo
+  mexico:{name:"México",short:"MX",code:"mx",flag:"🇲🇽",currency:"MXN",image:"bandera_mexico.webp",map:"mapa-mexico.webp",lon:-102},
+  usa:{name:"Estados Unidos",short:"US",code:"us",flag:"🇺🇸",currency:"USD",image:"bandera_estados_unidos.webp",map:"mapa-usa.webp",lon:-100}
 };
 
 const NEEDS = {
@@ -1440,14 +1457,14 @@ function updateCountryNote(){
   other.classList.toggle("highlight", detectedCountry === "otro" && !selectedCountry);
   if(!selectedCountry){
     note.innerHTML = detectedCountry === "otro"
-      ? "Parece que estás fuera de México y Estados Unidos. Elige una bandera si vas a pedir para alguno de esos países, o escríbeme abajo 👇"
-      : "Selecciona tu bandera para ver los carritos de tu país.";
+      ? "Parece que estás fuera de México y Estados Unidos. Elige uno de los globos si vas a pedir para alguno de esos países, o escríbeme abajo 👇"
+      : "Toca el globo de tu país para ver sus carritos.";
     return;
   }
   const c = COUNTRIES[selectedCountry], label = `${c.flag} <strong>${c.name}</strong>`;
   note.innerHTML =
-    countrySource === "detectado" ? `Detectamos que estás en ${label}. Si no es así, elige la otra bandera.` :
-    countrySource === "recordado" ? `¡Qué bueno verte de nuevo! Te muestro los carritos de ${label}. ¿Cambiaste de país? Elige la otra bandera.` :
+    countrySource === "detectado" ? `Detectamos que estás en ${label}. Si no es así, elige el otro globo.` :
+    countrySource === "recordado" ? `¡Qué bueno verte de nuevo! Te muestro los carritos de ${label}. ¿Cambiaste de país? Elige el otro globo.` :
     countrySource === "enlace"    ? `Te muestro los carritos disponibles en ${label}.` :
                                     `Elegiste ${label}. Abajo están los carritos disponibles en tu país.`;
 }
@@ -1514,13 +1531,51 @@ function renderCountries(){
     <button class="country-card ${selectedCountry===id?"active":""}" data-country="${id}" type="button" aria-pressed="${selectedCountry===id}">
       ${detectedCountry===id ? '<span class="det">Tu país</span>' : ""}
       ${selectedCountry===id ? '<span class="pick-check" aria-hidden="true">✓</span>' : ""}
-      ${imgBox(c.image, "Bandera de " + c.name, c.flag)}
+      ${c.map
+        ? `<div class="globe-wrap" role="img" aria-label="Globo con ${c.name} resaltado"><div class="globe"><i class="globe-map" style="--map:url(${c.map})"></i></div><i class="globe-base"></i></div>`
+        : imgBox(c.image, "Bandera de " + c.name, c.flag)}
       <strong>${c.name}</strong><span>Precios en ${c.currency}</span>
     </button>`).join("");
-  countryGrid.querySelectorAll("[data-country]").forEach(btn => btn.addEventListener("click", () => {
-    selectCountry(btn.dataset.country, {scroll:true, from:btn});
-  }));
+  countryGrid.querySelectorAll("[data-country]").forEach(btn => {
+    btn.addEventListener("click", () => selectCountry(btn.dataset.country, {scroll:true, from:btn}));
+    btn.addEventListener("pointerenter", () => { globeHover = btn.dataset.country; });
+    btn.addEventListener("pointerleave", () => { globeHover = null; });
+  });
+  spinGlobes(true);
 }
+
+/* ---------- Globos que giran ----------
+   Cada globo gira despacio; al pasar el mouse o al elegirlo, gira hasta dejar su país al frente.
+   La franja del mapa cubre de 75°N a 20°S: 95° de alto, y el globo muestra 95° de ancho (por eso el 95). */
+const globeLon = {mexico: 40, usa: 160};   // dónde empieza cada uno (distinto, para que no giren iguales)
+let globeHover = null, globeRun = false, globeVisible = false, globeLast = 0;
+function placeGlobes(){
+  countryGrid.querySelectorAll("[data-country]").forEach(btn => {
+    const m = btn.querySelector(".globe-map"); if(!m) return;
+    const f = (((globeLon[btn.dataset.country] + 180) / 360 - 47.5 / 360) % 1 + 1) % 1;
+    m.style.transform = "translate3d(" + (-f * 50).toFixed(3) + "%,0,0)";
+  });
+}
+function globeStep(now){
+  const dt = Math.min(.05, (now - (globeLast || now)) / 1000); globeLast = now;
+  Object.keys(globeLon).forEach(id => {
+    const c = COUNTRIES[id]; if(!c) return;
+    if(selectedCountry === id || globeHover === id){
+      const d = ((globeLon[id] - c.lon) % 360 + 360) % 360;   // siempre gira en el mismo sentido hasta llegar
+      globeLon[id] -= d > .2 ? Math.max(.4, d * 6 * dt) : d;
+    } else {
+      globeLon[id] -= 14 * dt;                                  // 14° por segundo
+    }
+  });
+  placeGlobes();
+  if(globeVisible) requestAnimationFrame(globeStep); else { globeRun = false; globeLast = 0; }
+}
+function spinGlobes(redraw){
+  if(reduceMotion){ Object.keys(globeLon).forEach(id => { if(COUNTRIES[id]) globeLon[id] = COUNTRIES[id].lon; }); return placeGlobes(); }
+  if(redraw) placeGlobes();
+  if(globeVisible && !globeRun){ globeRun = true; requestAnimationFrame(globeStep); }
+}
+new IntersectionObserver(es => { globeVisible = es[0].isIntersecting; spinGlobes(); }).observe(countryGrid);
 
 function renderNeeds(){
   // Primero los disponibles en el país elegido; los demás quedan al final, en gris y con explicación
