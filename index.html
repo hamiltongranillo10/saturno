@@ -168,7 +168,7 @@ img{max-width:100%;display:block}
 .feat-head.on{opacity:1;transform:none}
 .feat-head .kicker{color:var(--amber-light)}
 .feat-head h2{font-size:clamp(1.8rem,3.4vw,2.8rem);line-height:1.05;margin-top:6px}
-.feat{position:absolute;width:230px;color:#fff;opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .6s var(--ease)}
+.feat{position:absolute;width:230px;color:#fff;text-shadow:0 1px 10px rgba(20,30,15,.45);opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .6s var(--ease)}
 .feat.on{opacity:1;transform:none}
 .feat.left{text-align:right}
 .feat .kicker{color:var(--amber-light);font-size:.6rem}
@@ -187,13 +187,11 @@ img{max-width:100%;display:block}
   .hero-pin{min-height:560px}
   .feat-head{top:84px}
   .feat-head h2{font-size:1.7rem}
-  .hero-feats{display:flex;flex-direction:column;justify-content:flex-end;gap:8px;padding:0 16px 5vh}
-  .hero-feats .feat-head{position:absolute}
-  .feat{position:static;width:auto;text-align:left!important;display:grid;grid-template-columns:auto 1fr;column-gap:10px;align-items:baseline;padding:9px 14px;border-radius:14px;background:rgba(31,38,28,.42);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-  .feat .kicker{grid-row:span 2}
-  .feat strong{font-size:1rem;margin:0}
-  .feat p{font-size:.74rem}
-  .hero-feats.done .feat{opacity:0;transform:translateY(-8px)}
+  /* Celular: la misma red de líneas que en PC, con etiquetas más compactas a los lados de la lata */
+  .feat{width:min(120px,32vw)}
+  .feat .kicker{font-size:.52rem}
+  .feat strong{font-size:.88rem;line-height:1.15;margin:2px 0 3px}
+  .feat p{font-size:.64rem;line-height:1.35}
   .hero-final{bottom:4vh;width:calc(100vw - 32px)}
   .hero-final .btn{flex:1}
 }
@@ -260,7 +258,8 @@ img{max-width:100%;display:block}
 .seq-caption .kicker{color:var(--sage-deep)}
 .cap-1{left:7vw;top:22vh}.cap-2{right:7vw;top:32vh;text-align:right}.cap-3{left:7vw;top:48vh}.cap-4{right:7vw;top:58vh;text-align:right}
 @media(max-width:760px){
-  .seq{height:360vh}
+  .seq{height:460vh}   /* más scroll en celular para que la parte de la fruta se aprecie igual que en PC */
+  .seq.is-video.is-wide .seq-canvas{top:64px;height:calc(100% - 64px)}   /* el video empieza debajo del menú */
   .ego-drop{width:10px;height:13px}
   .seq-canvas{width:min(240px,56vw);margin-top:14vh}
   .seq-caption{left:16px!important;right:16px!important;top:12vh!important;max-width:none;text-align:center!important}
@@ -1748,22 +1747,24 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
       rings[i].setAttribute('cx', ax.toFixed(1)); rings[i].setAttribute('cy', ay.toFixed(1));
       dots[i].setAttribute('cx', ax.toFixed(1)); dots[i].setAttribute('cy', ay.toFixed(1));
       dots[i].classList.toggle('on', local > 0); rings[i].classList.toggle('on', local > 0);
-      if (small){ paths[i].setAttribute('d', ''); return; }
       var left = f.side === 'left';
-      var ly = cr.top - pr.top + f.ly * cr.height;
-      var mxp = left ? cr.left - pr.left - 34 : cr.right - pr.left + 34;
-      var lx = left ? mxp - 50 : mxp + 50;
+      // En celular la lata es más pequeña: las etiquetas se separan más en vertical y las líneas son más cortas
+      var lyRel = small ? .4 + (f.ly - .4) * 2.2 : f.ly;
+      var ly = cr.top - pr.top + lyRel * cr.height;
+      var gap1 = small ? 12 : 34, gap2 = small ? 18 : 50, gap3 = small ? 5 : 10;
+      var mxp = left ? cr.left - pr.left - gap1 : cr.right - pr.left + gap1;
+      var lx = left ? mxp - gap2 : mxp + gap2;
       paths[i].setAttribute('d', 'M' + ax.toFixed(1) + ' ' + ay.toFixed(1) + ' L' + mxp.toFixed(1) + ' ' + ly.toFixed(1) + ' L' + lx.toFixed(1) + ' ' + ly.toFixed(1));
       paths[i].style.strokeDashoffset = (1 - clamp01(local / .6)).toFixed(3);
-      var w = el.offsetWidth;
-      el.style.left = Math.max(12, left ? lx - 10 - w : lx + 10).toFixed(1) + 'px';
-      el.style.top = (ly - 18).toFixed(1) + 'px';
+      var w = el.offsetWidth, W = pin.offsetWidth;
+      var x = left ? lx - gap3 - w : lx + gap3;
+      el.style.left = Math.min(W - w - 8, Math.max(8, x)).toFixed(1) + 'px';
+      el.style.top = (ly - (small ? 12 : 18)).toFixed(1) + 'px';
     });
 
     // Llamado final
     var done = p > .88;
     finalBox.classList.toggle('on', done);
-    featsBox.classList.toggle('done', done && small);
     // Mientras se muestran las características, el WhatsApp flotante se esconde para no taparlas
     document.body.classList.toggle('hero-final-on', p > .22 && y < pinLen + innerHeight * .5);
   }
@@ -1796,7 +1797,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   //    total: cuadros que hay en la carpeta · load: cuántos carga (en celular uno sí, uno no)
   var SEQUENCE_SETS = {
     // 📱 Celular: video vertical 9:16 (carpeta "frames"), a pantalla completa y nítido (sin fondo desenfocado)
-    mobile: { total: 96, load: 48, aspect: '9 / 16', wide: true,
+    mobile: { total: 96, load: 48, aspect: '9 / 16', wide: true, formScroll: .5,
               src: function(i){ return 'frames/ego_' + String(i + 1).padStart(3, '0') + '.webp'; } },
     // 💻 Computadora: video horizontal 16:9 (carpeta "frames-pc"), a pantalla completa
     pc:     { total: 96, load: 96, aspect: '16 / 9', wide: true,
@@ -1807,7 +1808,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   //    formVideo: en qué parte del video (0 a 1) la lata ya está completa (en tus videos, ~0.6).
   //    formScroll: en qué parte del scroll pasa eso. Antes de ese punto el video va rápido (se forma la lata);
   //    después sigue en cámara lenta (frutas flotando) mientras salen las características.
-  var SEQUENCE = { withIntro: true, formVideo: .6, formScroll: .4, aspect: SET.aspect, wide: SET.wide,
+  var SEQUENCE = { withIntro: true, formVideo: .6, formScroll: SET.formScroll || .4, aspect: SET.aspect, wide: SET.wide,
                    desktopFrames: SET.total, mobileFrames: SET.load, src: SET.src };
   var INTRO_END = SEQUENCE.formScroll;   // desde aquí (0 a 1) salen las características: la lata ya está completa
   var frames = SET.load;
