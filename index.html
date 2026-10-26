@@ -279,7 +279,7 @@ img{max-width:100%;display:block}
 .prep-head .kicker{color:var(--amber-deep)}
 .prep-head h2{font-size:clamp(2rem,3.6vw,3rem);line-height:1.05;color:var(--sage-ink);margin-top:10px}
 .prep.past-head .prep-head{opacity:0;transform:translateY(-14px)}
-.prep-cap{position:absolute;left:0;right:0;top:42vh;opacity:0;transform:translateY(18px);transition:opacity .45s ease,transform .6s var(--ease)}
+.prep-cap{position:absolute;left:0;right:0;top:58vh;opacity:0;transform:translateY(18px);transition:opacity .45s ease,transform .6s var(--ease)}
 .prep-cap.on{opacity:1;transform:none}
 .prep-cap .num{font-family:'Lora',serif;color:var(--amber-deep);font-size:1.15rem}
 .prep-cap strong{display:block;font-family:'Lora',serif;font-weight:600;font-size:clamp(1.6rem,2.6vw,2.2rem);line-height:1.1;color:var(--sage-ink);margin:4px 0 6px}
@@ -1152,9 +1152,9 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
     <canvas class="prep-canvas" id="prepCanvas" aria-hidden="true"></canvas>
     <div class="prep-text">
       <div class="prep-head"><div class="kicker">Así de fácil</div><h2 class="serif">Prepáralo en segundos.</h2></div>
-      <div class="prep-cap" data-from=".1" data-to=".36"><span class="num">01</span><strong>Agua a tu gusto</strong><p>Llena tu taza hasta la mitad.</p></div>
-      <div class="prep-cap" data-from=".36" data-to=".8"><span class="num">02</span><strong>Un sobre</strong><p>Vierte el polvo en el agua.</p></div>
-      <div class="prep-cap" data-from=".8" data-to="1.01"><span class="num">03</span><strong>Listo en segundos</strong><p>Mezcla y disfruta.</p></div>
+      <div class="prep-cap" data-from=".1" data-to=".4"><span class="num">01</span><strong>Agua a tu gusto</strong><p>Llena tu taza hasta la mitad.</p></div>
+      <div class="prep-cap" data-from=".4" data-to=".85"><span class="num">02</span><strong>Un sobre</strong><p>Vierte el polvo en el agua.</p></div>
+      <div class="prep-cap" data-from=".85" data-to="1.01"><span class="num">03</span><strong>Listo en segundos</strong><p>Mezcla y disfruta.</p></div>
     </div>
   </div>
 </section>
@@ -3276,10 +3276,11 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   }
 
   /* ---------- PREPARACIÓN: cuadros del video de la taza que avanzan con el scroll ----------
-     ✏️ PREP_SETS: carpeta de cada video, cuántos cuadros tiene y cada cuántos se cargan (step 2 = la mitad, más liviano). */
+     ✏️ PREP_SETS: carpeta de cada video, cuántos cuadros tiene y cada cuántos se cargan (step 2 = la mitad, más liviano).
+     Los cuadros ya vienen sin la parte en que el sobre se queda quieto (cortada al sacarlos del video). */
   var PREP_SETS = {
-    pc:    { folder: 'frames-taza-pc/', total: 80, step: 1 },
-    movil: { folder: 'frames-taza/',    total: 80, step: 2 }
+    pc:    { folder: 'frames-taza-pc/', total: 48, step: 1 },
+    movil: { folder: 'frames-taza/',    total: 51, step: 1 }
   };
   var prepSec = document.getElementById('preparacion'), prepCanvas = document.getElementById('prepCanvas');
   var prepCtx = prepCanvas && prepCanvas.getContext('2d'), prepImgs = [], prepCur = -1, prepLoaded = false;
@@ -3290,7 +3291,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     for (var k = 0; k * PS.step < PS.total; k++){
       var im = new Image(); im.decoding = 'async';
       im.src = PS.folder + 'taza_' + String(k * PS.step + 1).padStart(3, '0') + '.webp';
-      if (k === 0) im.onload = function(){ prepSize(); };
+      im.onload = k === 0 ? prepSize : applyPrep;   // al cargar, redibuja si era el cuadro que tocaba
       prepImgs.push(im);
     }
   }
@@ -3300,23 +3301,28 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     prepCanvas.width = Math.round(r.width * dpr); prepCanvas.height = Math.round(r.height * dpr);
     prepCur = -1; applyPrep();
   }
-  // Dibuja el cuadro "ff" (con decimales: mezcla suave entre dos cuadros) cubriendo toda la pantalla
-  function prepDraw(ff){
-    var a = Math.floor(ff), b = Math.min(prepImgs.length - 1, a + 1), t = ff - a;
-    var A = prepImgs[a], B = prepImgs[b];
-    if (!A || !A.complete || !A.naturalWidth) return;
+  // Dibuja un solo cuadro nítido cubriendo toda la pantalla (sin mezclar dos, que deja la imagen doble).
+  // Si ese cuadro aún no carga, usa el más cercano que ya esté listo.
+  function prepDraw(f){
+    var A = null, ok = function(c){ return c && c.complete && c.naturalWidth; };
+    for (var d = 0; d < prepImgs.length && !A; d++){
+      if (ok(prepImgs[f - d])) A = prepImgs[f - d];
+      else if (ok(prepImgs[f + d])) A = prepImgs[f + d];
+    }
+    if (!A) return false;
     var W = prepCanvas.width, H = prepCanvas.height, s = Math.max(W / A.naturalWidth, H / A.naturalHeight);
-    var dw = A.naturalWidth * s, dh = A.naturalHeight * s, dx = (W - dw) / 2, dy = (H - dh) / 2;
-    prepCtx.globalAlpha = 1; prepCtx.drawImage(A, dx, dy, dw, dh);
-    if (t > .01 && B && B.complete && B.naturalWidth){ prepCtx.globalAlpha = t; prepCtx.drawImage(B, dx, dy, dw, dh); prepCtx.globalAlpha = 1; }
+    var dw = A.naturalWidth * s, dh = A.naturalHeight * s;
+    prepCtx.imageSmoothingQuality = 'high';
+    prepCtx.drawImage(A, (W - dw) / 2, (H - dh) / 2, dw, dh);
+    return A === prepImgs[f];
   }
   function applyPrep(){
     if (!prepSec) return;
     var r = prepSec.getBoundingClientRect();
     if (r.bottom < -50 || r.top > innerHeight + 50) return;
     var p = clamp01(-r.top / Math.max(1, prepSec.offsetHeight - innerHeight));
-    var ff = p * (prepImgs.length - 1);
-    if (Math.abs(ff - prepCur) > .01){ prepCur = ff; prepDraw(ff); }
+    var f = Math.round(p * (prepImgs.length - 1));
+    if (f !== prepCur && prepDraw(f)) prepCur = f;
     prepSec.classList.toggle('past-head', p > .08);
     prepCaps.forEach(function(c){ c.classList.toggle('on', p >= +c.dataset.from && p < +c.dataset.to); });
   }
