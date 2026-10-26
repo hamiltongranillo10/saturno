@@ -132,8 +132,8 @@ img{max-width:100%;display:block}
 .photo-hero{background:#EBCB9E}
 .photo-hero .l-wall{inset:-14px;background:url("fondo-inicio-pc.webp") center/cover no-repeat}
 .photo-hero .l-wall::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(252,246,236,.6) 0%,rgba(252,246,236,.3) 30%,rgba(252,246,236,0) 48%)}
-/* Velo crema que aparece cuando se muestra la red, para que se lean las características */
-.photo-hero .l-wall::before{content:"";position:absolute;inset:0;z-index:1;background:rgba(250,243,230,.66);opacity:var(--veil,0)}
+/* Vidrio oscuro que aparece cuando se muestra la red: la foto se sigue viendo y las características resaltan */
+.photo-hero .l-wall::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(12,16,10,.62),rgba(12,16,10,.48) 50%,rgba(12,16,10,.62));opacity:var(--veil,0)}
 .photo-hero .l-light,.photo-hero .l-plant,.photo-hero .pedestal,.photo-hero .stone,.photo-hero .l-front svg{display:none}
 .photo-hero.intro .l-wall{animation:inFade 1.4s var(--ease) both}
 /* La lata va sobre la mesa: el script calcula su posición y tamaño */
@@ -156,11 +156,17 @@ img{max-width:100%;display:block}
 .photo-hero .hero-actions .btn-ghost:hover{background:var(--sage-ink);color:#fff}
 .photo-hero .scroll-hint{color:var(--sage-ink)}
 /* Red de características legible sobre el fondo cálido */
-.photo-hero .feat,.photo-hero .feat-head{color:var(--sage-ink);text-shadow:0 1px 10px rgba(255,247,232,.95),0 0 2px rgba(255,247,232,.9)}
-.photo-hero .feat .kicker{color:#B5651D}
-.photo-hero .hero-net path{stroke:#B5651D;stroke-width:1.8}
-.photo-hero .hero-net .dot{fill:#B5651D}
-.photo-hero .hero-net .ring{stroke:#B5651D}
+.photo-hero .feat-head{color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.45)}
+.photo-hero .feat-head .kicker{color:var(--amber-light)}
+/* Tarjetas de vidrio oscuro (se ve la foto a través) */
+.glass-card,.photo-hero .feat{color:#fff;text-shadow:none;padding:12px 14px;border-radius:14px;background:rgba(16,20,14,.42);border:1px solid rgba(255,255,255,.16);
+  -webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2);box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.photo-hero .feat .kicker{color:var(--amber-light)}
+.photo-hero .feat p{color:rgba(255,255,255,.86);opacity:1}
+.photo-hero .hero-net path{stroke:var(--amber-light);stroke-width:1.8}
+.photo-hero .hero-net .dot{fill:var(--amber-light)}
+.photo-hero .hero-net .ring{stroke:var(--amber-light)}
+@media(max-width:760px){.photo-hero .feat{padding:8px 9px;border-radius:11px}}
 /* Menú oscuro mientras se ve el inicio */
 .nav.on-light{color:var(--sage-ink);background:rgba(252,246,236,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 @media(max-width:760px){
@@ -269,10 +275,22 @@ img{max-width:100%;display:block}
 /* PC con video horizontal: ocupa toda la pantalla, sin fondo desenfocado ni bordes difuminados */
 .seq.is-wide .seq-stage::after{display:none}
 .seq.is-video.is-wide .seq-canvas{position:absolute;inset:0;width:100%;height:100%;margin:0;aspect-ratio:auto;-webkit-mask-image:none;mask-image:none}
-.seq.is-video .seq-caption{z-index:5;background:rgba(251,250,247,.82);padding:14px 18px;border-radius:18px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 12px 30px rgba(60,40,20,.12)}
+/* Características en tarjetas de vidrio oscuro, unidas a la lata con líneas (como la red de IQU) */
+.seq.is-video .seq-caption{z-index:5;padding:14px 18px;border-radius:18px;background:rgba(16,20,14,.44);border:1px solid rgba(255,255,255,.16);
+  -webkit-backdrop-filter:blur(10px) saturate(1.2);backdrop-filter:blur(10px) saturate(1.2);box-shadow:0 14px 30px rgba(0,0,0,.25)}
+.seq.is-video .seq-caption .kicker{color:var(--amber-light)}
+.seq.is-video .seq-caption h3{color:#fff;font-size:clamp(1.25rem,2vw,1.7rem);margin:6px 0}
+.seq.is-video .seq-caption p{color:rgba(255,255,255,.86);font-size:.88rem}
+.seq-net{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none;overflow:visible}
+.seq-net path{fill:none;stroke:var(--amber-light);stroke-width:1.8;stroke-dasharray:1;stroke-dashoffset:1;filter:drop-shadow(0 0 4px rgba(0,0,0,.35))}
+.seq-net circle{fill:var(--amber-light);opacity:0;transition:opacity .3s}
+.seq-net circle.on{opacity:1}
 @media(max-width:760px){
   .seq.is-video .seq-canvas{width:min(92vw,48vh);margin-top:10vh}
-  .seq.is-video .seq-caption{padding:12px 14px;border-radius:16px}
+  .seq.is-video .seq-caption{padding:8px 10px;border-radius:12px}
+  .seq.is-video .seq-caption h3{font-size:.98rem;margin:3px 0}
+  .seq.is-video .seq-caption p{font-size:.72rem;line-height:1.35}
+  .seq.is-video .seq-caption .kicker{font-size:.58rem;letter-spacing:.06em}
 }
 /* Efecto fruta → jugo → lata */
 .ego-tint{position:absolute;inset:0;z-index:0;opacity:0;pointer-events:none;background:radial-gradient(ellipse 60% 55% at 50% 58%,rgba(213,133,31,.38),rgba(213,133,31,.1) 60%,transparent 82%)}
@@ -295,7 +313,7 @@ img{max-width:100%;display:block}
 .seq-stage{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden}
 .seq-canvas{width:min(360px,64vw,48vh);aspect-ratio:3/4;position:relative;z-index:2;will-change:transform,opacity}
 .seq-plinth{position:absolute;bottom:10vh;left:50%;translate:-50% 0;width:min(460px,86vw);height:15vh;border-radius:4px 4px 0 0;background:linear-gradient(180deg,#d6d4cf 0,#bebcb7 8%,#acaaa5 9%,#a7a7a7 70%,#999 100%);z-index:1}
-.seq-caption{position:absolute;max-width:300px;opacity:0;translate:0 20px;transition:opacity .6s ease,translate .8s var(--ease);z-index:3}
+.seq-caption{position:absolute;max-width:280px;opacity:0;translate:0 20px;transition:opacity .6s ease,translate .8s var(--ease);z-index:3}
 .seq-caption.on{opacity:1;translate:0 0}
 .seq-caption h3{font-size:clamp(1.6rem,3vw,2.4rem);line-height:1.1;color:var(--sage-ink);margin:10px 0}
 .seq-caption p{color:var(--muted);font-size:.92rem}
@@ -306,7 +324,9 @@ img{max-width:100%;display:block}
   .seq.is-video.is-wide .seq-canvas{top:64px;height:calc(100% - 64px)}   /* el video empieza debajo del menú */
   .ego-drop{width:10px;height:13px}
   .seq-canvas{width:min(240px,56vw);margin-top:14vh}
-  .seq-caption{left:16px!important;right:16px!important;top:12vh!important;max-width:none;text-align:center!important}
+  /* Celular: etiquetas compactas a los lados de la lata, como la red de IQU */
+  .seq-caption{max-width:min(148px,40vw)}
+  .cap-1{left:10px;top:17vh}.cap-2{right:10px;top:29vh}.cap-3{left:10px;top:58vh}.cap-4{right:10px;top:70vh}
   .seq-plinth{bottom:8vh;height:12vh}
 }
 
@@ -636,6 +656,20 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 .stars-glass{position:absolute;left:0;top:0;z-index:3;pointer-events:none;mix-blend-mode:screen;opacity:.92;max-width:none}
 .stars-shadow{position:absolute;left:0;top:0;z-index:1;border-radius:50%;pointer-events:none;background:radial-gradient(ellipse at center,rgba(40,28,12,.5),rgba(40,28,12,0) 70%)}
 .photo-stars .stars-copy{z-index:4}
+/* Red de características alrededor de la vitrina */
+.stars-net{position:absolute;inset:0;width:100%;height:100%;z-index:4;pointer-events:none;overflow:visible}
+.stars-net path{fill:none;stroke:var(--amber-light);stroke-width:1.6;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .7s var(--ease);filter:drop-shadow(0 0 4px rgba(0,0,0,.35))}
+.stars-net circle{fill:var(--amber-light);opacity:0;transition:opacity .3s}
+.stars-net.on path{stroke-dashoffset:0}.stars-net.on circle{opacity:1}
+.stars-net.on path:nth-of-type(2){transition-delay:.15s}.stars-net.on path:nth-of-type(3){transition-delay:.3s}
+.stars-feats{position:absolute;inset:0;z-index:5;pointer-events:none}
+.star-feat{position:absolute;width:var(--fw,200px);opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .6s var(--ease)}
+.star-feat.on{opacity:1;transform:none}
+.star-feat:nth-child(2){transition-delay:.2s}.star-feat:nth-child(3){transition-delay:.4s}
+.star-feat .kicker{color:var(--amber-light);font-size:.62rem}
+.star-feat strong{display:block;font-family:'Lora',serif;font-weight:600;font-size:1.02rem;line-height:1.2;margin:2px 0 3px}
+.star-feat p{font-size:.78rem;line-height:1.4;color:rgba(255,255,255,.86)}
+@media(max-width:860px){.star-feat{padding:8px 9px;border-radius:11px}.star-feat strong{font-size:.88rem}.star-feat p{font-size:.68rem}}
 .photo-stars .stars-head{z-index:4}
 .photo-stars .stars-head .kicker{color:var(--amber-light)}
 .photo-stars .stars-head h2{color:#fff}
@@ -1075,6 +1109,7 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
   <div class="seq-stage">
     <!-- ✏️ Las características que aparecen mientras gira la lata se editan en SEQ_PRODUCT (script de datos) -->
     <div id="seqCaptions"></div>
+    <svg class="seq-net" id="seqNet" aria-hidden="true"></svg>
     <!-- 🖼️ Aquí se dibuja la secuencia de la lata girando. Para usar tus cuadros reales, mira SEQUENCE en el script. -->
     <!-- Fondo: el mismo cuadro del video, ampliado y desenfocado a todo el ancho (para que no se vea como un reel angosto) -->
     <canvas class="seq-backdrop" id="seqBackdrop" aria-hidden="true"></canvas>
@@ -1114,6 +1149,9 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
     <div class="stars-track" id="starsTrack"></div>
     <!-- Vitrina de vidrio: el negro de la imagen desaparece (mezcla "screen") y solo quedan los reflejos -->
     <img class="stars-glass" id="starsGlass" src="vitrina.webp" alt="" aria-hidden="true" width="700" height="1244" decoding="async">
+    <!-- Red de características del producto que está en la vitrina (textos en STAR_FEATS) -->
+    <svg class="stars-net" id="starsNet" aria-hidden="true"></svg>
+    <div class="stars-feats" id="starsFeats"></div>
     <div class="stars-copy" id="starsCopy" aria-live="polite"></div>
     <div class="stars-dots" id="starsDots" aria-hidden="true"></div>
   </div>
@@ -1526,6 +1564,27 @@ const EGO_FX = {
 
 // ⭐ Productos que aparecen uno tras otro en la sección "Productos estrella" (en este orden, ideal 4 a 6)
 const STAR_PRODUCTS = ["ego_frutas","aloe","optimus","magnus","star_bien","omniplus"];
+
+/* 🕸️ Red de características de cada producto en la vitrina (3 por producto, aparecen alrededor del vidrio).
+   ✏️ Cambia los textos de prueba por los reales: cortos y sin prometer resultados de salud.
+   Si un producto no está aquí, se usan los textos de STAR_FEATS_DEFAULT. */
+const STAR_FEATS_DEFAULT = [
+  {title:"Qué es",          text:"Texto de prueba: escribe en una línea qué es el producto."},
+  {title:"Cómo se toma",    text:"Texto de prueba: por ejemplo, 1 porción al día en agua."},
+  {title:"Presentación",    text:"Texto de prueba: tamaño, sabor o número de porciones."}
+];
+const STAR_FEATS = {
+  ego_frutas:[
+    {title:"Sabor",           text:"Texto de prueba: frutos del bosque."},
+    {title:"Cómo se toma",    text:"Texto de prueba: bien fría, en cualquier momento del día."},
+    {title:"Presentación",    text:"Texto de prueba: lata de 355 ml."}
+  ],
+  aloe:[
+    {title:"Qué es",          text:"Texto de prueba: bebida con aloe vera."},
+    {title:"Cómo se toma",    text:"Texto de prueba: escribe aquí la porción recomendada."},
+    {title:"Presentación",    text:"Texto de prueba: tamaño de la botella."}
+  ]
+};
 
 /* 🛒 Qué productos lleva cada carrito (claves del catálogo de arriba).
    Si un carrito tiene más productos de los que pones aquí, se muestra "+ N más"
@@ -2307,6 +2366,9 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     }).join('');
   })();
   var captions = [].slice.call(seq.querySelectorAll('.seq-caption'));
+  var seqNet = document.getElementById('seqNet');
+  seqNet.innerHTML = captions.map(function(){ return '<path pathLength="1"/><circle r="4"/>'; }).join('');
+  var seqPaths = [].slice.call(seqNet.querySelectorAll('path')), seqDots = [].slice.call(seqNet.querySelectorAll('circle'));
   var images = [], current = -1;
 
   function sizeCanvas(){
@@ -2549,14 +2611,22 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     var ff = q * (frames - 1);
     if (!egoOff) ff = Math.round(ff);
     if (Math.abs(ff - current) > .005){ current = ff; drawFrame(ff); }
-    // Cada característica aparece en su tramo y sube despacio mientras se ve (no se queda fija)
-    captions.forEach(function(c){
-      var from = +c.dataset.from, to = +c.dataset.to, on = p >= from && p < to;
+    // Red de características: cada tarjeta aparece en su tramo, se queda, y una línea la une a la lata
+    var st = seq.querySelector('.seq-stage'), sr = st.getBoundingClientRect(), W = sr.width, H = sr.height, small = innerWidth <= 760;
+    if (seqNet.getAttribute('viewBox') !== '0 0 ' + W + ' ' + H) seqNet.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    captions.forEach(function(c, i){
+      var from = +c.dataset.from, to = +c.dataset.to, on = p >= from;
       c.classList.toggle('on', on);
-      if (on){
-        var span = Math.min(1, to) - from, local = span > 0 ? clamp01((p - from) / span) : 0;
-        c.style.transform = 'translateY(' + ((.5 - local) * 40).toFixed(1) + 'px)';
-      }
+      var span = Math.min(1, to) - from, local = span > 0 ? clamp01((p - from) / span) : 0;
+      var cr = c.getBoundingClientRect(), left = (i % 2) === 0;
+      // Punto en la lata (al centro de la pantalla) y punto en el borde de la tarjeta
+      var ax = W * (left ? (small ? .43 : .47) : (small ? .57 : .53)), ay = H * (small ? .42 + i * .09 : .4 + i * .08);
+      var ex = left ? cr.right - sr.left + 4 : cr.left - sr.left - 4, ey = cr.top - sr.top + (small ? 16 : 26);
+      var mxp = left ? ex + (small ? 10 : 34) : ex - (small ? 10 : 34);
+      seqPaths[i].setAttribute('d', 'M' + ax.toFixed(1) + ' ' + ay.toFixed(1) + ' L' + mxp.toFixed(1) + ' ' + ey.toFixed(1) + ' L' + ex.toFixed(1) + ' ' + ey.toFixed(1));
+      seqPaths[i].style.strokeDashoffset = on ? (1 - clamp01(local / .35)).toFixed(3) : '1';
+      seqDots[i].setAttribute('cx', ax.toFixed(1)); seqDots[i].setAttribute('cy', ay.toFixed(1));
+      seqDots[i].classList.toggle('on', on);
     });
   }
 
@@ -2810,6 +2880,50 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     starsGlass.style.left = (x - gw / 2).toFixed(1) + 'px'; starsGlass.style.top = (y - .79 * gh).toFixed(1) + 'px';
     starsShadow.style.width = (w * 1.3) + 'px'; starsShadow.style.height = (w * .2) + 'px';
     starsShadow.style.left = (x - w * .65).toFixed(1) + 'px'; starsShadow.style.top = (y - w * .1).toFixed(1) + 'px';
+    starGeo = { x: x, y: y, w: w, gw: gw, gh: gh, small: small };
+    layoutStarFeats();
+  }
+
+  // Red de características del producto en la vitrina: 3 tarjetas de vidrio unidas al producto con líneas
+  var starsNet = document.getElementById('starsNet'), starsFeatsBox = document.getElementById('starsFeats'), starGeo = null;
+  starsFeatsBox.innerHTML = [0, 1, 2].map(function(i){ return '<div class="star-feat glass-card"><div class="kicker">0' + (i + 1) + '</div><strong></strong><p></p></div>'; }).join('');
+  starsNet.innerHTML = [0, 1, 2].map(function(){ return '<path pathLength="1"/><circle r="3.5"/>'; }).join('');
+  var starFeatEls = [].slice.call(starsFeatsBox.children), starPaths = [].slice.call(starsNet.querySelectorAll('path')), starDotsNet = [].slice.call(starsNet.querySelectorAll('circle'));
+  function layoutStarFeats(){
+    if (!starGeo) return;
+    var g = starGeo, W = starsW, H = starsH, glassTop = g.y - .79 * g.gh;
+    starsNet.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+    // PC: las tres a la derecha de la vitrina · Celular: a los lados, encima del vidrio
+    var fw = g.small ? Math.min(150, W * .38) : Math.max(150, Math.min(220, W - (g.x + g.w) - 60));
+    starsFeatsBox.style.setProperty('--fw', fw + 'px');
+    starFeatEls.forEach(function(el, i){
+      var right = g.small ? i === 1 : true;
+      var ly = g.small ? glassTop + g.gh * [.08, .3, .52][i] : glassTop + g.gh * [.16, .4, .64][i];
+      var lx = g.small ? (right ? W - fw - 10 : 10) : g.x + g.w + 44;
+      el.style.left = lx.toFixed(1) + 'px'; el.style.top = Math.max(70, ly - 18).toFixed(1) + 'px';
+      // Punto en el producto
+      var ax = g.x + (right ? .22 : -.22) * g.w, ay = g.y - g.w * [1.0, .68, .36][i];
+      var ex = right ? lx - 4 : lx + fw + 4, ey = Math.max(70, ly - 18) + 16;
+      var mxp = right ? ex - (g.small ? 10 : 26) : ex + 10;
+      starPaths[i].setAttribute('d', 'M' + ax.toFixed(1) + ' ' + ay.toFixed(1) + ' L' + mxp.toFixed(1) + ' ' + ey.toFixed(1) + ' L' + ex.toFixed(1) + ' ' + ey.toFixed(1));
+      starDotsNet[i].setAttribute('cx', ax.toFixed(1)); starDotsNet[i].setAttribute('cy', ay.toFixed(1));
+    });
+  }
+  var starFeatTimer = 0;
+  function showStarFeats(idx){
+    starsNet.classList.remove('on'); starFeatEls.forEach(function(el){ el.classList.remove('on'); });
+    clearTimeout(starFeatTimer);
+    var id = stars[idx]; if (!id) return;
+    var list = (typeof STAR_FEATS !== 'undefined' && STAR_FEATS[id]) || (typeof STAR_FEATS_DEFAULT !== 'undefined' ? STAR_FEATS_DEFAULT : []);
+    // Espera a que el producto llegue al centro de la vitrina y luego se dibuja la red
+    starFeatTimer = setTimeout(function(){
+      starFeatEls.forEach(function(el, i){
+        var f = list[i]; el.style.display = f ? '' : 'none'; if (!f) return;
+        el.querySelector('strong').textContent = f.title; el.querySelector('p').textContent = f.text;
+      });
+      starPaths.forEach(function(p, i){ p.style.display = list[i] ? '' : 'none'; starDotsNet[i].style.display = list[i] ? '' : 'none'; });
+      starsNet.classList.add('on'); starFeatEls.forEach(function(el){ el.classList.add('on'); });
+    }, 350);
   }
 
   function applyStars(){
@@ -2832,6 +2946,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
       activeStar = a;
       starTexts.forEach(function(t, i){ t.classList.toggle('on', i === a); });
       starDots.forEach(function(t, i){ t.classList.toggle('on', i === a); });
+      showStarFeats(a);
     }
   }
 
