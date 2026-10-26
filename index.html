@@ -742,9 +742,15 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 .testimonials-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.8fr);gap:56px;align-items:center}
 .testimonials-copy .note{margin-top:16px;font-size:.78rem;color:var(--muted)}
 .testimonials-copy .btn{margin-top:24px}
-.video-frame{justify-self:center;width:min(100%,340px);padding:10px;border-radius:26px;background:linear-gradient(160deg,#cfcdc8,#a7a7a7);box-shadow:0 30px 70px rgba(30,40,25,.22)}
-.video-frame video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:18px;background:var(--sage-ink)}
-@media(max-width:800px){.testimonials-layout{grid-template-columns:1fr;gap:30px;text-align:center}.testimonials-copy .section-head{margin-inline:auto}.video-frame{width:min(100%,300px)}}
+/* Tarjeta tipo chat de WhatsApp (mientras llegan los nuevos testimonios) */
+.wa-card{justify-self:center;width:min(100%,380px);padding:18px;border-radius:26px;background:#fff;border:1px solid var(--line);box-shadow:0 30px 70px rgba(30,40,25,.16);text-align:left}
+.wa-card-head{display:flex;align-items:center;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.wa-card-head img{width:52px;height:52px;border-radius:50%;object-fit:cover;object-position:50% 4%;background:var(--sage-soft)}
+.wa-card-head strong{display:block;color:var(--sage-ink)}
+.wa-card-head span{font-size:.8rem;color:var(--wa);font-weight:600}
+.wa-bubble{position:relative;margin:18px 0 20px;padding:14px 16px;border-radius:4px 16px 16px 16px;background:#E7F6EC;color:var(--ink);font-size:.95rem;line-height:1.5}
+.wa-card .btn{width:100%}
+@media(max-width:800px){.testimonials-layout{grid-template-columns:1fr;gap:30px;text-align:center}.testimonials-copy .section-head{margin-inline:auto}}
 
 /* ---------- TEST ---------- */
 .quiz-section{position:relative;background:var(--sage);color:#fff;overflow:hidden;isolation:isolate}
@@ -933,7 +939,7 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
       <a class="btn btn-light" href="#paises">Ver mi carrito ideal →</a>
       <a class="btn btn-ghost" href="#test-carrito">Hacer el test (30 s)</a>
     </div>
-    <div class="hero-trust"><span>Te respondo yo, no un bot</span><span>Envío gratis desde 200 puntos</span><span>Sin registro ni compromiso</span><a href="#testimonios">▶ Mira experiencias reales</a></div>
+    <div class="hero-trust"><span>Te respondo yo, no un bot</span><span>Envío gratis desde 200 puntos</span><span>Sin registro ni compromiso</span><a href="#testimonios">💬 Escríbeme y te oriento</a></div>
   </div>
   <div class="scroll-hint">Scroll</div>
  </div>
@@ -1138,17 +1144,16 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
     <div class="testimonials-copy rv">
       <div class="section-head">
         <div class="kicker">Personas, experiencias y confianza</div>
-        <h2 class="serif">Conoce experiencias compartidas</h2>
-        <p>Escucha las experiencias que algunas personas comparten sobre su camino y los productos OMNILIFE. Cada experiencia es personal y puede ser diferente.</p>
-        <p class="note">Cada experiencia es personal y los resultados pueden variar. Estos testimonios no sustituyen la orientación de un profesional de la salud.</p>
+        <h2 class="serif">Pronto, nuevas historias</h2>
+        <p>Estoy preparando experiencias de personas que comparten cómo integraron OMNILIFE a su rutina. Mientras tanto, escríbeme y con gusto te cuento cómo acompaño a cada persona en su proceso.</p>
         <a class="btn btn-dark" href="#paises">Explorar carritos →</a>
       </div>
     </div>
-    <div class="video-frame rv">
-      <video controls playsinline preload="metadata" aria-label="Video de testimonios de personas">
-        <source src="testimonios_omnilife_ligero_sin_portada.mp4" type="video/mp4">
-        Tu navegador no puede reproducir este video.
-      </video>
+    <!-- ✏️ Aquí irá el muro de historias cuando tengas los nuevos testimonios -->
+    <div class="wa-card rv">
+      <div class="wa-card-head"><img src="personaje-celular.webp" alt="" decoding="async" loading="lazy"><div><strong>Hamilton</strong><span>Distribuidor independiente</span></div></div>
+      <div class="wa-bubble">Hola 👋 ¿Tienes dudas sobre algún producto o carrito? Escríbeme: te respondo yo, no un bot.</div>
+      <a class="btn btn-wa" id="testiWa" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20me%20gustar%C3%ADa%20recibir%20tu%20orientaci%C3%B3n%20sobre%20los%20productos%20OMNILIFE." target="_blank" rel="noopener">Escríbeme por WhatsApp ↗</a>
     </div>
   </div>
 </section>
@@ -2770,6 +2775,8 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     video.addEventListener('play', function(){ buddySay(null, '8', 3000); });
     video.addEventListener('ended', function(){ buddySay('¿Te identificaste con alguna historia? Escríbeme cuando quieras 💬', '4', 4500, 'video-end'); });
   }
+  var testiWa = document.getElementById('testiWa');
+  if (testiWa) testiWa.addEventListener('click', function(){ if (window.gtag) gtag('event', 'testimonios_whatsapp'); });
   [].forEach.call(document.querySelectorAll('.faq-list details'), function(d){
     d.addEventListener('toggle', function(){ if (d.open) buddySay(null, '5', 2500); });
   });
