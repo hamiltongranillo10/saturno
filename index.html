@@ -746,6 +746,17 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 .arma-country button{border:1px solid var(--line);background:#fff;color:var(--sage-ink);padding:8px 14px;border-radius:999px;font-weight:600;font-size:.82rem;transition:background .2s,border-color .2s}
 .arma-country button.on{background:var(--sage-ink);color:#fff;border-color:var(--sage-ink)}
 /* Repisas de travertino: sin columnas separadas, así las repisas de cada fila se unen en una sola */
+/* Pestañas por tipo: así el estante no se hace largo al sumar productos */
+.arma-tabs{display:flex;gap:6px;margin:-10px 0 34px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.arma-tabs::-webkit-scrollbar{display:none}
+.arma-tabs button{flex:none;border:0;background:rgba(255,255,255,.55);color:var(--sage-ink);padding:9px 16px;border-radius:999px;font-weight:600;font-size:.84rem;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .2s,color .2s}
+.arma-tabs button span{opacity:.55;font-weight:500;margin-left:4px}
+.arma-tabs button.on{background:var(--amber-deep);color:#fff}
+.arma-tabs button.on span{opacity:.8}
+.arma-more{display:flex;justify-content:center;margin-top:36px}
+.arma-more:empty{display:none}
+.arma-more button{border:1px solid rgba(47,58,43,.35);background:rgba(255,255,255,.6);color:var(--sage-ink);padding:12px 24px;border-radius:999px;font-weight:600;font-size:.9rem;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .2s,color .2s}
+.arma-more button:hover{background:var(--sage-ink);color:#fff}
 .arma-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:44px 0}
 .arma-card{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 0 4px}
 .arma-card .pvis{--w:120px;z-index:1;transition:transform .45s var(--ease);transform-origin:50% 100%}
@@ -1341,7 +1352,9 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
       <p>Agrega lo que quieras, envíame tu lista por WhatsApp y yo armo tu carrito con el precio de tu país.</p>
     </div>
     <div class="arma-country" id="armaCountry"></div>
+    <div class="arma-tabs" id="armaTabs" role="tablist" aria-label="Tipo de producto"></div>
     <div class="arma-grid" id="armaGrid"></div>
+    <div class="arma-more" id="armaMore"></div>
   </div>
 </section>
 
@@ -1549,12 +1562,12 @@ const PRODUCTS = {
   ego_frutas:{name:"Ego Frutas Six Pack",desc:"6 latas de 355 ml con complejo B, vitaminas C y E y extracto de regaliz. Sabor frutos del bosque.",image:"ego_frutas.webp",type:"can",color:"#C7653F",pack:6},
   aloe:{name:"Aloe Beta",desc:"Aloe vera con betacaroteno, fibra y vitaminas C y E. Sabor piña.",image:"aloe.webp",type:"box",color:"#6E9A5A"},
   optimus:{name:"Optimus",desc:"Con colina, glicina, complejo B, vitaminas C y E y zinc. Sabor lima-limón.",image:"optimus.webp",type:"box",color:"#B8863B"},
-  dolce:{name:"Dolce Vita",desc:"Con extracto de café verde y fibras de manzana, avena y arroz. Sabor toronja.",image:"dolce.webp",type:"box",color:"#B7607A"},
+  dolce:{name:"Dolce Vita",desc:"Con extracto de café verde y fibras de manzana, avena y arroz. Sabor toronja.",image:"dolce.webp",type:"box",color:"#D6457E"},
   star_bien:{name:"Star Bien",desc:"Con fibra de manzana, complejo B, ácido fólico y maca. Sabor limón-naranja.",image:"star_bien.webp",type:"box",color:"#C99A2E"},
-  stoplus:{name:"Estop Plus",desc:"Con almendras, omega 3, inulina, niacina y vitamina E. Sabor nuez.",image:"stoplus.webp",type:"box",color:"#8C4B3E"},
-  actua:{name:"Aqtúa",desc:"Con coenzima Q10, L-carnitina, D-ribosa y magnesio. Sabor mandarina.",image:"actua.webp",type:"box",color:"#4F7E7A"},
+  stoplus:{name:"Estop",desc:"Almendra, fibra y proteína vegetal con fitoesteroles, extracto de cera de caña, niacina y vitamina E. Sabor nuez.",image:"stoplus.webp",type:"box",color:"#B5303A"},
+  actua:{name:"Aqtúa",desc:"Con coenzima QH, L-carnitina y magnesio. Sabor mandarina.",image:"actua.webp",type:"box",color:"#4A4F9C"},
   omniplus:{name:"Omniplus",desc:"Multivitamínico líquido con complejo B, vitaminas C, D y E, minerales y aloe vera. Sabor frutas.",image:"omniplus.webp",type:"box",color:"#5E6E54"},
-  fluyer:{name:"Flu-Y",desc:"60 cápsulas con extracto de naranja, fruto del monje y magnesio.",image:"fluyer.webp",type:"box",color:"#7A6BA6"},
+  fluyer:{name:"Flu-Y",desc:"60 cápsulas con extracto de naranja dulce y magnesio.",image:"fluyer.webp",type:"box",color:"#2A9D8F"},
   magnus:{name:"Magnus",desc:"Con complejo B, vitaminas C y E, zinc, cobre y cromo. Endulzado con estevia.",image:"magnus.webp",type:"box",color:"#2F3A2B"}
 };
 
@@ -1785,7 +1798,8 @@ function selectCountry(id, opts){
   if(selectedNeed && !isAvailable(id, selectedNeed)) selectedNeed = null;
   renderCountries(); renderNeeds(); renderCart();
   updateCountryNote(); updateBar(); syncUrl();
-  renderArmaCountry(); updateArmaBar();
+  renderArmaCountry();
+  if(changed) renderArma(); else updateArmaBar();   // el estante muestra solo los productos de ese país
   showStep("necesidades");
   if(selectedNeed) showStep("carritos"); else hideStep("carritos");
   document.getElementById("needCountry").textContent = COUNTRIES[id].flag + " " + COUNTRIES[id].name;
@@ -1990,11 +2004,51 @@ const shelfIO = ("IntersectionObserver" in window) ? new IntersectionObserver(es
   setTimeout(() => c.classList.add("done"), 1600);
 }), {threshold:.25}) : null;
 if(shelfIO && !reduceMotion) armaGrid.classList.add("anim");
+/* ✏️ ARMA_CATS: pestañas del estante. Agrega el id de cada producto nuevo en su pestaña.
+   ✏️ Producto solo para un país: ponle en PRODUCTS  paises:["mexico"]  o  paises:["usa"]  (sin "paises" se ve en los dos). */
+const ARMA_CATS = [
+  {id:"todos",   name:"Todos"},
+  {id:"latas",   name:"Latas",               ids:["iqu","ego_frutas"]},
+  {id:"sobres",  name:"Sobres",              ids:["aloe","optimus","dolce","star_bien","stoplus","actua","magnus"]},
+  {id:"otros",   name:"Líquidos y cápsulas", ids:["omniplus","fluyer"]}
+];
+const ARMA_ROWS = 2;   // en "Todos" se ven solo estas filas; el resto aparece con "Ver todos"
+let armaCat = "todos", armaOpen = false;
+function armaList(catId){
+  const cat = ARMA_CATS.find(c => c.id === catId) || ARMA_CATS[0];
+  return (cat.ids || Object.keys(PRODUCTS)).filter(id => {
+    const p = PRODUCTS[id];
+    return p && (!p.paises || p.paises.includes(selectedCountry));
+  });
+}
+function renderArmaTabs(){
+  document.getElementById("armaTabs").innerHTML = ARMA_CATS.map(c => {
+    const n = armaList(c.id).length;
+    return n ? `<button type="button" role="tab" aria-selected="${armaCat===c.id}" data-arma-cat="${c.id}" class="${armaCat===c.id?"on":""}">${c.name}<span>${n}</span></button>` : "";
+  }).join("");
+}
+document.getElementById("armaTabs").addEventListener("click", e => {
+  const b = e.target.closest("[data-arma-cat]");
+  if(!b || b.dataset.armaCat === armaCat) return;
+  armaCat = b.dataset.armaCat; armaOpen = false; renderArma();
+});
+document.getElementById("armaMore").addEventListener("click", e => {
+  if(!e.target.closest("button")) return;
+  armaOpen = !armaOpen; renderArma();
+  if(!armaOpen) document.getElementById("armaTabs").scrollIntoView({behavior:reduceMotion ? "auto" : "smooth", block:"center"});
+});
 function renderArma(){
   const cols = matchMedia("(max-width:700px)").matches ? 2 : matchMedia("(max-width:1000px)").matches ? 3 : 4;
-  armaGrid.innerHTML = Object.keys(PRODUCTS).map((id, i) =>
+  if(!armaList(armaCat).length) armaCat = "todos";
+  const all = armaList(armaCat), limit = cols * ARMA_ROWS;
+  const cut = armaCat === "todos" && !armaOpen && all.length > limit + 1;
+  armaGrid.innerHTML = (cut ? all.slice(0, limit) : all).map((id, i) =>
     `<div class="arma-card ${armaQty[id] ? "in-cart" : ""}" data-product="${id}" style="--i:${i % cols}">${armaCardInner(id)}</div>`).join("");
   if(armaGrid.classList.contains("anim")) armaGrid.querySelectorAll(".arma-card").forEach(c => shelfIO.observe(c));
+  document.getElementById("armaMore").innerHTML = cut
+    ? `<button type="button">Ver los ${all.length} productos ↓</button>`
+    : (armaCat === "todos" && armaOpen ? `<button type="button">Ver menos ↑</button>` : "");
+  renderArmaTabs();
   updateArmaBar();
 }
 
