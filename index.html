@@ -738,7 +738,19 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 }
 
 /* ---------- TESTIMONIOS ---------- */
-.testimonials{background:linear-gradient(180deg,var(--paper),var(--sage-soft))}
+/* Terraza al atardecer: la foto baja más lento que la página; arriba y abajo se funde con las secciones vecinas */
+.testimonials{position:relative;overflow:clip;min-height:100vh;display:flex;align-items:center;background:#E8D1B4}
+.testimonials>.wrap{position:relative;z-index:1}
+.testi-bg{position:absolute;left:0;right:0;top:-10%;height:120%;background:url(fondo-testi-pc.webp) 70% 62%/cover no-repeat;will-change:transform}
+.testimonials::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(var(--cream),rgba(243,241,236,0) 130px,rgba(251,250,247,0) calc(100% - 130px),var(--paper))}
+.testimonials .testimonials-layout{grid-template-columns:minmax(0,1fr) minmax(300px,.85fr)}
+.testimonials .wa-card{margin-bottom:6vh;box-shadow:0 34px 60px -18px rgba(70,45,15,.45)}
+@media(max-width:800px){
+  .testimonials{display:block;min-height:0;padding-top:calc(100vw * 1672 / 941 * .46);background:linear-gradient(#DFC1A1,#E6CCAE 70%,var(--paper))}
+  .testi-bg{top:0;height:auto;aspect-ratio:941 / 1672;background:url(fondo-testi-movil.webp) top/100% auto no-repeat}
+  .testimonials .testimonials-layout{grid-template-columns:1fr}
+  .testimonials .wa-card{margin-bottom:0}
+}
 .testimonials-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.8fr);gap:56px;align-items:center}
 .testimonials-copy .note{margin-top:16px;font-size:.78rem;color:var(--muted)}
 .testimonials-copy .btn{margin-top:24px}
@@ -750,6 +762,15 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 .wa-card-head span{font-size:.8rem;color:var(--wa);font-weight:600}
 .wa-bubble{position:relative;margin:18px 0 20px;padding:14px 16px;border-radius:4px 16px 16px 16px;background:#E7F6EC;color:var(--ink);font-size:.95rem;line-height:1.5}
 .wa-card .btn{width:100%}
+/* "Escribiendo…": tres puntos y después aparece el mensaje */
+.wa-typing{display:none;width:64px;margin:18px 0 20px;padding:14px 16px;border-radius:4px 16px 16px 16px;background:#E7F6EC;gap:5px}
+.wa-typing i{width:7px;height:7px;border-radius:50%;background:#5f8a6c;animation:waDot 1s ease-in-out infinite}
+.wa-typing i:nth-child(2){animation-delay:.15s}.wa-typing i:nth-child(3){animation-delay:.3s}
+@keyframes waDot{0%,60%,100%{transform:none;opacity:.45}30%{transform:translateY(-4px);opacity:1}}
+.wa-card.typing .wa-typing{display:flex}
+.wa-card.typing .wa-bubble{display:none}
+.wa-card.said .wa-bubble{animation:bubbleIn .5s var(--ease)}
+@keyframes bubbleIn{from{opacity:0;transform:translateY(8px) scale(.96);transform-origin:0 0}}
 @media(max-width:800px){.testimonials-layout{grid-template-columns:1fr;gap:30px;text-align:center}.testimonials-copy .section-head{margin-inline:auto}}
 
 /* ---------- TEST ---------- */
@@ -1140,6 +1161,8 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 
 <!-- ================= TESTIMONIOS ================= -->
 <section class="section testimonials" id="testimonios">
+  <!-- 🖼️ Terraza al atardecer: fondo-testi-pc.webp (PC) y fondo-testi-movil.webp (celular) -->
+  <div class="testi-bg" aria-hidden="true"></div>
   <div class="wrap testimonials-layout">
     <div class="testimonials-copy rv">
       <div class="section-head">
@@ -1152,6 +1175,7 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
     <!-- ✏️ Aquí irá el muro de historias cuando tengas los nuevos testimonios -->
     <div class="wa-card rv">
       <div class="wa-card-head"><img src="personaje-celular.webp" alt="" decoding="async" loading="lazy"><div><strong>Hamilton</strong><span>Distribuidor independiente</span></div></div>
+      <div class="wa-typing" aria-hidden="true"><i></i><i></i><i></i></div>
       <div class="wa-bubble">Hola 👋 ¿Tienes dudas sobre algún producto o carrito? Escríbeme: te respondo yo, no un bot.</div>
       <a class="btn btn-wa" id="testiWa" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20me%20gustar%C3%ADa%20recibir%20tu%20orientaci%C3%B3n%20sobre%20los%20productos%20OMNILIFE." target="_blank" rel="noopener">Escríbeme por WhatsApp ↗</a>
     </div>
@@ -2777,6 +2801,26 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   }
   var testiWa = document.getElementById('testiWa');
   if (testiWa) testiWa.addEventListener('click', function(){ if (window.gtag) gtag('event', 'testimonios_whatsapp'); });
+  // El chat "escribe" cuando aparece en pantalla y luego muestra el mensaje
+  var waCard = document.querySelector('.wa-card');
+  if (waCard && !reduce && 'IntersectionObserver' in window){
+    waCard.classList.add('typing');
+    var waIO = new IntersectionObserver(function(es){
+      if (!es[0].isIntersecting) return;
+      waIO.disconnect();
+      setTimeout(function(){ waCard.classList.remove('typing'); waCard.classList.add('said'); }, 1600);
+    }, { threshold: .6 });
+    waIO.observe(waCard);
+  }
+  // Terraza: la foto se mueve más lento que la página
+  var testiSec = document.getElementById('testimonios'), testiBg = testiSec && testiSec.querySelector('.testi-bg');
+  function applyTesti(){
+    if (reduce || !testiBg) return;
+    var r = testiSec.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > innerHeight) return;
+    var k = matchMedia('(max-width:800px)').matches ? -.05 : -.12;
+    testiBg.style.transform = 'translate3d(0,' + ((r.top + r.height / 2 - innerHeight / 2) * k).toFixed(1) + 'px,0)';
+  }
   [].forEach.call(document.querySelectorAll('.faq-list details'), function(d){
     d.addEventListener('toggle', function(){ if (d.open) buddySay(null, '5', 2500); });
   });
@@ -2797,7 +2841,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   var ticking = false;
   function onScroll(){
     ticking = false;
-    applyHero(); applySeq(); applyStars(); updatePose(); applyFlowFx(); updateBuddy();
+    applyHero(); applySeq(); applyStars(); updatePose(); applyFlowFx(); applyTesti(); updateBuddy();
     nav.classList.toggle('dark', window.scrollY > hero.offsetHeight - 72);
     nav.classList.toggle('on-light', photoHero && window.scrollY <= hero.offsetHeight - 72);
   }
