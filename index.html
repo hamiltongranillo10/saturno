@@ -848,13 +848,35 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 .quiz-section .quiz-res .quiz-calm{color:#fff;font-weight:500;padding:10px 12px;border-left:3px solid var(--amber);background:rgba(255,255,255,.06);border-radius:0 10px 10px 0}
 
 /* ---------- AYUDA ---------- */
-.helper{background:var(--sage-ink);color:#fff;padding:60px 0}
-.helper-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px}
-.helper .kicker{color:var(--sage-light)}
+/* Noche con vela: la escena va a la derecha (PC) o arriba (celular); el texto sobre la parte oscura */
+.helper{position:relative;overflow:clip;background:#1b100d;color:#fff;padding:60px 0;min-height:78vh;display:flex;align-items:center}
+.helper>.wrap{position:relative;z-index:2;width:min(1180px,calc(100% - 32px))}
+.helper-bg{position:absolute;inset:0;pointer-events:none}
+.helper-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,10,10,.82),rgba(14,10,10,.45) 42%,rgba(14,10,10,0) 70%),linear-gradient(rgba(14,10,10,.35),transparent 18%,transparent 82%,rgba(14,10,10,.5))}
+.helper-scene{position:absolute;background:center/100% 100% no-repeat}
+.candle{position:absolute;aspect-ratio:1;translate:-50% -50%;border-radius:50%;mix-blend-mode:screen;
+  background:radial-gradient(circle,rgba(255,230,170,.95) 0,rgba(255,180,90,.5) 18%,rgba(255,150,60,.16) 42%,rgba(255,140,40,0) 68%);animation:candleFlicker 2.6s ease-in-out infinite}
+@keyframes candleFlicker{0%,100%{opacity:.85;transform:scale(1)}18%{opacity:1;transform:scale(1.05)}33%{opacity:.78;transform:scale(.97)}52%{opacity:.95;transform:scale(1.03)}71%{opacity:.82;transform:scale(.99)}}
+.helper-inner{display:flex;flex-direction:column;align-items:flex-start;gap:24px;max-width:560px}
+.helper .kicker{color:var(--amber-light)}
+.helper-btn{animation:warmGlow 2.8s ease-in-out infinite}
+@keyframes warmGlow{0%,100%{box-shadow:0 10px 26px rgba(37,211,102,.25)}50%{box-shadow:0 10px 34px rgba(37,211,102,.45),0 0 0 6px rgba(213,133,31,.18)}}
+@media(max-width:860px){
+  .helper{display:block;min-height:0;padding:calc(100vw * 1672 / 941 * .52) 0 60px}
+  .helper-bg::after{background:linear-gradient(rgba(14,10,10,.35),transparent 20%,transparent 40%,rgba(27,16,13,.9) 60%)}
+  .helper-inner{max-width:none}
+}
+@media(prefers-reduced-motion:reduce){.candle,.helper-btn{animation:none}}
 .helper h2{font-size:clamp(1.8rem,3.4vw,2.8rem);margin:8px 0}
 .helper p{color:rgba(255,255,255,.8);max-width:560px}
 
 /* ---------- FAQ ---------- */
+/* Amanecer arriba; la foto ya termina en crema y se une con la página. Las preguntas van en una tarjeta clara para leer cómodo */
+.faq-section{background:var(--paper) url(fondo-preguntas.webp) center top/100% auto no-repeat;padding-top:clamp(220px,36vw,520px)}
+.faq-section .section-head{text-shadow:0 0 18px rgba(251,250,247,.95),0 0 4px rgba(251,250,247,.9)}
+.faq-section .faq-list{border-top:0;padding:6px 20px;border-radius:22px;background:rgba(251,250,247,.88);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 20px 50px rgba(120,90,50,.12)}
+.faq-section .faq-list details:last-child{border-bottom:0}
+@media(max-width:760px){.faq-section{background-size:190% auto;padding-top:calc(100vw * 1.9 * .5625 * .72)}.faq-section .faq-list{padding:4px 12px}}
 .faq{max-width:820px;margin:auto}
 .faq-list{border-top:1px solid var(--line)}
 .faq-list details{border-bottom:1px solid var(--line);transition:background .3s}
@@ -871,7 +893,13 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 @media(max-width:600px){.faq-list summary{grid-template-columns:2rem 1fr auto;gap:.6rem;font-size:.94rem}.faq-answer{padding:0 .3rem 1.2rem 2.6rem}.faq-cta .btn{width:100%}}
 
 /* ---------- FOOTER ---------- */
-.footer{background:#1d2619;color:#fff;padding:60px 0 34px}
+.footer{position:relative;overflow:hidden;background:#1d2619;color:#fff;padding:60px 0 34px}
+.footer>.wrap{position:relative;z-index:1}
+/* Silueta de la rama de olivo (la misma rama-olivo.webp) meciéndose apenas */
+.footer::before{content:"";position:absolute;right:-30px;top:-30px;width:min(460px,70vw);height:340px;background:url(rama-olivo.webp) right top/contain no-repeat;
+  filter:brightness(0) invert(.9);opacity:.09;transform-origin:100% 0;animation:branchSway 9s ease-in-out infinite alternate;pointer-events:none}
+@keyframes branchSway{from{transform:rotate(-1.5deg)}to{transform:rotate(2deg)}}
+@media(prefers-reduced-motion:reduce){.footer::before{animation:none}}
 .footer-brand{display:flex;align-items:center;gap:14px;margin-bottom:36px}
 .footer-mark{width:50px;height:50px;border-radius:14px;border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;font-family:'Lora',serif;color:var(--sage-light);letter-spacing:.08em}
 .footer-brand p{color:rgba(255,255,255,.6);font-size:.9rem}
@@ -1249,14 +1277,17 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 
 <!-- ================= AYUDA ================= -->
 <section class="helper" id="ayuda">
+  <!-- 🖼️ Terraza de noche con vela: fondo-ayuda-pc.webp (PC) y fondo-ayuda-movil.webp (celular). La llama parpadea con código. -->
+  <div class="helper-bg" aria-hidden="true"><div class="helper-scene" id="helperScene"><i class="candle"></i></div></div>
   <div class="wrap helper-inner">
     <div><div class="kicker">Aquí tienes a alguien con quien contar</div><h2 class="serif">¿Lo revisamos juntos?</h2><p>Escríbeme si no sabes qué categoría elegir o si tienes dudas con tu pedido. Te respondo con gusto.</p></div>
-    <a class="btn btn-sage" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20ayuda%20para%20elegir%20un%20carrito%20Omnilife." target="_blank" rel="noopener">Escribirme por WhatsApp ↗</a>
+    <a class="btn btn-wa helper-btn" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20ayuda%20para%20elegir%20un%20carrito%20Omnilife." target="_blank" rel="noopener">Escribirme por WhatsApp ↗</a>
   </div>
 </section>
 
 <!-- ================= PREGUNTAS ================= -->
-<section class="section" id="preguntas">
+<!-- 🖼️ Amanecer arriba de las preguntas: fondo-preguntas.webp (una sola imagen para PC y celular) -->
+<section class="section faq-section" id="preguntas">
   <div class="wrap faq">
     <div class="section-head rv"><div class="kicker">Preguntas frecuentes</div><h2 class="serif">Respuestas rápidas.</h2><p>¿Algo más? Escríbeme directamente.</p></div>
     <div class="faq-list">
@@ -2974,6 +3005,31 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
       }).observe(testSecEl);
     }
   }
+
+  /* ---------- ¿LO REVISAMOS JUNTOS?: terraza de noche con vela ----------
+     ✏️ HELPER_BG: dónde está la llama en cada foto [x, y] y el tamaño del brillo (en proporción de la foto).
+     fx: en PC la foto se pega a la derecha (ahí está la mesa); en celular va arriba a lo ancho. */
+  var HELPER_BG = {
+    pc:    { src: 'fondo-ayuda-pc.webp',    iw: 1672, ih: 941,  flame: [.835, .565], size: .13, fx: .85 },
+    movil: { src: 'fondo-ayuda-movil.webp', iw: 941,  ih: 1672, flame: [.707, .35],  size: .24 }
+  };
+  var helperSec = document.getElementById('ayuda'), helperScene = document.getElementById('helperScene'), helperKind = '';
+  function placeHelper(){
+    if (!helperScene) return;
+    var small = matchMedia('(max-width:860px)').matches, kind = small ? 'movil' : 'pc', B = HELPER_BG[kind];
+    if (kind !== helperKind){
+      helperKind = kind;
+      helperScene.style.backgroundImage = 'url(' + B.src + ')';
+      var c = helperScene.querySelector('.candle');
+      c.style.left = B.flame[0] * 100 + '%'; c.style.top = B.flame[1] * 100 + '%'; c.style.width = B.size * 100 + '%';
+    }
+    var W = helperSec.offsetWidth, H = helperSec.offsetHeight, s, dw, dh;
+    if (small){ dw = W; dh = W * B.ih / B.iw; helperScene.style.left = '0px'; helperScene.style.top = '0px'; }
+    else { s = Math.max(W / B.iw, H / B.ih); dw = B.iw * s; dh = B.ih * s; helperScene.style.left = ((W - dw) * B.fx) + 'px'; helperScene.style.top = ((H - dh) / 2) + 'px'; }
+    helperScene.style.width = dw + 'px'; helperScene.style.height = dh + 'px';
+  }
+  placeHelper();
+  addEventListener('resize', placeHelper);
 
   // Terraza: la foto se mueve más lento que la página
   var testiSec = document.getElementById('testimonios'), testiBg = testiSec && testiSec.querySelector('.testi-bg');
