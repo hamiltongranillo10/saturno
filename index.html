@@ -481,7 +481,7 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 
 /* ---------- FIGURA DE PRODUCTO (imagen real o caja/lata de prueba) ---------- */
 .pvis{position:relative;width:var(--w,160px);height:calc(var(--w,160px) * 1.3);perspective:800px;flex:0 0 auto}
-.pvis img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .3s;filter:drop-shadow(0 calc(var(--w)*.08) calc(var(--w)*.1) rgba(30,40,25,.25))}
+.pvis img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;opacity:0;transition:opacity .3s;filter:drop-shadow(0 calc(var(--w)*.08) calc(var(--w)*.1) rgba(30,40,25,.25))}
 .pvis.has-img img{opacity:1}
 .pvis.has-img .pbox,.pvis.has-img .pcan{display:none}
 /* Caja 3D de prueba hecha con CSS */
