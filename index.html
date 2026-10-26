@@ -669,17 +669,38 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 @keyframes dropIn{from{opacity:0;transform:translateY(-70px) rotate(-14deg)}}
 
 /* ---------- ARMA TU CARRITO ---------- */
-.arma{background:var(--cream);padding-bottom:150px}
+.arma{position:relative;background:var(--cream);padding-bottom:150px}
+.arma>.wrap{position:relative;z-index:1}
+/* Pared de travertino fija detrás de las repisas; la sombra de las hojas se mece despacio */
+.arma-bg{position:absolute;inset:0;overflow:clip;pointer-events:none;
+  -webkit-mask-image:linear-gradient(transparent,#000 120px,#000 calc(100% - 160px),transparent);mask-image:linear-gradient(transparent,#000 120px,#000 calc(100% - 160px),transparent)}
+.arma-bg-pin{position:sticky;top:0;height:100vh;background:url(fondo-arma-pc.webp) left top/cover no-repeat;transform-origin:0 0;animation:leafSway 14s ease-in-out infinite alternate}
+@keyframes leafSway{from{transform:scale(1.02) rotate(0)}to{transform:scale(1.06) rotate(.6deg)}}
+@media(max-width:760px){.arma-bg-pin{background-image:url(fondo-arma-movil.webp)}}
+@media(prefers-reduced-motion:reduce){.arma-bg-pin{animation:none}}
 .arma-country{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:-14px 0 28px;font-size:.88rem;color:var(--muted)}
 .arma-country button{border:1px solid var(--line);background:#fff;color:var(--sage-ink);padding:8px 14px;border-radius:999px;font-weight:600;font-size:.82rem;transition:background .2s,border-color .2s}
 .arma-country button.on{background:var(--sage-ink);color:#fff;border-color:var(--sage-ink)}
-.arma-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-.arma-card{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:18px 14px 16px;border-radius:20px;background:#fff;border:1px solid var(--line);transition:border-color .25s,box-shadow .25s,transform .25s var(--ease)}
-.arma-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
-.arma-card.in-cart{border-color:var(--gold);box-shadow:0 12px 30px rgba(199,161,90,.18)}
-.arma-card .pvis{--w:120px;margin-bottom:8px}
-.arma-card strong{color:var(--sage-ink)}
-.arma-card p{color:var(--muted);font-size:.78rem;margin:4px 0 14px;flex:1}
+/* Repisas de travertino: sin columnas separadas, así las repisas de cada fila se unen en una sola */
+.arma-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:44px 0}
+.arma-card{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 0 4px}
+.arma-card .pvis{--w:120px;z-index:1;transition:transform .45s var(--ease);transform-origin:50% 100%}
+.arma-card:hover .pvis{transform:translateY(-10px) rotate(-2deg)}
+.ledge{position:relative;display:block;align-self:stretch;height:16px;margin:-2px 0 16px;
+  background:linear-gradient(180deg,#f7f2ea 0 38%,#e3d8c6 38% 100%);box-shadow:0 18px 20px -14px rgba(70,52,28,.45),inset 0 -2px 0 rgba(120,95,60,.12)}
+.ledge::after{content:"";position:absolute;left:50%;top:0;width:0;height:3px;translate:-50% 0;border-radius:3px;background:var(--gold);box-shadow:0 0 14px 3px rgba(213,133,31,.45);opacity:0;transition:width .45s var(--ease),opacity .3s}
+.arma-card.in-cart .ledge::after{width:56%;opacity:1}
+.arma-card.in-cart::before{content:"✓";position:absolute;top:6px;right:calc(50% - 74px);z-index:2;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#fff;font-size:.8rem;font-weight:700;box-shadow:0 6px 14px rgba(213,133,31,.35)}
+.arma-card strong{color:var(--sage-ink);padding:0 10px;text-shadow:0 1px 8px rgba(251,248,241,.9)}
+.arma-card p{color:#3f493b;font-size:.8rem;margin:4px 0 14px;padding:0 14px;flex:1;text-shadow:0 1px 8px rgba(251,248,241,.95)}
+/* Entrada: la repisa se extiende y los productos se posan encima */
+.arma-grid.anim .ledge{transition:transform .8s var(--ease) calc(var(--i,0) * 90ms)}
+.arma-grid.anim .arma-card:not(.on) .ledge{transform:scaleX(0)}
+.arma-grid.anim .arma-card:not(.on) .pvis{opacity:0;transform:translateY(-36px)}
+.arma-grid.anim .arma-card.on:not(.done) .pvis{animation:shelfDrop .75s cubic-bezier(.3,1.4,.5,1) calc(.25s + var(--i,0) * 90ms) backwards}
+@keyframes shelfDrop{from{opacity:0;transform:translateY(-36px)}to{opacity:1;transform:none}}
+/* Producto que vuela a la canasta */
+.fly-prod{position:fixed;z-index:90;pointer-events:none;object-fit:contain;filter:drop-shadow(0 10px 14px rgba(30,40,25,.3));will-change:transform}
 .qty{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:4px}
 .qty button{width:34px;height:34px;border-radius:50%;border:0;background:var(--sage-soft);color:var(--sage-ink);font-size:1.1rem;font-weight:700;transition:background .2s,transform .15s}
 .qty button:active{transform:scale(.9)}
@@ -692,15 +713,24 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 .arma-bar{position:fixed;left:50%;bottom:16px;z-index:56;display:flex;align-items:center;gap:10px;width:min(620px,calc(100vw - 24px));padding:10px 10px 10px 18px;border-radius:999px;background:var(--sage-ink);color:#fff;box-shadow:0 18px 40px rgba(30,40,25,.3);
   opacity:0;pointer-events:none;transform:translate(-50%,30px);transition:opacity .3s,transform .45s var(--ease)}
 .arma-bar.show{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+/* Canasta tejida: sobresale de la barra y asoman los últimos productos agregados */
+.basket{position:relative;flex:0 0 auto;width:62px;height:48px;margin:-20px 0 -6px -6px}
+.basket>img{position:absolute;left:0;bottom:0;z-index:2;width:100%;height:auto;filter:drop-shadow(0 6px 8px rgba(0,0,0,.3))}
+.basket-items{position:absolute;left:10px;right:10px;bottom:22px;z-index:1;display:flex;justify-content:center;align-items:flex-end}
+.basket-items img{width:20px;height:30px;object-fit:contain;object-position:bottom;margin:0 -3px}
+.basket-items img:nth-child(1){rotate:-12deg}.basket-items img:nth-child(3){rotate:12deg}
+.basket b{position:absolute;right:-4px;top:-2px;z-index:3;min-width:20px;height:20px;padding:0 5px;border-radius:999px;display:grid;place-items:center;background:var(--gold);color:#fff;font-size:.7rem}
+.basket.hop{animation:basketHop .55s cubic-bezier(.3,1.6,.5,1)}
+@keyframes basketHop{30%{transform:translateY(5px) scale(1.08,.92)}65%{transform:translateY(-6px)}}
 .arma-bar .count{font-weight:700;font-size:.9rem;white-space:nowrap}
 .arma-bar .count.pop{animation:pick .4s var(--ease)}
 .arma-bar .clear{border:0;background:transparent;color:rgba(255,255,255,.7);font-size:.78rem;text-decoration:underline}
 .arma-bar .btn{margin-left:auto;padding:12px 18px;font-size:.84rem}
 @media(max-width:1000px){.arma-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:700px){
-  .arma-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .arma-card{padding:14px 10px}
+  .arma-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 0}
   .arma-card .pvis{--w:92px}
+  .arma-card.in-cart::before{right:calc(50% - 62px)}
   .arma-card p{display:none}
   .arma-card strong{margin-bottom:10px;font-size:.9rem}
   .arma-bar{border-radius:20px;flex-wrap:wrap;padding:12px}
@@ -1089,6 +1119,8 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 <!-- ================= ARMA TU CARRITO =================
      Muestra todos los productos de PRODUCTS. El cliente suma cantidades y te envía la lista por WhatsApp. -->
 <section class="section arma" id="arma">
+  <!-- 🖼️ Pared de travertino: fondo-arma-pc.webp (PC) y fondo-arma-movil.webp (celular). Se queda fija mientras bajas. -->
+  <div class="arma-bg" aria-hidden="true"><div class="arma-bg-pin"></div></div>
   <div class="wrap">
     <div class="section-head rv">
       <div class="kicker">Arma tu carrito</div>
@@ -1182,7 +1214,9 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 
 <!-- Barra de "Arma tu carrito": aparece cuando hay productos agregados -->
 <div class="arma-bar" id="armaBar" aria-live="polite">
-  <span class="count" id="armaCount">🛒 0 productos</span>
+  <!-- 🖼️ canasta.webp: canasta tejida sin fondo -->
+  <span class="basket" id="armaBasket" aria-hidden="true"><span class="basket-items" id="basketItems"></span><img src="canasta.webp" alt="" decoding="async"><b id="basketBadge">0</b></span>
+  <span class="count" id="armaCount">0 productos</span>
   <button class="clear" type="button" id="armaClear">Vaciar</button>
   <a class="btn btn-wa" id="armaSend" href="#" target="_blank" rel="noopener">Enviar mi lista por WhatsApp ↗</a>
 </div>
@@ -1698,18 +1732,50 @@ document.getElementById("armaCountry").addEventListener("click", e => {
 
 function armaCardInner(id){
   const q = armaQty[id] || 0, p = PRODUCTS[id];
-  return `${productVisual(id)}<strong>${p.name}</strong><p>${p.desc}</p>` + (q
+  return `${productVisual(id)}<i class="ledge"></i><strong>${p.name}</strong><p>${p.desc}</p>` + (q
     ? `<div class="qty"><button type="button" data-arma="-1" aria-label="Quitar ${p.name}">−</button><output>${q}</output><button type="button" data-arma="1" aria-label="Agregar ${p.name}">+</button></div>`
     : `<button class="add-btn" type="button" data-arma="1">Agregar +</button>`);
 }
+// Repisas: cada fila aparece cuando entra en pantalla (la repisa se extiende y los productos se posan)
+const shelfIO = ("IntersectionObserver" in window) ? new IntersectionObserver(es => es.forEach(e => {
+  if(!e.isIntersecting) return;
+  const c = e.target; c.classList.add("on"); shelfIO.unobserve(c);
+  setTimeout(() => c.classList.add("done"), 1600);
+}), {threshold:.25}) : null;
+if(shelfIO && !reduceMotion) armaGrid.classList.add("anim");
 function renderArma(){
-  armaGrid.innerHTML = Object.keys(PRODUCTS).map(id =>
-    `<div class="arma-card ${armaQty[id] ? "in-cart" : ""}" data-product="${id}">${armaCardInner(id)}</div>`).join("");
+  const cols = matchMedia("(max-width:700px)").matches ? 2 : matchMedia("(max-width:1000px)").matches ? 3 : 4;
+  armaGrid.innerHTML = Object.keys(PRODUCTS).map((id, i) =>
+    `<div class="arma-card ${armaQty[id] ? "in-cart" : ""}" data-product="${id}" style="--i:${i % cols}">${armaCardInner(id)}</div>`).join("");
+  if(armaGrid.classList.contains("anim")) armaGrid.querySelectorAll(".arma-card").forEach(c => shelfIO.observe(c));
   updateArmaBar();
+}
+
+// El producto elegido vuela en arco desde la repisa hasta la canasta
+function flyToBasket(fromImg){
+  if(reduceMotion || !fromImg || !fromImg.animate) return;
+  const r = fromImg.getBoundingClientRect();
+  requestAnimationFrame(() => setTimeout(() => {
+    const basket = document.getElementById("armaBasket"), t = basket.getBoundingClientRect();
+    if(!t.width) return;
+    const f = document.createElement("img");
+    f.className = "fly-prod"; f.src = fromImg.currentSrc || fromImg.src; f.alt = "";
+    f.style.left = r.left + "px"; f.style.top = r.top + "px"; f.style.width = r.width + "px"; f.style.height = r.height + "px";
+    document.body.appendChild(f);
+    const dx = t.left + t.width / 2 - (r.left + r.width / 2), dy = t.top + t.height * .3 - (r.top + r.height / 2);
+    const a = f.animate([
+      { transform: "translate(0,0) scale(1) rotate(0)", opacity: 1 },
+      { transform: `translate(${dx * .45}px,${dy * .45 - 160}px) scale(.55) rotate(-14deg)`, opacity: 1, offset: .5 },
+      { transform: `translate(${dx}px,${dy}px) scale(.16) rotate(8deg)`, opacity: .4 }
+    ], { duration: 800, easing: "cubic-bezier(.45,0,.25,1)" });
+    a.onfinish = () => { f.remove(); basket.classList.remove("hop"); void basket.offsetWidth; basket.classList.add("hop"); };
+  }, 120));
 }
 armaGrid.addEventListener("click", e => {
   const b = e.target.closest("[data-arma]"); if(!b) return;
   const card = b.closest("[data-product]"), id = card.dataset.product;
+  const shown = card.querySelector(".pvis.has-img img");
+  if(Number(b.dataset.arma) > 0) flyToBasket(shown);
   if(Number(b.dataset.arma) < 0) window.HG3D && window.HG3D.buddySay(null, "5");
   armaQty[id] = Math.max(0, (armaQty[id] || 0) + Number(b.dataset.arma));
   if(!armaQty[id]) delete armaQty[id];
@@ -1734,7 +1800,11 @@ function armaMessage(){
 function updateArmaBar(pop){
   const n = armaTotal();
   const count = document.getElementById("armaCount");
-  count.textContent = `🛒 ${n} producto${n === 1 ? "" : "s"}`;
+  count.textContent = `${n} producto${n === 1 ? "" : "s"}`;
+  document.getElementById("basketBadge").textContent = n;
+  // Asoman de la canasta los últimos productos elegidos (solo los que ya tienen foto)
+  document.getElementById("basketItems").innerHTML = Object.keys(armaQty).filter(id => PRODUCTS[id].image).slice(-3)
+    .map(id => `<img src="${PRODUCTS[id].image}" alt="" onerror="this.remove()">`).join("");
   if(pop && !reduceMotion){ count.classList.remove("pop"); void count.offsetWidth; count.classList.add("pop"); }
   document.getElementById("armaSend").href = waUrl(armaMessage());
   document.getElementById("armaBar").classList.toggle("has-items", n > 0);
