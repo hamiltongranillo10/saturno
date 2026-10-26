@@ -1481,18 +1481,19 @@ const CART_CONTENT_CUSTOM = {
    y ya aparece en "Arma tu carrito".
    ===================================================================== */
 const PRODUCTS = {
-  iqu:{name:"IQU",desc:"Texto de prueba: escribe aquí en una línea para qué es.",image:"iqu.webp",type:"can",color:"#3F6B5A"},
-  ego_frutas:{name:"Ego Frutas",desc:"Texto de prueba: escribe aquí en una línea para qué es.",image:"ego_frutas.webp",type:"can",color:"#C7653F"},
+  // Descripciones tomadas del catálogo (ingredientes y sabor), sin prometer resultados de salud
+  iqu:{name:"IQU",desc:"Con PQQ, coenzima Q10, vitamina D3 y café verde. Sabor jengibre y mandarina.",image:"iqu.webp",type:"can",color:"#3F6B5A"},
+  ego_frutas:{name:"Ego Frutas",desc:"Con complejo B, vitaminas C y E y extracto de regaliz. Sabor frutos del bosque.",image:"ego_frutas.webp",type:"can",color:"#C7653F"},
   ego_sixpac:{name:"Ego Sixpac",desc:"Texto de prueba: escribe aquí en una línea para qué es.",image:"ego_sixpac.webp",type:"box",color:"#3E6E8E"},
-  aloe:{name:"Aloe",desc:"Texto de prueba: escribe aquí en una línea para qué es.",image:"aloe.webp",type:"box",color:"#6E9A5A"},
-  optimus:{name:"Optimus",desc:"Texto de prueba: escribe aquí en una línea para qué es.",image:"optimus.webp",type:"box",color:"#B8863B"},
-  dolce:{name:"Dolce",desc:"Texto de prueba: escribe aquí en una línea para qué es.",image:"dolce.webp",type:"box",color:"#B7607A"},
-  star_bien:{name:"Star Bien",desc:"Texto de prueba: escribe aquí en una línea para qué es.",image:"star_bien.webp",type:"box",color:"#C99A2E"},
-  stoplus:{name:"Stoplus",desc:"Texto de prueba: escribe aquí en una línea para qué es.",image:"stoplus.webp",type:"box",color:"#8C4B3E"},
-  actua:{name:"Actua",desc:"Texto de prueba: escribe aquí en una línea para qué es.",image:"actua.webp",type:"box",color:"#4F7E7A"},
-  omniplus:{name:"Omniplus",desc:"Texto de prueba: escribe aquí en una línea para qué es.",image:"omniplus.webp",type:"box",color:"#5E6E54"},
-  fluyer:{name:"Fluyer",desc:"Texto de prueba: escribe aquí en una línea para qué es.",image:"fluyer.webp",type:"box",color:"#7A6BA6"},
-  magnus:{name:"Magnus",desc:"Texto de prueba: escribe aquí en una línea para qué es.",image:"magnus.webp",type:"box",color:"#2F3A2B"}
+  aloe:{name:"Aloe Beta",desc:"Aloe vera con betacaroteno, fibra y vitaminas C y E. Sabor piña.",image:"aloe.webp",type:"box",color:"#6E9A5A"},
+  optimus:{name:"Optimus",desc:"Con colina, glicina, complejo B, vitaminas C y E y zinc. Sabor lima-limón.",image:"optimus.webp",type:"box",color:"#B8863B"},
+  dolce:{name:"Dolce Vita",desc:"Con extracto de café verde y fibras de manzana, avena y arroz. Sabor toronja.",image:"dolce.webp",type:"box",color:"#B7607A"},
+  star_bien:{name:"Star Bien",desc:"Con fibra de manzana, complejo B, ácido fólico y maca. Sabor limón-naranja.",image:"star_bien.webp",type:"box",color:"#C99A2E"},
+  stoplus:{name:"Estop Plus",desc:"Con almendras, omega 3, inulina, niacina y vitamina E. Sabor nuez.",image:"stoplus.webp",type:"box",color:"#8C4B3E"},
+  actua:{name:"Aqtúa",desc:"Con coenzima Q10, L-carnitina, D-ribosa y magnesio. Sabor mandarina.",image:"actua.webp",type:"box",color:"#4F7E7A"},
+  omniplus:{name:"Omniplus",desc:"Multivitamínico líquido con complejo B, vitaminas C, D y E, minerales y aloe vera. Sabor frutas.",image:"omniplus.webp",type:"box",color:"#5E6E54"},
+  fluyer:{name:"Flu-Y",desc:"60 cápsulas con extracto de naranja, fruto del monje y magnesio.",image:"fluyer.webp",type:"box",color:"#7A6BA6"},
+  magnus:{name:"Magnus",desc:"Con complejo B, vitaminas C y E, zinc, cobre y cromo. Endulzado con estevia.",image:"magnus.webp",type:"box",color:"#2F3A2B"}
 };
 
 /* 🥫 PRODUCTO DEL INICIO: la lata que, al hacer scroll, pasa al centro y muestra sus características
@@ -1504,10 +1505,10 @@ const PRODUCTS = {
 const HERO_PRODUCT = {
   id:"iqu",
   features:[
-    {title:"Qué contiene",          text:"Texto de prueba: escribe aquí su ingrediente principal.", side:"left",  ax:.3,  ay:.36, ly:.18},
-    {title:"Vitaminas y minerales", text:"Texto de prueba: una lista corta de lo que aporta.",      side:"left",  ax:.28, ay:.68, ly:.7},
-    {title:"Cómo se prepara",       text:"Texto de prueba: por ejemplo, 1 porción en agua fría.",   side:"right", ax:.72, ay:.28, ly:.12},
-    {title:"Presentación",          text:"Texto de prueba: tamaño de la lata y porciones.",         side:"right", ax:.74, ay:.6,  ly:.62}
+    {title:"Qué contiene",  text:"PQQ, coenzima Q10 y extracto de café verde.",  side:"left",  ax:.3,  ay:.36, ly:.18},
+    {title:"Vitamina D3",   text:"Cada lata aporta vitamina D3.",                side:"left",  ax:.28, ay:.68, ly:.7},
+    {title:"Sabor",         text:"Jengibre y mandarina, endulzado con estevia.", side:"right", ax:.72, ay:.28, ly:.12},
+    {title:"Presentación",  text:"Lata de 355 ml, lista para tomar.",            side:"right", ax:.74, ay:.6,  ly:.62}
   ]
 };
 
@@ -1516,10 +1517,10 @@ const HERO_PRODUCT = {
 const SEQ_PRODUCT = {
   id:"ego_frutas",
   features:[
-    {title:"Qué contiene",    text:"Texto de prueba: escribe aquí su ingrediente principal."},
-    {title:"Sabor",           text:"Texto de prueba: describe su sabor en una línea."},
-    {title:"Cómo se prepara", text:"Texto de prueba: por ejemplo, 1 porción en agua fría."},
-    {title:"Presentación",    text:"Texto de prueba: tamaño de la lata y porciones."}
+    {title:"Qué contiene", text:"Extracto de regaliz, colina y glicina."},
+    {title:"Sabor",        text:"Frutos del bosque, en bebida con gas."},
+    {title:"Vitaminas",    text:"Complejo B (B1, B6 y B12) y vitaminas C y E."},
+    {title:"Presentación", text:"Lata de 355 ml, lista para tomar."}
   ]
 };
 
