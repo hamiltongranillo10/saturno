@@ -803,6 +803,47 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 .quiz-links button,.quiz-links a{background:none;border:0;padding:0;color:var(--sage-ink);font-weight:600;text-decoration:underline}
 @media(max-width:860px){.quiz-grid{grid-template-columns:1fr;gap:30px}.quiz{padding:20px}}
 
+/* ---------- TEST: CAMINO AL ANOCHECER ---------- */
+.quiz-section{background:#16213a;overflow:clip}   /* clip (no hidden) para que el fondo pueda quedarse fijo */
+.quiz-section::before{display:none}
+.quiz-section>.wrap{position:relative;z-index:2}
+.test-bg{position:absolute;inset:0;overflow:clip;pointer-events:none;z-index:0}
+.test-pin{position:sticky;top:0;height:100vh;overflow:hidden}
+.test-pin::after{content:"";position:absolute;inset:0;z-index:2;
+  background:linear-gradient(90deg,rgba(10,16,30,.74),rgba(10,16,30,.38) 46%,rgba(10,16,30,.12)),linear-gradient(transparent 60%,rgba(10,16,30,.45))}
+.test-scene{position:absolute;background:center/100% 100% no-repeat;transition:transform 1.6s cubic-bezier(.22,1,.36,1);will-change:transform}
+.fireflies{position:absolute;inset:0;width:100%;height:100%;z-index:3}
+/* Farolitos: brillo ámbar que se enciende con cada respuesta */
+.lamp{position:absolute;aspect-ratio:1;translate:-50% -50%;border-radius:50%;mix-blend-mode:screen;opacity:0;transform:scale(.4);
+  background:radial-gradient(circle,rgba(255,226,160,1) 0,rgba(255,180,80,.6) 20%,rgba(255,150,50,.18) 45%,rgba(255,140,40,0) 70%);transition:opacity .9s ease,transform 1.1s cubic-bezier(.3,1.5,.5,1)}
+.lamp.on{opacity:1;transform:none;animation:lampFlicker 3.2s ease-in-out infinite}
+.lamp:nth-child(2n){animation-delay:-1.3s}.lamp:nth-child(3n){animation-delay:-2.1s}
+@keyframes lampFlicker{0%,100%{filter:brightness(1)}40%{filter:brightness(1.18)}55%{filter:brightness(.9)}70%{filter:brightness(1.1)}}
+@media(max-width:860px){.test-pin::after{background:linear-gradient(rgba(10,16,30,.62),rgba(10,16,30,.3) 45%,rgba(10,16,30,.55))}}
+/* Tarjeta de vidrio esmerilado */
+.quiz-section .quiz{background:rgba(18,26,44,.42);-webkit-backdrop-filter:blur(16px) saturate(1.3);backdrop-filter:blur(16px) saturate(1.3);border:1px solid rgba(255,255,255,.18);color:#fff;box-shadow:0 30px 70px rgba(0,0,0,.35)}
+.quiz-section .quiz-top{color:var(--amber-light)}
+.quiz-section .quiz-back{color:rgba(255,255,255,.75)}
+.quiz-section .quiz-bar i{background:rgba(255,255,255,.18)}
+.quiz-section .quiz-bar i.on{background:var(--amber);box-shadow:0 0 10px rgba(213,133,31,.7)}
+.quiz-section .quiz h3{color:#fff}
+.quiz-section .quiz-opt{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff}
+.quiz-section .quiz-opt:hover{background:rgba(213,133,31,.2);border-color:var(--amber-light);transform:perspective(600px) rotateY(-4deg) translateX(4px)}
+.quiz-section .quiz-res p{color:rgba(255,255,255,.85)}
+.quiz-section .quiz-res .quiz-note{color:rgba(255,255,255,.6)}
+.quiz-section .quiz-tag{color:var(--amber-light)}
+.quiz-section .quiz-links button,.quiz-section .quiz-links a{color:#fff}
+/* Resultado: el carrito aparece dentro de la vitrina sobre el pedestal */
+.quiz-vit{position:relative;width:210px;height:240px;margin:-6px auto 4px}
+.quiz-vit::after{content:"";position:absolute;inset:0;z-index:2;background:url(vitrina-alfa.webp) center/100% 100% no-repeat;animation:vitDown 1s cubic-bezier(.3,1.3,.5,1) .35s backwards}
+.qv-pic{position:absolute;left:50%;bottom:21%;z-index:1;width:104px;height:104px;translate:-50% 0;border-radius:10px;overflow:hidden;box-shadow:0 0 30px rgba(255,190,100,.35);animation:vitPic .8s var(--ease) both}
+.qv-pic img{width:100%;height:100%;object-fit:cover}
+.qv-base{position:absolute;left:18%;right:18%;bottom:calc(21% - 22px);height:22px;border-radius:0 0 50% 50%/0 0 9px 9px;background:linear-gradient(90deg,#cbbfab,#efe8dc 40%,#e2d8c8 62%,#c2b5a0)}
+.qv-base::before{content:"";position:absolute;left:0;right:0;top:-7px;height:14px;border-radius:50%;background:radial-gradient(#f6f1e8,#e2d8c9)}
+@keyframes vitDown{from{opacity:0;transform:translateY(-40px)}}
+@keyframes vitPic{from{opacity:0;transform:scale(.6)}}
+.quiz-section .quiz-head{flex-direction:column;text-align:center;gap:2px}
+
 /* ---------- AYUDA ---------- */
 .helper{background:var(--sage-ink);color:#fff;padding:60px 0}
 .helper-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px}
@@ -1184,6 +1225,14 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 
 <!-- ================= TEST ================= -->
 <section class="section quiz-section" id="test-carrito">
+  <!-- 🖼️ Camino al anochecer: fondo-test-pc.webp (PC) y fondo-test-movil.webp (celular).
+       Con cada respuesta avanzas por el camino y se enciende un par de farolitos; las luciérnagas se dibujan con código. -->
+  <div class="test-bg" aria-hidden="true">
+    <div class="test-pin" id="testPin">
+      <div class="test-scene" id="testScene"></div>
+      <canvas class="fireflies" id="fireflies"></canvas>
+    </div>
+  </div>
   <div class="wrap quiz-grid">
     <div class="section-head rv" style="margin-bottom:0">
       <div class="kicker">Test rápido · 30 segundos</div>
@@ -1921,8 +1970,11 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   ];
   var step = 0, ans = [];
   function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt)e.textContent=txt;return e;}
+  // Avisa al fondo (camino, farolitos y luciérnagas) en qué paso va la persona
+  function emit(){ document.dispatchEvent(new CustomEvent('quiz:step', {detail:{step:step}})); }
   function render(){
     box.textContent = '';
+    emit();
     if(step >= 3) return result();
     var top = el('div','quiz-top'); top.appendChild(el('span','','Pregunta '+(step+1)+' de 3'));
     if(step > 0){ var bk = el('button','quiz-back','← Atrás'); bk.type='button'; bk.onclick=function(){step--;ans.pop();render();}; top.appendChild(bk); }
@@ -1938,9 +1990,11 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     var msg = 'Hola Hamilton, hice el test de tu página. Mi prioridad es '+ans[0][2]+', es para '+ans[1][2]+' y prefiero '+ans[2][2]+'. Me sugirió: '+c.n+'. ¿Me orientas?';
     var r = el('div','quiz-res');
     var hd = el('div','quiz-head');
-    var wrap = el('div','img-wrap'); wrap.dataset.label = c.icon;
-    var im = el('img'); im.src = c.i; im.alt = c.n; im.loading = 'lazy'; im.onerror = function(){ wrap.classList.add('noimg'); im.remove(); };
-    wrap.appendChild(im); hd.appendChild(wrap);
+    // El carrito sugerido aparece dentro de la vitrina de vidrio, sobre el pedestal
+    var vit = el('div','quiz-vit');
+    var wrap = el('div','img-wrap qv-pic'); wrap.dataset.label = c.icon;
+    var im = el('img'); im.src = c.i; im.alt = c.n; im.onerror = function(){ wrap.classList.add('noimg'); im.remove(); };
+    wrap.appendChild(im); vit.appendChild(el('i','qv-base')); vit.appendChild(wrap); hd.appendChild(vit);
     var tx = el('div'); tx.appendChild(el('div','quiz-tag','Tu carrito sugerido')); tx.appendChild(el('h3','',c.n)); hd.appendChild(tx);
     r.appendChild(hd); r.appendChild(el('p','',c.d));
     r.appendChild(el('p','quiz-note','Es una orientación inicial: te confirmo por WhatsApp qué incluye y su precio según tu país. No sustituye la orientación de un profesional de la salud.'));
@@ -2812,6 +2866,93 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     }, { threshold: .6 });
     waIO.observe(waCard);
   }
+  /* ---------- TEST: camino al anochecer ----------
+     ✏️ TEST_BG: farolitos de cada foto [x, y, tamaño del brillo] (en proporción de la foto, 0 a 1),
+     en pares del más cercano al más lejano: se enciende un par por respuesta. vp: hacia dónde avanza el camino. */
+  var TEST_BG = {
+    pc:    { src: 'fondo-test-pc.webp',    iw: 1672, ih: 941,  vp: [.535, .55],
+             lamps: [[.208,.642,.13],[.867,.642,.13],[.338,.558,.075],[.677,.552,.075],[.383,.532,.05],[.622,.532,.05]] },
+    movil: { src: 'fondo-test-movil.webp', iw: 941,  ih: 1672, vp: [.5, .45],
+             lamps: [[.143,.513,.2],[.877,.513,.2],[.278,.466,.11],[.751,.466,.11],[.391,.46,.07],[.663,.46,.07]] }
+  };
+  var testPin = document.getElementById('testPin'), testScene = document.getElementById('testScene');
+  var testKind = '', testStep = 0, lamps = [];
+  function lightLamps(){
+    var n = Math.min(testStep, 3);
+    lamps.forEach(function(l, i){ l.classList.toggle('on', i < n * 2); });
+    testScene.style.transform = 'scale(' + (1 + n * .045).toFixed(3) + ')';   // cada respuesta = un paso por el camino
+  }
+  function placeTestBg(){
+    if (!testScene) return;
+    var kind = matchMedia('(max-width:860px)').matches ? 'movil' : 'pc', B = TEST_BG[kind];
+    if (kind !== testKind){
+      testKind = kind;
+      testScene.style.backgroundImage = 'url(' + B.src + ')';
+      testScene.style.transformOrigin = (B.vp[0] * 100) + '% ' + (B.vp[1] * 100) + '%';
+      testScene.innerHTML = B.lamps.map(function(l){ return '<i class="lamp" style="left:' + l[0] * 100 + '%;top:' + l[1] * 100 + '%;width:' + l[2] * 100 + '%"></i>'; }).join('');
+      lamps = [].slice.call(testScene.querySelectorAll('.lamp'));
+      lightLamps();
+    }
+    var W = testPin.offsetWidth, H = testPin.offsetHeight, s = Math.max(W / B.iw, H / B.ih), dw = B.iw * s, dh = B.ih * s;
+    testScene.style.width = dw + 'px'; testScene.style.height = dh + 'px';
+    testScene.style.left = ((W - dw) / 2) + 'px'; testScene.style.top = ((H - dh) / 2) + 'px';
+    sizeFlies();
+  }
+
+  // Luciérnagas: pocas al inicio, más con cada respuesta; al terminar suben todas juntas
+  var ffCanvas = document.getElementById('fireflies'), ffx = ffCanvas && ffCanvas.getContext('2d');
+  var flies = [], ffTarget = 12, ffRun = false, ffVis = false, ffLast = 0, ffRiseUntil = 0, ffMouse = null, ffDpr = Math.min(1.5, window.devicePixelRatio || 1);
+  var ffSprite = document.createElement('canvas'); ffSprite.width = ffSprite.height = 32;
+  (function(){ var x = ffSprite.getContext('2d'), g = x.createRadialGradient(16, 16, 0, 16, 16, 16);
+    g.addColorStop(0, 'rgba(255,250,210,1)'); g.addColorStop(.25, 'rgba(250,226,125,.75)'); g.addColorStop(1, 'rgba(240,200,80,0)');
+    x.fillStyle = g; x.fillRect(0, 0, 32, 32); })();
+  function newFly(){ return { x: Math.random(), y: .4 + Math.random() * .58, a: Math.random() * 6.28, sp: .015 + Math.random() * .03, ph: Math.random() * 6.28, fr: .7 + Math.random() * 1.4, r: 5 + Math.random() * 8, life: 0, dying: false }; }
+  function sizeFlies(){ if (ffCanvas){ ffCanvas.width = ffCanvas.offsetWidth * ffDpr; ffCanvas.height = ffCanvas.offsetHeight * ffDpr; } }
+  function fliesFrame(now){
+    if (!ffVis){ ffRun = false; ffLast = 0; return; }
+    var dt = Math.min(.05, (now - (ffLast || now)) / 1000); ffLast = now;
+    var W = ffCanvas.width, H = ffCanvas.height, rising = now < ffRiseUntil, alive = 0;
+    flies.forEach(function(f){ if (!f.dying) alive++; });
+    if (alive < ffTarget) flies.push(newFly()); else if (alive > ffTarget){ for (var j = 0; j < flies.length; j++) if (!flies[j].dying){ flies[j].dying = true; break; } }
+    ffx.clearRect(0, 0, W, H); ffx.globalCompositeOperation = 'lighter';
+    for (var i = flies.length - 1; i >= 0; i--){
+      var f = flies[i];
+      f.a += (Math.random() - .5) * 2.6 * dt;
+      f.x += Math.cos(f.a) * f.sp * dt; f.y += Math.sin(f.a) * f.sp * dt * .6;
+      if (rising) f.y -= .16 * dt;
+      else if (f.y < .3) f.a = .3 + Math.random() * 2.5;          // vuelven hacia el jardín
+      if (ffMouse){ var dx = f.x - ffMouse.x, dy = (f.y - ffMouse.y) * H / W, d2 = dx * dx + dy * dy;
+        if (d2 < .008){ f.x += dx * 4 * dt; f.y += dy * 4 * dt; } }   // se apartan del mouse o del dedo
+      if (f.x < -.05) f.x = 1.05; else if (f.x > 1.05) f.x = -.05;
+      if (f.y > 1.05) f.y = .45; else if (f.y < -.05) f.y = 1.02;
+      f.life = f.dying ? f.life - dt * 1.2 : Math.min(1, f.life + dt * .7);
+      if (f.life <= 0 && f.dying){ flies.splice(i, 1); continue; }
+      var b = .5 + .5 * Math.sin(now / 1000 * f.fr * 2 + f.ph);
+      ffx.globalAlpha = Math.max(0, b * b * f.life);
+      var r = f.r * ffDpr; ffx.drawImage(ffSprite, f.x * W - r, f.y * H - r, r * 2, r * 2);
+    }
+    requestAnimationFrame(fliesFrame);
+  }
+  if (ffCanvas && testPin){
+    placeTestBg();
+    addEventListener('resize', placeTestBg);
+    document.addEventListener('quiz:step', function(e){
+      var prev = testStep; testStep = e.detail.step;
+      lightLamps();
+      ffTarget = 12 + Math.min(testStep, 3) * 10;
+      if (testStep >= 3 && prev < 3) ffRiseUntil = performance.now() + 2600;
+    });
+    var testSecEl = document.getElementById('test-carrito');
+    testSecEl.addEventListener('pointermove', function(e){ var r = testPin.getBoundingClientRect(); ffMouse = { x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height }; }, { passive: true });
+    testSecEl.addEventListener('pointerleave', function(){ ffMouse = null; });
+    if (!reduce && 'IntersectionObserver' in window){
+      new IntersectionObserver(function(es){
+        ffVis = es[0].isIntersecting;
+        if (ffVis && !ffRun){ ffRun = true; requestAnimationFrame(fliesFrame); }
+      }).observe(testSecEl);
+    }
+  }
+
   // Terraza: la foto se mueve más lento que la página
   var testiSec = document.getElementById('testimonios'), testiBg = testiSec && testiSec.querySelector('.testi-bg');
   function applyTesti(){
