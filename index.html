@@ -1795,15 +1795,18 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   // ✅ Activado con los videos de Ego Frutas (frutos del bosque → jugo → lata).
   //    La página carga SOLO el video del dispositivo:
   //    total: cuadros que hay en la carpeta · load: cuántos carga (en celular uno sí, uno no)
+  //    folder: carpeta de las imágenes. La página también las encuentra si quedaron en una carpeta doble
+  //    (por ejemplo frames/frames/ego_001.webp), que es lo que pasa a veces al subirlas a GitHub.
   var SEQUENCE_SETS = {
     // 📱 Celular: video vertical 9:16 (carpeta "frames"), a pantalla completa y nítido (sin fondo desenfocado)
-    mobile: { total: 96, load: 48, aspect: '9 / 16', wide: true, formScroll: .5,
-              src: function(i){ return 'frames/ego_' + String(i + 1).padStart(3, '0') + '.webp'; } },
-    // 💻 Computadora: video horizontal 16:9 (carpeta "frames-pc"), a pantalla completa
-    pc:     { total: 96, load: 96, aspect: '16 / 9', wide: true,
-              src: function(i){ return 'frames-pc/ego_' + String(i + 1).padStart(3, '0') + '.webp'; } }
+    mobile: { folder: 'frames',    total: 96, load: 48, aspect: '9 / 16', wide: true, formScroll: .5 },
+    // 💻 Computadora: video horizontal 16:9 (carpeta "frames-pc"), a pantalla completa.
+    //    Si esta carpeta no está completa, en la computadora se usa el video del celular.
+    pc:     { folder: 'frames-pc', total: 96, load: 96, aspect: '16 / 9', wide: true }
   };
   var SET = matchMedia('(min-width:861px)').matches ? SEQUENCE_SETS.pc : SEQUENCE_SETS.mobile;
+  var frameBase = SET.folder + '/';   // se confirma al comprobar dónde están de verdad las imágenes
+  SET.src = function(i){ return frameBase + 'ego_' + String(i + 1).padStart(3, '0') + '.webp'; };
   //    El video avanza durante TODO el scroll de la sección (nunca se congela):
   //    formVideo: en qué parte del video (0 a 1) la lata ya está completa (en tus videos, ~0.6).
   //    formScroll: en qué parte del scroll pasa eso. Antes de ese punto el video va rápido (se forma la lata);
@@ -1835,12 +1838,43 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     sizeBackdrop();
     current = -1; applySeq();
   }
-  if (SEQUENCE.src){
-    var stepF = SEQUENCE.desktopFrames / frames;
+  // Comprueba dónde están las imágenes (carpeta normal o doble) mirando el primer y el último cuadro.
+  function probeFolder(set, done){
+    var bases = [set.folder + '/', set.folder + '/' + set.folder + '/'], k = 0;
+    (function next(){
+      if (k >= bases.length) return done(null);
+      var b = bases[k++], ok = 0, failed = false;
+      [1, set.total].forEach(function(n){
+        var im = new Image();
+        im.onload = function(){ if (!failed && ++ok === 2) done(b); };
+        im.onerror = function(){ if (!failed){ failed = true; next(); } };
+        im.src = b + 'ego_' + String(n).padStart(3, '0') + '.webp';
+      });
+    })();
+  }
+  // Prepara los cuadros del video elegido; el primero de inmediato y el resto cuando la página ya cargó
+  function useFrames(set, base, wide){
+    SET = set; frameBase = base; frames = set.load;
+    SEQUENCE.wide = wide; SEQUENCE.desktopFrames = set.total;
+    seq.classList.toggle('is-wide', wide);
+    canvas.style.aspectRatio = wide ? '' : set.aspect;
+    images = []; current = -1;
+    var stepF = set.total / frames;
     for (var i = 0; i < frames; i++){ var img = new Image(); img.decoding = 'async'; images.push(img); }
+    images[0].onload = function(){ sizeCanvas(); };
     images[0].src = SEQUENCE.src(0);
-    images[0].onload = function(){ current = -1; applySeq(); };
-    addEventListener('load', function(){ images.forEach(function(im, k){ if (k) im.src = SEQUENCE.src(Math.round(k * stepF)); }); });
+    var rest = function(){ images.forEach(function(im, k){ if (k) im.src = SEQUENCE.src(Math.round(k * stepF)); }); };
+    if (document.readyState === 'complete') rest(); else addEventListener('load', rest);
+  }
+  if (SEQUENCE.src){
+    probeFolder(SET, function(base){
+      if (base) return useFrames(SET, base, SET.wide);
+      // En PC sin su video completo: usa el video vertical del celular (centrado, con fondo desenfocado)
+      if (SET === SEQUENCE_SETS.pc){
+        var m = SEQUENCE_SETS.mobile;
+        probeFolder(m, function(mb){ if (mb) useFrames({ folder: m.folder, total: m.total, load: m.total, aspect: m.aspect }, mb, false); });
+      }
+    });
   }
   function hexRgb(h){ return [parseInt(h.substr(1,2),16), parseInt(h.substr(3,2),16), parseInt(h.substr(5,2),16)]; }
   var C = { body: hexRgb('#C7653F'), band: hexRgb('#F3F1EC'), gold: hexRgb('#E8C36A'), logo: hexRgb('#FFFFFF'), rim: hexRgb('#D9D8D3') };
@@ -1887,7 +1921,8 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   // para llegar a él. Así el movimiento se ve continuo aunque haya pocos cuadros (sobre todo en celular).
   function drawFrame(ff){
     if (!SEQUENCE.src){ drawProcedural(ff / frames * Math.PI * 2); return; }
-    var f = Math.floor(ff), a = ff - f, img = images[f];
+    // La fusión solo ocurre en la mitad del paso entre cuadros (así no se ve "doble" la imagen)
+    var f = Math.floor(ff), a = clamp01((ff - f - .3) / .4), img = images[f];
     if (!loaded(img)){
       for (var k = f; k >= 0; k--) if (loaded(images[k])){ img = images[k]; a = 0; break; }
       if (!loaded(img)) return;
