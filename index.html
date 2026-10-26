@@ -127,6 +127,47 @@ img{max-width:100%;display:block}
 .bottle-img{display:none;width:auto}
 .l-stage.has-iqu .bottle-img{display:block}
 .l-stage.has-iqu svg.bottle{display:none}
+
+/* ===== INICIO CON FOTO DE FONDO (terraza al atardecer) ===== */
+.photo-hero{background:#EBCB9E}
+.photo-hero .l-wall{inset:-14px;background:url("fondo-inicio-pc.webp") center/cover no-repeat}
+.photo-hero .l-wall::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(252,246,236,.6) 0%,rgba(252,246,236,.3) 30%,rgba(252,246,236,0) 48%)}
+/* Velo crema que aparece cuando se muestra la red, para que se lean las características */
+.photo-hero .l-wall::before{content:"";position:absolute;inset:0;z-index:1;background:rgba(250,243,230,.66);opacity:var(--veil,0)}
+.photo-hero .l-light,.photo-hero .l-plant,.photo-hero .pedestal,.photo-hero .stone,.photo-hero .l-front svg{display:none}
+.photo-hero.intro .l-wall{animation:inFade 1.4s var(--ease) both}
+/* La lata va sobre la mesa: el script calcula su posición y tamaño */
+.photo-hero .l-stage{inset:0;width:auto;height:auto;translate:none}
+.photo-hero .bottle{left:0;top:0;bottom:auto;height:auto;transform:none;transform-origin:50% 100%;will-change:transform;filter:drop-shadow(10px 18px 18px rgba(60,35,10,.35))}
+.photo-hero .can-shadow{position:absolute;left:0;top:0;border-radius:50%;background:radial-gradient(ellipse at center,rgba(50,28,8,.45),rgba(50,28,8,0) 70%);pointer-events:none}
+/* Rama de olivo al frente */
+.photo-hero .l-front{inset:auto;top:-6%;right:-5%;left:auto;bottom:auto;width:min(400px,30vw);height:auto}
+.photo-hero .l-front .rama{display:block;width:100%;height:auto;transform:scaleX(-1) rotate(-6deg);filter:blur(1.5px) drop-shadow(0 20px 30px rgba(40,30,10,.25))}
+/* Texto oscuro sobre la pared clara */
+.photo-hero .hero-copy{color:var(--sage-ink)}
+.photo-hero .hero-copy .kicker{color:#8E5A1E;opacity:1}
+.photo-hero .hero-copy h1 em{color:#B5651D}
+.photo-hero .hero-copy p{opacity:1;color:#3d4a37}
+.photo-hero .hero-trust{opacity:1}
+.photo-hero .hero-trust span::before{color:#B5651D}
+.photo-hero .hero-actions .btn-light{background:var(--sage-ink);color:#fff;border-color:var(--sage-ink)}
+.photo-hero .hero-actions .btn-light:hover{background:#3c4a37}
+.photo-hero .hero-actions .btn-ghost{border-color:rgba(47,58,43,.45);color:var(--sage-ink)}
+.photo-hero .hero-actions .btn-ghost:hover{background:var(--sage-ink);color:#fff}
+.photo-hero .scroll-hint{color:var(--sage-ink)}
+/* Red de características legible sobre el fondo cálido */
+.photo-hero .feat,.photo-hero .feat-head{color:var(--sage-ink);text-shadow:0 1px 10px rgba(255,247,232,.95),0 0 2px rgba(255,247,232,.9)}
+.photo-hero .feat .kicker{color:#B5651D}
+.photo-hero .hero-net path{stroke:#B5651D;stroke-width:1.8}
+.photo-hero .hero-net .dot{fill:#B5651D}
+.photo-hero .hero-net .ring{stroke:#B5651D}
+/* Menú oscuro mientras se ve el inicio */
+.nav.on-light{color:var(--sage-ink);background:rgba(252,246,236,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+@media(max-width:760px){
+  .photo-hero .l-wall{background-image:url("fondo-inicio-movil.webp")}
+  .photo-hero .l-wall::after{background:linear-gradient(180deg,rgba(252,246,236,.72) 0%,rgba(252,246,236,.5) 42%,rgba(252,246,236,0) 60%)}
+  .photo-hero .l-front{width:40vw;top:52px;right:-12vw}
+}
 .stone{position:absolute;left:12%;bottom:23.5%;width:15%;aspect-ratio:1.6;border-radius:50% 50% 45% 45%/60% 60% 40% 40%;background:radial-gradient(circle at 35% 30%,#bdbab4,#8a8782 70%);box-shadow:6px 8px 14px rgba(30,40,25,.25)}
 .l-front{inset:auto auto -6% -6%;width:min(520px,48vw);height:60%}
 .hero-copy{position:absolute;left:clamp(16px,6vw,90px);top:calc(50% + 34px);transform:translateY(-50%);max-width:540px;color:#fff;z-index:5;will-change:transform,opacity}
@@ -712,9 +753,11 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 <!-- ================= HERO EN CAPAS ================= -->
 <!-- El inicio queda fijo mientras haces scroll: la lata pasa al centro y muestra sus características.
      ✏️ Producto y características: HERO_PRODUCT en el script de datos. -->
-<section class="hero intro" id="inicio">
+<!-- 🖼️ FONDO DEL INICIO: fondo-inicio-pc.webp (computadora) y fondo-inicio-movil.webp (celular), junto a index.html.
+     La lata se coloca sola sobre la mesa: si cambias el fondo, ajusta HERO_BG en el script de efectos. -->
+<section class="hero intro photo-hero" id="inicio">
  <div class="hero-pin">
-  <div class="layer l-wall"  data-depth=".45" data-mouse="-8"></div>
+  <div class="layer l-wall"  data-depth="0" data-mouse="6"></div>
   <div class="layer l-light" data-depth=".35" data-mouse="-14"></div>
   <div class="layer l-plant" data-depth=".25" data-mouse="-22" aria-hidden="true">
     <svg viewBox="0 0 400 400" preserveAspectRatio="xMaxYMin meet"><g fill="#1d2619">
@@ -725,8 +768,9 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
       <path d="M156 206c4-42 38-50 52-32-12 18-30 30-52 32z"/><path d="M134 236c-36-4-52-34-38-50 18 10 32 28 38 50z"/>
     </g></svg>
   </div>
-  <div class="layer l-stage" data-depth=".08" data-mouse="10" aria-hidden="true">
+  <div class="layer l-stage" data-depth=".08" data-mouse="6" aria-hidden="true">
     <div class="stone"></div>
+    <div class="can-shadow"></div>
     <!-- 🖼️ LATA DE IQU: imagen real con fondo transparente (iqu-hero.webp, junto a index.html).
          Si la imagen no está, se muestra la lata dibujada de abajo. Las líneas de la red se ajustan solas. -->
     <img class="bottle bottle-img" src="iqu-hero.webp" alt="Lata de IQU" width="356" height="1000" decoding="async" fetchpriority="high">
@@ -746,6 +790,8 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
     <div class="pedestal"></div>
   </div>
   <div class="layer l-front" data-depth="-.35" data-mouse="30" aria-hidden="true">
+    <!-- 🖼️ Rama de olivo al frente (rama-olivo.webp, fondo transparente): se mueve más rápido y da profundidad -->
+    <img class="rama" src="rama-olivo.webp" alt="" width="600" height="900" decoding="async">
     <svg viewBox="0 0 400 300" preserveAspectRatio="xMinYMax meet"><g fill="#4d5e43">
       <path d="M0 300 C40 220 70 160 150 110" stroke="#4d5e43" stroke-width="6" fill="none"/>
       <path d="M150 110c40-30 90-20 110 6-40 20-80 18-110-6z"/>
@@ -1698,7 +1744,32 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   var stageL = hero.querySelector('.l-stage'), can = hero.querySelector('svg.bottle');
   // Si la foto real de la lata carga, la usa (y la red de líneas se ancla a ella)
   var canImg = hero.querySelector('.bottle-img');
-  function useCanImg(){ stageL.classList.add('has-iqu'); can = canImg; setTimeout(onScroll, 0); }
+  function useCanImg(){ stageL.classList.add('has-iqu'); can = canImg; canDirty = true; setTimeout(onScroll, 0); }
+
+  /* ✏️ HERO_BG: dónde va la lata en cada foto de fondo (en proporción de la foto, de 0 a 1).
+     ax/ay: centro de la base de la lata sobre la mesa · h: alto de la lata respecto al alto de la foto.
+     Si cambias las fotos de fondo, ajusta estos números. */
+  var HERO_BG = {
+    pc:    { iw: 1672, ih: 941,  ax: .555, ay: .79,  h: .30 },
+    movil: { iw: 941,  ih: 1672, ax: .30,  ay: .852, h: .2 }
+  };
+  var photoHero = hero.classList.contains('photo-hero');
+  var wallL = hero.querySelector('.l-wall'), canShadow = hero.querySelector('.can-shadow');
+  var canBase = { x: 0, y: 0, h: 0 }, canDirty = true, canDirtyW = 0, canDirtyH = 0;
+  // Calcula dónde cae la mesa de la foto (que se ve como "cover") y pone ahí la lata y su sombra
+  function placeCan(small){
+    var B = small ? HERO_BG.movil : HERO_BG.pc;
+    var bw = wallL.offsetWidth, bh = wallL.offsetHeight, s = Math.max(bw / B.iw, bh / B.ih);
+    var dw = B.iw * s, dh = B.ih * s, ox = wallL.offsetLeft + (bw - dw) / 2, oy = wallL.offsetTop + (bh - dh) / 2;
+    var x = ox + B.ax * dw, y = oy + B.ay * dh, h = B.h * dh;
+    var ratio = (can.naturalWidth && can.naturalHeight) ? can.naturalWidth / can.naturalHeight : .57, w = h * ratio;
+    can.style.height = h.toFixed(1) + 'px'; can.style.width = w.toFixed(1) + 'px';
+    can.style.left = (x - w / 2).toFixed(1) + 'px'; can.style.top = (y - h).toFixed(1) + 'px';
+    canShadow.style.width = (w * 1.7).toFixed(1) + 'px'; canShadow.style.height = (w * .32).toFixed(1) + 'px';
+    canShadow.style.left = (x - w * .85 + w * .12).toFixed(1) + 'px'; canShadow.style.top = (y - w * .16).toFixed(1) + 'px';
+    canBase = { x: x, y: y, h: h };
+    canDirty = false; canDirtyW = pin.offsetWidth; canDirtyH = pin.offsetHeight;
+  }
   if (canImg){
     if (canImg.complete && canImg.naturalWidth) useCanImg();
     else canImg.addEventListener('load', useCanImg);
@@ -1735,10 +1806,21 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
 
     // La lata se mueve al centro (en celular sube) y crece un poco
     var ms = (finePointer && !reduce) ? +(stageL.dataset.mouse || 0) : 0;
-    var dx = small ? 0 : (pin.offsetWidth / 2 - (stageL.offsetLeft + stageL.offsetWidth / 2));
-    var dy = small ? -innerHeight * .34 : -innerHeight * .02;
-    var sc = small ? 1 - .1 * k : 1 + .06 * k;
-    stageL.style.transform = 'translate3d(' + (dx * k + cx * ms).toFixed(1) + 'px,' + (dy * k + cy * ms).toFixed(1) + 'px,0) scale(' + sc.toFixed(3) + ')';
+    if (photoHero){
+      // Con foto de fondo: la lata empieza sobre la mesa y, al hacer scroll, se eleva al centro
+      if (canDirty || canDirtyW !== pin.offsetWidth || canDirtyH !== pin.offsetHeight) placeCan(small);
+      stageL.style.transform = 'translate3d(' + (cx * ms).toFixed(1) + 'px,' + (cy * ms).toFixed(1) + 'px,0)';
+      var tx = pin.offsetWidth / 2 - canBase.x, ty = innerHeight * (small ? .44 : .54) - (canBase.y - canBase.h / 2);
+      var sc2 = 1 + (small ? .35 : .12) * k;
+      can.style.transform = 'translate3d(' + (tx * k).toFixed(1) + 'px,' + (ty * k).toFixed(1) + 'px,0) scale(' + sc2.toFixed(3) + ')';
+      canShadow.style.opacity = (1 - k).toFixed(3);
+      wallL.style.setProperty('--veil', k.toFixed(3));
+    } else {
+      var dx = small ? 0 : (pin.offsetWidth / 2 - (stageL.offsetLeft + stageL.offsetWidth / 2));
+      var dy = small ? -innerHeight * .34 : -innerHeight * .02;
+      var sc = small ? 1 - .1 * k : 1 + .06 * k;
+      stageL.style.transform = 'translate3d(' + (dx * k + cx * ms).toFixed(1) + 'px,' + (dy * k + cy * ms).toFixed(1) + 'px,0) scale(' + sc.toFixed(3) + ')';
+    }
 
     // El texto inicial se va para dar espacio a la red
     var out = clamp01(p / .16);
@@ -2327,7 +2409,8 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   function updateBuddy(){
     if (!buddyReady || overriding) return;
     var s = currentScene();
-    var hide = !s || s.hide || (s.mobileHide && mobileGuide.matches);
+    // Al abrir la página no aparece de inmediato: así no tapa el botón principal del inicio
+    var hide = !s || s.hide || (s.mobileHide && mobileGuide.matches) || (s.id === 'inicio' && window.scrollY < 80);
     buddy.classList.toggle('show', !hide);
     if (hide){ bubble.classList.remove('on'); clearTimeout(lineT); sceneKey = s ? s.id : null; return; }
     if (s.id !== sceneKey){
@@ -2378,6 +2461,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     ticking = false;
     applyHero(); applySeq(); applyStars(); updatePose(); applyFlowFx(); updateBuddy();
     nav.classList.toggle('dark', window.scrollY > hero.offsetHeight - 72);
+    nav.classList.toggle('on-light', photoHero && window.scrollY <= hero.offsetHeight - 72);
   }
   addEventListener('scroll', function(){ if (!ticking){ ticking = true; raf(onScroll); } }, { passive: true });
   addEventListener('resize', function(){ isMobile = matchMedia('(max-width:760px)').matches; sizeCanvas(); onScroll(); });
