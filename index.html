@@ -260,6 +260,7 @@ img{max-width:100%;display:block}
 
 /* ---------- SECUENCIA POR SCROLL ---------- */
 .seq{position:relative;height:440vh;background:linear-gradient(180deg,var(--cream),#E9E7E1)}
+.seq[hidden]{display:none}
 /* Modo video: el fondo toma los tonos cálidos del video y los bordes del video se difuminan */
 .seq.is-video{background:radial-gradient(ellipse 70% 60% at 50% 45%,#F6E3CC 0%,#EBCBA6 60%,#DFBB93 100%)}
 .seq.is-video .seq-plinth{display:none}
@@ -599,6 +600,14 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 .pvis img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;opacity:0;transition:opacity .3s;filter:drop-shadow(0 calc(var(--w)*.08) calc(var(--w)*.1) rgba(30,40,25,.25))}
 .pvis.has-img img{opacity:1}
 .pvis.has-img .pbox,.pvis.has-img .pcan{display:none}
+/* Six pack: 6 latas en dos filas */
+.pvis.is-pack .pack{position:absolute;inset:0}
+.pvis.is-pack .pack{inset:0 -12%}
+.pvis.is-pack .pack img{top:auto;right:auto;width:38%;height:auto;object-fit:contain}
+.pvis.is-pack .pk0,.pvis.is-pack .pk1,.pvis.is-pack .pk2{bottom:15%;filter:brightness(.82) drop-shadow(0 4px 6px rgba(30,40,25,.25))}
+.pvis.is-pack .pk3,.pvis.is-pack .pk4,.pvis.is-pack .pk5{bottom:0;z-index:1}
+.pvis.is-pack .pk0{left:12%}.pvis.is-pack .pk1{left:31%}.pvis.is-pack .pk2{left:50%}
+.pvis.is-pack .pk3{left:0}.pvis.is-pack .pk4{left:31%;z-index:2}.pvis.is-pack .pk5{left:62%}
 /* Caja 3D de prueba hecha con CSS */
 .pbox{--bw:calc(var(--w) * .58);--bh:calc(var(--w) * 1.02);--bd:calc(var(--w) * .26);position:absolute;left:50%;bottom:6%;width:var(--bw);height:var(--bh);margin-left:calc(var(--bw) / -2);transform-style:preserve-3d;transform:rotateX(-12deg) rotateY(-30deg)}
 .pbox i{position:absolute;display:grid;place-items:center;font-style:normal;backface-visibility:hidden}
@@ -1089,8 +1098,9 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
  </div>
 </section>
 
-<!-- ================= SECUENCIA POR SCROLL ================= -->
-<section class="seq" id="producto">
+<!-- ================= SECUENCIA POR SCROLL (EGO FRUTAS) =================
+     ⏸️ Oculta por ahora: no se ve ni descarga sus cuadros. Para volver a mostrarla, quita la palabra "hidden" de aquí abajo. -->
+<section class="seq" id="producto" hidden>
   <div class="seq-stage">
     <!-- ✏️ Las características que aparecen mientras gira la lata se editan en SEQ_PRODUCT (script de datos) -->
     <div id="seqCaptions"></div>
@@ -1483,8 +1493,8 @@ const CART_CONTENT_CUSTOM = {
 const PRODUCTS = {
   // Descripciones tomadas del catálogo (ingredientes y sabor), sin prometer resultados de salud
   iqu:{name:"IQU",desc:"Con PQQ, coenzima Q10, vitamina D3 y café verde. Sabor jengibre y mandarina.",image:"iqu.webp",type:"can",color:"#3F6B5A"},
-  ego_frutas:{name:"Ego Frutas",desc:"Con complejo B, vitaminas C y E y extracto de regaliz. Sabor frutos del bosque.",image:"ego_frutas.webp",type:"can",color:"#C7653F"},
-  ego_sixpac:{name:"Ego Sixpac",desc:"Texto de prueba: escribe aquí en una línea para qué es.",image:"ego_sixpac.webp",type:"box",color:"#3E6E8E"},
+  // pack: 6 = se muestra como six pack (6 latas juntas) usando la misma foto de la lata
+  ego_frutas:{name:"Ego Frutas Six Pack",desc:"6 latas de 355 ml con complejo B, vitaminas C y E y extracto de regaliz. Sabor frutos del bosque.",image:"ego_frutas.webp",type:"can",color:"#C7653F",pack:6},
   aloe:{name:"Aloe Beta",desc:"Aloe vera con betacaroteno, fibra y vitaminas C y E. Sabor piña.",image:"aloe.webp",type:"box",color:"#6E9A5A"},
   optimus:{name:"Optimus",desc:"Con colina, glicina, complejo B, vitaminas C y E y zinc. Sabor lima-limón.",image:"optimus.webp",type:"box",color:"#B8863B"},
   dolce:{name:"Dolce Vita",desc:"Con extracto de café verde y fibras de manzana, avena y arroz. Sabor toronja.",image:"dolce.webp",type:"box",color:"#B7607A"},
@@ -1552,7 +1562,7 @@ const STAR_PRODUCTS = ["ego_frutas","aloe","optimus","magnus","star_bien","omnip
    usando el número de "productos" de CART_CONTENT. Deja [] si aún no la tienes. */
 const CART_PRODUCTS_MX = {
   gymrat:[],
-  limpieza:["ego_sixpac","aloe","optimus","dolce","star_bien"],
+  limpieza:["ego_frutas","aloe","optimus","dolce","star_bien"],
   cardiovascular:["stoplus","actua","aloe","omniplus"],
   nervioso:["aloe","star_bien","fluyer","magnus","optimus"],
   reproductor_masculino:[], reproductor_femenino:[], renal:[], oseo_muscular:[],
@@ -1589,6 +1599,12 @@ function productVisual(id, extraStyle){
   const fallback = p.type === "can"
     ? `<div class="pcan"><span>${p.name}</span></div>`
     : `<div class="pbox"><i class="f">${p.name}</i><i class="s"></i><i class="t"></i></div>`;
+  // Six pack: la misma lata repetida en dos filas de 3 (atrás un poco más arriba y más oscura)
+  if(p.pack && p.image){
+    const cans = Array.from({length:p.pack}, (_, i) =>
+      `<img class="pk pk${i}" src="${p.image}" alt="${i ? "" : p.name}" loading="lazy" decoding="async" onload="this.closest('.pvis').classList.add('has-img')" onerror="this.remove()">`).join("");
+    return `<div class="pvis is-pack" style="--c:${p.color};${extraStyle || ""}">${fallback}<span class="pack">${cans}</span></div>`;
+  }
   return `<div class="pvis" style="--c:${p.color};${extraStyle || ""}">${fallback}${p.image ? `<img src="${p.image}" alt="${p.name}" loading="lazy" decoding="async" onload="this.parentNode.classList.add('has-img')" onerror="this.remove()">` : ""}</div>`;
 }
 function waUrl(message){ return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(message); }
@@ -2366,7 +2382,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     var rest = function(){ images.forEach(function(im, k){ if (k) im.src = SEQUENCE.src(Math.round(k * stepF)); }); };
     if (document.readyState === 'complete') rest(); else addEventListener('load', rest);
   }
-  if (SEQUENCE.src){
+  if (SEQUENCE.src && !seq.hidden){
     probeFolder(SET, function(base){
       if (base) return useFrames(SET, base, SET.wide);
       // En PC sin su video completo: usa el video vertical del celular (centrado, con fondo desenfocado)
@@ -2563,6 +2579,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   }
 
   function applySeq(){
+    if (seq.hidden) return;   // sección oculta: no se anima
     var r = seq.getBoundingClientRect(), total = seq.offsetHeight - innerHeight;
     if (r.bottom < -50 || r.top > innerHeight + 50){ if (current === -1){ drawFrame(0); current = 0; applyEgo(0); } return; }
     var p = Math.min(1, Math.max(0, -r.top / total));
