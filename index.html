@@ -501,6 +501,20 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 .guide-svg[data-pose="8"] .arm-r{transform:rotate(40deg)} .guide-svg[data-pose="8"] .arm-l{transform:rotate(-40deg)} .guide-svg[data-pose="8"] .head{transform:rotate(-5deg)} .guide-svg[data-pose="8"] .prop-heart{opacity:1;transform:none}
 .guide-svg[data-pose="9"] .arm-r{transform:rotate(-22deg)} .guide-svg[data-pose="9"] .arm-l{transform:rotate(22deg)} .guide-svg[data-pose="9"] .head{transform:rotate(6deg)} .guide-svg[data-pose="9"] .prop-list{opacity:1;transform:none}
 
+/* ---------- PERSONAJE CON IMÁGENES (reemplaza al dibujado cuando cargan) ---------- */
+.guide-img{display:none}
+.guide-stage.use-img #guide{position:absolute;visibility:hidden;pointer-events:none}
+.guide-stage.use-img .guide-img{display:block;position:relative;z-index:1;height:min(66vh,540px);width:auto;max-width:92%;object-fit:contain;filter:drop-shadow(0 22px 26px rgba(30,40,25,.22))}
+.guide-img.swap{animation:poseIn .5s var(--ease)}
+.guide-img.hop{animation:imgHop .6s var(--ease)}
+@keyframes poseIn{from{opacity:.2;transform:translateY(12px) scale(.97)}}
+@keyframes imgHop{40%{transform:translateY(-10px)}}
+.buddy-fig.use-img svg{display:none}
+.buddy-fig.use-img .guide-img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 4%}
+@media(max-width:860px){
+  .guide-stage.use-img .guide-img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:cover;object-position:50% 4%;filter:none}
+}
+
 /* ---------- ACOMPAÑANTE EN TODA LA PÁGINA ---------- */
 .buddy{position:fixed;left:14px;bottom:14px;z-index:44;width:150px;height:150px;opacity:0;pointer-events:none;transform:translateX(-140%) rotate(-10deg);transition:opacity .4s ease,transform .7s var(--ease),bottom .4s var(--ease)}
 .buddy.show{opacity:1;pointer-events:auto;transform:none}
@@ -573,6 +587,35 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
   .stars-copy{left:16px;right:16px;width:auto;top:61vh;bottom:auto;text-align:center}
   .star-in{justify-content:center}
   .stars-dots{left:50%;translate:-50% 0;bottom:3vh}
+}
+
+/* ---------- PRODUCTOS ESTRELLA CON FOTO (pared verde, pedestal de travertino y vitrina) ---------- */
+.photo-stars .stars-stage{background:#5d6a50 url("fondo-productos-pc.webp") center/cover no-repeat}
+.photo-stars .stars-plinth{display:none}
+.photo-stars .star-item .pvis{--w:var(--sw,220px);margin:calc(var(--w) * -.65) 0 0 calc(var(--w) * -.5)}
+.stars-glass{position:absolute;left:0;top:0;z-index:3;pointer-events:none;mix-blend-mode:screen;opacity:.92;max-width:none}
+.stars-shadow{position:absolute;left:0;top:0;z-index:1;border-radius:50%;pointer-events:none;background:radial-gradient(ellipse at center,rgba(40,28,12,.5),rgba(40,28,12,0) 70%)}
+.photo-stars .stars-copy{z-index:4}
+.photo-stars .stars-head{z-index:4}
+.photo-stars .stars-head .kicker{color:var(--amber-light)}
+.photo-stars .stars-head h2{color:#fff}
+.photo-stars .star-text .num{color:var(--amber-light)}
+.photo-stars .star-text h3{color:#fff}
+.photo-stars .star-text p{color:rgba(255,255,255,.85)}
+.photo-stars .star-in b{color:rgba(255,255,255,.7)}
+.photo-stars .star-in span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);color:#fff}
+.photo-stars .stars-dots{z-index:4}
+.photo-stars .stars-dots i{background:rgba(255,255,255,.32)}
+.photo-stars .stars-dots i.on{background:var(--amber)}
+@media(max-width:860px){
+  .photo-stars .stars-stage{background-image:url("fondo-productos-movil.webp")}
+  /* En celular el texto va en una tarjeta oscura debajo del pedestal */
+  .photo-stars .stars-copy{top:auto;bottom:calc(3.5vh + 14px);height:158px;background:rgba(31,38,28,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:18px}
+  .photo-stars .star-text{inset:12px 14px auto 14px;width:auto}
+  .photo-stars .star-text h3{font-size:1.4rem;margin:2px 0 4px}
+  .photo-stars .star-text p{font-size:.82rem}
+  .photo-stars .star-in{margin-top:8px}
+  .photo-stars .stars-dots{bottom:1.6vh}
 }
 
 /* ---------- PRODUCTOS DENTRO DEL CARRITO ---------- */
@@ -857,14 +900,19 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 <!-- ================= PRODUCTOS ESTRELLA (aparecen uno tras otro con el scroll) =================
      ✏️ Qué productos salen aquí y en qué orden: STAR_PRODUCTS en el script de datos.
      🖼️ Sus imágenes: campo "image" de cada producto en PRODUCTS. -->
-<section class="stars" id="productos">
+<!-- 🖼️ Fondo: fondo-productos-pc.webp / fondo-productos-movil.webp · Vitrina: vitrina.webp (vidrio sobre negro).
+     El producto se coloca solo sobre el pedestal: si cambias el fondo, ajusta STARS_BG en el script de efectos. -->
+<section class="stars photo-stars" id="productos">
   <div class="stars-stage">
     <div class="stars-head">
       <div class="kicker">Productos estrella</div>
       <h2 class="serif">Conoce lo que va en tus carritos.</h2>
     </div>
     <div class="stars-plinth" aria-hidden="true"></div>
+    <div class="stars-shadow" id="starsShadow" aria-hidden="true"></div>
     <div class="stars-track" id="starsTrack"></div>
+    <!-- Vitrina de vidrio: el negro de la imagen desaparece (mezcla "screen") y solo quedan los reflejos -->
+    <img class="stars-glass" id="starsGlass" src="vitrina.webp" alt="" aria-hidden="true" width="700" height="1244" decoding="async">
     <div class="stars-copy" id="starsCopy" aria-live="polite"></div>
     <div class="stars-dots" id="starsDots" aria-hidden="true"></div>
   </div>
@@ -2197,11 +2245,40 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   function cropGuide(){ guide.setAttribute('viewBox', mobileGuide.matches ? '40 20 260 230' : '0 0 300 340'); }
   cropGuide(); mobileGuide.addEventListener && mobileGuide.addEventListener('change', cropGuide);
 
-  function bump(){ if (reduce) return; guide.classList.remove('bump'); void guide.getBBox(); guide.classList.add('bump'); }
+  /* 🖼️ PERSONAJE CON TUS IMÁGENES: un archivo por pose (fondo transparente y mismo encuadre).
+     Poses: 0 saluda · 1 señala · 2 tablero · 3 carrito · 4 celular · 5 pensando · 6 celebra · 7 apunta arriba · 8 corazón · 9 lista
+     Si las imágenes no están, se muestra el personaje dibujado. */
+  var POSE_FILES = {
+    '0': 'personaje-saluda.webp',  '1': 'personaje-senala.webp',        '2': 'personaje-tablero.webp',
+    '3': 'personaje-carrito.webp', '4': 'personaje-celular.webp',       '5': 'personaje-pensando.webp',
+    '6': 'personaje-celebra.webp', '7': 'personaje-apunta-arriba.webp', '8': 'personaje-corazon.webp', '9': 'personaje-lista.webp'
+  };
+  function poseSrc(p){ return POSE_FILES[p] || POSE_FILES['0']; }
+  // Cambia la imagen de la pose con una entrada suave
+  function showPoseImg(img, pose){
+    var src = poseSrc(pose);
+    if (img.getAttribute('src') === src) return;
+    img.src = src;
+    if (!reduce){ img.classList.remove('swap'); void img.offsetWidth; img.classList.add('swap'); }
+  }
+  var guideStage = guide.parentNode;
+  var guideImg = document.createElement('img');
+  guideImg.className = 'guide-img'; guideImg.alt = ''; guideImg.decoding = 'async';
+  guideImg.addEventListener('load', function(){ guideStage.classList.add('use-img'); });
+  guideStage.insertBefore(guideImg, guideCaption);
+  showPoseImg(guideImg, guide.dataset.pose || '0');
+  // Las demás poses se descargan cuando la página ya cargó, para que el cambio sea instantáneo
+  addEventListener('load', function(){ Object.keys(POSE_FILES).forEach(function(k){ new Image().src = POSE_FILES[k]; }); });
+
+  function bump(){
+    if (reduce) return;
+    guide.classList.remove('bump'); void guide.getBBox(); guide.classList.add('bump');
+    guideImg.classList.remove('hop'); void guideImg.offsetWidth; guideImg.classList.add('hop');
+  }
   function setPose(pose){
     guideCaption.textContent = caption(pose);
     if (guide.dataset.pose === pose) return;
-    guide.dataset.pose = pose; bump();
+    guide.dataset.pose = pose; showPoseImg(guideImg, pose); bump();
   }
   function updatePose(){
     var lim = innerHeight * 0.55, pose = '0';
@@ -2306,11 +2383,41 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   var starTexts = [].slice.call(starsSec.querySelectorAll('.star-text'));
   var starDots = [].slice.call(starsSec.querySelectorAll('.stars-dots i'));
   var activeStar = -1;
+
+  /* ✏️ STARS_BG: centro de la superficie del pedestal en cada foto (en proporción de la foto, 0 a 1).
+     size: ancho del producto respecto al ancho visible de la foto. Si cambias las fotos, ajusta estos números. */
+  var STARS_BG = {
+    pc:    { iw: 1672, ih: 941,  ax: .655, ay: .72,  size: .15 },
+    movil: { iw: 941,  ih: 1672, ax: .535, ay: .645, size: .33 }
+  };
+  var starsStage = starsSec.querySelector('.stars-stage'), starsGlass = document.getElementById('starsGlass'), starsShadow = document.getElementById('starsShadow');
+  var photoStars = starsSec.classList.contains('photo-stars'), starsW = 0, starsH = 0, starsCenterX = 0, starsProdW = 220;
+  // Ubica los productos, la vitrina y la sombra justo sobre el pedestal de la foto
+  function placeStars(){
+    starsW = starsStage.offsetWidth; starsH = starsStage.offsetHeight;
+    var small = matchMedia('(max-width:860px)').matches, B = small ? STARS_BG.movil : STARS_BG.pc;
+    var s = Math.max(starsW / B.iw, starsH / B.ih), dw = B.iw * s, dh = B.ih * s;
+    var x = (starsW - dw) / 2 + B.ax * dw, y = (starsH - dh) / 2 + B.ay * dh;
+    var w = Math.round(Math.min(small ? 190 : 250, Math.max(130, B.size * Math.min(dw, starsW))));
+    starsSec.style.setProperty('--sw', w + 'px');
+    starsCenterX = x; starsProdW = w;
+    // La base del producto (abajo de su imagen) queda en la superficie del pedestal
+    starItems.forEach(function(el){ el.style.left = x.toFixed(1) + 'px'; el.style.top = (y - .65 * w).toFixed(1) + 'px'; });
+    // La vitrina: más ancha que el producto y con su borde inferior sobre el pedestal
+    var gw = 2 * w, gh = 2.3 * w;
+    starsGlass.style.width = gw + 'px'; starsGlass.style.height = gh + 'px';
+    starsGlass.style.left = (x - gw / 2).toFixed(1) + 'px'; starsGlass.style.top = (y - .79 * gh).toFixed(1) + 'px';
+    starsShadow.style.width = (w * 1.3) + 'px'; starsShadow.style.height = (w * .2) + 'px';
+    starsShadow.style.left = (x - w * .65).toFixed(1) + 'px'; starsShadow.style.top = (y - w * .1).toFixed(1) + 'px';
+  }
+
   function applyStars(){
     var r = starsSec.getBoundingClientRect();
     if (r.bottom < 0 || r.top > innerHeight) return;
+    if (photoStars && (starsW !== starsStage.offsetWidth || starsH !== starsStage.offsetHeight)) placeStars();
     var total = starsSec.offsetHeight - innerHeight, p = Math.min(1, Math.max(0, -r.top / total));
-    var f = p * (stars.length - 1), gap = mobileGuide.matches ? 200 : 300;
+    // Separación entre productos proporcional a su tamaño (así quedan fuera de la vitrina los que esperan)
+    var f = p * (stars.length - 1), gap = photoStars ? starsProdW * 1.45 : (mobileGuide.matches ? 200 : 300);
     starItems.forEach(function(el, i){
       var d = i - f, ad = Math.abs(d);
       var o = d < 0 ? Math.max(0, 1 + d * 1.4) : Math.max(0, 1 - d * .55);
@@ -2348,7 +2455,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     { id:'inicio',       poses:['0','8'], say:'¡{saludo}! Soy Hamilton 👋 Aquí estoy si necesitas ayuda.' },
     { id:'inicio-red',   poses:['7'] },
     { id:'producto',     poses:['1','5'], mobileHide:true },   // en celular deja ver la lata completa
-    { id:'productos',    poses:['2','0'], mobileHide:true },
+    { id:'productos',    hide:true },   // no tapa los productos ni sus textos
     { id:'flujo',        hide:true },   // aquí ya está el personaje grande
     { id:'arma',         poses:['9','5','3'], say:'Elige con calma: yo reviso tu lista antes de tu pedido.' },
     { id:'testimonios',  poses:['8','0'] },
@@ -2375,6 +2482,12 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   var bSvg = guide.cloneNode(true);
   bSvg.removeAttribute('id'); bSvg.setAttribute('viewBox', '30 -16 270 270'); bSvg.classList.remove('bump');
   bFig.appendChild(bSvg);
+  // Con tus imágenes: el acompañante muestra la misma pose, encuadrada de la cintura para arriba
+  var bImg = document.createElement('img');
+  bImg.className = 'guide-img'; bImg.alt = ''; bImg.decoding = 'async';
+  bImg.addEventListener('load', function(){ bFig.classList.add('use-img'); });
+  bFig.appendChild(bImg);
+  showPoseImg(bImg, '0');
   var sceneKey = null, bubbleT = null, overrideT = null, overriding = false, buddyReady = false;
 
   function say(msg){
@@ -2384,7 +2497,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   var lineIdx = 0, lineT = null;
   // Con imágenes reales: cambia aquí el src de un <img> según la pose (igual que en setPose)
   function buddyPose(pose){
-    bSvg.dataset.pose = pose;
+    bSvg.dataset.pose = pose; showPoseImg(bImg, pose);
     if (!reduce){ buddy.classList.remove('hop'); void buddy.offsetWidth; buddy.classList.add('hop'); }
   }
   function currentScene(){
