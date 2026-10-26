@@ -124,6 +124,9 @@ img{max-width:100%;display:block}
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E"),linear-gradient(180deg,#D3D1CC 0%,#BDBBB6 9%,#A9A7A2 10%,#A7A7A7 60%,#8f8f8c 100%);
   box-shadow:0 -1px 0 rgba(255,255,255,.5) inset,0 30px 60px rgba(30,40,25,.25)}
 .bottle{position:absolute;left:50%;bottom:23.5%;height:64%;transform:translateX(-50%);filter:drop-shadow(18px 22px 22px rgba(30,40,25,.28))}
+.bottle-img{display:none;width:auto}
+.l-stage.has-iqu .bottle-img{display:block}
+.l-stage.has-iqu svg.bottle{display:none}
 .stone{position:absolute;left:12%;bottom:23.5%;width:15%;aspect-ratio:1.6;border-radius:50% 50% 45% 45%/60% 60% 40% 40%;background:radial-gradient(circle at 35% 30%,#bdbab4,#8a8782 70%);box-shadow:6px 8px 14px rgba(30,40,25,.25)}
 .l-front{inset:auto auto -6% -6%;width:min(520px,48vw);height:60%}
 .hero-copy{position:absolute;left:clamp(16px,6vw,90px);top:calc(50% + 34px);transform:translateY(-50%);max-width:540px;color:#fff;z-index:5;will-change:transform,opacity}
@@ -724,9 +727,9 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
   </div>
   <div class="layer l-stage" data-depth=".08" data-mouse="10" aria-hidden="true">
     <div class="stone"></div>
-    <!-- 🖼️ LATA DE PRUEBA (IQU). Reemplázala por tu imagen con fondo transparente, manteniendo class="bottle":
-         <img class="bottle" src="iqu-hero.webp" alt="" width="600" height="900">
-         Las líneas de características se ajustan solas al tamaño de la imagen. -->
+    <!-- 🖼️ LATA DE IQU: imagen real con fondo transparente (iqu-hero.webp, junto a index.html).
+         Si la imagen no está, se muestra la lata dibujada de abajo. Las líneas de la red se ajustan solas. -->
+    <img class="bottle bottle-img" src="iqu-hero.webp" alt="Lata de IQU" width="356" height="1000" decoding="async" fetchpriority="high">
     <svg class="bottle" viewBox="0 0 160 280">
       <defs>
         <linearGradient id="gCan" x1="0" x2="1"><stop offset="0" stop-color="#22392f"/><stop offset=".25" stop-color="#3F6B5A"/><stop offset=".42" stop-color="#6f9a86"/><stop offset=".62" stop-color="#3F6B5A"/><stop offset="1" stop-color="#1c3027"/></linearGradient>
@@ -1692,7 +1695,14 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
 
   var mx = 0, my = 0, cx = 0, cy = 0, heroLoop = false;
   var pin = hero.querySelector('.hero-pin');
-  var stageL = hero.querySelector('.l-stage'), can = hero.querySelector('.bottle');
+  var stageL = hero.querySelector('.l-stage'), can = hero.querySelector('svg.bottle');
+  // Si la foto real de la lata carga, la usa (y la red de líneas se ancla a ella)
+  var canImg = hero.querySelector('.bottle-img');
+  function useCanImg(){ stageL.classList.add('has-iqu'); can = canImg; setTimeout(onScroll, 0); }
+  if (canImg){
+    if (canImg.complete && canImg.naturalWidth) useCanImg();
+    else canImg.addEventListener('load', useCanImg);
+  }
   var net = document.getElementById('heroNet'), featsBox = document.getElementById('heroFeats'), finalBox = document.getElementById('heroFinal');
   function clamp01(v){ return v < 0 ? 0 : v > 1 ? 1 : v; }
   var lastHeroP = 0;
