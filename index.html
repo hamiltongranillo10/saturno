@@ -750,17 +750,21 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 .tienda-wall{position:absolute;inset:0;z-index:1;opacity:0}
 /* 🖼️ pared-tienda-pc/movil.webp: la franja verde y la luz de la pared; abajo se desvanece en el mismo color de la pared */
 .tienda-wall,.arma-bg-pin{background:url(pared-tienda-pc.webp) center top/100% auto no-repeat,linear-gradient(180deg,#E2B380 0,#E9C291 30vh,#F2D6AE 100%)}
-.tienda-cap{position:absolute;left:50%;bottom:9vh;z-index:3;width:min(520px,calc(100% - 32px));translate:-50% 0;padding:18px 24px;border-radius:20px;text-align:center;
-  background:rgba(251,248,241,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 18px 40px rgba(80,55,20,.18);
-  opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .6s var(--ease);pointer-events:none}
+/* Mensajito de vidrio transparente: pequeño, solo lo justo para leerse sobre la escena */
+.tienda-cap{position:absolute;left:50%;bottom:9vh;z-index:3;width:max-content;max-width:min(420px,calc(100% - 32px));translate:-50% 0;padding:10px 20px 12px;border-radius:16px;text-align:center;
+  background:rgba(30,26,18,.22);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(8px) saturate(1.2);-webkit-backdrop-filter:blur(8px) saturate(1.2);
+  opacity:0;transform:translateY(12px);transition:opacity .45s ease,transform .6s var(--ease);pointer-events:none}
 .tienda-cap.on{opacity:1;transform:none}
-.tienda-cap .kicker{color:var(--amber-deep)}
-.tienda-cap h2{font-size:clamp(1.5rem,2.6vw,2.2rem);line-height:1.12;color:var(--sage-ink);margin:4px 0 0}
-.tienda-cap p{color:var(--muted);font-size:.95rem;margin-top:6px}
+.tienda-cap .kicker{color:var(--amber-light);font-size:.64rem}
+.tienda-cap h2{font-size:clamp(1.05rem,1.6vw,1.35rem);line-height:1.2;color:#fff;margin:2px 0 0;text-shadow:0 1px 10px rgba(0,0,0,.35)}
+.tienda-cap p{color:rgba(255,255,255,.88);font-size:.8rem;margin-top:3px;text-shadow:0 1px 8px rgba(0,0,0,.35)}
+/* Mientras recorres la tienda, la barra de arriba se esconde para que solo se vea la escena */
+.nav{transition:background .35s ease,box-shadow .35s ease,color .35s ease,transform .45s var(--ease)}
+body.in-tienda .nav{transform:translateY(-100%)}
 @media(max-width:760px){
   .tienda{height:560vh}
   .tienda-wall,.arma-bg-pin{background-image:url(pared-tienda-movil.webp),linear-gradient(180deg,#E8BD89 0,#ECC798 30vh,#F2D6AE 100%)}
-  .tienda-cap{bottom:13vh;padding:14px 18px}
+  .tienda-cap{bottom:13vh;padding:9px 16px 10px}
 }
 
 .arma{position:relative;background:#F2D6AE;padding-bottom:150px}
@@ -3473,6 +3477,8 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   function applyTienda(){
     if (!tSec || !tSet) return;
     var r = tSec.getBoundingClientRect();
+    // Mientras la tienda llena la pantalla, se esconde la barra de arriba (vuelve al salir)
+    document.body.classList.toggle('in-tienda', r.top <= 1 && r.bottom > innerHeight * .6);
     if (r.bottom < -50 || r.top > innerHeight + 50) return;
     var p = clamp01(-r.top / Math.max(1, tSec.offsetHeight - innerHeight));
     var n = tEls.length, seg = .9 / n, f = .45;   // el 10% final es para fundirse con la pared de los estantes
