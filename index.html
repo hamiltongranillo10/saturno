@@ -3419,16 +3419,18 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     pc: { w:1672, h:941, scenes:[
       { src:'tienda-1-pc.webp', fx:.5, fy:.6,  z:1.1 },
       { src:'tienda-2-pc.webp', fx:.5, fy:.6,  z:1.25 },
-      { src:'tienda-3-pc.webp', fx:.5, fy:.58, z:1.2 },
-      { src:'tienda-4-pc.webp', fx:.5, fy:.55, z:1.2 },
+      { src:'tienda-3-pc.webp', fx:.5, fy:.58, z:1.2, prods:[[622,499,26,32],[680,499,26,32],[919,499,26,32],[976,499,26,32],[1035,499,26,32]] },
+      // la vitrina del centro queda detrás de la planta: sin producto
+      { src:'tienda-4-pc.webp', fx:.5, fy:.55, z:1.2, prods:[[551,477,40,48],[628,477,40,48],[1026,477,40,48],[1108,477,40,48]], ids:['optimus','aloe','actua','omniplus'] },
       { src:'tienda-5-pc.webp', fx:.5, fy:.55, z:1.25, prods:[[397,520,70,82],[612,520,70,82],[830,520,70,82],[1040,520,70,82],[1268,520,70,82]] },
       { src:'tienda-6-pc.webp', fx:.5, fy:.55, z:1.12, prods:[[215,628,165,190],[515,628,165,190],[830,628,165,190],[1150,628,165,190],[1458,628,165,190]] }
     ]},
     movil: { w:941, h:1672, scenes:[
       { src:'tienda-1-movil.webp', fx:.5, fy:.6,  z:1.1 },
       { src:'tienda-2-movil.webp', fx:.5, fy:.6,  z:1.25 },
-      { src:'tienda-3-movil.webp', fx:.5, fy:.58, z:1.2 },
-      { src:'tienda-4-movil.webp', fx:.5, fy:.5,  z:1.2 },
+      { src:'tienda-3-movil.webp', fx:.5, fy:.58, z:1.2, prods:[[297,759,30,36],[351,759,30,36],[589,759,30,36],[643,759,30,36]], ids:['optimus','aloe','actua','omniplus'] },
+      // las 3 vitrinas del centro quedan detrás de la planta: sin producto
+      { src:'tienda-4-movil.webp', fx:.5, fy:.5,  z:1.2, prods:[[245,747,40,48],[319,747,40,48],[626,747,40,48],[697,747,40,48]], ids:['optimus','aloe','actua','omniplus'] },
       { src:'tienda-5-movil.webp', fx:.5, fy:.5,  z:1.25, prods:[[158,845,62,78],[309,845,62,78],[470,845,62,78],[632,845,62,78],[783,845,62,78]] },
       { src:'tienda-6-movil.webp', fx:.5, fy:.55, z:1.12, prods:[[470,1088,250,290]], ids:['iqu'] }   // las vitrinas de las orillas salen cortadas: solo la del centro
     ]}
