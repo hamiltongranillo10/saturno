@@ -771,7 +771,11 @@ body.in-tienda .nav{transform:translateY(-100%)}
 .arma>.wrap{position:relative;z-index:1}
 /* El título va en una tarjeta clara para leerse bien sobre la franja verde de la pared */
 .arma .section-head{padding:22px 26px;border-radius:20px;background:rgba(251,248,241,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 14px 34px rgba(80,55,20,.12)}
-@media(max-width:760px){.arma .section-head{padding:18px}}
+/* En celular, sin difuminado detrás (es lo que más cuesta al bajar); fondo un poco más sólido en su lugar */
+@media(max-width:760px){
+  .arma .section-head{padding:18px;background:rgba(251,248,241,.92);backdrop-filter:none;-webkit-backdrop-filter:none}
+  .arma-tabs button,.arma-more button{background:rgba(255,255,255,.86);backdrop-filter:none;-webkit-backdrop-filter:none}
+}
 /* Pared de la tienda fija detrás de las repisas (continúa la última escena de la tienda) */
 .arma-bg{position:absolute;inset:0;overflow:clip;pointer-events:none;
   -webkit-mask-image:linear-gradient(#000,#000 calc(100% - 160px),transparent);mask-image:linear-gradient(#000,#000 calc(100% - 160px),transparent)}
@@ -982,6 +986,7 @@ body.in-tienda .nav{transform:translateY(-100%)}
   .helper-inner{max-width:none}
 }
 @media(prefers-reduced-motion:reduce){.candle,.helper-btn{animation:none}}
+.helper:not(.live) .candle,.helper:not(.live) .helper-btn{animation-play-state:paused}   /* fuera de pantalla no gastan batería */
 .helper h2{font-size:clamp(1.8rem,3.4vw,2.8rem);margin:8px 0}
 .helper p{color:rgba(255,255,255,.8);max-width:560px}
 
@@ -1012,6 +1017,7 @@ body.in-tienda .nav{transform:translateY(-100%)}
 .farewell{position:relative;overflow:hidden;height:min(92vh,780px);min-height:540px;background:#EBCB9E;display:flex;align-items:center}
 .fw-layer{position:absolute;will-change:transform;pointer-events:none}
 .fw-bg{inset:-6%;background:url("fondo-despedida-pc.webp") 62% center/cover no-repeat}
+.farewell:not(.near) .fw-bg{background-image:none !important}   /* la foto se descarga cuando la despedida se acerca */
 .fw-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(252,246,236,.6),rgba(252,246,236,.3) 32%,rgba(252,246,236,0) 50%),linear-gradient(transparent 80%,#1d2619)}
 /* El personaje se despide parado junto a la puerta abierta */
 .fw-guy{right:15%;bottom:2%;height:70%;width:auto;filter:drop-shadow(0 24px 26px rgba(60,35,10,.35));opacity:0;transform:translateY(40px)}
@@ -1085,14 +1091,14 @@ body.in-tienda .nav{transform:translateY(-100%)}
   <div class="nav-inner">
     <a class="nav-brand" href="#inicio">HAMILTON<small>Distribuidor Independiente</small></a>
     <nav class="nav-links" aria-label="Navegación principal">
-      <a href="#productos">Productos</a><a href="#arma">Arma tu carrito</a><a href="#test-carrito">Test</a><a href="#testimonios">Testimonios</a><a href="#preguntas">Preguntas</a>
+      <a href="#productos">Productos</a><a href="#tienda">Tienda</a><a href="#arma">Arma tu carrito</a><a href="#testimonios">Testimonios</a><a href="#preguntas">Preguntas</a>
     </nav>
     <!-- 🌐 Traductor: cambia la página a inglés con Google Translate (ver traductor.js) -->
     <button type="button" class="lang-btn" data-lang-toggle>EN</button>
     <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
   </div>
   <nav class="mobile-menu" id="mobileMenu" aria-label="Navegación móvil">
-    <a href="#productos">Productos</a><a href="#arma">Arma tu carrito</a><a href="#test-carrito">Test de 30 segundos</a><a href="#testimonios">Testimonios</a><a href="#preguntas">Preguntas frecuentes</a>
+    <a href="#productos">Productos</a><a href="#tienda">Entra a la tienda</a><a href="#arma">Arma tu carrito</a><a href="#testimonios">Testimonios</a><a href="#preguntas">Preguntas frecuentes</a>
     <a href="#arma">Armar mi carrito →</a>
   </nav>
 </header>
@@ -1174,7 +1180,7 @@ body.in-tienda .nav{transform:translateY(-100%)}
     <p>Elige los productos que te interesan y envíame tu lista por WhatsApp. Te confirmo el precio de tu país, resuelvo tus dudas y sigo contigo después de tu compra.</p>
     <div class="hero-actions">
       <a class="btn btn-light" href="#arma">Armar mi carrito →</a>
-      <a class="btn btn-ghost" href="#test-carrito">Hacer el test (30 s)</a>
+      <a class="btn btn-ghost" href="#tienda">Entrar a la tienda</a>
     </div>
     <div class="hero-trust"><span>Te respondo yo, no un bot</span><span>Envío gratis desde 200 puntos</span><span>Sin registro ni compromiso</span><a href="#testimonios">💬 Escríbeme y te oriento</a></div>
   </div>
@@ -1435,8 +1441,9 @@ body.in-tienda .nav{transform:translateY(-100%)}
   </div>
 </section>
 
-<!-- ================= TEST ================= -->
-<section class="section quiz-section on-dark" id="test-carrito">
+<!-- ================= TEST (oculto: la tienda y "Arma tu carrito" ya cumplen esa función).
+     ✏️ Para volver a mostrarlo, quita "hidden" y vuelve a poner los enlaces a #test-carrito. ================= -->
+<section class="section quiz-section on-dark" id="test-carrito" hidden>
   <!-- 🖼️ Camino al anochecer: fondo-test-pc.webp (PC) y fondo-test-movil.webp (celular).
        Con cada respuesta avanzas por el camino y se enciende un par de farolitos; las luciérnagas se dibujan con código. -->
   <div class="test-bg" aria-hidden="true">
@@ -1473,7 +1480,7 @@ body.in-tienda .nav{transform:translateY(-100%)}
     <div class="section-head rv"><div class="kicker">Preguntas frecuentes</div><h2 class="serif">Respuestas rápidas.</h2><p>¿Algo más? Escríbeme directamente.</p></div>
     <div class="faq-list">
       <details><summary><span class="faq-num">01</span><span>¿Cómo armo mi carrito?</span><span class="faq-icon">+</span></summary><div class="faq-answer">En "Arma tu carrito" eliges tu país y agregas a tu canasta los productos que te interesan. Cuando termines, me envías tu lista por WhatsApp y yo te ayudo con el precio y el pedido.</div></details>
-      <details><summary><span class="faq-num">02</span><span>No sé qué productos elegir, ¿qué hago?</span><span class="faq-icon">+</span></summary><div class="faq-answer">Puedes hacer el test de 30 segundos para tener una idea de por dónde empezar, o escribirme directamente. Te pregunto qué buscas y te oriento con calma, sin compromiso.</div></details>
+      <details><summary><span class="faq-num">02</span><span>No sé qué productos elegir, ¿qué hago?</span><span class="faq-icon">+</span></summary><div class="faq-answer">Puedes recorrer la tienda y agregar a tu canasta lo que te llame la atención, o escribirme directamente. Te pregunto qué buscas y te oriento con calma, sin compromiso.</div></details>
       <details><summary><span class="faq-num">03</span><span>¿Puedo cambiar mi lista después de enviarla?</span><span class="faq-icon">+</span></summary><div class="faq-answer">Sí. Tu lista es solo un punto de partida: por WhatsApp la revisamos juntos y puedes quitar, agregar o cambiar productos antes de hacer tu pedido.</div></details>
       <details><summary><span class="faq-num">04</span><span>¿Vendes en México y en Estados Unidos?</span><span class="faq-icon">+</span></summary><div class="faq-answer">Sí. Te ayudo con pedidos para los dos países y te confirmo el precio en tu moneda. Si estás en otro país, escríbeme y vemos tu caso.</div></details>
       <details><summary><span class="faq-num">05</span><span>¿Por qué enviarte mi lista por WhatsApp?</span><span class="faq-icon">+</span></summary><div class="faq-answer">Porque así puedo conocer tu selección, orientarte con claridad y ayudarte con las dudas que tengas durante el proceso. Mi intención es seguir disponible después de la compra, no solo atenderte para cerrar un pedido.</div></details>
@@ -1503,7 +1510,7 @@ body.in-tienda .nav{transform:translateY(-100%)}
   <div class="wrap">
     <div class="footer-brand"><div class="footer-mark">HG</div><div><strong>Hamilton Granillo</strong><p>Distribuidor Independiente</p></div></div>
     <div class="footer-grid">
-      <div class="footer-col"><div class="kicker">Navegación</div><a href="#productos">Productos</a><a href="#arma">Arma tu carrito</a><a href="#test-carrito">Test de 30 segundos</a></div>
+      <div class="footer-col"><div class="kicker">Navegación</div><a href="#productos">Productos</a><a href="#tienda">Entra a la tienda</a><a href="#arma">Arma tu carrito</a></div>
       <div class="footer-col"><div class="kicker">Ayuda</div><a href="#preguntas">Preguntas frecuentes</a><a href="https://wa.me/593968107948" target="_blank" rel="noopener">WhatsApp</a></div>
       <div class="footer-col"><div class="kicker">Información</div><a href="politica-privacidad.html">Aviso de privacidad</a><a href="politica-cookies.html">Política de cookies</a></div>
     </div>
@@ -2685,7 +2692,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   var juiceSvg = document.getElementById('egoJuice'), juiceP = document.getElementById('egoJuicePath'), juiceHi = document.getElementById('egoJuiceHi');
   var FX = (typeof EGO_FX !== 'undefined') ? EGO_FX : { orbit: [] };
   if (FX.juice) juiceP.style.stroke = FX.juice;
-  if (FX.fruit){
+  if (FX.fruit && !egoFruit.closest('[hidden]')){   // con la sección de Ego oculta no se pide la imagen
     var fImg = new Image(); fImg.alt = ''; fImg.decoding = 'async';
     fImg.onload = function(){ egoFruit.classList.add('has-img'); };
     fImg.src = FX.fruit; egoFruit.appendChild(fImg);
@@ -2856,7 +2863,11 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   guideStage.insertBefore(guideImg, guideCaption);
   showPoseImg(guideImg, guide.dataset.pose || '0');
   // Las demás poses se descargan cuando la página ya cargó, para que el cambio sea instantáneo
-  addEventListener('load', function(){ Object.keys(POSE_FILES).forEach(function(k){ new Image().src = POSE_FILES[k]; }); });
+  // (se esperan unos segundos después de cargar, para no competir con las fotos de arriba)
+  addEventListener('load', function(){
+    var go = function(){ Object.keys(POSE_FILES).forEach(function(k){ new Image().src = POSE_FILES[k]; }); };
+    setTimeout(function(){ ('requestIdleCallback' in window) ? requestIdleCallback(go, { timeout: 4000 }) : go(); }, 2500);
+  });
 
   function bump(){
     if (reduce) return;
@@ -2945,6 +2956,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   sceneImg.addEventListener('error', function(){ sceneOk = false; scene.hidden = true; flow.classList.remove('has-scene'); });
   guideImg.addEventListener('load', function(){ if (sceneOk) placeScene(); });
   function loadScene(){
+    if (flow.closest('[hidden]')) return;   // sección oculta: no descarga su foto
     var kind = mobileGuide.matches ? 'movil' : 'pc';
     if (kind !== sceneKind){ sceneKind = kind; sceneOk = false; sceneImg.src = FLOW_BG[kind].src; }
   }
@@ -3278,7 +3290,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     }
     requestAnimationFrame(fliesFrame);
   }
-  if (ffCanvas && testPin){
+  if (ffCanvas && testPin && !testPin.closest('[hidden]')){   // con el test oculto no se carga su foto ni las luciérnagas
     placeTestBg();
     addEventListener('resize', placeTestBg);
     document.addEventListener('quiz:step', function(e){
@@ -3305,13 +3317,14 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     pc:    { src: 'fondo-ayuda-pc.webp',    iw: 1672, ih: 941,  flame: [.835, .565], size: .13, fx: .85 },
     movil: { src: 'fondo-ayuda-movil.webp', iw: 941,  ih: 1672, flame: [.707, .35],  size: .24 }
   };
-  var helperSec = document.getElementById('ayuda'), helperScene = document.getElementById('helperScene'), helperKind = '';
+  var helperSec = document.getElementById('ayuda'), helperScene = document.getElementById('helperScene'), helperKind = '', helperNear = false;
   function placeHelper(){
     if (!helperScene) return;
     var small = matchMedia('(max-width:860px)').matches, kind = small ? 'movil' : 'pc', B = HELPER_BG[kind];
+    // La foto se descarga solo cuando la sección se acerca (la página abre más rápido)
+    if (helperNear && helperScene.dataset.bg !== B.src){ helperScene.dataset.bg = B.src; helperScene.style.backgroundImage = 'url(' + B.src + ')'; }
     if (kind !== helperKind){
       helperKind = kind;
-      helperScene.style.backgroundImage = 'url(' + B.src + ')';
       var c = helperScene.querySelector('.candle');
       c.style.left = B.flame[0] * 100 + '%'; c.style.top = B.flame[1] * 100 + '%'; c.style.width = B.size * 100 + '%';
     }
@@ -3322,10 +3335,21 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   }
   placeHelper();
   addEventListener('resize', placeHelper);
+  // Cerca: carga la foto. En pantalla: la vela y el brillo del botón se animan (fuera de pantalla se pausan)
+  if (helperSec && 'IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ if (es[0].isIntersecting){ helperNear = true; placeHelper(); } }, { rootMargin: '1200px 0px' }).observe(helperSec);
+    new IntersectionObserver(function(es){ helperSec.classList.toggle('live', es[0].isIntersecting); }).observe(helperSec);
+  } else { helperNear = true; placeHelper(); if (helperSec) helperSec.classList.add('live'); }
 
   /* ---------- DESPEDIDA: capas con profundidad ----------
      Al bajar, el fondo va más lento y la rama más rápido; con el mouse cada capa se mueve distinto (como en el inicio). */
   var fwSec = document.getElementById('despedida'), fwMouse = { x: 0, y: 0 };
+  if (fwSec){
+    if ('IntersectionObserver' in window){
+      var fwNearIO = new IntersectionObserver(function(es){ if (es[0].isIntersecting){ fwSec.classList.add('near'); fwNearIO.disconnect(); } }, { rootMargin: '1200px 0px' });
+      fwNearIO.observe(fwSec);
+    } else fwSec.classList.add('near');
+  }
   var fwBg = fwSec && fwSec.querySelector('[data-fw="bg"]'), fwGuy = fwSec && fwSec.querySelector('[data-fw="guy"]'), fwBranch = fwSec && fwSec.querySelector('[data-fw="branch"]');
   function applyFarewell(){
     if (!fwSec || reduce) return;
@@ -3482,16 +3506,20 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     if (r.bottom < -50 || r.top > innerHeight + 50) return;
     var p = clamp01(-r.top / Math.max(1, tSec.offsetHeight - innerHeight));
     var n = tEls.length, seg = .9 / n, f = .45;   // el 10% final es para fundirse con la pared de los estantes
+    var wallOp = clamp01((p - .9) / .08);
+    var ops = tEls.map(function(el, i){ return i === 0 ? 1 : clamp01((p - (i * seg - f * seg)) / (f * seg)); });
     tEls.forEach(function(el, i){
-      var s = tSet.scenes[i], start = i * seg - f * seg, end = (i + 1) * seg;
-      var op = i === 0 ? 1 : clamp01((p - start) / (f * seg));
+      var s = tSet.scenes[i], start = i * seg - f * seg, end = (i + 1) * seg, op = ops[i];
+      // Solo se dibujan las escenas que se ven: si la siguiente ya la tapa por completo, se esconde (más fluido)
+      var covered = (i < n - 1 && ops[i + 1] >= 1) || wallOp >= 1;
+      if (op <= 0 || covered){ if (el.style.visibility !== 'hidden') el.style.visibility = 'hidden'; return; }
       var z = 1 + (s.z - 1) * clamp01((p - Math.max(0, start)) / (end - Math.max(0, start)));
       el.style.opacity = op;
-      el.style.visibility = op > 0 ? 'visible' : 'hidden';
+      el.style.visibility = 'visible';
       el.style.transformOrigin = (s.fx * 100) + '% ' + (s.fy * 100) + '%';
       el.style.transform = 'scale(' + z + ')';
     });
-    tWall.style.opacity = clamp01((p - .9) / .08);
+    tWall.style.opacity = wallOp;
     tCaps.forEach(function(c){ c.classList.toggle('on', p >= +c.dataset.from && p < +c.dataset.to); });
   }
   if (tSec){
