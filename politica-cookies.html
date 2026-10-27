@@ -1,98 +1,162 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Política de cookies y tecnologías similares de la página independiente de Hamilton Granillo.">
-  <meta name="robots" content="index,follow">
-  <title>Política de cookies | Hamilton Granillo</title>
-  <style>
-    :root{--green:#1A4331;--soft:#F1F5F2;--ink:#17392A;--muted:#4E6960;--line:#D7E1DA;--gold:#B98A3E}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}
-    body{margin:0;background:#fff;color:var(--ink);font-family:Inter,Arial,sans-serif;line-height:1.7}
-    .page{max-width:900px;margin:0 auto;padding:28px 20px 56px}
-    .topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:32px}
-    .topbar a{color:var(--green);font-weight:700;text-decoration:none}.brand{font-family:Georgia,serif;font-size:1.05rem;color:var(--green)}
-    .hero{border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,var(--soft),#fff);padding:34px 30px;margin-bottom:28px}
-    .eyebrow{color:var(--gold);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
-    h1,h2,h3{font-family:Georgia,serif;color:var(--green);line-height:1.25}
-    h1{font-size:clamp(2rem,5vw,3rem);margin:8px 0 12px}h2{font-size:1.35rem;margin:34px 0 10px;padding-top:8px}h3{font-size:1.05rem;margin:22px 0 6px}
-    p{margin:0 0 14px}ul{padding-left:22px;margin-top:8px}li{margin:6px 0}
-    .meta{color:var(--muted);font-size:.9rem}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-    .button{display:inline-flex;align-items:center;justify-content:center;border-radius:22px;padding:10px 18px;font-weight:700;text-decoration:none;border:1px solid var(--green);cursor:pointer;font:inherit;font-weight:700}
-    .button.primary{background:var(--green);color:#fff}.button.secondary{background:#fff;color:var(--green)}
-    .notice{background:var(--soft);border-left:4px solid var(--green);border-radius:8px;padding:16px 18px;margin:22px 0}
-    footer{border-top:1px solid var(--line);margin-top:40px;padding-top:20px;color:var(--muted);font-size:.9rem}footer a{color:var(--green);font-weight:700}
-    a{color:var(--green)}
-    @media(max-width:600px){.page{padding:18px 14px 42px}.hero{padding:25px 20px;border-radius:14px}.topbar{margin-bottom:22px}h2{font-size:1.2rem}.actions{display:grid}.button{width:100%}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<title>Política de cookies | Hamilton Networker</title>
+<meta name="description" content="Qué cookies y almacenamiento usa hamiltonnetworker.com, para qué sirven y cómo cambiar tu elección.">
+<link rel="canonical" href="https://hamiltonnetworker.com/politica-cookies.html">
+<meta name="theme-color" content="#2F3A2B">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Mismos colores y letras que la página principal ("Mediterráneo cálido") */
+:root{--sage-ink:#2F3A2B;--sage-soft:#E4EBDD;--amber:#D5851F;--amber-deep:#8E5A1E;--amber-soft:#F7E6CC;--paper:#FBFAF7;--cream:#F3F1EC;--ink:#1F261C;--muted:#4a5446;--line:#E2E3DC}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--paper);color:var(--ink);font:17px/1.7 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--sage-ink)}
+.serif{font-family:'Lora',Georgia,serif;font-weight:500;letter-spacing:-.01em}
+.kicker{font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-deep)}
+.top{position:sticky;top:0;z-index:5;background:rgba(251,250,247,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;justify-content:space-between;gap:12px;height:64px;width:min(860px,calc(100% - 32px));margin:auto}
+.brand{font-family:'Lora',serif;letter-spacing:.2em;text-decoration:none;color:var(--sage-ink);font-size:1rem}
+.brand small{display:block;font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.16em;opacity:.8}
+.top-actions{display:flex;align-items:center;gap:8px}
+.back{font-size:.82rem;font-weight:600;text-decoration:none;padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:#fff}
+.lang-btn{min-width:44px;height:38px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--sage-ink);font:600 .8rem 'Inter',sans-serif;letter-spacing:.08em;cursor:pointer}
+main{width:min(860px,calc(100% - 32px));margin:auto;padding:56px 0 80px}
+h1{font-size:clamp(2.1rem,5vw,3.2rem);line-height:1.08;color:var(--sage-ink);margin:12px 0 10px}
+.updated{color:var(--muted);font-size:.9rem}
+.intro{margin:28px 0 8px;padding:20px 22px;border-radius:16px;background:var(--amber-soft);color:#4a3a22;font-size:.98rem}
+section{padding-top:36px}
+h2{font-family:'Lora',Georgia,serif;font-weight:500;font-size:1.5rem;color:var(--sage-ink);margin-bottom:10px}
+p,li{color:#2f362c}
+p+p{margin-top:10px}
+ul{padding-left:22px;margin-top:8px}
+li+li{margin-top:6px}
+.table-wrap{overflow-x:auto;margin-top:12px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.table{width:100%;min-width:560px;border-collapse:collapse;font-size:.88rem}
+.table th,.table td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.table tr:last-child td{border-bottom:0}
+.table th{background:var(--cream);font-weight:600;color:var(--sage-ink)}
+.table code{font-size:.84rem;background:var(--cream);padding:1px 6px;border-radius:6px}
+.tag{display:inline-block;font-size:.72rem;font-weight:600;padding:2px 9px;border-radius:999px;background:var(--sage-soft);color:var(--sage-ink);white-space:nowrap}
+.tag.opt{background:var(--amber-soft);color:#6b4516}
+/* Panel para cambiar la elección de estadísticas */
+.choice{margin-top:16px;padding:22px;border-radius:16px;background:#fff;border:1px solid var(--line);box-shadow:0 14px 34px rgba(30,40,25,.06)}
+.choice-state{font-size:.95rem}
+.choice-state b{color:var(--sage-ink)}
+.choice-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.choice-actions button{border-radius:999px;padding:12px 20px;font:600 .9rem 'Inter',sans-serif;cursor:pointer;border:1px solid var(--line);background:var(--cream);color:var(--sage-ink)}
+.choice-actions .yes{background:var(--sage-ink);border-color:var(--sage-ink);color:#fff}
+.choice-msg{margin-top:10px;font-size:.85rem;color:var(--muted);min-height:1.2em}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:.82rem;color:var(--muted)}
+footer .in{width:min(860px,calc(100% - 32px));margin:auto;display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:space-between}
+@media(max-width:640px){.back{display:none}.choice-actions button{flex:1;min-height:46px}}
+</style>
 </head>
 <body>
-  <main class="page">
-    <div class="topbar"><a href="index.html">← Volver a la página</a><span class="brand">Hamilton Granillo</span></div>
-    <header class="hero">
-      <div class="eyebrow">Información legal</div>
-      <h1>Política de cookies</h1>
-      <p class="meta">Última actualización: 16 de octubre de 2026</p>
-      <p>Esta política explica cómo pueden utilizarse cookies y tecnologías similares en esta página para recordar preferencias, mostrar contenido y, si corresponde, medir el uso del sitio.</p>
-      <div class="actions">
-        <button class="button primary" type="button" onclick="window.print()">Imprimir / Guardar como PDF</button>
-        <a class="button secondary" href="politica-privacidad.html">Ver aviso de privacidad</a>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="index.html" translate="no">HAMILTON<small>Distribuidor Independiente</small></a>
+    <div class="top-actions">
+      <a class="back" href="index.html">← Volver a la página</a>
+      <button type="button" class="lang-btn" data-lang-toggle>EN</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="kicker">Información legal</div>
+  <h1 class="serif">Política de cookies</h1>
+  <p class="updated">Última actualización: 26 de octubre de 2026</p>
+
+  <p class="intro">La página solo guarda en tu navegador lo necesario para funcionar: tu país, tu canasta y tu elección. Las estadísticas de Google solo se activan si tocas “Aceptar”. Puedes cambiar de opinión aquí abajo cuando quieras.</p>
+
+  <section id="que-son">
+    <h2>¿Qué son las cookies?</h2>
+    <p>Son pequeños archivos o datos que una página guarda en tu navegador para recordar cosas entre una visita y otra. Esta página usa cookies y una tecnología parecida llamada <strong>almacenamiento local</strong> (“localStorage”), que funciona igual pero se queda solo en tu dispositivo.</p>
+  </section>
+
+  <section id="cuales">
+    <h2>¿Cuáles usa esta página?</h2>
+    <div class="table-wrap">
+      <table class="table">
+        <thead><tr><th>Nombre</th><th>Para qué sirve</th><th>Tipo</th><th>Duración</th></tr></thead>
+        <tbody>
+          <tr><td><code>hg_country</code></td><td>Recordar el país que elegiste (México o Estados Unidos).</td><td><span class="tag">Necesaria</span></td><td>Hasta que la borres</td></tr>
+          <tr><td><code>hg_arma</code></td><td>Recordar los productos de tu canasta.</td><td><span class="tag">Necesaria</span></td><td>Hasta que la vacíes o la borres</td></tr>
+          <tr><td><code>hg_visited</code></td><td>Saber si ya visitaste la página, para no repetir la animación de bienvenida.</td><td><span class="tag">Necesaria</span></td><td>Hasta que la borres</td></tr>
+          <tr><td><code>hg_cookie_consent</code></td><td>Recordar si aceptaste o rechazaste las estadísticas.</td><td><span class="tag">Necesaria</span></td><td>Hasta que la borres</td></tr>
+          <tr><td><code>_ga</code>, <code>_ga_*</code></td><td>Google Analytics: contar visitas y ver cómo se usa la página, sin identificar quién eres.</td><td><span class="tag opt">Estadísticas · opcional</span></td><td>Hasta 2 años</td></tr>
+          <tr><td><code>googtrans</code></td><td>Google Translate: mantener la página en inglés si tocaste el botón “EN”.</td><td><span class="tag opt">Solo si la usas</span></td><td>Hasta que vuelvas a español o cierres el navegador</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:14px">Las cuatro primeras (<code>hg_…</code>) son de almacenamiento local: se quedan en tu dispositivo y no se envían a nadie.</p>
+  </section>
+
+  <section id="terceros">
+    <h2>Servicios de terceros</h2>
+    <ul>
+      <li><strong>Google Analytics</strong> solo se carga si aceptas las estadísticas. Más información en la <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">política de cookies de Google</a>.</li>
+      <li><strong>Google Translate</strong> solo se carga cuando tocas el botón “EN”. En ese momento Google recibe el texto de la página para traducirlo y puede usar sus propias cookies.</li>
+      <li><strong>Google Fonts</strong> muestra las letras de la página. No guarda cookies, pero como cualquier servidor recibe datos técnicos de la visita, como tu dirección IP.</li>
+      <li><strong>WhatsApp</strong>: al tocar un botón de WhatsApp sales de esta página y se aplican las políticas de WhatsApp (Meta).</li>
+    </ul>
+  </section>
+
+  <section id="elegir">
+    <h2>Cambiar tu elección</h2>
+    <p>Las cookies necesarias no se pueden apagar desde aquí porque sin ellas la canasta y el país no funcionarían. Las estadísticas sí las puedes activar o desactivar:</p>
+    <div class="choice" id="choice">
+      <p class="choice-state">Estadísticas de Google Analytics: <b id="choiceState">sin elegir</b></p>
+      <div class="choice-actions">
+        <button type="button" class="yes" id="choiceYes">Aceptar estadísticas</button>
+        <button type="button" id="choiceNo">Rechazar estadísticas</button>
       </div>
-    </header>
+      <p class="choice-msg" id="choiceMsg" aria-live="polite"></p>
+    </div>
+    <p style="margin-top:14px">También puedes borrar todas las cookies y el almacenamiento de esta página desde la configuración de tu navegador (por ejemplo, en Chrome: Configuración → Privacidad y seguridad → Cookies y otros datos de sitios). Si lo haces, se vaciará tu canasta.</p>
+  </section>
 
-    <section><h2>1. Responsable y alcance</h2>
-      <p>Esta política corresponde a la página independiente administrada por <strong>Hamilton Leonel Granillo Ramírez</strong>, persona natural que indica operar en Arenillas, Ecuador. Para consultas, escribe a <a href="mailto:hamiltonnetworker@gmail.com">hamiltonnetworker@gmail.com</a>.</p>
-      <p>La página ofrece información y permite explorar opciones de carritos según las selecciones realizadas por la persona usuaria. No es el sitio institucional de Omnilife. Cuando visitas otros portales o servicios, también pueden aplicarse sus propias políticas.</p>
-    </section>
+  <section id="mas">
+    <h2>Más información</h2>
+    <p>Para saber cómo uso tus datos personales, consulta el <a href="politica-privacidad.html">aviso de privacidad</a>. Si tienes dudas, escríbeme por <a href="https://wa.me/593968107948" target="_blank" rel="noopener">WhatsApp</a>.</p>
+  </section>
+</main>
 
-    <section><h2>2. ¿Qué son las cookies?</h2>
-      <p>Las cookies son pequeños archivos que un sitio puede guardar en el navegador. También existen tecnologías similares, como el almacenamiento local, píxeles, etiquetas y solicitudes técnicas, que pueden recordar preferencias o ayudar a medir el uso de una página.</p>
-    </section>
+<footer>
+  <div class="in">
+    <span>© 2026 Hamilton Granillo · Distribuidor independiente</span>
+    <span><a href="index.html">Inicio</a> · <a href="politica-privacidad.html">Aviso de privacidad</a></span>
+  </div>
+</footer>
 
-    <section><h2>3. Categorías de cookies y tecnologías</h2>
-      <h3>3.1. Necesarias</h3>
-      <p>Pueden utilizarse para recordar la preferencia de cookies, mantener funciones básicas y permitir que la página opere de forma adecuada. Estas tecnologías no deberían utilizarse para publicidad personalizada.</p>
-      <h3>3.2. Analítica</h3>
-      <p>Si están configuradas y aceptas esta categoría, herramientas como Google Tag Manager y Google Analytics pueden medir visitas, páginas vistas y eventos de uso para ayudar a entender el rendimiento de la página.</p>
-      <h3>3.3. Publicidad y medición de campañas</h3>
-      <p>Si existen etiquetas publicitarias configuradas y aceptas expresamente la categoría correspondiente, herramientas como Meta Pixel podrían medir campañas o interacciones. La activación real depende de la configuración publicada en las etiquetas del sitio.</p>
-      <h3>3.4. Contenido y servicios externos</h3>
-      <p>Si la página incorpora videos, fuentes externas, botones de WhatsApp u otros enlaces, esos servicios pueden recibir solicitudes técnicas cuando se carga el contenido o utilizas sus funciones. Cada proveedor aplica sus propias condiciones y políticas.</p>
-    </section>
-
-    <section><h2>4. Herramientas utilizadas</h2>
-      <p>La página puede utilizar almacenamiento local para recordar la elección de cookies. También puede incluir un contenedor de Google Tag Manager que, según su configuración, cargue otras etiquetas. Que una herramienta se mencione aquí no significa que esté activa: la política debe mantenerse alineada con las integraciones realmente publicadas en la página y en el contenedor de etiquetas.</p>
-      <div class="notice"><strong>Importante:</strong> las etiquetas analíticas y publicitarias no necesarias deben permanecer bloqueadas hasta obtener el consentimiento correspondiente. Esta página de política no debe cargar por sí sola esas etiquetas.</div>
-    </section>
-
-    <section><h2>5. Finalidades</h2>
-      <p>Las tecnologías pueden utilizarse para recordar preferencias, habilitar funciones básicas, mejorar el funcionamiento técnico, comprender cómo se utiliza la página y medir campañas cuando esas herramientas estén activas y se haya otorgado el consentimiento necesario.</p>
-      <p>Las selecciones de país o categoría utilizadas para mostrar opciones de carritos no deben enviarse a herramientas analíticas o publicitarias salvo que la configuración real y la información proporcionada lo permitan y exista una base válida para hacerlo.</p>
-    </section>
-
-    <section><h2>6. Terceros y transferencias internacionales</h2>
-      <p>Proveedores como Google, Meta, YouTube, WhatsApp, el servicio de alojamiento u otros servicios externos podrían procesar datos técnicos desde servidores ubicados en distintos países, dependiendo de las funciones realmente integradas y utilizadas. Consulta sus políticas para obtener más información sobre sus tratamientos.</p>
-      <p>Para conocer el tratamiento general de información personal, revisa el <a href="politica-privacidad.html">aviso de privacidad</a>.</p>
-    </section>
-
-    <section><h2>7. Consentimiento y gestión de preferencias</h2>
-      <p>La página debe ofrecer una opción clara para aceptar o rechazar las cookies no necesarias. El acceso al contenido esencial no debe condicionarse a aceptar tecnologías analíticas o publicitarias.</p>
-      <p>Puedes cambiar tu elección mediante la opción “Configurar cookies” de la página principal, si está disponible. También puedes borrar o bloquear cookies desde la configuración de tu navegador. Si eliminas el almacenamiento local, el sitio podría volver a solicitar tu preferencia.</p>
-      <p>Rechazar las cookies no necesarias debe impedir que se activen las etiquetas correspondientes. Es importante comprobar esta conducta en la página principal y en la configuración real del contenedor de etiquetas.</p>
-    </section>
-
-    <section><h2>8. Conservación</h2>
-      <p>La elección de cookies puede guardarse en el almacenamiento local hasta que la cambies o borres esos datos. Las cookies y herramientas de terceros pueden tener períodos de conservación propios, que dependen de su configuración y de las políticas de cada proveedor.</p>
-    </section>
-
-    <section><h2>9. Actualizaciones y contacto</h2>
-      <p>Esta política puede actualizarse cuando cambien las funciones, integraciones o proveedores utilizados. La versión vigente estará disponible en esta página con su fecha de actualización.</p>
-      <p>Para consultas relacionadas con cookies, escribe a <a href="mailto:hamiltonnetworker@gmail.com">hamiltonnetworker@gmail.com</a>.</p>
-    </section>
-
-    <div class="notice"><strong>Alcance:</strong> esta política corresponde únicamente a la página independiente administrada por Hamilton Leonel Granillo Ramírez. Para información sobre cookies utilizadas directamente por Omnilife u otros portales externos, consulta sus políticas oficiales.</div>
-    <footer><a href="politica-privacidad.html">Aviso de privacidad</a> · <a href="index.html">Volver a la página</a></footer>
-  </main>
+<script>
+/* Usa la misma clave que el aviso de cookies de la página principal (hg_cookie_consent) */
+(function(){
+  var KEY = 'hg_cookie_consent', state = document.getElementById('choiceState'), msg = document.getElementById('choiceMsg');
+  function get(){ try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function set(v){ try { localStorage.setItem(KEY, v); } catch (e) {} }
+  function paint(){ var v = get(); state.textContent = v === 'yes' ? 'activadas' : v === 'no' ? 'desactivadas' : 'sin elegir'; }
+  // Al rechazar, borra las cookies de Google Analytics que ya existan
+  function clearGa(){
+    var host = location.hostname.replace(/^www\./, ''), past = '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+    document.cookie.split(';').forEach(function(c){
+      var name = c.split('=')[0].trim();
+      if (/^_ga/.test(name)){ document.cookie = name + past; document.cookie = name + past + '; domain=.' + host; document.cookie = name + past + '; domain=' + location.hostname; }
+    });
+  }
+  document.getElementById('choiceYes').addEventListener('click', function(){ set('yes'); paint(); msg.textContent = 'Listo: las estadísticas se activarán en tu próxima visita a la página.'; });
+  document.getElementById('choiceNo').addEventListener('click', function(){ set('no'); clearGa(); paint(); msg.textContent = 'Listo: las estadísticas quedaron desactivadas y se borraron sus cookies.'; });
+  paint();
+})();
+</script>
+<script src="traductor.js" defer></script>
 </body>
 </html>
