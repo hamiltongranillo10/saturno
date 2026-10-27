@@ -1,122 +1,199 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Aviso de privacidad de la página independiente de Hamilton Granillo.">
-  <meta name="robots" content="index,follow">
-  <title>Aviso de privacidad | Hamilton Granillo</title>
-  <style>
-    :root{--green:#1A4331;--green-dark:#123322;--soft:#F1F5F2;--ink:#17392A;--muted:#4E6960;--line:#D7E1DA;--gold:#B98A3E}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:#fff;color:var(--ink);font-family:Inter,Arial,sans-serif;line-height:1.7}
-    .page{max-width:900px;margin:0 auto;padding:28px 20px 56px}
-    .topbar{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:32px}
-    .topbar a{color:var(--green);font-weight:700;text-decoration:none}
-    .brand{font-family:Georgia,serif;font-size:1.05rem;color:var(--green)}
-    .hero{border:1px solid var(--line);border-radius:18px;background:linear-gradient(135deg,var(--soft),#fff);padding:34px 30px;margin-bottom:28px}
-    .eyebrow{color:var(--gold);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700}
-    h1,h2{font-family:Georgia,serif;color:var(--green);line-height:1.25}
-    h1{font-size:clamp(2rem,5vw,3rem);margin:8px 0 12px}
-    h2{font-size:1.35rem;margin:34px 0 10px;padding-top:8px}
-    p{margin:0 0 14px}
-    ul{padding-left:22px;margin-top:8px}
-    li{margin:6px 0}
-    .meta{color:var(--muted);font-size:.9rem}
-    .notice{background:var(--soft);border-left:4px solid var(--green);border-radius:8px;padding:16px 18px;margin:22px 0}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
-    .button{display:inline-flex;align-items:center;justify-content:center;border-radius:22px;padding:10px 18px;font-weight:700;text-decoration:none;border:1px solid var(--green)}
-    .button.primary{background:var(--green);color:#fff}.button.secondary{background:#fff;color:var(--green)}
-    footer{border-top:1px solid var(--line);margin-top:40px;padding-top:20px;color:var(--muted);font-size:.9rem}
-    footer a{color:var(--green);font-weight:700}
-    @media(max-width:600px){.page{padding:18px 14px 42px}.hero{padding:25px 20px;border-radius:14px}.topbar{margin-bottom:22px}h2{font-size:1.2rem}.actions{display:grid}.button{width:100%}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<title>Aviso de privacidad | Hamilton Networker</title>
+<meta name="description" content="Aviso de privacidad de hamiltonnetworker.com: qué datos se usan, para qué y cómo ejercer tus derechos.">
+<link rel="canonical" href="https://hamiltonnetworker.com/politica-privacidad.html">
+<meta name="theme-color" content="#2F3A2B">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Mismos colores y letras que la página principal ("Mediterráneo cálido") */
+:root{--sage-ink:#2F3A2B;--sage-soft:#E4EBDD;--amber:#D5851F;--amber-deep:#8E5A1E;--amber-soft:#F7E6CC;--paper:#FBFAF7;--cream:#F3F1EC;--ink:#1F261C;--muted:#4a5446;--line:#E2E3DC}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--paper);color:var(--ink);font:17px/1.7 'Inter',system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--sage-ink)}
+.serif{font-family:'Lora',Georgia,serif;font-weight:500;letter-spacing:-.01em}
+.kicker{font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--amber-deep)}
+.top{position:sticky;top:0;z-index:5;background:rgba(251,250,247,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;justify-content:space-between;gap:12px;height:64px;width:min(860px,calc(100% - 32px));margin:auto}
+.brand{font-family:'Lora',serif;letter-spacing:.2em;text-decoration:none;color:var(--sage-ink);font-size:1rem}
+.brand small{display:block;font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.16em;opacity:.8}
+.top-actions{display:flex;align-items:center;gap:8px}
+.back{font-size:.82rem;font-weight:600;text-decoration:none;padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:#fff}
+.lang-btn{min-width:44px;height:38px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--sage-ink);font:600 .8rem 'Inter',sans-serif;letter-spacing:.08em;cursor:pointer}
+main{width:min(860px,calc(100% - 32px));margin:auto;padding:56px 0 80px}
+h1{font-size:clamp(2.1rem,5vw,3.2rem);line-height:1.08;color:var(--sage-ink);margin:12px 0 10px}
+.updated{color:var(--muted);font-size:.9rem}
+.intro{margin:28px 0 8px;padding:20px 22px;border-radius:16px;background:var(--amber-soft);color:#4a3a22;font-size:.98rem}
+.toc{margin:28px 0 8px;padding:20px 22px;border:1px solid var(--line);border-radius:16px;background:#fff}
+.toc ol{padding-left:20px;columns:2;column-gap:28px;font-size:.92rem}
+.toc a{text-decoration:none}.toc a:hover{text-decoration:underline}
+section{padding-top:36px}
+h2{font-family:'Lora',Georgia,serif;font-weight:500;font-size:1.5rem;color:var(--sage-ink);margin-bottom:10px}
+h3{font-size:1rem;color:var(--sage-ink);margin:18px 0 6px}
+p,li{color:#2f362c}
+p+p{margin-top:10px}
+ul{padding-left:22px;margin-top:8px}
+li+li{margin-top:6px}
+.table{width:100%;border-collapse:collapse;margin-top:12px;font-size:.9rem;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.table th,.table td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.table th{background:var(--cream);font-weight:600;color:var(--sage-ink)}
+.box{margin-top:14px;padding:18px 20px;border-radius:14px;background:var(--sage-soft)}
+.btn{display:inline-block;margin-top:14px;padding:13px 22px;border-radius:999px;background:var(--sage-ink);color:#fff;text-decoration:none;font-weight:600;font-size:.92rem}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;font-size:.82rem;color:var(--muted)}
+footer .in{width:min(860px,calc(100% - 32px));margin:auto;display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:space-between}
+@media(max-width:640px){.toc ol{columns:1}.table{font-size:.82rem}.table th,.table td{padding:9px}.back{display:none}}
+</style>
 </head>
 <body>
-  <main class="page">
-    <div class="topbar">
-      <a href="index.html">← Volver a la página</a>
-      <span class="brand">Hamilton Granillo</span>
+
+<header class="top">
+  <div class="top-in">
+    <a class="brand" href="index.html" translate="no">HAMILTON<small>Distribuidor Independiente</small></a>
+    <div class="top-actions">
+      <a class="back" href="index.html">← Volver a la página</a>
+      <button type="button" class="lang-btn" data-lang-toggle>EN</button>
     </div>
+  </div>
+</header>
 
-    <header class="hero">
-      <div class="eyebrow">Información legal</div>
-      <h1>Aviso de privacidad</h1>
-      <p class="meta">Última actualización: 16 de octubre de 2026</p>
-      <p>Este aviso explica qué información puede tratar esta página para ayudarte a explorar opciones de carritos de productos, consultar contenido informativo y, si lo decides, contactar por WhatsApp.</p>
-      <div class="actions">
-        <button class="button primary" type="button" onclick="window.print()">Imprimir / Guardar como PDF</button>
-        <a class="button secondary" href="politica-cookies.html">Ver política de cookies</a>
-      </div>
-    </header>
+<main>
+  <div class="kicker">Información legal</div>
+  <h1 class="serif">Aviso de privacidad</h1>
+  <p class="updated">Última actualización: 26 de octubre de 2026</p>
 
-    <section><h2>1. Responsable del tratamiento</h2>
-      <p>El responsable del tratamiento descrito en este aviso es <strong>Hamilton Leonel Granillo Ramírez</strong>, persona natural que indica operar en Arenillas, Ecuador. Para consultas sobre privacidad, puedes escribir a <a href="mailto:hamiltonnetworker@gmail.com">hamiltonnetworker@gmail.com</a>.</p>
-      <p>Esta es una página independiente de orientación sobre opciones de carritos de productos relacionados con Omnilife. No es el sitio institucional de Omnilife ni reemplaza sus políticas, términos o canales oficiales.</p>
-    </section>
+  <p class="intro">En pocas palabras: solo uso tus datos para atenderte y armar tu pedido. No los vendo. Las estadísticas de la página solo se activan si tú las aceptas. Y puedes pedirme en cualquier momento que vea, corrija o borre tu información, escribiéndome por WhatsApp.</p>
 
-    <section><h2>2. Alcance del aviso</h2>
-      <p>Este aviso se aplica a la información tratada mediante esta página, incluidas las selecciones que hagas para explorar opciones, los botones de contacto y los datos técnicos de navegación que puedan generarse. Si abres WhatsApp, videos, enlaces o portales de terceros, esos servicios también pueden tratar datos conforme a sus propios avisos y condiciones.</p>
-    </section>
+  <nav class="toc" aria-label="Contenido">
+    <ol>
+      <li><a href="#responsable">Quién es responsable</a></li>
+      <li><a href="#datos">Qué datos se usan</a></li>
+      <li><a href="#finalidades">Para qué se usan</a></li>
+      <li><a href="#compartir">Con quién se comparten</a></li>
+      <li><a href="#conservacion">Cuánto tiempo se guardan</a></li>
+      <li><a href="#derechos">Tus derechos (ARCO)</a></li>
+      <li><a href="#usa">Si vives en Estados Unidos</a></li>
+      <li><a href="#menores">Menores de edad</a></li>
+      <li><a href="#seguridad">Seguridad</a></li>
+      <li><a href="#cambios">Cambios a este aviso</a></li>
+    </ol>
+  </nav>
 
-    <section><h2>3. Información que puede tratarse</h2>
-      <p>Según las funciones que utilices, la página puede tratar:</p>
-      <ul>
-        <li>Selecciones realizadas en la página, como el país elegido y la categoría de interés, para mostrarte contenido o una recomendación de carrito.</li>
-        <li>La información que decidas incluir al iniciar una conversación por WhatsApp. El contenido que envíes en ese servicio será tratado por WhatsApp y por las personas con quienes decidas comunicarte.</li>
-        <li>Datos técnicos de navegación, como navegador, dispositivo, páginas vistas o eventos, únicamente en la medida en que se recopilen mediante herramientas activas y de acuerdo con tus preferencias de cookies.</li>
-        <li>La elección de consentimiento de cookies, cuando sea necesaria para recordar y respetar tu decisión.</li>
-      </ul>
-      <p>No introduzcas contraseñas, datos de tarjetas, códigos de seguridad, información bancaria ni información de salud en esta página o en mensajes de contacto. La página no necesita esos datos para mostrarte las opciones disponibles.</p>
-    </section>
+  <section id="responsable">
+    <h2>1. Quién es responsable de tus datos</h2>
+    <p><strong>Hamilton Granillo</strong>, distribuidor independiente de productos OMNILIFE, responsable del sitio <strong>hamiltonnetworker.com</strong> (en adelante, “yo” o “el sitio”).</p>
+    <!-- ✏️ Si quieres, agrega aquí tu correo de contacto y tu domicilio para recibir notificaciones (en México el aviso de privacidad debe incluir un domicilio). -->
+    <p>Contacto para cualquier tema de privacidad: WhatsApp <a href="https://wa.me/593968107948" target="_blank" rel="noopener">+593 96 810 7948</a>.</p>
+    <p>Este sitio <strong>no es el sitio oficial de OMNILIFE</strong>. Soy un distribuidor independiente. OMNILIFE trata por su cuenta los datos que le entregas al registrarte o comprar en su plataforma, conforme a su propio aviso de privacidad.</p>
+  </section>
 
-    <section><h2>4. Finalidades</h2>
-      <p>La información se puede utilizar para mostrar opciones de carritos de acuerdo con tus selecciones, facilitar la navegación, presentar contenido informativo y testimonios, permitir que solicites información por WhatsApp, recordar tus preferencias de cookies, mantener la seguridad del sitio y corregir problemas técnicos.</p>
-      <p>Si aceptas las cookies analíticas o publicitarias correspondientes y esas herramientas están efectivamente configuradas, algunos datos técnicos y eventos pueden utilizarse para medir visitas, entender el uso de la página y evaluar campañas.</p>
-    </section>
+  <section id="datos">
+    <h2>2. Qué datos se usan</h2>
+    <h3>a) Lo que tú me envías por WhatsApp</h3>
+    <p>Cuando me escribes, recibo tu <strong>nombre o alias de WhatsApp</strong>, tu <strong>número de teléfono</strong>, el <strong>país</strong> donde quieres comprar, la <strong>lista de productos</strong> que elegiste y lo que me cuentes en el mensaje. Para completar un pedido o registro puedo pedirte además tu <strong>nombre completo, dirección de entrega y correo electrónico</strong>.</p>
+    <h3>b) Lo que se guarda solo en tu navegador</h3>
+    <p>Para que la página funcione, tu navegador guarda el <strong>país que elegiste</strong>, los <strong>productos de tu canasta</strong>, si ya habías visitado la página y tu <strong>elección sobre las cookies</strong>. Esta información se queda en tu dispositivo: <strong>no me llega a mí</strong> a menos que tú envíes tu lista por WhatsApp. Las respuestas del test también se procesan solo en tu navegador.</p>
+    <h3>c) Estadísticas (solo si las aceptas)</h3>
+    <p>Si aceptas las cookies, Google Analytics registra de forma general cómo se usa la página: páginas vistas, tipo de dispositivo y navegador, ubicación aproximada (ciudad o país), el país elegido, los productos que agregas a tu canasta y si tocas los botones de WhatsApp. No identifica tu nombre ni tu teléfono. Más detalles en la <a href="politica-cookies.html">política de cookies</a>.</p>
+    <h3>d) Datos que no te pido</h3>
+    <p>No te pido datos de salud, datos bancarios ni contraseñas a través de este sitio. Los pagos se hacen en la plataforma donde se completa el pedido. Si por tu cuenta me compartes algo sobre tu salud en una conversación, lo uso solo para orientarte y no lo comparto con nadie. Recuerda que no soy profesional de la salud: para eso, consulta a tu médico.</p>
+  </section>
 
-    <section><h2>5. Bases y elección del tratamiento</h2>
-      <p>La información que introduces voluntariamente se utiliza para proporcionar la función o respuesta que solicitas. Las tecnologías no necesarias, como las analíticas o publicitarias, deben activarse según la opción de consentimiento que corresponda. También puede tratarse información cuando sea necesario para proteger la seguridad del sitio o cumplir obligaciones legales aplicables.</p>
-      <p>Puedes retirar el consentimiento cuando corresponda y cambiar tus preferencias de cookies desde las opciones disponibles en la página principal. Retirar el consentimiento no afecta los tratamientos realizados antes de tu decisión.</p>
-    </section>
+  <section id="finalidades">
+    <h2>3. Para qué se usan</h2>
+    <h3>Finalidades principales (necesarias para atenderte)</h3>
+    <ul>
+      <li>Responder tus preguntas y orientarte sobre los productos.</li>
+      <li>Armar tu carrito y confirmarte precios y disponibilidad en tu país.</li>
+      <li>Ayudarte con tu registro o tu pedido en la plataforma de OMNILIFE.</li>
+      <li>Darte seguimiento después de tu compra, si tú lo quieres.</li>
+    </ul>
+    <h3>Finalidades secundarias (puedes negarte)</h3>
+    <ul>
+      <li>Enviarte novedades, promociones o lanzamientos por WhatsApp.</li>
+      <li>Medir cómo se usa la página para mejorarla (solo si aceptas las cookies).</li>
+    </ul>
+    <p>Si no quieres que use tus datos para las finalidades secundarias, escríbeme <strong>“NO PROMOCIONES”</strong> por WhatsApp en cualquier momento. Esto no afecta a que te atienda.</p>
+  </section>
 
-    <section><h2>6. WhatsApp y otros proveedores</h2>
-      <p>Si seleccionas un botón de WhatsApp, se abrirá un servicio externo para que puedas continuar la conversación. La información que envíes será procesada por WhatsApp conforme a sus propias condiciones y políticas. No envíes información que no sea necesaria para tu consulta.</p>
-      <p>Según la configuración real del sitio, pueden intervenir proveedores de alojamiento, Google Tag Manager, Google Analytics, Meta, YouTube, Google Fonts y otros servicios externos. Estos servicios pueden recibir datos técnicos cuando sus funciones se carguen o utilices sus enlaces. La presencia de una integración no significa que todas las herramientas estén activas en todo momento; la configuración publicada debe coincidir con este aviso y con la política de cookies.</p>
-      <p>Los datos personales no se venden. Solo deben comunicarse a terceros cuando sea necesario para prestar la función que solicitas, exista una obligación legal o se cuente con la base correspondiente.</p>
-    </section>
+  <section id="compartir">
+    <h2>4. Con quién se comparten</h2>
+    <p><strong>No vendo ni rento tus datos</strong>, y no los comparto para publicidad de terceros. Solo intervienen:</p>
+    <table class="table">
+      <thead><tr><th>Quién</th><th>Para qué</th></tr></thead>
+      <tbody>
+        <tr><td>OMNILIFE (o la plataforma donde se complete la compra)</td><td>Procesar tu registro o pedido, solo cuando tú me lo pides.</td></tr>
+        <tr><td>WhatsApp (Meta)</td><td>Es el medio por el que platicamos. Se rige por su propia política de privacidad.</td></tr>
+        <tr><td>Google (Analytics)</td><td>Estadísticas de uso de la página, solo si aceptas las cookies.</td></tr>
+        <tr><td>Google (Fonts y Translate)</td><td>Mostrar las letras de la página y, si tocas el botón “EN”, traducirla al inglés.</td></tr>
+        <tr><td>GitHub (alojamiento)</td><td>Guarda y muestra los archivos de la página. Como cualquier servidor, puede registrar datos técnicos de la visita, como la dirección IP.</td></tr>
+      </tbody>
+    </table>
+    <p>Algunos de estos proveedores procesan datos fuera de tu país (por ejemplo, en Estados Unidos). También podría compartir datos si una autoridad lo exige conforme a la ley.</p>
+  </section>
 
-    <section><h2>7. Transferencias internacionales</h2>
-      <p>Algunos proveedores externos pueden procesar información en servidores ubicados fuera de Ecuador. Esos tratamientos pueden estar sujetos a sus propias políticas y a las reglas aplicables sobre transferencias internacionales de datos. Consulta las políticas de los servicios externos que decidas utilizar.</p>
-    </section>
+  <section id="conservacion">
+    <h2>5. Cuánto tiempo se guardan</h2>
+    <p>Guardo nuestras conversaciones y los datos de tus pedidos mientras seas mi cliente o mientras sean útiles para darte seguimiento, y después el tiempo que exijan las leyes aplicables. Si me pides borrarlos, los elimino de mis registros, salvo lo que deba conservar por ley. Lo que se guarda en tu navegador lo puedes borrar tú en cualquier momento desde la configuración de tu navegador. Los datos de Google Analytics se conservan hasta 14 meses.</p>
+  </section>
 
-    <section><h2>8. Conservación</h2>
-      <p>Las selecciones utilizadas para mostrar un carrito pueden procesarse temporalmente en el navegador para que la página funcione. Si no se envían a un formulario o servicio externo, no deben tratarse como si fueran un registro personal almacenado por el responsable. Los mensajes enviados por WhatsApp y los datos que se reciban para atender una consulta podrán conservarse durante el tiempo necesario para responder y dar seguimiento, y después eliminarse cuando ya no sean necesarios, salvo obligación legal o necesidad legítima de conservarlos.</p>
-      <p>Las cookies y herramientas de terceros pueden aplicar sus propios períodos de conservación; consulta la <a href="politica-cookies.html">Política de cookies</a>.</p>
-    </section>
+  <section id="derechos">
+    <h2>6. Tus derechos (ARCO) y cómo ejercerlos</h2>
+    <p>Puedes pedirme en cualquier momento:</p>
+    <ul>
+      <li><strong>Acceso:</strong> saber qué datos tuyos tengo y para qué los uso.</li>
+      <li><strong>Rectificación:</strong> corregirlos si están mal o incompletos.</li>
+      <li><strong>Cancelación:</strong> que los borre.</li>
+      <li><strong>Oposición:</strong> que deje de usarlos para algún fin.</li>
+    </ul>
+    <p>También puedes <strong>revocar tu consentimiento</strong> o <strong>limitar el uso</strong> de tus datos (por ejemplo, dejar de recibir promociones).</p>
+    <div class="box">
+      <p><strong>Cómo hacerlo:</strong> escríbeme por WhatsApp con tu nombre, qué derecho quieres ejercer y sobre qué datos. Si hace falta, te pediré algo que confirme que eres tú. Te respondo en un plazo máximo de <strong>20 días hábiles</strong>, y si procede, aplico tu solicitud dentro de los 15 días hábiles siguientes.</p>
+      <a class="btn" href="https://wa.me/593968107948?text=Hola%20Hamilton%2C%20quiero%20ejercer%20mis%20derechos%20sobre%20mis%20datos%20personales." target="_blank" rel="noopener">Enviar solicitud por WhatsApp ↗</a>
+    </div>
+    <p style="margin-top:14px">Si vives en México y consideras que tus derechos no fueron atendidos, puedes acudir a la autoridad de protección de datos personales que corresponda.</p>
+  </section>
 
-    <section><h2>9. Tus derechos y contacto</h2>
-      <p>Puedes enviar solicitudes relacionadas con tus datos personales a <a href="mailto:hamiltonnetworker@gmail.com">hamiltonnetworker@gmail.com</a>. Según la normativa aplicable y las circunstancias, puedes solicitar información, acceso, actualización, rectificación, eliminación, oposición, limitación o suspensión del tratamiento, portabilidad cuando corresponda, o retirar el consentimiento.</p>
-      <p>Incluye tu nombre, el derecho que deseas ejercer y un medio para responderte. Para proteger tus datos, se podrá solicitar información razonable para confirmar tu identidad. Si consideras que una solicitud no ha sido atendida conforme a la normativa aplicable, puedes acudir a la autoridad de protección de datos competente.</p>
-    </section>
+  <section id="usa">
+    <h2>7. Si vives en Estados Unidos</h2>
+    <ul>
+      <li>No vendo tus datos personales ni los comparto para publicidad dirigida entre sitios.</li>
+      <li>Puedes pedirme saber qué datos tengo de ti, corregirlos o borrarlos, por el mismo medio del punto 6. No te trataré distinto por hacerlo.</li>
+      <li>El sitio no responde a la señal “Do Not Track” del navegador, pero las estadísticas solo se activan si tú aceptas las cookies.</li>
+    </ul>
+  </section>
 
-    <section><h2>10. Seguridad y menores de edad</h2>
-      <p>Se procuran aplicar medidas razonables para reducir el acceso no autorizado y recopilar únicamente la información necesaria. Sin embargo, ningún sistema conectado a internet puede garantizar seguridad absoluta.</p>
-      <p>Esta página no está dirigida a menores de edad y no pretende recopilar intencionalmente sus datos personales.</p>
-    </section>
+  <section id="menores">
+    <h2>8. Menores de edad</h2>
+    <p>Este sitio está dirigido a personas mayores de 18 años. No recopilo a sabiendas datos de menores de edad. Si eres madre, padre o tutor y crees que un menor me envió sus datos, escríbeme y los borro.</p>
+  </section>
 
-    <section><h2>11. Servicios y compras oficiales</h2>
-      <p>Esta página es informativa y de orientación para explorar opciones de carritos. No procesa pagos ni sustituye los canales oficiales para confirmar precios, disponibilidad, realizar compras, gestionar pedidos o resolver asuntos relacionados directamente con Omnilife. Cuando visites un portal oficial, se aplicarán los avisos y condiciones del responsable de ese portal.</p>
-    </section>
+  <section id="seguridad">
+    <h2>9. Seguridad</h2>
+    <p>Tomo medidas razonables para proteger tu información: la página usa conexión cifrada (HTTPS), no guarda tus datos en ningún servidor propio, y tus conversaciones de WhatsApp están protegidas por el cifrado de esa aplicación. Ningún medio por internet es 100% seguro, pero solo uso tus datos para lo que se describe aquí.</p>
+    <p>Este sitio tiene enlaces a sitios de terceros (WhatsApp, OMNILIFE). Cada uno tiene su propio aviso de privacidad, y no soy responsable de cómo tratan tus datos.</p>
+  </section>
 
-    <section><h2>12. Cambios y contacto</h2>
-      <p>Este aviso puede actualizarse cuando cambien las funciones de la página, los proveedores utilizados o las obligaciones aplicables. La versión vigente estará disponible aquí con su fecha de actualización.</p>
-      <p>Para consultas o solicitudes de privacidad, escribe a <a href="mailto:hamiltonnetworker@gmail.com">hamiltonnetworker@gmail.com</a>.</p>
-    </section>
+  <section id="cambios">
+    <h2>10. Cambios a este aviso</h2>
+    <p>Si cambio este aviso, publicaré la nueva versión en esta misma página con su fecha de actualización. Si el cambio es importante, también lo avisaré en la página principal.</p>
+    <p>Al usar este sitio y escribirme por WhatsApp, aceptas que use tus datos como se explica en este aviso.</p>
+  </section>
+</main>
 
-    <div class="notice"><strong>Importante:</strong> este aviso corresponde únicamente a la página independiente administrada por Hamilton Leonel Granillo Ramírez. No es el aviso corporativo de Omnilife. Para información sobre el tratamiento realizado directamente por Omnilife, consulta sus canales y políticas oficiales.</div>
-    <footer><a href="politica-cookies.html">Política de cookies</a> · <a href="index.html">Volver a la página</a></footer>
-  </main>
+<footer>
+  <div class="in">
+    <span>© 2026 Hamilton Granillo · Distribuidor independiente</span>
+    <span><a href="index.html">Inicio</a> · <a href="politica-cookies.html">Política de cookies</a></span>
+  </div>
+</footer>
+
+<script src="traductor.js" defer></script>
 </body>
 </html>
