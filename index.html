@@ -735,15 +735,43 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 @keyframes dropIn{from{opacity:0;transform:translateY(-70px) rotate(-14deg)}}
 
 /* ---------- ARMA TU CARRITO ---------- */
-.arma{position:relative;background:var(--cream);padding-bottom:150px}
+/* ---------- LA TIENDA: escenas que avanzan con el scroll (se arman en el script de efectos) ---------- */
+.tienda{position:relative;height:640vh;background:#F0D9B5}
+.tienda-stage{position:sticky;top:0;height:100vh;overflow:hidden}
+.tienda-scenes{position:absolute;inset:0;z-index:0}
+.ts-scene{position:absolute;left:0;top:0;will-change:transform,opacity;backface-visibility:hidden}
+.ts-scene>img{display:block;width:100%;height:100%}
+/* Productos reales dentro de las vitrinas de vidrio pintadas en la escena */
+.ts-prod{position:absolute;translate:-50% 0;transition:opacity .4s}
+.ts-scene:not(.ready) .ts-prod{opacity:0}   /* no aparecen flotando mientras carga la foto de la escena */
+.ts-prod img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center bottom;filter:drop-shadow(0 4px 6px rgba(80,50,20,.25)) saturate(.96)}
+.ts-prod::after{content:"";position:absolute;inset:-6% -14%;background:linear-gradient(105deg,transparent 30%,rgba(255,250,235,.38) 38%,transparent 46%,transparent 62%,rgba(255,250,235,.22) 68%,transparent 74%);pointer-events:none}
+/* Al final se funde con la pared de los estantes (la misma de .arma-bg-pin, así no se nota el corte) */
+.tienda-wall{position:absolute;inset:0;z-index:1;opacity:0}
+/* 🖼️ pared-tienda-pc/movil.webp: la franja verde y la luz de la pared; abajo se desvanece en el mismo color de la pared */
+.tienda-wall,.arma-bg-pin{background:url(pared-tienda-pc.webp) center top/100% auto no-repeat,linear-gradient(180deg,#E2B380 0,#E9C291 30vh,#F2D6AE 100%)}
+.tienda-cap{position:absolute;left:50%;bottom:9vh;z-index:3;width:min(520px,calc(100% - 32px));translate:-50% 0;padding:18px 24px;border-radius:20px;text-align:center;
+  background:rgba(251,248,241,.8);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 18px 40px rgba(80,55,20,.18);
+  opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .6s var(--ease);pointer-events:none}
+.tienda-cap.on{opacity:1;transform:none}
+.tienda-cap .kicker{color:var(--amber-deep)}
+.tienda-cap h2{font-size:clamp(1.5rem,2.6vw,2.2rem);line-height:1.12;color:var(--sage-ink);margin:4px 0 0}
+.tienda-cap p{color:var(--muted);font-size:.95rem;margin-top:6px}
+@media(max-width:760px){
+  .tienda{height:560vh}
+  .tienda-wall,.arma-bg-pin{background-image:url(pared-tienda-movil.webp),linear-gradient(180deg,#E8BD89 0,#ECC798 30vh,#F2D6AE 100%)}
+  .tienda-cap{bottom:13vh;padding:14px 18px}
+}
+
+.arma{position:relative;background:#F2D6AE;padding-bottom:150px}
 .arma>.wrap{position:relative;z-index:1}
-/* Pared de travertino fija detrás de las repisas; la sombra de las hojas se mece despacio */
+/* El título va en una tarjeta clara para leerse bien sobre la franja verde de la pared */
+.arma .section-head{padding:22px 26px;border-radius:20px;background:rgba(251,248,241,.78);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 14px 34px rgba(80,55,20,.12)}
+@media(max-width:760px){.arma .section-head{padding:18px}}
+/* Pared de la tienda fija detrás de las repisas (continúa la última escena de la tienda) */
 .arma-bg{position:absolute;inset:0;overflow:clip;pointer-events:none;
-  -webkit-mask-image:linear-gradient(transparent,#000 120px,#000 calc(100% - 160px),transparent);mask-image:linear-gradient(transparent,#000 120px,#000 calc(100% - 160px),transparent)}
-.arma-bg-pin{position:sticky;top:0;height:100vh;background:url(fondo-arma-pc.webp) left top/cover no-repeat;transform-origin:0 0;animation:leafSway 14s ease-in-out infinite alternate}
-@keyframes leafSway{from{transform:scale(1.02) rotate(0)}to{transform:scale(1.06) rotate(.6deg)}}
-@media(max-width:760px){.arma-bg-pin{background-image:url(fondo-arma-movil.webp)}}
-@media(prefers-reduced-motion:reduce){.arma-bg-pin{animation:none}}
+  -webkit-mask-image:linear-gradient(#000,#000 calc(100% - 160px),transparent);mask-image:linear-gradient(#000,#000 calc(100% - 160px),transparent)}
+.arma-bg-pin{position:sticky;top:0;height:100vh}
 .arma-country{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:-14px 0 28px;font-size:.88rem;color:var(--muted)}
 .arma-country button{border:1px solid var(--line);background:#fff;color:var(--sage-ink);padding:8px 14px;border-radius:999px;font-weight:600;font-size:.82rem;transition:background .2s,border-color .2s}
 .arma-country button.on{background:var(--sage-ink);color:#fff;border-color:var(--sage-ink)}
@@ -761,10 +789,14 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 .arma-more button:hover{background:var(--sage-ink);color:#fff}
 .arma-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:44px 0}
 .arma-card{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 0 4px}
-.arma-card .pvis{--w:120px;z-index:1;transition:transform .45s var(--ease);transform-origin:50% 100%}
-.arma-card:hover .pvis{transform:translateY(-10px) rotate(-2deg)}
-.ledge{position:relative;display:block;align-self:stretch;height:16px;margin:-2px 0 16px;
-  background:linear-gradient(180deg,#f7f2ea 0 38%,#e3d8c6 38% 100%);box-shadow:0 18px 20px -14px rgba(70,52,28,.45),inset 0 -2px 0 rgba(120,95,60,.12)}
+/* Vitrina de vidrio: el producto va adentro, sobre la base de piedra */
+.dome{--dw:170px;position:relative;width:var(--dw);aspect-ratio:406/560;flex:none;z-index:1}
+.dome-glass{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;opacity:.88}
+.arma-card .pvis{--w:calc(var(--dw) * .46);position:absolute;left:50%;bottom:17%;margin-left:calc(var(--w) * -.5);z-index:1;transition:transform .45s var(--ease);transform-origin:50% 100%}
+.arma-card:hover .pvis{transform:translateY(-8px) rotate(-2deg)}
+/* Repisa blanca con borde dorado y luz cálida debajo (como la pared de la tienda) */
+.ledge{position:relative;display:block;align-self:stretch;height:14px;margin:-4px 0 18px;
+  background:linear-gradient(180deg,#fbf6ee 0 50%,#d2ab62 50% 66%,#a98140 66% 100%);box-shadow:0 16px 26px -6px rgba(255,190,110,.55),0 4px 6px -2px rgba(80,55,20,.25)}
 .ledge::after{content:"";position:absolute;left:50%;top:0;width:0;height:3px;translate:-50% 0;border-radius:3px;background:var(--gold);box-shadow:0 0 14px 3px rgba(213,133,31,.45);opacity:0;transition:width .45s var(--ease),opacity .3s}
 .arma-card.in-cart .ledge::after{width:56%;opacity:1}
 .arma-card.in-cart::before{content:"✓";position:absolute;top:6px;right:calc(50% - 74px);z-index:2;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#fff;font-size:.8rem;font-weight:700;box-shadow:0 6px 14px rgba(213,133,31,.35)}
@@ -806,8 +838,8 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 @media(max-width:1000px){.arma-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:700px){
   .arma-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 0}
-  .arma-card .pvis{--w:92px}
-  .arma-card.in-cart::before{right:calc(50% - 62px)}
+  .dome{--dw:132px}
+  .arma-card.in-cart::before{right:calc(50% - 66px)}
   .arma-card p{display:none}
   .arma-card strong{margin-bottom:10px;font-size:.9rem}
   .arma-bar{border-radius:20px;flex-wrap:wrap;padding:12px}
@@ -1346,6 +1378,20 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 
 <!-- ================= ARMA TU CARRITO =================
      Muestra todos los productos de PRODUCTS. El cliente suma cantidades y te envía la lista por WhatsApp. -->
+<!-- ================= LA TIENDA: entras como a un CEDI y llegas a los estantes =================
+     🖼️ tienda-1 … tienda-6 (-pc 16:9 / -movil 9:16): fachada → puerta se abre → entras → mostrador → vitrinas.
+     Los productos de las vitrinas son tus fotos reales (✏️ TIENDA en el script de efectos). -->
+<section class="tienda" id="tienda" aria-label="Entra a mi tienda">
+  <div class="tienda-stage">
+    <div class="tienda-scenes" id="tiendaScenes" aria-hidden="true"></div>
+    <div class="tienda-wall" id="tiendaWall" aria-hidden="true"></div>
+    <div class="tienda-cap" data-from="-1" data-to=".15"><div class="kicker">Bienvenido</div><h2 class="serif">Pasa, esta es tu tienda.</h2></div>
+    <div class="tienda-cap" data-from=".3" data-to=".52"><h2 class="serif">Todo en un solo lugar.</h2><p>Recorre con calma, sin prisa y sin presión.</p></div>
+    <div class="tienda-cap" data-from=".64" data-to=".86"><h2 class="serif">Mira de cerca lo que vas a llevar.</h2></div>
+    <div class="tienda-cap" data-from=".92" data-to="2"><h2 class="serif">Ahora, elige los tuyos.</h2><p>Baja y agrégalos a tu canasta ↓</p></div>
+  </div>
+</section>
+
 <section class="section arma" id="arma">
   <!-- 🖼️ Pared de travertino: fondo-arma-pc.webp (PC) y fondo-arma-movil.webp (celular). Se queda fija mientras bajas. -->
   <div class="arma-bg" aria-hidden="true"><div class="arma-bg-pin"></div></div>
@@ -2013,7 +2059,8 @@ document.getElementById("armaCountry").addEventListener("click", e => {
 
 function armaCardInner(id){
   const q = armaQty[id] || 0, p = PRODUCTS[id];
-  return `${productVisual(id)}<i class="ledge"></i><strong>${p.name}</strong><p>${p.desc}</p>` + (q
+  // 🖼️ campana.webp: vitrina de vidrio con base de piedra; el producto queda adentro
+  return `<div class="dome">${productVisual(id)}<img class="dome-glass" src="campana.webp" alt="" loading="lazy" decoding="async"></div><i class="ledge"></i><strong>${p.name}</strong><p>${p.desc}</p>` + (q
     ? `<div class="qty"><button type="button" data-arma="-1" aria-label="Quitar ${p.name}">−</button><output>${q}</output><button type="button" data-arma="1" aria-label="Agregar ${p.name}">+</button></div>`
     : `<button class="add-btn" type="button" data-arma="1">Agregar +</button>`);
 }
@@ -3049,6 +3096,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     { id:'producto',     poses:['1','5'], mobileHide:true },   // en celular deja ver la lata completa
     { id:'preparacion',  poses:['1','6'], mobileHide:true },   // en celular deja ver la taza completa
     { id:'productos',    hide:true },   // no tapa los productos ni sus textos
+    { id:'tienda',       hide:true },   // deja ver la entrada a la tienda completa
     { id:'flujo',        hide:true },   // aquí ya está el personaje grande
     { id:'arma',         poses:['9','5','3'], say:'Elige con calma: yo reviso tu lista antes de tu pedido.' },
     { id:'testimonios',  poses:['8','0'] },
@@ -3362,6 +3410,91 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     prepSize();
   }
 
+  /* ---------- LA TIENDA: cada escena se acerca y se funde con la siguiente ----------
+     ✏️ TIENDA: por versión (pc / movil): tamaño de las imágenes, y por escena:
+        src · fx,fy = punto hacia donde se acerca (0 a 1) · z = cuánto se acerca
+        prods = productos reales en las vitrinas: [id, centro x, base y, ancho, alto] en píxeles de la imagen */
+  var TIENDA_PRODS = ['optimus','aloe','iqu','actua','omniplus'];
+  var TIENDA = {
+    pc: { w:1672, h:941, scenes:[
+      { src:'tienda-1-pc.webp', fx:.5, fy:.6,  z:1.1 },
+      { src:'tienda-2-pc.webp', fx:.5, fy:.6,  z:1.25 },
+      { src:'tienda-3-pc.webp', fx:.5, fy:.58, z:1.2 },
+      { src:'tienda-4-pc.webp', fx:.5, fy:.55, z:1.2 },
+      { src:'tienda-5-pc.webp', fx:.5, fy:.55, z:1.25, prods:[[397,520,70,82],[612,520,70,82],[830,520,70,82],[1040,520,70,82],[1268,520,70,82]] },
+      { src:'tienda-6-pc.webp', fx:.5, fy:.55, z:1.12, prods:[[215,628,165,190],[515,628,165,190],[830,628,165,190],[1150,628,165,190],[1458,628,165,190]] }
+    ]},
+    movil: { w:941, h:1672, scenes:[
+      { src:'tienda-1-movil.webp', fx:.5, fy:.6,  z:1.1 },
+      { src:'tienda-2-movil.webp', fx:.5, fy:.6,  z:1.25 },
+      { src:'tienda-3-movil.webp', fx:.5, fy:.58, z:1.2 },
+      { src:'tienda-4-movil.webp', fx:.5, fy:.5,  z:1.2 },
+      { src:'tienda-5-movil.webp', fx:.5, fy:.5,  z:1.25, prods:[[158,845,62,78],[309,845,62,78],[470,845,62,78],[632,845,62,78],[783,845,62,78]] },
+      { src:'tienda-6-movil.webp', fx:.5, fy:.55, z:1.12, prods:[[470,1088,250,290]], ids:['iqu'] }   // las vitrinas de las orillas salen cortadas: solo la del centro
+    ]}
+  };
+  var tSec = document.getElementById('tienda'), tBox = document.getElementById('tiendaScenes'), tWall = document.getElementById('tiendaWall');
+  var tCaps = tSec ? [].slice.call(tSec.querySelectorAll('.tienda-cap')) : [];
+  var tSet = null, tEls = [], tLoaded = false, tMobile = matchMedia('(max-width:760px)');
+  function tiendaBuild(){
+    if (!tSec) return;
+    tSet = tMobile.matches ? TIENDA.movil : TIENDA.pc;
+    tBox.innerHTML = ''; tEls = []; tLoaded = false;
+    tSet.scenes.forEach(function(s, i){
+      var el = document.createElement('div'); el.className = 'ts-scene'; el.style.zIndex = i + 1;
+      var img = document.createElement('img'); img.alt = ''; img.decoding = 'async'; img.dataset.src = s.src; el.appendChild(img);
+      img.onload = function(){ el.classList.add('ready'); };
+      (s.prods || []).forEach(function(p, k){
+        var id = (s.ids || TIENDA_PRODS)[k], prod = typeof PRODUCTS !== 'undefined' && PRODUCTS[id];
+        if (!prod || !prod.image) return;
+        var w = document.createElement('div'); w.className = 'ts-prod';
+        w.style.cssText = 'left:' + (p[0] / tSet.w * 100) + '%;bottom:' + ((tSet.h - p[1]) / tSet.h * 100) + '%;width:' + (p[2] / tSet.w * 100) + '%;height:' + (p[3] / tSet.h * 100) + '%';
+        w.innerHTML = '<img alt="" decoding="async" data-src="' + prod.image + '">';
+        el.appendChild(w);
+      });
+      tBox.appendChild(el); tEls.push(el);
+    });
+    tiendaSize();
+  }
+  // Las imágenes se cargan cuando la tienda se acerca (la primera escena primero)
+  function tiendaLoad(){
+    if (tLoaded || !tEls.length) return; tLoaded = true;
+    tEls.forEach(function(el){ [].forEach.call(el.querySelectorAll('img[data-src]'), function(im){ im.src = im.dataset.src; }); });
+  }
+  // Cada escena cubre la pantalla completa (como background-size:cover)
+  function tiendaSize(){
+    if (!tSet) return;
+    var vw = innerWidth, vh = innerHeight, s = Math.max(vw / tSet.w, vh / tSet.h), w = tSet.w * s, h = tSet.h * s;
+    tEls.forEach(function(el){ el.style.width = w + 'px'; el.style.height = h + 'px'; el.style.left = (vw - w) / 2 + 'px'; el.style.top = (vh - h) / 2 + 'px'; });
+    applyTienda();
+  }
+  function applyTienda(){
+    if (!tSec || !tSet) return;
+    var r = tSec.getBoundingClientRect();
+    if (r.bottom < -50 || r.top > innerHeight + 50) return;
+    var p = clamp01(-r.top / Math.max(1, tSec.offsetHeight - innerHeight));
+    var n = tEls.length, seg = .9 / n, f = .45;   // el 10% final es para fundirse con la pared de los estantes
+    tEls.forEach(function(el, i){
+      var s = tSet.scenes[i], start = i * seg - f * seg, end = (i + 1) * seg;
+      var op = i === 0 ? 1 : clamp01((p - start) / (f * seg));
+      var z = 1 + (s.z - 1) * clamp01((p - Math.max(0, start)) / (end - Math.max(0, start)));
+      el.style.opacity = op;
+      el.style.visibility = op > 0 ? 'visible' : 'hidden';
+      el.style.transformOrigin = (s.fx * 100) + '% ' + (s.fy * 100) + '%';
+      el.style.transform = 'scale(' + z + ')';
+    });
+    tWall.style.opacity = clamp01((p - .9) / .08);
+    tCaps.forEach(function(c){ c.classList.toggle('on', p >= +c.dataset.from && p < +c.dataset.to); });
+  }
+  if (tSec){
+    tiendaBuild();
+    if ('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ if (es[0].isIntersecting) tiendaLoad(); }, { rootMargin: '1500px 0px' }).observe(tSec);
+    } else tiendaLoad();
+    addEventListener('resize', tiendaSize);
+    (tMobile.addEventListener ? tMobile.addEventListener('change', function(){ tiendaBuild(); tiendaLoad(); }) : 0);
+  }
+
   // Testimonios: la rama de olivo va al frente y se mueve más rápido que la página (da profundidad)
   var testiSec = document.getElementById('testimonios'), testiBg = testiSec && testiSec.querySelector('.testi-bg');
   function applyTesti(){
@@ -3391,7 +3524,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   var ticking = false;
   function onScroll(){
     ticking = false;
-    applyHero(); applySeq(); applyStars(); updatePose(); applyFlowFx(); applyPrep(); applyTesti(); applyFarewell(); updateBuddy();
+    applyHero(); applySeq(); applyStars(); updatePose(); applyFlowFx(); applyPrep(); applyTienda(); applyTesti(); applyFarewell(); updateBuddy();
     nav.classList.toggle('dark', window.scrollY > hero.offsetHeight - 72);
     nav.classList.toggle('on-light', photoHero && window.scrollY <= hero.offsetHeight - 72);
   }
@@ -3423,7 +3556,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     fw.classList.toggle('is-away', Object.keys(on).some(function(k){ return on[k]; }));
   }, { threshold: .12 });
   // En celular también se esconde en la sección de Ego Frutas, para no tapar la lata
-  ['carritos','test-carrito','arma','productos'].concat(matchMedia('(max-width:760px)').matches ? ['producto'] : []).forEach(function(id){ var x = document.getElementById(id); if (x) fio.observe(x); });
+  ['carritos','test-carrito','tienda','arma','productos'].concat(matchMedia('(max-width:760px)').matches ? ['producto'] : []).forEach(function(id){ var x = document.getElementById(id); if (x) fio.observe(x); });
 
   /* ---------- Cookies + Google Analytics (solo tras aceptar) ---------- */
   var cookieNotice = document.getElementById('cookieNotice'), consentKey = 'hg_cookie_consent';
