@@ -99,7 +99,7 @@ img{max-width:100%;display:block}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:72px;padding:0 clamp(16px,4vw,48px)}
 .nav-brand{font-family:'Lora',serif;font-size:1.05rem;letter-spacing:.2em}
 .nav-brand small{display:block;font-family:'Inter',sans-serif;font-size:.62rem;letter-spacing:.16em;opacity:.85;margin-top:2px}
-.nav-links{display:flex;align-items:center;gap:26px}
+.nav-links{display:flex;align-items:center;gap:26px;margin-left:auto}
 .nav-links a{font-size:.76rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;opacity:.9}
 .nav-links a:hover{opacity:1}
 .nav.dark{color:var(--sage-ink);background:rgba(251,250,247,.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
@@ -115,7 +115,9 @@ img{max-width:100%;display:block}
 .mobile-menu a{display:block;padding:15px 6px;border-bottom:1px solid var(--line);font-weight:500}
 .mobile-menu a:last-child{border:0;margin-top:10px;text-align:center;border-radius:999px;background:var(--sage-ink);color:#fff;font-weight:700}
 @keyframes menuIn{from{opacity:0;transform:translateY(-10px)}}
-@media(max-width:860px){.nav-links{display:none}.nav-toggle{display:grid}.nav-inner{height:64px}}
+.lang-btn{flex:none;margin-left:22px;min-width:44px;height:36px;padding:0 10px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;font-size:.74rem;font-weight:600;letter-spacing:.12em;opacity:.9;transition:background .25s,color .25s}
+.lang-btn:hover{opacity:1;background:var(--sage-ink);border-color:var(--sage-ink);color:#fff}
+@media(max-width:860px){.nav-links{display:none}.nav-toggle{display:grid}.nav-inner{height:64px}.lang-btn{margin:0 10px 0 auto;height:46px;min-width:46px;border-radius:12px}}
 
 /* ---------- HERO EN CAPAS ---------- */
 .hero{position:relative;height:230vh;background:var(--sage)}
@@ -1049,6 +1051,8 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
     <nav class="nav-links" aria-label="Navegación principal">
       <a href="#productos">Productos</a><a href="#arma">Arma tu carrito</a><a href="#test-carrito">Test</a><a href="#testimonios">Testimonios</a><a href="#preguntas">Preguntas</a>
     </nav>
+    <!-- 🌐 Traductor: cambia la página a inglés con Google Translate (ver traductor.js) -->
+    <button type="button" class="lang-btn" data-lang-toggle>EN</button>
     <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
   </div>
   <nav class="mobile-menu" id="mobileMenu" aria-label="Navegación móvil">
@@ -1451,7 +1455,7 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
     <div class="footer-grid">
       <div class="footer-col"><div class="kicker">Navegación</div><a href="#productos">Productos</a><a href="#arma">Arma tu carrito</a><a href="#test-carrito">Test de 30 segundos</a></div>
       <div class="footer-col"><div class="kicker">Ayuda</div><a href="#preguntas">Preguntas frecuentes</a><a href="https://wa.me/593968107948" target="_blank" rel="noopener">WhatsApp</a></div>
-      <div class="footer-col"><div class="kicker">Información</div><a href="https://hamiltonnetworker.com/politica-privacidad.html" target="_blank" rel="noopener">Política de privacidad</a><a href="https://hamiltonnetworker.com/politica-cookies.html" target="_blank" rel="noopener">Política de cookies</a></div>
+      <div class="footer-col"><div class="kicker">Información</div><a href="politica-privacidad.html">Aviso de privacidad</a><a href="politica-cookies.html">Política de cookies</a></div>
     </div>
     <div class="footer-bottom"><p>Sitio de orientación y selección de carritos. Hamilton Granillo es distribuidor independiente. Los productos, precios, disponibilidad y condiciones de compra corresponden a la plataforma donde se complete el pedido.</p><p>© 2026 Hamilton Granillo</p></div>
   </div>
@@ -1476,7 +1480,7 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 </div>
 
 <div class="cookie-notice" id="cookieNotice" hidden>
-  <p>Usamos cookies y tecnologías similares para mejorar la experiencia. Puedes consultar la <a href="https://hamiltonnetworker.com/politica-cookies.html" target="_blank" rel="noopener">política de cookies</a>.</p>
+  <p>Uso cookies de estadísticas (Google Analytics) para mejorar la página, solo si las aceptas. Tu canasta y tu país se guardan solo en tu navegador. Más información en la <a href="politica-cookies.html">política de cookies</a> y el <a href="politica-privacidad.html">aviso de privacidad</a>.</p>
   <div class="cookie-actions"><button class="cookie-reject" id="cookieReject">Rechazar</button><button class="cookie-accept" id="cookieAccept">Aceptar</button></div>
 </div>
 
@@ -3418,5 +3422,6 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   document.getElementById('cookieReject').addEventListener('click', function(){ try { localStorage.setItem(consentKey,'no'); } catch (e) {} cookieNotice.hidden = true; });
 })();
 </script>
+<script src="traductor.js" defer></script>
 </body>
 </html>
