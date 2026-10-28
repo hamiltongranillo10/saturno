@@ -21,6 +21,7 @@
 <meta name="twitter:image" content="https://hamiltonnetworker.com/og-image.jpg">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512.png">
 <link rel="apple-touch-icon" href="favicon-180.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Hamilton Granillo","url":"https://hamiltonnetworker.com/","image":"https://hamiltonnetworker.com/Hamilton.jpg","jobTitle":"Distribuidor Independiente de Omnilife"}</script>
 <!--
@@ -119,7 +120,16 @@ img{max-width:100%;display:block}
 @keyframes menuIn{from{opacity:0;transform:translateY(-10px)}}
 .lang-btn{flex:none;margin-left:22px;min-width:44px;height:36px;padding:0 10px;border-radius:999px;border:1px solid currentColor;background:transparent;color:inherit;font-size:.74rem;font-weight:600;letter-spacing:.12em;opacity:.9;transition:background .25s,color .25s}
 .lang-btn:hover{opacity:1;background:var(--sage-ink);border-color:var(--sage-ink);color:#fff}
-@media(max-width:860px){.nav-links{display:none}.nav-toggle{display:grid}.nav-inner{height:64px}.lang-btn{margin:0 10px 0 auto;height:46px;min-width:46px;border-radius:12px}}
+/* Botón de sonido (mismo estilo que EN) */
+.snd-btn{display:grid;place-items:center;padding:0}
+.snd-btn+.lang-btn{margin-left:8px}
+.snd-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.snd-btn .x,.snd-btn.is-off .w1,.snd-btn.is-off .w2{display:none}
+.snd-btn.is-off .x{display:inline}
+@media(max-width:860px){.nav-links{display:none}.nav-toggle{display:grid}.nav-inner{height:64px}.lang-btn{margin:0 10px 0 auto;height:46px;min-width:46px;border-radius:12px}
+  .snd-btn+.lang-btn{margin-left:0}
+  .snd-btn,.snd-btn+.lang-btn{min-width:40px;height:42px;margin-right:6px}
+  .nav-brand{letter-spacing:.14em;margin-right:10px}.nav-brand small{letter-spacing:.06em}}
 
 /* ---------- HERO EN CAPAS ---------- */
 .hero{position:relative;height:230vh;background:var(--sage)}
@@ -1119,6 +1129,7 @@ button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var
       <a href="#productos">Productos</a><a href="#tienda">Tienda</a><a href="#arma">Arma tu carrito</a><a href="#ayuda">Ayuda</a><a href="#preguntas">Preguntas</a>
     </nav>
     <!-- 🌐 Traductor: cambia la página a inglés con Google Translate (ver traductor.js) -->
+    <button type="button" class="lang-btn snd-btn" data-sound-toggle aria-pressed="true" aria-label="Silenciar sonidos"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path class="w1" d="M15.5 9a4 4 0 0 1 0 6"/><path class="w2" d="M18 6.5a7.5 7.5 0 0 1 0 11"/><path class="x" d="M16 9.5l5 5m0-5l-5 5"/></svg></button>
     <button type="button" class="lang-btn" data-lang-toggle>EN</button>
     <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
   </div>
@@ -2165,6 +2176,55 @@ function renderArma(){
   updateArmaBar();
 }
 
+/* ---------- Sonidos suaves (Web Audio, sin archivos): solo cuando la persona toca algo ----------
+   Se crean en el navegador, no se descargan. Botón 🔊/🔇 en el menú; la elección se guarda en hg_sound. */
+const HGSound = (() => {
+  let ctx = null, on = true;
+  try { on = localStorage.getItem("hg_sound") !== "0"; } catch(e){}
+  function tone(freq, to, dur, vol, type, delay){
+    const t = ctx.currentTime + (delay || 0), o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = type || "sine";
+    o.frequency.setValueAtTime(freq, t);
+    if(to) o.frequency.exponentialRampToValueAtTime(to, t + dur * .7);
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(vol, t + .012);
+    g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(ctx.destination);
+    o.start(t); o.stop(t + dur + .02);
+  }
+  const SOUNDS = {
+    add:    () => tone(520, 880, .14, .12),                                       // "pop" al agregar
+    remove: () => tone(620, 360, .12, .07),                                       // al quitar
+    open:   () => { tone(1568, 0, .5, .045, "triangle"); tone(2349, 0, .42, .03, "triangle", .04); },  // cristal
+    send:   () => { tone(880, 0, .18, .08); tone(1320, 0, .32, .08, "sine", .1); }                    // WhatsApp
+  };
+  function play(name){
+    if(!on || !SOUNDS[name]) return;
+    try {
+      ctx = ctx || new (window.AudioContext || window.webkitAudioContext)();
+      if(ctx.state === "suspended") ctx.resume();
+      SOUNDS[name]();
+    } catch(e){}
+  }
+  function paint(){
+    document.querySelectorAll("[data-sound-toggle]").forEach(b => {
+      b.setAttribute("aria-pressed", on);
+      b.setAttribute("aria-label", on ? "Silenciar sonidos" : "Activar sonidos");
+      b.classList.toggle("is-off", !on);
+    });
+  }
+  document.querySelectorAll("[data-sound-toggle]").forEach(b => b.addEventListener("click", () => {
+    on = !on;
+    try { localStorage.setItem("hg_sound", on ? "1" : "0"); } catch(e){}
+    paint(); play("add");
+  }));
+  // Cualquier enlace a WhatsApp
+  document.addEventListener("click", e => { if(e.target.closest('a[href*="wa.me"],a[href*="whatsapp"],[data-wa],#armaSend')) play("send"); }, true);
+  paint();
+  return { play };
+})();
+let lastArmaTotal = null;
+
 // El producto elegido vuela en arco desde la repisa hasta la canasta
 function flyToBasket(fromImg){
   if(reduceMotion || !fromImg || !fromImg.animate) return;
@@ -2212,6 +2272,9 @@ function armaMessage(){
 }
 function updateArmaBar(pop){
   const n = armaTotal();
+  // Suena solo cuando cambia la canasta (no al cargar la página)
+  if(lastArmaTotal !== null && n !== lastArmaTotal) HGSound.play(n > lastArmaTotal ? "add" : "remove");
+  lastArmaTotal = n;
   const count = document.getElementById("armaCount");
   count.textContent = `${n} producto${n === 1 ? "" : "s"}`;
   document.getElementById("basketBadge").textContent = n;
@@ -2242,7 +2305,7 @@ function toggleArmaList(open){
   if(open && !armaTotal()) open = false;
   armaListEl.hidden = !open;
   document.getElementById("armaBasket").setAttribute("aria-expanded", open);
-  if(open) renderArmaList();
+  if(open){ renderArmaList(); HGSound.play("open"); }
 }
 document.getElementById("armaBasket").addEventListener("click", e => { e.stopPropagation(); toggleArmaList(); });
 document.getElementById("armaCount").addEventListener("click", e => { e.stopPropagation(); toggleArmaList(); });
