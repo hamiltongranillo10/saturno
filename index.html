@@ -2189,41 +2189,35 @@ function renderArma(){
 const HGSound = (() => {
   let ctx = null, out = null, on = true;
   try { on = localStorage.getItem("hg_sound") !== "0"; } catch(e){}
-  // Una nota de campanita: onda suave (seno) + armónicos que se apagan antes, ataque suave y cola larga
-  function bell(freq, delay, vol, dur){
-    const t = ctx.currentTime + (delay || 0);
-    [[1, 1, dur], [2, .22, dur * .55], [3, .06, dur * .35]].forEach(([h, v, d]) => {
-      const o = ctx.createOscillator(), g = ctx.createGain();
-      o.type = "sine"; o.frequency.value = freq * h;
-      g.gain.setValueAtTime(0, t);
-      g.gain.linearRampToValueAtTime(vol * v, t + .018);
-      g.gain.exponentialRampToValueAtTime(.0001, t + d);
-      o.connect(g).connect(out);
-      o.start(t); o.stop(t + d + .05);
-    });
+  // Un "pop" de burbuja: onda suave cuyo tono salta muy rápido y se apaga en menos de una décima de segundo
+  function pop(from, to, delay, vol, dur){
+    const t = ctx.currentTime + (delay || 0), o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = "sine";
+    o.frequency.setValueAtTime(from, t);
+    o.frequency.exponentialRampToValueAtTime(to, t + dur * .6);
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(vol, t + .004);
+    g.gain.exponentialRampToValueAtTime(.0001, t + dur);
+    o.connect(g).connect(out);
+    o.start(t); o.stop(t + dur + .02);
   }
-  // Notas de una escala pentatónica (siempre suenan bien juntas)
-  const C6 = 1046.5, D6 = 1174.7, E6 = 1318.5, G6 = 1568, A6 = 1760, G5 = 784, E5 = 659.3;
   const SOUNDS = {
-    add:    () => { bell(E6, 0, .55, .7); bell(A6, .09, .45, .9); },                     // dos notas que suben
-    remove: () => { bell(G5, 0, .5, .6); bell(E5, .1, .4, .7); },                        // dos notas que bajan
-    open:   () => { bell(C6, 0, .35, .9); bell(E6, .07, .3, .9); bell(G6, .14, .3, 1.1); }, // arpegio de cristal
-    send:   () => { bell(D6, 0, .45, .7); bell(G6, .1, .45, .8); bell(A6, .2, .4, 1.2); }   // WhatsApp, alegre
+    add:    () => pop(360, 980, 0, .9, .09),                                          // pop que sube
+    remove: () => pop(760, 300, 0, .7, .09),                                          // pop que baja
+    open:   () => { pop(420, 1000, 0, .6, .08); pop(560, 1300, .07, .5, .08); },      // dos pops rápidos
+    send:   () => { pop(360, 900, 0, .7, .08); pop(460, 1150, .07, .6, .08); pop(560, 1400, .14, .6, .09); } // tres pops que suben
   };
   function play(name){
     if(!on || !SOUNDS[name]) return;
     try {
       if(!ctx){
         ctx = new (window.AudioContext || window.webkitAudioContext)();
-        // Volumen general + compresor suave (fuerte sin distorsionar) + un eco corto y cálido que da aire
+        // Volumen general + compresor suave: se oye claro sin distorsionar ni sonar fuerte
         const comp = ctx.createDynamicsCompressor();
-        comp.threshold.value = -16; comp.knee.value = 12; comp.ratio.value = 4; comp.attack.value = .005; comp.release.value = .25;
+        comp.threshold.value = -16; comp.knee.value = 12; comp.ratio.value = 4; comp.attack.value = .003; comp.release.value = .2;
         comp.connect(ctx.destination);
-        out = ctx.createGain(); out.gain.value = .65;
+        out = ctx.createGain(); out.gain.value = .8;
         out.connect(comp);
-        const echo = ctx.createDelay(), fb = ctx.createGain(), warm = ctx.createBiquadFilter(), wet = ctx.createGain();
-        echo.delayTime.value = .16; fb.gain.value = .3; warm.type = "lowpass"; warm.frequency.value = 2600; wet.gain.value = .3;
-        out.connect(echo); echo.connect(warm); warm.connect(fb); fb.connect(echo); warm.connect(wet); wet.connect(comp);
       }
       if(ctx.state === "suspended") ctx.resume();
       SOUNDS[name]();
