@@ -1015,6 +1015,7 @@ body.in-tienda .nav{transform:translateY(-100%)}
 /* ---------- FOOTER ---------- */
 /* ---------- DESPEDIDA: la puerta de salida en capas (fondo, personaje y rama al frente) ---------- */
 .farewell{position:relative;overflow:hidden;height:min(92vh,780px);min-height:540px;background:#EBCB9E;display:flex;align-items:center}
+.farewell[hidden]{display:none}
 .fw-layer{position:absolute;will-change:transform;pointer-events:none}
 .fw-bg{inset:-6%;background:url("fondo-despedida-pc.webp") 62% center/cover no-repeat}
 .farewell:not(.near) .fw-bg{background-image:none !important}   /* la foto se descarga cuando la despedida se acerca */
@@ -1493,7 +1494,8 @@ body.in-tienda .nav{transform:translateY(-100%)}
 <!-- ================= DESPEDIDA =================
      🖼️ La puerta de salida: fondo-despedida-pc.webp (PC) y fondo-despedida-movil.webp (celular).
      En capas: fondo, personaje despidiéndose y rama de olivo al frente se mueven a distinto ritmo con el scroll y el mouse. -->
-<section class="farewell" id="despedida">
+<!-- Despedida oculta (✏️ quita "hidden" para volver a mostrarla) -->
+<section class="farewell" id="despedida" hidden>
   <div class="fw-layer fw-bg" data-fw="bg"></div>
   <img class="fw-layer fw-guy" data-fw="guy" src="personaje-saluda.webp" alt="" decoding="async" loading="lazy">
   <img class="fw-layer fw-branch" data-fw="branch" src="rama-olivo.webp" alt="" aria-hidden="true" decoding="async" loading="lazy">
