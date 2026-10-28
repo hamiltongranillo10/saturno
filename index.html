@@ -151,7 +151,7 @@ img{max-width:100%;display:block}
 .photo-hero .l-stage{inset:0;width:auto;height:auto;translate:none}
 .photo-hero .bottle{left:0;top:0;bottom:auto;height:auto;transform:none;transform-origin:50% 100%;will-change:transform;filter:drop-shadow(10px 18px 18px rgba(60,35,10,.35))}
 .photo-hero .can-shadow{position:absolute;left:0;top:0;border-radius:50%;background:radial-gradient(ellipse at center,rgba(50,28,8,.45),rgba(50,28,8,0) 70%);pointer-events:none}
-/* Rama de olivo al frente */
+/* Rama de sakura al frente */
 .photo-hero .l-front{inset:auto;top:-6%;right:-5%;left:auto;bottom:auto;width:min(400px,30vw);height:auto}
 .photo-hero .l-front .rama{display:block;width:100%;height:auto;transform:scaleX(-1) rotate(-6deg);filter:blur(1.5px) drop-shadow(0 20px 30px rgba(40,30,10,.25))}
 /* Texto oscuro sobre la pared clara */
@@ -700,12 +700,15 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 }
 
 /* ---------- PRODUCTOS ESTRELLA CON FOTO (pared verde, pedestal de travertino y vitrina) ---------- */
-.photo-stars .stars-stage{background:#5d6a50 url("fondo-productos-pc.webp") center/cover no-repeat}
+.photo-stars .stars-stage{background:#5A2A35 url("fondo-productos-pc.webp") center/cover no-repeat}
 .photo-stars .stars-plinth{display:none}
 .photo-stars .star-item .pvis{--w:var(--sw,220px);margin:calc(var(--w) * -.65) 0 0 calc(var(--w) * -.5)}
 .stars-glass{position:absolute;left:0;top:0;z-index:3;pointer-events:none;mix-blend-mode:screen;opacity:.92;max-width:none}
 .stars-shadow{position:absolute;left:0;top:0;z-index:1;border-radius:50%;pointer-events:none;background:radial-gradient(ellipse at center,rgba(40,28,12,.5),rgba(40,28,12,0) 70%)}
 .photo-stars .stars-copy{z-index:4}.photo-stars .stars-head{z-index:4}
+/* Rama de sakura al frente (rama-sakura.webp, fondo transparente): desenfocada y con movimiento al bajar, da profundidad */
+.stars-branch{position:absolute;top:-7%;right:-4%;width:min(330px,24vw);height:auto;z-index:5;pointer-events:none;max-width:none;
+  transform-origin:50% 0;filter:blur(1.5px) drop-shadow(0 24px 30px rgba(40,10,20,.35));will-change:transform}
 .photo-stars .stars-head .kicker{color:var(--amber-light)}
 .photo-stars .stars-head h2{color:#fff}
 .photo-stars .star-text .num{color:var(--amber-light)}
@@ -718,7 +721,8 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 @media(max-width:860px){
   .photo-stars .stars-stage{background-image:url("fondo-productos-movil.webp")}
   /* En celular el texto va en una tarjeta oscura debajo del pedestal */
-  .photo-stars .stars-copy{top:auto;bottom:calc(3.5vh + 14px);height:158px;background:rgba(31,38,28,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:18px}
+  .stars-branch{width:34vw;top:19%;right:-12vw}
+  .photo-stars .stars-copy{top:auto;bottom:calc(3.5vh + 14px);height:158px;background:rgba(58,26,34,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:18px}
   .photo-stars .star-text{inset:12px 14px auto 14px;width:auto}
   .photo-stars .star-text h3{font-size:1.4rem;margin:2px 0 4px}
   .photo-stars .star-text p{font-size:.82rem}
@@ -1062,8 +1066,8 @@ button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var
 @media(prefers-reduced-motion:reduce){.fw-guy{opacity:1;transform:none}.farewell.wave .fw-guy{animation:none}}
 .footer{position:relative;overflow:hidden;background:#3A1A22;color:#fff;padding:60px 0 34px}
 .footer>.wrap{position:relative;z-index:1}
-/* Silueta de la rama de olivo (la misma rama-olivo.webp) meciéndose apenas */
-.footer::before{content:"";position:absolute;right:-30px;top:-30px;width:min(460px,70vw);height:340px;background:url(rama-olivo.webp) right top/contain no-repeat;
+/* Silueta de la rama de sakura (la misma rama-sakura.webp) meciéndose apenas */
+.footer::before{content:"";position:absolute;right:-30px;top:-30px;width:min(460px,70vw);height:340px;background:url(rama-sakura.webp) right top/contain no-repeat;
   filter:brightness(0) invert(.9);opacity:.09;transform-origin:100% 0;animation:branchSway 9s ease-in-out infinite alternate;pointer-events:none}
 @keyframes branchSway{from{transform:rotate(-1.5deg)}to{transform:rotate(2deg)}}
 @media(prefers-reduced-motion:reduce){.footer::before{animation:none}}
@@ -1173,8 +1177,8 @@ button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var
     <div class="pedestal"></div>
   </div>
   <div class="layer l-front" data-depth="-.35" data-mouse="30" aria-hidden="true">
-    <!-- 🖼️ Rama de olivo al frente (rama-olivo.webp, fondo transparente): se mueve más rápido y da profundidad -->
-    <img class="rama" src="rama-olivo.webp" alt="" width="600" height="900" decoding="async">
+    <!-- 🖼️ Rama de sakura al frente (rama-sakura.webp, fondo transparente): se mueve más rápido y da profundidad -->
+    <img class="rama" src="rama-sakura.webp" alt="" width="692" height="1050" decoding="async">
     <svg viewBox="0 0 400 300" preserveAspectRatio="xMinYMax meet"><g fill="#4d5e43">
       <path d="M0 300 C40 220 70 160 150 110" stroke="#4d5e43" stroke-width="6" fill="none"/>
       <path d="M150 110c40-30 90-20 110 6-40 20-80 18-110-6z"/>
@@ -1274,6 +1278,8 @@ button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var
     <img class="stars-glass" id="starsGlass" src="vitrina.webp" alt="" aria-hidden="true" width="700" height="1244" decoding="async">
     <div class="stars-copy" id="starsCopy" aria-live="polite"></div>
     <div class="stars-dots" id="starsDots" aria-hidden="true"></div>
+    <!-- 🌸 Rama de sakura al frente (rama-sakura.webp, fondo transparente) -->
+    <img class="stars-branch" id="starsBranch" src="rama-sakura.webp" alt="" aria-hidden="true" width="692" height="1050" loading="lazy" decoding="async">
   </div>
 </section>
 
@@ -1442,8 +1448,8 @@ button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var
 <!-- ================= TESTIMONIOS ================= -->
 <!-- Testimonios oculto por ahora (✏️ quita "hidden" cuando tengas historias reales) -->
 <section class="section testimonials" id="testimonios" hidden>
-  <!-- 🌿 Sección limpia: solo la rama de olivo (rama-olivo.webp) como detalle al frente -->
-  <img class="testi-bg" src="rama-olivo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
+  <!-- 🌿 Sección limpia: solo la rama de olivo (rama-sakura.webp) como detalle al frente -->
+  <img class="testi-bg" src="rama-sakura.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap testimonials-layout">
     <div class="testimonials-copy rv">
       <div class="section-head">
@@ -1519,7 +1525,7 @@ button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var
 <section class="farewell" id="despedida" hidden>
   <div class="fw-layer fw-bg" data-fw="bg"></div>
   <img class="fw-layer fw-guy" data-fw="guy" src="personaje-saluda.webp" alt="" decoding="async" loading="lazy">
-  <img class="fw-layer fw-branch" data-fw="branch" src="rama-olivo.webp" alt="" aria-hidden="true" decoding="async" loading="lazy">
+  <img class="fw-layer fw-branch" data-fw="branch" src="rama-sakura.webp" alt="" aria-hidden="true" decoding="async" loading="lazy">
   <div class="wrap fw-copy">
     <div class="kicker">Gracias por llegar hasta aquí</div>
     <h2 class="serif">Cuando quieras, <em>aquí estoy.</em></h2>
@@ -3108,7 +3114,7 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     pc:    { iw: 1672, ih: 941,  ax: .655, ay: .72,  size: .15 },
     movil: { iw: 941,  ih: 1672, ax: .535, ay: .645, size: .33 }
   };
-  var starsStage = starsSec.querySelector('.stars-stage'), starsGlass = document.getElementById('starsGlass'), starsShadow = document.getElementById('starsShadow');
+  var starsStage = starsSec.querySelector('.stars-stage'), starsGlass = document.getElementById('starsGlass'), starsShadow = document.getElementById('starsShadow'), starsBranch = document.getElementById('starsBranch');
   var photoStars = starsSec.classList.contains('photo-stars'), starsW = 0, starsH = 0, starsCenterX = 0, starsProdW = 220;
   // Ubica los productos, la vitrina y la sombra justo sobre el pedestal de la foto
   function placeStars(){
@@ -3144,6 +3150,8 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
       el.style.opacity = o.toFixed(3);
       el.style.zIndex = 100 - Math.round(ad * 10);
     });
+    // La rama de sakura va más rápido que el fondo y se mece un poco: así se siente al frente
+    if (starsBranch) starsBranch.style.transform = 'scaleX(-1) translate3d(0,' + (p * -90).toFixed(1) + 'px,0) rotate(' + (-4 + Math.sin(p * 6.3) * 3).toFixed(2) + 'deg)';
     var a = Math.round(f);
     if (a !== activeStar){
       activeStar = a;
