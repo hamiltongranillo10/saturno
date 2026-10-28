@@ -2193,10 +2193,10 @@ const HGSound = (() => {
     o.start(t); o.stop(t + dur + .02);
   }
   const SOUNDS = {
-    add:    () => tone(520, 880, .14, .12),                                       // "pop" al agregar
-    remove: () => tone(620, 360, .12, .07),                                       // al quitar
-    open:   () => { tone(1568, 0, .5, .045, "triangle"); tone(2349, 0, .42, .03, "triangle", .04); },  // cristal
-    send:   () => { tone(880, 0, .18, .08); tone(1320, 0, .32, .08, "sine", .1); }                    // WhatsApp
+    add:    () => { tone(620, 1040, .16, .32, "triangle"); tone(1240, 2080, .1, .08); },  // "pop" al agregar
+    remove: () => tone(700, 400, .14, .26, "triangle"),                                    // al quitar
+    open:   () => { tone(1568, 0, .6, .16, "triangle"); tone(2349, 0, .5, .11, "triangle", .05); },  // cristal
+    send:   () => { tone(880, 0, .2, .26, "triangle"); tone(1320, 0, .38, .26, "triangle", .11); }    // WhatsApp
   };
   function play(name){
     if(!on || !SOUNDS[name]) return;
