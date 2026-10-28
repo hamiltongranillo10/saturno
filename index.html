@@ -839,7 +839,24 @@ body.in-tienda .nav{transform:translateY(-100%)}
 .basket b{position:absolute;right:-4px;top:-2px;z-index:3;min-width:20px;height:20px;padding:0 5px;border-radius:999px;display:grid;place-items:center;background:var(--gold);color:#fff;font-size:.7rem}
 .basket.hop{animation:basketHop .55s cubic-bezier(.3,1.6,.5,1)}
 @keyframes basketHop{30%{transform:translateY(5px) scale(1.08,.92)}65%{transform:translateY(-6px)}}
-.arma-bar .count{font-weight:700;font-size:.9rem;white-space:nowrap}
+.arma-bar .count{font-weight:700;font-size:.9rem;white-space:nowrap;border:0;background:none;color:inherit;padding:0;text-decoration:underline dotted rgba(255,255,255,.45);text-underline-offset:4px}
+button.basket{border:0;background:none;padding:0;cursor:pointer}
+button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var(--amber-light);outline-offset:3px;border-radius:8px}
+/* Lista de la canasta: sale encima de la barra */
+.arma-list{position:absolute;left:0;bottom:calc(100% + 12px);width:min(380px,calc(100vw - 24px));max-height:min(60vh,420px);display:flex;flex-direction:column;
+  background:#fff;color:var(--sage-ink);border-radius:20px;box-shadow:0 24px 50px rgba(30,40,25,.28);overflow:hidden;animation:listIn .3s var(--ease)}
+.arma-list[hidden]{display:none}
+@keyframes listIn{from{opacity:0;transform:translateY(10px)}}
+.arma-list-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;border-bottom:1px solid var(--line)}
+.arma-list-x{border:0;background:var(--sage-soft);color:var(--sage-ink);width:30px;height:30px;border-radius:50%;font-size:1.1rem;line-height:1}
+.arma-list-rows{overflow-y:auto;padding:6px 10px}
+.arma-row{display:flex;align-items:center;gap:12px;padding:8px 6px;border-bottom:1px solid var(--line)}
+.arma-row:last-child{border-bottom:0}
+.arma-row img{width:44px;height:52px;object-fit:contain;flex:none;filter:drop-shadow(0 3px 4px rgba(30,40,25,.2))}
+.arma-row span{flex:1;font-weight:600;font-size:.9rem;line-height:1.25}
+.arma-row .qty{padding:2px;gap:4px}
+.arma-row .qty button{width:28px;height:28px;font-size:1rem}
+.arma-list-note{font-size:.76rem;color:var(--muted);padding:8px 16px 12px;margin:0;border-top:1px solid var(--line)}
 .arma-bar .count.pop{animation:pick .4s var(--ease)}
 .arma-bar .clear{border:0;background:transparent;color:rgba(255,255,255,.7);font-size:.78rem;text-decoration:underline}
 .arma-bar .btn{margin-left:auto;padding:12px 18px;font-size:.84rem}
@@ -1092,14 +1109,14 @@ body.in-tienda .nav{transform:translateY(-100%)}
   <div class="nav-inner">
     <a class="nav-brand" href="#inicio">HAMILTON<small>Distribuidor Independiente</small></a>
     <nav class="nav-links" aria-label="Navegación principal">
-      <a href="#productos">Productos</a><a href="#tienda">Tienda</a><a href="#arma">Arma tu carrito</a><a href="#testimonios">Testimonios</a><a href="#preguntas">Preguntas</a>
+      <a href="#productos">Productos</a><a href="#tienda">Tienda</a><a href="#arma">Arma tu carrito</a><a href="#ayuda">Ayuda</a><a href="#preguntas">Preguntas</a>
     </nav>
     <!-- 🌐 Traductor: cambia la página a inglés con Google Translate (ver traductor.js) -->
     <button type="button" class="lang-btn" data-lang-toggle>EN</button>
     <button class="nav-toggle" id="navToggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileMenu"><span></span></button>
   </div>
   <nav class="mobile-menu" id="mobileMenu" aria-label="Navegación móvil">
-    <a href="#productos">Productos</a><a href="#tienda">Entra a la tienda</a><a href="#arma">Arma tu carrito</a><a href="#testimonios">Testimonios</a><a href="#preguntas">Preguntas frecuentes</a>
+    <a href="#productos">Productos</a><a href="#tienda">Entra a la tienda</a><a href="#arma">Arma tu carrito</a><a href="#ayuda">Te ayudo a elegir</a><a href="#preguntas">Preguntas frecuentes</a>
     <a href="#arma">Armar mi carrito →</a>
   </nav>
 </header>
@@ -1183,7 +1200,7 @@ body.in-tienda .nav{transform:translateY(-100%)}
       <a class="btn btn-light" href="#arma">Armar mi carrito →</a>
       <a class="btn btn-ghost" href="#tienda">Entrar a la tienda</a>
     </div>
-    <div class="hero-trust"><span>Te respondo yo, no un bot</span><span>Envío gratis desde 200 puntos</span><span>Sin registro ni compromiso</span><a href="#testimonios">💬 Escríbeme y te oriento</a></div>
+    <div class="hero-trust"><span>Te respondo yo, no un bot</span><span>Envío gratis desde 200 puntos</span><span>Sin registro ni compromiso</span><a href="#ayuda">💬 Escríbeme y te oriento</a></div>
   </div>
   <div class="scroll-hint">Scroll</div>
  </div>
@@ -1420,7 +1437,8 @@ body.in-tienda .nav{transform:translateY(-100%)}
 </section>
 
 <!-- ================= TESTIMONIOS ================= -->
-<section class="section testimonials" id="testimonios">
+<!-- Testimonios oculto por ahora (✏️ quita "hidden" cuando tengas historias reales) -->
+<section class="section testimonials" id="testimonios" hidden>
   <!-- 🌿 Sección limpia: solo la rama de olivo (rama-olivo.webp) como detalle al frente -->
   <img class="testi-bg" src="rama-olivo.webp" alt="" aria-hidden="true" loading="lazy" decoding="async">
   <div class="wrap testimonials-layout">
@@ -1532,8 +1550,14 @@ body.in-tienda .nav{transform:translateY(-100%)}
 <!-- Barra de "Arma tu carrito": aparece cuando hay productos agregados -->
 <div class="arma-bar on-dark" id="armaBar" aria-live="polite">
   <!-- 🖼️ canasta.webp: canasta tejida sin fondo -->
-  <span class="basket" id="armaBasket" aria-hidden="true"><span class="basket-items" id="basketItems"></span><img src="canasta.webp" alt="" decoding="async"><b id="basketBadge">0</b></span>
-  <span class="count" id="armaCount">0 productos</span>
+  <!-- Al tocar la canasta (o "N productos") se abre la lista de lo que elegiste -->
+  <button class="basket" id="armaBasket" type="button" aria-label="Ver los productos de tu canasta" aria-expanded="false" aria-controls="armaList"><span class="basket-items" id="basketItems"></span><img src="canasta.webp" alt="" decoding="async"><b id="basketBadge">0</b></button>
+  <button class="count" id="armaCount" type="button" aria-controls="armaList">0 productos</button>
+  <div class="arma-list" id="armaList" hidden>
+    <div class="arma-list-head"><strong>Tu canasta</strong><button type="button" class="arma-list-x" id="armaListClose" aria-label="Cerrar">×</button></div>
+    <div class="arma-list-rows" id="armaListRows"></div>
+    <p class="arma-list-note">Te confirmo el precio de tu país por WhatsApp.</p>
+  </div>
   <button class="clear" type="button" id="armaClear">Vaciar</button>
   <a class="btn btn-wa" id="armaSend" href="#" target="_blank" rel="noopener">Enviar mi lista por WhatsApp ↗</a>
 </div>
@@ -2188,9 +2212,43 @@ function updateArmaBar(pop){
   if(pop && !reduceMotion){ count.classList.remove("pop"); void count.offsetWidth; count.classList.add("pop"); }
   document.getElementById("armaSend").href = waUrl(armaMessage());
   document.getElementById("armaBar").classList.toggle("has-items", n > 0);
+  if(!document.getElementById("armaList").hidden) renderArmaList();
   window.HG3D && window.HG3D.armaBar && window.HG3D.armaBar();
 }
 document.getElementById("armaClear").addEventListener("click", () => { armaQty = {}; saveArma(); renderArma(); });
+
+/* ---------- Lista de la canasta: al tocar la canasta se ven los productos elegidos ---------- */
+const armaListEl = document.getElementById("armaList");
+function renderArmaList(){
+  const ids = Object.keys(armaQty);
+  if(!ids.length){ toggleArmaList(false); return; }
+  document.getElementById("armaListRows").innerHTML = ids.map(id => {
+    const p = PRODUCTS[id], q = armaQty[id];
+    return `<div class="arma-row" data-list="${id}">${p.image ? `<img src="${p.image}" alt="">` : ""}<span>${p.name}</span>` +
+      `<div class="qty"><button type="button" data-d="-1" aria-label="Quitar ${p.name}">−</button><output>${q}</output><button type="button" data-d="1" aria-label="Agregar ${p.name}">+</button></div></div>`;
+  }).join("");
+}
+function toggleArmaList(open){
+  open = open === undefined ? armaListEl.hidden : open;
+  if(open && !armaTotal()) open = false;
+  armaListEl.hidden = !open;
+  document.getElementById("armaBasket").setAttribute("aria-expanded", open);
+  if(open) renderArmaList();
+}
+document.getElementById("armaBasket").addEventListener("click", e => { e.stopPropagation(); toggleArmaList(); });
+document.getElementById("armaCount").addEventListener("click", e => { e.stopPropagation(); toggleArmaList(); });
+document.getElementById("armaListClose").addEventListener("click", () => toggleArmaList(false));
+armaListEl.addEventListener("click", e => {
+  e.stopPropagation();
+  const b = e.target.closest("[data-d]"); if(!b) return;
+  const id = b.closest("[data-list]").dataset.list;
+  armaQty[id] = Math.max(0, (armaQty[id] || 0) + Number(b.dataset.d));
+  if(!armaQty[id]) delete armaQty[id];
+  saveArma(); renderArma(); updateArmaBar(true);   // las vitrinas de arriba también se actualizan
+});
+// Se cierra al tocar fuera o con Esc
+document.addEventListener("click", e => { if(!armaListEl.hidden && !e.target.closest("#armaBar")) toggleArmaList(false); });
+document.addEventListener("keydown", e => { if(e.key === "Escape" && !armaListEl.hidden) toggleArmaList(false); });
 
 // Botón del inicio: agrega el producto destacado a "Arma tu carrito"
 document.getElementById("heroAdd").addEventListener("click", function(){
