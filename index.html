@@ -837,7 +837,27 @@ body.in-tienda .nav{transform:translateY(-100%)}
 .arma-card.in-cart .ledge::after{width:56%;opacity:1}
 .arma-card.in-cart::before{content:"✓";position:absolute;top:6px;right:calc(50% - 74px);z-index:2;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#fff;font-size:.8rem;font-weight:700;box-shadow:0 6px 14px rgba( 184, 106, 117,.35)}
 .arma-card strong{color:var(--sage-ink);padding:0 10px;text-shadow:0 1px 8px rgba(251,248,241,.9)}
-.arma-card p{color:#3f493b;font-size:.8rem;margin:4px 0 14px;padding:0 14px;flex:1;text-shadow:0 1px 8px rgba(251,248,241,.95)}
+.arma-card p{color:#3f493b;font-size:.8rem;margin:4px 0 10px;padding:0 14px;flex:1;text-shadow:0 1px 8px rgba(251,248,241,.95)}
+/* Precio y puntos del país elegido */
+.arma-card .price{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin:0 10px 12px;font-variant-numeric:tabular-nums}
+.arma-card .price b{color:var(--sage-ink);font-size:1rem}
+.arma-card .price span{font-size:.72rem;font-weight:700;color:var(--amber-deep);background:var(--amber-soft);padding:3px 8px;border-radius:999px}
+.arma-card .price.none{font-size:.74rem;color:var(--muted);font-weight:600}
+/* Selector de marca: OMNILIFE · Seytú */
+.arma-brand{display:flex;justify-content:center;gap:10px;margin:-6px 0 18px}
+.arma-brand button{display:grid;gap:1px;min-width:150px;padding:10px 20px;border-radius:16px;border:1px solid rgba(90,42,53,.18);background:rgba(252,248,246,.7);color:var(--sage-ink);font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.25rem;line-height:1.1;transition:background .2s,color .2s,border-color .2s}
+.arma-brand button small{font-family:'Inter',sans-serif;font-size:.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+.arma-brand button.on{background:var(--sage-ink);border-color:var(--sage-ink);color:#fff}
+.arma-note{text-align:center;font-size:.76rem;color:var(--muted);margin:-22px 0 26px}
+/* Barra de envío gratis (encima de la barra de la canasta) */
+.arma-ship{position:absolute;left:14px;right:14px;bottom:calc(100% + 8px);display:grid;gap:6px;padding:9px 14px 10px;border-radius:14px;background:#FCF8F6;color:var(--sage-ink);font-size:.78rem;box-shadow:0 10px 26px rgba(60,26,34,.2)}
+.arma-ship i{display:block;height:6px;border-radius:99px;background:var(--sage-soft);overflow:hidden}
+.arma-ship i b{display:block;height:100%;width:0;border-radius:99px;background:var(--amber);transition:width .5s var(--ease)}
+.arma-ship.done i b{background:#2F7A4B}
+.arma-bar:has(.arma-list:not([hidden])) .arma-ship{display:none}
+.arma-list-total{display:flex;justify-content:space-between;gap:10px;padding:10px 16px 0;font-size:.86rem;color:var(--sage-ink);font-variant-numeric:tabular-nums}
+.arma-list-total:empty{display:none}
+.arma-row span small{display:block;font-weight:500;font-size:.74rem;color:var(--muted);margin-top:2px}
 /* Entrada: la repisa se extiende y los productos se posan encima */
 .arma-grid.anim .ledge{transition:transform .8s var(--ease) calc(var(--i,0) * 90ms)}
 .arma-grid.anim .arma-card:not(.on) .ledge{transform:scaleX(0)}
@@ -1468,7 +1488,9 @@ button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var
       </ol>
     </div>
     <div class="arma-country" id="armaCountry"></div>
+    <div class="arma-brand" id="armaBrand" role="tablist" aria-label="Marca"></div>
     <div class="arma-tabs" id="armaTabs" role="tablist" aria-label="Tipo de producto"></div>
+    <p class="arma-note">Precios de referencia de OMNILIFE (octubre 2026) · Envío gratis desde 200 puntos</p>
     <div class="arma-grid" id="armaGrid"></div>
     <div class="arma-more" id="armaMore"></div>
   </div>
@@ -1595,8 +1617,11 @@ button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var
   <div class="arma-list" id="armaList" hidden>
     <div class="arma-list-head"><strong>Tu canasta</strong><button type="button" class="arma-list-x" id="armaListClose" aria-label="Cerrar">×</button></div>
     <div class="arma-list-rows" id="armaListRows"></div>
-    <p class="arma-list-note">Te confirmo el precio de tu país por WhatsApp.</p>
+    <div class="arma-list-total" id="armaListTotal"></div>
+    <p class="arma-list-note">Precios de referencia (octubre 2026). El envío se calcula aparte; es gratis desde 200 pts. Te confirmo todo por WhatsApp.</p>
   </div>
+  <!-- Barra de envío gratis: se llena hacia los 200 puntos -->
+  <div class="arma-ship" id="armaShip" hidden><i><b id="armaShipBar"></b></i><span id="armaShipTxt"></span></div>
   <button class="clear" type="button" id="armaClear">Vaciar</button>
   <a class="btn btn-wa" id="armaSend" href="#" target="_blank" rel="noopener">Enviar mi lista por WhatsApp ↗</a>
 </div>
@@ -1682,19 +1707,48 @@ const CART_CONTENT_CUSTOM = {
    y ya aparece en "Arma tu carrito".
    ===================================================================== */
 const PRODUCTS = {
-  // Descripciones tomadas del catálogo (ingredientes y sabor), sin prometer resultados de salud
-  iqu:{name:"IQU",desc:"Con PQQ, coenzima Q10, vitamina D3 y café verde. Sabor jengibre y mandarina.",image:"iqu.webp",type:"can",color:"#3F6B5A"},
-  // pack: 6 = se muestra como six pack (6 latas juntas) usando la misma foto de la lata
-  ego_frutas:{name:"Ego Frutas Six Pack",desc:"6 latas de 355 ml con complejo B, vitaminas C y E y extracto de regaliz. Sabor frutos del bosque.",image:"ego_frutas.webp",type:"can",color:"#C7653F",pack:6},
-  aloe:{name:"Aloe Beta",desc:"Aloe vera con betacaroteno, fibra y vitaminas C y E. Sabor piña.",image:"aloe.webp",type:"box",color:"#6E9A5A"},
-  optimus:{name:"Optimus",desc:"Con colina, glicina, complejo B, vitaminas C y E y zinc. Sabor lima-limón.",image:"optimus.webp",type:"box",color:"#B8863B"},
-  dolce:{name:"Dolce Vita",desc:"Con extracto de café verde y fibras de manzana, avena y arroz. Sabor toronja.",image:"dolce.webp",type:"box",color:"#D6457E"},
-  star_bien:{name:"Star Bien",desc:"Con fibra de manzana, complejo B, ácido fólico y maca. Sabor limón-naranja.",image:"star_bien.webp",type:"box",color:"#C99A2E"},
-  stoplus:{name:"Estop",desc:"Almendra, fibra y proteína vegetal con fitoesteroles, extracto de cera de caña, niacina y vitamina E. Sabor nuez.",image:"stoplus.webp",type:"box",color:"#B5303A"},
-  actua:{name:"Aqtúa",desc:"Con coenzima QH, L-carnitina y magnesio. Sabor mandarina.",image:"actua.webp",type:"box",color:"#4A4F9C"},
-  omniplus:{name:"Omniplus",desc:"Multivitamínico líquido con complejo B, vitaminas C, D y E, minerales y aloe vera. Sabor frutas.",image:"omniplus.webp",type:"box",color:"#8C5A64"},
-  fluyer:{name:"Flu-Y",desc:"60 cápsulas con extracto de naranja dulce y magnesio.",image:"fluyer.webp",type:"box",color:"#2A9D8F"},
-  magnus:{name:"Magnus",desc:"Con complejo B, vitaminas C y E, zinc, cobre y cromo. Endulzado con estevia.",image:"magnus.webp",type:"box",color:"#2F3A2B"}
+  // Precios y puntos del portal de OMNILIFE (carritos prearmados), 28 oct 2026. name_us / desc_us: cómo se llama y qué dice en EE. UU.
+  iqu:{"name":"IQU","desc":"Bebida lista para tomar con PQQ, coenzima Q10, vitamina D3 y extracto de café verde. Sin azúcar ni calorías. Sabor jengibre-mandarina. 6 latas de 355 ml.","image":"iqu.webp","type":"can","color":"#3F6B5A","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":460,"usa":32.75},"pts":{"mexico":42,"usa":42},"name_us":"OML IQU","desc_us":"Bebida con PQQ, coenzima Q10, vitamina D y extracto de café verde. Endulzantes de origen natural. Sabor jengibre-mandarina. 6 latas de 355 ml."},
+  ego_frutas:{"name":"Ego Frutas Six Pack","desc":"Bebida con colina, glicina, vitaminas del complejo B y vitamina C. Endulzantes de origen natural. Sabor frutos del bosque. 6 latas de 355 ml.","image":"ego_frutas.webp","type":"can","color":"#C7653F","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":325,"usa":23.87},"pts":{"mexico":27,"usa":27},"name_us":"Ego","desc_us":"Bebida sabor frutas con extracto de regaliz, colina, glicina y vitaminas del complejo B. 6 latas de 355 ml.","pack":6},
+  aloe:{"name":"Aloe Beta","desc":"Gel de sábila (aloe vera) con fibra y vitamina E. Sin azúcar ni calorías, listo para tomar. Sabor piña. Botella de 960 ml.","image":"aloe.webp","type":"box","color":"#6E9A5A","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":220,"usa":19.43},"pts":{"mexico":26,"usa":26},"name_us":"Aloe Piña","desc_us":"Gel de aloe vera con fibra y vitamina E, endulzado con fruto del monje y estevia. Sabor piña. Botella de 960 ml."},
+  aloe_mini:{"name":"Aloe Beta 200 ml","desc":"Gel de sábila (aloe vera) con vitamina E. Sin azúcar ni calorías, listo para tomar. Sabor piña. Botellín de 200 ml.","image":"aloe-mini.webp","type":"box","color":"#E2B13C","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":50,"usa":4.05},"pts":{"mexico":5,"usa":5},"name_us":"Aloe Piña 200 ml","desc_us":"Bebida con aloe vera orgánico y vitamina E. Sabor piña. Botella de 200 ml."},
+  agua_blu:{"name":"Agua Blu 1.5 L","desc":"Agua purificada, baja en sales. Botella de 1.5 litros.","image":"agua-blu.webp","type":"box","color":"#3B6FB6","marca":"omnilife","paises":["mexico"],"precio":{"mexico":22},"pts":{"mexico":2}},
+  optimus:{"name":"Optimus","desc":"Con colina, aminoácidos, vitaminas del complejo B, antioxidantes y minerales. Sabor lima-limón. Caja con 30 sobres.","image":"optimus.webp","type":"box","color":"#B8863B","marca":"omnilife","paises":["mexico"],"precio":{"mexico":575},"pts":{"mexico":61}},
+  dolce:{"name":"Dolce Vita","desc":"Con extracto de café verde, goma de acacia y mezcla de fibras. Endulzantes de origen natural. Sabor toronja. Caja con 30 sobres.","image":"dolce.webp","type":"box","color":"#D6457E","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":645,"usa":47.73},"pts":{"mexico":70,"usa":70},"name_us":"Via Dulce","desc_us":"Con extracto de café verde, goma de acacia, fibra de manzana, salvado de arroz y fibra de avena. Sabor toronja. Caja con 30 sobres."},
+  star_bien:{"name":"Star Bien","desc":"Con vitaminas del complejo B, C y E, fibra y minerales. Endulzantes de origen natural. Sabor frutas. Caja con 30 sobres.","image":"star_bien.webp","type":"box","color":"#C99A2E","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":520,"usa":34.41},"pts":{"mexico":53,"usa":53},"name_us":"Starbien","desc_us":"Con polvo de maca, vitaminas del complejo B y minerales. Sabor cítricos. Caja con 30 sobres."},
+  stoplus:{"name":"Estop","desc":"Con fitoesteroles, almendra en polvo, extracto de caña, fibra prebiótica y vitaminas. Caja con 30 sobres.","image":"stoplus.webp","type":"box","color":"#B5303A","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":1010,"usa":78.26},"pts":{"mexico":103,"usa":102},"name_us":"Estop Plus","desc_us":"Con almendra, fitoesteroles, extracto de cera de caña y vitamina E. Sabor nuez. Caja con 30 sobres."},
+  actua:{"name":"Aqtúa","desc":"Con coenzima QH 25 mg, magnesio, L-carnitina, ribosa e inulina. Sin azúcar, solo 4 calorías por sobre. Sabor mandarina. Caja con 30 sobres.","image":"actua.webp","type":"box","color":"#4A4F9C","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":950,"usa":63.27},"pts":{"mexico":118,"usa":112},"name_us":"Aqtúa Supreme","desc_us":"Con coenzima ubiquinol, L-carnitina, magnesio y D-ribosa. Sabor mandarina. Caja con 30 sobres."},
+  omniplus:{"name":"Omniplus","desc":"Concentrado nutritivo con complejo B, vitaminas A, D y E, minerales y gel de sábila. Bote de 940 ml.","image":"omniplus.webp","type":"box","color":"#8C5A64","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":750,"usa":66.05},"pts":{"mexico":83,"usa":92},"desc_us":"Suplemento micelizado con 32 vitaminas, minerales y extractos herbales. Sin azúcar añadida, 5 calorías por porción. Sabor fruta. Caja con 30 sobres."},
+  fluyer:{"name":"Flu-Y","desc":"Suplemento en cápsula con magnesio. Bote con 60 cápsulas; sugerencia: 2 al día.","image":"fluyer.webp","type":"box","color":"#2A9D8F","marca":"omnilife","paises":["mexico"],"precio":{"mexico":395},"pts":{"mexico":44}},
+  magnus:{"name":"Magnus","desc":"Con cafeína, taurina, complejo B, aminoácidos, antioxidantes y minerales. Caja con 30 sobres.","image":"magnus.webp","type":"box","color":"#2F3A2B","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":570,"usa":34.97},"pts":{"mexico":54,"usa":56},"desc_us":"Con vitaminas del complejo B, glicina y taurina. Sabor cítrico. Caja con 30 sobres."},
+  cafezzino:{"name":"Cafezzino sin endulzar","desc":"Café colombiano con cromo, extracto de café verde y fibra. Sin azúcar, sin endulzantes y sin calorías. Bote de 175 g.","image":"cafezzino.webp","type":"box","color":"#6B3F2A","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":650,"usa":46.07},"pts":{"mexico":58,"usa":58},"desc_us":"Café colombiano con extracto de café verde, cromo y fibra, sin endulzar. Bote de 175 g."},
+  creatina:{"name":"OMNILIFE Creatina","desc":"Creatina sin sabor, sin azúcar, sin calorías y sin aditivos. 300 g, 60 porciones de 5 g.","image":"creatina.webp","type":"box","color":"#2B2B2B","marca":"omnilife","paises":["mexico"],"precio":{"mexico":500},"pts":{"mexico":46}},
+  pump:{"name":"PUMP Whey Protein","desc":"Proteína concentrada de suero de leche: 20 g por porción y 19 aminoácidos. Sin edulcorantes ni colorantes artificiales. 620 g.","image":"pump.webp","type":"box","color":"#1E1E2A","marca":"omnilife","paises":["mexico"],"precio":{"mexico":1370},"pts":{"mexico":131}},
+  shake:{"name":"Shake Supreme Fresa","desc":"Bebida con 14 g de proteína vegetal, 5 g de fibra, vitaminas y minerales. Sin azúcar añadida. Sabor fresa silvestre. Caja con 12 sobres.","image":"shake.webp","type":"box","color":"#D3266E","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":625,"usa":47.73},"pts":{"mexico":76,"usa":76},"name_us":"OML Shake Supreme","desc_us":"Malteada con proteína, carbohidratos, fibra, vitaminas y minerales. Sabor fresa silvestre. Caja con 12 sobres."},
+  mimis:{"name":"Gummies Mimis","desc":"Gomitas sabor fresa-menta con GABA, L-teanina, niacina (B3) e inulina de achicoria. Sugerencia: 2 antes de dormir. Bote con 40.","image":"mimis.webp","type":"box","color":"#5B3A8C","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":545,"usa":39.41},"pts":{"mexico":50,"usa":50},"name_us":"OML Gummies Mimis","desc_us":"Gomitas sabor fresa-menta con GABA, L-teanina, niacina (B3), inulina de achicoria y polvo de betabel. Bote con 40."},
+  gummies_omniplus:{"name":"Gummies Omniplus","desc":"Gomitas con 10 vitaminas, mezcla de extractos e inulina de achicoria. Endulzadas con agave y estevia. Bote con 30.","image":"gummies-omniplus.webp","type":"box","color":"#E8892A","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":685,"usa":53.28},"pts":{"mexico":79,"usa":79},"name_us":"OML Gummies OML Plus","desc_us":"Gomitas sabor naranja con 10 vitaminas, mezcla de extractos e inulina de achicoria. Bote con 30."},
+  probiotic:{"name":"OMNILIFE Probiotic","desc":"Con 1 billón de probióticos (Bacillus coagulans), fibra de acacia, extracto de té blanco y vitamina B12. Caja con 30 sobres.","image":"probiotic.webp","type":"box","color":"#6A3F9A","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":670,"usa":44.4},"pts":{"mexico":66,"usa":66},"name_us":"OML Probiotic","desc_us":"Con 1 billón de probióticos (Bacillus coagulans), fibra prebiótica, extracto de té blanco y vitamina B12. Sabor limón-arándano. Caja con 30 sobres."},
+  teatino_limon:{"name":"Teatino Limón","desc":"Con extracto de té negro y cromo. Endulzantes de origen natural. Sabor limón. Caja con 30 sobres.","image":"teatino-limon.webp","type":"box","color":"#5DA832","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":580,"usa":42.18},"pts":{"mexico":63,"usa":63},"name_us":"Teatino","desc_us":"Con extracto de té negro y cromo, endulzado con fruta del monje. Sabor limón. Caja con 30 sobres."},
+  teatino_maracuya:{"name":"Teatino Maracuyá","desc":"Con extractos de café verde y té negro, L-tirosina y L-carnitina. Sabor maracuyá.","image":"teatino-maracuya.webp","type":"box","color":"#D23A3A","marca":"omnilife","paises":["mexico"],"precio":{"mexico":805},"pts":{"mexico":93}},
+  uzo:{"name":"Uzo Evolución","desc":"Con polvo de salvado de arroz, vitamina E, niacina (B3), selenio y fibra prebiótica. Caja con 30 sobres.","image":"uzo.webp","type":"box","color":"#7F9BD6","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":1320,"usa":113.22},"pts":{"mexico":167,"usa":167},"desc_us":"Con polvo de salvado de arroz, vitamina E, niacina (B3), selenio y fibra prebiótica. Sabor vainilla francesa. Caja con 30 sobres."},
+  crema_dia:{"name":"Crema de Día FPS 30","desc":"Ayuda a combatir los signos de la edad y mantiene la piel hidratada, con protección UVA/UVB. 50 ml.","image":"sey-crema-dia.webp","type":"box","color":"#B9A6D6","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":725,"usa":45.51},"pts":{"mexico":73,"usa":73},"name_us":"Crema de Día","desc_us":"Ayuda a combatir los signos de la edad, estimula el colágeno y la elastina y mantiene la piel hidratada. 50 ml."},
+  suero_noche:{"name":"Suero de Noche","desc":"Actúa durante la noche para mejorar el aspecto de cansancio e hinchazón; amaneces con la piel renovada. 30 ml.","image":"sey-suero-noche.webp","type":"box","color":"#B9A6D6","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":810,"usa":52.73},"pts":{"mexico":73,"usa":73},"desc_us":"Actúa durante la noche para mejorar el aspecto de cansancio e hinchazón; amaneces con la piel renovada. 30 ml."},
+  contorno_ojos:{"name":"Crema para Contorno de Ojos","desc":"Mejora la apariencia de líneas finas, bolsas y ojeras para una mirada revitalizada. 15 ml.","image":"sey-contorno-ojos.webp","type":"box","color":"#B9A6D6","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":470,"usa":31.08},"pts":{"mexico":47,"usa":47},"desc_us":"Mejora la apariencia de líneas finas, bolsas y ojeras para una mirada revitalizada. 15 ml."},
+  gel_manchas:{"name":"Gel Anti-Manchas","desc":"Con activos aclarantes que ayudan a disminuir poco a poco las manchas por edad, sol o acné. 25 ml.","image":"sey-gel-manchas.webp","type":"box","color":"#C98A6B","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":580,"usa":40.63},"pts":{"mexico":53,"usa":53},"desc_us":"Con activos aclarantes que ayudan a disminuir poco a poco las manchas por edad, sol o acné. 25 ml."},
+  protector_solar:{"name":"Protector Solar Facial FPS 50+","desc":"FPS 50+, toque seco, resistente al agua y sin fragancia. Ideal para piel sensible. 40 ml.","image":"sey-protector-solar.webp","type":"box","color":"#F2A33A","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":390,"usa":23.87},"pts":{"mexico":34,"usa":34},"desc_us":"FPS 50+, toque seco, resistente al agua y sin fragancia. Ideal para piel sensible. 40 ml."},
+  sombras_rosas:{"name":"Paleta de Sombras Rosas","desc":"Sombras en polvo fino, de textura suave y cremosa, para dar profundidad, brillo y color a tu mirada. Tonos rosas, 13 g.","image":"sey-sombras-rosas.webp","type":"box","color":"#D98AA6","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":635,"usa":40.52},"pts":{"mexico":73,"usa":73},"desc_us":"Sombras en polvo fino, de textura suave y cremosa, para dar profundidad, brillo y color a tu mirada. Tonos rosas, 13 g."},
+  sombras_marrones:{"name":"Paleta de Sombras Marrones","desc":"Sombras en polvo fino, de textura suave y cremosa, para dar profundidad, brillo y color a tu mirada. Tonos marrones, 13 g.","image":"sey-sombras-marrones.webp","type":"box","color":"#8C5A44","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":635,"usa":40.52},"pts":{"mexico":73,"usa":73},"desc_us":"Sombras en polvo fino, de textura suave y cremosa, para dar profundidad, brillo y color a tu mirada. Tonos marrones, 13 g."},
+  brillo_labial:{"name":"Brillo Labial","desc":"Brillo con efecto voluminizador que se funde en los labios, en una gran gama de colores. 8.5 g.","image":"sey-brillo-labial.webp","type":"box","color":"#C9837C","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":340,"usa":22.76},"pts":{"mexico":31,"usa":31},"desc_us":"Brillo con efecto voluminizador que se funde en los labios, en una gran gama de colores. 8.5 g."},
+  labial_mate:{"name":"Labial Líquido Mate","desc":"Labial líquido de aplicación suave, color intenso y acabado mate sofisticado. 6 g.","image":"sey-labial-mate.webp","type":"box","color":"#8E3F4C","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":350,"usa":24.42},"pts":{"mexico":36,"usa":36},"desc_us":"Labial líquido de aplicación suave, color intenso y acabado mate sofisticado. 6 g."},
+  maquillaje_up:{"name":"Maquillaje Líquido UP+ FPS15","desc":"Base mate de larga duración y cobertura construible, con FPS 15 y activos humectantes y antioxidantes. 40 g.","image":"sey-maquillaje-up.webp","type":"box","color":"#2B1A1F","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":535,"usa":37.19},"pts":{"mexico":51,"usa":51},"name_us":"Maquillaje Líquido UP+","desc_us":"Base mate de larga duración y cobertura construible, con activos humectantes y antioxidantes. 40 g."},
+  // Agregados para completar 40: baratos para llegar a 200 pts y necesidades nuevas (mujer, hombre, niños, omega-3)
+  ego10:{"name":"Ego 10","desc":"Bebida sin azúcar ni calorías con inositol, taurina y vitaminas del complejo B. Sabor fruta de la pasión. Botellín de 200 ml.","image":"ego10.webp","type":"box","color":"#C2185B","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":52,"usa":4.05},"pts":{"mexico":5,"usa":5},"desc_us":"Bebida con vitaminas del complejo B y ribosa. Sabor fruta de la pasión. Botella de 200 ml."},
+  chiva_cola:{"name":"Chiva Cola six pack","desc":"Bebida gasificada sabor tradicional a cola. 6 latas de 355 ml.","image":"chiva-cola.webp","type":"can","color":"#B3262E","marca":"omnilife","paises":["mexico"],"precio":{"mexico":126},"pts":{"mexico":6}},
+  fem:{"name":"OMNILIFE Fem","desc":"Con fitoestrógenos, extracto de semilla de uva, fibra prebiótica, ácido fólico, vitaminas A, C, D, E y K y minerales. Sabor durazno. Caja con 30 sobres.","image":"fem.webp","type":"box","color":"#D6457E","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":630,"usa":42.74},"pts":{"mexico":56,"usa":56},"name_us":"OML Fem","desc_us":"Con extractos de semilla de uva, flor de lúpulo y soya, inulina de achicoria, vitaminas A, C, D, E, K y ácido fólico. Sabor durazno. Caja con 30 sobres."},
+  homo:{"name":"HOMO Evolución","desc":"Con arándano en polvo, licopeno, semilla de uva, antioxidantes, minerales y fibra prebiótica. Sin azúcar añadida. Sabor mandarina. Caja con 30 sobres.","image":"homo.webp","type":"box","color":"#2F7FD0","marca":"omnilife","paises":["mexico"],"precio":{"mexico":630},"pts":{"mexico":56}},
+  vkids:{"name":"OMNILIFE Vkids","desc":"Polvo sabor vainilla con 8 g de proteína vegetal, hierro, DHA (omega 3), probióticos, vitaminas y minerales. Doypack de 400 g.","image":"vkids.webp","type":"box","color":"#E8B23A","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":695,"usa":51.62},"pts":{"mexico":71,"usa":71},"name_us":"OML VK","desc_us":"Con omega 3, betaglucanos, proteínas, vitaminas y minerales. Doypack de 400 g."},
+  umarina:{"name":"OMNILIFE Umarina","desc":"Omega-3 en cápsulas de aceite de pescado: 240 mg de DHA y 360 mg de EPA. Sugerencia: 1 cápsula al día. 42 g.","image":"umarina.webp","type":"box","color":"#8A6A2E","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":535,"usa":33.3},"pts":{"mexico":55,"usa":55},"name_us":"OML Umarina","desc_us":"Omega-3 en cápsulas de aceite de pescado: 240 mg de DHA y 360 mg de EPA. Sin retrogusto a pescado. 30 cápsulas."},
+  crema_manos:{"name":"Crema para Manos Coco Vainilla","desc":"Calma y nutre la piel de tus manos y la deja suave y tersa. Aroma coco vainilla. 50 g.","image":"sey-crema-manos.webp","type":"box","color":"#A8775A","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":97,"usa":7.99},"pts":{"mexico":8,"usa":8},"desc_us":"Calma y nutre la piel de tus manos y la deja suave y tersa. Aroma coco vainilla. 50 g."}
 };
 
 /* 🥫 PRODUCTO DEL INICIO: la lata que, al hacer scroll, pasa al centro y muestra sus características
@@ -2133,11 +2187,35 @@ document.getElementById("armaCountry").addEventListener("click", e => {
   if(b) selectCountry(b.dataset.armaCountry, {source:"clic"});
 });
 
+/* 💲 PRECIOS Y PUNTOS: salen de PRODUCTS (precio / pts por país). Envío gratis desde 200 puntos en los dos países. */
+const ENVIO_GRATIS_PTS = 200;
+const pName = id => (selectedCountry === "usa" && PRODUCTS[id].name_us) || PRODUCTS[id].name;
+const pDesc = id => (selectedCountry === "usa" && PRODUCTS[id].desc_us) || PRODUCTS[id].desc;
+const pPrice = id => selectedCountry && PRODUCTS[id].precio ? PRODUCTS[id].precio[selectedCountry] : undefined;
+const pPts = id => selectedCountry && PRODUCTS[id].pts ? PRODUCTS[id].pts[selectedCountry] : undefined;
+function fmtMoney(v){
+  const usa = selectedCountry === "usa";
+  return "$" + v.toLocaleString(usa ? "en-US" : "es-MX", {minimumFractionDigits: usa || v % 1 ? 2 : 0, maximumFractionDigits: 2}) + " " + (usa ? "USD" : "MXN");
+}
+// Totales de la canasta (solo cuenta lo que se vende en el país elegido)
+function armaSums(){
+  let price = 0, pts = 0, ok = !!selectedCountry;
+  Object.entries(armaQty).forEach(([id, q]) => {
+    const pr = pPrice(id), pt = pPts(id);
+    if(pr == null){ ok = false; return; }
+    price += pr * q; pts += (pt || 0) * q;
+  });
+  return {price: Math.round(price * 100) / 100, pts, ok};
+}
+
 function armaCardInner(id){
-  const q = armaQty[id] || 0, p = PRODUCTS[id];
+  const q = armaQty[id] || 0, name = pName(id), price = pPrice(id), pts = pPts(id);
+  const priceRow = price != null
+    ? `<div class="price"><b>${fmtMoney(price)}</b><span>${pts} pts</span></div>`
+    : `<div class="price none">Elige tu país para ver el precio</div>`;
   // 🖼️ campana.webp: vitrina de vidrio con base de piedra; el producto queda adentro
-  return `<div class="dome">${productVisual(id)}<img class="dome-glass" src="campana.webp" alt="" loading="lazy" decoding="async"></div><i class="ledge"></i><strong>${p.name}</strong><p>${p.desc}</p>` + (q
-    ? `<div class="qty"><button type="button" data-arma="-1" aria-label="Quitar ${p.name}">−</button><output>${q}</output><button type="button" data-arma="1" aria-label="Agregar ${p.name}">+</button></div>`
+  return `<div class="dome">${productVisual(id)}<img class="dome-glass" src="campana.webp" alt="" loading="lazy" decoding="async"></div><i class="ledge"></i><strong>${name}</strong><p>${pDesc(id)}</p>${priceRow}` + (q
+    ? `<div class="qty"><button type="button" data-arma="-1" aria-label="Quitar ${name}">−</button><output>${q}</output><button type="button" data-arma="1" aria-label="Agregar ${name}">+</button></div>`
     : `<button class="add-btn" type="button" data-arma="1">Agregar +</button>`);
 }
 // Repisas: cada fila aparece cuando entra en pantalla (la repisa se extiende y los productos se posan)
@@ -2147,29 +2225,46 @@ const shelfIO = ("IntersectionObserver" in window) ? new IntersectionObserver(es
   setTimeout(() => c.classList.add("done"), 1600);
 }), {threshold:.25}) : null;
 if(shelfIO && !reduceMotion) armaGrid.classList.add("anim");
-/* ✏️ ARMA_CATS: pestañas del estante. Agrega el id de cada producto nuevo en su pestaña.
+/* ✏️ ARMA_BRANDS y ARMA_CATS: marcas y pestañas del estante. Agrega el id de cada producto nuevo en su pestaña.
    ✏️ Producto solo para un país: ponle en PRODUCTS  paises:["mexico"]  o  paises:["usa"]  (sin "paises" se ve en los dos). */
+const ARMA_BRANDS = [
+  {id:"omnilife", name:"OMNILIFE", sub:"Nutrición"},
+  {id:"seytu",    name:"Seytú",    sub:"Belleza"}
+];
 const ARMA_CATS = [
-  {id:"todos",   name:"Todos"},
-  {id:"latas",   name:"Latas",               ids:["iqu","ego_frutas"]},
-  {id:"sobres",  name:"Sobres",              ids:["aloe","optimus","dolce","star_bien","stoplus","actua","magnus"]},
-  {id:"otros",   name:"Líquidos y cápsulas", ids:["omniplus","fluyer"]}
+  {brand:"omnilife", id:"todos",    name:"Todos"},
+  {brand:"omnilife", id:"bebidas",  name:"Latas y bebidas",    ids:["iqu","ego_frutas","ego10","chiva_cola","aloe","aloe_mini","agua_blu","omniplus"]},
+  {brand:"omnilife", id:"sobres",   name:"Sobres",             ids:["optimus","dolce","star_bien","stoplus","actua","magnus","uzo","probiotic","teatino_limon","teatino_maracuya"]},
+  {brand:"omnilife", id:"familia",  name:"Mujer, hombre y niños", ids:["fem","homo","vkids"]},
+  {brand:"omnilife", id:"deporte",  name:"Proteína y deporte", ids:["creatina","pump","shake"]},
+  {brand:"omnilife", id:"gomitas",  name:"Gomitas, café y cápsulas", ids:["mimis","gummies_omniplus","cafezzino","fluyer","umarina"]},
+  {brand:"seytu",    id:"todos",    name:"Todos"},
+  {brand:"seytu",    id:"rostro",   name:"Cuidado de la piel", ids:["crema_dia","suero_noche","contorno_ojos","gel_manchas","protector_solar","crema_manos"]},
+  {brand:"seytu",    id:"maquillaje", name:"Maquillaje",       ids:["sombras_rosas","sombras_marrones","brillo_labial","labial_mate","maquillaje_up"]}
 ];
 const ARMA_ROWS = 2;   // en "Todos" se ven solo estas filas; el resto aparece con "Ver todos"
-let armaCat = "todos", armaOpen = false;
+let armaBrand = "omnilife", armaCat = "todos", armaOpen = false;
 function armaList(catId){
-  const cat = ARMA_CATS.find(c => c.id === catId) || ARMA_CATS[0];
-  return (cat.ids || Object.keys(PRODUCTS)).filter(id => {
+  const cat = ARMA_CATS.find(c => c.brand === armaBrand && c.id === catId) || ARMA_CATS.find(c => c.brand === armaBrand);
+  return (cat.ids || Object.keys(PRODUCTS).filter(id => PRODUCTS[id].marca === armaBrand)).filter(id => {
     const p = PRODUCTS[id];
-    return p && (!p.paises || p.paises.includes(selectedCountry));
+    return p && (!p.paises || !selectedCountry || p.paises.includes(selectedCountry));
   });
 }
 function renderArmaTabs(){
-  document.getElementById("armaTabs").innerHTML = ARMA_CATS.map(c => {
+  document.getElementById("armaBrand").innerHTML = ARMA_BRANDS.map(b =>
+    `<button type="button" role="tab" aria-selected="${armaBrand===b.id}" data-arma-brand="${b.id}" class="${armaBrand===b.id?"on":""}">${b.name}<small>${b.sub}</small></button>`).join("");
+  document.getElementById("armaTabs").innerHTML = ARMA_CATS.filter(c => c.brand === armaBrand).map(c => {
     const n = armaList(c.id).length;
     return n ? `<button type="button" role="tab" aria-selected="${armaCat===c.id}" data-arma-cat="${c.id}" class="${armaCat===c.id?"on":""}">${c.name}<span>${n}</span></button>` : "";
   }).join("");
 }
+document.getElementById("armaBrand").addEventListener("click", e => {
+  const b = e.target.closest("[data-arma-brand]");
+  if(!b || b.dataset.armaBrand === armaBrand) return;
+  armaBrand = b.dataset.armaBrand; armaCat = "todos"; armaOpen = false; renderArma();
+  track("arma_marca", {marca: armaBrand});
+});
 document.getElementById("armaTabs").addEventListener("click", e => {
   const b = e.target.closest("[data-arma-cat]");
   if(!b || b.dataset.armaCat === armaCat) return;
@@ -2295,8 +2390,15 @@ armaGrid.addEventListener("click", e => {
 });
 
 function armaMessage(){
-  const list = Object.entries(armaQty).map(([id,q]) => `• ${PRODUCTS[id].name} x${q}`).join("\n");
-  return `Hola Hamilton 👋 Armé mi canasta en tu página.${waCountry()} Me interesan:\n${list}\n¿Me ayudas a armar mi carrito?`;
+  const list = Object.entries(armaQty).map(([id,q]) => {
+    const pr = pPrice(id);
+    return `• ${pName(id)} x${q}` + (pr != null ? ` — ${fmtMoney(pr * q)}` : "");
+  }).join("\n");
+  const s = armaSums();
+  const total = s.ok && armaTotal()
+    ? `\nTotal aprox.: ${fmtMoney(s.price)} · ${s.pts} pts` + (s.pts >= ENVIO_GRATIS_PTS ? " (envío gratis ✅)" : "")
+    : "";
+  return `Hola Hamilton 👋 Armé mi canasta en tu página.${waCountry()} Me interesan:\n${list}${total}\n¿Me ayudas a armar mi carrito?`;
 }
 function updateArmaBar(pop){
   const n = armaTotal();
@@ -2304,7 +2406,19 @@ function updateArmaBar(pop){
   if(lastArmaTotal !== null && n !== lastArmaTotal) HGSound.play(n > lastArmaTotal ? "add" : "remove");
   lastArmaTotal = n;
   const count = document.getElementById("armaCount");
-  count.textContent = `${n} producto${n === 1 ? "" : "s"}`;
+  const s = armaSums();
+  count.textContent = `${n} producto${n === 1 ? "" : "s"}` + (s.ok && n ? ` · ${fmtMoney(s.price)}` : "");
+  // Barra de envío gratis: se llena hacia los 200 puntos
+  const ship = document.getElementById("armaShip");
+  if(s.ok && n){
+    const falta = Math.max(0, ENVIO_GRATIS_PTS - s.pts);
+    ship.hidden = false;
+    ship.classList.toggle("done", !falta);
+    document.getElementById("armaShipBar").style.width = Math.min(100, s.pts / ENVIO_GRATIS_PTS * 100) + "%";
+    document.getElementById("armaShipTxt").innerHTML = falta
+      ? `🚚 Llevas <b>${s.pts} de ${ENVIO_GRATIS_PTS} pts</b> · te faltan <b>${falta}</b> para envío gratis`
+      : `✅ <b>¡Tu envío es gratis!</b> Llevas ${s.pts} pts`;
+  } else ship.hidden = true;
   document.getElementById("basketBadge").textContent = n;
   // Asoman de la canasta los últimos productos elegidos (solo los que ya tienen foto)
   document.getElementById("basketItems").innerHTML = Object.keys(armaQty).filter(id => PRODUCTS[id].image).slice(-3)
@@ -2323,10 +2437,13 @@ function renderArmaList(){
   const ids = Object.keys(armaQty);
   if(!ids.length){ toggleArmaList(false); return; }
   document.getElementById("armaListRows").innerHTML = ids.map(id => {
-    const p = PRODUCTS[id], q = armaQty[id];
-    return `<div class="arma-row" data-list="${id}">${p.image ? `<img src="${p.image}" alt="">` : ""}<span>${p.name}</span>` +
-      `<div class="qty"><button type="button" data-d="-1" aria-label="Quitar ${p.name}">−</button><output>${q}</output><button type="button" data-d="1" aria-label="Agregar ${p.name}">+</button></div></div>`;
+    const p = PRODUCTS[id], q = armaQty[id], name = pName(id), pr = pPrice(id);
+    const sub = pr != null ? `<small>${fmtMoney(pr * q)} · ${pPts(id) * q} pts</small>` : (selectedCountry ? `<small>No se vende en ${COUNTRIES[selectedCountry].name}</small>` : "");
+    return `<div class="arma-row" data-list="${id}">${p.image ? `<img src="${p.image}" alt="">` : ""}<span>${name}${sub}</span>` +
+      `<div class="qty"><button type="button" data-d="-1" aria-label="Quitar ${name}">−</button><output>${q}</output><button type="button" data-d="1" aria-label="Agregar ${name}">+</button></div></div>`;
   }).join("");
+  const s = armaSums();
+  document.getElementById("armaListTotal").innerHTML = s.ok ? `<span>Total aprox.</span><b>${fmtMoney(s.price)} · ${s.pts} pts</b>` : "";
 }
 function toggleArmaList(open){
   open = open === undefined ? armaListEl.hidden : open;
