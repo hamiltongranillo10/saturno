@@ -641,7 +641,7 @@ body.guide-on .flow-bar.ready{opacity:1;pointer-events:auto;transform:translate(
 @media(max-width:860px){
   .buddy{width:82px;height:82px;left:10px;bottom:10px}
   .buddy-bubble{max-width:170px;font-size:.76rem;left:calc(100% - 8px);bottom:calc(100% - 6px)}
-  body.arma-bar-on .buddy{bottom:122px}
+  body.arma-bar-on .buddy{bottom:var(--buddy-up,190px)}   /* se calcula en vivo: justo arriba de la canasta y del aviso de envío */
   body.hero-final-on .buddy.show{opacity:0;pointer-events:none;transform:translateX(-140%)}
 }
 @keyframes bump{40%{transform:translateY(-8px)}}
@@ -797,10 +797,20 @@ body.in-tienda .nav{transform:translateY(-100%)}
 .arma-steps li{display:flex;align-items:center;gap:7px}
 .arma-steps b{display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--sage-ink);color:#fff;font-size:.68rem}
 /* En celular, sin difuminado detrás (es lo que más cuesta al bajar); cristal un poco más opaco en su lugar */
+.arma-steps .sm{display:none}
 @media(max-width:760px){
-  .arma .section-head{padding:16px 18px 18px;margin-bottom:26px;background:rgba(252,248,246,.74);backdrop-filter:none;-webkit-backdrop-filter:none}
-  .arma .section-head h2{font-size:1.6rem}
-  .arma .section-head p{font-size:.88rem}
+  /* En celular la tarjeta es compacta: sin el párrafo (los pasos ya lo explican) y los pasos en una sola línea */
+  .arma .section-head{padding:12px 14px 12px;margin-bottom:18px;border-radius:18px;background:rgba(252,248,246,.74);backdrop-filter:none;-webkit-backdrop-filter:none}
+  .arma .section-head .kicker{font-size:.62rem}
+  .arma .section-head h2{font-size:1.32rem;margin:4px 0 0}
+  .arma .section-head p{display:none}
+  .arma-steps{flex-wrap:nowrap;gap:10px;margin-top:10px;padding-top:9px;font-size:.7rem;justify-content:center}
+  .arma-steps li{gap:4px;white-space:nowrap}
+  .arma-steps b{width:17px;height:17px;font-size:.6rem}
+  .arma-steps .lg{display:none}.arma-steps .sm{display:inline}
+  .arma-brand{margin:-4px 0 12px}
+  .arma-brand button{min-width:0;flex:1;padding:8px 12px;font-size:1.1rem}
+  .arma-note{margin:-14px 0 16px;font-size:.7rem}
   .arma-tabs{justify-content:flex-start}   /* en celular las pestañas se deslizan: alineadas a la izquierda para no cortarse */
   .arma-tabs button,.arma-more button{background:rgba(255,255,255,.86);backdrop-filter:none;-webkit-backdrop-filter:none}
 }
@@ -911,8 +921,22 @@ button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var
 .arma-bar .clear{border:0;background:transparent;color:rgba(255,255,255,.7);font-size:.78rem;text-decoration:underline}
 .arma-bar .btn{margin-left:auto;padding:12px 18px;font-size:.84rem}
 @media(max-width:1000px){.arma-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.arma-swipe{display:none}
 @media(max-width:700px){
-  .arma-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:34px 0}
+  /* En celular los productos van en una fila que se desliza de lado: la página no se hace larga */
+  .arma-grid{display:flex;gap:0;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;
+    margin:0 -16px;padding:0 16px 4px;scroll-padding:0 16px}
+  .arma-grid::-webkit-scrollbar{display:none}
+  .arma-card{flex:0 0 44%;scroll-snap-align:start}
+  /* Nombres de 1 o 2 líneas ocupan lo mismo: precios y botones quedan alineados */
+  .arma-card strong{min-height:2.6em;display:flex;align-items:center;justify-content:center;line-height:1.25}
+  .arma-card .price{flex-wrap:nowrap;gap:5px;margin:0 4px 10px;white-space:nowrap}
+  .arma-card .price b{font-size:.86rem}
+  .arma-card .price span{font-size:.64rem;padding:2px 6px}
+  .arma-swipe{display:flex;align-items:center;justify-content:center;gap:10px;margin:14px 0 0;font-size:.76rem;font-weight:600;color:var(--sage-ink)}
+  .arma-swipe i{display:block;width:60px;height:4px;border-radius:99px;background:rgba(90,42,53,.15);overflow:hidden}
+  .arma-swipe i b{display:block;height:100%;width:30%;border-radius:99px;background:var(--sage-ink);transition:margin .15s linear}
+  .arma-more{display:none}
   .dome{--dw:132px}
   .arma-card.in-cart::before{right:calc(50% - 66px)}
   .arma-card p{display:none}
@@ -1484,9 +1508,9 @@ button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var
       <p>Agrega lo que quieras, envíame tu lista por WhatsApp y yo armo tu carrito con el precio de tu país.</p>
       <!-- Así nadie espera pagar aquí: la compra se cierra con el carrito oficial que envío por WhatsApp -->
       <ol class="arma-steps">
-        <li><b>1</b>Elige tus productos</li>
+        <li><b>1</b><span class="lg">Elige tus productos</span><span class="sm">Elige</span></li>
         <li><b>2</b>Envíame tu lista</li>
-        <li><b>3</b>Te mando tu carrito oficial para pagar</li>
+        <li><b>3</b><span class="lg">Te mando tu carrito oficial para pagar</span><span class="sm">Recibe tu carrito oficial</span></li>
       </ol>
     </div>
     <div class="arma-country" id="armaCountry"></div>
@@ -1494,6 +1518,8 @@ button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var
     <div class="arma-tabs" id="armaTabs" role="tablist" aria-label="Tipo de producto"></div>
     <p class="arma-note">Precios de referencia de OMNILIFE (octubre 2026) · Envío gratis desde 200 puntos</p>
     <div class="arma-grid" id="armaGrid"></div>
+    <!-- Solo en celular: aviso de que la fila se desliza, con una barrita que avanza -->
+    <p class="arma-swipe" id="armaSwipe" aria-hidden="true">Desliza para ver más <i><b id="armaSwipeBar"></b></i> →</p>
     <div class="arma-more" id="armaMore"></div>
   </div>
 </section>
@@ -2252,7 +2278,17 @@ const ARMA_CATS = [
   {brand:"seytu",    id:"maquillaje", name:"Maquillaje",       ids:["sombras_rosas","sombras_marrones","brillo_labial","labial_mate","maquillaje_up"]}
 ];
 const ARMA_ROWS = 2;   // en "Todos" se ven solo estas filas; el resto aparece con "Ver todos"
-let armaBrand = "omnilife", armaCat = "todos", armaOpen = false;
+let armaBrand = "omnilife", armaCat = "todos", armaOpen = false, lastArmaList = "";
+// Barrita del aviso "Desliza para ver más": avanza según cuánto se ha deslizado la fila
+function armaSwipeBar(){
+  const max = armaGrid.scrollWidth - armaGrid.clientWidth, bar = document.getElementById("armaSwipeBar");
+  document.getElementById("armaSwipe").style.visibility = max > 4 ? "visible" : "hidden";
+  const w = Math.max(18, Math.min(100, armaGrid.clientWidth / armaGrid.scrollWidth * 100));
+  bar.style.width = w + "%";
+  bar.style.marginLeft = (max > 0 ? armaGrid.scrollLeft / max * (100 - w) : 0) + "%";
+}
+armaGrid.addEventListener("scroll", () => requestAnimationFrame(armaSwipeBar), {passive:true});
+addEventListener("resize", () => requestAnimationFrame(armaSwipeBar));
 function armaList(catId){
   const cat = ARMA_CATS.find(c => c.brand === armaBrand && c.id === catId) || ARMA_CATS.find(c => c.brand === armaBrand);
   return (cat.ids || Object.keys(PRODUCTS).filter(id => PRODUCTS[id].marca === armaBrand)).filter(id => {
@@ -2288,7 +2324,11 @@ function renderArma(){
   const cols = matchMedia("(max-width:700px)").matches ? 2 : matchMedia("(max-width:1000px)").matches ? 3 : 4;
   if(!armaList(armaCat).length) armaCat = "todos";
   const all = armaList(armaCat), limit = cols * ARMA_ROWS;
-  const cut = armaCat === "todos" && !armaOpen && all.length > limit + 1;
+  // En celular la fila se desliza de lado: se muestran todos (no hace falta "Ver todos")
+  const phone = matchMedia("(max-width:700px)").matches;
+  const cut = !phone && armaCat === "todos" && !armaOpen && all.length > limit + 1;
+  const listKey = armaBrand + "|" + armaCat + "|" + all.join(",");
+  if(listKey !== lastArmaList){ lastArmaList = listKey; armaGrid.scrollLeft = 0; }
   armaGrid.innerHTML = (cut ? all.slice(0, limit) : all).map((id, i) =>
     `<div class="arma-card ${armaQty[id] ? "in-cart" : ""}" data-product="${id}" style="--i:${i % cols}">${armaCardInner(id)}</div>`).join("");
   if(armaGrid.classList.contains("anim")) armaGrid.querySelectorAll(".arma-card").forEach(c => shelfIO.observe(c));
@@ -2297,6 +2337,7 @@ function renderArma(){
     : (armaCat === "todos" && armaOpen ? `<button type="button">Ver menos ↑</button>` : "");
   renderArmaTabs();
   updateArmaBar();
+  requestAnimationFrame(armaSwipeBar);
 }
 
 /* ---------- Sonidos suaves (Web Audio, sin archivos): solo cuando la persona toca algo ----------
@@ -3382,7 +3423,18 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
   function syncArmaBar(){
     armaBarEl.classList.toggle('show', armaIn && armaBarEl.classList.contains('has-items'));
     document.body.classList.toggle('arma-bar-on', armaBarEl.classList.contains('show'));
+    liftBuddy(); setTimeout(liftBuddy, 450);   // otra vez cuando termina de subir la barra
   }
+  // El personaje se sube justo por encima de la barra de la canasta y del aviso de envío gratis (para que no lo tapen)
+  function liftBuddy(){
+    if(!armaBarEl.classList.contains('show')) return;
+    // Se calcula con el tamaño final de la barra (no con su posición mientras sube animada)
+    var ship = document.getElementById('armaShip');
+    var up = (parseFloat(getComputedStyle(armaBarEl).bottom) || 16) + armaBarEl.offsetHeight;
+    if(ship && !ship.hidden) up += ship.offsetHeight + 8;
+    document.body.style.setProperty('--buddy-up', Math.round(up + 10) + 'px');
+  }
+  addEventListener('resize', liftBuddy);
 
   /* ---------- 7) ACOMPAÑANTE EN TODA LA PÁGINA ----------
      El personaje SIEMPRE hace algo (cambia de gesto según la sección), pero HABLA muy poco:
