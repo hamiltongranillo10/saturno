@@ -857,6 +857,18 @@ body.in-tienda .nav{transform:translateY(-100%)}
 .arma-card.in-cart::before{content:"✓";position:absolute;top:6px;right:calc(50% - 74px);z-index:2;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:#fff;font-size:.8rem;font-weight:700;box-shadow:0 6px 14px rgba( 184, 106, 117,.35)}
 .arma-card strong{color:var(--sage-ink);padding:0 10px;text-shadow:0 1px 8px rgba(251,248,241,.9)}
 .arma-card p{color:#3f493b;font-size:.8rem;margin:4px 0 10px;padding:0 14px;flex:1;text-shadow:0 1px 8px rgba(251,248,241,.95)}
+/* 🎨 Muestras de color (maquillaje SEYTÚ): círculos con la textura real del tono */
+.tones{display:flex;flex-direction:column;align-items:center;gap:6px;margin:0 8px 10px}
+.tone-name{font-size:.74rem;color:var(--muted)}
+.tone-name b{color:var(--sage-ink);font-weight:600}
+.tone-row{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:200px}
+.tone-row button{position:relative;width:24px;height:24px;border-radius:50%;padding:0;border:2px solid #fff;background:#ddd center/cover no-repeat;
+  box-shadow:0 0 0 1px rgba(90,42,53,.25),0 2px 4px rgba(60,26,34,.15);transition:transform .15s,box-shadow .15s}
+.tone-row button:hover{transform:scale(1.12)}
+.tone-row button[aria-checked="true"]{box-shadow:0 0 0 2px var(--sage-ink),0 2px 6px rgba(60,26,34,.25)}
+.tone-row button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+/* Puntito: ese tono ya está en tu canasta */
+.tone-row button.has::after{content:"";position:absolute;right:-3px;top:-3px;width:9px;height:9px;border-radius:50%;background:var(--gold);border:1.5px solid #fff}
 /* Paso de la rutina Skin care (Seytú) */
 .arma-card .tag{align-self:center;font-style:normal;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--amber-deep);margin:0 0 4px}
 /* Precio y puntos del país elegido */
@@ -954,6 +966,11 @@ button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var
   .arma-card p{flex:none;font-size:.7rem;line-height:1.35;margin:2px 0 8px;padding:0 8px;min-height:4.05em;
     display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}
   .arma-card strong{margin-bottom:2px;font-size:.9rem}
+  .arma-card .price{margin-top:auto}   /* precio y botón siempre abajo: tarjetas con y sin colores quedan parejas */
+  .tones{gap:4px;margin:0 2px 8px}
+  .tone-name{font-size:.66rem}
+  .tone-row{gap:5px}
+  .tone-row button{width:20px;height:20px}
   .arma-bar{border-radius:20px;flex-wrap:wrap;padding:12px}
   .arma-bar .btn{width:100%;margin:0}
 }
@@ -1779,9 +1796,9 @@ const PRODUCTS = {
   protector_solar:{"tag":"Paso 5 · Protege","name":"Protector Solar Facial FPS 50+","desc":"FPS 50+, toque seco, resistente al agua y sin fragancia. Ideal para piel sensible. 40 ml.","image":"sey-protector-solar.webp","type":"box","color":"#F2A33A","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":390,"usa":23.87},"pts":{"mexico":34,"usa":34},"desc_us":"FPS 50+, toque seco, resistente al agua y sin fragancia. Ideal para piel sensible. 40 ml."},
   sombras_rosas:{"name":"Paleta de Sombras Rosas","desc":"Sombras en polvo fino, de textura suave y cremosa, para dar profundidad, brillo y color a tu mirada. Tonos rosas, 13 g.","image":"sey-sombras-rosas.webp","type":"box","color":"#D98AA6","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":635,"usa":40.52},"pts":{"mexico":73,"usa":73},"desc_us":"Sombras en polvo fino, de textura suave y cremosa, para dar profundidad, brillo y color a tu mirada. Tonos rosas, 13 g."},
   sombras_marrones:{"name":"Paleta de Sombras Marrones","desc":"Sombras en polvo fino, de textura suave y cremosa, para dar profundidad, brillo y color a tu mirada. Tonos marrones, 13 g.","image":"sey-sombras-marrones.webp","type":"box","color":"#8C5A44","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":635,"usa":40.52},"pts":{"mexico":73,"usa":73},"desc_us":"Sombras en polvo fino, de textura suave y cremosa, para dar profundidad, brillo y color a tu mirada. Tonos marrones, 13 g."},
-  brillo_labial:{"name":"Brillo Labial","desc":"Brillo con efecto voluminizador que se funde en los labios, en una gran gama de colores. 8.5 g.","image":"sey-brillo-labial.webp","type":"box","color":"#C9837C","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":340,"usa":22.76},"pts":{"mexico":31,"usa":31},"desc_us":"Brillo con efecto voluminizador que se funde en los labios, en una gran gama de colores. 8.5 g."},
-  labial_mate:{"name":"Labial Líquido Mate","desc":"Labial líquido de aplicación suave, color intenso y acabado mate sofisticado. 6 g.","image":"sey-labial-mate.webp","type":"box","color":"#8E3F4C","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":350,"usa":24.42},"pts":{"mexico":36,"usa":36},"desc_us":"Labial líquido de aplicación suave, color intenso y acabado mate sofisticado. 6 g."},
-  maquillaje_up:{"name":"Maquillaje Líquido UP+ FPS15","desc":"Base mate de larga duración y cobertura construible, con FPS 15 y activos humectantes y antioxidantes. 40 g.","image":"sey-maquillaje-up.webp","type":"box","color":"#2B1A1F","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":535,"usa":37.19},"pts":{"mexico":51,"usa":51},"name_us":"Maquillaje Líquido UP+","desc_us":"Base mate de larga duración y cobertura construible, con activos humectantes y antioxidantes. 40 g."},
+  brillo_labial:{"name":"Brillo Labial","desc":"Brillo con efecto voluminizador que se funde en los labios, en una gran gama de colores. 8.5 g.","image":"sey-brillo-labial-diamante.webp","type":"box","color":"#C9837C","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":340,"usa":22.76},"pts":{"mexico":31,"usa":31},"desc_us":"Brillo con efecto voluminizador que se funde en los labios, en una gran gama de colores. 8.5 g.","tonos":[{"n":"Diamante","img":"sey-brillo-labial-diamante.webp","sw":"tono-brillo-labial-diamante.webp"},{"n":"Ópalo","img":"sey-brillo-labial-opalo.webp","sw":"tono-brillo-labial-opalo.webp"},{"n":"Ámbar","img":"sey-brillo-labial-ambar.webp","sw":"tono-brillo-labial-ambar.webp"},{"n":"Topaz","img":"sey-brillo-labial-topaz.webp","sw":"tono-brillo-labial-topaz.webp"},{"n":"Ágata","img":"sey-brillo-labial-agata.webp","sw":"tono-brillo-labial-agata.webp"},{"n":"Rubí","img":"sey-brillo-labial-rubi.webp","sw":"tono-brillo-labial-rubi.webp"},{"n":"Zafiro","img":"sey-brillo-labial-zafiro.webp","sw":"tono-brillo-labial-zafiro.webp"}]},
+  labial_mate:{"name":"Labial Líquido Mate","desc":"Labial líquido de aplicación suave, color intenso y acabado mate sofisticado. 6 g.","image":"sey-labial-mate-90-s-baby.webp","type":"box","color":"#8E3F4C","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":350,"usa":24.42},"pts":{"mexico":36,"usa":36},"desc_us":"Labial líquido de aplicación suave, color intenso y acabado mate sofisticado. 6 g.","tonos":[{"n":"90's Baby","img":"sey-labial-mate-90-s-baby.webp","sw":"tono-labial-mate-90-s-baby.webp"},{"n":"Wifey","img":"sey-labial-mate-wifey.webp","sw":"tono-labial-mate-wifey.webp"},{"n":"Thirties","img":"sey-labial-mate-thirties.webp","sw":"tono-labial-mate-thirties.webp"},{"n":"Nairobi","img":"sey-labial-mate-nairobi.webp","sw":"tono-labial-mate-nairobi.webp"},{"n":"Masai","img":"sey-labial-mate-masai.webp","sw":"tono-labial-mate-masai.webp"},{"n":"Samburu","img":"sey-labial-mate-samburu.webp","sw":"tono-labial-mate-samburu.webp"},{"n":"Kalahari","img":"sey-labial-mate-kalahari.webp","sw":"tono-labial-mate-kalahari.webp"},{"n":"Sahara","img":"sey-labial-mate-sahara.webp","sw":"tono-labial-mate-sahara.webp"}]},
+  maquillaje_up:{"name":"Maquillaje Líquido UP+ FPS15","desc":"Base mate de larga duración y cobertura construible, con FPS 15 y activos humectantes y antioxidantes. 40 g.","image":"sey-maquillaje-up-fair.webp","type":"box","color":"#2B1A1F","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":535,"usa":37.19},"pts":{"mexico":51,"usa":51},"name_us":"Maquillaje Líquido UP+","desc_us":"Base mate de larga duración y cobertura construible, con activos humectantes y antioxidantes. 40 g.","tonos":[{"n":"01. Fair","img":"sey-maquillaje-up-fair.webp","sw":"tono-maquillaje-up-fair.webp"},{"n":"02. Light Sand","img":"sey-maquillaje-up-light-sand.webp","sw":"tono-maquillaje-up-light-sand.webp"},{"n":"03. Soft Honey","img":"sey-maquillaje-up-soft-honey.webp","sw":"tono-maquillaje-up-soft-honey.webp"},{"n":"04. Natural Beige","img":"sey-maquillaje-up-natural-beige.webp","sw":"tono-maquillaje-up-natural-beige.webp"},{"n":"05. Warm Beige","img":"sey-maquillaje-up-warm-beige.webp","sw":"tono-maquillaje-up-warm-beige.webp"},{"n":"06. Creamy Natural","img":"sey-maquillaje-up-creamy-natural.webp","sw":"tono-maquillaje-up-creamy-natural.webp"},{"n":"07. Sun Beige","img":"sey-maquillaje-up-sun-beige.webp","sw":"tono-maquillaje-up-sun-beige.webp"},{"n":"08. Caramel","img":"sey-maquillaje-up-caramel.webp","sw":"tono-maquillaje-up-caramel.webp"},{"n":"09. Cocoa","img":"sey-maquillaje-up-cocoa.webp","sw":"tono-maquillaje-up-cocoa.webp"}]},
   // Agregados para completar 40: baratos para llegar a 200 pts y necesidades nuevas (mujer, hombre, niños, omega-3)
   ego10:{"name":"Ego 10","desc":"Bebida sin azúcar ni calorías con inositol, taurina y vitaminas del complejo B. Sabor fruta de la pasión. Botellín de 200 ml.","image":"ego10.webp","type":"box","color":"#C2185B","marca":"omnilife","paises":["mexico","usa"],"precio":{"mexico":52,"usa":4.05},"pts":{"mexico":5,"usa":5},"desc_us":"Bebida con vitaminas del complejo B y ribosa. Sabor fruta de la pasión. Botella de 200 ml."},
   chiva_cola:{"name":"Chiva Cola six pack","desc":"Bebida gasificada sabor tradicional a cola. 6 latas de 355 ml.","image":"chiva-cola.webp","type":"can","color":"#B3262E","marca":"omnilife","paises":["mexico"],"precio":{"mexico":126},"pts":{"mexico":6}},
@@ -1873,6 +1890,15 @@ const PRODUCTS = {
   s_sup_h:{"name":"Suplemento H-Specialist","desc":"Para el cabello: KERANAT™, biotina, vitaminas A, C, B5 y B6, zinc y selenio. Sabor fresa.","image":"sey-sup-h.webp","type":"box","color":"#C2414F","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":1035,"usa":69.38},"pts":{"mexico":99,"usa":99}},
   s_sup_spot:{"name":"Suplemento Spot Specialist","desc":"Para la piel: probióticos, vitaminas A y C, niacina y zinc. Sabor manzana verde.","image":"sey-sup-spot.webp","type":"box","color":"#7FB7C9","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":630,"usa":48.84},"pts":{"mexico":59,"usa":59}},
   s_sup_t:{"name":"Suplemento T-Specialist","desc":"Con fitoceramidas de trigo, vitaminas C y E y zinc. Sabor arándano.","image":"sey-sup-t.webp","type":"box","color":"#9B4D7A","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":790,"usa":54.95},"pts":{"mexico":71,"usa":71}},
+  // 🎨 Maquillaje SEYTÚ con tonos (el cliente elige el color)
+  maquillaje_compacto:{"name":"Maquillaje Compacto 2 en 1","desc":"Maquillaje compacto 2 en 1 en 8 tonos para que encuentres el tuyo.","image":"sey-maquillaje-compacto-fair.webp","type":"box","color":"#C9A27E","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":460,"usa":31.08},"pts":{"mexico":42,"usa":42},"tonos":[{"n":"01. Fair","img":"sey-maquillaje-compacto-fair.webp","sw":"tono-maquillaje-compacto-fair.webp"},{"n":"02. Light Sand","img":"sey-maquillaje-compacto-light-sand.webp","sw":"tono-maquillaje-compacto-light-sand.webp"},{"n":"03. Soft Honey","img":"sey-maquillaje-compacto-soft-honey.webp","sw":"tono-maquillaje-compacto-soft-honey.webp"},{"n":"04. Natural Beige","img":"sey-maquillaje-compacto-natural-beige.webp","sw":"tono-maquillaje-compacto-natural-beige.webp"},{"n":"05. Warm Beige","img":"sey-maquillaje-compacto-warm-beige.webp","sw":"tono-maquillaje-compacto-warm-beige.webp"},{"n":"06. Creamy Natural","img":"sey-maquillaje-compacto-creamy-natural.webp","sw":"tono-maquillaje-compacto-creamy-natural.webp"},{"n":"07. Sun Beige","img":"sey-maquillaje-compacto-sun-beige.webp","sw":"tono-maquillaje-compacto-sun-beige.webp"},{"n":"08. Caramel","img":"sey-maquillaje-compacto-caramel.webp","sw":"tono-maquillaje-compacto-caramel.webp"}]},
+  corrector:{"name":"Corrector Líquido","desc":"Corrector líquido para disimular ojeras e imperfecciones. Elige el tono de tu piel.","image":"sey-corrector-ivory-mist.webp","type":"box","color":"#D9B596","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":350,"usa":23.31},"pts":{"mexico":32,"usa":32},"tonos":[{"n":"Ivory Mist","img":"sey-corrector-ivory-mist.webp","sw":"tono-corrector-ivory-mist.webp"},{"n":"Buttery","img":"sey-corrector-buttery.webp","sw":"tono-corrector-buttery.webp"},{"n":"Fair","img":"sey-corrector-fair.webp","sw":"tono-corrector-fair.webp","precio":{"mexico":280,"usa":19.98},"pts":{"mexico":25,"usa":25}},{"n":"Light","img":"sey-corrector-light.webp","sw":"tono-corrector-light.webp","precio":{"mexico":280,"usa":19.98},"pts":{"mexico":25,"usa":25}},{"n":"Medium","img":"sey-corrector-medium.webp","sw":"tono-corrector-medium.webp","precio":{"mexico":280,"usa":19.98},"pts":{"mexico":25,"usa":25}},{"n":"Deep","img":"sey-corrector-deep.webp","sw":"tono-corrector-deep.webp","precio":{"mexico":280,"usa":19.98},"pts":{"mexico":25,"usa":25}}]},
+  labial_hidratante:{"name":"Labial Hidratante FPS 15","desc":"Labial hidratante con FPS 15 en 10 tonos, de nudes a rojos intensos.","image":"sey-labial-hidratante-seytu-red.webp","type":"box","color":"#C2414F","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":240,"usa":18.87},"pts":{"mexico":24,"usa":24},"name_us":"Labial Hidratante","tonos":[{"n":"SEYTÚ Red","img":"sey-labial-hidratante-seytu-red.webp","sw":"tono-labial-hidratante-seytu-red.webp"},{"n":"Hot Pink","img":"sey-labial-hidratante-hot-pink.webp","sw":"tono-labial-hidratante-hot-pink.webp"},{"n":"Light Pink","img":"sey-labial-hidratante-light-pink.webp","sw":"tono-labial-hidratante-light-pink.webp"},{"n":"Sand Nude","img":"sey-labial-hidratante-sand-nude.webp","sw":"tono-labial-hidratante-sand-nude.webp"},{"n":"Rose Nude","img":"sey-labial-hidratante-rose-nude.webp","sw":"tono-labial-hidratante-rose-nude.webp"},{"n":"Flame Coral","img":"sey-labial-hidratante-flame-coral.webp","sw":"tono-labial-hidratante-flame-coral.webp"},{"n":"Sweet Coral","img":"sey-labial-hidratante-sweet-coral.webp","sw":"tono-labial-hidratante-sweet-coral.webp"},{"n":"Flash Red","img":"sey-labial-hidratante-flash-red.webp","sw":"tono-labial-hidratante-flash-red.webp"},{"n":"Candy Red","img":"sey-labial-hidratante-candy-red.webp","sw":"tono-labial-hidratante-candy-red.webp"},{"n":"Icon Violet","img":"sey-labial-hidratante-icon-violet.webp","sw":"tono-labial-hidratante-icon-violet.webp"}]},
+  lapiz_ojos:{"name":"Lápiz Delineador de Ojos","desc":"Lápiz para delinear y definir tu mirada. En café y negro.","image":"sey-lapiz-ojos-negro.webp","type":"box","color":"#3A2A2A","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":245,"usa":17.76},"pts":{"mexico":26,"usa":26},"tonos":[{"n":"Negro","img":"sey-lapiz-ojos-negro.webp","sw":"tono-lapiz-ojos-negro.webp"},{"n":"Café","img":"sey-lapiz-ojos-cafe.webp","sw":"tono-lapiz-ojos-cafe.webp"}]},
+  lapiz_labios:{"name":"Lápiz Delineador de Labios","desc":"Define el contorno de tus labios y haz que tu labial dure más.","image":"sey-lapiz-labios-cascada.webp","type":"box","color":"#A8576A","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":200,"usa":12.21},"pts":{"mexico":19,"usa":19},"tonos":[{"n":"Cascada","img":"sey-lapiz-labios-cascada.webp","sw":"tono-lapiz-labios-cascada.webp"},{"n":"Lago","img":"sey-lapiz-labios-lago.webp","sw":"tono-lapiz-labios-lago.webp"}]},
+  lapiz_cejas:{"name":"Lápiz para Cejas","desc":"Rellena y define tus cejas con un trazo natural.","image":"sey-lapiz-cejas-brown.webp","type":"box","color":"#7A5A44","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":185,"usa":12.43},"pts":{"mexico":19,"usa":19},"tonos":[{"n":"Brown","img":"sey-lapiz-cejas-brown.webp","sw":"tono-lapiz-cejas-brown.webp"},{"n":"Universal","img":"sey-lapiz-cejas-universal.webp","sw":"tono-lapiz-cejas-universal.webp"}]},
+  polvo_iluminador:{"name":"Polvo Iluminador","desc":"Polvo iluminador para dar luz y brillo a tu rostro. 3 tonos.","image":"sey-polvo-iluminador-desert-sunset.webp","type":"box","color":"#D9A57E","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":240,"usa":16.65},"pts":{"mexico":21,"usa":21},"tonos":[{"n":"Desert Sunset","img":"sey-polvo-iluminador-desert-sunset.webp","sw":"tono-polvo-iluminador-desert-sunset.webp"},{"n":"Desert Rose","img":"sey-polvo-iluminador-desert-rose.webp","sw":"tono-polvo-iluminador-desert-rose.webp"},{"n":"Desert Sand","img":"sey-polvo-iluminador-desert-sand.webp","sw":"tono-polvo-iluminador-desert-sand.webp"}]},
+  rubor:{"name":"Rubor Compacto","desc":"Rubor compacto para dar color a tus mejillas. 3 tonos.","image":"sey-rubor-apricot.webp","type":"box","color":"#D97A6A","marca":"seytu","paises":["mexico","usa"],"precio":{"mexico":255,"usa":19.98},"pts":{"mexico":25,"usa":25},"tonos":[{"n":"Apricot","img":"sey-rubor-apricot.webp","sw":"tono-rubor-apricot.webp"},{"n":"Peach","img":"sey-rubor-peach.webp","sw":"tono-rubor-peach.webp"},{"n":"Plum","img":"sey-rubor-plum.webp","sw":"tono-rubor-plum.webp"}]},
   // 🇺🇸 Solo en Estados Unidos
   blu_life:{"name":"B.L.U. Life","desc":"Agua purificada para tu hidratación diaria. Botella de 600 ml.","image":"blu-life.webp","type":"box","color":"#3B6FB6","marca":"omnilife","paises":["usa"],"precio":{"usa":1.72},"pts":{"usa":2}},
   malteada_vainilla:{"name":"Malteada OML Vainilla","desc":"Malteada con proteína, carbohidratos, fibra, vitaminas y minerales para una nutrición completa. Doypack de 600 g.","image":"malteada-vainilla.webp","type":"box","color":"#E7C9A9","marca":"omnilife","paises":["usa"],"precio":{"usa":48.84},"pts":{"usa":75}},
@@ -1970,8 +1996,8 @@ function getCartProducts(countryId, needId){
 }
 
 // Figura de un producto: muestra su imagen real; si aún no existe, una caja o lata de prueba
-function productVisual(id, extraStyle){
-  const p = PRODUCTS[id];
+function productVisual(id, extraStyle, img){
+  const p = img ? {...PRODUCTS[id], image: img} : PRODUCTS[id];   // img: foto del tono elegido
   const fallback = p.type === "can"
     ? `<div class="pcan"><span>${p.name}</span></div>`
     : `<div class="pbox"><i class="f">${p.name}</i><i class="s"></i><i class="t"></i></div>`;
@@ -2301,9 +2327,19 @@ function includesHtml(content){
    🛒 ARMA TU CARRITO: el cliente suma productos y te envía la lista por WhatsApp
    ===================================================================== */
 const armaGrid = document.getElementById("armaGrid");
+/* 🎨 TONOS (maquillaje SEYTÚ): cada tono va en la canasta como su propia línea, con la clave "producto~n" */
+const keyId = k => k.split("~")[0];
+function keyTone(k){
+  const [id, n] = k.split("~"), p = PRODUCTS[id];
+  return n != null && p && p.tonos ? p.tonos[+n] : null;
+}
+const armaTone = {};   // tono elegido en cada tarjeta (por producto)
+const cardKey = id => PRODUCTS[id].tonos ? id + "~" + (armaTone[id] || 0) : id;
+const productInCart = id => Object.keys(armaQty).some(k => keyId(k) === id);
+const pImage = k => (keyTone(k) || {}).img || PRODUCTS[keyId(k)].image;
 let armaQty = {};
 try{ armaQty = JSON.parse(localStorage.getItem("hg_arma") || "{}") || {}; }catch(e){ armaQty = {}; }
-Object.keys(armaQty).forEach(k => { if(!PRODUCTS[k] || !(armaQty[k] > 0)) delete armaQty[k]; });
+Object.keys(armaQty).forEach(k => { if(!PRODUCTS[keyId(k)] || (k.includes("~") && !keyTone(k)) || !(armaQty[k] > 0)) delete armaQty[k]; });
 
 function saveArma(){ try{ localStorage.setItem("hg_arma", JSON.stringify(armaQty)); }catch(e){} }
 function armaTotal(){ return Object.values(armaQty).reduce((a,b) => a + b, 0); }
@@ -2320,10 +2356,14 @@ document.getElementById("armaCountry").addEventListener("click", e => {
 
 /* 💲 PRECIOS Y PUNTOS: salen de PRODUCTS (precio / pts por país). Envío gratis desde 200 puntos en los dos países. */
 const ENVIO_GRATIS_PTS = 200;
-const pName = id => (selectedCountry === "usa" && PRODUCTS[id].name_us) || PRODUCTS[id].name;
-const pDesc = id => (selectedCountry === "usa" && PRODUCTS[id].desc_us) || PRODUCTS[id].desc;
-const pPrice = id => selectedCountry && PRODUCTS[id].precio ? PRODUCTS[id].precio[selectedCountry] : undefined;
-const pPts = id => selectedCountry && PRODUCTS[id].pts ? PRODUCTS[id].pts[selectedCountry] : undefined;
+// Reciben el id del producto o la clave con tono ("brillo_labial~2"): el nombre suma el tono y algunos tonos tienen otro precio
+function pName(k){
+  const p = PRODUCTS[keyId(k)], t = keyTone(k);
+  return ((selectedCountry === "usa" && p.name_us) || p.name) + (t ? " · " + t.n : "");
+}
+const pDesc = k => { const p = PRODUCTS[keyId(k)]; return (selectedCountry === "usa" && p.desc_us) || p.desc; };
+function pPrice(k){ const t = keyTone(k), s = t && t.precio ? t : PRODUCTS[keyId(k)]; return selectedCountry && s.precio ? s.precio[selectedCountry] : undefined; }
+function pPts(k){ const t = keyTone(k), s = t && t.pts ? t : PRODUCTS[keyId(k)]; return selectedCountry && s.pts ? s.pts[selectedCountry] : undefined; }
 function fmtMoney(v){
   const usa = selectedCountry === "usa";
   return "$" + v.toLocaleString(usa ? "en-US" : "es-MX", {minimumFractionDigits: usa || v % 1 ? 2 : 0, maximumFractionDigits: 2}) + " " + (usa ? "USD" : "MXN");
@@ -2340,12 +2380,17 @@ function armaSums(){
 }
 
 function armaCardInner(id){
-  const q = armaQty[id] || 0, name = pName(id), price = pPrice(id), pts = pPts(id);
+  const key = cardKey(id), q = armaQty[key] || 0, name = pName(id), price = pPrice(key), pts = pPts(key);
   const priceRow = price != null
     ? `<div class="price"><b>${fmtMoney(price)}</b><span>${pts} pts</span></div>`
     : `<div class="price none">Elige tu país para ver el precio</div>`;
+  // 🎨 Muestras de color: al tocar una cambia la foto, el nombre del tono y (si aplica) el precio
+  const tonos = PRODUCTS[id].tonos, sel = armaTone[id] || 0;
+  const toneRow = tonos ? `<div class="tones"><span class="tone-name">Color: <b>${tonos[sel].n}</b></span><div class="tone-row" role="radiogroup" aria-label="Color de ${name}">` +
+    tonos.map((t, i) => `<button type="button" role="radio" aria-checked="${i === sel}" aria-label="${t.n}" title="${t.n}" data-tone="${i}"${armaQty[id + "~" + i] ? ' class="has"' : ""} style="background-image:url(${t.sw})"></button>`).join("") +
+    `</div></div>` : "";
   // 🖼️ campana.webp: vitrina de vidrio con base de piedra; el producto queda adentro
-  return `<div class="dome">${productVisual(id)}<img class="dome-glass" src="campana.webp" alt="" loading="lazy" decoding="async"></div><i class="ledge"></i>${PRODUCTS[id].tag ? `<em class="tag">${PRODUCTS[id].tag}</em>` : ""}<strong>${name}</strong><p>${pDesc(id)}</p>${priceRow}` + (q
+  return `<div class="dome">${productVisual(id, "", pImage(key))}<img class="dome-glass" src="campana.webp" alt="" loading="lazy" decoding="async"></div><i class="ledge"></i>${PRODUCTS[id].tag ? `<em class="tag">${PRODUCTS[id].tag}</em>` : ""}<strong>${name}</strong><p>${pDesc(id)}</p>${toneRow}${priceRow}` + (q
     ? `<div class="qty"><button type="button" data-arma="-1" aria-label="Quitar ${name}">−</button><output>${q}</output><button type="button" data-arma="1" aria-label="Agregar ${name}">+</button></div>`
     : `<button class="add-btn" type="button" data-arma="1">Agregar +</button>`);
 }
@@ -2372,7 +2417,7 @@ const ARMA_CATS = [
   {brand:"seytu",    id:"todos",    name:"Todos"},
   // Skin care: en el orden de la rutina (limpiar → tonificar → tratar → hidratar → proteger → extras)
   {brand:"seytu",    id:"skincare", name:"Skin care",          ids:["espuma","tonico","suero_aloe","suero_noche","contorno_ojos","gel_manchas","crema_dia","crema_noche","protector_solar","mascarilla","crema_manos","s_locion_limp","s_espuma_lum","s_dermo","s_exfoliante","s_desmaq","s_suero_ojos","s_suero_spot","s_gel_spot","s_gel_premium","s_crema_dia20"]},
-  {brand:"seytu",    id:"maquillaje", name:"Maquillaje",       ids:["sombras_rosas","sombras_marrones","brillo_labial","labial_mate","maquillaje_up","s_balsamo","s_mascara","s_delineador_liq","s_penliner","s_cejas","s_polvo","s_brocha_liq","s_brochas_rostro","s_brochas_ojos","s_esponja","s_sacapuntas"]},
+  {brand:"seytu",    id:"maquillaje", name:"Maquillaje",       ids:["maquillaje_up","maquillaje_compacto","corrector","polvo_iluminador","rubor","brillo_labial","labial_mate","labial_hidratante","lapiz_labios","lapiz_ojos","lapiz_cejas","sombras_rosas","sombras_marrones","s_balsamo","s_mascara","s_delineador_liq","s_penliner","s_cejas","s_polvo","s_brocha_liq","s_brochas_rostro","s_brochas_ojos","s_esponja","s_sacapuntas"]},
   {brand:"seytu",    id:"cuerpo",   name:"Cuerpo y manos",     ids:["s_piel_naranja","s_estrias","s_solar_corp","s_manos_escote","s_manos_frutos","s_manos_manzana","s_manos_sandia","s_manos_vainilla","s_jabon","s_locion_coco","s_locion_frutos","s_body_butter"]},
   {brand:"seytu",    id:"cabello",  name:"Cabello",            ids:["s_sh_herbal","s_acond","s_sh_color","s_sh_debil","s_sh_fort","s_locion_capilar","s_capilar_multi","s_masc_capilar","s_gel_fijador","s_tinte_negro","s_tinte_castano_oscuro","s_tinte_castano_claro","s_tinte_moka","s_tinte_rojo","s_tinte_rubio_claro","s_tinte_rubio_extra"]},
   {brand:"seytu",    id:"suplementos", name:"Belleza por dentro", ids:["s_sup_h","s_sup_spot","s_sup_t"]}
@@ -2436,7 +2481,7 @@ function renderArma(){
   const listKey = armaBrand + "|" + armaCat + "|" + all.join(",");
   if(listKey !== lastArmaList){ lastArmaList = listKey; armaGrid.scrollLeft = 0; }
   armaGrid.innerHTML = (cut ? all.slice(0, limit) : all).map((id, i) =>
-    `<div class="arma-card ${armaQty[id] ? "in-cart" : ""}" data-product="${id}" style="--i:${i % cols}">${armaCardInner(id)}</div>`).join("");
+    `<div class="arma-card ${productInCart(id) ? "in-cart" : ""}" data-product="${id}" style="--i:${i % cols}">${armaCardInner(id)}</div>`).join("");
   if(armaGrid.classList.contains("anim")) armaGrid.querySelectorAll(".arma-card").forEach(c => shelfIO.observe(c));
   document.getElementById("armaMore").innerHTML = cut
     ? `<button type="button">Ver los ${all.length} productos ↓</button>`
@@ -2525,21 +2570,30 @@ function flyToBasket(fromImg){
   }, 120));
 }
 armaGrid.addEventListener("click", e => {
+  // Muestra de color: cambia el tono que se ve (y el que se agrega)
+  const tb = e.target.closest("[data-tone]");
+  if(tb){
+    const card = tb.closest("[data-product]"), id = card.dataset.product;
+    armaTone[id] = Number(tb.dataset.tone);
+    card.innerHTML = armaCardInner(id);
+    const sel = card.querySelector(`[data-tone="${armaTone[id]}"]`); sel && sel.focus({preventScroll: true});
+    return;
+  }
   const b = e.target.closest("[data-arma]"); if(!b) return;
-  const card = b.closest("[data-product]"), id = card.dataset.product;
+  const card = b.closest("[data-product]"), id = card.dataset.product, key = cardKey(id);
   const shown = card.querySelector(".pvis.has-img img");
   if(Number(b.dataset.arma) > 0) flyToBasket(shown);
   if(Number(b.dataset.arma) < 0) window.HG3D && window.HG3D.buddySay(null, "5");
-  armaQty[id] = Math.max(0, (armaQty[id] || 0) + Number(b.dataset.arma));
-  if(!armaQty[id]) delete armaQty[id];
+  armaQty[key] = Math.max(0, (armaQty[key] || 0) + Number(b.dataset.arma));
+  if(!armaQty[key]) delete armaQty[key];
   saveArma();
   // Solo se redibuja la tarjeta tocada (sin recargar las imágenes de las demás)
   card.innerHTML = armaCardInner(id);
-  card.classList.toggle("in-cart", !!armaQty[id]);
+  card.classList.toggle("in-cart", productInCart(id));
   if(!reduceMotion){ card.classList.remove("bump"); void card.offsetWidth; card.classList.add("bump"); }
   updateArmaBar(true);
   if(Number(b.dataset.arma) > 0){
-    track("arma_agregar", {producto: PRODUCTS[id].name});
+    track("arma_agregar", {producto: pName(key)});
     // Solo habla con el primer producto; después celebra en silencio
     window.HG3D && window.HG3D.buddySay("¡Buena elección! Cuando termines, envíame tu lista 💚", "6", 2600, "arma-first");
   }
@@ -2577,8 +2631,8 @@ function updateArmaBar(pop){
   } else ship.hidden = true;
   document.getElementById("basketBadge").textContent = n;
   // Asoman de la canasta los últimos productos elegidos (solo los que ya tienen foto)
-  document.getElementById("basketItems").innerHTML = Object.keys(armaQty).filter(id => PRODUCTS[id].image).slice(-3)
-    .map(id => `<img src="${PRODUCTS[id].image}" alt="" onerror="this.remove()">`).join("");
+  document.getElementById("basketItems").innerHTML = Object.keys(armaQty).filter(k => pImage(k)).slice(-3)
+    .map(k => `<img src="${pImage(k)}" alt="" onerror="this.remove()">`).join("");
   if(pop && !reduceMotion){ count.classList.remove("pop"); void count.offsetWidth; count.classList.add("pop"); }
   document.getElementById("armaSend").href = waUrl(armaMessage());
   document.getElementById("armaBar").classList.toggle("has-items", n > 0);
@@ -2593,9 +2647,9 @@ function renderArmaList(){
   const ids = Object.keys(armaQty);
   if(!ids.length){ toggleArmaList(false); return; }
   document.getElementById("armaListRows").innerHTML = ids.map(id => {
-    const p = PRODUCTS[id], q = armaQty[id], name = pName(id), pr = pPrice(id);
+    const img = pImage(id), q = armaQty[id], name = pName(id), pr = pPrice(id);
     const sub = pr != null ? `<small>${fmtMoney(pr * q)} · ${pPts(id) * q} pts</small>` : (selectedCountry ? `<small>No se vende en ${COUNTRIES[selectedCountry].name}</small>` : "");
-    return `<div class="arma-row" data-list="${id}">${p.image ? `<img src="${p.image}" alt="">` : ""}<span>${name}${sub}</span>` +
+    return `<div class="arma-row" data-list="${id}">${img ? `<img src="${img}" alt="">` : ""}<span>${name}${sub}</span>` +
       `<div class="qty"><button type="button" data-d="-1" aria-label="Quitar ${name}">−</button><output>${q}</output><button type="button" data-d="1" aria-label="Agregar ${name}">+</button></div></div>`;
   }).join("");
   const s = armaSums();
