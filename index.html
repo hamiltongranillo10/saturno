@@ -49,7 +49,13 @@
   =====================================================================
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!-- ⚡ La imagen principal (pared del inicio) se pide primero, antes que todo lo demás -->
+<link rel="preload" as="image" href="fondo-inicio-pc.webp" media="(min-width:761px)" fetchpriority="high">
+<link rel="preload" as="image" href="fondo-inicio-movil.webp" media="(max-width:760px)" fetchpriority="high">
+<!-- ⚡ Las fuentes cargan sin detener la página (mientras llegan se ve la letra del sistema un instante) -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 <style>
 /* 🎨 MARCA: "Vino y rosa" (Brand Book 10.0)
    Fondo blanco cálido y nude · títulos y botones en vino #5A2A35 · rosa #D9A5A0 como acento
@@ -818,6 +824,32 @@ body.in-tienda .nav{transform:translateY(-100%)}
 .arma-bg{position:absolute;inset:0;overflow:clip;pointer-events:none;
   -webkit-mask-image:linear-gradient(#000,#000 calc(100% - 160px),transparent);mask-image:linear-gradient(#000,#000 calc(100% - 160px),transparent)}
 .arma-bg-pin{position:sticky;top:0;height:100vh}
+/* 🌑 Galería en penumbra: la pared queda en vino profundo para que luzcan los haces de luz de los pedestales.
+   La capa oscura va pareja (la pared está fija al bajar) y la entrada se funde con la tienda clara de arriba */
+.arma{background:#2A1218}
+.arma-bg-pin::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 80% 70% at 50% 45%,rgba(48,20,27,.8),rgba(26,10,15,.94))}
+.arma::after{content:"";position:absolute;left:0;right:0;top:0;height:300px;pointer-events:none;
+  background:linear-gradient(#F0D9B5,rgba(240,217,181,.55) 35%,rgba(240,217,181,0))}
+@media(max-width:760px){.arma::after{height:200px}}
+.arma .arma-note,.arma .arma-country>span{color:rgba(252,248,246,.72)}
+.arma .arma-card strong{color:#FCF8F6;text-shadow:0 2px 10px rgba(0,0,0,.35)}
+.arma .arma-card p{color:rgba(252,248,246,.68);text-shadow:none}
+.arma .arma-card .price b{color:#FCF8F6}
+.arma .arma-card .price span{background:rgba(217,165,160,.22);color:#F0C9C4}
+.arma .arma-card .price.none{color:rgba(252,248,246,.6)}
+.arma .arma-card .tag{color:#E7B9A0}
+.arma .arma-card .add-btn{background:#D9A5A0;color:#3A1A22}
+.arma .arma-card .add-btn:hover{background:#F0C9C4}
+.arma .arma-card .qty{border-color:rgba(252,248,246,.25)}
+.arma .arma-card .qty button{background:rgba(252,248,246,.14);color:#FCF8F6}
+.arma .arma-card .qty output{color:#FCF8F6}
+.arma-swipe{color:rgba(252,248,246,.8)!important}
+.arma-swipe i{background:rgba(252,248,246,.18)!important}
+.arma-swipe i b{background:#D9A5A0!important}
+/* La luz se nota más en la oscuridad: un poco más intensa y cálida */
+.arma .dome .spot{opacity:.95;filter:blur(6px)}
+.arma .dome .ped{box-shadow:0 18px 26px -8px rgba(0,0,0,.55)}
 .arma-country{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:-14px 0 28px;font-size:.88rem;color:var(--muted)}
 .arma-country button{border:1px solid var(--line);background:#fff;color:var(--sage-ink);padding:8px 14px;border-radius:999px;font-weight:600;font-size:.82rem;transition:background .2s,border-color .2s}
 .arma-country button.on{background:var(--sage-ink);color:#fff;border-color:var(--sage-ink)}
@@ -835,11 +867,25 @@ body.in-tienda .nav{transform:translateY(-100%)}
 .arma-more button:hover{background:var(--sage-ink);color:#fff}
 .arma-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:44px 0}
 .arma-card{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 0 4px}
-/* Vitrina de vidrio: el producto va adentro, sobre la base de piedra */
+/* Pedestal de mármol con un haz de luz desde arriba (estilo museo). Hecho solo con código: no usa imágenes */
 .dome{--dw:170px;position:relative;width:var(--dw);aspect-ratio:406/560;flex:none;z-index:1}
-.dome-glass{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none;opacity:.88}
-.arma-card .pvis{--w:calc(var(--dw) * .46);position:absolute;left:50%;bottom:17%;margin-left:calc(var(--w) * -.5);z-index:1;transition:transform .45s var(--ease);transform-origin:50% 100%}
+.dome .spot{position:absolute;left:50%;top:-8%;width:96%;height:82%;translate:-50% 0;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,244,222,.05) 0%,rgba(255,238,208,.62) 30%,rgba(255,230,192,.4) 78%,rgba(255,230,192,0) 100%);
+  clip-path:polygon(41% 0,59% 0,97% 100%,3% 100%);filter:blur(5px);opacity:.8;transition:opacity .45s}
+.dome .ped{position:absolute;left:50%;bottom:0;width:60%;height:28%;translate:-50% 0;z-index:0;border-radius:0 0 4px 4px;
+  background:linear-gradient(90deg,#d6c7b8 0%,#f2e9df 20%,#fffaf3 44%,#f3eae0 70%,#cfbfae 100%);box-shadow:0 16px 20px -10px rgba(60,26,34,.4)}
+.dome .ped::before{content:"";position:absolute;left:-1px;right:-1px;top:-9px;height:18px;border-radius:50%;
+  background:radial-gradient(ellipse at 50% 40%,#fffdf8 0,#f6ede3 58%,#e3d4c5 100%);box-shadow:inset 0 -2px 0 #c9a15b}
+.dome .ped::after{content:"";position:absolute;left:0;right:0;bottom:12%;height:3px;background:linear-gradient(90deg,#a98140,#ecc983 50%,#a98140)}
+.dome .ped i{position:absolute;left:8%;right:8%;top:-8px;height:14px;border-radius:50%;z-index:1;
+  background:radial-gradient(ellipse,rgba(255,236,204,.95) 0,rgba(255,236,204,0) 70%);transition:background .4s}
+.arma-card .pvis{--w:calc(var(--dw) * .52);position:absolute;left:50%;bottom:calc(28% - 3px);margin-left:calc(var(--w) * -.5);z-index:1;transition:transform .45s var(--ease);transform-origin:50% 100%;
+  filter:drop-shadow(0 6px 6px rgba(60,26,34,.22))}
 .arma-card:hover .pvis{transform:translateY(-8px) rotate(-2deg)}
+.arma-card:hover .dome .spot{opacity:1}
+/* En la canasta: la luz del pedestal se pone rosa */
+.arma-card.in-cart .dome .ped i{background:radial-gradient(ellipse,rgba(217,165,160,.95) 0,rgba(217,165,160,0) 72%)}
+.arma-card.in-cart .dome .spot{background:linear-gradient(180deg,rgba(255,232,228,.05) 0%,rgba(240,201,196,.6) 30%,rgba(240,201,196,.38) 78%,rgba(240,201,196,0) 100%)}
 /* Repisa blanca con borde dorado y luz cálida debajo (como la pared de la tienda) */
 .ledge{position:relative;display:block;align-self:stretch;height:14px;margin:-4px 0 18px;
   background:linear-gradient(180deg,#fbf6ee 0 50%,#d2ab62 50% 66%,#a98140 66% 100%);box-shadow:0 16px 26px -6px rgba(255,190,110,.55),0 4px 6px -2px rgba(80,55,20,.25)}
@@ -1640,7 +1686,7 @@ button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var
 <div class="arma-bar on-dark" id="armaBar" aria-live="polite">
   <!-- 🖼️ canasta.webp: canasta tejida sin fondo -->
   <!-- Al tocar la canasta (o "N productos") se abre la lista de lo que elegiste -->
-  <button class="basket" id="armaBasket" type="button" aria-label="Ver los productos de tu canasta" aria-expanded="false" aria-controls="armaList"><span class="basket-items" id="basketItems"></span><img src="canasta.webp" alt="" decoding="async"><b id="basketBadge">0</b></button>
+  <button class="basket" id="armaBasket" type="button" aria-label="Ver los productos de tu canasta" aria-expanded="false" aria-controls="armaList"><span class="basket-items" id="basketItems"></span><img src="canasta.webp" alt="" width="220" height="171" decoding="async"><b id="basketBadge">0</b></button>
   <button class="count" id="armaCount" type="button" aria-controls="armaList">0 productos</button>
   <div class="arma-list" id="armaList" hidden>
     <div class="arma-list-head"><strong>Tu canasta</strong><button type="button" class="arma-list-x" id="armaListClose" aria-label="Cerrar">×</button></div>
@@ -2247,8 +2293,8 @@ function armaCardInner(id){
   const priceRow = price != null
     ? `<div class="price"><b>${fmtMoney(price)}</b><span>${pts} pts</span></div>`
     : `<div class="price none">Elige tu país para ver el precio</div>`;
-  // 🖼️ campana.webp: vitrina de vidrio con base de piedra; el producto queda adentro
-  return `<div class="dome">${productVisual(id)}<img class="dome-glass" src="campana.webp" alt="" loading="lazy" decoding="async"></div><i class="ledge"></i>${PRODUCTS[id].tag ? `<em class="tag">${PRODUCTS[id].tag}</em>` : ""}<strong>${name}</strong><p>${pDesc(id)}</p>${priceRow}` + (q
+  // Pedestal con haz de luz (solo CSS): el producto se para encima
+  return `<div class="dome"><span class="spot"></span><span class="ped"><i></i></span>${productVisual(id)}</div><i class="ledge"></i>${PRODUCTS[id].tag ? `<em class="tag">${PRODUCTS[id].tag}</em>` : ""}<strong>${name}</strong><p>${pDesc(id)}</p>${priceRow}` + (q
     ? `<div class="qty"><button type="button" data-arma="-1" aria-label="Quitar ${name}">−</button><output>${q}</output><button type="button" data-arma="1" aria-label="Agregar ${name}">+</button></div>`
     : `<button class="add-btn" type="button" data-arma="1">Agregar +</button>`);
 }
@@ -3770,10 +3816,15 @@ document.getElementById("otherCountry").addEventListener("click", () => track("o
     prepCaps.forEach(function(c){ c.classList.toggle('on', p >= +c.dataset.from && p < +c.dataset.to); });
   }
   if (prepSec){
-    // Los cuadros se cargan solo cuando la sección se acerca (así el inicio de la página carga rápido)
+    // Los cuadros se cargan solo cuando la sección se acerca y después de que el inicio terminó de cargar
+    // (así la imagen principal no compite con ellos)
+    var prepWhenReady = function(){
+      if (document.readyState === 'complete') prepLoad();
+      else addEventListener('load', prepLoad, { once: true });
+    };
     if ('IntersectionObserver' in window){
-      new IntersectionObserver(function(es){ if (es[0].isIntersecting) prepLoad(); }, { rootMargin: '1200px 0px' }).observe(prepSec);
-    } else prepLoad();
+      new IntersectionObserver(function(es){ if (es[0].isIntersecting) prepWhenReady(); }, { rootMargin: '1200px 0px' }).observe(prepSec);
+    } else prepWhenReady();
     addEventListener('resize', prepSize);
     prepSize();
   }
