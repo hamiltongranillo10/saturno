@@ -222,6 +222,9 @@ img{max-width:100%;display:block}
 @keyframes inUp{from{translate:0 60px;opacity:0}}
 @keyframes inLeft{from{translate:-60px 30px;opacity:0}}
 @keyframes inFade{from{translate:0 24px;opacity:0}}
+/* ⚡ El título principal se ve desde el primer instante (solo sube un poco): así cuenta como cargado de inmediato */
+.intro .hero-copy>h1{animation-name:inRise}
+@keyframes inRise{from{translate:0 24px}}
 @media(min-width:761px){.l-plant svg{filter:blur(5px)}.l-front svg{filter:blur(2.5px)}}
 /* Pantallas bajas (laptops): todo más compacto para que no choque con el menú */
 @media(min-width:761px) and (max-height:700px){
@@ -1124,7 +1127,7 @@ button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var
 .faq-list details[open]{background:var(--cream)}
 .faq-list summary{display:grid;grid-template-columns:2.4rem 1fr auto;gap:1rem;align-items:center;padding:1.2rem .5rem;list-style:none;cursor:pointer;font-weight:600;color:var(--sage-ink)}
 .faq-list summary::-webkit-details-marker{display:none}
-.faq-num{font-family:'Cormorant Garamond',serif;color:var(--gold)}
+.faq-num{font-family:'Cormorant Garamond',serif;color:#8E3F4C}   /* vino: se lee bien sobre el fondo claro (contraste AA) */
 .faq-icon{width:2rem;height:2rem;display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;transition:transform .35s var(--ease),background .3s,color .3s}
 .faq-list details[open] .faq-icon{transform:rotate(45deg);background:var(--sage-ink);color:#fff}
 .faq-answer{padding:0 .5rem 1.4rem 3.9rem;color:var(--muted);font-size:.94rem}
@@ -1277,7 +1280,7 @@ button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var
   </div>
   <div class="layer l-front" data-depth="-.35" data-mouse="30" aria-hidden="true">
     <!-- 🖼️ Rama de sakura al frente (rama-sakura.webp, fondo transparente): se mueve más rápido y da profundidad -->
-    <img class="rama" src="rama-sakura.webp" alt="" width="692" height="1050" decoding="async">
+    <img class="rama" src="rama-sakura.webp" srcset="rama-sakura-520.webp 520w, rama-sakura.webp 692w" sizes="(max-width:760px) 70vw, 400px" alt="" width="692" height="1050" decoding="async">
     <svg viewBox="0 0 400 300" preserveAspectRatio="xMinYMax meet"><g fill="#4d5e43">
       <path d="M0 300 C40 220 70 160 150 110" stroke="#4d5e43" stroke-width="6" fill="none"/>
       <path d="M150 110c40-30 90-20 110 6-40 20-80 18-110-6z"/>
@@ -2569,13 +2572,38 @@ function flyToBasket(fromImg){
     a.onfinish = () => { f.remove(); basket.classList.remove("hop"); void basket.offsetWidth; basket.classList.add("hop"); };
   }, 120));
 }
+/* Actualiza una tarjeta sin redibujarla completa: así la vitrina y la foto no parpadean.
+   Solo cambian la foto (si es otro tono), el nombre del tono, las muestras, el precio y el botón. */
+const inertDoc = document.implementation.createHTMLDocument("");   // aquí se arma el HTML nuevo sin descargar imágenes
+function refreshCard(card, id){
+  const tmp = inertDoc.createElement("div");
+  tmp.innerHTML = armaCardInner(id);
+  [".tones", ".price", ".qty, .add-btn"].forEach(sel => {
+    const now = card.querySelector(sel), next = tmp.querySelector(sel);
+    if(now && next) now.replaceWith(document.importNode(next, true));
+  });
+  const img = card.querySelector(".pvis > img"), src = pImage(cardKey(id));
+  if(img && img.getAttribute("src") !== src){
+    // La foto del tono nuevo se carga primero y luego se cambia (sin mostrar la caja de respaldo)
+    const pre = new Image();
+    pre.onload = pre.onerror = () => { if(card.isConnected && pImage(cardKey(id)) === src) img.src = src; };
+    pre.src = src;
+  }
+  card.classList.toggle("in-cart", productInCart(id));
+}
+// Al pasar el dedo o el ratón por las muestras, se precargan las fotos de todos los tonos de ese producto
+armaGrid.addEventListener("pointerover", e => {
+  const row = e.target.closest(".tone-row"); if(!row || row.dataset.pre) return;
+  row.dataset.pre = "1";
+  (PRODUCTS[row.closest("[data-product]").dataset.product].tonos || []).forEach(t => { new Image().src = t.img; });
+});
 armaGrid.addEventListener("click", e => {
   // Muestra de color: cambia el tono que se ve (y el que se agrega)
   const tb = e.target.closest("[data-tone]");
   if(tb){
     const card = tb.closest("[data-product]"), id = card.dataset.product;
     armaTone[id] = Number(tb.dataset.tone);
-    card.innerHTML = armaCardInner(id);
+    refreshCard(card, id);
     const sel = card.querySelector(`[data-tone="${armaTone[id]}"]`); sel && sel.focus({preventScroll: true});
     return;
   }
@@ -2587,9 +2615,8 @@ armaGrid.addEventListener("click", e => {
   armaQty[key] = Math.max(0, (armaQty[key] || 0) + Number(b.dataset.arma));
   if(!armaQty[key]) delete armaQty[key];
   saveArma();
-  // Solo se redibuja la tarjeta tocada (sin recargar las imágenes de las demás)
-  card.innerHTML = armaCardInner(id);
-  card.classList.toggle("in-cart", productInCart(id));
+  // Solo se actualiza la tarjeta tocada, sin redibujar su vitrina ni su foto
+  refreshCard(card, id);
   if(!reduceMotion){ card.classList.remove("bump"); void card.offsetWidth; card.classList.add("bump"); }
   updateArmaBar(true);
   if(Number(b.dataset.arma) > 0){
