@@ -965,9 +965,9 @@ button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var
   .arma-swipe button{width:30px;height:30px;font-size:1.1rem}
   .dome{--dw:132px}
   .arma-card.in-cart::before{right:calc(50% - 66px)}
-  /* Descripción corta: máximo 3 líneas para que todas las tarjetas queden parejas */
-  .arma-card p{flex:none;font-size:.7rem;line-height:1.35;margin:2px 0 8px;padding:0 8px;min-height:4.05em;
-    display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;line-clamp:3;overflow:hidden}
+  /* Descripción completa (sin cortar con "…"): las tarjetas de la fila se estiran a la más alta
+     y el precio y el botón quedan alineados abajo (margin-top:auto en .price) */
+  .arma-card p{flex:none;font-size:.7rem;line-height:1.32;margin:2px 0 8px;padding:0 6px}
   .arma-card strong{margin-bottom:2px;font-size:.9rem}
   .arma-card .price{margin-top:auto}   /* precio y botón siempre abajo: tarjetas con y sin colores quedan parejas */
   .tones{gap:4px;margin:0 2px 8px}
