@@ -1214,6 +1214,7 @@ button.basket:focus-visible,.arma-bar .count:focus-visible{outline:2px solid var
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv{opacity:1;transform:none}
 }
+.price.pick-country{display:flex;flex-wrap:wrap;gap:6px;align-items:center;justify-content:center}.price.pick-country span{font-size:.82em;opacity:.8;width:100%;text-align:center}.price.pick-country button{font:inherit;font-size:.85em;font-weight:600;padding:6px 12px;border-radius:999px;border:1.5px solid var(--sage-ink,#5A2A35);background:#FCF8F6;color:var(--sage-ink,#5A2A35);cursor:pointer}.price.pick-country button:hover{background:var(--sage-ink,#5A2A35);color:#FCF8F6}
 </style>
 </head>
 <body>
@@ -2357,6 +2358,14 @@ function renderArmaCountry(){
   box.innerHTML = `<span>Para:</span>` + Object.entries(COUNTRIES).map(([id,c]) =>
     `<button type="button" data-arma-country="${id}" class="${selectedCountry===id?"on":""}">${c.flag} ${c.name}</button>`).join("");
 }
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-precio-pais]");
+  if(!b) return;
+  e.preventDefault(); e.stopPropagation();
+  const y = window.scrollY;
+  selectCountry(b.dataset.precioPais, {source:"clic"});
+  requestAnimationFrame(() => window.scrollTo({top: y, behavior: "instant"}));
+}, true);
 document.getElementById("armaCountry").addEventListener("click", e => {
   const b = e.target.closest("[data-arma-country]");
   if(b) selectCountry(b.dataset.armaCountry, {source:"clic"});
@@ -2391,7 +2400,7 @@ function armaCardInner(id){
   const key = cardKey(id), q = armaQty[key] || 0, name = pName(id), price = pPrice(key), pts = pPts(key);
   const priceRow = price != null
     ? `<div class="price"><b>${fmtMoney(price)}</b><span>${pts} pts</span></div>`
-    : `<div class="price none">Elige tu país para ver el precio</div>`;
+    : `<div class="price none pick-country"><span>Ver precio en:</span><button type="button" data-precio-pais="mexico">🇲🇽 México</button><button type="button" data-precio-pais="usa">🇺🇸 USA</button></div>`;
   // 🎨 Muestras de color: al tocar una cambia la foto, el nombre del tono y (si aplica) el precio
   const tonos = PRODUCTS[id].tonos, sel = armaTone[id] || 0;
   const toneRow = tonos ? `<div class="tones"><span class="tone-name">Color: <b>${tonos[sel].n}</b></span><div class="tone-row" role="radiogroup" aria-label="Color de ${name}">` +
